@@ -1,0 +1,1769 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Uchit Vyas - DevSecOps Architect, SRE Practitioner, Cloud Fanatic, An Author</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Uchit Vyas">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, SRE " />
+    <meta name="keywords" content="Cloud, An Author, SRE, CI/CD, DevSecOps, AiOps" />
+    <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <!--CSS styles-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar-0.4.5.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link id="theme-style" rel="stylesheet" href="css/default.css">
+    <link href="css/owl.carousel.css" rel="stylesheet" />
+    <link href="css/owl.theme.css" rel="stylesheet" />
+    <link href="css/owl.transitions.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <!--/CSS styles-->
+    <!--Javascript files-->
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+
+    <script type="text/javascript" src="js/modernizr.custom.63321.js"></script>
+    <script type="text/javascript" src="js/jquery.dropdownit.js"></script>
+
+    <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="js/ScrollToPlugin.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+
+    <script type="text/javascript" src="js/masonry.min.js"></script>
+
+    <script type="text/javascript" src="js/perfect-scrollbar-0.4.5.with-mousewheel.min.js"></script>
+
+    <script type="text/javascript" src="js/magnific-popup.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.js"></script>
+    <!--<script type="text/javascript" src="js/jPreLoader.js"></script>-->
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script src="js/typer.js"></script>
+    <!--/Javascript files-->
+
+
+    <!--Custom Styles -->
+    <link rel="stylesheet" href="css/custom-style.css">
+
+<!-- Start of  Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=e5f8c341-bbc3-4ec4-b52c-32e5c523f336"> </script>
+<!-- End of  Zendesk Widget script -->
+
+
+
+</head>
+
+
+
+<body>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-70949810-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- Preloader
+<div class="ole">
+<section id="jSplash">
+	<div id="circle"></div>
+</section>
+</div>-->
+
+    <div id="wrapper">
+        <a href="#sidebar" class="mobilemenu"><i class="icon-reorder"></i></a>
+
+        <div id="sidebar">
+            <div id="main-nav">
+                <div id="nav-container">
+                    <div id="profile" class="clearfix">
+                        <div class="portrate hidden-xs"></div>
+                        <div class="title">
+                            <h2>Uchit Vyas</h2>
+                            <!--  <h3>Cloud Fantatic</h3>-->
+                        </div>
+
+                    </div>
+                    <ul id="navigation">
+                        <li>
+                            <a href="#home">
+                                <div class="icon icon-home"></div>
+                                <div class="text">Home</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#biography">
+                                <div class="icon icon-user"></div>
+                                <div class="text">About Me</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#expertise">
+                                <div class="icon icon-book"></div>
+                                <div class="text">Technical Expertise</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#offerings">
+                                <div class="icon icon-gear"></div>
+                                <div class="text">Offerings</div>
+                            </a>
+                        </li>
+
+                        <!--<li>
+							<a href="#projects">
+								<div class="icon icon-book"></div>
+								<div class="text">Project Innovations</div>
+							</a>
+						</li>-->
+
+                        <li>
+                            <a href="#publications">
+                                <div class="icon icon-edit"></div>
+                                <div class="text">Publications</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#global_talks">
+                                <div class="icon icon-globe"></div>
+                                <div class="text">Global Talks</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#trainings">
+                                <div class="icon icon-graduation-cap"></div>
+                                <div class="text">Trainings</div>
+                            </a>
+                        </li>
+                        <!--  <li>
+							<a href="#gallery">
+								<div class="icon icon-picture"></div>
+								<div class="text">Gallery</div>
+							</a>
+						</li>-->
+
+                        <li>
+                            <a href="#contact">
+                                <div class="icon icon-envelope"></div>
+                                <div class="text">Contact &amp; Meet Me</div>
+                            </a>
+                        </li>
+
+                        <!--<li class="external">
+							<a href="#">
+								<div class="icon icon-download-alt"></div>
+								<div class="text">Profile</div>
+							</a>
+						</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="social-icons">
+
+                <ul>
+                    <li><a href="https://www.facebook.com/uchit86" target="_blank"><i class="icon-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/uchit_vyas" target="_blank"><i class="icon-twitter"></i></a></li>
+                    <li><a href="https://in.linkedin.com/in/uchitvyas" target="_blank"><i class="icon-linkedin"></i></a></li>
+                    <!--<li><a href="http://cloudbyuchit.blogspot.in/" target="_blank"><i class="icon-linkedin"></i></a></li>-->
+                </ul>
+            </div>
+            <div style="color: white; font-size: 10px;">
+                &copy; 2020-2022   hellouchit.com
+				<br>
+                All Rights Reserved.
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="home" class="page home" data-pos="home">
+                <div class="cover_img">
+                    <!-- start taglines -->
+                    <div class="tagline" id="typer"></div>
+                    <!-- end taglines -->
+                    <script>
+                        foo = $('#typer');
+                        // foo.typer(["My name is Uchit Vyas and I love to <br><strong>Travel</strong>", "<strong>A Cloud <br> Fantatic</strong>"]);
+                        foo.typer(["<strong>An Author</strong><strong>Cloud Fanatic</strong><strong>SRE Practitioner</strong><strong>DevSecOps Architect</strong>"])
+                    </script>
+                </div>
+            </div>
+            <div id="biography" class="page">
+                <div class="pageheader">
+                    <div class="headercontent">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <h3 class="title">Bio</h3>
+                                    <p>Uchit is an IT industry veteran, Cloud technologist at heart, a hands-on Enterprise Architect & DevSecOps/SRE leader at Accenture Australia. Through his speaking, writing and analysis, he helps businesses take advantage of the emerging technologies. As of now, Uchit works on SRE and DevSecOps practices in the APAC region with the responsibilities of Pre-Sales, Delivery and Consulting particularly focused on DevSecOps/SRE Practices. Uchit loves to play Chess and Age of Empires that helps to clearly see the impact of ideas, research & automation empowering economies of IT.</p>
+                                    <p>Uchit works with large IT organizations to automate traditional datacenters flow, explores new-age tools and technologies, defines solutions and best practices for small and large enterprises with DevSecOps and Enterprise Architecture (EA) practices. He has worked at world-class product and service companies like KPMG, Infosys, Oracle during which time he analyzed various cloud platforms, Enterprise Architecture, Infrastructure Automation, Containers, DevSecOps and Continuous Delivery.</p>
+                                    <p>He has also published various books on AWS cloud platform and Enterprise Service Bus named Mule ESB cookbook, AWS Development Essentials, Mastering AWS development, DynamoDB Applied Design Patterns, Openstack Applied Design Patterns and still counting.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--<div id="projects" class="page">
+				<div class="pageheader">
+
+					<div class="headercontent">
+
+						<div class="section-container">
+							<h2 class="title">Work Summary</h2>
+
+							<div class="row">
+								<div class="col-md-8" style="margin-top: 4%">
+									<p>Recent trends in huge, complex IT Infrastructures with automation have resulted in new requirements for new techniques and tools integration at every layer. Much of my work centers on new formulations that capture performance and elasticity criteria of the application in the physical/virtual layout phases of infrastructure and data pipeline. Results include 99.9999% availability and durability algorithms for such complex difficult infrastructure automation, provisioning and roll-out problems as minimum-cost calculation, low latency networks, cost-radius tradeoffs, DevSecOps Pipelines, continuous testing, highly scalable micro services, full deployment control, service discovery, monitoring and improved code quality.</p>
+								</div>
+								<div class="col-md-4">
+									<div class="subtitle text-center">
+										<h3>Interests</h3>
+									</div>
+									<ul class="ul-boxed list-unstyled">
+										<li>Time, Money and Happiness</li>
+										<li>The Power of Automation</li>
+										<li>Building Innovative Solutions</li>
+										<li>Distributed Computing</li>
+										<li>Containerization</li>
+										<li>Infrastructure Orchestration</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="pagecontents">
+					<div class="section color-1">
+						<div class="section-container">
+							<div class="title text-center">
+								<h3>Few interesting hands-on Projects glimpse</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="ul-withdetails">
+										<li>
+											<div class="row">
+												<div class="col-sm-6 col-md-3">
+													<div class="image">
+														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<div class="imageoverlay">
+															<i class="icon icon-search"></i>
+														</div>
+
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-9">
+													<div class="meta">
+														<h3>CI-as-a-Service</h3>
+														<p>CI tool-chain setup from a single click</p>
+													</div>
+												</div>
+											</div>
+											<div class="details">
+												<p>In this project, I have created a custom CI tool-chain deployment for different type client requirements. Traditionally, to setup a CI tool-set integrated with different components can take from 2 to 7 days in organization. Even once the CI pipeline has been fixed and setup, it’s very hard to sync those tools with each other and other aspects like HA and replication will be the biggest headache.</p>
+												<p>As a solution, created a solution accelerator called CI-as-a-service where from single click, your CI tool-set will be up and running with your desired tools.</p>
+												<p>
+													In a beta version, I have used Git, Gerrit, Sonar, Jenkins/Rundeck, Sonatype Nexus, Chef and Terraform.
+												</p>
+											</div>
+										</li>
+										<li>
+											<div class="row">
+												<div class="col-sm-6 col-md-3">
+													<div class="image">
+														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<div class="imageoverlay">
+															<i class="icon icon-search"></i>
+														</div>
+
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-9">
+													<div class="meta">
+														<h3>Bizz voice</h3>
+														<p>Cutomized portal solutions over hybrid infrastructure</p>
+													</div>
+												</div>
+											</div>
+											<div class="details">
+												<p>Bizz voice built on open source platform. It is completely customized portal with custom theme development, extension of out of box portlet in Liferay as well user can use features like, web content, blogs, forum, media, documents, calendar, wiki, wall post, invite friends and most importantly integrating e-commerce features is one of the added advantage.</p>
+												<p>
+													Through Bizz voice people can build their own web portal in few minutes. It has zero code features and the very important part is that, it is hosted as Hybrid cloud APP on Amazon Cloud and in-house datacenter with cluster environment to scale up and down as per the load using Openstack Sahara.
+												</p>
+											</div>
+										</li>
+										<li>
+											<div class="row">
+												<div class="col-sm-6 col-md-3">
+													<div class="image">
+														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<div class="imageoverlay">
+															<i class="icon icon-search"></i>
+														</div>
+
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-9">
+													<div class="meta">
+														<h3>Automation Pipeline</h3>
+														<p>DevSecOps adoption for multiple products on various datacenters</p>
+													</div>
+												</div>
+											</div>
+											<div class="details">
+												<p>
+													Continuous Integration/Deployment Project for Speech-based consumer Experience Company. The goal of the project is to setup the CI/CD pipeline for one each and every product end-to-end initially. The following activities were performed like
+												</p>
+												<ul>
+													<li>Merged/consolidated all repositories from Git/SVN into a single SCM system GIT and code review mechanism by Gerrit integrated with GIT.</li>
+													<li>Setup Jenkins with build slaves.</li>
+													<li>Deployment Automation using Chef.</li>
+													<li>Implementation of Automated Integration and functional testing with RSpec, junit, cucumber, ChefSpec, test-kitchen, ServerSpec.</li>
+													<li>Support multiple environments: Amazon EC2-based Public cloud and Openstack based Private cloud.</li>
+
+												</ul>
+
+											</div>
+										</li>
+										<li>
+											<div class="row">
+												<div class="col-sm-6 col-md-3">
+													<div class="image">
+														<img alt="image" src="images/project.jpg" class="img-responsive">
+													   <div class="imageoverlay">
+															<i class="icon icon-search"></i>
+														</div>
+
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-9">
+													<div class="meta">
+														<h3>Scaling under pressure </h3>
+														<p>how to fail fast and scale rapidly</p>
+													</div>
+												</div>
+											</div>
+											<div class="details">
+												<p>This is the story of a company that had 100s of customers and were facing severe scaling issues. They approached us. They had a good product predicting a few hundred customers within 6 months. VCs went to them. Infrastructure scaling was the only unknown; funding for software-defined data centers. We introduced Terraform for infrastructure creation, Chef for OS hardening, and then Packer for supporting AWS as well as VSphere. Then, after a few more weeks, when there was a need for faster response from the data center, we went into Serf to immediately trigger chef-clients and then to Consul for service monitoring. Finally, we did the same exact thing in at a Fortune 500 customer to replace 15 year-old scripts. We will also cover sleek ways of dealing with provisioning in different Availability Zones across various AWS regions with Terraform.</p>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
+
+            <div id="expertise" class="page">
+                <div class="page-container">
+                    <div class="pageheader">
+                        <div class="headercontent">
+                            <div class="section-container">
+
+                                <h2 class="title">Technical Expertise</h2>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Recent trends in huge, complex IT Infrastructures with automation and containerization have resulted in new requirements for new techniques and tools integrated at every layer. Much of my work centers on new formulations that capture performance and elasticity criteria of the application in the physical or virtual layout phases of infrastructure and data pipeline. My results include 99.9999% availability and durability algorithms for such complex difficult infrastructure automation, provisioning and roll-out problems as minimum-cost calculation, low latency networks, DevSecOps Pipelines, Quality Engineering, highly scalable micro services, full deployment control, & all modern Platform Engineering.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagecontents">
+                        <div class="section color-1">
+                            <div class="section-container">
+                                <div class="row">
+                                    <div class="title text-center">
+                                        <h3>My Expertise</h3>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+
+                                        <ul class="skillbar">
+                                            <li>
+                                                <em>Hybrid Cloud</em>
+                                                <span>80</span>
+                                            </li>
+                                            <li>
+                                                <em>DevSecOps</em>
+                                                <span>80</span>
+                                            </li>
+                                            <li>
+                                                <em>SRE</em>
+                                                <span>60</span>
+                                            </li>
+                                            <li>
+                                                <em>Container Orchestration</em>
+                                                <span>70</span>
+                                            </li>
+                                            <li style="display: none;">
+                                                <em>Dummy</em>
+                                                <span>100</span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="col-md-5">
+                                        <ul class="skillbar">
+                                            <li>
+                                                <em>Infrastructure Automation</em>
+                                                <span>80</span>
+                                            </li>
+                                            <li>
+                                                <em>Containers</em>
+                                                <span>70</span>
+                                            </li>
+
+                                            <li>
+                                                <em>Quality Engineering</em>
+                                                <span>60</span>
+                                            </li>
+                                            <li>
+                                                <em>Analytics</em>
+                                                <span>60</span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <script type="text/javascript">
+                                        function setBarWidth(dataElement, barElement, cssProperty, barPercent) {
+                                            var listData = [];
+                                            $(dataElement).each(function () {
+                                                listData.push($(this).html());
+                                            });
+                                            var listMax = Math.max.apply(Math, listData);
+                                            $(barElement).each(function (index) {
+                                                $(this).css(cssProperty, (listData[index] / listMax) * barPercent + "%");
+                                            });
+                                        }
+                                        setBarWidth(".skillbar span", ".skillbar em", "width", 100);
+
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section color-2">
+                            <div class="section-container">
+                                <div class="row">
+                                    <div class="title text-center">
+                                        <h3>Additional Skills</h3>
+                                    </div>
+
+                                    <div class="col-md-12">
+
+                                        <ul class="AddSkill">
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Infrastructure Automation</span>
+
+                                                </div>
+                                                <div class="description">
+
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Chef, Puppet, CFEngine, Cloudify</p>
+                                                    <div class="clearfix"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Salt, Ansible, Fabric, Func</p>
+                                                    <div class="clearfix"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Rundeck, Capistrano, ControlTier, Juju</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">CI Engines</span>
+
+                                                </div>
+                                                <div class="description">
+
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Jenkins, Hudson, Bamboo</p>
+                                                    <div class="clearfix"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Travis, Cruise-control, Atlas, GO-CD</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Provisioning</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Crowbar, Razor, Cobbler</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Kickstart, Terraform</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Source Code Management</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Git, Gerrit, Gitlab, BitBucket/Stash</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Subversion, Perforce</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Monitoring</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Prometheus, Nagios, Hyperic</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Zabbix, Cacti</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Libraries, Connectors and Tools</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>fog, jcloud</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>libcloud</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Deployment and Management Tools</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Vagrant, Rightscale, Scalr</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Enstratius, Otto, XLdeploy</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Packaging systems</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>DEB, RPM</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>YUM, ISO</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Identity Management</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Vault, Centrify</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">ITSM Suite</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>BMC Remedy, ServiceNow</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Analytics</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Splunk, ELK</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Issue Tracking</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Jira, RedMine</p>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Containers</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>LXC, Docker</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Kubernetes, Nomad</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Service Discovery</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Consul, Serf</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Cloud</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>AWS, GCP, Azure</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Openstack, Softlayer, VMware</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">IPAM</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Nipap, PHPIPAM, GestoIP</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Infoblox, Solarwinds IPAM, Device42, FusionLayer IPAM and Discovery </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Blockchain</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Hyperledger Fabric</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dy">
+                                                    <span class="title">Quality Engineering</span>
+                                                </div>
+                                                <div class="description">
+                                                    <div class="icon icon-check"></div>
+                                                    <p>RSpec, Cucumber, tailor, foodcritic, SoapUI, JMeter</p>
+                                                    <div class="clearfic"></div>
+                                                    <div class="icon icon-check"></div>
+                                                    <p>Katalon, Test-kitchen, ServerSpec, chef-spec, Selenium, Gatling</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="section color-1">
+						<div class="section-container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="title text-center">
+										<h3>Journey Towards Goal</h3>
+									</div>
+									<ul class="timeline">
+										<li class="open">
+											<div class="date1">Dec'14 - Present</div>
+											<div class="circle"></div>
+											<div class="data">
+												<div class="subject">
+													Opex Software, Pune
+													<div style="font-size: 14px">Cloud Automation Lead</div>
+												</div>
+												<div class="text row">
+													<div class="col-md-2">
+														<img alt="image" class="thumbnail img-responsive" src="images/Logo/opex_logo.png">
+													</div>
+													<div class="col-md-10">
+														My responsibilities are,
+														<ul>
+															<li>Automate OS for Fortune 500 enterprise.</li>
+															<li>Design and deliver Application automation.</li>
+															<li>Deliver DB Layer Automation.</li>
+															<li>Help start DevSecOps culture in IT infrastructure environments/teams.</li>
+															<li>Develop solutions, policies and processes for Configuration Management and Automation of complex systems.</li>
+															<li>Develop solutions and processes for Continuous Delivery, Build and Release management.</li>
+															<li>Provisioning of tools like Chef/Puppet/Terraform.</li>
+														</ul>
+														<strong>Client location –SAP Labs,Bangalore</strong>
+														<ul>
+															<li>With SAP Labs, in a DevSecOps capacity on large-scale, mission-critical,production systems including cloud-scale, big data and HPC environments. </li>
+															<li>Develop solutions, policies and processes for Continuous Integration and Automation of complex systems.</li>
+															<li>Develop solutions and processes for Continuous Delivery, Build and Release management.</li>
+															<li>Develop tools for cloud automation, deployment and management of private datacenters of SAP.</li>
+															<li>Work with implementation and delivery teams to plan, execute and document automated deployment of SAP Applications and HANA platform.</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="date1">Jun'14– Nov'14</div>
+											<div class="circle"></div>
+											<div class="data">
+												<div class="subject">
+													Clogeny Technologies, Pune
+													<div style="font-size: 14px">Lead DevSecOps Engineer</div>
+												</div>
+												<div class="text row">
+													<div class="col-md-2">
+														<img alt="image" class="thumbnail img-responsive" src="images/Logo/clogeny_logo.png">
+													</div>
+													<div class="col-md-10">
+														My responsibilities are,
+														<ul>
+															<li>Design and deliver DevSecOps-based training and consulting to customers.</li>
+															<li>Working in a DevSecOps capacity on large-scale, mission-critical, production systems including cloud-scale, big data and HPC environments.</li>
+															<li>Develop solutions, policies and processes for Configuration Management and Automation of complex systems.</li>
+															<li>Develop solutions and processes for Continuous Delivery, Build and Release management.</li>
+															<li>Develop tools for cloud automation and management of private and public clouds.</li>
+															<li>Work with software development teams to plan, execute and document automated deployment of applications.</li>
+															<li>Provisioning of tools like Chef and Puppet actively.</li>
+															<li>Working on Agile/Scrum/TDD/BDD and tools used for it.</li>
+														</ul>
+														<strong>Client location – [24]7,Bangalore</strong>
+														<p>
+															I was working as the team member on project and involved in the design, architecture and implementation phases of the project. At the customer office in Bangalore to setup the initial pipeline and train their engineers, I have provided the work around and efforts. My work involved giving in-house training, working closely with product team and hand-on work as well.Technology involved for:
+															<br />
+															- Git, Gerrit
+															<br />
+															- Jenkins, Chef
+															<br />
+															- PyUnit - Python-based testing framework for automation testing
+															<br />
+															- JUnit – Java based unit testing framework
+														</p>
+														My responsibilities are,
+														<ul>
+															<li>Continuous Integration/Deployment Project for Speech-based consumer Experience Company.</li>
+															<li>Customer is a leader in building Speech-based software and services for consumer experience. The vision is to setup continuous delivery pipeline for all of their products. The goal of the project is to setup the pipeline for one product end-to-end initially. The following activities were performed till now:
+																<ul>
+																	<li>Merge/consolidate all repositories from Git/SVN into a single SCM system</li>
+																	<li>Setup Jenkins with build slaves.</li>
+																	<li>Deployment Automation using Opscode Chef</li>
+																	<li>Design and setup build automation processes integrated with the GIT SCM </li>
+																	<li>triggered periodically or after commits.</li>
+																	<li>Setup a health dashboard to view builds status across all product lines.</li>
+																	<li>Integrate static code analysis tools</li>
+																	<li>Implement Automated Integration and functional testing</li>
+																	<li>Support multiple environments: Amazon EC2-based Public cloud and Openstack based Private cloud.</li>
+																</ul>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="date1">Nov'13 – Jun'14</div>
+											<div class="circle"></div>
+											<div class="data">
+												<div class="subject">
+													Infosys Ltd., Bangalore
+													<div style="font-size: 14px">Sr. Associate – Education and Research</div>
+												</div>
+												<div class="text row">
+													<div class="col-md-2">
+														<img alt="image" class="thumbnail img-responsive" src="images/Logo/infosys.png">
+													</div>
+													<div class="col-md-10">
+														My responsibilities are,
+														<ul>
+															<li>Conducting research on latest technologies in cloud computing and disseminating the research results in the form of solutions, product etc.</li>
+															<li>Providing consulting/expertise to project/production team members in the area of Cloud Technologies where they have with problems/issues for new technology, integration, migration, security, management, deployment and monitoring.</li>
+															<li>Delivering classroom sessions and hands-on sessions on research based new things in Cloud Computing and related Technologies.</li>
+															<li>Creating POCs based on new research on cloud and related technologies.</li>
+															<li>Creating internal certifications (Infosys certified.....) related to cloud technology for employees.</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="date1">Oct'11 – Oct'13</div>
+											<div class="circle"></div>
+											<div class="data">
+												<div class="subject">
+													Attune Infocom Pvt. Ltd.
+													<div style="font-size: 14px">Sr. Cloud Consultant</div>
+												</div>
+												<div class="text row">
+													<div class="col-md-2">
+														<img alt="image" class="thumbnail img-responsive" src="images/Logo/attune.jpg">
+													</div>
+													<div class="col-md-10">
+														My responsibilities are,
+														<ul>
+															<li>To work on open source cloud, java based Liferay Portal and Alfresco CMS projects. </li>
+															<li>Provide trainings on Cloud Computing, Continuous Delivery, Alfresco and Liferay.</li>
+															<li>Shell scripting, auto deployment, supporting Linux and Windows physical & virtual servers and applications using CI/CD.</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<li>
+											<div class="date1">Feb'11 – Apr'11</div>
+											<div class="circle"></div>
+											<div class="data">
+												<div class="subject">
+													Tata Consultancy Services
+													<div style="font-size: 14px">Assistant System Engineer Trainee (ASET)</div>
+												</div>
+												<div class="text row">
+													<div class="col-md-2">
+														<img alt="image" class="thumbnail img-responsive" src="images/Logo/tcs.png">
+													</div>
+													<div class="col-md-10">
+														J2EE based web portal application development and basics of Liferay Portal as well as Alfresco CMS
+													</div>
+												</div>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div id="offerings" class="page">
+                <div class="pagecontents">
+                    <div class="section color-1">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title text-center">
+                                        <h3>Key Offerings</h3>
+                                    </div>
+
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="text-align: center; margin-bottom: 25px;">
+
+                                        <p>By wide infrastructure experience, DevSecOps expertise, thorough understanding of cutting edge technologies and market intelligence I deliver quality to customers with rapid speed</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i class="key_offerings icon icon-bar-chart"></i>
+                                        <h3>Analysis</h3>
+
+                                        <p>
+                                            I offer in-depth analyis of current and emerging technologies
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i class="key_offerings icon icon-gears"></i>
+                                        <h3>Enterprise Architecture</h3>
+
+                                        <p>
+                                            I design hybrid-native applications and resillient infrastructure
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i class="key_offerings icon icon-clone"></i>
+                                        <h3>POCs</h3>
+
+                                        <p>
+                                            I deliver POCs for integration and customization on revolutionary tools and technologies for DevSecOps pipeline
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <i class="key_offerings icon icon-institution"></i>
+                                        <h3>Workshops</h3>
+                                        <p>
+                                            I conduct bootcamps on EA for business and technology decision makers
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="section color-2">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title text-center">
+                                        <h3>Focus Areas</h3>
+                                    </div>
+                                    <div style="text-align: center; margin-bottom: 25px;">
+
+                                        <p>My passion for distributed computing, scalable architecture and programmable infrastructure led me to cloud</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="st-feature">
+                                            <div class="st-feature-icon"><i class="icon icon-database"></i></div>
+                                            <strong class="st-feature-title">Containerization</strong>
+                                            <p>Focusing on Docker, Kubernetes, CoreOS and LXD</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="st-feature">
+                                            <div class="st-feature-icon"><i class="icon icon-support"></i></div>
+                                            <strong class="st-feature-title">DevSecOps and Automation</strong>
+                                            <p>Build, test, deploy and roll-out end-to-end application infrastructure</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="st-feature">
+                                            <div class="st-feature-icon"><i class="icon icon-sitemap"></i></div>
+                                            <strong class="st-feature-title">Hybrid IaaS</strong>
+                                            <p>One of my key strengths is designing and architecting solutions for hybrid IaaS</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="st-feature">
+                                            <div class="st-feature-icon"><i class="icon icon-cubes"></i></div>
+                                            <strong class="st-feature-title">Infrastructure Scaling</strong>
+                                            <p>What to scale, when to scale and how to scale</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="section color-1">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title text-center">
+                                        <h3>Testimonials</h3>
+                                    </div>
+                                    <div class="testimonials-carousel">
+                                        <ul>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>
+                                                            With a very positive outlook towards life, Uchit definitely brings a certain amount of optimism in the plate. This helps in boosting one's confidence in taking any problem heads on.
+                                                        </p>
+                                                        <footer>
+                                                            Pooja Nair
+															<cite title="Source Title">- Technical editor and proofreader</cite>
+                                                        </footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>Uchit is a thorough professional expert, great achiever in DevSecOps and Infrastructure automation field by combining his past experiences, current roles and always ready for future demand by the organization.</p>
+                                                        <footer>John Mathews<cite title="Source Title"> - Sr. Consultant</cite></footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>Uchit is always up-to his commitments and very efficient in making strategic decisions. More he always shared his knowledge in every respective aspects.</p>
+                                                        <footer>Jay Trivedi<cite title="Source Title"> - Consultant at CIGNEX Datamatics</cite></footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>A keen analyst by nature with strong product knowledge, Uchit has successfully led our Team. He has always been a people's person with perfect execution of the Push & Pull strategy.</p>
+                                                        <footer>Umar Laliwala<cite title="Source Title"> - Tourism Expert</cite></footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>When I think of Uchit, I think of a techno-business man. Few technical people understand the meaning of words like 'delivering value' and 'business growth'. Uchit is one of those rare people who can balance technology with a business goal. Would love to work with Uchit anytime there is an opportunity!</p>
+                                                        <footer>Sanju Burkule<cite title="Source Title"> - Founder, 7Targets</cite></footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="testimonial">
+                                                    <div class="testimonial-img">
+                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
+                                                            <i class="icon icon-user"></i>
+                                                        </div>
+                                                    </div>
+                                                    <blockquote>
+                                                        <p>I had the opportunity of working with Uchit very closely back in 2016 when Uchit and myself were part of the very first (initial) hires in Oracle (India) as part of an IaaS Specialist Team focusing on Oracle Cloud Infrastructure (IaaS - Classic & OCI). It was very apparent from our initial meeting, and then synergizing with you on multiple customer accounts that Uchit brought a lot of Cloud, and specifically DevOps, DevSecOps and Agile knowledge with him to the table; with clear lines of communication, Uchit added a lot of value to our new On-Cloud customer acquisitions and on-boarding. A very good team player, with an eye for details, passionate about excellence, I synergized with Uchit on a few Key Accounts wherein his knowledge was sought for, and it was a pleasure working with him. I highly recommend him for Cloud, Mult-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.</p>
+                                                        <footer>Shubhasish Ghosh<cite title="Source Title"> - Cloud Solution Architect, Microsoft</cite></footer>
+                                                    </blockquote>
+                                                </div>
+                                            </li>
+                                            <!--<li>
+												<div class="testimonial">
+													<div class="testimonial-img">
+														<img src="images/client.jpg" alt="">
+													</div>
+													<blockquote>
+														<p>Uchit has potential to learn a new thing in Cloud Computing as well in open source tools. In organization he is keen to derive solutions with agile methodology</p>
+														<footer>Tapan Avasthi, <cite title="Source Title">Portal/CMS Consultant</cite></footer>
+													</blockquote>
+												</div>
+											</li>-->
+                                        </ul>
+                                    </div>
+                                    <script type="text/javascript">
+                                        /*==== Testimonial - Owl Carousel JQuery ======*/
+                                        jQuery(".testimonials-carousel ul").owlCarousel({
+                                            items: 1,
+                                            navigation: false,
+                                            pagination: true,
+                                            singleItem: true,
+                                            autoPlay: true,
+                                            navigationText: ['<i class="ct-etp etp-arrow-left7"></i>', '<i class="ct-etp etp-arrow-right8"></i>'],
+                                            transitionStyle: "backSlide"
+                                        });</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="publications" class="page">
+                <div class="page-container">
+                    <div class="pageheader">
+                        <div class="headercontent">
+                            <div class="section-container">
+
+                                <h2 class="title">Publications</h2>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>These books are aimed for Developers, CXO's, Architects and IT Managers who has basic knowledge of Cloud Computing, Virtualization and SQL/NoSQL Databases.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagecontents">
+
+                        <div class="section color-1" id="filters">
+                            <div class="section-container">
+                                <div class="row">
+
+                                    <div class="col-md-3">
+                                        <h3>Filter by type:</h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select id="cd-dropdown" name="cd-dropdown" class="cd-select">
+                                            <option class="filter" value="all" selected>All types</option>
+                                            <!-- <option class="filter" value="jpaper">Jounal Papers</option>
+											<option class="filter" value="cpaper">Conference Papers</option>
+											<option class="filter" value="bookchapter">Book Chapters</option>
+											-->
+                                            <option class="filter" value="book">Books</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-3" id="sort">
+                                        <span>Sort by year:</span>
+                                        <div class="btn-group pull-right">
+
+                                            <button type="button" data-sort="data-year" data-order="desc" class="sort btn btn-default"><i class="icon-sort-by-order"></i></button>
+                                            <button type="button" data-sort="data-year" data-order="asc" class="sort btn btn-default"><i class="icon-sort-by-order-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section color-2" id="pub-grid">
+                            <div class="section-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pitems">
+                                            <div class="item mix book" data-year="2016">
+                                                <div class="pubmain">
+                                                    <div style="float: left; margin-right: 5%; margin-top: -2%;">
+                                                        <img alt="image" src="images/Book/AppliedOpenStack.jpg" style="max-height: 150px;">
+                                                    </div>
+
+                                                    <div class="pubassets">
+
+                                                        <a href="#" class="pubcollapse">
+                                                            <i class="icon icon-plus-circle"></i>
+                                                        </a>
+                                                        <a href="https://goo.gl/IQIgVb" class="tooltips" title="External link" target="_blank">
+                                                            <i class="icon-external-link"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                    <h4 class="pubtitle">Applied OpenStack Design Patterns
+                                                    </h4>
+                                                    <div class="pubauthor"><strong>Uchit Vyas </strong></div>
+                                                    <div class="pubcite">
+                                                        <span class="label label-primary">Book</span> Apress  | December 2016 | <strong>ISBN-13:</strong> 9781484224533
+                                                    </div>
+
+                                                </div>
+                                                <div class="pubdetails">
+                                                    <!--  <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <h4>Learn practical and applied OpenStack cloud design solutions to gain maximum control over your infrastructure. You will achieve a complete controlled and customizable platform.</h4>
+                                                    <p>
+                                                        Applied OpenStack Design Patterns starts off with the basics of OpenStack and teaches you how to map your application flow. Application behavior with OpenStack components is discussed. Once components and architectural design patterns are set up, you will learn how to map native infrastructure and applications using OpenStack.
+														Also covered is the use of storage management and computing to map user requests and allocations. The author takes a deep dive into the topic of High Availability and Native Cluster Management, including the best practices associated with it. The book concludes with solution patterns for networking components of OpenStack, to reduce latency and enable faster communication gateways between components of OpenStack and native applications.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="item mix book" data-year="2015">
+                                                <div class="pubmain">
+                                                    <div style="float: left; margin-right: 5%; margin-top: -2%;">
+                                                        <img alt="image" src="images/Book/Mastering_AWS.jpg" style="max-height: 150px;">
+                                                    </div>
+                                                    <div class="pubassets">
+
+                                                        <a href="#" class="pubcollapse">
+                                                            <i class="icon icon-plus-circle"></i>
+                                                        </a>
+                                                        <a href="https://goo.gl/nNTudi" class="tooltips" title="External link" target="_blank">
+                                                            <i class="icon-external-link"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                    <h4 class="pubtitle">Mastering AWS Development
+                                                    </h4>
+                                                    <div class="pubauthor"><strong>Uchit Vyas </strong></div>
+                                                    <div class="pubcite">
+                                                        <span class="label label-primary">Book</span> Packt Publishing  | June 2015 | <strong>ISBN-13:</strong> 9781782173632
+                                                    </div>
+
+                                                </div>
+                                                <div class="pubdetails">
+                                                    <!--<img alt="image" src="images/Book/Mastering_AWS.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <h4>Develop and migrate your enterprise applications to the Amazon Web Services platform.</h4>
+                                                    <p>This book is a practical guide to developing, administering, and managing applications and infrastructures with AWS. With this book, you will be able to create, design, and manage a whole application life cycle on AWS by using the AWS SDKs, APIs, as well as the AWS Management Console. </p>
+                                                    <p>
+                                                        You will start with the basics of AWS development platform and look into creating stable and scalable infrastructures using EC2, EBS, and Elastic Load Balancers. You'll then deep-dive into designing and developing your own web application, and learn about the alarm mechanism, disaster recovery plan, and delve into connecting AWS services through REST-based APIs. Following this, you’ll get to grips with CloudFormation, auto scaling, bootstrap AWS EC2 instances, automation and deployment with Chef, and will develop your knowledge of big data and Apache Hadoop on the AWS Cloud. By the end of this book, you will have learned about AWS billing, cost-control architecture designs, understood some basic AWS Security features and troubleshooting methods, and developed AWS-centric applications based on an underlying AWS infrastructure.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="item mix book" data-year="2014">
+                                                <div class="pubmain">
+                                                    <div style="float: left; margin-right: 5%; margin-top: -2%;">
+                                                        <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="max-height: 150px;">
+                                                    </div>
+
+                                                    <div class="pubassets">
+
+                                                        <a href="#" class="pubcollapse">
+                                                            <i class="icon icon-plus-circle"></i>
+                                                        </a>
+                                                        <a href="https://goo.gl/807T5C" class="tooltips" title="External link" target="_blank">
+                                                            <i class="icon-external-link"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                    <h4 class="pubtitle">AWS Development Essentials
+                                                    </h4>
+                                                    <div class="pubauthor"><strong>Uchit Vyas </strong>,  Prabhakaran Kuppusamy</div>
+                                                    <div class="pubcite">
+                                                        <span class="label label-primary">Book</span> Packt Publishing  | November 2014 | <strong>ISBN-13:</strong> 9781782173618
+                                                    </div>
+
+                                                </div>
+                                                <div class="pubdetails">
+                                                    <!--  <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <h4>Design and build flexible, highly scalable and cost effective applications using Amazon Web Services.</h4>
+                                                    <p>
+                                                        This book is a fast-paced guide to help you with architecture systems and solve technical problems using the latest cloud computing technologies. Starting with the introduction to AWS, you will learn about identifying key AWS storage options, Amazon EBS, Amazon S3 bucket creation, and sample code and libraries. You will learn about computing and networking services using Amazon EBS and EC2 instances. You will efficiently be able to manage services and databases using DynamoDB and understand the key aspects of Amazon RDS. You will also learn about deployment and maintenance using Amazon CloudWatch metrics and alarms, Amazon Identity and Access Management (IAM), and AWS Elastic Beanstalk. Finally, you will explore service object models and the baseline concept of SNS and SQS, and then build an app using these new skills.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="item mix book" data-year="2014">
+                                                <div class="pubmain">
+                                                    <div style="float: left; margin-right: 5%; margin-top: -2%;">
+                                                        <img alt="image" src="images/Book/DynamoDB.jpg" style="max-height: 150px;">
+                                                    </div>
+
+                                                    <div class="pubassets">
+
+                                                        <a href="#" class="pubcollapse">
+                                                            <i class="icon icon-plus-circle"></i>
+                                                        </a>
+                                                        <a href="http://goo.gl/N8n7hQ" class="tooltips" title="External link" target="_blank">
+                                                            <i class="icon-external-link"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                    <h4 class="pubtitle">DynamoDB Applied Design Patterns
+                                                    </h4>
+                                                    <div class="pubauthor"><strong>Uchit Vyas </strong>,  Prabhakaran Kuppusamy</div>
+                                                    <div class="pubcite">
+                                                        <span class="label label-primary">Book</span> Packt Publishing  | September 2014 | <strong>ISBN-13:</strong> 9781783551897
+                                                    </div>
+
+                                                </div>
+                                                <div class="pubdetails">
+                                                    <!--<img alt="image" src="images/Book/DynamoDB.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <h4>Apply efficent DynamoDB design patterns for high performance of applications.</h4>
+                                                    <p>
+                                                        The book includes a significant number of examples that can be used by new users and experts alike. The book begins with a description on the concepts of data model including tables, items, and attributes, primary key, indexes, and design patterns. You will learn to access DynamoDB in the Management Console, command line, and eclipse plugin. Users can also gain insights into DynamoDB locals and CLI commands. Furthermore, global and local secondary indexes and its importance in DynamoDB will be looked into. Users can also learn how to use Query and Scan operations in DynamoDB tables, along with DynamoDB APIs and their formats. The book ends by covering the best design use cases DynamoDB architectures along with real-time problem statements and their best solutions.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="item mix book" data-year="2013">
+                                                <div class="pubmain">
+                                                    <div style="float: left; margin-right: 5%; margin-top: -2%;">
+                                                        <img alt="image" src="images/Book/MuleESB.jpg" style="max-height: 150px;">
+                                                    </div>
+
+                                                    <div class="pubassets">
+
+                                                        <a href="#" class="pubcollapse">
+                                                            <i class="icon icon-plus-circle"></i>
+                                                        </a>
+                                                        <a href="http://goo.gl/c7uwG" class="tooltips" title="External link" target="_blank">
+                                                            <i class="icon-external-link"></i>
+                                                        </a>
+
+                                                    </div>
+
+                                                    <h4 class="pubtitle">Mule ESB CookBook
+                                                    </h4>
+                                                    <div class="pubauthor"><strong>Uchit Vyas </strong>,  Zakir Laliwala, Azaz Desai, Abdul Samad</div>
+                                                    <div class="pubcite">
+                                                        <span class="label label-primary">Book</span> Packt Publishing  | August 2013 | <strong>ISBN-13:</strong> 9781782164401
+                                                    </div>
+
+                                                </div>
+                                                <div class="pubdetails">
+                                                    <!--<img alt="image" src="images/Book/MuleESB.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <h4>Over 40 recipes to effectively build your enterprise solutions from the ground up using Mule ESB.</h4>
+                                                    <p>Mule ESB Cookbook provides solutions for developers working on Mule ESB and integrating Mule with other technologies. It focuses on development and delivery using Mule ESB through integrating, migrating and upgrading advanced technological tools. </p>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="global_talks" class="page">
+                <div class="pageheader">
+                    <div class="headercontent">
+                        <div class="section-container">
+
+                            <h2 class="title">Global Talks</h2>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Uchit has been speaking at technology conferences since long. He delivered sessions at premier events across ASEAN, Europe and USA. His presentations are engaging, simple and articulate the value of emerging technologies to consumers, developers, architects and entrepreneurs. His sessions and keynotes get consistently high feedback rating.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagecontents">
+                    <div class="section color-1">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="title text-center">
+                                    <h3>Recent Talks</h3>
+                                </div>
+                                <ul class="ul-dates">
+                                     <!-- <li>
+                                        <div class="dates">
+                                            <span>Sept 2016</span>
+                                            <span>Pune</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>DevSecOps Summit</strong></h4>
+                                            <h4 style="color: #03bb7a;">Automate your Infrastructure with Chef</h4>
+                                            <p>
+                                                It has been aimed to provide IT automation industry a unique platform to converge and showcase its capabilities and products. It also allows managers and engineers working in IT Automation projects to exchange, engage and explore new opportunities.
+                                            </p>
+                                            <p>
+                                                Chef automates the applications configuration, deployment and management throughout your network regardless of its size, even if you’re operating in the cloud, on-premises or on hybrid. Chef provides you help with the infrastructure management and solves complicated problems.
+                                            </p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="http://bit.ly/2dUvTXb" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>-->
+                                    <li>
+                                                         <div class="dates">
+                                                             <span>Apr 2021</span>
+                                                             <span>Singapore</span>
+                                                         </div>
+                                                         <div class="content">
+                                                             <h4><strong>APIDays</strong></h4>
+                                                             <h4 style="color: #03bb7a;">API Design collaboration</h4>
+                                                             <p>
+                                                               Quality Assurance begins from Requirements & Design till delivery, avoiding delays due to quality issues and thus allowing faster time to market.
+ organization needd to think about Application design gaps at very day 0 by establishing same Framework / Methodology / Templates / Process across Enterprise Ecosystem.
+                                                             </p>
+                                                             <p>
+                                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+                                                             <a href="https://cutt.ly/NbTmwrN" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                                             </p>
+
+                                                         </div>
+                                                     </li>
+
+                                    <li>
+                                                         <div class="dates">
+                                                             <span>Oct 2017</span>
+                                                             <span>Singapore</span>
+                                                         </div>
+                                                         <div class="content">
+                                                             <h4><strong>Cloud Expo Asia</strong></h4>
+                                                             <h4 style="color: #03bb7a;">The Jouney to DevSecOps</h4>
+                                                             <p>
+                                                                  Today everybody wants to deploy the app and infrastructure faster without any disputes. An Even, Agile framework can help to deploy faster in real-time. But Continuous Innovation may conflict with stability and security. Without security at every stage, DevSecOps merely introduces vulnerabilities into application quickly. To resolve such conflict, the gap in recursive feedback loops need to be eliminated. Mostly, teams are not effectively working in a collaboration and interacting with each other smoothly. This results in gaps and produce problems with code development and quality, meaning slower delivery plans and serious vulnerabilities that create security risk at most. Fortunately, these shortcomings can be addressed very well, as developers/testers are set to launch off into the DevSecOps world or via adopting rugged DevSecOps model.
+                                                             </p>
+                                                             <p>
+                                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+                                                             <a href="https://goo.gl/LQg9gZ" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                                             </p>
+
+                                                         </div>
+                                                     </li>
+
+
+
+                   <li>
+                                        <div class="dates">
+                                            <span>Nov 2016</span>
+                                            <span>Estonia</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>TopConf 2016</strong></h4>
+                                            <h4 style="color: #03bb7a;">Let’s Democratize Deployments</h4>
+                                            <p>
+                                                 Expectations from Development and Operations groups are high and are measured against time-to-market as key KPI for an organization competitiveness. They are expected to release in quick succession with exceedingly high quality, reliability and repeatability irrespective of the scale of deployment. The Platform is a Deployment Automation platform to deploy and configure simple to complex environments reliably and repeatedly at the click of a button. Installations taking weeks can now happen in minutes – offering HIGH-SPEED deployment automation.
+                                            </p>
+
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="http://bit.ly/2l4m0cw" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+									 <li>
+                                        <div class="dates">
+                                            <span>Nov 2016</span>
+                                            <span>Pune</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>PSTC 2016</strong></h4>
+                                            <h4 style="color: #03bb7a;">Transforming Test Execution and Analysis Speed by 100x!</h4>
+                                            <p>
+                                                A transformational QA Platform that transforms Software Quality Assurance (QA) and helps one embrace DevSecOps best Practices in quest of Continuous Testing & Delivery. The platform that integrates QA Automation with Deployment Automation and Test Result Analytics in Real Time for today’s on demand economy. Provides scalability along with functional testing on multiple browsers and multiple versions within a few hours!
+                                            </p>
+                                            <p>
+                                                A cloud based DevSecOps centric automation accelerator which creates dynamic infrastructure on the fly to perform rapid in Parallel Cross Browser, Functional, Performance, Security and Scale testing with Advanced Test Result analytics to fail fast.
+
+                                            </p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="https://goo.gl/D6PxiD" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dates">
+                                            <span>Sept 2016</span>
+                                            <span>Pune</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>DevSecOps Summit</strong></h4>
+                                            <h4 style="color: #03bb7a;">Automate your Infrastructure with Chef</h4>
+                                            <p>
+                                                It has been aimed to provide IT automation industry a unique platform to converge and showcase its capabilities and products. It also allows managers and engineers working in IT Automation projects to exchange, engage and explore new opportunities.
+                                            </p>
+                                            <p>
+                                                Chef automates the applications configuration, deployment and management throughout your network regardless of its size, even if you’re operating in the cloud, on-premises or on hybrid. Chef provides you help with the infrastructure management and solves complicated problems.
+                                            </p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="http://bit.ly/2dUvTXb" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dates">
+                                            <span>Apr 2016</span>
+                                            <span>Bangalore</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>IT Automation Summit</strong></h4>
+                                            <h4 style="color: #03bb7a;">Scaling with Automation</h4>
+                                            <p>
+                                                This is the story of a company that had 10s of customers and were facing severe scaling issues. They approached us. They had a good product predicting a few hundred customers within 6 months. VCs went to them. Infrastructure scaling was the only unknown; funding for software-defined data centers. We introduced Terraform for infrastructure creation, Chef for OS hardening, and then Packer for supporting AWS as well as VSphere. Then, after a few more weeks, when there was a need for faster response from the data center, we went into Serf to immediately trigger chef-clients and then to Consul for service monitoring.
+                                            </p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="http://bit.ly/2btVUyB" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dates">
+                                            <span>Feb 2016</span>
+                                            <span>Belgium</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>Config Management Camp</strong></h4>
+                                            <h4 style="color: #03bb7a;">Rapid Infrastructure Provisioning</h4>
+                                            <p>An fortune 500 company that had 10s of customers and were having scaling and roll-out in different data-centers with automation framework. Company had an amazing products holding thousands of customers live over the globe.  Infrastructure scaling and rolling out automation framework with automation was the only unknown. We introduced chef provisioning for VM provisionig, capacity management platform, network management components, event driven workflows, Chef for OS hardening, and then Packer for supporting in-house cloud platform.</p>
+                                            <p>Then, after a few more weeks, I introduced service discovery, monitoring and real analytics for each and every DCs which are isolated from each other.</p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="http://www.slideshare.net/uchit86/scaling-under-pressure" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dates">
+                                            <span>Sept 2015</span>
+                                            <span>Portland</span>
+                                        </div>
+                                        <div class="content">
+                                            <h4><strong>Hashiconf</strong> </h4>
+                                            <h4 style="color: #03bb7a;">VC’s on line1: Scaling under pressure using terraform, packer and chef</h4>
+                                            <p>This is the story of a company that had 10s of customers and were facing severe scaling issues. They approached us. They had a good product predicting a few hundred customers within 6 months. VCs went to them. Infrastructure scaling was the only unknown; funding for software-defined data centers. We introduced Terraform for infrastructure creation, Chef for OS hardening, and then Packer for supporting AWS as well as VSphere. Then, after a few more weeks, when there was a need for faster response from the data center, we went into Serf to immediately trigger chef-clients and then to Consul for service monitoring.</p>
+                                            <p>Want to describe this journey.</p>
+                                            <p>Finally, we did the same exact thing in at a Fortune 500 customer to replace 15 year-old scripts. We will also cover sleek ways of dealing with provisioning in different Availability Zones across various AWS regions with Terraform</p>
+                                            <p>
+                                                <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
+												<a href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                    <!--   <li>
+										<div class="dates">
+											<span>2015</span>
+											<span>Hyderabad</span>
+										</div>
+										<div class="content">
+											<h4><strong>Unicom Event: India testing week</strong></h4>
+											<h4 style="color: #03bb7a;">Infrastructure for testing and cross browser testing</h4>
+											<p>Applying the theory of enterprise application testing to help minimize IT service outages and see how testing fits into the overall enterprise strategy of an organization is all fine and well. However, enterprise lab creation for testing and cross browser testing can serve to be challenging when applied to a real business with a closely monitored budget for IT spending. When attempting these tests, it is important to know potential costs associated with them, such as building, staffing and operating a lab. To achieve the most productive and cost-efficient strategy, knowing best practices for creating a test lab and understanding when outsourcing test functions is most appropriate is key.</p>
+										</div>
+									</li>
+-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="trainings" class="page">
+                <div class="pageheader">
+                    <div class="headercontent">
+                        <div class="section-container">
+
+                            <h2 class="title">Trainings/Workshops</h2>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>I am also involved  for technical training and workshops by identifying the training needs of an organization and then implement training/workshop programs to fulfill the need. I have conducted number of trainings/workshops on various technologies at various IT Giants like - Intel, SAP, Cognizant, 3D PLM, IBM, etc. Below are few interesting training/workshops which I conducted across the globe and continuously progressing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagecontents">
+
+                    <div class="section color-2">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+
+                                    <ul class="timeline">
+                                        <li class="open">
+                                            <div class="date">Nov 2015</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Infrastructure Automation & DevSecOps</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Hands on CI/CD tools introduction and best practices to deliver software products up to 30 times more frequently. At Infrastructure level, Automation achieves more improvement around 30 percent in infrastructure by proven use cases and examples. Hands-on training course covered the applied orchestration inside Automation workflow and DevSecOps tool chain.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Feb 2015</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Infrastructure Configuration with Chef</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Hands-on training course covered the applied use of Chef for administration, automation, cookbooks for configuration, provisioning and hands on real-time use cases with examples.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Jan 2014</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Automation with Puppet</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Hands-on training course covered the applied use of Puppet for administration, automation, modules for configuration, and hands on use cases with examples.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Nov 2013</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Activiti BPMN </div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Including fundamentals, administration, custom development, deployment of Workflow with other technologies.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Aug 2013</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Version Control System: Git</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Including Git object types and Data models, Branching and Merging, Rebasing, stashing, tagging, Distributed Workflow with Git, Shared and Hosted repositories.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Jan 2012</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Alfresco CMS</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Including Alfresco Fundamentals, Administration, Content Modeling, Alfresco API Development, Share, Explorer Configuration, and Web Scripts.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">Dec 2011</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Continuous Integration </div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Including Version Control using GIT, CI Using Jenkins/Rundeck, Automated Testing, Deployment & Release Strategies, Behavior-Driven Development using Cucumber, RSpec, Sonar and Automate Configuration Management using chef, etc.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="date">May 2011</div>
+                                            <div class="circle"></div>
+                                            <div class="data">
+                                                <div class="subject">Cloud Computing</div>
+                                                <div class="text row">
+                                                    <div class="col-md-10">
+                                                        Including the applied use of cloud for research, science and engineering applications with all Private and Public Cloud Stack.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div id="contact" class="page stellar">
+                <div class="pageheader">
+                    <div class="headercontent">
+                        <div class="section-container">
+
+                            <h2 class="title">Contact & Meet Me</h2>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Meeting new people always provides me with new ideas, a different perspective at existing problems, or an interesting connection to a new person doing something awesome that inspires me.</p>
+                                    <p>
+                                        I will be happy to answer any questions you may have about me, my domain area or my expertise. Reach out to me and I will respond as soon as I can. Even, I would be happy to talk to you if you need my assistance in your organization or whether you need DevSecOps or Automation or Cloud consulting for your company.
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="list-unstyled">
+
+                                        <li>
+                                            <strong><i class="icon-envelope"></i>&nbsp;&nbsp;</strong>
+                                            <span><a href="mailto:contact@hellouchit.com?subject=SweetWords">contact@hellouchit.com</a></span>
+                                        </li>
+
+                                        <li>
+                                            <strong><i class="icon-skype"></i>&nbsp;&nbsp;</strong>
+                                            <span>uchit.vyas</span>
+                                        </li>
+                                        <li>
+                                            <strong><i class="icon-twitter"></i>&nbsp;&nbsp;</strong>
+                                            <span><a href="https://twitter.com/uchit_vyas" target="_blank">uchit_vyas</a></span>
+                                        </li>
+                                        <li>
+                                            <strong><i class="icon-linkedin-sign"></i>&nbsp;&nbsp;</strong>
+                                            <span><a href="https://in.linkedin.com/in/uchitvyas" target="_blank">uchit vyas</a></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagecontents">
+                    <div class="section contact-office" data-stellar-background-ratio="0.1">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2 class="title">With Cup Of Coffee</h2>
+                                    <p>Even in the most awesome of offices we can fall into a routine, and a routine is the enemy of creativity. Changing your environment, even just for a day, brings new types of input and stimulation, which in turn stimulates creativity and inspiration.</p>
+                                    <p>
+                                        I used to be a techie and as a techie I drink tons and tons of coffee and Melbourne is no doubt the coffee-lovers' place. So let’s have a cup of coffee at some awesome café to think something innovative.
+                                    </p>
+                                </div>
+                                <div class="col-md-4 text-center hidden-xs hidden-sm">
+                                    <i class="icon-coffee icon-huge"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section color-1">
+                        <div class="section-container">
+                            <div class="row">
+                                <div class="col-md-4 text-center hidden-xs hidden-sm">
+                                    <i class="icon-laptop icon-huge"></i>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2 class="title">At My Work</h2>
+                                    <p>You can find me at my work located at Melbourne, Victoria.</p>
+                                    <p>
+                                        I am at my office every day from 09:00 am until 07:00 pm, but you may consider a call to fix an appointment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="overlay"></div>
+
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
