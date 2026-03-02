@@ -523,12 +523,37 @@ img, iframe, video {
 }
 
 @media (max-width: 991px) {
-    #wrapper, #main, .page, .home {
-        position: relative;
+    html,
+    body,
+    #wrapper {
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    #main {
+        position: relative !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+
+    #wrapper,
+    .page,
+    .home {
+        position: relative !important;
     }
 
     .page {
-        width: 100%;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        bottom: auto !important;
+        overflow: visible !important;
     }
 
     .section-container {
@@ -550,6 +575,11 @@ img, iframe, video {
 
     .st-feature {
         margin-bottom: 24px;
+    }
+
+    #main-nav.menu-open,
+    .social-icons.menu-open {
+        left: 0 !important;
     }
 }
 

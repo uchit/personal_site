@@ -11,6 +11,7 @@ $.fn.exists = function () {
 }
 
 $(document).ready(function(){
+	var isMobileView = window.matchMedia("(max-width: 991px)").matches;
 
     /* PreLoader Js*/
     /*$('body').jpreLoader({
@@ -32,18 +33,33 @@ $(document).ready(function(){
 	/*++++++++++++++++++++++++++++++++++++
 		slidepage
 	++++++++++++++++++++++++++++++++++++++*/
-	var SidebarAnim = new TimelineLite({paused:true});
-	SidebarAnim
-		.to($(".social-icons, #main-nav"),0.2,{left:0})
-		.to($("#main"),0.2,{left:250,right:"-=250"},"-=0.2");
-	
+	if (isMobileView) {
+		// Mobile fallback: keep content full-width and avoid desktop timeline offsets.
+		$("#overlay").hide();
+		$("#main").css({left:0,right:0});
+		$("div.page").css({position:"relative",left:0,width:"100%"});
+		$("div.page.home").css({left:0,width:"100%"});
 
-	$("a.mobilemenu").on("click",function(){
-		SidebarAnim.play();
-	});
-	$(".social-icons, #main-nav, #main").on("click",function(){
-		SidebarAnim.reverse();		
-	});
+		$("a.mobilemenu").on("click",function(e){
+			e.preventDefault();
+			$("#main-nav, .social-icons").toggleClass("menu-open");
+		});
+		$("#main, #navigation a").on("click",function(){
+			$("#main-nav, .social-icons").removeClass("menu-open");
+		});
+	} else {
+		var SidebarAnim = new TimelineLite({paused:true});
+		SidebarAnim
+			.to($(".social-icons, #main-nav"),0.2,{left:0})
+			.to($("#main"),0.2,{left:250,right:"-=250"},"-=0.2");
+		
+		$("a.mobilemenu").on("click",function(){
+			SidebarAnim.play();
+		});
+		$(".social-icons, #main-nav, #main").on("click",function(){
+			SidebarAnim.reverse();		
+		});
+	}
 
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++
@@ -184,8 +200,10 @@ $(document).ready(function(){
 
 
 
-	pager.reset();
-	pager.init();
+	if (!isMobileView) {
+		pager.reset();
+		pager.init();
+	}
 
 
 	/*++++++++++++++++++++++++++++++++++++
