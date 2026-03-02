@@ -157,12 +157,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
     #profile .portrate {
-        background-image: url(../images/uchit-vyas.jpg);
+        background-image: url(../images/Uchit2.jpeg);
         width: 125px;
         margin: 0 auto;
         height: 125px;
         border-radius: 50%;
         -webkit-background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
         -moz-background-size: cover;
         background-size: cover;
     }
