@@ -42,10 +42,10 @@ $(document).ready(function(){
 
 		$("a.mobilemenu").on("click",function(e){
 			e.preventDefault();
-			$("#main-nav, .social-icons").toggleClass("menu-open");
+			$("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
 		});
 		$("#main, #navigation a").on("click",function(){
-			$("#main-nav, .social-icons").removeClass("menu-open");
+			$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
 		});
 	} else {
 		var SidebarAnim = new TimelineLite({paused:true});
