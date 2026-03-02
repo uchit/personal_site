@@ -47,17 +47,27 @@ $(document).ready(function(){
 		$("#main").on("click",function(){
 			$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
 		});
-		$("#navigation a").on("click", function(e){
-			var target = $(this).attr("href");
+		$("#navigation").on("click touchend", "a, li", function(e){
+			var $link = $(this).is("a") ? $(this) : $(this).find("a").first();
+			if (!$link.length) {
+				return;
+			}
+			var target = $link.attr("href");
 			if (!target || target.charAt(0) !== "#") {
 				return;
 			}
 			var $targetPage = $(target + ".page");
 			if ($targetPage.length) {
 				e.preventDefault();
+				e.stopPropagation();
 				$("div.page").removeClass("mobile-active");
 				$targetPage.addClass("mobile-active");
 				$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+				if (target === "#publications" && $("div#pub-grid").length) {
+					try {
+						$("div#pub-grid").mixitup("filter", "all");
+					} catch (err) {}
+				}
 				window.scrollTo(0, 0);
 			}
 		});

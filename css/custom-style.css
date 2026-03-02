@@ -587,19 +587,23 @@ img, iframe, video {
     }
 
     .page {
-        display: none !important;
+        display: block !important;
         width: 100% !important;
         max-width: 100% !important;
-        left: 0 !important;
+        left: 2000px !important;
         right: 0 !important;
-        top: auto !important;
+        top: 0 !important;
         bottom: auto !important;
         overflow: visible !important;
+        position: absolute !important;
     }
 
     .page.mobile-active,
     .home.mobile-active {
         display: block !important;
+        position: relative !important;
+        left: 0 !important;
+        top: auto !important;
     }
 
     .section-container {
