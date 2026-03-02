@@ -1,2 +1,3 @@
 User-agent: *
-Sitemap: http://hellouchit.com/sitemap.xml
+Allow: /
+Sitemap: https://hellouchit.com/sitemap.xml

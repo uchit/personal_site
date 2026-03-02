@@ -479,3 +479,151 @@ ul.AddSkill {
 	}
 }
 */
+
+/* Mobile and robustness overrides */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, iframe, video {
+    max-width: 100%;
+    height: auto;
+}
+
+.page, .section-container, .headercontent {
+    overflow-wrap: anywhere;
+}
+
+.mobilemenu {
+    width: 56px;
+    height: 56px;
+    line-height: 52px;
+    text-align: center;
+}
+
+#navigation li a, .social-icons a, a {
+    touch-action: manipulation;
+}
+
+.contact-office {
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 1200px) {
+    .tagline {
+        margin-left: 10%;
+        width: 88%;
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 991px) {
+    #wrapper, #main, .page, .home {
+        position: relative;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .section-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .tagline {
+        padding-top: 28%;
+        margin-left: 6%;
+        width: 90%;
+        font-size: 30px;
+    }
+
+    ul.AddSkill li {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .st-feature {
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+
+    .pageheader {
+        padding-top: 68px;
+        padding-bottom: 22px;
+    }
+
+    h2.title {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .tagline {
+        padding-top: 34%;
+        font-size: 25px;
+        margin-left: 5%;
+        width: 92%;
+    }
+
+    .key_offerings {
+        font-size: 42px;
+    }
+
+    ul.timeline li .date,
+    ul.timeline li .date1 {
+        position: static;
+        width: 100%;
+        text-align: left;
+        margin: 0 0 6px 0 !important;
+    }
+
+    ul.timeline li .data {
+        margin: 0 !important;
+        padding: 14px 14px 16px !important;
+    }
+
+    .social-icons {
+        height: 52px;
+    }
+
+    .social-icons i {
+        line-height: 52px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tagline {
+        font-size: 21px;
+        padding-top: 42%;
+    }
+
+    .st-feature .st-feature-icon {
+        width: 82px;
+        line-height: 80px;
+        font-size: 34px;
+    }
+
+    .section-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}

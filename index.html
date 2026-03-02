@@ -11,10 +11,25 @@
 
     <meta name="description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, SRE " />
     <meta name="keywords" content="Cloud, An Author, SRE, CI/CD, DevSecOps, AiOps" />
+
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#03BB7A" />
+    <link rel="canonical" href="https://hellouchit.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hellouchit.com/" />
+    <meta property="og:title" content="Uchit Vyas - DevSecOps Architect, SRE Practitioner, Cloud Fanatic, An Author" />
+    <meta property="og:description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, and SRE." />
+    <meta property="og:image" content="https://hellouchit.com/images/uchit-vyas.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Uchit Vyas - DevSecOps Architect, SRE Practitioner, Cloud Fanatic, An Author" />
+    <meta name="twitter:description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, and SRE." />
+    <meta name="twitter:image" content="https://hellouchit.com/images/uchit-vyas.jpg" />
     <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 
     <!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
 
     <!--CSS styles-->
@@ -28,7 +43,6 @@
     <link href="css/owl.theme.css" rel="stylesheet" />
     <link href="css/owl.transitions.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/style.css">
     <!--/CSS styles-->
     <!--Javascript files-->
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
@@ -67,18 +81,48 @@
 
 
 
+    <style>
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+            width: auto;
+            height: auto;
+            z-index: 9999;
+            background: #03BB7A;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 6px;
+        }
+    </style>
+
+<noscript><style>
+    #main { position: static !important; left: 0 !important; }
+    .page, .home { position: static !important; left: 0 !important; width: 100% !important; overflow: visible !important; }
+    #overlay, .mobilemenu { display: none !important; }
+    #main-nav, .social-icons { position: static !important; left: 0 !important; width: 100% !important; }
+</style></noscript>
 </head>
 
 
 
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <noscript><div style="background:#111;color:#fff;padding:10px 14px;text-align:center;font-size:14px;">This site works best with JavaScript enabled. Core content remains available below.</div></noscript>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date(); a = s.createElement(o),
 			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-70949810-1', 'auto');
         ga('send', 'pageview');
@@ -93,7 +137,7 @@
 </div>-->
 
     <div id="wrapper">
-        <a href="#sidebar" class="mobilemenu"><i class="icon-reorder"></i></a>
+        <a href="#sidebar" class="mobilemenu" aria-label="Open navigation menu"><i class="icon-reorder"></i></a>
 
         <div id="sidebar">
             <div id="main-nav">
@@ -102,7 +146,7 @@
                         <div class="portrate hidden-xs"></div>
                         <div class="title">
                             <h2>Uchit Vyas</h2>
-                            <!--  <h3>Cloud Fantatic</h3>-->
+                            <!--  <h3>Cloud Fanatic</h3>-->
                         </div>
 
                     </div>
@@ -186,14 +230,14 @@
             <div class="social-icons">
 
                 <ul>
-                    <li><a href="https://www.facebook.com/uchit86" target="_blank"><i class="icon-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/uchit_vyas" target="_blank"><i class="icon-twitter"></i></a></li>
-                    <li><a href="https://in.linkedin.com/in/uchitvyas" target="_blank"><i class="icon-linkedin"></i></a></li>
-                    <!--<li><a href="http://cloudbyuchit.blogspot.in/" target="_blank"><i class="icon-linkedin"></i></a></li>-->
+                    <li><a href="https://www.facebook.com/uchit86" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="icon-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/uchit_vyas" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="icon-twitter"></i></a></li>
+                    <li><a href="https://in.linkedin.com/in/uchitvyas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="icon-linkedin"></i></a></li>
+                    <!--<li><a href="http://cloudbyuchit.blogspot.in/" target="_blank" rel="noopener noreferrer"><i class="icon-linkedin"></i></a></li>-->
                 </ul>
             </div>
             <div style="color: white; font-size: 10px;">
-                &copy; 2020-2022   hellouchit.com
+                &copy; 2020-2026 hellouchit.com
 				<br>
                 All Rights Reserved.
             </div>
@@ -207,7 +251,7 @@
                     <!-- end taglines -->
                     <script>
                         foo = $('#typer');
-                        // foo.typer(["My name is Uchit Vyas and I love to <br><strong>Travel</strong>", "<strong>A Cloud <br> Fantatic</strong>"]);
+                        // foo.typer(["My name is Uchit Vyas and I love to <br><strong>Travel</strong>", "<strong>A Cloud <br> Fanatic</strong>"]);
                         foo.typer(["<strong>An Author</strong><strong>Cloud Fanatic</strong><strong>SRE Practitioner</strong><strong>DevSecOps Architect</strong>"])
                     </script>
                 </div>
@@ -275,7 +319,7 @@
 											<div class="row">
 												<div class="col-sm-6 col-md-3">
 													<div class="image">
-														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<img loading="lazy" alt="image" src="images/project.jpg" class="img-responsive">
 														<div class="imageoverlay">
 															<i class="icon icon-search"></i>
 														</div>
@@ -301,7 +345,7 @@
 											<div class="row">
 												<div class="col-sm-6 col-md-3">
 													<div class="image">
-														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<img loading="lazy" alt="image" src="images/project.jpg" class="img-responsive">
 														<div class="imageoverlay">
 															<i class="icon icon-search"></i>
 														</div>
@@ -326,7 +370,7 @@
 											<div class="row">
 												<div class="col-sm-6 col-md-3">
 													<div class="image">
-														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<img loading="lazy" alt="image" src="images/project.jpg" class="img-responsive">
 														<div class="imageoverlay">
 															<i class="icon icon-search"></i>
 														</div>
@@ -359,7 +403,7 @@
 											<div class="row">
 												<div class="col-sm-6 col-md-3">
 													<div class="image">
-														<img alt="image" src="images/project.jpg" class="img-responsive">
+														<img loading="lazy" alt="image" src="images/project.jpg" class="img-responsive">
 													   <div class="imageoverlay">
 															<i class="icon icon-search"></i>
 														</div>
@@ -716,7 +760,7 @@
 												</div>
 												<div class="text row">
 													<div class="col-md-2">
-														<img alt="image" class="thumbnail img-responsive" src="images/Logo/opex_logo.png">
+														<img loading="lazy" alt="image" class="thumbnail img-responsive" src="images/Logo/opex_logo.png">
 													</div>
 													<div class="col-md-10">
 														My responsibilities are,
@@ -751,7 +795,7 @@
 												</div>
 												<div class="text row">
 													<div class="col-md-2">
-														<img alt="image" class="thumbnail img-responsive" src="images/Logo/clogeny_logo.png">
+														<img loading="lazy" alt="image" class="thumbnail img-responsive" src="images/Logo/clogeny_logo.png">
 													</div>
 													<div class="col-md-10">
 														My responsibilities are,
@@ -808,7 +852,7 @@
 												</div>
 												<div class="text row">
 													<div class="col-md-2">
-														<img alt="image" class="thumbnail img-responsive" src="images/Logo/infosys.png">
+														<img loading="lazy" alt="image" class="thumbnail img-responsive" src="images/Logo/infosys.png">
 													</div>
 													<div class="col-md-10">
 														My responsibilities are,
@@ -833,7 +877,7 @@
 												</div>
 												<div class="text row">
 													<div class="col-md-2">
-														<img alt="image" class="thumbnail img-responsive" src="images/Logo/attune.jpg">
+														<img loading="lazy" alt="image" class="thumbnail img-responsive" src="images/Logo/attune.jpg">
 													</div>
 													<div class="col-md-10">
 														My responsibilities are,
@@ -857,7 +901,7 @@
 												</div>
 												<div class="text row">
 													<div class="col-md-2">
-														<img alt="image" class="thumbnail img-responsive" src="images/Logo/tcs.png">
+														<img loading="lazy" alt="image" class="thumbnail img-responsive" src="images/Logo/tcs.png">
 													</div>
 													<div class="col-md-10">
 														J2EE based web portal application development and basics of Liferay Portal as well as Alfresco CMS
@@ -896,7 +940,7 @@
                                         <h3>Analysis</h3>
 
                                         <p>
-                                            I offer in-depth analyis of current and emerging technologies
+                                            I offer in-depth analysis of current and emerging technologies
                                         </p>
                                     </div>
                                     <div class="col-md-3">
@@ -904,7 +948,7 @@
                                         <h3>Enterprise Architecture</h3>
 
                                         <p>
-                                            I design hybrid-native applications and resillient infrastructure
+                                            I design hybrid-native applications and resilient infrastructure
                                         </p>
                                     </div>
                                     <div class="col-md-3">
@@ -989,7 +1033,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1008,7 +1052,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1022,7 +1066,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1036,7 +1080,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1050,7 +1094,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1064,7 +1108,7 @@
                                             <li>
                                                 <div class="testimonial">
                                                     <div class="testimonial-img">
-                                                        <!--<img src="images/client.jpg" alt="">-->
+                                                        <!--<img loading="lazy" src="images/client.jpg" alt="">-->
                                                         <div style="width: 102px; line-height: 100px; font-size: 78px; color: #fff; margin: 0 auto 20px; background-color: #666; border-radius: 50%; padding-left: 20%;">
                                                             <i class="icon icon-user"></i>
                                                         </div>
@@ -1078,7 +1122,7 @@
                                             <!--<li>
 												<div class="testimonial">
 													<div class="testimonial-img">
-														<img src="images/client.jpg" alt="">
+														<img loading="lazy" src="images/client.jpg" alt="">
 													</div>
 													<blockquote>
 														<p>Uchit has potential to learn a new thing in Cloud Computing as well in open source tools. In organization he is keen to derive solutions with agile methodology</p>
@@ -1163,7 +1207,7 @@
                                             <div class="item mix book" data-year="2016">
                                                 <div class="pubmain">
                                                     <div style="float: left; margin-right: 5%; margin-top: -2%;">
-                                                        <img alt="image" src="images/Book/AppliedOpenStack.jpg" style="max-height: 150px;">
+                                                        <img loading="lazy" alt="image" src="images/Book/AppliedOpenStack.jpg" style="max-height: 150px;">
                                                     </div>
 
                                                     <div class="pubassets">
@@ -1171,7 +1215,7 @@
                                                         <a href="#" class="pubcollapse">
                                                             <i class="icon icon-plus-circle"></i>
                                                         </a>
-                                                        <a href="https://goo.gl/IQIgVb" class="tooltips" title="External link" target="_blank">
+                                                        <a href="https://goo.gl/IQIgVb" class="tooltips" title="External link" target="_blank" rel="noopener noreferrer">
                                                             <i class="icon-external-link"></i>
                                                         </a>
 
@@ -1186,7 +1230,7 @@
 
                                                 </div>
                                                 <div class="pubdetails">
-                                                    <!--  <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <!--  <img loading="lazy" alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
                                                     <h4>Learn practical and applied OpenStack cloud design solutions to gain maximum control over your infrastructure. You will achieve a complete controlled and customizable platform.</h4>
                                                     <p>
                                                         Applied OpenStack Design Patterns starts off with the basics of OpenStack and teaches you how to map your application flow. Application behavior with OpenStack components is discussed. Once components and architectural design patterns are set up, you will learn how to map native infrastructure and applications using OpenStack.
@@ -1197,14 +1241,14 @@
                                             <div class="item mix book" data-year="2015">
                                                 <div class="pubmain">
                                                     <div style="float: left; margin-right: 5%; margin-top: -2%;">
-                                                        <img alt="image" src="images/Book/Mastering_AWS.jpg" style="max-height: 150px;">
+                                                        <img loading="lazy" alt="image" src="images/Book/Mastering_AWS.jpg" style="max-height: 150px;">
                                                     </div>
                                                     <div class="pubassets">
 
                                                         <a href="#" class="pubcollapse">
                                                             <i class="icon icon-plus-circle"></i>
                                                         </a>
-                                                        <a href="https://goo.gl/nNTudi" class="tooltips" title="External link" target="_blank">
+                                                        <a href="https://goo.gl/nNTudi" class="tooltips" title="External link" target="_blank" rel="noopener noreferrer">
                                                             <i class="icon-external-link"></i>
                                                         </a>
 
@@ -1219,7 +1263,7 @@
 
                                                 </div>
                                                 <div class="pubdetails">
-                                                    <!--<img alt="image" src="images/Book/Mastering_AWS.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <!--<img loading="lazy" alt="image" src="images/Book/Mastering_AWS.jpg" style="padding: 0 30px 30px 0;">-->
                                                     <h4>Develop and migrate your enterprise applications to the Amazon Web Services platform.</h4>
                                                     <p>This book is a practical guide to developing, administering, and managing applications and infrastructures with AWS. With this book, you will be able to create, design, and manage a whole application life cycle on AWS by using the AWS SDKs, APIs, as well as the AWS Management Console. </p>
                                                     <p>
@@ -1231,7 +1275,7 @@
                                             <div class="item mix book" data-year="2014">
                                                 <div class="pubmain">
                                                     <div style="float: left; margin-right: 5%; margin-top: -2%;">
-                                                        <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="max-height: 150px;">
+                                                        <img loading="lazy" alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="max-height: 150px;">
                                                     </div>
 
                                                     <div class="pubassets">
@@ -1239,7 +1283,7 @@
                                                         <a href="#" class="pubcollapse">
                                                             <i class="icon icon-plus-circle"></i>
                                                         </a>
-                                                        <a href="https://goo.gl/807T5C" class="tooltips" title="External link" target="_blank">
+                                                        <a href="https://goo.gl/807T5C" class="tooltips" title="External link" target="_blank" rel="noopener noreferrer">
                                                             <i class="icon-external-link"></i>
                                                         </a>
 
@@ -1254,7 +1298,7 @@
 
                                                 </div>
                                                 <div class="pubdetails">
-                                                    <!--  <img alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <!--  <img loading="lazy" alt="image" src="images/Book/AWSDevelopmentEssential.jpg" style="padding: 0 30px 30px 0;">-->
                                                     <h4>Design and build flexible, highly scalable and cost effective applications using Amazon Web Services.</h4>
                                                     <p>
                                                         This book is a fast-paced guide to help you with architecture systems and solve technical problems using the latest cloud computing technologies. Starting with the introduction to AWS, you will learn about identifying key AWS storage options, Amazon EBS, Amazon S3 bucket creation, and sample code and libraries. You will learn about computing and networking services using Amazon EBS and EC2 instances. You will efficiently be able to manage services and databases using DynamoDB and understand the key aspects of Amazon RDS. You will also learn about deployment and maintenance using Amazon CloudWatch metrics and alarms, Amazon Identity and Access Management (IAM), and AWS Elastic Beanstalk. Finally, you will explore service object models and the baseline concept of SNS and SQS, and then build an app using these new skills.
@@ -1264,7 +1308,7 @@
                                             <div class="item mix book" data-year="2014">
                                                 <div class="pubmain">
                                                     <div style="float: left; margin-right: 5%; margin-top: -2%;">
-                                                        <img alt="image" src="images/Book/DynamoDB.jpg" style="max-height: 150px;">
+                                                        <img loading="lazy" alt="image" src="images/Book/DynamoDB.jpg" style="max-height: 150px;">
                                                     </div>
 
                                                     <div class="pubassets">
@@ -1272,7 +1316,7 @@
                                                         <a href="#" class="pubcollapse">
                                                             <i class="icon icon-plus-circle"></i>
                                                         </a>
-                                                        <a href="http://goo.gl/N8n7hQ" class="tooltips" title="External link" target="_blank">
+                                                        <a href="https://goo.gl/N8n7hQ" class="tooltips" title="External link" target="_blank" rel="noopener noreferrer">
                                                             <i class="icon-external-link"></i>
                                                         </a>
 
@@ -1287,7 +1331,7 @@
 
                                                 </div>
                                                 <div class="pubdetails">
-                                                    <!--<img alt="image" src="images/Book/DynamoDB.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <!--<img loading="lazy" alt="image" src="images/Book/DynamoDB.jpg" style="padding: 0 30px 30px 0;">-->
                                                     <h4>Apply efficent DynamoDB design patterns for high performance of applications.</h4>
                                                     <p>
                                                         The book includes a significant number of examples that can be used by new users and experts alike. The book begins with a description on the concepts of data model including tables, items, and attributes, primary key, indexes, and design patterns. You will learn to access DynamoDB in the Management Console, command line, and eclipse plugin. Users can also gain insights into DynamoDB locals and CLI commands. Furthermore, global and local secondary indexes and its importance in DynamoDB will be looked into. Users can also learn how to use Query and Scan operations in DynamoDB tables, along with DynamoDB APIs and their formats. The book ends by covering the best design use cases DynamoDB architectures along with real-time problem statements and their best solutions.
@@ -1297,7 +1341,7 @@
                                             <div class="item mix book" data-year="2013">
                                                 <div class="pubmain">
                                                     <div style="float: left; margin-right: 5%; margin-top: -2%;">
-                                                        <img alt="image" src="images/Book/MuleESB.jpg" style="max-height: 150px;">
+                                                        <img loading="lazy" alt="image" src="images/Book/MuleESB.jpg" style="max-height: 150px;">
                                                     </div>
 
                                                     <div class="pubassets">
@@ -1305,7 +1349,7 @@
                                                         <a href="#" class="pubcollapse">
                                                             <i class="icon icon-plus-circle"></i>
                                                         </a>
-                                                        <a href="http://goo.gl/c7uwG" class="tooltips" title="External link" target="_blank">
+                                                        <a href="https://goo.gl/c7uwG" class="tooltips" title="External link" target="_blank" rel="noopener noreferrer">
                                                             <i class="icon-external-link"></i>
                                                         </a>
 
@@ -1320,7 +1364,7 @@
 
                                                 </div>
                                                 <div class="pubdetails">
-                                                    <!--<img alt="image" src="images/Book/MuleESB.jpg" style="padding: 0 30px 30px 0;">-->
+                                                    <!--<img loading="lazy" alt="image" src="images/Book/MuleESB.jpg" style="padding: 0 30px 30px 0;">-->
                                                     <h4>Over 40 recipes to effectively build your enterprise solutions from the ground up using Mule ESB.</h4>
                                                     <p>Mule ESB Cookbook provides solutions for developers working on Mule ESB and integrating Mule with other technologies. It focuses on development and delivery using Mule ESB through integrating, migrating and upgrading advanced technological tools. </p>
 
@@ -1376,7 +1420,7 @@
                                             </p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="http://bit.ly/2dUvTXb" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://bit.ly/2dUvTXb" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>-->
@@ -1394,7 +1438,7 @@
                                                              </p>
                                                              <p>
                                                                  <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-                                                             <a href="https://cutt.ly/NbTmwrN" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                                             <a href="https://cutt.ly/NbTmwrN" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                                              </p>
 
                                                          </div>
@@ -1413,7 +1457,7 @@
                                                              </p>
                                                              <p>
                                                                  <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-                                                             <a href="https://goo.gl/LQg9gZ" target="_blank" style="color: #03BB7A">Watch Here</a>
+                                                             <a href="https://goo.gl/LQg9gZ" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                                              </p>
 
                                                          </div>
@@ -1435,7 +1479,7 @@
 
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="http://bit.ly/2l4m0cw" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://bit.ly/2l4m0cw" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1456,7 +1500,7 @@
                                             </p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="https://goo.gl/D6PxiD" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://goo.gl/D6PxiD" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1476,7 +1520,7 @@
                                             </p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="http://bit.ly/2dUvTXb" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://bit.ly/2dUvTXb" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1493,7 +1537,7 @@
                                             </p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="http://bit.ly/2btVUyB" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://bit.ly/2btVUyB" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1509,7 +1553,7 @@
                                             <p>Then, after a few more weeks, I introduced service discovery, monitoring and real analytics for each and every DCs which are isolated from each other.</p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="http://www.slideshare.net/uchit86/scaling-under-pressure" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://www.slideshare.net/uchit86/scaling-under-pressure" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1526,7 +1570,7 @@
                                             <p>Finally, we did the same exact thing in at a Fortune 500 customer to replace 15 year-old scripts. We will also cover sleek ways of dealing with provisioning in different Availability Zones across various AWS regions with Terraform</p>
                                             <p>
                                                 <i class="icon icon-facetime-video" style="color: #03BB7A;"></i>&nbsp;&nbsp;
-												<a href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" target="_blank" style="color: #03BB7A">Watch Here</a>
+												<a href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" target="_blank" rel="noopener noreferrer" style="color: #03BB7A">Watch Here</a>
                                             </p>
                                         </div>
                                     </li>
@@ -1707,11 +1751,11 @@
                                         </li>
                                         <li>
                                             <strong><i class="icon-twitter"></i>&nbsp;&nbsp;</strong>
-                                            <span><a href="https://twitter.com/uchit_vyas" target="_blank">uchit_vyas</a></span>
+                                            <span><a href="https://twitter.com/uchit_vyas" target="_blank" rel="noopener noreferrer" aria-label="Twitter">uchit_vyas</a></span>
                                         </li>
                                         <li>
                                             <strong><i class="icon-linkedin-sign"></i>&nbsp;&nbsp;</strong>
-                                            <span><a href="https://in.linkedin.com/in/uchitvyas" target="_blank">uchit vyas</a></span>
+                                            <span><a href="https://in.linkedin.com/in/uchitvyas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">uchit vyas</a></span>
                                         </li>
                                     </ul>
 
