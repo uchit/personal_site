@@ -509,6 +509,14 @@ html {
     padding: 6px 8px;
 }
 
+#sidebar .site-copyright {
+    position: absolute !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 48px !important;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -579,7 +587,7 @@ img, iframe, video {
     }
 
     .page {
-        display: block !important;
+        display: none !important;
         width: 100% !important;
         max-width: 100% !important;
         left: 0 !important;
@@ -587,6 +595,11 @@ img, iframe, video {
         top: auto !important;
         bottom: auto !important;
         overflow: visible !important;
+    }
+
+    .page.mobile-active,
+    .home.mobile-active {
+        display: block !important;
     }
 
     .section-container {
@@ -618,6 +631,10 @@ img, iframe, video {
 
     .site-copyright {
         bottom: 54px;
+    }
+
+    #sidebar .site-copyright {
+        bottom: 54px !important;
     }
 }
 

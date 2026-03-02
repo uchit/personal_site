@@ -34,18 +34,32 @@ $(document).ready(function(){
 		slidepage
 	++++++++++++++++++++++++++++++++++++++*/
 	if (isMobileView) {
-		// Mobile fallback: keep content full-width and avoid desktop timeline offsets.
+		// Mobile mode: keep full-width layout but show one section at a time.
 		$("#overlay").hide();
 		$("#main").css({left:0,right:0});
-		$("div.page").css({position:"relative",left:0,width:"100%"});
-		$("div.page.home").css({left:0,width:"100%"});
+		$("div.page").css({position:"relative",left:0,width:"100%"}).removeClass("mobile-active");
+		$("div#home").addClass("mobile-active");
 
 		$("a.mobilemenu").on("click",function(e){
 			e.preventDefault();
 			$("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
 		});
-		$("#main, #navigation a").on("click",function(){
+		$("#main").on("click",function(){
 			$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+		});
+		$("#navigation a").on("click", function(e){
+			var target = $(this).attr("href");
+			if (!target || target.charAt(0) !== "#") {
+				return;
+			}
+			var $targetPage = $(target + ".page");
+			if ($targetPage.length) {
+				e.preventDefault();
+				$("div.page").removeClass("mobile-active");
+				$targetPage.addClass("mobile-active");
+				$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+				window.scrollTo(0, 0);
+			}
 		});
 	} else {
 		var SidebarAnim = new TimelineLite({paused:true});
