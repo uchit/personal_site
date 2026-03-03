@@ -80,7 +80,7 @@ ul.pre-styles {
 }
 
 .cover_img {
-    background: url('../images/back.jpg') no-repeat center center;
+    background: url('../images/Uchit1.jpeg') no-repeat center center;
     min-height: 100%;
     background-size: cover;
 }
@@ -107,7 +107,7 @@ ul.pre-styles {
 .tagline {
     padding-top: 20%;
     font-size: 36px;
-    color: #333;
+    color: #ccc;
     line-height: normal;
     margin-left: 20%;
     width: 80%;
