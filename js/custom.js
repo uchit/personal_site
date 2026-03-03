@@ -1,4 +1,3 @@
-
 var loc = window.location.href,
     index = loc.indexOf('#');
 
@@ -8,319 +7,279 @@ if (index > 0) {
 
 $.fn.exists = function () {
     return this.length > 0 ? this : false;
-}
+};
 
 $(document).ready(function(){
-	var isMobileView = window.matchMedia("(max-width: 991px)").matches;
+    var isMobileView = window.matchMedia("(max-width: 991px)").matches;
 
-    /* PreLoader Js*/
-    /*$('body').jpreLoader({
-		splashID: "#jSplash",
-		showSplash: true,
-		showPercentage: true,
-		autoClose: true,
-		splashFunction: function() {
-			$('#circle').delay(250).animate({'opacity' : 1}, 500, 'linear');
-		}
-	});*/
-	
-	/*++++++++++++++++++++++++++++++++++++
-		tooltips
-	++++++++++++++++++++++++++++++++++++++*/
-	$(".tooltips").tooltip();
+    /*++++++++++++++++++++++++++++++++++++
+        tooltips
+    ++++++++++++++++++++++++++++++++++++++*/
+    $(".tooltips").tooltip();
 
 
-	/*++++++++++++++++++++++++++++++++++++
-		slidepage
-	++++++++++++++++++++++++++++++++++++++*/
-	if (isMobileView) {
-		// Mobile mode: keep full-width layout but show one section at a time.
-		$("#overlay").hide();
-		$("#main").css({left:0,right:0});
-		$("div.page").css({position:"relative",left:0,width:"100%"}).removeClass("mobile-active");
-		$("div#home").addClass("mobile-active");
+    /*++++++++++++++++++++++++++++++++++++
+        slidepage
+    ++++++++++++++++++++++++++++++++++++++*/
+    if (isMobileView) {
+        // Mobile mode: keep full-width layout but show one section at a time.
+        $("#overlay").hide();
+        $("#main").css({left:0,right:0});
+        $("div.page").css({position:"relative",left:0,width:"100%"}).removeClass("mobile-active");
+        $("div#home").addClass("mobile-active");
 
-		$("a.mobilemenu").on("click",function(e){
-			e.preventDefault();
-			$("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
-		});
-		$("#main").on("click",function(){
-			$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
-		});
-		$("#navigation").on("click touchend", "a, li", function(e){
-			var $link = $(this).is("a") ? $(this) : $(this).find("a").first();
-			if (!$link.length) {
-				return;
-			}
-			var target = $link.attr("href");
-			if (!target || target.charAt(0) !== "#") {
-				return;
-			}
-			var $targetPage = $(target + ".page");
-			if ($targetPage.length) {
-				e.preventDefault();
-				e.stopPropagation();
-				$("div.page").removeClass("mobile-active");
-				$targetPage.addClass("mobile-active");
-				$("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
-				if (target === "#publications" && $("div#pub-grid").length) {
-					try {
-						$("div#pub-grid").mixitup("filter", "all");
-					} catch (err) {}
-				}
-				window.scrollTo(0, 0);
-			}
-		});
-	} else {
-		var SidebarAnim = new TimelineLite({paused:true});
-		SidebarAnim
-			.to($(".social-icons, #main-nav"),0.2,{left:0})
-			.to($("#main"),0.2,{left:250,right:"-=250"},"-=0.2");
-		
-		$("a.mobilemenu").on("click",function(){
-			SidebarAnim.play();
-		});
-		$(".social-icons, #main-nav, #main").on("click",function(){
-			SidebarAnim.reverse();		
-		});
-	}
+        $("a.mobilemenu").on("click",function(e){
+            e.preventDefault();
+            $("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
+        });
+        $("#main").on("click",function(){
+            $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+        });
+        $("#navigation").on("click touchend", "a, li", function(e){
+            var $link = $(this).is("a") ? $(this) : $(this).find("a").first();
+            if (!$link.length) {
+                return;
+            }
+            var target = $link.attr("href");
+            if (!target || target.charAt(0) !== "#") {
+                return;
+            }
+            var $targetPage = $(target + ".page");
+            if ($targetPage.length) {
+                e.preventDefault();
+                e.stopPropagation();
+                $("div.page").removeClass("mobile-active");
+                $targetPage.addClass("mobile-active");
+                $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+                if (target === "#publications" && $("#cd-dropdown").length) {
+                    $("#cd-dropdown").val("all").trigger("change");
+                }
+                window.scrollTo(0, 0);
+            }
+        });
+    } else {
+        // Desktop: keep sidebar/menu fixed and always visible.
+        $(".social-icons, #main-nav").stop(true).css({left:0});
+        $("#main").stop(true).css({left:250,right:0});
+    }
 
+    /*++++++++++++++++++++++++++++++++++++
+        pages
+    ++++++++++++++++++++++++++++++++++++++*/
+    var pager = {
+        pageContainer : $("div#main"),
+        pages : $("div.page"),
+        menuItems: $("ul#navigation"),
+        overlay : $("div#overlay"),
+        topz : 500,
+        init: function(){
+            var self = this;
 
-	/*++++++++++++++++++++++++++++++++++++++++++++++
-		custom scrolls with perfectScroll plugin
-	++++++++++++++++++++++++++++++++++++++++++++++++*/
-	$("#main-nav").perfectScrollbar({
-		wheelPropagation:true,
-		wheelSpeed:80
-	});
+            self.menuItems.on('click','li:not(.external)', function(e){
+                e.preventDefault();
+                var $li = $(this),
+                    $target = $($li.children('a').attr('href')),
+                    currentPosition = $target.attr('data-pos'),
+                    $secondary = self.pageContainer.children(".currentpage");
+                switch (currentPosition){
+                    case "home" :
+                        self.reset();
+                        break;
+                    case "p1" :
+                        self.forward($target,$secondary);
+                        break;
+                    case "p3" :
+                        if ( parseInt($target.attr('data-order'), 10) === self.maxz() ) {
+                            self.backward($target,$secondary);
+                        } else {
+                            self.forward($target,$secondary);
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+            });
 
-	
-	
+            self.overlay.on('click',function(){
+                var $secondary = self.pageContainer.children(".currentpage");
+                var $target = self.pageContainer.children("[data-order="+self.maxz()+"]");
+                self.backward($target,$secondary);
+            });
 
-	/*++++++++++++++++++++++++++++++++++++
-		pages 
-	++++++++++++++++++++++++++++++++++++++*/
-	var pager = {
-		pageContainer : $("div#main"),
-		pages : $("div.page"),
-		menuItems: $("ul#navigation"),
-		overlay : $("div#overlay"),
-		topz : "500",
-		init: function(){
+        },
 
-			self = this;
-			self.menuItems.on('click','li:not(.external)', function(e){
-				
-				e.preventDefault();
-				var $li = $(this),
-					$target = $($li.children('a').attr('href')),
-					currentPosition = $target.attr('data-pos'),
-					$secondary = self.pageContainer.children(".currentpage");
-				switch (currentPosition){
-					case "home" :
-						self.reset();
-						break;
-					case "p1" :
-						self.forward($target,$secondary);
-						break;
-					case "p3" :
-						if ( parseInt($target.attr('data-order')) === self.maxz() )
-						{	
-							// var $gotop2 = $target,
-							// 	$gotop1 = $secondary;
-							self.backward($target,$secondary);
-						} else {
-							self.forward($target,$secondary);
-						}
-					break;
-					default:
-						return false;
-				}
-			});
+        reset : function (){
+            this.overlay.hide();
 
-			self.overlay.on('click',function(){
-				var $secondary = self.pageContainer.children(".currentpage");
-				var $target = self.pageContainer.children("[data-order="+self.maxz()+"]");
-				self.backward($target,$secondary);
-			});
+            var $gotop1 = this.pages.not(".home");
+            $gotop1.attr('data-pos','p1').removeAttr('data-order');
+            $gotop1.stop(true).animate({left:"100%"}, 400, function(){
+                $gotop1.removeClass('currentpage');
+            });
+            $gotop1.css({zIndex:0});
 
-		},
+            this.hanndelMenu();
+        },
 
-		reset : function (){
+        forward : function(gotop2 , /* optional */ gotop3){
+            var self = this;
 
-			this.overlay.hide();
-			
-			var $gotop1 = this.pages.not(".home");
-			$gotop1.attr('data-pos','p1').removeAttr('data-order');
-			TweenLite.to($gotop1,0.4,{left:"100%",zIndex:0, onComplete:function(){
-				$gotop1.removeClass('currentpage');	
-			}});
+            self.hanndelMenu(gotop2);
+            self.overlay.show();
+            var maxz = self.maxz();
+            gotop2.addClass('currentpage');
+            gotop2.attr('data-pos','p2').removeAttr('data-order');
+            gotop3.attr('data-pos','p3').attr('data-order',maxz+1);
 
-			this.hanndelMenu();
-		},
+            gotop2.css({left:"100%", zIndex:self.topz});
+            gotop3.css({zIndex:maxz+1});
 
-		forward : function(gotop2 , /* optional */ gotop3){
-			
-			
+            gotop2.stop(true).animate({left:"15%"}, 400);
+            gotop3.stop(true).animate({left:0}, 300, function(){
+                gotop3.removeClass('currentpage');
+            });
+        },
 
-			self.hanndelMenu(gotop2);
-			self.overlay.show();
-			var maxz = self.maxz();
-			gotop2.addClass('currentpage');
-			gotop2.attr('data-pos','p2').removeAttr('data-order');
-			gotop3.attr('data-pos','p3').attr('data-order',maxz+1);
-			
+        backward : function (gotop2,gotop1){
+            var self = this;
 
-			( new TimelineLite() )
-				.set(gotop2,{ left:"100%",zIndex:self.topz})
-				.set(gotop3,{zIndex:maxz+1})
-				.to(gotop2,0.4,{left:"15%"})
-				.to(gotop3,0.3,{ left:0 , onComplete:function(){gotop3.removeClass('currentpage');} },"-=0.2");
-		},
+            self.hanndelMenu(gotop2);
+            gotop2.exists() || self.overlay.hide();
+            gotop2.addClass('currentpage').removeAttr('data-order').attr('data-pos',"p2");
+            gotop1.attr('data-pos','p1');
 
-		backward : function (gotop2,gotop1){
-			
+            gotop2.css({zIndex:self.topz-1});
+            gotop2.stop(true).animate({left:"15%"}, 400);
+            gotop1.stop(true).animate({left:"100%"}, 500, function(){
+                gotop1.removeClass('currentpage').css({zIndex:0});
+            });
 
-			this.hanndelMenu(gotop2);
-			gotop2.exists() || this.overlay.hide();
-			gotop2.addClass('currentpage').removeAttr('data-order').attr('data-pos',"p2");
-			gotop1.attr('data-pos','p1');
+        },
 
-			(new TimelineLite())
-				.set(gotop2,{zIndex:self.topz-1})
-				.to(gotop2,0.4,{left:"15%"})
-				.to(gotop1,0.5,
-					{
-						left:"100%",
-						onComplete : function(){
-							gotop1.removeClass('currentpage');
-						}
-					},"-=0.3")
-				.set(gotop1,{zIndex:0});
+        maxz : function(){
+            var levelArray = this.pages.map(function() {
+                return $(this).attr('data-order');
+            }).get();
+            var maxz = levelArray.length && Math.max.apply(Math, levelArray);
+            return maxz;
+        },
 
-		},
+        hanndelMenu : function(){
+            var menuIndex = (arguments.length) ? ((arguments[0].length) ? arguments[0].index() : 0) : 0;
 
-		maxz : function(){
-			
-			var levelArray = this.pages.map( function() {
-			    return $(this).attr('data-order');
-			}).get();
-			maxz = levelArray.length && Math.max.apply( Math, levelArray );
-			return maxz;
-		},
+            this.menuItems.children().eq(menuIndex)
+                .addClass('currentmenu')
+                .siblings().removeClass('currentmenu');
+        }
+    };
 
-		hanndelMenu : function(){
-			
-
-			var menuIndex = ( arguments.length ) ? ( (arguments[0].length) ? arguments[0].index() : 0 ):0;
-
-			this.menuItems.children().eq(menuIndex)
-				.addClass('currentmenu')
-				.siblings().removeClass('currentmenu');
-			
-
-		}
-	}
+    if (!isMobileView) {
+        pager.reset();
+        pager.init();
+    }
 
 
-
-	if (!isMobileView) {
-		pager.reset();
-		pager.init();
-	}
-
-
-	/*++++++++++++++++++++++++++++++++++++
-		click event on ul.timeline titles
-	++++++++++++++++++++++++++++++++++++++*/
-	//$("ul.timeline").children().eq(0)
-	//	.find(".text").slideDown()
-	//	.addClass("open");
-
-	$("ul.timeline").on("click","li", function(){
-		$this = $(this);
-		$this.find(".text").slideDown();
-		$this.addClass("open");
-		$this.siblings('li.open').find(".text").slideUp();
-		$this.siblings('li').removeClass("open");
-	}).on('mouseenter','li',function(){
-		$this = $(this);
-		var anim = new TweenLite($(this).find(".subject"),0.4,{'padding-left':20, paused:true});
-		($this.hasClass('open')) || anim.play();
-	}).on('mouseleave','li',function(){
-		var anim = new TweenLite($(this).find(".subject"),0.2,{'padding-left':0});
-	});
+    /*++++++++++++++++++++++++++++++++++++
+        click event on ul.timeline titles
+    ++++++++++++++++++++++++++++++++++++++*/
+    $("ul.timeline").on("click","li", function(){
+        var $this = $(this);
+        $this.find(".text").slideDown();
+        $this.addClass("open");
+        $this.siblings('li.open').find(".text").slideUp();
+        $this.siblings('li').removeClass("open");
+    }).on('mouseenter','li',function(){
+        var $this = $(this);
+        if (!$this.hasClass('open')) {
+            $(this).find(".subject").stop(true).animate({'padding-left':20}, 400);
+        }
+    }).on('mouseleave','li',function(){
+        $(this).find(".subject").stop(true).animate({'padding-left':0}, 200);
+    });
 
 
-
-	/*++++++++++++++++++++++++++++++++++++
-		ul-withdetails details show/hide
-	++++++++++++++++++++++++++++++++++++++*/
-	$("ul.ul-withdetails li").find(".row").on('click',function(){
-		// $this = $(this);
-		$(this).closest("li").find(".details")
-	        .stop(true, true)
-	        .animate({
-	            height:"toggle",
-	            opacity:"toggle"
-	        },300);
-	}).on('mouseenter',function(){
-		$this = $(this);
-		var anim = new TweenLite($(this).closest("li").find(".imageoverlay"),0.4,{left:0});
-	}).on('mouseleave', function(){
-		var anim = new TweenLite($(this).closest("li").find(".imageoverlay"),0.2,{left:"-102%"});
-	});
+    /*++++++++++++++++++++++++++++++++++++
+        ul-withdetails details show/hide
+    ++++++++++++++++++++++++++++++++++++++*/
+    $("ul.ul-withdetails li").find(".row").on('click',function(){
+        $(this).closest("li").find(".details")
+            .stop(true, true)
+            .animate({
+                height:"toggle",
+                opacity:"toggle"
+            },300);
+    }).on('mouseenter',function(){
+        $(this).closest("li").find(".imageoverlay").stop(true).animate({left:0}, 400);
+    }).on('mouseleave', function(){
+        $(this).closest("li").find(".imageoverlay").stop(true).animate({left:"-102%"}, 200);
+    });
 
 
+    /*++++++++++++++++++++++++++++++++++++
+        Publications page - native filter and sort (legacy plugin removed)
+    ++++++++++++++++++++++++++++++++++++++*/
+    var $pubGrid = $('div#pub-grid');
+    var $pubContainer = $pubGrid.find('.pitems');
+    var $pubItems = $pubContainer.children('.item');
+    var pubFilter = 'all';
+    var pubSortOrder = 'desc';
 
-	/*++++++++++++++++++++++++++++++++++++
-		Publications page categorization
-	++++++++++++++++++++++++++++++++++++++*/
-	
-	
-	$('div#pub-grid').mixitup({
-		layoutMode: 'list',
-		easing : 'snap',
-		transitionSpeed :600,
-		onMixEnd: function(){
-			$(".tooltips").tooltip();
-		}
-	}).on('click','div.pubmain',function(){
-		var $this = $(this), 
-			$item = $this.closest(".item");
-		
-		$item.find('div.pubdetails').slideToggle(function(){
-			$this.children("i").toggleClass('icon-collapse-alt icon-expand-alt');
-		},function(){
-			$this.children("i").toggleClass('icon-expand-alt icon-collapse-alt');
-		});
-	});
+    $pubItems.each(function(index){
+        $(this).attr('data-pub-index', index);
+    });
 
-	$( '#cd-dropdown' ).dropdownit( {
-		gutter : 0
-	} );
+    $pubGrid.on('click','div.pubmain',function(){
+        var $this = $(this),
+            $item = $this.closest('.item');
 
-	$("[name=cd-dropdown]").on("change",function(){
-		var item = this.value;		
-		$('div#pub-grid').mixitup('filter',item);
-	});
+        $item.find('div.pubdetails').slideToggle(function(){
+            $this.children('i').toggleClass('icon-collapse-alt icon-expand-alt');
+        },function(){
+            $this.children('i').toggleClass('icon-expand-alt icon-collapse-alt');
+        });
+    });
 
-	
+    function sortPublicationItems(items, order) {
+        return items.sort(function(a, b) {
+            var yearA = parseInt($(a).attr('data-year'), 10) || 0;
+            var yearB = parseInt($(b).attr('data-year'), 10) || 0;
+            if (yearA === yearB) {
+                var idxA = parseInt($(a).attr('data-pub-index'), 10) || 0;
+                var idxB = parseInt($(b).attr('data-pub-index'), 10) || 0;
+                return idxA - idxB;
+            }
+            return order === 'asc' ? yearA - yearB : yearB - yearA;
+        });
+    }
 
+    function renderPublications() {
+        var sortedItems = sortPublicationItems($pubItems.get().slice(), pubSortOrder);
+        $.each(sortedItems, function(_, item) {
+            $pubContainer.append(item);
+        });
 
-	/*++++++++++++++++++++++++++++++++++++
-		stellar for contact page backgrounds
-	++++++++++++++++++++++++++++++++++++++*/
-	$(".stellar").stellar({
-  		verticalOffset: -100,
-  		horizontalScrolling: false,
-	});
+        if (pubFilter === 'all') {
+            $pubItems.show();
+        } else {
+            $pubItems.hide();
+            $pubItems.filter('.' + pubFilter).show();
+        }
+    }
 
+    $(document).on('change', '#cd-dropdown', function() {
+        pubFilter = String(this.value || 'all').replace(/^\./, '');
+        renderPublications();
+    });
 
+    $(document).on('click', '#sort .sort', function(e) {
+        e.preventDefault();
+        var order = String($(this).data('order') || 'desc').toLowerCase();
+        pubSortOrder = order === 'asc' ? 'asc' : 'desc';
+        $('#sort .sort').removeClass('active');
+        $(this).addClass('active');
+        renderPublications();
+    });
+
+    $('#sort .sort[data-order="desc"]').addClass('active');
+    renderPublications();
 });
-
-
-
-
-
-

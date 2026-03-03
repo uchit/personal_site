@@ -507,7 +507,7 @@ img, iframe, video {
 
 @media (max-width: 767px) {
     body {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .pageheader {
@@ -600,7 +600,7 @@ textarea:focus-visible {
 
 #navigation li a:focus-visible,
 #navigation li.currentmenu a {
-    color: #ffffff;
+    color: #1d2a38;
     background: #2d2d2d;
 }
 
@@ -648,7 +648,7 @@ textarea:focus-visible {
 
 .case-card p {
     margin: 0;
-    color: #34495e;
+    color: #2d3e50;
 }
 
 .case-thumb {
@@ -674,4 +674,638 @@ textarea:focus-visible {
     .case-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Bio section polish */
+#biography .bio-content p {
+    margin-bottom: 16px;
+    line-height: 1.75;
+    color: #2b3a4a;
+}
+
+#biography .focus-area-block {
+    margin-top: 24px;
+}
+
+#biography .focus-area-block h4 {
+    margin-bottom: 14px;
+    font-size: 24px;
+    color: #1d2a38;
+}
+
+#biography .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+#biography .focus-card {
+    background: #ffffff;
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+#biography .focus-card h5 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    line-height: 1.35;
+    color: #12202f;
+}
+
+#biography .focus-card p {
+    margin: 0;
+    color: #2d3e50;
+    line-height: 1.7;
+}
+
+#biography .bio-closing {
+    margin-top: 24px;
+    padding: 16px 18px;
+    border: 1px solid #d8e2ee;
+    border-radius: 8px;
+    background: #f8fbff;
+    color: #233447;
+    line-height: 1.75;
+}
+
+@media (max-width: 991px) {
+    #biography .focus-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Biography background visual polish */
+#biography .pageheader {
+    position: relative;
+    overflow: hidden;
+}
+
+#biography .pageheader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('../images/Uchit1.jpeg') center center / cover no-repeat;
+    opacity: 0.10;
+    filter: saturate(0.9);
+    transform: scale(1.03);
+    pointer-events: none;
+}
+
+#biography .pageheader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(250, 252, 255, 0.93), rgba(244, 248, 253, 0.90));
+    pointer-events: none;
+}
+
+#biography .pageheader .headercontent {
+    position: relative;
+    z-index: 1;
+}
+
+/* Global surface refresh inspired by janakiram.com */
+#main {
+    background:
+        radial-gradient(1200px 520px at 12% -10%, rgba(31, 156, 175, 0.14), transparent 62%),
+        radial-gradient(1100px 520px at 92% -12%, rgba(60, 102, 209, 0.12), transparent 60%),
+        linear-gradient(180deg, #f7fbff 0%, #eef4fb 100%);
+}
+
+.page:not(.home) {
+    background:
+        radial-gradient(900px 420px at 6% 0%, rgba(42, 167, 163, 0.10), transparent 62%),
+        linear-gradient(180deg, #f8fcff 0%, #eef5fb 100%);
+}
+
+.page:not(.home) .pageheader {
+    background: linear-gradient(125deg, #ffffff 0%, #edf5fc 58%, #e7f1fb 100%);
+    border-bottom: 1px solid #d8e5f2;
+}
+
+.page:not(.home) .section.color-1 {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+}
+
+.page:not(.home) .section.color-2 {
+    background: linear-gradient(180deg, #f4faff 0%, #eaf3fb 100%);
+}
+
+.page:not(.home) .section {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 6px 20px rgba(28, 71, 119, 0.04);
+}
+
+.page:not(.home) .section .title h3,
+.page:not(.home) .pageheader .title,
+.page:not(.home) h2,
+.page:not(.home) h3 {
+    color: #17324b;
+}
+
+.page:not(.home) p {
+    color: #2f455d;
+}
+
+
+/* Contact card typography and icons */
+.contact-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #ffffff;
+    border: 1px solid #dbe5ef;
+    border-radius: 10px;
+}
+
+.contact-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eaf3fb;
+    color: #1f4f78;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.contact-label {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #65798f;
+    margin-bottom: 1px;
+    font-weight: 700;
+}
+
+.contact-value,
+.contact-value a {
+    color: #17324c;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.contact-value a:hover,
+.contact-value a:focus {
+    color: #03bb7a;
+    text-decoration: underline;
+}
+
+
+/* Contact icon-only layout */
+.contact-icons-only {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.contact-icons-only li {
+    margin: 0;
+}
+
+.contact-icon-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #d6e1ec;
+    color: #1b4468;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.contact-icon-link:hover,
+.contact-icon-link:focus {
+    color: #ffffff;
+    background: #03bb7a;
+    border-color: #03bb7a;
+    text-decoration: none;
+}
+
+
+/* Site-wide visual polish */
+body {
+    color: #25394d;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pageheader .headercontent {
+    padding-top: 14px;
+    padding-bottom: 6px;
+}
+
+.page .section-container {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+
+.page h2.title {
+    margin-bottom: 14px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.page h3.title,
+.page .title h3 {
+    margin-bottom: 12px;
+    line-height: 1.25;
+}
+
+.page p {
+    margin-bottom: 14px;
+}
+
+#navigation li.currentmenu a {
+    color: #ffffff !important;
+}
+
+/* Talks section readability */
+#global_talks h4 {
+    color: #1f3348 !important;
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+#global_talks i.icon-facetime-video,
+#global_talks a[href*="http"] {
+    color: #0f7f5e !important;
+}
+
+#global_talks a[href*="http"] {
+    font-weight: 600;
+}
+
+/* Offerings icon visual alignment */
+.offering-badge {
+    width: 102px;
+    line-height: 100px;
+    font-size: 78px;
+    color: #fff;
+    margin: 0 auto 20px;
+    background-color: #5a6470;
+    border-radius: 50%;
+    text-align: center;
+    padding-left: 0 !important;
+}
+
+/* Publications spacing/alignment */
+.pub-cover {
+    float: left;
+    margin-right: 5%;
+    margin-top: -2%;
+}
+
+.pub-book-img {
+    max-height: 150px;
+    width: auto;
+}
+
+#publications .pubtitle {
+    line-height: 1.35;
+    margin-top: 2px;
+}
+
+#publications .pubdetails p {
+    margin-bottom: 10px;
+}
+
+/* Contact block spacing after icon removal */
+#contact .pageheader .col-md-12 {
+    max-width: 920px;
+}
+
+/* Professional testimonial redesign */
+#offerings .testimonials-carousel {
+    max-width: 920px;
+    margin: 8px auto 0;
+}
+
+#offerings .testimonials-carousel ul li {
+    padding: 2px;
+}
+
+#offerings .testimonial {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #d8e3ee;
+    border-radius: 14px;
+    padding: 26px 28px 20px;
+    box-shadow: 0 10px 28px rgba(21, 52, 81, 0.08);
+}
+
+#offerings .testimonial .testimonial-img {
+    display: none;
+}
+
+#offerings .testimonial blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+}
+
+#offerings .testimonial blockquote::before {
+    content: "\201C";
+    position: absolute;
+    top: -18px;
+    left: -2px;
+    color: #b5c8db;
+    font-size: 58px;
+    line-height: 1;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#offerings .testimonial blockquote p {
+    margin: 0 0 16px;
+    padding-left: 24px;
+    color: #23394e;
+    font-size: 16px;
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 1.8;
+}
+
+#offerings .testimonial footer {
+    margin: 0;
+    padding-left: 24px;
+    color: #0f2f4d;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#offerings .testimonial footer cite {
+    color: #5a7087;
+    font-style: normal;
+    font-weight: 500;
+}
+
+#offerings .testimonials-carousel .owl-pagination {
+    margin-top: 16px;
+    text-align: center;
+}
+
+#offerings .testimonials-carousel .owl-page span {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #b7cadc;
+    opacity: 1;
+}
+
+#offerings .testimonials-carousel .owl-page.active span,
+#offerings .testimonials-carousel .owl-page:hover span {
+    background: #2a7cb3;
+}
+
+@media (max-width: 767px) {
+    #offerings .testimonial {
+        padding: 20px 18px 16px;
+        border-radius: 12px;
+    }
+
+    #offerings .testimonial blockquote::before {
+        top: -14px;
+        font-size: 48px;
+    }
+
+    #offerings .testimonial blockquote p,
+    #offerings .testimonial footer {
+        padding-left: 18px;
+    }
+}
+
+/* Professional typography system */
+html,
+body,
+button,
+input,
+select,
+textarea,
+label,
+p,
+li,
+span,
+a {
+    font-family: "Lato", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title,
+.page h2.title,
+.page .title h3,
+.pubtitle,
+.st-feature-title,
+.contact-label {
+    font-family: "Lato", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #162b3d;
+}
+
+#navigation .text,
+.site-copyright,
+.pubauthor,
+.pubcite,
+.case-card p,
+.testimonial footer cite {
+    font-family: "Lato", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    letter-spacing: 0.01em;
+}
+
+#navigation .text {
+    font-weight: 600;
+}
+
+.testimonial blockquote p {
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+#trainings {
+    display: none !important;
+}
+
+/* Publications filter row alignment */
+#filters .pub-filter-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#filters .pub-filter-row > [class*="col-"] {
+    margin-top: 0 !important;
+}
+
+#filters .pub-filter-row h3 {
+    margin: 0;
+    line-height: 40px;
+}
+
+#filters #cd-dropdown.form-control {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+}
+
+#filters #sort {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#filters #sort span {
+    line-height: 40px;
+    display: inline-block;
+}
+
+#filters #sort .btn-group {
+    float: none !important;
+}
+
+#filters #sort .btn {
+    height: 40px;
+    min-width: 40px;
+}
+
+@media (max-width: 991px) {
+    #filters .pub-filter-row {
+        display: block;
+    }
+
+    #filters .pub-filter-row h3 {
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+    #filters #sort {
+        justify-content: flex-start;
+        margin-top: 12px;
+    }
+}
+
+/* Publications filter row - compact refinement */
+#filters .pub-filter-row h3,
+#filters #sort span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#filters #cd-dropdown.form-control {
+    height: 36px;
+    line-height: 36px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 14px;
+}
+
+#filters #sort {
+    gap: 8px;
+}
+
+#filters #sort .btn {
+    height: 36px;
+    min-width: 36px;
+    padding: 6px 10px;
+}
+
+#filters #sort .btn i {
+    font-size: 14px;
+}
+
+@media (max-width: 991px) {
+    #filters #sort,
+    #filters #cd-dropdown.form-control {
+        margin-top: 8px;
+    }
+}
+
+/* Mobile scroll consistency: show only active page and always allow vertical scroll */
+@media (max-width: 991px) {
+    html,
+    body {
+        height: auto !important;
+        overflow-y: auto !important;
+    }
+
+    #main {
+        position: relative !important;
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+    }
+
+    #main > .page {
+        display: none !important;
+        position: relative !important;
+        left: 0 !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #main > .page.mobile-active {
+        display: block !important;
+    }
+}
+
+/* Native replacements after removing perfect-scrollbar + stellar */
+#main-nav {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+#contact .contact-office {
+    background-attachment: scroll;
+    background-position: center center;
+}
+
+/* Publications visibility after removing MixItUp */
+#pub-grid .item.mix {
+    display: block;
+    opacity: 1;
+    filter: none;
+    -ms-filter: none;
 }

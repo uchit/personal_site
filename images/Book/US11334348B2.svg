@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" role="img" aria-labelledby="title desc">
+  <title id="title">US11334348B2 Patent Cover</title>
+  <desc id="desc">Cover image for US11334348B2 patent entry.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e3a5d"/>
+      <stop offset="100%" stop-color="#13507e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <rect x="32" y="32" width="536" height="736" rx="16" fill="none" stroke="#8fc6e8" stroke-width="2"/>
+  <text x="64" y="150" fill="#e7f4ff" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">United States Patent</text>
+  <text x="64" y="230" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700">US11334348B2</text>
+  <text x="64" y="305" fill="#cfe8fa" font-family="Arial, Helvetica, sans-serif" font-size="26">Google Patents Publication</text>
+  <line x1="64" y1="350" x2="536" y2="350" stroke="#8fc6e8" stroke-width="2"/>
+  <text x="64" y="420" fill="#e7f4ff" font-family="Arial, Helvetica, sans-serif" font-size="24">Automation and intelligent data operations</text>
+  <text x="64" y="470" fill="#e7f4ff" font-family="Arial, Helvetica, sans-serif" font-size="24">Uchit Vyas and team</text>
+  <text x="64" y="700" fill="#9fd0ee" font-family="Arial, Helvetica, sans-serif" font-size="20">Patent entry card</text>
+</svg>
