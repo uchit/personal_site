@@ -1353,3 +1353,21 @@ textarea:focus-visible {
     text-decoration: none;
     color: inherit;
 }
+
+/* Tawk.to widget visibility fixes (mobile + global iframe overrides) */
+iframe[src*="tawk.to"],
+iframe[title*="chat"],
+iframe[title*="Tawk"],
+div[id*="tawk"] iframe {
+    max-width: none !important;
+    height: auto !important;
+}
+
+@media (max-width: 991px) {
+    iframe[src*="tawk.to"],
+    iframe[title*="chat"],
+    iframe[title*="Tawk"],
+    div[id*="tawk"] iframe {
+        z-index: 2147483000 !important;
+    }
+}
