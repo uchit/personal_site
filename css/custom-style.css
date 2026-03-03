@@ -1354,79 +1354,54 @@ textarea:focus-visible {
     color: inherit;
 }
 
-/* Tawk.to widget visibility fixes (mobile + global iframe overrides) */
-iframe[src*="tawk.to"],
-iframe[title*="chat"],
-iframe[title*="Tawk"],
-div[id*="tawk"] iframe {
-    max-width: none !important;
-    height: auto !important;
-}
-
-@media (max-width: 991px) {
-    iframe[src*="tawk.to"],
-    iframe[title*="chat"],
-    iframe[title*="Tawk"],
-    div[id*="tawk"] iframe {
-        z-index: 2147483000 !important;
-    }
-}
 
 
 /* Mobile home hero cleanup */
 @media (max-width: 991px) {
+    #main,
     #home,
     #home.page,
     #home.mobile-active {
-        background: #0f1520 !important;
-        min-height: 100svh !important;
+        min-height: 100vh !important;
     }
 
     #home .cover_img {
-        min-height: 100svh;
-        height: 100svh;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        position: relative;
         background-position: center top;
         background-size: cover;
     }
 
+    @supports (height: 100svh) {
+        #main,
+        #home,
+        #home.page,
+        #home.mobile-active {
+            min-height: 100svh !important;
+        }
+
+        #home .cover_img {
+            min-height: 100svh !important;
+            height: 100svh !important;
+        }
+    }
+
     #home .tagline {
-        padding-top: 52svh !important;
-        margin-left: 5%;
-        width: 90%;
-        font-size: clamp(30px, 7.2vw, 44px);
-        line-height: 1.18;
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        margin: 0;
+        width: auto;
+        padding-top: 0 !important;
+        font-size: clamp(30px, 8.2vw, 44px);
+        line-height: 1.15;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     }
 }
 
-/* Tawk widget visibility + fallback button */
-#tawk-fallback {
-    position: fixed;
-    right: 16px;
-    bottom: calc(16px + env(safe-area-inset-bottom));
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #16a34a;
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    z-index: 2147482999;
-    text-decoration: none;
-}
-
-html.tawk-loaded #tawk-fallback {
-    display: none !important;
-}
-
-@media (min-width: 992px) {
-    #tawk-fallback {
-        display: none;
-    }
-}
+/* Tawk widget visibility */
 
 /* keep widget above content when present */
 #tawkchat-container,

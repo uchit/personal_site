@@ -1355,7 +1355,13 @@
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    Tawk_API.onLoad = function(){ Tawk_API.showWidget(); document.documentElement.classList.add("tawk-loaded"); };
+    Tawk_API.onLoad = function(){
+    Tawk_API.showWidget();
+    if (window.matchMedia && window.matchMedia("(max-width: 991px)").matches) {
+      setTimeout(function(){ try { Tawk_API.maximize(); } catch(e) {} }, 700);
+    }
+    document.documentElement.classList.add("tawk-loaded");
+    };
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
@@ -1368,9 +1374,6 @@
     <!--End of Tawk.to Script-->
 
 
-    <a id="tawk-fallback" href="https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt" target="_blank" rel="noopener noreferrer" aria-label="Open chat support">
-      <span aria-hidden="true">💬</span>
-    </a>
 </body>
 
 </html>
