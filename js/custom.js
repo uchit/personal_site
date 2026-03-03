@@ -37,11 +37,33 @@ $(document).ready(function(){
     ++++++++++++++++++++++++++++++++++++++*/
     $(".tooltips").tooltip();
 
-    $(document).on('click', '.cta-track', function(){
-        var ctaName = String($(this).data('cta') || 'unknown-cta');
+    $(document).on('click', '.cta-track', function(e){
+        e.preventDefault();
+
+        var $cta = $(this);
+        var ctaName = String($cta.data('cta') || 'unknown-cta');
+        var ctaText = String($cta.text() || '').toLowerCase();
+        var ctaMeta = (ctaName + ' ' + ctaText).toLowerCase();
+        var shouldOpenChat = /\b(talk|talks|chat|discuss)\b/.test(ctaMeta);
+
         if (typeof window.ga === 'function') {
-            ga('send', 'event', 'CTA', 'click', ctaName);
+            ga('send', 'event', 'CTA', 'click', ctaName + ':' + (shouldOpenChat ? 'chat' : 'email'));
         }
+
+        if (shouldOpenChat) {
+            try {
+                if (window.Tawk_API) {
+                    Tawk_API.showWidget();
+                    Tawk_API.maximize();
+                    return;
+                }
+            } catch (err) {}
+            window.open('https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt', '_blank', 'noopener');
+            return;
+        }
+
+        var subject = 'Website inquiry: ' + String($cta.text() || 'Consulting inquiry').trim();
+        window.location.href = 'mailto:contact@hellouchit.com?subject=' + encodeURIComponent(subject);
     });
 
 
