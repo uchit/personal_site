@@ -1358,7 +1358,10 @@
     Tawk_API.onLoad = function(){
       document.documentElement.classList.add("tawk-loaded");
       if (window.matchMedia("(max-width: 991px)").matches) {
-        try { Tawk_API.showWidget(); Tawk_API.maximize(); } catch(e) {}
+        try {
+          Tawk_API.showWidget();
+          setTimeout(function(){ try { Tawk_API.showWidget(); } catch(e) {} }, 1200);
+        } catch(e) {}
       }
     };
     (function(){
@@ -1371,6 +1374,25 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+
+    <a id="mobile-chat-fallback" href="https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt" target="_blank" rel="noopener" aria-label="Open chat">
+        <i class="icon-comments"></i>
+    </a>
+
+    <script type="text/javascript">
+    (function(){
+      var fallback = document.getElementById("mobile-chat-fallback");
+      if (!fallback) return;
+      fallback.addEventListener("click", function(){
+        try {
+          if (window.Tawk_API) {
+            Tawk_API.showWidget();
+            Tawk_API.maximize();
+          }
+        } catch(e) {}
+      });
+    })();
+    </script>
 </body>
 
 </html>

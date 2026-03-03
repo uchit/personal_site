@@ -1427,3 +1427,65 @@ iframe[title*="chat widget"],
 iframe[src*="tawk.to"] {
     z-index: 2147483000 !important;
 }
+
+/* Emergency mobile home fix: keep tagline inside hero image */
+@media (max-width: 991px) {
+    #home,
+    #home.page,
+    #home.mobile-active {
+        min-height: 100svh !important;
+    }
+
+    #home .cover_img {
+        min-height: 100svh !important;
+        height: 100svh !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        padding: 0 0 calc(16px + env(safe-area-inset-bottom)) 0 !important;
+        background-image:
+            linear-gradient(170deg, rgba(3, 8, 20, 0.30) 0%, rgba(3, 8, 20, 0.16) 35%, rgba(3, 8, 20, 0.70) 100%),
+            url("../images/Uchit1-mobile.jpg") !important;
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+    }
+
+    #home .tagline {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin: 0 5% !important;
+        width: 90% !important;
+        padding-top: 0 !important;
+        font-size: clamp(24px, 8vw, 40px) !important;
+        line-height: 1.12 !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
+        z-index: 2;
+    }
+
+    #mobile-chat-fallback {
+        position: fixed;
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        border: 0;
+        background: #0f8f4b;
+        color: #fff;
+        font-size: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        z-index: 2147483003;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 992px) {
+    #mobile-chat-fallback {
+        display: none !important;
+    }
+}
