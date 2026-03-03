@@ -384,9 +384,14 @@ html {
     box-sizing: border-box;
 }
 
-img, iframe, video {
+img, video {
     max-width: 100%;
     height: auto;
+}
+
+.page iframe,
+.section iframe {
+    max-width: 100%;
 }
 
 .page, .section-container, .headercontent {
@@ -1362,15 +1367,19 @@ textarea:focus-visible {
     #home,
     #home.page,
     #home.mobile-active {
-        min-height: 100vh !important;
+        min-height: 100dvh !important;
     }
 
     #home .cover_img {
-        min-height: 100vh !important;
-        height: 100vh !important;
+        min-height: 100dvh !important;
+        height: 100dvh !important;
         position: relative;
-        background-position: center top;
+        background-image:
+            linear-gradient(170deg, rgba(3, 8, 20, 0.34) 0%, rgba(3, 8, 20, 0.24) 34%, rgba(3, 8, 20, 0.68) 100%),
+            url("../images/Uchit1-mobile.jpg");
+        background-position: 62% 10%;
         background-size: cover;
+        background-repeat: no-repeat;
     }
 
     @supports (height: 100svh) {
@@ -1391,17 +1400,25 @@ textarea:focus-visible {
         position: absolute;
         left: 5%;
         right: 5%;
-        bottom: max(20px, env(safe-area-inset-bottom));
+        bottom: calc(14px + env(safe-area-inset-bottom));
         margin: 0;
         width: auto;
         padding-top: 0 !important;
-        font-size: clamp(30px, 8.2vw, 44px);
-        line-height: 1.15;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        font-size: clamp(24px, 8vw, 40px);
+        line-height: 1.12;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     }
 }
 
-/* Tawk widget visibility */
+@media (max-width: 991px) and (orientation: landscape) {
+    #home .cover_img {
+        background-position: center 18%;
+    }
+
+    #home .tagline {
+        font-size: clamp(20px, 5vw, 32px);
+    }
+}
 
 /* keep widget above content when present */
 #tawkchat-container,
