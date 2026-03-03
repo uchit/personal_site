@@ -54,12 +54,12 @@
 			this.opts = this.listopts.children( 'li' );
 			this.optsCount = this.opts.length;
 			this.size = { width : this.dd.width(), height : this.dd.height() };
-			
+
 			var elName = this.$el.attr( 'name' ), elId = this.$el.attr( 'id' ),
 				inputName = elName !== undefined ? elName : elId !== undefined ? elId : 'cd-dropdown-' + ( new Date() ).getTime();
 
 			this.inputEl = $( '<input type="hidden" name="' + inputName + '" value="' + value + '"></input>' ).insertAfter( this.selectlabel );
-			
+
 			this.selectlabel.css( 'z-index', this.minZIndex + this.optsCount );
 			this._positionOpts();
 			if( Modernizr.csstransitions ) {
@@ -69,20 +69,24 @@
 		},
 		_transformSelect : function() {
 
-			var optshtml = '', selectlabel = '', value = -1;
+			var selectlabel = '', value = -1;
+			this.listopts = $( '<ul/>' );
 			this.$el.children( 'option' ).each( function() {
 
 				var $this = $( this ),
-					val = isNaN( $this.attr( 'value' ) ) ? $this.attr( 'value' ) : Number( $this.attr( 'value' ) ) ,
+					val = isNaN( $this.attr( 'value' ) ) ? $this.attr( 'value' ) : Number( $this.attr( 'value' ) ),
 					classes = $this.attr( 'class' ),
 					selected = $this.attr( 'selected' ),
 					label = $this.text();
 
 				if( val !== -1 ) {
-					optshtml += 
-						classes !== undefined ? 
-							'<li data-value="' + val + '"><span class="' + classes + '">' + label + '</span></li>' :
-							'<li data-value="' + val + '"><span>' + label + '</span></li>';
+					var $li = $( '<li/>' ).attr( 'data-value', val );
+					var $span = $( '<span/>' ).text( label );
+					if( classes !== undefined ) {
+						$span.addClass( classes );
+					}
+					$li.append( $span );
+					this.listopts.append( $li );
 				}
 
 				if( selected ) {
@@ -90,10 +94,9 @@
 					value = val;
 				}
 
-			} );
+			}.bind( this ) );
 
-			this.listopts = $( '<ul/>' ).append( optshtml );
-			this.selectlabel = $( '<span/>' ).append( selectlabel );
+			this.selectlabel = $( '<span/>' ).text( selectlabel );
 			this.dd = $( '<div class="cd-dropdown"/>' ).append( this.selectlabel, this.listopts ).insertAfter( this.$el );
 			this.$el.remove();
 
@@ -131,9 +134,9 @@
 
 		},
 		_initEvents : function() {
-			
+
 			var self = this;
-			
+
 			this.selectlabel.on( 'mousedown.dropdown', function( event ) {
 				self.opened ? self.close() : self.open();
 				return false;
@@ -146,7 +149,7 @@
 					self.options.onOptionSelect( opt );
 					self.inputEl.val( opt.data( 'value' ) ).trigger('change');
 
-					self.selectlabel.html( opt.html() );
+					self.selectlabel.empty().append( opt.children().first().clone() );
 					self.close();
 				}
 			} );
@@ -192,7 +195,7 @@
 
 		}
 
-	}
+	};
 
 	$.fn.dropdownit = function( options ) {
 		var instance = $.data( this, 'dropdown' );
