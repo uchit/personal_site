@@ -1481,6 +1481,16 @@ iframe[src*="tawk.to"] {
         align-items: center;
         justify-content: center;
         text-decoration: none;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(6px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    html.tawk-loaded #mobile-chat-fallback {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
     }
 }
 

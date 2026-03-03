@@ -1358,10 +1358,7 @@
     Tawk_API.onLoad = function(){
       document.documentElement.classList.add("tawk-loaded");
       if (window.matchMedia("(max-width: 991px)").matches) {
-        try {
-          Tawk_API.hideWidget();
-          setTimeout(function(){ try { Tawk_API.hideWidget(); } catch(e) {} }, 1200);
-        } catch(e) {}
+        try { Tawk_API.hideWidget(); } catch(e) {}
       }
     };
     Tawk_API.onChatMinimized = function(){
@@ -1369,13 +1366,32 @@
         try { Tawk_API.hideWidget(); } catch(e) {}
       }
     };
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src="https://embed.tawk.to/69a66955b326341c3a98b8ac/1jip0mtpt";
-    s1.charset="UTF-8";
-    s1.setAttribute("crossorigin","*");
-    s0.parentNode.insertBefore(s1,s0);
+
+    function injectTawkScript(){
+      if (window.__tawkInjected) return;
+      window.__tawkInjected = true;
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src="https://embed.tawk.to/69a66955b326341c3a98b8ac/1jip0mtpt";
+      s1.charset="UTF-8";
+      s1.setAttribute("crossorigin","*");
+      s0.parentNode.insertBefore(s1,s0);
+    }
+
+    function isHeroTextReady(){
+      var el = document.getElementById("typer");
+      if (!el) return true;
+      var text = (el.textContent || "").replace(/\s+/g, " " ).trim();
+      return text.length > 2;
+    }
+
+    (function waitForHeroText(attempt){
+      attempt = attempt || 0;
+      if (isHeroTextReady() || attempt >= 80) {
+        injectTawkScript();
+        return;
+      }
+      setTimeout(function(){ waitForHeroText(attempt + 1); }, 100);
     })();
     </script>
     <!--End of Tawk.to Script-->
