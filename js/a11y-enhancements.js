@@ -80,6 +80,14 @@
       setTimeout(updateMenuExpanded, 0);
     });
 
+
+    $(document).on('keydown', function (e) {
+      if (e.key === 'Escape') {
+        $('#sidebar, #main-nav, .social-icons').removeClass('menu-open');
+        updateMenuExpanded();
+      }
+    });
+
     var initial = getActivePageId();
     updatePageAria(initial, false);
     updateMenuAria(initial);

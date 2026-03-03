@@ -13,25 +13,32 @@
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
 
-    <meta name="description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, SRE " />
+    <meta name="description" content="Uchit Vyas is a senior technology leader focused on Enterprise Architecture, DevSecOps, SRE, GenAI, and cloud transformation with measurable business outcomes." />
     <meta name="keywords" content="Cloud, An Author, SRE, CI/CD, DevSecOps, AiOps" />
 
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="theme-color" content="#03BB7A" />
+    <meta name="theme-color" content="#f2f7fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1720" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://hellouchit.com/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://hellouchit.com/" />
     <meta property="og:title" content="Uchit Vyas - DevSecOps Architect, SRE Practitioner, Cloud Fanatic, An Author" />
-    <meta property="og:description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, and SRE." />
-    <meta property="og:image" content="https://hellouchit.com/images/uchit-vyas.jpg" />
+    <meta property="og:description" content="Enterprise Architecture, DevSecOps, SRE, GenAI, and cloud transformation leadership with measurable business outcomes." />
+    <meta property="og:site_name" content="HelloUchit" />
+    <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Uchit Vyas - Technology and Digital Transformation Leader" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Uchit Vyas - DevSecOps Architect, SRE Practitioner, Cloud Fanatic, An Author" />
-    <meta name="twitter:description" content="Cloud Automation, DevSecOps, Infrastructure Automation, Continuous Integration, Continuous Delivery, and SRE." />
-    <meta name="twitter:image" content="https://hellouchit.com/images/uchit-vyas.jpg" />
+    <meta name="twitter:description" content="Enterprise Architecture, DevSecOps, SRE, GenAI, and cloud transformation leadership with measurable business outcomes." />
+    <meta name="twitter:image" content="https://hellouchit.com/images/og-banner.jpg" />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <link rel="preload" as="image" href="images/Uchit1-hero.jpg" fetchpriority="high" />
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -105,6 +112,37 @@
 
     </script>
 
+    <script>
+      (function () {
+        var defaultDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+        var defaultOgDescription = document.querySelector('meta[property="og:description"]')?.getAttribute('content') || '';
+        var sectionMetaDescriptions = {
+          '#home': 'Uchit Vyas is a senior technology and digital transformation leader across Enterprise Architecture, DevSecOps, SRE, and GenAI.',
+          '#biography': 'Profile and leadership approach of Uchit Vyas spanning enterprise architecture, platform engineering, and business transformation.',
+          '#expertise': 'Technical expertise across Enterprise Architecture, Platform Engineering, DevSecOps, SRE, GenAI, Cloud, and Data Modernisation.',
+          '#offerings': 'Consulting and advisory offerings focused on cloud transformation, DevSecOps, platform engineering, and resilient digital platforms.',
+          '#case_studies': 'Case studies and strategic technology insights connecting engineering outcomes to business value and growth.',
+          '#publications': 'Books and patent publications by Uchit Vyas across AWS, OpenStack, DynamoDB, integration, and enterprise platform topics.',
+          '#global_talks': 'Global conference talks and keynote sessions delivered by Uchit Vyas across cloud, DevSecOps, and platform strategy.',
+          '#contact': 'Connect with Uchit Vyas for consulting, advisory engagements, speaking opportunities, and collaboration.'
+        };
+
+        function updateMetaByHash() {
+          var hash = window.location.hash || '#home';
+          var content = sectionMetaDescriptions[hash] || defaultDescription;
+          var desc = document.querySelector('meta[name="description"]');
+          var ogDesc = document.querySelector('meta[property="og:description"]');
+          var twitterDesc = document.querySelector('meta[name="twitter:description"]');
+          if (desc) desc.setAttribute('content', content);
+          if (ogDesc) ogDesc.setAttribute('content', content || defaultOgDescription);
+          if (twitterDesc) twitterDesc.setAttribute('content', content || defaultOgDescription);
+        }
+
+        window.addEventListener('hashchange', updateMetaByHash);
+        window.addEventListener('DOMContentLoaded', updateMetaByHash);
+      })();
+    </script>
+
     <div id="wrapper">
         <a href="#sidebar" class="mobilemenu" aria-label="Open navigation menu" role="button" aria-controls="sidebar" aria-expanded="false"><i class="icon-reorder"></i></a>
 
@@ -112,12 +150,12 @@
             <div id="main-nav" role="navigation" aria-label="Primary navigation">
                 <div id="nav-container">
                     <div id="profile" class="clearfix">
-                        <div class="portrate hidden-xs"></div>
-                        <div class="title">
-                            <h2>Uchit Vyas</h2>
-
-                        </div>
-
+                        <a href="#home" class="profile-home-link" aria-label="Go to home">
+                            <div class="portrate hidden-xs"></div>
+                            <div class="title">
+                                <h2>Uchit Vyas</h2>
+                            </div>
+                        </a>
                     </div>
                     <ul id="navigation" aria-label="Primary sections">
                         <li>
@@ -195,7 +233,7 @@
         <div id="main" role="main" tabindex="-1">
             <div id="home" class="page home" data-pos="home">
                 <div class="cover_img">
-
+                    <h1 class="sr-only">Uchit Vyas - Technology and Digital Transformation Leader</h1>
                     <div class="tagline" id="typer"></div>
 
                     <script>

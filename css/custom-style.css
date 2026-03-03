@@ -80,7 +80,7 @@ ul.pre-styles {
 }
 
 .cover_img {
-    background: url('../images/Uchit1.jpeg') no-repeat center center;
+    background: url('../images/Uchit1-hero.jpg') no-repeat center center;
     min-height: 100%;
     background-size: cover;
 }
@@ -1308,4 +1308,48 @@ h6,
     opacity: 1;
     filter: none;
     -ms-filter: none;
+}
+
+
+/* Accessibility and theme foundations */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #0e8ef1;
+    outline-offset: 2px;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 991px) {
+    #main-nav,
+    .social-icons {
+        touch-action: pan-y;
+    }
+}
+
+/* Sidebar profile home link */
+#profile .profile-home-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
