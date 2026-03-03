@@ -611,3 +611,67 @@ textarea:focus-visible {
 .site-copyright {
     color: #e6e6e6;
 }
+
+
+.case-studies-section {
+    padding: 40px 0;
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.case-card {
+    background: #f5f7fa;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.case-card h4 {
+    margin: 0 0 10px;
+    line-height: 1.35;
+}
+
+.case-card h4 a {
+    color: #15202b;
+    text-decoration: none;
+}
+
+.case-card h4 a:hover,
+.case-card h4 a:focus {
+    color: #03bb7a;
+    text-decoration: underline;
+}
+
+.case-card p {
+    margin: 0;
+    color: #34495e;
+}
+
+.case-thumb {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #d6dee8;
+    display: block;
+}
+
+.case-list-link {
+    margin-top: 18px;
+}
+
+.case-list-link a {
+    color: #03bb7a;
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .case-grid {
+        grid-template-columns: 1fr;
+    }
+}
