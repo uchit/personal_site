@@ -12,6 +12,26 @@ $.fn.exists = function () {
 $(document).ready(function(){
     var isMobileView = window.matchMedia("(max-width: 991px)").matches;
 
+    function goHomeFromProfile(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        if (isMobileView) {
+            $("div.page").removeClass("mobile-active");
+            $("div#home").addClass("mobile-active");
+            $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+            window.scrollTo(0, 0);
+        } else {
+            $("#navigation a[href='#home']").closest("li").trigger("click");
+        }
+
+        if (window.location.hash !== "#home") {
+            window.location.hash = "home";
+        }
+    }
+
     /*++++++++++++++++++++++++++++++++++++
         tooltips
     ++++++++++++++++++++++++++++++++++++++*/
@@ -35,6 +55,7 @@ $(document).ready(function(){
         $("#main").on("click",function(){
             $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
         });
+        $(".profile-home-link").on("click touchend", goHomeFromProfile);
         $("#navigation").on("click touchend", "a, li", function(e){
             var $link = $(this).is("a") ? $(this) : $(this).find("a").first();
             if (!$link.length) {
@@ -61,6 +82,7 @@ $(document).ready(function(){
         // Desktop: keep sidebar/menu fixed and always visible.
         $(".social-icons, #main-nav").stop(true).css({left:0});
         $("#main").stop(true).css({left:250,right:0});
+        $(".profile-home-link").on("click", goHomeFromProfile);
     }
 
     /*++++++++++++++++++++++++++++++++++++
