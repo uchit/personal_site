@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Enterprise Data Archival">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <circle cx="1040" cy="90" r="170" fill="#22c55e" opacity="0.14"/>
+  <text x="72" y="290" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="58" font-weight="700">Enterprise Data Archival</text>
+  <text x="72" y="352" fill="#cbd5e1" font-family="Lato, Arial, sans-serif" font-size="34">Platform Transformation</text>
+  <text x="72" y="420" fill="#86efac" font-family="Lato, Arial, sans-serif" font-size="24">Case Study</text>
+</svg>

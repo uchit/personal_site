@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="EA Governance">
+  <defs>
+    <linearGradient id="g3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g3)"/>
+  <polygon points="930,80 1120,80 1025,250" fill="#34d399" opacity="0.2"/>
+  <text x="72" y="270" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Enterprise Architecture</text>
+  <text x="72" y="330" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Governance</text>
+  <text x="72" y="392" fill="#d1fae5" font-family="Lato, Arial, sans-serif" font-size="30">Asia's Largest Bank</text>
+  <text x="72" y="448" fill="#6ee7b7" font-family="Lato, Arial, sans-serif" font-size="24">Case Study</text>
+</svg>

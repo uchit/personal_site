@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Multi-Region Payment Platform">
+  <defs>
+    <linearGradient id="g4" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#172554"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g4)"/>
+  <circle cx="1020" cy="120" r="120" fill="#93c5fd" opacity="0.2"/>
+  <text x="72" y="275" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Multi-Region Banking</text>
+  <text x="72" y="335" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Payment Platform</text>
+  <text x="72" y="400" fill="#bfdbfe" font-family="Lato, Arial, sans-serif" font-size="30">Delivered in 3 Months</text>
+  <text x="72" y="456" fill="#7dd3fc" font-family="Lato, Arial, sans-serif" font-size="24">Case Study</text>
+</svg>

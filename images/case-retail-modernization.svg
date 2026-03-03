@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Retail Platform Modernization">
+  <defs>
+    <linearGradient id="g5" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g5)"/>
+  <rect x="860" y="70" width="260" height="180" rx="24" fill="#a78bfa" opacity="0.2"/>
+  <text x="72" y="275" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Retail Platform</text>
+  <text x="72" y="335" fill="#f8fafc" font-family="Lato, Arial, sans-serif" font-size="54" font-weight="700">Modernisation</text>
+  <text x="72" y="400" fill="#ddd6fe" font-family="Lato, Arial, sans-serif" font-size="30">Innovation Roadmap</text>
+  <text x="72" y="456" fill="#c4b5fd" font-family="Lato, Arial, sans-serif" font-size="24">Case Study</text>
+</svg>
