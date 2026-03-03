@@ -37,6 +37,13 @@ $(document).ready(function(){
     ++++++++++++++++++++++++++++++++++++++*/
     $(".tooltips").tooltip();
 
+    $(document).on('click', '.cta-track', function(){
+        var ctaName = String($(this).data('cta') || 'unknown-cta');
+        if (typeof window.ga === 'function') {
+            ga('send', 'event', 'CTA', 'click', ctaName);
+        }
+    });
+
 
     /*++++++++++++++++++++++++++++++++++++
         slidepage
