@@ -1467,7 +1467,7 @@ iframe[src*="tawk.to"] {
     #mobile-chat-fallback {
         position: fixed;
         right: 14px;
-        bottom: calc(88px + env(safe-area-inset-bottom));
+        bottom: calc(12px + env(safe-area-inset-bottom));
         width: 54px;
         height: 54px;
         border-radius: 999px;
