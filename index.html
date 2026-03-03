@@ -66,6 +66,7 @@
 
     <script type="text/javascript" src="js/custom.js"></script>
     <script src="js/typer.js"></script>
+    <script type="text/javascript" src="js/a11y-enhancements.js"></script>
 
     <link rel="stylesheet" href="css/custom-style.css">
 
@@ -117,10 +118,10 @@
     </script>
 
     <div id="wrapper">
-        <a href="#sidebar" class="mobilemenu" aria-label="Open navigation menu"><i class="icon-reorder"></i></a>
+        <a href="#sidebar" class="mobilemenu" aria-label="Open navigation menu" role="button" aria-controls="sidebar" aria-expanded="false"><i class="icon-reorder"></i></a>
 
-        <div id="sidebar">
-            <div id="main-nav">
+        <div id="sidebar" role="complementary" aria-label="Sidebar">
+            <div id="main-nav" role="navigation" aria-label="Primary navigation">
                 <div id="nav-container">
                     <div id="profile" class="clearfix">
                         <div class="portrate hidden-xs"></div>
@@ -130,7 +131,7 @@
                         </div>
 
                     </div>
-                    <ul id="navigation">
+                    <ul id="navigation" aria-label="Primary sections">
                         <li>
                             <a href="#home">
                                 <div class="icon icon-home"></div>
@@ -188,7 +189,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="social-icons">
+            <div class="social-icons" role="navigation" aria-label="Social links">
 
                 <ul>
                     <li><a href="https://www.facebook.com/uchit86" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="icon-facebook"></i></a></li>
@@ -204,7 +205,7 @@
             </div>
         </div>
 
-        <div id="main">
+        <div id="main" role="main" tabindex="-1">
             <div id="home" class="page home" data-pos="home">
                 <div class="cover_img">
 

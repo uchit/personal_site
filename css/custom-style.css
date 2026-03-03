@@ -581,3 +581,33 @@ img, iframe, video {
 }
 
 
+
+/* Accessibility enhancements */
+:focus-visible {
+    outline: 3px solid #03bb7a;
+    outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    box-shadow: 0 0 0 3px rgba(3, 187, 122, 0.25);
+    border-radius: 4px;
+}
+
+#navigation li a:focus-visible,
+#navigation li.currentmenu a {
+    color: #ffffff;
+    background: #2d2d2d;
+}
+
+.skip-link {
+    font-weight: 700;
+}
+
+.site-copyright {
+    color: #e6e6e6;
+}
