@@ -37,7 +37,7 @@ $(document).ready(function(){
     ++++++++++++++++++++++++++++++++++++++*/
     $(".tooltips").tooltip();
 
-    $(document).on('click', '.cta-track', function(e){
+        $(document).on('click', '.cta-track', function(e){
         e.preventDefault();
 
         var $cta = $(this);
@@ -51,21 +51,13 @@ $(document).ready(function(){
         }
 
         if (shouldOpenChat) {
-            try {
-                if (window.Tawk_API) {
-                    Tawk_API.showWidget();
-                    Tawk_API.maximize();
-                    return;
-                }
-            } catch (err) {}
-            window.open('https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt', '_blank', 'noopener');
+            window.location.href = 'https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt';
             return;
         }
 
         var subject = 'Website inquiry: ' + String($cta.text() || 'Consulting inquiry').trim();
         window.location.href = 'mailto:contact@hellouchit.com?subject=' + encodeURIComponent(subject);
     });
-
 
     /*++++++++++++++++++++++++++++++++++++
         slidepage
