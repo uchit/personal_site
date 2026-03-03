@@ -1359,9 +1359,14 @@
       document.documentElement.classList.add("tawk-loaded");
       if (window.matchMedia("(max-width: 991px)").matches) {
         try {
-          Tawk_API.showWidget();
-          setTimeout(function(){ try { Tawk_API.showWidget(); } catch(e) {} }, 1200);
+          Tawk_API.hideWidget();
+          setTimeout(function(){ try { Tawk_API.hideWidget(); } catch(e) {} }, 1200);
         } catch(e) {}
+      }
+    };
+    Tawk_API.onChatMinimized = function(){
+      if (window.matchMedia("(max-width: 991px)").matches) {
+        try { Tawk_API.hideWidget(); } catch(e) {}
       }
     };
     (function(){

@@ -1428,7 +1428,7 @@ iframe[src*="tawk.to"] {
     z-index: 2147483000 !important;
 }
 
-/* Emergency mobile home fix: keep tagline inside hero image */
+/* Final mobile hero + chat controls */
 @media (max-width: 991px) {
     #home,
     #home.page,
@@ -1439,35 +1439,35 @@ iframe[src*="tawk.to"] {
     #home .cover_img {
         min-height: 100svh !important;
         height: 100svh !important;
-        display: flex !important;
-        align-items: flex-end !important;
-        padding: 0 0 calc(16px + env(safe-area-inset-bottom)) 0 !important;
+        display: block !important;
+        position: relative !important;
+        padding: 0 !important;
         background-image:
-            linear-gradient(170deg, rgba(3, 8, 20, 0.30) 0%, rgba(3, 8, 20, 0.16) 35%, rgba(3, 8, 20, 0.70) 100%),
-            url("../images/Uchit1-mobile.jpg") !important;
-        background-position: center center !important;
+            linear-gradient(180deg, rgba(3, 8, 20, 0.30) 0%, rgba(3, 8, 20, 0.20) 45%, rgba(3, 8, 20, 0.68) 100%),
+            url("../images/Uchit1-hero.jpg") !important;
+        background-position: center top !important;
         background-size: cover !important;
         background-repeat: no-repeat !important;
     }
 
     #home .tagline {
-        position: relative !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        margin: 0 5% !important;
-        width: 90% !important;
+        position: absolute !important;
+        left: 5% !important;
+        right: 5% !important;
+        bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+        margin: 0 !important;
+        width: auto !important;
         padding-top: 0 !important;
         font-size: clamp(24px, 8vw, 40px) !important;
         line-height: 1.12 !important;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) !important;
-        z-index: 2;
+        z-index: 3 !important;
     }
 
     #mobile-chat-fallback {
         position: fixed;
         right: 14px;
-        bottom: calc(14px + env(safe-area-inset-bottom));
+        bottom: calc(88px + env(safe-area-inset-bottom));
         width: 54px;
         height: 54px;
         border-radius: 999px;
