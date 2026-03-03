@@ -37,7 +37,7 @@ $(document).ready(function(){
     ++++++++++++++++++++++++++++++++++++++*/
     $(".tooltips").tooltip();
 
-        $(document).on('click', '.cta-track', function(e){
+            $(document).on('click', '.cta-track', function(e){
         e.preventDefault();
 
         var $cta = $(this);
@@ -51,12 +51,24 @@ $(document).ready(function(){
         }
 
         if (shouldOpenChat) {
-            window.location.href = 'https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt';
+            var chatUrl = 'https://tawk.to/chat/69a66955b326341c3a98b8ac/1jip0mtpt';
+            try {
+                if (window.Tawk_API && typeof Tawk_API.showWidget === 'function' && typeof Tawk_API.maximize === 'function') {
+                    Tawk_API.showWidget();
+                    Tawk_API.maximize();
+                    return;
+                }
+            } catch (err) {}
+
+            var chatWindow = window.open(chatUrl, '_blank', 'noopener,noreferrer');
+            if (!chatWindow) {
+                window.location.assign(chatUrl);
+            }
             return;
         }
 
         var subject = 'Website inquiry: ' + String($cta.text() || 'Consulting inquiry').trim();
-        window.location.href = 'mailto:contact@hellouchit.com?subject=' + encodeURIComponent(subject);
+        window.location.assign('mailto:contact@hellouchit.com?subject=' + encodeURIComponent(subject));
     });
 
     /*++++++++++++++++++++++++++++++++++++
