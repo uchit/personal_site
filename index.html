@@ -1712,6 +1712,8 @@
       document.documentElement.classList.add("tawk-loaded");
       if (window.matchMedia("(max-width: 991px)").matches) {
         try { Tawk_API.hideWidget(); } catch(e) {}
+      } else {
+        try { Tawk_API.showWidget(); } catch(e) {}
       }
     };
     Tawk_API.onChatMinimized = function(){
