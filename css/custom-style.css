@@ -637,7 +637,7 @@ textarea:focus-visible {
 
 .case-card h4 {
     margin: 0 0 10px;
-    line-height: 1.35;
+    line-height: 1.28;
 }
 
 .case-card h4 a {
@@ -1624,7 +1624,7 @@ iframe[src*="tawk.to"] {
     position: absolute;
     left: 4.8%;
     right: 38%;
-    bottom: 9%;
+    top: 58%;
     margin: 0;
     color: rgba(215, 224, 233, 0.82);
     font-family: "Lato", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
@@ -1662,7 +1662,8 @@ iframe[src*="tawk.to"] {
     #home .hero-subtitle {
         left: 5%;
         right: 8%;
-        bottom: calc(10px + env(safe-area-inset-bottom));
+        top: 56%;
         font-size: clamp(12px, 3.8vw, 18px);
+        line-height: 1.26;
     }
 }
