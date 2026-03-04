@@ -338,3 +338,31 @@ $(document).ready(function(){
     $('#sort .sort[data-order="desc"]').addClass('active');
     renderPublications();
 });
+
+/* ── Dark mode toggle ── */
+(function () {
+  var toggle = document.getElementById('darkModeToggle');
+  var icon   = document.getElementById('darkModeIcon');
+  var root   = document.documentElement;
+
+  function applyTheme(dark) {
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    if (icon) {
+      icon.className = dark ? 'icon icon-sun' : 'icon icon-adjust';
+    }
+    try { localStorage.setItem('uchit-theme', dark ? 'dark' : 'light'); } catch(e) {}
+  }
+
+  // Restore saved preference, fallback to system
+  var saved = null;
+  try { saved = localStorage.getItem('uchit-theme'); } catch(e) {}
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved ? saved === 'dark' : prefersDark);
+
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      applyTheme(!isDark);
+    });
+  }
+})();
