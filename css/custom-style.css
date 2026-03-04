@@ -1606,7 +1606,7 @@ iframe[src*="tawk.to"] {
     font-family: "Georgia", "Times New Roman", serif;
     font-weight: 700;
     color: #f3f5f7;
-    font-size: clamp(48px, 7vw, 96px) !important;
+    font-size: clamp(36px, 5.2vw, 72px) !important;
     letter-spacing: -0.01em;
 }
 
@@ -1616,7 +1616,7 @@ iframe[src*="tawk.to"] {
     font-style: italic;
     font-weight: 700;
     color: #2dcf9f;
-    font-size: clamp(52px, 7.2vw, 100px) !important;
+    font-size: clamp(40px, 5.6vw, 76px) !important;
     letter-spacing: -0.012em;
 }
 
@@ -1651,12 +1651,12 @@ iframe[src*="tawk.to"] {
     }
 
     #home .hero-line-solid {
-        font-size: clamp(34px, 13vw, 62px) !important;
+        font-size: clamp(28px, 10.5vw, 48px) !important;
     }
 
     #home .hero-line-accent {
         margin-top: 8px;
-        font-size: clamp(36px, 13.2vw, 64px) !important;
+        font-size: clamp(30px, 10.8vw, 50px) !important;
     }
 
     #home .hero-subtitle {
