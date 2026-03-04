@@ -2228,18 +2228,12 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
 ════════════════════════════════════════════════════ */
 @media (max-width: 991px) {
 
-  /* Pages hidden by JS (display:none) — just ensure correct layout when shown */
-  .page {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
+  /* Pages: JS handles show/hide via display:none/block — no CSS overrides needed */
   .page.mobile-active {
     display: block !important;
     position: relative !important;
     left: 0 !important;
     width: 100% !important;
-    overflow: visible !important;
     height: auto !important;
   }
 
