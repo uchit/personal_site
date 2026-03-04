@@ -2311,3 +2311,13 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
     pointer-events: auto !important;
   }
 }
+
+/* ── Contact cards: URLs wrap cleanly ── */
+.ct-card a {
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  hyphens: none !important;
+}
+.ct-card p {
+  word-break: break-word !important;
+}
