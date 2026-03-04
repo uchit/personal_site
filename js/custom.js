@@ -19,8 +19,8 @@ $(document).ready(function(){
         }
 
         if (isMobileView) {
-            $("div.page").removeClass("mobile-active");
-            $("div#home").addClass("mobile-active");
+            $("div.page").css({display:"none"}).removeClass("mobile-active");
+            $("div#home").css({display:"block"}).addClass("mobile-active");
             $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
             window.scrollTo(0, 0);
         } else {
@@ -75,40 +75,43 @@ $(document).ready(function(){
         slidepage
     ++++++++++++++++++++++++++++++++++++++*/
     if (isMobileView) {
-        // Mobile mode: keep full-width layout but show one section at a time.
+        // Mobile mode: show one section at a time using display:none/block.
         $("#overlay").hide();
-        $("#main").css({left:0,right:0});
-        $("div.page").css({position:"relative",left:0,width:"100%"}).removeClass("mobile-active");
-        $("div#home").addClass("mobile-active");
+        $("#main").css({left:0, right:0, overflow:"visible"});
 
-        $("a.mobilemenu").on("click",function(e){
+        // Hide all pages, show only home
+        $("div.page").css({display:"none", position:"relative", left:0, width:"100%"}).removeClass("mobile-active");
+        $("div#home").css({display:"block"}).addClass("mobile-active");
+
+        function showMobilePage(target) {
+            $("div.page").css({display:"none"}).removeClass("mobile-active");
+            $(target + ".page").css({display:"block"}).addClass("mobile-active");
+            $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+            window.scrollTo(0, 0);
+        }
+
+        $("a.mobilemenu").on("click", function(e){
             e.preventDefault();
+            e.stopPropagation();
             $("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
         });
-        $("#main").on("click",function(){
+        $("#main").on("click", function(){
             $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
         });
         $(".profile-home-link").on("click touchend", goHomeFromProfile);
         $("#navigation").on("click touchend", "a, li", function(e){
             var $link = $(this).is("a") ? $(this) : $(this).find("a").first();
-            if (!$link.length) {
-                return;
-            }
+            if (!$link.length) { return; }
             var target = $link.attr("href");
-            if (!target || target.charAt(0) !== "#") {
-                return;
-            }
+            if (!target || target.charAt(0) !== "#") { return; }
             var $targetPage = $(target + ".page");
             if ($targetPage.length) {
                 e.preventDefault();
                 e.stopPropagation();
-                $("div.page").removeClass("mobile-active");
-                $targetPage.addClass("mobile-active");
-                $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
                 if (target === "#publications" && $("#cd-dropdown").length) {
                     $("#cd-dropdown").val("all").trigger("change");
                 }
-                window.scrollTo(0, 0);
+                showMobilePage(target);
             }
         });
     } else {

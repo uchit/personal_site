@@ -926,6 +926,7 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
   .mobilemenu { display: inline-flex !important; }
   #home .cover_img {
     min-height: 100svh !important; height: 100svh !important;
+    position: relative !important;
     background-image: linear-gradient(170deg, rgba(10,14,18,.68) 0%, rgba(10,14,18,.32) 50%, rgba(10,14,18,.75) 100%), url('../images/Uchit1-hero.jpg') !important;
     background-position: 62% top !important;
   }
@@ -2220,4 +2221,51 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
 @media (max-width: 540px) {
   .ct-cards-inner { grid-template-columns: 1fr !important; }
   .ct-btn-calendly { width: 100%; justify-content: center; }
+}
+
+/* ════════════════════════════════════════════════════
+   MOBILE FIXES
+════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+
+  /* Pages hidden by JS (display:none) — just ensure correct layout when shown */
+  .page {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+  .page.mobile-active {
+    display: block !important;
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Hero panel: force inside cover_img, bottom-anchored, no overlap */
+  #home .cover_img {
+    position: relative !important;
+  }
+  .hero-panel {
+    position: absolute !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 40px 6% 44px !important;
+    background: linear-gradient(to top,
+      rgba(6,10,16,0.97) 0%,
+      rgba(6,10,16,0.82) 50%,
+      transparent 100%) !important;
+    z-index: 4 !important;
+  }
+  .hero-eyebrow { margin-bottom: 8px !important; font-size: 9px !important; }
+  .hero-name { font-size: 32px !important; margin-bottom: 10px !important; line-height: 1.1 !important; }
+  .hero-statement { font-size: 13px !important; margin-bottom: 0 !important; line-height: 1.6 !important; }
+  .hero-domains { display: none !important; }
+  .hero-scroll-hint { display: none !important; }
 }
