@@ -44,7 +44,7 @@ $(document).ready(function(){
         var ctaName = String($cta.data('cta') || 'unknown-cta');
         var ctaText = String($cta.text() || '').toLowerCase();
         var ctaMeta = (ctaName + ' ' + ctaText).toLowerCase();
-        var shouldOpenChat = /\b(talk|talks|chat|discuss)\b/.test(ctaMeta);
+        var shouldOpenChat = /\b(chat|discuss)\b/.test(ctaMeta);
 
         if (typeof window.ga === 'function') {
             ga('send', 'event', 'CTA', 'click', ctaName + ':' + (shouldOpenChat ? 'chat' : 'email'));
