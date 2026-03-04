@@ -86,17 +86,29 @@ $(document).ready(function(){
         function showMobilePage(target) {
             $("div.page").css({display:"none"}).removeClass("mobile-active");
             $(target + ".page").css({display:"block"}).addClass("mobile-active");
-            $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+            $("#sidebar").removeClass("menu-open");
+            $("body").removeClass("nav-open");
             window.scrollTo(0, 0);
         }
 
         $("a.mobilemenu").on("click", function(e){
             e.preventDefault();
             e.stopPropagation();
-            $("#sidebar, #main-nav, .social-icons").toggleClass("menu-open");
+            var isOpen = $("#sidebar").hasClass("menu-open");
+            if (isOpen) {
+                $("#sidebar").removeClass("menu-open");
+                $("body").removeClass("nav-open");
+            } else {
+                $("#sidebar").addClass("menu-open");
+                $("body").addClass("nav-open");
+            }
         });
-        $("#main").on("click", function(){
-            $("#sidebar, #main-nav, .social-icons").removeClass("menu-open");
+        // Close menu when tapping backdrop or main content
+        $(document).on("click touchstart", ".nav-backdrop, #main", function(e){
+            if ($("body").hasClass("nav-open")) {
+                $("#sidebar").removeClass("menu-open");
+                $("body").removeClass("nav-open");
+            }
         });
         $(".profile-home-link").on("click touchend", goHomeFromProfile);
         $("#navigation").on("click touchend", "a, li", function(e){

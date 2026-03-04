@@ -157,27 +157,27 @@ code, .label, .cs-domain, .cs-num, .cs-tag, .tk-date span,
   #nav-container {
     height: auto !important;
     overflow: visible !important;
-    padding-bottom: 120px !important;
+    padding-bottom: 0 !important;
   }
   ul#navigation {
     overflow: visible !important;
     height: auto !important;
   }
+  /* Social + copyright: static inside sidebar, scroll with it */
   .social-icons {
-    position: fixed !important;
-    bottom: 48px !important;
-    left: 0 !important; width: 250px !important;
-    z-index: 101 !important;
+    position: static !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
   }
   .site-copyright {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important; width: 250px !important;
-    z-index: 101 !important;
+    position: static !important;
+    bottom: auto !important;
+    width: 100% !important;
   }
   #sidebar .site-copyright {
-    position: fixed !important;
-    bottom: 0 !important;
+    position: static !important;
+    bottom: auto !important;
   }
 }
 #sidebar::before {
@@ -259,11 +259,15 @@ ul#navigation li .text {
   font-family: var(--f-mono) !important; font-size: 9px !important; letter-spacing: .07em !important;
 }
 .mobilemenu {
-  background: var(--sidebar) !important; color: rgba(255,255,255,.75) !important;
-  border-right: 1px solid var(--dark-rule) !important;
-  border-bottom: 1px solid var(--dark-rule) !important; font-size: 24px !important;
+  background: rgba(13,18,25,0.85) !important;
+  color: var(--accent) !important;
+  border: none !important;
+  font-size: 22px !important;
+  width: 44px !important; height: 44px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25) !important;
 }
-.mobilemenu:hover { color: var(--accent) !important; }
+.mobilemenu:hover { color: #fff !important; }
 
 /* ════════════════════════════════════════════════════
    HOME HERO
@@ -2271,4 +2275,24 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
   .hero-statement { font-size: 13px !important; margin-bottom: 0 !important; line-height: 1.6 !important; }
   .hero-domains { display: none !important; }
   .hero-scroll-hint { display: none !important; }
+}
+
+/* ── Mobile nav backdrop ── */
+.nav-backdrop {
+  display: none;
+}
+@media (max-width: 991px) {
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 99;
+    pointer-events: none;
+    transition: background 0.2s;
+  }
+  body.nav-open .nav-backdrop {
+    background: rgba(0,0,0,0.5);
+    pointer-events: auto;
+  }
 }
