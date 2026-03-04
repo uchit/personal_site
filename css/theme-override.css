@@ -76,61 +76,109 @@ code, .label, .cs-domain, .cs-num, .cs-tag, .tk-date span,
 /* ════════════════════════════════════════════════════
    SIDEBAR & NAV
 ════════════════════════════════════════════════════ */
-/* ── Sidebar: flex column — nav fills space, social + copyright always visible ── */
-#sidebar {
-  background: var(--sidebar) !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  position: absolute !important;
-  top: 0 !important; bottom: 0 !important; left: 0 !important; width: 250px !important;
+/* ── Sidebar: flex column (desktop only) — nav fills space, copyright always visible ── */
+@media (min-width: 992px) {
+  #sidebar {
+    background: var(--sidebar) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 0 !important; bottom: 0 !important; left: 0 !important; width: 250px !important;
+  }
+  #main-nav {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    position: static !important;
+    bottom: auto !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--sidebar) !important;
+  }
+  #nav-container {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-bottom: 0 !important;
+    height: 100% !important;
+  }
+  ul#navigation {
+    flex: 1 1 0% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    min-height: 0 !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255,255,255,.08) transparent !important;
+  }
+  ul#navigation::-webkit-scrollbar { width: 3px !important; }
+  ul#navigation::-webkit-scrollbar-thumb { background: rgba(255,255,255,.10) !important; border-radius: 2px !important; }
+  /* Pull social-icons and site-copyright OUT of absolute positioning on desktop */
+  .social-icons {
+    position: static !important;
+    bottom: auto !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .site-copyright {
+    position: static !important;
+    bottom: auto !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+  }
+  #sidebar .site-copyright {
+    position: static !important;
+    bottom: auto !important;
+  }
 }
-/* #main-nav must fill remaining space and allow internal scroll */
-#main-nav {
-  flex: 1 1 0% !important;
-  min-height: 0 !important;
-  position: static !important;
-  bottom: auto !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  background: var(--sidebar) !important;
-}
-#nav-container {
-  flex: 1 1 0% !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  padding-bottom: 0 !important;
-  height: 100% !important;
-}
-ul#navigation {
-  flex: 1 1 0% !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  min-height: 0 !important;
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(255,255,255,.08) transparent !important;
-}
-ul#navigation::-webkit-scrollbar { width: 3px !important; }
-ul#navigation::-webkit-scrollbar-thumb { background: rgba(255,255,255,.10) !important; border-radius: 2px !important; }
-/* Pull social-icons and site-copyright OUT of absolute positioning */
-.social-icons {
-  position: static !important;
-  bottom: auto !important;
-  flex-shrink: 0 !important;
-  width: 100% !important;
-  height: auto !important;
-}
-.site-copyright {
-  position: static !important;
-  bottom: auto !important;
-  flex-shrink: 0 !important;
-  width: 100% !important;
-}
-#sidebar .site-copyright {
-  position: static !important;
-  bottom: auto !important;
+
+/* Mobile: sidebar slides in from left — restore original behaviour */
+@media (max-width: 991px) {
+  #sidebar {
+    position: fixed !important;
+    left: -250px !important;
+    top: 0 !important; bottom: 0 !important;
+    width: 250px !important;
+    z-index: 100 !important;
+    overflow-y: auto !important;
+    transition: left 0.2s ease-in-out !important;
+    display: block !important;
+  }
+  #sidebar.menu-open { left: 0 !important; }
+  #main-nav {
+    position: static !important;
+    bottom: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    height: auto !important;
+  }
+  #nav-container {
+    height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 120px !important;
+  }
+  ul#navigation {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .social-icons {
+    position: fixed !important;
+    bottom: 48px !important;
+    left: 0 !important; width: 250px !important;
+    z-index: 101 !important;
+  }
+  .site-copyright {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important; width: 250px !important;
+    z-index: 101 !important;
+  }
+  #sidebar .site-copyright {
+    position: fixed !important;
+    bottom: 0 !important;
+  }
 }
 #sidebar::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
