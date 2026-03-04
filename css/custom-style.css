@@ -1568,8 +1568,8 @@ iframe[src*="tawk.to"] {
 
 /* Homepage headline strip (non-overlay) */
 #home .cover_img {
-    min-height: 68vh !important;
-    height: 68vh !important;
+    min-height: 78vh !important;
+    height: 78vh !important;
 }
 
 #home .tagline {
@@ -1579,17 +1579,17 @@ iframe[src*="tawk.to"] {
     bottom: auto !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 14px 5% 16px !important;
+    padding: 8px 5% 10px !important;
     background: #08111d;
     color: #e8edf2;
-    font-size: clamp(20px, 2.4vw, 30px) !important;
-    line-height: 1.18 !important;
+    font-size: clamp(14px, 1.6vw, 22px) !important;
+    line-height: 1.22 !important;
     text-shadow: none !important;
 }
 
 #home .tagline strong {
     display: block;
-    margin: 0 0 4px;
+    margin: 0 0 2px;
 }
 
 #home .tagline strong:last-child {
@@ -1598,12 +1598,13 @@ iframe[src*="tawk.to"] {
 
 @media (max-width: 991px) {
     #home .cover_img {
-        min-height: 56vh !important;
-        height: 56vh !important;
+        min-height: 68vh !important;
+        height: 68vh !important;
     }
 
     #home .tagline {
-        font-size: clamp(18px, 6vw, 26px) !important;
-        padding: 12px 5% calc(12px + env(safe-area-inset-bottom)) !important;
+        font-size: clamp(15px, 4.6vw, 21px) !important;
+        line-height: 1.2 !important;
+        padding: 8px 5% calc(10px + env(safe-area-inset-bottom)) !important;
     }
 }
