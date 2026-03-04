@@ -2296,3 +2296,18 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
     pointer-events: auto;
   }
 }
+
+/* ── Tawk chat widget: always visible on desktop ── */
+@media (min-width: 992px) {
+  #tawkchat-container,
+  #tawkchat-container iframe,
+  iframe[title*="chat widget"],
+  iframe[src*="tawk.to"],
+  iframe[src*="embed.tawk.to"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 2147483000 !important;
+    pointer-events: auto !important;
+  }
+}
