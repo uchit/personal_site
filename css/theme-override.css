@@ -2237,6 +2237,15 @@ ul.AddSkill li .icon.icon-check { display: none !important; }
     height: auto !important;
   }
 
+  /* Kill overflow-y:auto on all pages — causes ghost scroll areas on mobile */
+  #biography, #expertise, #offerings, #case_studies,
+  #publications, #global_talks, #speaking, #mentoring,
+  #thinking, #contact {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
   /* Hero panel: force inside cover_img, bottom-anchored, no overlap */
   #home .cover_img {
     position: relative !important;
