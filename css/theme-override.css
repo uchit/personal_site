@@ -1,0 +1,418 @@
+/* ================================================================
+   THEME OVERRIDE — Sidebar / Nav / Homepage Hero ONLY
+   All inner page styles remain from the original custom-style.css
+   Fonts: Playfair Display + Instrument Sans + JetBrains Mono
+   ================================================================ */
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --t-sidebar-bg:    #13181d;
+  --t-sidebar-w:     250px;
+  --t-accent:        #00c47a;
+  --t-accent-hover:  #00a868;
+  --t-gold:          #c9a84c;
+  --t-text-dim:      rgba(255,255,255,0.42);
+  --t-text-mid:      rgba(255,255,255,0.72);
+  --t-text-bright:   #ffffff;
+  --t-rule:          rgba(255,255,255,0.07);
+  --t-font-serif:    'Playfair Display', Georgia, serif;
+  --t-font-sans:     'Instrument Sans', 'Segoe UI', sans-serif;
+  --t-font-mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ════════════════════════════════════════════════════
+   SIDEBAR — full restyle
+════════════════════════════════════════════════════ */
+
+/* Outer shell */
+#sidebar {
+  background: var(--t-sidebar-bg) !important;
+  border-right: none !important;
+  overflow: hidden !important;
+}
+
+/* Hairline accent stripe at very top */
+#sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--t-accent) 0%, var(--t-gold) 50%, transparent 100%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* Nav container */
+#main-nav {
+  background: var(--t-sidebar-bg) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+}
+
+/* ── PROFILE BLOCK ── */
+#profile {
+  text-align: center;
+  padding: 34px 16px 22px !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--t-rule) !important;
+  position: relative !important;
+}
+
+/* Faint radial glow behind avatar */
+#profile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(0,196,122,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#profile .portrate {
+  background-image: url('../images/Uchit2.jpeg') !important;
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 50% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  margin: 0 auto !important;
+  border: 2px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 0 0 3px rgba(0,196,122,0.22), 0 0 0 6px rgba(0,196,122,0.07) !important;
+  transition: box-shadow 0.35s ease !important;
+}
+
+#profile .portrate:hover {
+  box-shadow: 0 0 0 3px rgba(0,196,122,0.5), 0 0 0 8px rgba(0,196,122,0.12) !important;
+}
+
+#profile .title h2 {
+  font-family: var(--t-font-serif) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #f2ede6 !important;
+  margin: 14px 0 5px !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.2 !important;
+}
+
+#profile .title h3 {
+  font-family: var(--t-font-mono) !important;
+  font-size: 9.5px !important;
+  font-weight: 400 !important;
+  color: var(--t-accent) !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* ── NAVIGATION LIST ── */
+ul#navigation {
+  padding: 6px 0 !important;
+  margin: 0 !important;
+}
+
+ul#navigation li {
+  display: block !important;
+  float: none !important;
+  clear: both !important;
+  background: transparent !important;
+  border-top: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+  position: relative !important;
+  transition: background 0.18s ease !important;
+}
+
+/* Left accent bar per item */
+ul#navigation li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--t-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+ul#navigation li:hover::before,
+ul#navigation li.currentmenu::before {
+  transform: scaleY(1) !important;
+}
+
+ul#navigation li a {
+  display: flex !important;
+  align-items: center !important;
+  color: var(--t-text-dim) !important;
+  font-family: var(--t-font-sans) !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  min-height: 46px !important;
+  padding: 0 !important;
+  transition: color 0.18s, background 0.18s !important;
+  text-decoration: none !important;
+}
+
+ul#navigation li:hover a,
+ul#navigation li.currentmenu a {
+  color: var(--t-text-bright) !important;
+  background: rgba(255,255,255,0.035) !important;
+}
+
+ul#navigation li .icon {
+  float: none !important;
+  flex-shrink: 0 !important;
+  width: 50px !important;
+  text-align: center !important;
+  line-height: 46px !important;
+  font-size: 15px !important;
+  color: rgba(255,255,255,0.25) !important;
+  transition: color 0.18s !important;
+}
+
+ul#navigation li:hover .icon,
+ul#navigation li.currentmenu .icon {
+  color: var(--t-accent) !important;
+}
+
+ul#navigation li .text {
+  flex: 1 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  line-height: 46px !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+}
+
+/* ── SOCIAL ICONS BAR ── */
+.social-icons {
+  background: rgba(0,0,0,0.35) !important;
+  border-top: 1px solid var(--t-rule) !important;
+  width: 250px !important;
+}
+
+.social-icons ul {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.social-icons li {
+  flex: 1 !important;
+  float: none !important;
+  text-align: center !important;
+  padding: 0 !important;
+}
+
+.social-icons a {
+  color: rgba(255,255,255,0.30) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 44px !important;
+  transition: color 0.18s, background 0.18s !important;
+}
+
+.social-icons a:hover {
+  color: var(--t-accent) !important;
+  background: rgba(0,196,122,0.08) !important;
+}
+
+.social-icons i {
+  font-size: 15px !important;
+  line-height: 1 !important;
+}
+
+/* ── COPYRIGHT ── */
+.site-copyright {
+  background: var(--t-sidebar-bg) !important;
+  color: rgba(255,255,255,0.18) !important;
+  font-family: var(--t-font-mono) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.07em !important;
+  border-top: 1px solid var(--t-rule) !important;
+  line-height: 1.5 !important;
+}
+
+#sidebar .site-copyright {
+  background: var(--t-sidebar-bg) !important;
+  color: rgba(255,255,255,0.18) !important;
+}
+
+/* ── MOBILE MENU BUTTON ── */
+.mobilemenu {
+  background: var(--t-sidebar-bg) !important;
+  color: rgba(255,255,255,0.75) !important;
+  border-right: 1px solid var(--t-rule) !important;
+  border-bottom: 1px solid var(--t-rule) !important;
+  font-size: 24px !important;
+}
+
+.mobilemenu:hover,
+.mobilemenu:focus {
+  color: var(--t-accent) !important;
+}
+
+/* Mobile open state */
+@media (max-width: 991px) {
+  #sidebar.menu-open,
+  #main-nav.menu-open,
+  .social-icons.menu-open {
+    left: 0 !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════
+   HOMEPAGE HERO — full restyle
+════════════════════════════════════════════════════ */
+
+/* Desktop hero: cinematic layered gradient */
+#home .cover_img {
+  min-height: 100vh !important;
+  height: 100vh !important;
+  position: relative !important;
+  background-image:
+    linear-gradient(108deg, rgba(10,14,18,0.78) 0%, rgba(10,14,18,0.42) 42%, rgba(10,14,18,0.10) 100%),
+    linear-gradient(180deg, rgba(10,14,18,0.04) 0%, rgba(10,14,18,0.52) 100%),
+    url('../images/Uchit1-hero.jpg') !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Thin vertical accent rule — decorative */
+#home .cover_img::after {
+  content: '';
+  position: absolute;
+  left: 6%;
+  top: 16%;
+  bottom: 16%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, var(--t-accent) 40%, var(--t-gold) 70%, transparent 100%);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Tagline — positioned left, vertically centred */
+#home .tagline {
+  position: absolute !important;
+  left: 8% !important;
+  right: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-52%) !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 0 0 30px !important;
+  color: rgba(255,255,255,0.88) !important;
+  font-family: var(--t-font-sans) !important;
+  font-size: clamp(15px, 1.35vw, 22px) !important;
+  font-weight: 300 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4) !important;
+  z-index: 3 !important;
+}
+
+#home .tagline strong {
+  display: block !important;
+  font-family: var(--t-font-sans) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  color: rgba(255,255,255,0.88) !important;
+  font-size: 1em !important;
+  letter-spacing: 0.18em !important;
+}
+
+/* Subtitle line rendered via pseudo-element */
+#home .tagline::after {
+  content: 'DevSecOps  ·  SRE  ·  Cloud  ·  GenAI  ·  Author';
+  display: block;
+  margin-top: 20px;
+  font-family: var(--t-font-mono);
+  font-size: clamp(8px, 0.65vw, 10.5px);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--t-accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: none;
+  opacity: 0.85;
+}
+
+/* ── MOBILE HERO ── */
+@media (max-width: 991px) {
+  #home,
+  #home.page,
+  #home.mobile-active {
+    min-height: 100svh !important;
+  }
+
+  #home .cover_img {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    background-image:
+      linear-gradient(170deg, rgba(10,14,18,0.65) 0%, rgba(10,14,18,0.30) 50%, rgba(10,14,18,0.72) 100%),
+      url('../images/Uchit1-hero.jpg') !important;
+    background-position: 62% top !important;
+    background-size: cover !important;
+  }
+
+  /* Hide decorative rule on mobile */
+  #home .cover_img::after { display: none !important; }
+
+  #home .tagline {
+    position: absolute !important;
+    left: 5% !important;
+    right: 5% !important;
+    top: auto !important;
+    bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+    transform: none !important;
+    width: auto !important;
+    padding: 0 !important;
+    font-size: clamp(12px, 3.8vw, 18px) !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.16em !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.55) !important;
+  }
+
+  #home .tagline::after {
+    font-size: 8px !important;
+    letter-spacing: 0.14em !important;
+    margin-top: 14px !important;
+  }
+}
+
+@media (max-width: 991px) and (orientation: landscape) {
+  #home .cover_img {
+    background-position: center 22% !important;
+  }
+  #home .tagline {
+    font-size: clamp(11px, 2.8vw, 16px) !important;
+    bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@supports (height: 100svh) {
+  @media (max-width: 991px) {
+    #home,
+    #home.page,
+    #home.mobile-active {
+      min-height: 100svh !important;
+    }
+    #home .cover_img {
+      min-height: 100svh !important;
+      height: 100svh !important;
+    }
+  }
+}

@@ -637,7 +637,7 @@ textarea:focus-visible {
 
 .case-card h4 {
     margin: 0 0 10px;
-    line-height: 1.28;
+    line-height: 1.35;
 }
 
 .case-card h4 a {
@@ -1571,66 +1571,38 @@ iframe[src*="tawk.to"] {
     min-height: 100vh !important;
     height: 100vh !important;
     position: relative !important;
-    overflow: hidden;
     background-image:
-        linear-gradient(100deg, rgba(2, 7, 14, 0.86) 0%, rgba(2, 7, 14, 0.58) 34%, rgba(2, 7, 14, 0.18) 66%, rgba(2, 7, 14, 0.05) 100%),
-        repeating-linear-gradient(0deg, rgba(90, 110, 130, 0.10) 0, rgba(90, 110, 130, 0.10) 1px, transparent 1px, transparent 84px),
-        repeating-linear-gradient(90deg, rgba(90, 110, 130, 0.10) 0, rgba(90, 110, 130, 0.10) 1px, transparent 1px, transparent 84px),
+        linear-gradient(90deg, rgba(3, 8, 20, 0.55) 0%, rgba(3, 8, 20, 0.22) 42%, rgba(3, 8, 20, 0.08) 100%),
         url("../images/Uchit1-hero.jpg") !important;
     background-position: center top !important;
-    background-size: cover, cover, cover, cover !important;
+    background-size: cover !important;
     background-repeat: no-repeat !important;
 }
 
 #home .tagline {
     position: absolute !important;
-    left: 4.8% !important;
-    top: 15% !important;
+    left: 6% !important;
     right: auto !important;
+    top: 56% !important;
     bottom: auto !important;
-    transform: none !important;
+    transform: translateY(-50%);
+    width: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     background: transparent !important;
-    text-shadow: none !important;
+    color: #d8e2ec;
+    font-size: clamp(16px, 1.55vw, 28px) !important;
+    line-height: 1.18 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.22) !important;
+    letter-spacing: 0.02em;
     z-index: 3;
 }
 
-#home .hero-line {
+#home .tagline strong {
     display: block;
-    white-space: nowrap;
-    line-height: 0.95;
-}
-
-#home .hero-line-solid {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-weight: 700;
-    color: #f3f5f7;
-    font-size: clamp(30px, 4.2vw, 56px) !important;
-    letter-spacing: -0.01em;
-}
-
-#home .hero-line-accent {
-    margin-top: 10px;
-    font-family: "Georgia", "Times New Roman", serif;
-    font-style: italic;
-    font-weight: 700;
-    color: #2dcf9f;
-    font-size: clamp(34px, 4.6vw, 60px) !important;
-    letter-spacing: -0.012em;
-}
-
-#home .hero-subtitle {
-    position: absolute;
-    left: 4.8%;
-    right: 38%;
-    top: 58%;
     margin: 0;
-    color: rgba(215, 224, 233, 0.82);
-    font-family: "Lato", "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
-    font-size: clamp(15px, 1.7vw, 52px);
-    line-height: 1.35;
-    z-index: 3;
+    white-space: nowrap;
+    font-weight: 600;
 }
 
 @media (max-width: 991px) {
@@ -1638,32 +1610,11 @@ iframe[src*="tawk.to"] {
         min-height: 68vh !important;
         height: 68vh !important;
         background-position: 64% top !important;
-        background-image:
-            linear-gradient(180deg, rgba(2, 7, 14, 0.70) 0%, rgba(2, 7, 14, 0.45) 42%, rgba(2, 7, 14, 0.18) 100%),
-            repeating-linear-gradient(0deg, rgba(90, 110, 130, 0.08) 0, rgba(90, 110, 130, 0.08) 1px, transparent 1px, transparent 62px),
-            repeating-linear-gradient(90deg, rgba(90, 110, 130, 0.08) 0, rgba(90, 110, 130, 0.08) 1px, transparent 1px, transparent 62px),
-            url("../images/Uchit1-hero.jpg") !important;
     }
 
     #home .tagline {
         left: 5% !important;
-        top: 16% !important;
-    }
-
-    #home .hero-line-solid {
-        font-size: clamp(24px, 8.8vw, 40px) !important;
-    }
-
-    #home .hero-line-accent {
-        margin-top: 8px;
-        font-size: clamp(26px, 9.2vw, 42px) !important;
-    }
-
-    #home .hero-subtitle {
-        left: 5%;
-        right: 8%;
-        top: 56%;
-        font-size: clamp(12px, 3.8vw, 18px);
-        line-height: 1.26;
+        top: 64% !important;
+        font-size: clamp(14px, 4.2vw, 22px) !important;
     }
 }
