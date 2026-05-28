@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uchit Vyas — Writing</title>
+    <link>https://hellouchit.com/writing/</link>
+    <description>Long-form essays on enterprise architecture, platform engineering, DevSecOps, data modernisation and applied GenAI inside regulated environments.</description>
+    <language>en-au</language>
+    <atom:link href="https://hellouchit.com/writing/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 May 2026 00:00:00 +1100</lastBuildDate>
+
+    <item>
+      <title>The encoded enterprise architect</title>
+      <link>https://hellouchit.com/writing/encoded-enterprise-architect.html</link>
+      <guid>https://hellouchit.com/writing/encoded-enterprise-architect.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>Why TOGAF is your operating manual, not your job. Architecture principles that aren't encoded in platform defaults or policy-as-code don't exist.</description>
+      <category>Enterprise Architecture</category>
+    </item>
+    <item>
+      <title>GenAI in regulated environments: the nine controls</title>
+      <link>https://hellouchit.com/writing/genai-9-controls.html</link>
+      <guid>https://hellouchit.com/writing/genai-9-controls.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>The nine controls between a demo and something a customer — and a regulator — can use. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10.</description>
+      <category>Applied GenAI</category>
+    </item>
+    <item>
+      <title>DevSecOps stopped being about Sec. It's about supply chain.</title>
+      <link>https://hellouchit.com/writing/devsecops-is-supply-chain.html</link>
+      <guid>https://hellouchit.com/writing/devsecops-is-supply-chain.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>Post-XZ Utils, post-Snowflake, post-Polyfill, post-CrowdStrike: the highest-leverage security work in 2026 is provenance, workload identity, SBOM-to-owner alerting and signed build pipelines.</description>
+      <category>DevSecOps</category>
+    </item>
+    <item>
+      <title>Platform engineering is the AI delivery moat</title>
+      <link>https://hellouchit.com/writing/platform-engineering-ai-moat.html</link>
+      <guid>https://hellouchit.com/writing/platform-engineering-ai-moat.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>The orgs that will ship GenAI features safely in 2026 are the ones whose paved paths already encode identity, observability and policy.</description>
+      <category>Platform Engineering</category>
+    </item>
+    <item>
+      <title>The 4-Discipline Stack: why your four functions don't compound</title>
+      <link>https://hellouchit.com/writing/4-discipline-stack-essay.html</link>
+      <guid>https://hellouchit.com/writing/4-discipline-stack-essay.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>EA, platform, data and AI as four budgets, four roadmaps, four reports — and no compound. The substrate is what makes them multiply.</description>
+      <category>Synthesis</category>
+    </item>
+    <item>
+      <title>Australia's AI Safety Standard, decoded</title>
+      <link>https://hellouchit.com/writing/au-ai-safety-decoded.html</link>
+      <guid>https://hellouchit.com/writing/au-ai-safety-decoded.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +1100</pubDate>
+      <description>The DISR Voluntary AI Safety Standard translated into what the engineer being asked the question actually does this quarter.</description>
+      <category>Regulation · Australia</category>
+    </item>
+  </channel>
+</rss>

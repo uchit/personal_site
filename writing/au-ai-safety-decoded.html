@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Australia's AI Safety Standard, decoded — Uchit Vyas</title>
+<meta name="description" content="The DISR Voluntary AI Safety Standard translated into what the engineer being asked the question actually does this quarter. Ten guardrails, mapped to the work." />
+<link rel="canonical" href="https://hellouchit.com/writing/au-ai-safety-decoded.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Australia's AI Safety Standard, decoded" />
+<meta property="og:description" content="Ten guardrails, translated into what an engineer in an Australian enterprise actually does this quarter." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="e-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/writing/" style="color:var(--muted)">Writing</a><span style="opacity:.5">/</span><span style="color:var(--accent)">AU AI Safety Standard decoded</span></nav>
+      <div class="e-meta"><span><b>Regulation · Australia</b></span><span>10 min read</span><span>2026</span></div>
+      <h1>Australia&rsquo;s AI Safety Standard, <em>decoded</em>.</h1>
+      <p class="e-dek">
+        The DISR <a href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent)">Voluntary
+        AI Safety Standard</a> is the closest thing Australian enterprises
+        have to a national playbook for production GenAI. <b>Ten guardrails,
+        translated into what the engineer being asked the question
+        actually does this quarter.</b>
+      </p>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <p>
+        The Department of Industry, Science and Resources published the
+        Voluntary AI Safety Standard in September 2024. It&rsquo;s 10
+        guardrails, framed for Australian organisations developing or
+        deploying AI systems. The 2025&ndash;26 government signalling is
+        that the voluntary version is a runway to a mandatory standard
+        for high-risk AI.
+      </p>
+
+      <p>
+        I read it the week it came out. It&rsquo;s well-written, principles-
+        rather than prescription-based, and aligned with NIST AI RMF and
+        the EU AI Act in substance. That&rsquo;s good. It&rsquo;s also
+        sufficiently abstract that engineers ask &ldquo;what do I actually do
+        on Monday?&rdquo; That&rsquo;s this essay.
+      </p>
+
+      <p>
+        Below: each of the ten guardrails, paraphrased to keep things
+        readable, then translated into a concrete first move and a
+        diagnostic question for self-assessment.
+      </p>
+
+      <h2>Guardrail 1: Accountability process.</h2>
+
+      <p>
+        <em>What it says:</em> Establish, implement and publish a process
+        of accountability across the AI lifecycle.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Appoint a named AI
+        accountability officer. Publish a one-page accountability matrix:
+        who decides what gets built, who decides what ships, who decides
+        when to pause, who answers regulator questions. Stop pretending
+        this is implicit.
+      </p>
+
+      <h2>Guardrail 2: Risk management process.</h2>
+
+      <p>
+        <em>What it says:</em> Establish a risk management process to
+        identify and mitigate risks.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Adopt
+        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST
+        AI RMF</a> as your reference taxonomy. Apply the GOVERN-MAP-MEASURE-MANAGE
+        cycle to your top three production use-cases. Don&rsquo;t reinvent
+        the framework; reinvention is a year-long programme that doesn&rsquo;t
+        ship anything.
+      </p>
+
+      <h2>Guardrail 3: Data governance.</h2>
+
+      <p>
+        <em>What it says:</em> Protect AI systems and implement data
+        governance measures.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Catalogue the data feeding
+        your top three AI use-cases. For each, document: source, owner,
+        freshness contract, PII classification, retention policy. If you
+        can&rsquo;t answer these for the data your model trains or retrieves
+        on, you&rsquo;re not in conformance.
+      </p>
+
+      <h2>Guardrail 4: Testing and monitoring.</h2>
+
+      <p>
+        <em>What it says:</em> Test AI models and monitor systems for
+        performance.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Build an eval set per
+        production use-case. Run it as a gate before deploy. Add
+        per-request tracing using
+        <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/" target="_blank" rel="noopener">OpenTelemetry
+        GenAI semconv</a>. The two together are the minimum bar.
+      </p>
+
+      <h2>Guardrail 5: Human control.</h2>
+
+      <p>
+        <em>What it says:</em> Enable human control or intervention.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> For each production use-case,
+        document the human-in-the-loop pattern: where does a human
+        intervene, on what criteria, with what latency, with what
+        authority to reverse the AI&rsquo;s decision? &ldquo;A human reviews&rdquo; is
+        not a pattern. &ldquo;Decisions above $10K trigger a human reviewer
+        who has 4 business hours to override before the AI decision
+        becomes binding&rdquo; is.
+      </p>
+
+      <h2>Guardrail 6: Transparency.</h2>
+
+      <p>
+        <em>What it says:</em> Inform end-users regarding AI-enabled
+        decisions, interactions with AI, and AI-generated content.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Publish a transparency
+        statement per AI use-case visible to end-users. State whether
+        they&rsquo;re interacting with AI, what data the AI used, how decisions
+        get made, and how to contest them. Australian Government
+        agencies already have a template under
+        <a href="https://www.digital.gov.au/policy/ai-in-government/policy-implementation" target="_blank" rel="noopener">DTA
+        AI Policy</a>; adapt it.
+      </p>
+
+      <h2>Guardrail 7: Contestability.</h2>
+
+      <p>
+        <em>What it says:</em> Establish processes for impacted people to
+        challenge AI use or outcomes.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Document the contest path:
+        how does an impacted person flag a disputed decision, who handles
+        it, in what SLA, what evidence is provided. Wire this into your
+        existing complaints / appeals process. Don&rsquo;t build a new one.
+      </p>
+
+      <h2>Guardrail 8: Supply chain transparency.</h2>
+
+      <p>
+        <em>What it says:</em> Be transparent with other organisations
+        across the AI supply chain.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Document your model providers,
+        third-party AI services, training data sources and any agent
+        runtimes you depend on. Publish (internally first) the data flow.
+        This is your AI-system SBOM.
+      </p>
+
+      <h2>Guardrail 9: Record-keeping.</h2>
+
+      <p>
+        <em>What it says:</em> Keep records to allow third parties to
+        assess compliance.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Per-decision evidence retention.
+        For each AI-mediated decision: prompt, model+version, retrieved
+        context, output, guardrails applied, confidence &mdash; signed at
+        decision time, retention-policy enforced. This is the control
+        with the longest lead time; start now.
+      </p>
+
+      <h2>Guardrail 10: Stakeholder engagement.</h2>
+
+      <p>
+        <em>What it says:</em> Engage your stakeholders and evaluate
+        their needs and circumstances.
+      </p>
+
+      <p>
+        <em>What you do this quarter:</em> Document who you consulted
+        before deploying each AI use-case &mdash; affected user groups,
+        accessibility advocates, indigenous-data sovereignty bodies where
+        relevant. If the answer is &ldquo;no one&rdquo;, that itself is the gap
+        to close.
+      </p>
+
+      <h2>The pattern across the ten.</h2>
+
+      <p>
+        Read end-to-end, the ten guardrails describe a single pattern:
+        <b>treat AI systems like regulated products, not science
+        experiments</b>. Each guardrail is a control that any mature
+        product organisation already has for non-AI products; you&rsquo;re
+        being asked to apply the same discipline to AI.
+      </p>
+
+      <p>
+        The DISR standard is voluntary now. The signposting is that the
+        high-risk subset will become mandatory through 2026&ndash;27.
+        Orgs that build the substrate this year ship; orgs that wait will
+        retrofit under regulatory pressure.
+      </p>
+
+      <h2>Where it interlocks.</h2>
+
+      <p>
+        The AU standard is intentionally aligned with NIST AI RMF and the
+        EU AI Act. If you implement the
+        <a href="/writing/genai-9-controls.html">nine controls</a> in the
+        companion essay, you&rsquo;re largely conformant with all three. The
+        AU standard adds two genuinely Australia-flavoured points:
+        emphasis on indigenous-data sovereignty (guardrail 10) and
+        explicit contestability (guardrail 7) that anticipate Australian
+        Human Rights Commission concerns.
+      </p>
+
+      <p>
+        Run the <a href="/tools/genai-readiness.html">GenAI Readiness
+        diagnostic</a> with sector set to &ldquo;Government&rdquo; or
+        &ldquo;Financial Services&rdquo; depending on your context. The result lens
+        will surface the Australian-specific implications &mdash; alongside
+        the global ones &mdash; and the recommendations will sequence the
+        work.
+      </p>
+
+      <p>
+        The standard isn&rsquo;t something to fear. It&rsquo;s the cheapest national
+        playbook you&rsquo;ll get this year. Treat it as scaffolding for the
+        work you were going to do anyway.
+      </p>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/writing/genai-9-controls.html">The nine GenAI controls &rarr;</a>
+          <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic &rarr;</a>
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+          <a href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener">DISR Voluntary AI Safety Standard &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/writing/">&larr; All writing</a><span>&middot;</span>
+        <a href="/writing/feed.xml">RSS</a><span>&middot;</span>
+        <a href="https://www.linkedin.com/in/uchitvyas/" target="_blank" rel="noopener">LinkedIn</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

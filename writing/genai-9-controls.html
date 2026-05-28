@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GenAI in regulated environments: the nine controls — Uchit Vyas</title>
+<meta name="description" content="The nine controls between a demo and something a customer — and a regulator — can use. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10." />
+<link rel="canonical" href="https://hellouchit.com/writing/genai-9-controls.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="GenAI in regulated environments: the nine controls" />
+<meta property="og:description" content="The minimum bar to put an LLM in front of a paying customer. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="e-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/writing/" style="color:var(--muted)">Writing</a><span style="opacity:.5">/</span><span style="color:var(--accent)">GenAI: the nine controls</span></nav>
+      <div class="e-meta"><span><b>Applied GenAI</b></span><span>16 min read</span><span>2026</span></div>
+      <h1>GenAI in regulated environments: the <em>nine controls</em>.</h1>
+      <p class="e-dek">
+        The nine controls between a demo and something a customer &mdash; and a
+        regulator &mdash; can use. Mapped to <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent)">NIST AI RMF</a>,
+        <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent)">EU AI Act</a>,
+        <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent)">ISO/IEC 42001</a> and the
+        <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent)">OWASP LLM Top 10</a>.
+      </p>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <p>
+        Most enterprises in 2026 are not blocked from shipping GenAI by
+        the model. They&rsquo;re blocked by everything around it: data,
+        guardrails, evals, governance, audit. The model is the easy part.
+      </p>
+
+      <p>
+        I see this every week. A senior engineering leader wants to ship
+        an LLM-powered customer feature. The model demo is great. Risk
+        wants ten things. Legal wants twelve. Security wants seven more.
+        Six months pass. Nothing ships.
+      </p>
+
+      <p>
+        The way out is not to remove controls. It&rsquo;s to <b>narrow</b> them
+        to a defensible nine, encode them in the platform, and stop
+        re-litigating them per feature. The nine below are what I run as
+        a baseline whenever an organisation asks &ldquo;what do we need before
+        we put an LLM in front of a real customer?&rdquo;
+      </p>
+
+      <p>
+        Every one of them maps to a public framework. None of them are my
+        invention. The contribution is the sequencing and the encoding,
+        not the list.
+      </p>
+
+      <h2>1. Named use-case, named sponsor, named outcome.</h2>
+
+      <p>
+        <em>Maps to:</em> NIST AI RMF GOVERN-1.3, MAP-1.1.
+      </p>
+
+      <p>
+        Most GenAI programmes that never ship were never specific enough
+        to be shippable. &ldquo;Help customers with chat&rdquo; is not a use-case.
+        &ldquo;Resolve 40% of tier-1 support tickets without escalation while
+        maintaining customer satisfaction at or above current human-handled
+        baseline&rdquo; is.
+      </p>
+
+      <p>
+        The control is: every GenAI use-case in production has a named
+        product sponsor, a measurable business outcome, and a baseline
+        against which the GenAI version is compared. Use-cases without all
+        three don&rsquo;t leave the prototype environment.
+      </p>
+
+      <h2>2. Eval set with known-good answers.</h2>
+
+      <p>
+        <em>Maps to:</em> NIST AI 600-1 §4, OWASP LLM09 (Misinformation),
+        EU AI Act Art.15 (Accuracy &amp; Robustness).
+      </p>
+
+      <p>
+        Before a prompt change ships, it passes an eval set of at least 50
+        cases with known-good answers. Before a model change ships, the
+        same. Before a RAG corpus change ships, the same. <a href="https://www.promptfoo.dev/" target="_blank" rel="noopener">Promptfoo</a>,
+        <a href="https://github.com/openai/evals" target="_blank" rel="noopener">OpenAI Evals</a>,
+        <a href="https://github.com/confident-ai/deepeval" target="_blank" rel="noopener">DeepEval</a>
+        are free; LangSmith, Braintrust, Arize Phoenix are commercial. Pick one.
+      </p>
+
+      <p>
+        The bottleneck is never the tooling. It&rsquo;s getting subject-matter
+        experts to label 50 cases. Do it once. The eval set is the most
+        durable artefact in your GenAI programme.
+      </p>
+
+      <h2>3. Prompts in version control, versioned, owned.</h2>
+
+      <p>
+        <em>Maps to:</em> NIST AI RMF MEASURE-2.7, OWASP LLM01 (Prompt
+        Injection), ISO/IEC 42001 A.6.2.4.
+      </p>
+
+      <p>
+        A prompt is a configuration. Treat it like code. Hard-coded prompt
+        strings in service code are an anti-pattern. The prompt registry
+        has owners, semver, change history, and per-version evals attached.
+      </p>
+
+      <p>
+        Tag every production trace with the prompt version. Without that
+        tag, you can&rsquo;t attribute regressions, and you can&rsquo;t roll back
+        safely.
+      </p>
+
+      <h2>4. Input + output guardrails for the two failure modes you most fear.</h2>
+
+      <p>
+        <em>Maps to:</em> OWASP LLM01/02/06, MITRE ATLAS, EU AI Act Art.13
+        (Transparency &amp; Provision of Information).
+      </p>
+
+      <p>
+        Two layers, not one. Input guardrails catch prompt injection,
+        jailbreak attempts and PII leakage <em>before</em> the model sees
+        them. Output guardrails catch policy violations, hallucinations
+        in regulated domains, and unsafe content <em>after</em>.
+      </p>
+
+      <p>
+        Open and commercial options exist: <a href="https://github.com/NVIDIA/NeMo-Guardrails" target="_blank" rel="noopener">NVIDIA
+        NeMo Guardrails</a>, <a href="https://www.guardrailsai.com/" target="_blank" rel="noopener">Guardrails AI</a>,
+        Lakera Guard, Azure AI Content Safety, AWS Bedrock Guardrails. Add
+        50&ndash;300 ms of latency; design async where possible.
+      </p>
+
+      <p>
+        Test guardrails adversarially. The OWASP LLM Top 10 is your test
+        suite floor.
+      </p>
+
+      <h2>5. Per-request tracing with replayability.</h2>
+
+      <p>
+        <em>Maps to:</em> NIST AI RMF MEASURE-3.2, EU AI Act Art.12
+        (Logging).
+      </p>
+
+      <p>
+        Per request, log: prompt, retrieved context, model+version, full
+        response, latency, cost. Link to user session for end-to-end
+        traces. The <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/" target="_blank" rel="noopener">OpenTelemetry
+        GenAI semantic conventions</a> are stabilising fast; use them now
+        to avoid migration later.
+      </p>
+
+      <p>
+        The bar is replayability. Given a trace ID from three months ago,
+        can your team reproduce the exact response that was sent? If no,
+        you cannot debug regressions or respond to regulator queries.
+      </p>
+
+      <h2>6. Risk-tiered governance.</h2>
+
+      <p>
+        <em>Maps to:</em> ISO/IEC 42001, NIST AI RMF GOVERN-2, EU AI Act
+        Art.9 (Risk Management).
+      </p>
+
+      <p>
+        Don&rsquo;t funnel every AI feature through one committee. Tier them:
+        low-risk (internal productivity, summarisation of non-sensitive
+        data) is self-service with a checklist. Medium-risk
+        (customer-facing, non-regulated) needs Security + Legal sign-off
+        and an eval threshold. High-risk (lending decisions, medical
+        triage, identity verification) is co-designed with risk and
+        compliance, conformity-assessed, and continuously monitored.
+      </p>
+
+      <p>
+        The tiers must be objective &mdash; written down with criteria, not
+        decided in a meeting. Otherwise tiering becomes its own political
+        process.
+      </p>
+
+      <h2>7. Cost-per-outcome, not cost-per-token.</h2>
+
+      <p>
+        <em>Maps to:</em> FinOps Foundation AI WG, AWS Well-Architected
+        Cost Pillar.
+      </p>
+
+      <p>
+        Cost-per-token is an engineering metric. Cost-per-resolved-task is
+        a business metric. Track both. Without per-outcome cost, you can&rsquo;t
+        defend the feature&rsquo;s economics in a budget review, and you
+        can&rsquo;t make rational routing decisions (cheaper model where quality
+        matches; premium where it doesn&rsquo;t).
+      </p>
+
+      <p>
+        Routing typically buys 30&ndash;60% cost reduction without quality
+        loss when implemented well. <a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a>,
+        <a href="https://www.litellm.ai/" target="_blank" rel="noopener">LiteLLM</a>,
+        AWS Bedrock Intelligent Prompt Routing are options.
+      </p>
+
+      <h2>8. Model card + versioned pinning per environment.</h2>
+
+      <p>
+        <em>Maps to:</em> NIST AI RMF MAP-3.4, EU AI Act Art.11
+        (Technical Documentation).
+      </p>
+
+      <p>
+        Pin model versions per environment. Don&rsquo;t let &ldquo;latest&rdquo; ship to
+        prod. Anthropic, OpenAI and Bedrock all shipped breaking model
+        changes in 2024; orgs that didn&rsquo;t pin had production regressions.
+      </p>
+
+      <p>
+        Maintain a model card per production model: intended use,
+        performance characteristics, eval results, known limitations,
+        deprecation timeline. This is the artefact a regulator will ask
+        for first.
+      </p>
+
+      <h2>9. Audit evidence generated at decision time, not at audit time.</h2>
+
+      <p>
+        <em>Maps to:</em> EU AI Act Art.12, NIST AI RMF MEASURE-3.3,
+        ISO/IEC 42001 A.6.2.4.
+      </p>
+
+      <p>
+        If a regulator asks tomorrow why your model produced a specific
+        output for a specific customer, can you answer within hours?
+        Within minutes? At all?
+      </p>
+
+      <p>
+        The control is: per-decision evidence pack (prompt, context, model
+        version, output, applied guardrails, confidence) is generated at
+        decision time, signed, and retained per policy. Audit views for
+        the three most-likely regulator questions are pre-built. You test
+        them with internal audit <em>before</em> they&rsquo;re asked for
+        externally.
+      </p>
+
+      <p>
+        This is the control that takes the longest to retrofit. Build it
+        in from day one.
+      </p>
+
+      <h2>How to sequence the nine.</h2>
+
+      <p>
+        Don&rsquo;t try to land all nine before shipping. Sequence them:
+      </p>
+
+      <ol>
+        <li>Controls 1 (use-case + sponsor) and 2 (eval set) are
+        non-negotiable before the first user touches the feature.</li>
+        <li>Controls 5 (tracing) and 8 (version pinning) go in with the
+        first deploy.</li>
+        <li>Controls 3 (prompt registry), 4 (guardrails) and 7 (cost
+        observability) land within four weeks of first user contact.</li>
+        <li>Controls 6 (risk-tiered governance) and 9 (audit evidence)
+        are the platform-level investments that make the next ten features
+        cheap.</li>
+      </ol>
+
+      <p>
+        With this sequence, the org ships in 6&ndash;12 weeks instead of
+        6&ndash;12 months. And it ships with controls a regulator would
+        recognise.
+      </p>
+
+      <h2>The point of the controls is to make shipping <em>boring</em>.</h2>
+
+      <p>
+        The nine aren&rsquo;t there to make GenAI sound serious. They&rsquo;re there
+        to make the second, third and tenth use-case cheap and safe to
+        ship by reusing the substrate the first one built.
+      </p>
+
+      <p>
+        Run the <a href="/tools/genai-readiness.html">GenAI Readiness
+        Diagnostic</a> to see which of these controls your org has and
+        which it doesn&rsquo;t. The capability breakdown will show you which
+        substrate investment buys the most compound across future
+        use-cases.
+      </p>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic &rarr;</a>
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+          <a href="/writing/au-ai-safety-decoded.html">AU AI Safety Standard decoded &rarr;</a>
+          <a href="/glossary/#guardrail-ai">Glossary: Guardrails &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/writing/">&larr; All writing</a><span>&middot;</span>
+        <a href="/writing/feed.xml">RSS</a><span>&middot;</span>
+        <a href="https://www.linkedin.com/in/uchitvyas/" target="_blank" rel="noopener">LinkedIn</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

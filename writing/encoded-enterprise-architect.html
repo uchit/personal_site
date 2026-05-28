@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The encoded enterprise architect — Uchit Vyas</title>
+<meta name="description" content="Why TOGAF is your operating manual, not your job. Architecture principles that aren't encoded in platform defaults or policy-as-code don't exist." />
+<link rel="canonical" href="https://hellouchit.com/writing/encoded-enterprise-architect.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The encoded enterprise architect" />
+<meta property="og:description" content="Architecture principles you don't enforce don't exist. The 2026 EA function is small, federated and mostly invisible." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The encoded enterprise architect","author":{"@type":"Person","name":"Uchit Vyas","url":"https://hellouchit.com/"},"datePublished":"2026-05-28","image":"https://hellouchit.com/images/og-banner.jpg","publisher":{"@type":"Person","name":"Uchit Vyas"},"description":"Architecture principles that aren't encoded in platform defaults or policy-as-code don't exist."}
+</script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="e-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px" aria-label="Breadcrumb">
+        <a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span>
+        <a href="/writing/" style="color:var(--muted)">Writing</a><span style="opacity:.5">/</span>
+        <span style="color:var(--accent)">The encoded enterprise architect</span>
+      </nav>
+      <div class="e-meta"><span><b>Enterprise Architecture</b></span><span>14 min read</span><span>2026</span></div>
+      <h1>The encoded enterprise <em>architect</em>.</h1>
+      <p class="e-dek">
+        Why TOGAF is your operating manual, not your job. <b>Architecture
+        principles that aren&rsquo;t encoded in platform defaults or
+        policy&#8209;as&#8209;code don&rsquo;t exist.</b> The 2026 EA function is small,
+        federated and mostly invisible because the platform enforces what
+        it decided.
+      </p>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <p>
+        I&rsquo;ve spent a decade as the architect in the room where
+        principles get written down. I&rsquo;ve also spent a decade watching
+        those principles ignored by delivery teams that route around the
+        architecture function because routing around is the fastest path.
+      </p>
+
+      <p>
+        That gap &mdash; between the principle on the page and the deploy in
+        production &mdash; is the entire job of the modern EA function. And
+        most EA functions are still solving it with the same instruments
+        we used in 2010: a steering committee, a slide pack, an
+        architecture review board, and a quarterly principle refresh.
+      </p>
+
+      <p>
+        It doesn&rsquo;t work. It hasn&rsquo;t worked at any of the four banks I&rsquo;ve
+        worked inside. It works at exactly two kinds of place: the ones
+        too small to need formal EA, and the ones whose platform team has
+        quietly become the de-facto EA function.
+      </p>
+
+      <h2>What &ldquo;encoded&rdquo; means.</h2>
+
+      <p>
+        An architecture principle is encoded if a deploy that violates it
+        gets blocked, automatically, before a human is involved. Everything
+        else is rhetoric.
+      </p>
+
+      <p>
+        &ldquo;All workloads must use workload identity, not static credentials&rdquo;
+        is a principle. <b>An OPA policy that fails the Terraform plan when
+        a service account key is created</b> is the encoded version of that
+        principle. The principle by itself produces a 70-page document. The
+        encoded version produces a CI build failure with a link to the
+        paved path.
+      </p>
+
+      <p>
+        Some principles are easy to encode. Most of them aren&rsquo;t hard
+        either &mdash; they&rsquo;re uncomfortable, because encoding forces you to
+        be precise about what the principle actually means. &ldquo;Security
+        must be considered at design time&rdquo; isn&rsquo;t encodable. &ldquo;Every
+        service with a public ingress must have a threat model attached
+        to its ADR before merge&rdquo; is.
+      </p>
+
+      <div class="e-callout">
+        <span class="lab">The encoded-architecture test</span>
+        Take your top 10 architecture principles. For each one, ask: what
+        machine check would surface a violation in the next 24 hours?
+        The principles you can&rsquo;t answer that question for are not
+        principles &mdash; they&rsquo;re hopes.
+      </div>
+
+      <h2>TOGAF is a manual, not a mandate.</h2>
+
+      <p>
+        The most common mistake junior EA functions make: treating
+        <a href="https://www.opengroup.org/togaf" target="_blank" rel="noopener">TOGAF</a>
+        as the work product, not the operating manual. The ADM cycle is a
+        reference for the conversation; it&rsquo;s not the conversation
+        itself. The same is true of <a href="https://bian.org/" target="_blank" rel="noopener">BIAN</a>
+        for banking and <a href="https://www.opengroup.org/archimate-forum/archimate-overview" target="_blank" rel="noopener">ArchiMate</a>
+        for modelling.
+      </p>
+
+      <p>
+        These frameworks exist so that you don&rsquo;t have to invent the
+        vocabulary, the artefact set, or the lifecycle. They&rsquo;re cheat
+        codes. Your actual job is to use them &mdash; sparingly, in the parts
+        of the org that need them &mdash; to ship encoded decisions and a
+        capability model.
+      </p>
+
+      <p>
+        Two specific TOGAF artefacts continue to earn their keep in 2026:
+        Architecture Principles (when encoded) and the Architecture
+        Repository (when it&rsquo;s actually populated and searchable). Most
+        of the rest can be replaced by an ADR repo and a living capability
+        model in a tool people open daily.
+      </p>
+
+      <h2>The four moves that change an EA function in a year.</h2>
+
+      <h3>1. Switch from approval to enablement.</h3>
+
+      <p>
+        Approval queues breed resentment; enablement clinics breed
+        adoption. The single highest-leverage change a struggling EA
+        function can make is to replace its weekly &ldquo;design review board&rdquo;
+        with a weekly office-hours clinic where the answer is never
+        &ldquo;no&rdquo; &mdash; it&rsquo;s either &ldquo;here&rsquo;s the template,&rdquo; &ldquo;here&rsquo;s the ADR
+        you should write,&rdquo; or &ldquo;here&rsquo;s the exception process and what
+        it costs you in regulatory risk.&rdquo;
+      </p>
+
+      <p>
+        Boards that block decisions get routed around. Clinics that
+        accelerate decisions get filled.
+      </p>
+
+      <h3>2. Federate by capability, not by project.</h3>
+
+      <p>
+        Central architecture teams scale to about 12 architects before
+        they collapse under their own coordination overhead. Past that,
+        the only stable shape is a small central function (3&ndash;5
+        architects) that owns cross-cutting concerns &mdash; capability model,
+        principles, target-state, vendor strategy &mdash; plus federated
+        architects embedded in the streams that need them most.
+      </p>
+
+      <p>
+        <a href="https://teamtopologies.com/" target="_blank" rel="noopener">Team
+        Topologies</a> calls this an enabling team plus stream-aligned
+        architects. The federation question is always: which streams
+        actually need an architect? Usually it&rsquo;s the 2&ndash;3 most-coupled
+        domains (often payments, identity, and core data) plus any
+        cross-stream initiative whose decisions will be hard to undo later.
+      </p>
+
+      <h3>3. Make ADRs the unit of work.</h3>
+
+      <p>
+        An <a href="https://adr.github.io/" target="_blank" rel="noopener">Architecture
+        Decision Record</a> is a dated, short, durable document that
+        captures one decision: context, options, decision and
+        consequences. The format originated with Michael Nygard. The
+        practice has been around for a decade. Almost nobody in regulated
+        enterprises uses it consistently.
+      </p>
+
+      <p>
+        The discipline change is simple: refuse to discuss an
+        architectural decision that doesn&rsquo;t have a written ADR. If
+        someone brings up a decision verbally, the response is &ldquo;write
+        it up as an ADR; we&rsquo;ll discuss the document.&rdquo; Within a quarter,
+        the decision velocity in the org doubles, because the verbal
+        re-litigation cycle ends.
+      </p>
+
+      <p>
+        ADRs in a repo (versioned, diffable, searchable) survive
+        leadership change. Slide decks die in shared drives.
+      </p>
+
+      <h3>4. Encode the top three principles. Subtract the rest.</h3>
+
+      <p>
+        Pick your top 10 principles. Ask the test above. Encode the top
+        three as policy-as-code (<a href="https://www.openpolicyagent.org/" target="_blank" rel="noopener">OPA</a>,
+        <a href="https://kyverno.io/" target="_blank" rel="noopener">Kyverno</a>),
+        platform defaults (Terraform module choices), or paved-path
+        templates (Backstage scaffolders). Then look at the remaining
+        seven and ask honestly: which of these would the org notice if I
+        deleted them tomorrow?
+      </p>
+
+      <p>
+        The answer for most is &ldquo;none.&rdquo; Those principles aren&rsquo;t
+        enforced and aren&rsquo;t cited. They take up cognitive load and
+        produce no behaviour change. Subtract them. The remaining encoded
+        principles will be cited because every developer hits them
+        weekly.
+      </p>
+
+      <h2>What the encoded EA function looks like.</h2>
+
+      <p>
+        Once these four moves land, the EA function changes shape. It
+        becomes small (3&ndash;5 people centrally + embedded architects).
+        It becomes mostly invisible to delivery teams because the platform
+        enforces what it decided. The principles it writes are short,
+        encoded, and cited. The capability model is a living artefact in a
+        tool people open daily, not a wall-poster from 2022.
+      </p>
+
+      <p>
+        The function&rsquo;s output stops being &ldquo;architecture artefacts&rdquo; and
+        becomes &ldquo;platform behaviour change.&rdquo; You measure it by the same
+        things you measure platform engineering by: time-to-first-audited-deploy,
+        change-fail rate, time-from-decision-to-implementation, and the
+        percent of services that inherit your principles by default
+        rather than opting in.
+      </p>
+
+      <p>
+        The Chief Architect, in this model, becomes the person who can
+        articulate <b>which substrate investment buys the next compound
+        gain</b> across all four disciplines &mdash; not the person who chairs
+        the design review board.
+      </p>
+
+      <h2>The 2026 version of the job.</h2>
+
+      <p>
+        Two forces have pulled the rug out from under the traditional EA
+        function this year. The first is the EU AI Act and its peers,
+        which make &ldquo;decisions about AI systems&rdquo; legally consequential
+        in a way they weren&rsquo;t a year ago &mdash; and which the EA function is
+        nominally responsible for. The second is the rise of platform
+        engineering as a discipline serious enough to absorb most of what
+        EA used to claim ownership of (paved paths, principles encoded as
+        templates, observability defaults, IAM patterns).
+      </p>
+
+      <p>
+        Both pressures push the EA function toward the same place:
+        smaller, more federated, more substrate-aligned, more legibly
+        accountable for compound outcomes than for individual artefacts.
+        Architecture principles that aren&rsquo;t encoded don&rsquo;t exist.
+        Architecture functions that don&rsquo;t encode don&rsquo;t last.
+      </p>
+
+      <p>
+        It&rsquo;s also the most enjoyable shape the function has had in a
+        decade. The work moves from writing about systems to changing how
+        systems get built. The deliverable changes from a slide deck to a
+        merged PR.
+      </p>
+
+      <p>
+        That is the job worth doing.
+      </p>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+          <a href="/tools/ea-operating-model.html">EA Operating Model Diagnostic &rarr;</a>
+          <a href="/tools/platform-engineering.html">Platform Engineering Readiness &rarr;</a>
+          <a href="/glossary/#adr-architecture-decision-record">Glossary: ADR &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span>
+        <span>&middot;</span>
+        <a href="/writing/">&larr; All writing</a>
+        <span>&middot;</span>
+        <a href="/writing/feed.xml">RSS</a>
+        <span>&middot;</span>
+        <a href="https://www.linkedin.com/in/uchitvyas/" target="_blank" rel="noopener">LinkedIn</a>
+        <span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

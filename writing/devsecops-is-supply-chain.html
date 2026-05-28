@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DevSecOps stopped being about Sec. It's about supply chain. — Uchit Vyas</title>
+<meta name="description" content="Post-XZ Utils, post-Snowflake, post-Polyfill: the highest-leverage security work in 2026 is provenance, workload identity, SBOM-to-owner alerting and signed build pipelines." />
+<link rel="canonical" href="https://hellouchit.com/writing/devsecops-is-supply-chain.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="DevSecOps stopped being about Sec. It's about supply chain." />
+<meta property="og:description" content="Post-XZ Utils. Post-Snowflake. The vendor markets haven't caught up to where the work moved." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="e-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/writing/" style="color:var(--muted)">Writing</a><span style="opacity:.5">/</span><span style="color:var(--accent)">DevSecOps is supply chain</span></nav>
+      <div class="e-meta"><span><b>DevSecOps</b></span><span>12 min read</span><span>2026</span></div>
+      <h1>DevSecOps stopped being about Sec. It&rsquo;s about <em>supply chain</em>.</h1>
+      <p class="e-dek">
+        Post&#8209;XZ Utils. Post&#8209;Snowflake. Post&#8209;Polyfill. Post&#8209;CrowdStrike.
+        The highest&#8209;leverage security work in 2026 is provenance,
+        workload identity, SBOM&#8209;to&#8209;owner alerting and signed build
+        pipelines. <b>The vendor markets haven&rsquo;t caught up to where the
+        work moved.</b>
+      </p>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <p>
+        I&rsquo;ve sat through four DevSecOps roadmaps in the last 18 months
+        whose top-three line items were: SAST consolidation, DAST coverage,
+        container-image scanning. All necessary work. None of them protect
+        you from the actual incidents that landed in 2024.
+      </p>
+
+      <p>
+        XZ Utils was a multi-year social-engineering campaign that placed a
+        backdoor in one of the most common Linux utilities. Snowflake had
+        100+ customer breaches from a single credential-stuffing campaign
+        against accounts without MFA. Polyfill.io poisoned thousands of
+        sites via a CDN takeover. CrowdStrike took down 8.5 million
+        Windows systems via a content-update rollout failure. <a href="https://en.wikipedia.org/wiki/2024_CrowdStrike_incident" target="_blank" rel="noopener">Delta
+        Air Lines alone</a> put losses at $500M.
+      </p>
+
+      <p>
+        None of those incidents are findings on a SAST report. They&rsquo;re
+        all supply-chain incidents. <b>Your CVE count went down. Your blast
+        radius went up.</b>
+      </p>
+
+      <h2>What &ldquo;supply chain&rdquo; actually means in 2026.</h2>
+
+      <p>
+        Five distinct attack surfaces, none of which are the application
+        code you wrote:
+      </p>
+
+      <ol>
+        <li><b>Third-party code.</b> Open-source dependencies, their
+        transitive dependencies, the maintainers&rsquo; accounts (XZ).</li>
+        <li><b>Build infrastructure.</b> CI runners, package registries,
+        artefact stores (Codecov, Codespaces, SolarWinds).</li>
+        <li><b>Runtime SaaS.</b> Identity providers, observability vendors,
+        data warehouses, CDNs (Okta, Snowflake, Polyfill, CrowdStrike).</li>
+        <li><b>Model supply chain.</b> Model weights, model providers,
+        model gateway routes (new class &mdash; the failure modes are
+        emerging now).</li>
+        <li><b>Data supply chain.</b> Upstream data feeds whose poisoning
+        propagates downstream (the AI-era version of the cache-poisoning
+        problem).</li>
+      </ol>
+
+      <p>
+        Of these, your SAST tool covers a thin slice of #1. Your DAST
+        covers nothing on this list. Your container scanner covers part of
+        #1 and a bit of #2.
+      </p>
+
+      <p>
+        <b>The market still sells you 2018&rsquo;s problem.</b>
+      </p>
+
+      <h2>The four moves that actually reduce blast radius.</h2>
+
+      <h3>1. Workload identity. Eliminate static credentials.</h3>
+
+      <p>
+        Snowflake didn&rsquo;t happen because of zero-days. It happened because
+        thousands of static credentials with no MFA were sitting in
+        environments that pulled them at runtime. <b>The credential is the
+        vulnerability.</b>
+      </p>
+
+      <p>
+        Workload identity (OIDC, IAM Roles for Service Accounts,
+        <a href="https://spiffe.io/" target="_blank" rel="noopener">SPIFFE/SPIRE</a>,
+        <a href="https://github.blog/security/application-security/oidc-trust-relationships-and-dynamic-secrets/" target="_blank" rel="noopener">GitHub
+        OIDC</a>) replaces the static credential with a short-lived,
+        identity-bound token issued at runtime. The token can&rsquo;t be
+        exfiltrated to a workshop, because it&rsquo;s 15 minutes old and bound
+        to the workload that requested it.
+      </p>
+
+      <p>
+        This is the single highest-leverage 2026 security move. Almost
+        nobody&rsquo;s DevSecOps roadmap names it.
+      </p>
+
+      <h3>2. Signed provenance. Adopt SLSA L3+.</h3>
+
+      <p>
+        Post-XZ, the question &ldquo;is this artefact what its author intended
+        to publish?&rdquo; became existential.
+        <a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">SLSA v1.0</a>
+        defines levels of build-provenance assurance. L1 is having a
+        provenance file. L3 is having tamper-resistant build hosts whose
+        provenance can be verified at deploy time.
+      </p>
+
+      <p>
+        <a href="https://github.com/sigstore/cosign" target="_blank" rel="noopener">Sigstore
+        Cosign</a> and <a href="https://www.in-toto.io/" target="_blank" rel="noopener">in-toto
+        attestations</a> made this practical for OSS-grade signing in 2024.
+        GitHub Artifact Attestations and Google Cloud Build attestations
+        ship in-platform. Most enterprises haven&rsquo;t even started.
+      </p>
+
+      <h3>3. SBOM &mdash; with an owner alert path.</h3>
+
+      <p>
+        SBOMs without an owner-alert path are shelfware. The
+        <a href="https://www.cisa.gov/secure-software-attestation-form" target="_blank" rel="noopener">CISA
+        self-attestation form</a> made SBOMs contractually required for
+        US federal procurement; the
+        <a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act" target="_blank" rel="noopener">EU
+        Cyber Resilience Act</a> extends this to every vendor selling
+        digital products into the EU.
+      </p>
+
+      <p>
+        The control: emit an SBOM (<a href="https://cyclonedx.org/" target="_blank" rel="noopener">CycloneDX</a>
+        or <a href="https://spdx.dev/" target="_blank" rel="noopener">SPDX</a>)
+        per artefact build, store it in a queryable graph
+        (<a href="https://guac.sh/" target="_blank" rel="noopener">GUAC</a>,
+        <a href="https://dependencytrack.org/" target="_blank" rel="noopener">OWASP
+        Dependency-Track</a>), and wire <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA
+        KEV</a> + <a href="https://github.com/advisories" target="_blank" rel="noopener">GitHub
+        Advisory Database</a> alerts to the service owner &mdash; not to a
+        central security inbox.
+      </p>
+
+      <h3>4. Policy-as-code at deploy time.</h3>
+
+      <p>
+        Policy that lives in a PDF doesn&rsquo;t enforce. Policy-as-code does.
+        <a href="https://www.openpolicyagent.org/" target="_blank" rel="noopener">Open
+        Policy Agent</a> and <a href="https://kyverno.io/" target="_blank" rel="noopener">Kyverno</a>
+        are the two most widely-adopted engines. Start narrow (no public
+        S3 buckets; images must be signed; deploys to prod require signed
+        provenance) and ratchet.
+      </p>
+
+      <p>
+        Policy-as-code is what closes the loop. Without it, a SBOM finds
+        the vulnerability, the team triages it, somebody forgets to
+        update the deploy template, and three months later the same
+        version ships again. With it, the deploy fails until the version
+        is updated. The human is out of the loop on enforcement, which is
+        where they should be.
+      </p>
+
+      <h2>Why the vendor market hasn&rsquo;t caught up.</h2>
+
+      <p>
+        Two reasons.
+      </p>
+
+      <p>
+        First, the AppSec vendor category is 15 years old and most of its
+        revenue comes from SAST/DAST/SCA licences. Pivoting to supply
+        chain means cannibalising the existing book. The market follows
+        the customers who can write the next renewal, not the customers
+        whose next breach matters.
+      </p>
+
+      <p>
+        Second, supply-chain controls are <b>platform-engineering work</b>
+        not security-team work. They&rsquo;re changes to build infrastructure,
+        runtime identity, deploy gates &mdash; not appliances that plug into
+        the SIEM. The security tools are mostly waiting for platform teams
+        to ask for them. Platform teams are mostly waiting for clearer
+        regulatory pressure. The regulatory pressure (CISA, EU CRA, DORA)
+        is now here.
+      </p>
+
+      <h2>Where the regulatory floor sits now.</h2>
+
+      <p>
+        Four concurrent shifts moved DevSecOps&rsquo;s baseline in the last
+        12 months:
+      </p>
+
+      <ul>
+        <li><b>EU DORA</b> applies from <b>17 Jan 2025</b>. ICT-risk and
+        third-party-risk obligations for EU financial entities make
+        supply-chain controls auditable.</li>
+        <li><b>CISA Secure Software Self-Attestation</b> is now a
+        precondition for selling software to US federal agencies. SBOM +
+        SSDF attestation is in every RFP.</li>
+        <li><b>EU CRA</b> is finalised; transition period ends 2027.
+        Product-liability for digital products with security defects.
+        Applies to every vendor selling into the EU &mdash; not just EU
+        vendors.</li>
+        <li><b>APRA CPS 230</b> (Australia, eff. 1 Jul 2025) names
+        third-party operational risk as material; supply-chain controls
+        are testable obligations.</li>
+      </ul>
+
+      <p>
+        Whether or not your roadmap mentions supply chain, your auditor&rsquo;s
+        already does.
+      </p>
+
+      <h2>The honest sequencing.</h2>
+
+      <p>
+        If you have an existing DevSecOps programme and want to update it,
+        the sequence is:
+      </p>
+
+      <ol>
+        <li>Identify static-credential surface area; pick one critical
+        pipeline; migrate to workload identity. Document the pattern.</li>
+        <li>Start emitting SBOMs per artefact. Pick a graph store. Wire
+        CISA KEV alerts to service owners.</li>
+        <li>Add policy-as-code for one class of deploy-blocking rule.
+        Public-S3 bucket and unsigned-image are the usual starters.</li>
+        <li>Adopt SLSA L3+ on the highest-blast-radius services. Verify
+        provenance at deploy.</li>
+        <li>Now go back and consolidate SAST/DAST. Treat as hygiene, not
+        the headline.</li>
+      </ol>
+
+      <p>
+        Run the <a href="/tools/devsecops-maturity.html">DevSecOps Maturity
+        Diagnostic</a> to see where your programme sits today. The
+        capability breakdown will surface whether the gap is the
+        traditional AppSec stack or the supply-chain stack &mdash; usually,
+        in 2026, it&rsquo;s the latter.
+      </p>
+
+      <p>
+        The shift from &ldquo;Sec&rdquo; to &ldquo;Supply Chain&rdquo; doesn&rsquo;t make the
+        security team smaller. It makes the platform team bigger and the
+        security team more strategic. That&rsquo;s the right end-state. Your
+        2026 roadmap should reflect it.
+      </p>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/tools/devsecops-maturity.html">DevSecOps Maturity Diagnostic &rarr;</a>
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+          <a href="/glossary/#slsa-supply-chain-levels-for-software-artefacts">Glossary: SLSA &rarr;</a>
+          <a href="/glossary/#workload-identity">Glossary: Workload Identity &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/writing/">&larr; All writing</a><span>&middot;</span>
+        <a href="/writing/feed.xml">RSS</a><span>&middot;</span>
+        <a href="https://www.linkedin.com/in/uchitvyas/" target="_blank" rel="noopener">LinkedIn</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

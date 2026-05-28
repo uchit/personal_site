@@ -1,0 +1,127 @@
+/* essay.css — shared layout for /writing/<slug>.html long-form essays */
+
+.e-hero {
+  padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px);
+}
+.e-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .12em; color: var(--faint); text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.e-meta b { color: var(--accent); font-weight: 500; }
+.e-hero h1 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+  letter-spacing: -.02em; max-width: 22ch;
+}
+.e-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.e-dek {
+  margin-top: 22px; font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.55; color: var(--ink); max-width: 56ch; font-weight: 300;
+}
+.e-dek b { color: var(--accent); font-weight: 500; }
+
+.e-body {
+  max-width: 680px; margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) 0 clamp(64px, 8vw, 96px);
+  font-size: 17.5px; line-height: 1.75; color: var(--muted);
+}
+.e-body p { margin-bottom: 1.3em; }
+.e-body p b, .e-body p strong { color: var(--ink); font-weight: 500; }
+.e-body p em { font-style: italic; color: var(--accent); }
+.e-body a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: background .25s; }
+.e-body a:hover { background: var(--accent-soft); }
+.e-body h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 38px); line-height: 1.1;
+  letter-spacing: -.015em; color: var(--ink);
+  margin: 2em 0 .6em;
+}
+.e-body h2 em { font-style: italic; color: var(--accent); }
+.e-body h3 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 28px); line-height: 1.15;
+  letter-spacing: -.01em; color: var(--ink);
+  margin: 1.6em 0 .5em;
+}
+.e-body ul, .e-body ol { margin: 0 0 1.3em 0; padding-left: 0; list-style: none; }
+.e-body ul li, .e-body ol li {
+  position: relative; padding-left: 28px; margin-bottom: .55em;
+}
+.e-body ul li::before {
+  content: ""; position: absolute; left: 4px; top: 14px;
+  width: 12px; height: 1px; background: var(--accent);
+}
+.e-body ol { counter-reset: ol; }
+.e-body ol li { counter-increment: ol; }
+.e-body ol li::before {
+  content: counter(ol, decimal-leading-zero);
+  position: absolute; left: 0; top: 4px;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
+  color: var(--accent); letter-spacing: .12em;
+}
+.e-body blockquote {
+  margin: 1.6em 0; padding: 4px 0 4px 24px;
+  border-left: 1px solid var(--accent);
+  font-family: "Fraunces", serif; font-style: italic; font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 24px); line-height: 1.4; color: var(--ink);
+  max-width: 28em;
+}
+.e-body code, .e-body kbd {
+  font-family: "IBM Plex Mono", monospace; font-size: .92em;
+  background: rgba(255,255,255,.04); padding: 1px 6px; border-radius: 4px;
+  color: var(--ink);
+}
+.e-body figure {
+  margin: 2em 0; padding: 24px 24px 18px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(255,255,255,.012);
+}
+.e-body figcaption {
+  margin-top: 12px; font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px; color: var(--faint); letter-spacing: .04em;
+}
+.e-callout {
+  margin: 2em 0; padding: 22px 26px;
+  border-left: 2px solid var(--accent);
+  background: rgba(217,151,87,.05);
+  border-radius: 0 8px 8px 0;
+  color: var(--ink);
+}
+.e-callout .lab {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 8px;
+}
+
+.e-foot {
+  border-top: 1px solid var(--line);
+  padding: clamp(40px, 5vw, 64px) 0;
+  font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+  color: var(--muted); letter-spacing: .04em;
+}
+.e-foot .row {
+  display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center;
+}
+.e-foot a {
+  color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px;
+}
+.e-related {
+  margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line);
+}
+.e-related h3 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: 22px; margin-bottom: 14px;
+}
+.e-related .row a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 14px; border: 1px solid var(--line);
+  border-radius: 8px; color: var(--ink);
+  font-family: "IBM Plex Sans", sans-serif; font-size: 13.5px;
+  border-bottom: 1px solid var(--line);
+  transition: border-color .2s, background .2s;
+}
+.e-related .row a:hover {
+  border-color: var(--accent); background: var(--accent-soft);
+}
