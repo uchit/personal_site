@@ -1,4 +1,8 @@
-# The OSS repo content lives in oss-projects/<name>/ as a separate repo
-# that will be pushed to its own GitHub repository. Don't include it
-# inside this hellouchit.com Pages deploy.
+# OSS repo lives in its own GitHub repo, not in this Pages deploy
 oss-projects/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+**/.DS_Store
+**/Thumbs.db
