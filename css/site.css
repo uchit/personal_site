@@ -775,88 +775,63 @@ html.js .reveal.in { opacity: 1; transform: none; }
   font-weight: 300; max-width: 56ch;
 }
 
-.ct-grid {
-  margin-top: clamp(40px, 5vw, 64px);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--line);
+/* Icons-only row. Each icon shows a tooltip on hover/focus. */
+.ct-icons {
+  margin-top: clamp(36px, 5vw, 56px);
+  display: flex;
+  gap: clamp(14px, 2vw, 22px);
+  flex-wrap: wrap;
 }
-.ct-line {
+.ct-ico {
   position: relative;
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: center;
-  gap: 22px;
-  padding: 26px 4px;
-  border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  color: var(--ink);
-  text-decoration: none;
-  transition: background .2s, padding .25s var(--ease);
-}
-.ct-line:nth-child(2n) { border-right: none; padding-left: 24px; }
-.ct-line:nth-child(2n+1) { padding-right: 24px; }
-.ct-line:hover { background: rgba(217,151,87,.04); padding-left: 12px; }
-.ct-line:nth-child(2n):hover { padding-left: 36px; }
-
-.ct-ic {
-  width: 44px; height: 44px;
+  width: 64px; height: 64px;
   display: inline-flex; align-items: center; justify-content: center;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 14px;
   color: var(--ink);
   background: var(--surface);
+  text-decoration: none;
   transition: border-color .25s, color .25s, background .25s, transform .25s var(--ease);
-  flex: 0 0 auto;
+  -webkit-tap-highlight-color: rgba(217,151,87,.18);
 }
-.ct-ic svg { width: 22px; height: 22px; display: block; }
-.ct-line:hover .ct-ic {
+.ct-ico svg { width: 26px; height: 26px; display: block; }
+.ct-ico:hover, .ct-ico:focus-visible {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(217,151,87,.08);
-  transform: rotate(-2deg);
+  transform: translateY(-2px);
+  outline: none;
 }
-
-.ct-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.ct-line .ct-v {
-  font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(18px, 1.7vw, 22px); line-height: 1.2;
-  letter-spacing: -.01em; color: var(--ink);
-}
-.ct-line .ct-sub {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 11.5px; letter-spacing: .08em; color: var(--muted);
-  word-break: break-word;
-}
-.ct-line .ct-arr {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 18px; color: var(--faint);
-  transition: color .2s, transform .25s var(--ease);
-}
-.ct-line:hover .ct-arr { color: var(--accent); transform: translateX(4px); }
-
-.ct-primary .ct-v { color: var(--accent); }
-.ct-primary .ct-ic {
+.ct-ico.ct-primary {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(217,151,87,.08);
 }
 
-@media (max-width: 720px) {
-  .ct-grid { grid-template-columns: 1fr; }
-  .ct-line, .ct-line:nth-child(2n), .ct-line:nth-child(2n+1) {
-    grid-template-columns: 44px 1fr auto;
-    border-right: none;
-    padding: 22px 4px;
-    gap: 16px;
-  }
-  .ct-line .ct-v { font-size: 18px; }
-  .ct-line .ct-sub { font-size: 11px; }
-  .ct-line:hover { padding-left: 12px; }
-  .ct-line:nth-child(2n):hover { padding-left: 12px; }
-  .ct-ic { width: 40px; height: 40px; }
-  .ct-ic svg { width: 20px; height: 20px; }
+/* Tooltip on hover/focus — pure CSS, no JS. */
+.ct-ico::after {
+  content: attr(data-tip);
+  position: absolute; left: 50%; bottom: calc(100% + 10px);
+  transform: translate(-50%, 4px);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent);
+  background: #0c0d10;
+  border: 1px solid var(--line-strong);
+  padding: 6px 10px; border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s, transform .18s var(--ease);
+}
+.ct-ico:hover::after, .ct-ico:focus-visible::after {
+  opacity: 1; transform: translate(-50%, 0);
+}
+
+@media (max-width: 480px) {
+  .ct-ico { width: 56px; height: 56px; border-radius: 12px; }
+  .ct-ico svg { width: 24px; height: 24px; }
+  /* On touch, tooltip can't be hover-triggered reliably — hide it. */
+  .ct-ico::after { display: none; }
 }
 
 /* ============================================================
