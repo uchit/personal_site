@@ -47,6 +47,7 @@
     { t: "opa-nist-ai-rmf (OSS · GitHub)", u: "https://github.com/uchit/opa-nist-ai-rmf", g: "Pages", ic: "★" },
     { t: "Glossary",                      u: "/glossary/",   g: "Reference", ic: "≡" },
     { t: "Anti-patterns — 15 named failure modes", u: "/anti-patterns/", g: "Reference", ic: "✗" },
+    { t: "Reading list — what to reach for when", u: "/reading/", g: "Reference", ic: "❒" },
     { t: "Maturity tiers — where you actually are", u: "/maturity/", g: "Reference", ic: "▲" },
     { t: "Maturity · DevSecOps Repeatable (tier 2)", u: "/maturity/devsecops-repeatable.html", g: "Reference", ic: "◈" },
     { t: "Maturity · GenAI Piloting (tier 2)", u: "/maturity/genai-piloting.html", g: "Reference", ic: "◇" },

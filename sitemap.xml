@@ -70,4 +70,7 @@
   <url><loc>https://hellouchit.com/maturity/platform-eng-emerging.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/maturity/ea-consultative.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/maturity/sre-operational.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- Reading list -->
+  <url><loc>https://hellouchit.com/reading/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 </urlset>
