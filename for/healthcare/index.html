@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Healthcare &amp; Life Sciences &mdash; Uchit Vyas</title>
+<meta name="description" content="For healthcare and life sciences: diagnostics, reference architectures and essays sized for HIPAA, the Australian Privacy Act + Notifiable Data Breaches, FDA Software-as-a-Medical-Device, and EU AI Act high-risk healthcare uses." />
+<link rel="canonical" href="https://hellouchit.com/for/healthcare/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="For Healthcare &amp; Life Sciences &mdash; Uchit Vyas" />
+<meta property="og:description" content="Diagnostics and RAs for HIPAA, AU Privacy Act, FDA SaMD, EU AI Act high-risk healthcare." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .s-hero { padding: clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px); }
+  .s-hero .eyebrow { font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.22em; color:var(--accent); text-transform:uppercase; }
+  .s-hero h1 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(40px,6vw,72px); line-height:1.02; letter-spacing:-.02em; margin-top:14px; max-width:24ch; }
+  .s-hero h1 em { font-style:italic; color:var(--accent); }
+  .s-hero .dek { margin-top:20px; color:var(--ink); font-size:clamp(17px,1.5vw,21px); line-height:1.55; max-width:62ch; font-weight:300; }
+  .s-hero .dek b { color:var(--accent); font-weight:500; }
+  .s-regs { margin-top:32px; padding:22px 26px; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); }
+  .s-regs h3 { font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.22em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+  .s-regs ul { margin:0; padding-left:18px; color:var(--muted); font-size:14.5px; line-height:1.85; }
+  .s-regs ul li b { color:var(--ink); font-weight:500; }
+  .s-sect { padding: clamp(40px,5vw,64px) 0; border-top:1px solid var(--line); }
+  .s-sect h2 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(28px,3.6vw,40px); line-height:1.08; letter-spacing:-.015em; max-width:24ch; margin-bottom:14px; }
+  .s-sect h2 em { font-style:italic; color:var(--accent); }
+  .s-sect .lead { color:var(--muted); font-size:15.5px; line-height:1.75; max-width:62ch; margin-bottom:28px; }
+  .s-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .s-card { display:block; padding:22px; border:1px solid var(--line); border-radius:12px; background:var(--surface); text-decoration:none; transition:border-color .15s,transform .15s; }
+  .s-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .s-card .ctx { font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:10px; display:block; }
+  .s-card h4 { font-family:"Fraunces",serif; font-weight:500; font-size:18px; line-height:1.25; color:var(--ink); margin-bottom:8px; }
+  .s-card p { color:var(--muted); font-size:13.5px; line-height:1.65; margin:0; }
+  .s-card .arr { font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--accent); margin-top:12px; display:inline-block; letter-spacing:.05em; }
+  .s-call { padding:clamp(60px,8vw,100px) 0; text-align:center; border-top:1px solid var(--line); }
+  .s-call h3 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3vw,32px); line-height:1.2; margin-bottom:14px; }
+  .s-call h3 em { font-style:italic; color:var(--accent); }
+  .s-call p { color:var(--muted); font-size:15px; line-height:1.7; max-width:54ch; margin:0 auto 28px; }
+  .s-call a.cta { display:inline-block; padding:14px 28px; border:1px solid var(--line-strong); border-radius:999px; color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; }
+  .s-call a.cta:hover { border-color:var(--accent); color:var(--accent); }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="s-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/for/" style="color:var(--muted)">For</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Healthcare</span></nav>
+      <span class="eyebrow">For Healthcare &amp; Life Sciences</span>
+      <h1>Healthcare tech that <em>earns</em> patient trust.</h1>
+      <p class="dek"><b>The patient data and the AI decisions both have to be defensible</b>. HIPAA and the AU Privacy Act define the data floor; FDA Software-as-a-Medical-Device and the EU AI Act high-risk obligations define the AI floor. The substrate (identity, audit, evals, lineage) is what makes both checkable rather than aspirational.</p>
+      <div class="s-regs">
+        <h3>The regulatory floor &mdash; healthcare</h3>
+        <ul><li><b>HIPAA</b> Security Rule &middot; PHI handling, audit logs, access controls (US)</li>
+<li><b>AU Privacy Act</b> + Notifiable Data Breaches scheme &middot; 30-day breach notification</li>
+<li><b>FDA Software-as-a-Medical-Device (SaMD)</b> &middot; pre-market submission + post-market surveillance for clinical AI</li>
+<li><b>EU AI Act</b> &middot; healthcare is largely high-risk (Annex III) &middot; 2 Aug 2026 enforcement</li>
+<li><b>ISO 13485</b> + IEC 62304 &middot; medical-device QMS + software lifecycle</li>
+<li><b>NIST AI RMF + GenAI Profile</b> &middot; the risk vocabulary clinicians + boards will recognise</li></ul>
+      </div>
+    </div></section>
+
+    <!-- Run first -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Run <em>first</em>.</h2>
+      <p class="lead">The two diagnostics that surface the most healthcare-specific exposure. Each takes 2&ndash;4 minutes; results are shareable via URL hash; nothing is stored.</p>
+      <div class="s-cards"><a class="s-card" href="/tools/genai-readiness.html"><span class="ctx">Diagnostic</span><h4>GenAI Readiness</h4><p>If you&rsquo;re shipping a clinical-decision-support or admin-automation use-case, this is the readiness check. EU AI Act high-risk shape baked in.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/tools/devsecops-maturity.html"><span class="ctx">Diagnostic</span><h4>DevSecOps Maturity</h4><p>HIPAA audit trail + AU Notifiable Data Breaches both reduce to whether your supply-chain, identity and observability are real.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Reference architectures -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Reference <em>architectures</em>.</h2>
+      <p class="lead">Opinionated paved-paths sized for healthcare constraints &mdash; data residency, audit, supply-chain attestation, change-control.</p>
+      <div class="s-cards"><a class="s-card" href="/reference-architectures/regulated-genai-platform.html"><span class="ctx">Reference architecture</span><h4>Regulated GenAI Platform</h4><p>Per-decision audit, prompt registry, signed evidence pack. Sized for clinical-decision-support and high-risk patient-data contexts.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/reference-architectures/modern-data-platform.html"><span class="ctx">Reference architecture</span><h4>Modern Data Platform</h4><p>Lineage + contracts + access controls. The substrate for de-identification and consent-aware pipelines.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/reference-architectures/devsecops-paved-path.html"><span class="ctx">Reference architecture</span><h4>DevSecOps SLSA L3+ Paved Path</h4><p>Build provenance + signed images for SaMD post-market integrity; SBOM-to-owner alert for vulnerability response SLAs.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Stuck-tier -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Where healthcare teams typically <em>get stuck</em>.</h2>
+      <p class="lead">The most-common Tier 2 stuck-points in this sector, with the three substrate moves to the next tier.</p>
+      <div class="s-cards"><a class="s-card" href="/maturity/genai-piloting.html"><span class="ctx">Stuck tier</span><h4>GenAI &mdash; Piloting</h4><p>The most common stuck-point in clinical AI pilots. Three moves: prompt registry + eval-gated CI, adversarial-tested guardrails, per-decision audit pipeline.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/maturity/devsecops-repeatable.html"><span class="ctx">Stuck tier</span><h4>DevSecOps &mdash; Repeatable</h4><p>Where most healthcare orgs sit. Three moves: workload identity, SBOM owner-loop, policy-as-code admission.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/maturity/cloud-cost-aware.html"><span class="ctx">Stuck tier</span><h4>Cloud Cost &mdash; Aware</h4><p>Imaging + genomics drives bill into the millions/quarter. Three moves: per-service cost in dev view, quarterly commitment review, named owner per service spend.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Writing -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Read <em>next</em>.</h2>
+      <p class="lead">The essays and reference content that go furthest in healthcare conversations.</p>
+      <div class="s-cards"><a class="s-card" href="/writing/genai-9-controls.html"><span class="ctx">Essay</span><h4>The nine controls that make GenAI defensible</h4><p>The operational distillation &mdash; mapped to NIST AI RMF + ISO 42001. Read before the first clinician-facing pilot.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/writing/au-ai-safety-decoded.html"><span class="ctx">Essay</span><h4>AU AI Safety Standard decoded</h4><p>The voluntary-today / mandate-trajectory framing matters for healthcare especially &mdash; this is where the standard will land first.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/state-of-2026/"><span class="ctx">Annual report</span><h4>State of Enterprise Tech in Regulated Industries 2026</h4><p>Board-ready briefing &mdash; healthcare data + GenAI sections.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Anti-patterns -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Common <em>anti-patterns</em> in healthcare.</h2>
+      <p class="lead">The named failure modes that show up most across healthcare engagements. The catalogue has all 15; these four are the ones that recur here.</p>
+      <div class="s-cards"><a class="s-card" href="/anti-patterns/#inline-prompt-pattern"><span class="ctx">Anti-pattern</span><h4>Inline Prompt Pattern</h4><p>Hard-coded prompts in clinical apps. Cannot be audited; cannot evidence the EU AI Act Article 12 logging obligation.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#eval-set-never-runs"><span class="ctx">Anti-pattern</span><h4>Eval Set That Never Runs</h4><p>Clinical-safety regressions ship to prod silently.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#vault-theatre"><span class="ctx">Anti-pattern</span><h4>Vault Theatre</h4><p>PHI-handling apps with static creds. HIPAA audit triggers; AU Privacy Act risk surface.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#sbom-shelfware"><span class="ctx">Anti-pattern</span><h4>SBOM Shelfware</h4><p>FDA SaMD post-market surveillance demands the loop; without it, vulnerability response SLAs slip.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <section class="s-call"><div class="wrap">
+      <h3>Working on this in <em>Healthcare &amp; Life Sciences</em>?</h3>
+      <p>If you&rsquo;re building a clinical-decision-support feature, hardening for HIPAA or AU Notifiable Data Breaches, or preparing for EU AI Act high-risk obligations &mdash; I work with engineering + clinical-safety + compliance partners to ship audit-ready substrate.</p>
+      <a class="cta" href="/how-i-work/">How I work &rarr;</a>
+      &nbsp;&nbsp;
+      <a class="cta" href="mailto:contact@hellouchit.com" style="border-color:var(--accent);color:var(--accent)">contact@hellouchit.com &rarr;</a>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/for/">All sectors</a> &middot; <a href="/tools/">Diagnostics</a> &middot; <a href="/reference-architectures/">Architectures</a></span>
+  </div></footer>
+</body>
+</html>

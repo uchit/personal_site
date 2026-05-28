@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Banks &amp; Financial Services &mdash; Uchit Vyas</title>
+<meta name="description" content="For banks and financial services: the diagnostics, reference architectures, anti-patterns and essays sized for APRA CPS 230/234, EU DORA, and the EU AI Act high-risk obligations." />
+<link rel="canonical" href="https://hellouchit.com/for/banks/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="For Banks &amp; Financial Services &mdash; Uchit Vyas" />
+<meta property="og:description" content="Diagnostics, reference architectures and essays for APRA CPS 230/234, EU DORA, EU AI Act in banking." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .s-hero { padding: clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px); }
+  .s-hero .eyebrow { font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.22em; color:var(--accent); text-transform:uppercase; }
+  .s-hero h1 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(40px,6vw,72px); line-height:1.02; letter-spacing:-.02em; margin-top:14px; max-width:24ch; }
+  .s-hero h1 em { font-style:italic; color:var(--accent); }
+  .s-hero .dek { margin-top:20px; color:var(--ink); font-size:clamp(17px,1.5vw,21px); line-height:1.55; max-width:62ch; font-weight:300; }
+  .s-hero .dek b { color:var(--accent); font-weight:500; }
+  .s-regs { margin-top:32px; padding:22px 26px; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); }
+  .s-regs h3 { font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.22em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+  .s-regs ul { margin:0; padding-left:18px; color:var(--muted); font-size:14.5px; line-height:1.85; }
+  .s-regs ul li b { color:var(--ink); font-weight:500; }
+  .s-sect { padding: clamp(40px,5vw,64px) 0; border-top:1px solid var(--line); }
+  .s-sect h2 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(28px,3.6vw,40px); line-height:1.08; letter-spacing:-.015em; max-width:24ch; margin-bottom:14px; }
+  .s-sect h2 em { font-style:italic; color:var(--accent); }
+  .s-sect .lead { color:var(--muted); font-size:15.5px; line-height:1.75; max-width:62ch; margin-bottom:28px; }
+  .s-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .s-card { display:block; padding:22px; border:1px solid var(--line); border-radius:12px; background:var(--surface); text-decoration:none; transition:border-color .15s,transform .15s; }
+  .s-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .s-card .ctx { font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:10px; display:block; }
+  .s-card h4 { font-family:"Fraunces",serif; font-weight:500; font-size:18px; line-height:1.25; color:var(--ink); margin-bottom:8px; }
+  .s-card p { color:var(--muted); font-size:13.5px; line-height:1.65; margin:0; }
+  .s-card .arr { font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--accent); margin-top:12px; display:inline-block; letter-spacing:.05em; }
+  .s-call { padding:clamp(60px,8vw,100px) 0; text-align:center; border-top:1px solid var(--line); }
+  .s-call h3 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3vw,32px); line-height:1.2; margin-bottom:14px; }
+  .s-call h3 em { font-style:italic; color:var(--accent); }
+  .s-call p { color:var(--muted); font-size:15px; line-height:1.7; max-width:54ch; margin:0 auto 28px; }
+  .s-call a.cta { display:inline-block; padding:14px 28px; border:1px solid var(--line-strong); border-radius:999px; color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; }
+  .s-call a.cta:hover { border-color:var(--accent); color:var(--accent); }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="s-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/for/" style="color:var(--muted)">For</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Banks</span></nav>
+      <span class="eyebrow">For Banks &amp; Financial Services</span>
+      <h1>Where banks are <em>stuck</em>, and the moves.</h1>
+      <p class="dek"><b>The substrate is the differentiator now</b>. Core modernisation, GenAI in customer journeys, supply-chain attestation, EU DORA operational resilience &mdash; the work is no longer about picking vendors. It&rsquo;s about whether identity, observability, policy-as-code and audit are encoded properties of the platform, or theatre.</p>
+      <div class="s-regs">
+        <h3>The regulatory floor &mdash; banking</h3>
+        <ul><li><b>APRA CPS 230</b> (operational risk management) &middot; live in AU FS</li>
+<li><b>APRA CPS 234</b> (information security) &middot; auditable today</li>
+<li><b>EU DORA</b> (digital operational resilience) &middot; enforced 17 Jan 2025</li>
+<li><b>EU AI Act</b> &middot; high-risk obligations from 2 Aug 2026 (credit scoring → Annex III)</li>
+<li><b>BCBS 239</b> (risk data aggregation) &middot; the perennial benchmark</li>
+<li><b>SLSA v1.0 + SSDF (SP 800-218)</b> &middot; the supply-chain attestation floor for vendor integrations</li></ul>
+      </div>
+    </div></section>
+
+    <!-- Run first -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Run <em>first</em>.</h2>
+      <p class="lead">The two diagnostics that surface the most banking-specific exposure. Each takes 2&ndash;4 minutes; results are shareable via URL hash; nothing is stored.</p>
+      <div class="s-cards"><a class="s-card" href="/tools/devsecops-maturity.html"><span class="ctx">Diagnostic</span><h4>DevSecOps Maturity</h4><p>Identity, supply-chain, secrets, scanning. CPS 234 and DORA both reduce to whether these are real. ~10 capabilities, 3 minutes.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/tools/genai-readiness.html"><span class="ctx">Diagnostic</span><h4>GenAI Readiness</h4><p>12 capabilities scored against ISO 42001 / NIST AI RMF function shape. The most direct read for an EU AI Act high-risk use-case (credit scoring, employment, biometrics).</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Reference architectures -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Reference <em>architectures</em>.</h2>
+      <p class="lead">Opinionated paved-paths sized for banking constraints &mdash; data residency, audit, supply-chain attestation, change-control.</p>
+      <div class="s-cards"><a class="s-card" href="/reference-architectures/regulated-genai-platform.html"><span class="ctx">Reference architecture</span><h4>Regulated GenAI Platform</h4><p>Gateway, prompt registry, evals, layered guardrails, signed per-decision audit. Sized for high-risk use-cases.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/reference-architectures/devsecops-paved-path.html"><span class="ctx">Reference architecture</span><h4>DevSecOps SLSA L3+ Paved Path</h4><p>Build provenance, signed images, OPA/Kyverno admission, SBOM-to-owner alert loop. CPS 234 / SSDF / SLSA aligned.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/reference-architectures/modern-data-platform.html"><span class="ctx">Reference architecture</span><h4>Modern Data Platform</h4><p>Lineage, contracts, BCBS 239 data-quality controls. The substrate for risk + finance + AML data feeds.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Stuck-tier -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Where banking teams typically <em>get stuck</em>.</h2>
+      <p class="lead">The most-common Tier 2 stuck-points in this sector, with the three substrate moves to the next tier.</p>
+      <div class="s-cards"><a class="s-card" href="/maturity/devsecops-repeatable.html"><span class="ctx">Stuck tier · ~36% of orgs</span><h4>DevSecOps &mdash; Repeatable</h4><p>Vault theatre + SBOM shelfware + SAST-as-strategy. Three substrate moves to Defined: workload identity, SBOM→owner loop, one policy enforced at admission.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/maturity/genai-piloting.html"><span class="ctx">Stuck tier · ~25% of enterprises</span><h4>GenAI &mdash; Piloting</h4><p>Inline prompts + un-run eval sets + un-tested guardrails. Three moves: prompt registry + eval-gated CI, adversarial-tested guardrails, per-decision audit pipeline.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/maturity/ea-consultative.html"><span class="ctx">Stuck tier · ~40% of EA functions</span><h4>EA &mdash; Consultative</h4><p>PDF principles + architect-as-reviewer + capability-model theatre. Three moves: encode top-3 principles, federate the function, tie capability investment to outcomes.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Writing -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Read <em>next</em>.</h2>
+      <p class="lead">The essays and reference content that go furthest in banking conversations.</p>
+      <div class="s-cards"><a class="s-card" href="/writing/genai-9-controls.html"><span class="ctx">Essay</span><h4>The nine controls that make GenAI defensible</h4><p>Mapped to NIST AI RMF, ISO 42001, OWASP LLM Top 10 &mdash; the operational distillation for regulated FS.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/writing/devsecops-is-supply-chain.html"><span class="ctx">Essay</span><h4>DevSecOps is supply-chain</h4><p>Why the centre of gravity moved from SAST to provenance + signing + SBOM owner-loops; the CPS 234 / SSDF implications.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/state-of-2026/"><span class="ctx">Annual report</span><h4>State of Enterprise Tech in Regulated Industries 2026</h4><p>12-page board-ready briefing &mdash; the data and the gaps.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <!-- Anti-patterns -->
+    <section class="s-sect"><div class="wrap">
+      <h2>Common <em>anti-patterns</em> in banking.</h2>
+      <p class="lead">The named failure modes that show up most across banking engagements. The catalogue has all 15; these four are the ones that recur here.</p>
+      <div class="s-cards"><a class="s-card" href="/anti-patterns/#vault-theatre"><span class="ctx">Anti-pattern</span><h4>Vault Theatre</h4><p>Static credentials in a vault that doesn&rsquo;t change the risk posture. CPS 234 audits find this.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#sbom-shelfware"><span class="ctx">Anti-pattern</span><h4>SBOM Shelfware</h4><p>SBOMs generated, never wired to owner-alerts. Burns 30 days on a KEV-listed CVE.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#pdf-principles"><span class="ctx">Anti-pattern</span><h4>PDF Principles</h4><p>Architecture principles that aren&rsquo;t encoded as policy. Treated as suggestions in delivery.</p><span class="arr">Open &rarr;</span></a><a class="s-card" href="/anti-patterns/#inline-prompt-pattern"><span class="ctx">Anti-pattern</span><h4>Inline Prompt Pattern</h4><p>Prompts hard-coded in service code. No versioning, no evals, no audit trail for a high-risk decision.</p><span class="arr">Open &rarr;</span></a></div>
+    </div></section>
+
+    <section class="s-call"><div class="wrap">
+      <h3>Working on this in <em>Banks &amp; Financial Services</em>?</h3>
+      <p>If you&rsquo;re standing up GenAI under EU AI Act, hardening the supply chain for CPS 234, or rebuilding the platform under DORA &mdash; I run focused engagements that ship the substrate, not the slide deck.</p>
+      <a class="cta" href="/how-i-work/">How I work &rarr;</a>
+      &nbsp;&nbsp;
+      <a class="cta" href="mailto:contact@hellouchit.com" style="border-color:var(--accent);color:var(--accent)">contact@hellouchit.com &rarr;</a>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/for/">All sectors</a> &middot; <a href="/tools/">Diagnostics</a> &middot; <a href="/reference-architectures/">Architectures</a></span>
+  </div></footer>
+</body>
+</html>
