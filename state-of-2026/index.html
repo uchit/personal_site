@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>State of Enterprise Tech in Regulated Industries 2026 — Uchit Vyas</title>
+<meta name="description" content="Annual practitioner read on enterprise architecture, platform engineering, DevSecOps, data and applied GenAI inside regulated industries. Themes, evidence, and what to actually do this year." />
+<link rel="canonical" href="https://hellouchit.com/state-of-2026/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="State of Enterprise Tech in Regulated Industries 2026" />
+<meta property="og:description" content="What's actually shipping (and not) in regulated industries this year. Practitioner read, cited sources, no vendor framing." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .sof-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(36px, 4vw, 56px); text-align: center; }
+  .sof-hero .num {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: .3em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .sof-hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(48px, 8vw, 104px); line-height: .96;
+    letter-spacing: -.025em; max-width: 16ch; margin: 0 auto;
+  }
+  .sof-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .sof-hero .dek {
+    margin: 30px auto 0; max-width: 56ch;
+    color: var(--muted); font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.6;
+  }
+  .sof-hero .dek b { color: var(--ink); font-weight: 500; }
+  .sof-hero .meta {
+    margin-top: 36px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: .14em; color: var(--faint);
+  }
+
+  .sof-toc {
+    padding: clamp(40px, 5vw, 64px) 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .sof-toc .lab {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .sof-toc ol {
+    columns: 2; column-gap: 40px; list-style: none; padding: 0; margin: 0;
+    counter-reset: toc;
+  }
+  .sof-toc li {
+    counter-increment: toc; break-inside: avoid;
+    padding: 10px 0 10px 38px; position: relative; border-bottom: 1px solid var(--line);
+  }
+  .sof-toc li::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 0; top: 12px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    color: var(--accent); letter-spacing: .12em;
+  }
+  .sof-toc li a {
+    color: var(--ink); font-family: "Fraunces", serif; font-size: 17px;
+    line-height: 1.3; border-bottom: 0;
+  }
+  .sof-toc li a:hover { color: var(--accent); }
+  @media (max-width: 700px) { .sof-toc ol { columns: 1; } }
+
+  .sof-finding {
+    border: 1px solid var(--line-strong); border-radius: var(--r);
+    padding: clamp(28px, 4vw, 48px);
+    margin: clamp(40px, 5vw, 64px) 0;
+    background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.05), transparent 60%), var(--surface);
+  }
+  .sof-finding .k {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+  }
+  .sof-finding h3 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 38px); line-height: 1.1;
+    letter-spacing: -.015em; margin: 14px 0 18px;
+  }
+  .sof-finding h3 em { font-style: italic; color: var(--accent); }
+  .sof-finding p { color: var(--muted); font-size: 16.5px; line-height: 1.75; }
+  .sof-finding p + p { margin-top: 1em; }
+  .sof-finding b { color: var(--ink); font-weight: 500; }
+  .sof-finding a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .sof-finding a:hover { background: var(--accent-soft); }
+  .sof-finding .so-what {
+    margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line);
+  }
+  .sof-finding .so-what b { color: var(--accent); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; font-size: 11px; }
+  .sof-finding .evidence {
+    margin-top: 16px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    color: var(--faint); letter-spacing: .04em;
+  }
+  .sof-finding .evidence b { color: var(--accent); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+  .sof-finding .evidence a {
+    color: var(--muted); border-bottom: 1px dotted var(--line-strong);
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="sof-hero"><div class="wrap">
+      <div class="num">Annual report &middot; 2026 &middot; v1.0</div>
+      <h1>State of Enterprise Tech in <em>Regulated Industries</em>.</h1>
+      <p class="dek">
+        What&rsquo;s actually shipping (and what isn&rsquo;t) inside banks,
+        government, healthcare and critical infrastructure this year.
+        Practitioner read, cited sources, <b>no vendor framing</b>.
+      </p>
+      <div class="meta">By Uchit Vyas &middot; first edition &middot; Melbourne, AU</div>
+    </div></section>
+
+    <section class="sof-toc"><div class="wrap" style="max-width:780px">
+      <div class="lab">Ten findings</div>
+      <ol>
+        <li><a href="#f1">GenAI moved from pilot to platform &mdash; for the 12% that build the substrate.</a></li>
+        <li><a href="#f2">The EU AI Act is the new compliance gravity well.</a></li>
+        <li><a href="#f3">Supply-chain security is the highest-leverage 2026 security work.</a></li>
+        <li><a href="#f4">Platform engineering became the AI delivery moat.</a></li>
+        <li><a href="#f5">DORA elite-performer practices spread, but not evenly.</a></li>
+        <li><a href="#f6">FinOps for AI is the discipline nobody's funded yet.</a></li>
+        <li><a href="#f7">Enterprise architecture is being absorbed by platform engineering.</a></li>
+        <li><a href="#f8">Workload identity replaced &ldquo;adopt a vault&rdquo; as the secrets-management bar.</a></li>
+        <li><a href="#f9">ISO/IEC 42001 became the AI procurement signal.</a></li>
+        <li><a href="#f10">Australia's regulatory clock advanced faster than most boards noticed.</a></li>
+      </ol>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <p>
+        This is the first edition of an annual report I&rsquo;ll publish each
+        Q1&ndash;Q2 on what&rsquo;s actually shipping inside the regulated
+        enterprises I work with and across. <b>Practitioner observation
+        anchored in cited public data</b>; not vendor research, not
+        analyst syntheses, not anonymous &ldquo;our research shows&rdquo; claims.
+      </p>
+
+      <p>
+        Each finding has three parts: <b>the observation</b>, <b>the
+        evidence</b> (cited sources you can verify), and <b>so what</b>
+        (the move a practitioner makes this quarter as a result).
+      </p>
+
+      <p>
+        Where I cite public benchmarks, I&rsquo;ve used the most-recent
+        published version (DORA Accelerate 2024, FinOps State of FinOps
+        2024, Menlo Ventures State of GenAI 2024, Verizon DBIR 2024,
+        BSIMM, Stanford HELM). Where I cite regulation, I&rsquo;ve linked the
+        primary source. Where I cite practice from my own engagements,
+        I&rsquo;ve said so &mdash; you can take it as practitioner observation
+        rather than aggregate data.
+      </p>
+
+      <!-- Findings -->
+      <div class="sof-finding" id="f1">
+        <span class="k">Finding 01 &middot; Applied GenAI</span>
+        <h3>GenAI moved from pilot to platform &mdash; for the <em>12%</em> that built the substrate.</h3>
+        <p>
+          <a href="https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/" target="_blank" rel="noopener">Menlo Ventures&rsquo; State of GenAI 2024</a> found ~60% of enterprises were still in pilot through 2024. The 12% that crossed into &ldquo;Operating&rdquo; or above all share a pattern: they invested in the substrate &mdash; gateway, prompt registry, eval-gated deploy, observability, audit pipeline &mdash; before scaling use-cases. The other 88% built use-cases first and are now retrofitting controls under EU AI Act pressure.
+        </p>
+        <p>
+          From engagement observation: the difference between a 6-week ship and a 6-month ship for the second GenAI feature is whether the first one built reusable platform primitives. <b>Every org I&rsquo;ve seen ship five features fast had built the platform first.</b>
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/" target="_blank" rel="noopener">Menlo Ventures State of GenAI 2024</a> ·
+          <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF</a> ·
+          <a href="/writing/genai-9-controls.html">The 9 controls essay</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Build the gateway + evals + audit substrate as a 90-day investment &mdash; then onboard use-cases. The platform-first sequence ships in 6 weeks per subsequent feature. Use-case-first sequence ships the first one in 6 months and stalls. See the <a href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform reference architecture</a>.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f2">
+        <span class="k">Finding 02 &middot; Regulation</span>
+        <h3>The EU AI Act is the new <em>compliance gravity well</em>.</h3>
+        <p>
+          High-risk AI-system obligations are enforceable from <b>2 August 2026</b>. General-purpose AI obligations have been in effect since August 2025. <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">The Act</a> imposes obligations across the supply chain (provider, deployer, importer, distributor) &mdash; not just on the model maker. Non-EU vendors selling AI into the EU are in scope.
+        </p>
+        <p>
+          The compliance work isn&rsquo;t the model card or the conformity assessment. It&rsquo;s the <b>data governance</b> (Art.10), <b>risk management</b> (Art.9), <b>human oversight</b> (Art.14), <b>accuracy / robustness</b> (Art.15), and <b>logging</b> (Art.12) obligations that require substrate investment in evals, audit evidence, and continuous monitoring.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act consolidated text</a> ·
+          <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001 (the certifiable AI management standard)</a> ·
+          <a href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener">AU Voluntary AI Safety Standard</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Inventory your AI systems against EU AI Act risk categories now. Pre-build the audit views a regulator would ask for. ISO/IEC 42001 readiness is the cheapest available proxy for AI Act conformity. <a href="/tools/genai-readiness.html">Run the diagnostic</a> with sector set to FSI / Government / Healthcare for sector-specific lens.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f3">
+        <span class="k">Finding 03 &middot; DevSecOps</span>
+        <h3>Supply-chain security is the <em>highest-leverage</em> 2026 security work.</h3>
+        <p>
+          2024 incidents that defined the year &mdash; XZ Utils, Snowflake, Polyfill, CrowdStrike &mdash; were all supply-chain incidents. None were findings on a SAST report. The vendor market is largely still selling 2018&rsquo;s problem (AppSec consolidation) while regulators (EO 14028, EU CRA, EU DORA, APRA CPS 230) now expect supply-chain controls.
+        </p>
+        <p>
+          The four moves that compound: workload identity (eliminating static credentials), signed provenance (SLSA L3+), SBOM with owner-alert path (CycloneDX/SPDX → Dependency-Track → CISA KEV feed), policy-as-code at deploy. None of these are AppSec line items; all of them are platform-engineering capabilities.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener">Verizon DBIR 2024</a> ·
+          <a href="https://slsa.dev/spec/v1.0/" target="_blank" rel="noopener">SLSA v1.0</a> ·
+          <a href="https://www.cisa.gov/secure-software-attestation-form" target="_blank" rel="noopener">CISA Self-Attestation</a> ·
+          <a href="/writing/devsecops-is-supply-chain.html">DevSecOps is Supply Chain essay</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Migrate one critical pipeline to workload identity (OIDC). Emit SBOMs per artefact. Wire CISA KEV alerts to service owners. <a href="/reference-architectures/devsecops-paved-path.html">DevSecOps SLSA L3+ paved path reference architecture</a>.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f4">
+        <span class="k">Finding 04 &middot; Platform Engineering</span>
+        <h3>Platform engineering became the <em>AI delivery moat</em>.</h3>
+        <p>
+          The orgs shipping safe GenAI in 2026 are the ones whose platform already encoded workload identity, observability defaults, policy-as-code and audit-evidence primitives. The orgs whose AI Centre of Excellence is parallel to (not built on) platform engineering are spending 3&ndash;6&times; longer per feature, with no reuse.
+        </p>
+        <p>
+          The shift is structural: AI is not a workload, it&rsquo;s a property of the platform. The Centre of Excellence model survived where AI was a separate side-project; it fails when AI is embedded across all customer-facing features. Most enterprises are in the second phase now.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/" target="_blank" rel="noopener">CNCF Platform Engineering Maturity Model</a> ·
+          <a href="https://teamtopologies.com/" target="_blank" rel="noopener">Team Topologies</a> ·
+          <a href="/writing/platform-engineering-ai-moat.html">Platform engineering is the AI moat essay</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Fund platform-engineering investment as &ldquo;substrate for AI + operational risk + ISO 42001 readiness&rdquo; &mdash; three concurrent strategic outcomes for the same capability investment. The board buys that pitch fastest. See the <a href="/reference-architectures/platform-engineering-idp.html">Platform Engineering IDP reference architecture</a>.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f5">
+        <span class="k">Finding 05 &middot; Delivery performance</span>
+        <h3>DORA elite-performer practices spread &mdash; <em>but not evenly</em>.</h3>
+        <p>
+          <a href="https://dora.community/research/2024/" target="_blank" rel="noopener">DORA 2024</a> shows the Elite cluster still at ~4% of organisations, but the Medium-to-High transition broadened: more organisations crossed from monthly to weekly deploys than in any prior year. The bottleneck moved from CI/CD tooling to organisational readiness &mdash; change-fail rate, MTTR and toil are the constraints, not deploy frequency.
+        </p>
+        <p>
+          From engagement observation: the Australian Tier-1 bank delivery cohort splits roughly half-and-half between teams now operating at DORA &ldquo;High&rdquo; and teams still at &ldquo;Medium&rdquo;. Federal departments lag a tier. Critical-infrastructure operators lag two tiers, with safety-driven justification.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://dora.community/research/2024/" target="_blank" rel="noopener">DORA Accelerate State of DevOps 2024</a> ·
+          <a href="/tools/calculators/error-budget.html">Error Budget calculator</a> (DORA cluster benchmarks built in)
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Stop optimising deploy frequency once weekly is reliable. Move to change-fail rate, MTTR and toil reduction as the next levers. <a href="/tools/sre-programme.html">SRE Programme diagnostic</a> surfaces these dimensions.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f6">
+        <span class="k">Finding 06 &middot; FinOps</span>
+        <h3>FinOps for AI is the discipline <em>nobody&rsquo;s funded yet</em>.</h3>
+        <p>
+          GenAI inference cost grew 5&ndash;10&times; in many enterprises through 2024&ndash;25. The traditional FinOps function is staffed for cloud compute, storage and networking &mdash; not for cost-per-token, cost-per-resolved-task, model routing, or cached-input optimisation. The <a href="https://www.finops.org/wg/ai/" target="_blank" rel="noopener">FinOps Foundation AI Working Group</a> is standardising the discipline, but adoption is years behind the spend.
+        </p>
+        <p>
+          The under-funded specifics: per-call cost attribution, sandbox-vs-prod isolation, model routing (cheaper model where quality matches), prompt caching, GPU utilisation for self-hosted, and provisioned-throughput-vs-on-demand decisions. Most CFOs don&rsquo;t yet have these on their dashboard.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://www.finops.org/wg/ai/" target="_blank" rel="noopener">FinOps for AI Working Group</a> ·
+          <a href="https://data.finops.org/" target="_blank" rel="noopener">FinOps State of FinOps 2024</a> ·
+          <a href="/tools/calculators/genai-cost.html">GenAI Cost-Per-Outcome calculator</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Add AI-cost attribution to your existing FinOps function before AI spend hits 5% of total cloud. Cache-hit rate and model routing are the two highest-leverage free levers.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f7">
+        <span class="k">Finding 07 &middot; Enterprise architecture</span>
+        <h3>Enterprise architecture is being <em>absorbed</em> by platform engineering.</h3>
+        <p>
+          What EA functions used to claim ownership of &mdash; paved paths, principles encoded as templates, observability defaults, IAM patterns &mdash; have migrated into platform engineering teams over the last 36 months. The EA functions that thrived shrank, federated, and re-focused on capability modelling, ADRs, target-state and substrate principles. The functions that didn&rsquo;t are increasingly hollowed-out review boards.
+        </p>
+        <p>
+          Most TOGAF artefacts produced in 2026 are not the work product they should be &mdash; they should be encoded policy, paved-path templates, and federated decisions. Where TOGAF is still treated as the work product, EA is functionally retired.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://www.gartner.com/en/information-technology/insights/enterprise-architecture" target="_blank" rel="noopener">Gartner EA research</a> ·
+          <a href="/writing/encoded-enterprise-architect.html">The encoded enterprise architect essay</a> ·
+          <a href="/4-discipline-stack/">The 4-Discipline Stack</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Encode the top 3 architecture principles as policy-as-code. Subtract the rest. Federate architects into the highest-coupled streams. Stop chairing review boards; start running enablement clinics.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f8">
+        <span class="k">Finding 08 &middot; Identity</span>
+        <h3>Workload identity replaced <em>&ldquo;adopt a vault&rdquo;</em> as the secrets-management bar.</h3>
+        <p>
+          For five years, &ldquo;moved secrets into a vault&rdquo; was the bar. Snowflake 2024 (100+ breaches via stuffed credentials) and continuing token-leak incidents made clear that <b>vaulted-static is still static</b>. The new bar is workload identity &mdash; short-lived, identity-bound tokens issued at runtime via OIDC (GitHub Actions, GCP WIF, Azure Federated Credentials) or SPIFFE.
+        </p>
+        <p>
+          Adoption inside Australian Tier-1 banks: roughly 30% of new pipelines use workload identity for cloud access; legacy pipelines still on static credentials. The migration is sequencing through 2026.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank" rel="noopener">NIST SP 800-207 Zero Trust</a> ·
+          <a href="https://spiffe.io/" target="_blank" rel="noopener">SPIFFE / SPIRE</a> ·
+          <a href="https://github.blog/security/application-security/oidc-trust-relationships-and-dynamic-secrets/" target="_blank" rel="noopener">GitHub OIDC announcement</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Migrate one critical pipeline to OIDC; document the pattern; copy. The 2026 bar isn&rsquo;t &ldquo;we have a vault.&rdquo; It&rsquo;s &ldquo;we have no static cloud credentials in CI.&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f9">
+        <span class="k">Finding 09 &middot; AI procurement</span>
+        <h3>ISO/IEC 42001 became the AI <em>procurement signal</em>.</h3>
+        <p>
+          <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001</a> (the AI Management System standard) is the first certifiable AI standard. Through 2025 it became a B2B procurement asking-point; through 2026 it&rsquo;s becoming a procurement requirement in regulated sectors. Vendors selling AI-powered SaaS into FSI, healthcare or government are being asked to certify or attest in RFPs.
+        </p>
+        <p>
+          Practically: it&rsquo;s the closest certifiable analogue to AI Act conformity. Orgs that already operate under ISO 27001 find 42001 attainable in 6&ndash;12 months because most of the management-system overhead transfers.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001:2023</a> ·
+          <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">If you sell AI-powered software to enterprise, scope 42001 readiness now. If you buy AI-powered software, add 42001 to your procurement questionnaire.</p>
+        </div>
+      </div>
+
+      <div class="sof-finding" id="f10">
+        <span class="k">Finding 10 &middot; Australia</span>
+        <h3>Australia&rsquo;s regulatory clock advanced <em>faster than most boards noticed</em>.</h3>
+        <p>
+          In the last 18 months: <a href="https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management" target="_blank" rel="noopener">APRA CPS 230</a> (operational risk, eff. 1 Jul 2025), <a href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener">DISR Voluntary AI Safety Standard</a> (Sep 2024, mandatory signposted), <a href="https://www.digital.gov.au/policy/ai-in-government/policy-implementation" target="_blank" rel="noopener">DTA AI Policy</a> (1 Sep 2024), <a href="https://www.cisc.gov.au/legislative-information-and-reforms/critical-infrastructure" target="_blank" rel="noopener">SOCI Act RMP</a> obligations operating. EU DORA (Jan 2025) applies to AU subsidiaries of EU groups.
+        </p>
+        <p>
+          Cumulative impact: by mid-2027, Australian enterprises in FSI, government, healthcare and critical infrastructure will face a substantially harder regulatory floor than they did in 2024 &mdash; with limited additional budget. The orgs adapting now compound; the orgs waiting for clarity will retrofit under pressure.
+        </p>
+        <div class="evidence">
+          <b>Evidence</b>
+          <a href="https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management" target="_blank" rel="noopener">APRA CPS 230</a> ·
+          <a href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener">AU AI Safety Std</a> ·
+          <a href="/writing/au-ai-safety-decoded.html">AU AI Safety decoded essay</a>
+        </div>
+        <div class="so-what">
+          <b>So what</b>
+          <p style="margin-top:8px">Map your current state against APRA CPS 230, CPS 234, the DISR AI Safety Standard and DTA AI Policy (whichever apply). The gaps are the platform investments worth defending to the board on three concurrent strategic outcomes.</p>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <section style="padding:clamp(48px,6vw,80px) 0;border-top:1px solid var(--line);margin-top:48px">
+        <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,3.4vw,38px);line-height:1.1;letter-spacing:-.015em;margin-bottom:18px">The pattern across all <em style="font-style:italic;color:var(--accent)">ten findings</em>.</h2>
+        <p>
+          Read end-to-end, the ten findings describe one pattern: <b>the substrate is the moat</b>. AI safety substrate. Supply-chain substrate. Identity substrate. Cost substrate. Architecture-as-code substrate. The discipline-specific work (build the model, run the scan, set the policy) is delivered well by most enterprises; the seam between disciplines (where the substrate lives) is delivered by very few.
+        </p>
+        <p>
+          That&rsquo;s also the practitioner thesis behind <a href="/4-discipline-stack/" style="color:var(--ink);border-bottom:1px solid var(--accent)">The 4-Discipline Stack</a>: enterprise architecture, platform engineering &amp; DevSecOps, data modernisation and applied GenAI compound through a shared substrate, or they don&rsquo;t compound at all. The first 12% are pulling away. The next 24 months decide who joins them.
+        </p>
+        <p style="margin-top:32px">
+          &mdash; Uchit Vyas, Melbourne, 2026
+        </p>
+      </section>
+
+      <div class="e-related">
+        <h3>Run the diagnostics this report draws on</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/tools/devsecops-maturity.html">DevSecOps Maturity &rarr;</a>
+          <a href="/tools/genai-readiness.html">GenAI Readiness &rarr;</a>
+          <a href="/tools/cloud-cost.html">Cloud Cost &rarr;</a>
+          <a href="/tools/platform-engineering.html">Platform Engineering &rarr;</a>
+          <a href="/tools/ea-operating-model.html">EA Operating Model &rarr;</a>
+          <a href="/tools/sre-programme.html">SRE Programme &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/writing/">All writing</a><span>&middot;</span>
+        <a href="/4-discipline-stack/">The 4-Discipline Stack</a><span>&middot;</span>
+        <a href="https://www.linkedin.com/in/uchitvyas/" target="_blank" rel="noopener">LinkedIn</a><span>&middot;</span>
+        <a href="/#contact">Get in touch &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

@@ -50,6 +50,7 @@
     { t: "DevSecOps SLSA L3+ Paved Path RA", u: "/reference-architectures/devsecops-paved-path.html",    g: "Architectures", ic: "◈" },
     { t: "Modern Data Platform RA",       u: "/reference-architectures/modern-data-platform.html",      g: "Architectures", ic: "▤" },
     { t: "Platform Engineering IDP RA",   u: "/reference-architectures/platform-engineering-idp.html",  g: "Architectures", ic: "▥" },
+    { t: "State of Enterprise Tech in Regulated Industries 2026", u: "/state-of-2026/",       g: "Annual report", ic: "★" },
     { t: "Writing — encoded enterprise architect", u: "/writing/encoded-enterprise-architect.html", g: "Writing", ic: "✎" },
     { t: "Writing — GenAI nine controls", u: "/writing/genai-9-controls.html",     g: "Writing", ic: "✎" },
     { t: "Writing — DevSecOps is supply chain", u: "/writing/devsecops-is-supply-chain.html", g: "Writing", ic: "✎" },
