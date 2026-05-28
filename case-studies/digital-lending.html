@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>High-speed digital lending platform at scale — Case Study — Uchit Vyas</title>
+<meta name="description" content="Case study: loan approval in under 5 minutes, launched in 6 months, 200+ engineers, 50+ regulated AWS environments, millions of users — Pega + Go + FIS Risk Engine on AWS." />
+<link rel="canonical" href="https://hellouchit.com/case-studies/digital-lending.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="High-speed digital lending platform — 200+ engineers, 50+ AWS environments" />
+<meta property="og:description" content="5-minute loan approval. Millions of users. Zero critical production incidents at launch." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<link rel="stylesheet" href="/css/case.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work" style="color:var(--ink)">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="cs-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/case-studies/" style="color:var(--muted)">Case Studies</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Digital Lending</span></nav>
+      <div class="meta"><span><b>Case study</b></span><span>Banking &middot; Digital Lending</span><span>6-month launch</span><span>200+ FTE</span></div>
+      <h1>High-speed digital lending platform &mdash; <em>200+ engineers, 50+ AWS environments</em>.</h1>
+      <p class="dek">
+        Leading Asian bank. Loan approval and disbursement in <b>under 5
+        minutes</b>. Launched in 6 months. Ready to onboard millions of
+        users at go-live. <b>Zero critical production incidents</b>.
+      </p>
+      <div class="cs-context">
+        <div class="item"><b>Sector</b>Banking · JAPAC</div>
+        <div class="item"><b>Scale</b>Millions of users at launch</div>
+        <div class="item"><b>Team</b>200+ across PODs &amp; squads</div>
+        <div class="item"><b>My role</b>Delivery &amp; platform leadership</div>
+        <div class="item"><b>Timeline</b>6 months to production</div>
+        <div class="item"><b>Environments</b>50+ regulated AWS</div>
+      </div>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <h2>The challenge.</h2>
+      <p>
+        Stand up a next-generation digital lending platform capable of loan approval and disbursement <b>within 5 minutes</b>, launch within 6 months, and onboard millions of users from day one &mdash; against strict banking regulation, non-standard patterns for Pega-plus-cloud DevOps, and the need to scale a 200+ person delivery team faster than the talent market typically allows.
+      </p>
+
+      <h2>The constraints.</h2>
+      <ul>
+        <li><b>Regulatory:</b> Strict banking regulations governing AWS environments. Non-standard Pega + cloud DevOps patterns required engineering invention against an audit floor.</li>
+        <li><b>Scale:</b> 50+ regulated AWS environments to manage in parallel. Complex integration across Pega, risk engine, microservices and channels.</li>
+        <li><b>Talent:</b> Stand up 200+ FTE across multiple skill domains rapidly. Skill availability within the timeline posed major delivery risk.</li>
+        <li><b>Communication:</b> Primary stakeholders communicated in their native language; language and cultural barriers were a delivery risk, not an inconvenience.</li>
+        <li><b>Timeline:</b> 6 months. No slack for serial discovery-design-build-test.</li>
+      </ul>
+
+      <h2>The architectural approach.</h2>
+
+      <h3>POD-based leadership, squad-based delivery.</h3>
+      <p>
+        Three POD types ran in parallel:
+      </p>
+      <ul>
+        <li><b>Delivery Lead PODs</b> &mdash; owning execution, timelines, dependencies.</li>
+        <li><b>Architecture PODs</b> &mdash; owning Pega, risk engine, microservices, integration patterns.</li>
+        <li><b>PMO PODs</b> &mdash; owning planning, reporting, risk and governance.</li>
+      </ul>
+      <p>
+        Squads aligned to platform components, functional modules and business capabilities &mdash; not to org-chart silos.
+      </p>
+
+      <h3>Local engagement model.</h3>
+      <p>
+        Local client-facing PMOs paired with internal delivery PMOs across regions. The structure absorbed language and cultural diversity instead of fighting it.
+      </p>
+
+      <h3>Skill-based, not role-based, resource planning.</h3>
+      <p>
+        Skill requirements identified bottom-up; talent head-hunted across JAPAC based on capability fit, not role titles. Task-level timelines defined by individual capability &mdash; the most predictable delivery shape at this scale.
+      </p>
+
+      <h3>Engineering foundation.</h3>
+      <p>
+        Automation-first testing approach. Containerisation as standard practice. Mandatory code and pipeline reviews. The 50+ regulated AWS environments were managed to support parallel development, testing and release without the usual collision tax.
+      </p>
+
+      <div class="cs-stack">
+        <span class="lbl">Technology stack</span>
+        <ul>
+          <li><b>Workflow &amp; decisioning</b> Pega</li>
+          <li><b>Backend</b> Go-lang microservices</li>
+          <li><b>Risk processing</b> FIS Risk Engine</li>
+          <li><b>Frontend</b> Microservice-based (mobile + web)</li>
+          <li><b>Cloud platform</b> AWS (50+ environments)</li>
+          <li><b>DevOps</b> Containerisation + CI/CD</li>
+        </ul>
+      </div>
+
+      <h2>Outcomes.</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <div class="num">&lt;5<em>minutes</em></div>
+          <div class="lbl">Loan approval +<br />disbursement</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">6<em>months</em></div>
+          <div class="lbl">Production launch<br />on commitment</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">200<span class="u">+</span></div>
+          <div class="lbl">FTE across PODs<br />&amp; squads</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">50<span class="u">+</span></div>
+          <div class="lbl">Regulated AWS<br />environments</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">0<em>critical incidents</em></div>
+          <div class="lbl">At production<br />go-live</div>
+        </div>
+      </div>
+
+      <p>
+        Predictable delivery velocity despite the team scale. Parallel delivery across multiple squads without blocking dependencies. Stable operations across the 50+ regulated AWS environments. Strong stakeholder trust established through local PMO engagement and clear communication across language barriers.
+      </p>
+
+      <div class="cs-lesson">
+        <div class="lbl">Closing insight</div>
+        <blockquote>
+          Large-scale digital transformation succeeds not by adding more people, but by adding the right <em>structure</em>, clarity, and automation.
+        </blockquote>
+      </div>
+
+      <h2>Five lessons from the programme.</h2>
+      <ol>
+        <li><b>Speed and regulation are compatible.</b> Regulated environments can move fast with appropriate architecture, automation and governance.</li>
+        <li><b>Structure enables scale.</b> POD- and squad-based models prevent chaos when delivery teams exceed 150&ndash;200 people.</li>
+        <li><b>DevOps is the foundation, not the optimisation.</b> Automation, containerisation and CI/CD were essential for managing 50+ environments without slowing delivery.</li>
+        <li><b>Local engagement multiplies trust.</b> Language and cultural alignment via local PMO structures significantly improved decision-making and stakeholder trust.</li>
+        <li><b>Skill-based beats role-based at scale.</b> Task timelines aligned to individual capability delivered far more predictable outcomes than traditional role-based assignment.</li>
+      </ol>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/tools/platform-engineering.html">Platform Engineering Readiness &rarr;</a>
+          <a href="/tools/sre-programme.html">SRE Programme Diagnostic &rarr;</a>
+          <a href="/tools/devsecops-maturity.html">DevSecOps Maturity Diagnostic &rarr;</a>
+          <a href="/reference-architectures/devsecops-paved-path.html">DevSecOps SLSA L3+ Paved Path RA &rarr;</a>
+        </div>
+      </div>
+
+      <div class="cs-origin">
+        Originally published on Medium &middot; <a href="https://medium.com/@uchit86/case-study-building-a-high-speed-digital-lending-platform-at-scale-878a045e794a" target="_blank" rel="noopener">read the original</a>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/case-studies/">&larr; All case studies</a><span>&middot;</span>
+        <a href="/letters/">Subscribe to Letters</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>

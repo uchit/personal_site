@@ -1,0 +1,117 @@
+/* case.css — hosted case study pages */
+
+.cs-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
+.cs-hero .meta {
+  display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 18px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .14em; color: var(--faint); text-transform: uppercase;
+}
+.cs-hero .meta b { color: var(--accent); font-weight: 500; }
+.cs-hero h1 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+  letter-spacing: -.02em; max-width: 22ch;
+}
+.cs-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.cs-hero .dek {
+  margin-top: 22px; color: var(--ink); font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.55; max-width: 56ch; font-weight: 300;
+}
+.cs-hero .dek b { color: var(--accent); font-weight: 500; }
+
+.cs-context {
+  margin-top: clamp(32px, 4vw, 48px);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 22px;
+  padding: 22px 26px;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: rgba(255,255,255,.012);
+}
+.cs-context .item {
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
+  letter-spacing: .04em; color: var(--ink); line-height: 1.5;
+}
+.cs-context .item b {
+  display: block; color: var(--accent); letter-spacing: .14em;
+  text-transform: uppercase; font-size: 10.5px; margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.cs-outcomes {
+  margin: clamp(40px, 5vw, 56px) 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.05), transparent 60%), var(--surface);
+  overflow: hidden;
+}
+.cs-outcome {
+  padding: 24px 26px;
+  border-right: 1px solid var(--line);
+}
+.cs-outcome:last-child { border-right: 0; }
+@media (max-width: 720px) { .cs-outcome { border-right: 0; border-bottom: 1px solid var(--line); } .cs-outcome:last-child { border-bottom: 0; } }
+.cs-outcome .num {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(32px, 4vw, 44px); line-height: 1;
+  letter-spacing: -.02em; color: var(--ink);
+  margin-bottom: 8px;
+}
+.cs-outcome .num em { font-style: italic; color: var(--accent); font-size: .56em; display: block; margin-top: 2px; font-weight: 400; }
+.cs-outcome .num .u { color: var(--accent); font-size: .55em; }
+.cs-outcome .lbl {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .12em; color: var(--muted); text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.cs-stack {
+  margin: clamp(28px, 4vw, 36px) 0;
+  padding: 22px 26px;
+  border-left: 2px solid var(--accent);
+  background: rgba(217,151,87,.04);
+  border-radius: 0 8px 8px 0;
+}
+.cs-stack .lbl {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .18em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 10px; display: block;
+}
+.cs-stack ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px 22px;
+}
+.cs-stack li {
+  font-family: "IBM Plex Mono", monospace; font-size: 13px;
+  color: var(--ink); padding-left: 0;
+}
+.cs-stack li::before { display: none; }
+.cs-stack li b { color: var(--accent); font-weight: 500; font-size: 11.5px; letter-spacing: .04em; }
+
+.cs-lesson {
+  margin: clamp(32px, 4vw, 48px) 0;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--line-strong); border-radius: var(--r);
+  background: var(--surface);
+}
+.cs-lesson .lbl {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.cs-lesson blockquote {
+  margin: 0; padding: 0;
+  font-family: "Fraunces", serif; font-style: italic; font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 28px); line-height: 1.35; color: var(--ink);
+  max-width: 30ch;
+}
+.cs-lesson blockquote em { color: var(--accent); font-style: italic; }
+
+.cs-origin {
+  margin-top: clamp(36px, 5vw, 48px); padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .04em; color: var(--faint);
+}
+.cs-origin a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); padding-bottom: 1px; }
+.cs-origin a:hover { color: var(--accent); border-color: var(--accent); }

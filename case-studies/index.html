@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Studies — Uchit Vyas</title>
+<meta name="description" content="Five enterprise transformation case studies — payment platforms, EA governance, digital lending, retail modernisation, data archival. Real outcomes, named technologies, lessons that travel." />
+<link rel="canonical" href="https://hellouchit.com/case-studies/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Case Studies — Uchit Vyas" />
+<meta property="og:description" content="Five enterprise transformations — payment, EA governance, digital lending, retail, data. Real outcomes." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .cs-list { padding: clamp(40px, 5vw, 64px) 0 clamp(80px, 10vw, 128px); border-top: 1px solid var(--line); }
+  .cs-row {
+    display: grid; grid-template-columns: 90px 1fr 200px;
+    gap: clamp(18px, 3vw, 36px); align-items: baseline;
+    padding: clamp(26px, 3.4vw, 40px) 0;
+    border-bottom: 1px solid var(--line); color: var(--ink);
+    transition: padding-left .3s var(--ease); position: relative;
+  }
+  .cs-row::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--accent); opacity: 0; transition: opacity .3s; }
+  .cs-row:hover { padding-left: 16px; }
+  .cs-row:hover::before { opacity: 1; }
+  .cs-row .ix { font-family: "IBM Plex Mono", monospace; color: var(--faint);
+    font-size: 12.5px; letter-spacing: .12em; }
+  .cs-row .body h3 { font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 28px); line-height: 1.2;
+    letter-spacing: -.01em; margin-bottom: 6px; }
+  .cs-row .body h3 em { font-style: italic; color: var(--accent); }
+  .cs-row .body p { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 56ch; }
+  .cs-row .meta {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: .08em; color: var(--accent); text-align: right;
+  }
+  .cs-row .meta small { display: block; color: var(--faint); margin-top: 4px;
+    font-size: 10.5px; letter-spacing: .12em; }
+  @media (max-width: 700px) {
+    .cs-row { grid-template-columns: 1fr; gap: 4px; }
+    .cs-row .meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work" style="color:var(--ink)">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section style="padding:clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px)"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Case Studies</span></nav>
+      <span class="eyebrow">Selected work</span>
+      <h1 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.02em;margin-top:14px;max-width:22ch">
+        Five engagements that <em style="font-style:italic;color:var(--accent)">shipped</em> &mdash; with the numbers.
+      </h1>
+      <p style="margin-top:20px;color:var(--muted);font-size:clamp(16px,1.3vw,18px);line-height:1.7;max-width:60ch">
+        Each case study covers the problem, the constraints, the architecture,
+        the named technology choices and the measurable outcomes. Sourced from
+        delivery work at Tier-1 banks, global retail and federal scale.
+        Original write-ups on Medium &mdash; canonical versions here.
+      </p>
+    </div></section>
+
+    <section class="cs-list"><div class="wrap">
+      <a class="cs-row" href="/case-studies/payment-platform.html">
+        <span class="ix">01</span>
+        <div class="body">
+          <h3>Multi-region banking payment platform &mdash; in <em>three months</em>.</h3>
+          <p>Production-ready cross-region payment platform delivered against an aggressive 3-month window. Distributed teams, undocumented legacy, restored stakeholder confidence.</p>
+        </div>
+        <span class="meta">Banking · Payments<small>3-month delivery</small></span>
+      </a>
+
+      <a class="cs-row" href="/case-studies/ea-governance.html">
+        <span class="ix">02</span>
+        <div class="body">
+          <h3>Enterprise architecture governance at <em>Asia&rsquo;s largest bank</em>.</h3>
+          <p>1,000+ applications, no EA forum. Stood up bank-wide governance council, principles for data &middot; apps &middot; microservices &middot; messaging, and reduced duplicated initiatives by 30&ndash;40%.</p>
+        </div>
+        <span class="meta">Banking · EA<small>6-month transform</small></span>
+      </a>
+
+      <a class="cs-row" href="/case-studies/digital-lending.html">
+        <span class="ix">03</span>
+        <div class="body">
+          <h3>High-speed digital lending platform &mdash; <em>200+ engineers, 50+ AWS environments</em>.</h3>
+          <p>Loan approval and disbursement in under 5 minutes; launched in 6 months with millions-of-users scale; zero critical incidents at go-live. Pega + Go microservices + FIS Risk Engine on AWS.</p>
+        </div>
+        <span class="meta">Banking · Lending<small>6-month launch · 200+ FTE</small></span>
+      </a>
+
+      <a class="cs-row" href="/case-studies/retail-modernisation.html">
+        <span class="ix">04</span>
+        <div class="body">
+          <h3>Retail platform modernisation &amp; <em>innovation roadmap</em>.</h3>
+          <p>Global retailer custom-platform assessment, 5-year innovation roadmap, custom vs enterprise vs hybrid trade-off, and modular architecture for faster delivery.</p>
+        </div>
+        <span class="meta">Retail · E-commerce<small>5-yr roadmap</small></span>
+      </a>
+
+      <a class="cs-row" href="/case-studies/data-archival.html">
+        <span class="ix">05</span>
+        <div class="body">
+          <h3>Enterprise data archival &mdash; <em>$50M+ annual savings</em>.</h3>
+          <p>Tier-1 ANZ bank, 1,000+ apps, multi-petabyte estate. Cloud-native archival on AWS Lambda + S3 + DataSync + Step Functions, with self-service retrieval and AI-driven metadata. Unlocked legacy decommissioning.</p>
+        </div>
+        <span class="meta">Banking · Data<small>$50M+/yr saved</small></span>
+      </a>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/">&larr; Home</a> &middot; <a href="/4-discipline-stack/">Framework</a> &middot; <a href="/tools/">Tools</a></span>
+  </div></footer>
+</body>
+</html>

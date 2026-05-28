@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enterprise data archival platform — $50M+ annual savings — Case Study — Uchit Vyas</title>
+<meta name="description" content="Case study: Tier-1 ANZ bank, 1,000+ apps, multi-petabyte estate. Cloud-native archival on AWS Lambda + S3 + DataSync + Step Functions. $50M+ annual cost savings; unlocked legacy decommissioning." />
+<link rel="canonical" href="https://hellouchit.com/case-studies/data-archival.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Enterprise data archival — $50M+ annual savings" />
+<meta property="og:description" content="From constraint to strategic enabler. 1,000+ apps, multi-petabyte estate, AWS-native, unlocked legacy decommissioning." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<link rel="stylesheet" href="/css/case.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work" style="color:var(--ink)">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="cs-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/case-studies/" style="color:var(--muted)">Case Studies</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Data Archival</span></nav>
+      <div class="meta"><span><b>Case study</b></span><span>Banking · ANZ</span><span>Data &middot; Multi-petabyte</span><span>$50M+/yr saved</span></div>
+      <h1>Enterprise data archival &mdash; <em>$50M+ annual savings</em>.</h1>
+      <p class="dek">
+        Tier-1 ANZ bank. <b>1,000+ legacy applications</b>, multi-petabyte
+        estate, strict regulatory controls. Cloud-native archival on AWS
+        unlocked legacy decommissioning, reduced infrastructure overhead,
+        and turned data archival from a constraint into a strategic enabler.
+      </p>
+      <div class="cs-context">
+        <div class="item"><b>Sector</b>Banking · Tier-1 ANZ</div>
+        <div class="item"><b>Scale</b>1,000+ apps · multi-PB estate</div>
+        <div class="item"><b>My role</b>Platform architecture lead</div>
+        <div class="item"><b>Engagement model</b>Discovery + build + enablement</div>
+        <div class="item"><b>Discovery</b>3 months across 1,000+ apps</div>
+        <div class="item"><b>Platform</b>AWS-native, custom-built</div>
+      </div>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <h2>The challenge.</h2>
+      <p>
+        A Tier-1 ANZ bank with no enterprise-grade data archival solution. Every application team had a different approach &mdash; duplicated tooling, duplicated process, duplicated cost. <b>Legacy systems could not be decommissioned</b> because retention obligations had no centralised home. No standardised onboarding model; no consistent operational procedures.
+      </p>
+      <p>
+        The estate was multi-petabyte. The application count was 1,000+. The regulatory floor was strict. The opportunity &mdash; if a single platform could carry the load &mdash; was an order of magnitude beyond what any local solution could deliver.
+      </p>
+
+      <h2>The constraints.</h2>
+      <ul>
+        <li><b>Regulatory:</b> Mandatory data retention; strict privacy + security mandates; audit + governance controls required at every layer.</li>
+        <li><b>Technical:</b> Must ingest from on-premises systems and multiple cloud regions; support structured, semi-structured and unstructured data; cloud-agnostic and customisable.</li>
+        <li><b>Organisational:</b> No unified approach across 1,000+ applications. Self-service, role-based retrieval was a non-negotiable. Enterprise foundation requirements (CI/CD, DR, AI enablement) had to be present from day one.</li>
+      </ul>
+
+      <h2>The approach.</h2>
+
+      <h3>Discovery phase — three months.</h3>
+      <p>
+        Deep assessment across all 1,000+ applications. Evaluation of cloud-native services vs custom platform via decisioning trees built on data patterns, compliance requirements and cost. The honest output of discovery: a custom-built solution on AWS, not an off-the-shelf platform.
+      </p>
+
+      <h3>Platform design &amp; build.</h3>
+      <p>Phased rollout:</p>
+      <ul>
+        <li><b>Phase 1</b> &mdash; structured data workloads.</li>
+        <li><b>Phase 2</b> &mdash; semi-structured and unstructured data.</li>
+      </ul>
+      <p>
+        Automated lifecycle management (retention, expiration, archival, purge). Self-service retrieval via Active Directory groups. The retrieval experience was the platform&rsquo;s adoption mechanism &mdash; if it didn&rsquo;t work for application teams, the platform wouldn&rsquo;t carry the load.
+      </p>
+
+      <h3>Enterprise enablement.</h3>
+      <p>
+        Complete documentation suite (design, SOPs, operations manuals). Security and compliance frameworks. Peer-review and QA processes. Built to be operated by the bank, not by the implementation team.
+      </p>
+
+      <div class="cs-stack">
+        <span class="lbl">Technology stack</span>
+        <ul>
+          <li><b>Serverless processing</b> AWS Lambda</li>
+          <li><b>Data movement</b> AWS DataSync</li>
+          <li><b>Storage</b> Amazon S3</li>
+          <li><b>Metadata &amp; indexing</b> MongoDB Atlas</li>
+          <li><b>Orchestration</b> AWS Step Functions</li>
+          <li><b>Data lineage</b> Alation</li>
+          <li><b>Infrastructure as code</b> Terraform</li>
+          <li><b>CI/CD</b> Custom-built pipelines</li>
+          <li><b>Classification</b> AI-driven metadata analysis</li>
+        </ul>
+      </div>
+
+      <h2>Outcomes.</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <div class="num">$50M<span class="u">+</span></div>
+          <div class="lbl">Annual cost savings<br />achieved</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">1,000<span class="u">+</span></div>
+          <div class="lbl">Applications onboarded<br />to one platform</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">Multi&#8209;PB<em>estate</em></div>
+          <div class="lbl">Structured + semi +<br />unstructured supported</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="num">Legacy<em>decom'd</em></div>
+          <div class="lbl">Retention satisfied;<br />systems retired</div>
+        </div>
+      </div>
+
+      <p>
+        <b>Financial:</b> &gt;$50M USD in annual cost savings; reduced infrastructure overhead across the estate.<br />
+        <b>Operational:</b> Legacy applications became decommissionable; operational complexity dropped meaningfully.<br />
+        <b>Strategic:</b> Enterprise-grade, cloud-native platform under full bank ownership with minimal ongoing maintenance. AI-enabled foundation for continuous archival. Accelerated the wider legacy-modernisation programme. Regulatory and security alignment achieved at platform level, not at application level.
+      </p>
+
+      <div class="cs-lesson">
+        <div class="lbl">Closing insight</div>
+        <blockquote>
+          Data archival stops being a constraint and becomes a <em>strategic enabler</em> the moment one platform carries the regulatory floor for the entire estate.
+        </blockquote>
+      </div>
+
+      <h2>What I would do again on a similar engagement.</h2>
+      <ul>
+        <li><b>Discovery before design.</b> Three months of deep assessment looked expensive on paper and saved years in build.</li>
+        <li><b>Phased on data type, not application.</b> Phasing by data complexity (structured &rarr; unstructured) sequenced the engineering risk; phasing by application would have spread it.</li>
+        <li><b>Self-service retrieval as the adoption mechanism.</b> The platform&rsquo;s success was determined by how easy retrieval was &mdash; not by how good the archival logic was.</li>
+        <li><b>Custom on AWS, not enterprise platform.</b> For this scale and regulatory profile, the trade-off favoured ownership + customisability over vendor managed.</li>
+        <li><b>Document for the next team.</b> The bank operates the platform now. That was the success criterion.</li>
+      </ul>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/reference-architectures/modern-data-platform.html">Modern Data Platform RA &rarr;</a>
+          <a href="/tools/cloud-cost.html">Cloud Cost Diagnostic &rarr;</a>
+          <a href="/tools/calculators/commitment-optimiser.html">Cloud Commitment Optimiser &rarr;</a>
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+        </div>
+      </div>
+
+      <div class="cs-origin">
+        Originally published on Medium &middot; <a href="https://medium.com/@uchit86/case-study-enterprise-grade-data-archival-platform-transformation-f840ad8eb504" target="_blank" rel="noopener">read the original</a>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/case-studies/">&larr; All case studies</a><span>&middot;</span>
+        <a href="/letters/">Subscribe to Letters</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>
