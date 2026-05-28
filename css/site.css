@@ -759,79 +759,80 @@ html.js .reveal.in { opacity: 1; transform: none; }
 }
 
 /* ============================================================
-   CONTACT — redesigned 2026-05-29. Editorial typography over the
-   boxed-card pattern. Same restraint as the rest of the site.
+   CONTACT — redesigned 2026-05-30. Centered editorial layout,
+   two prominent CTAs, thin secondary row. Same restraint as the
+   rest of the site; clear hierarchy (primary → ghost → muted meta).
    ============================================================ */
-.ct-head { max-width: 60ch; }
+.contact .wrap { text-align: center; }
+.ct-head { max-width: 64ch; margin: 0 auto; }
+.ct-head .eyebrow { justify-content: center; }
 .ct-head h2 {
   font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(38px, 5.4vw, 64px); line-height: 1.04;
-  letter-spacing: -.02em; margin-top: 16px; max-width: 18ch;
+  letter-spacing: -.02em; margin-top: 16px;
+  margin-left: auto; margin-right: auto;
+  max-width: 20ch;
 }
 .ct-head h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
 .ct-head .ct-dek {
-  margin-top: 22px;
+  margin: 22px auto 0;
   color: var(--ink); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6;
   font-weight: 300; max-width: 56ch;
 }
 
-/* Icons-only row. Each icon shows a tooltip on hover/focus. */
-.ct-icons {
-  margin-top: clamp(36px, 5vw, 56px);
-  display: flex;
-  gap: clamp(14px, 2vw, 22px);
-  flex-wrap: wrap;
+/* Two primary CTAs, centered side-by-side. Pill-free; same square-ish
+   geometry the site uses elsewhere. */
+.ct-cta {
+  margin-top: clamp(36px, 4.5vw, 52px);
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 14px 18px;
 }
-.ct-ico {
-  position: relative;
-  width: 64px; height: 64px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+.ct-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 15px; font-weight: 500; letter-spacing: -.005em;
   color: var(--ink);
-  background: var(--surface);
   text-decoration: none;
-  transition: border-color .25s, color .25s, background .25s, transform .25s var(--ease);
+  transition: border-color .2s, background .2s, color .2s, transform .2s var(--ease);
   -webkit-tap-highlight-color: rgba(217,151,87,.18);
 }
-.ct-ico svg { width: 26px; height: 26px; display: block; }
-.ct-ico:hover, .ct-ico:focus-visible {
+.ct-btn svg { flex: 0 0 auto; }
+.ct-btn:hover { transform: translateY(-1px); }
+.ct-btn-primary {
   border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(217,151,87,.08);
-  transform: translateY(-2px);
-  outline: none;
+  background: var(--accent);
+  color: #0c0d10;
 }
-.ct-ico.ct-primary {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(217,151,87,.08);
-}
+.ct-btn-primary:hover { background: #e0a464; border-color: #e0a464; color: #0c0d10; }
+.ct-btn-ghost { background: transparent; color: var(--ink); }
+.ct-btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(217,151,87,.05); }
 
-/* Tooltip on hover/focus — pure CSS, no JS. */
-.ct-ico::after {
-  content: attr(data-tip);
-  position: absolute; left: 50%; bottom: calc(100% + 10px);
-  transform: translate(-50%, 4px);
+/* Secondary row: muted, monospace, tiny icons. */
+.ct-meta {
+  margin-top: 32px;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px 28px;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--accent);
-  background: #0c0d10;
-  border: 1px solid var(--line-strong);
-  padding: 6px 10px; border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0; pointer-events: none;
-  transition: opacity .18s, transform .18s var(--ease);
+  font-size: 13px;
+  color: var(--muted);
 }
-.ct-ico:hover::after, .ct-ico:focus-visible::after {
-  opacity: 1; transform: translate(-50%, 0);
+.ct-meta a, .ct-meta .ct-loc {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
 }
+.ct-meta a:hover { color: var(--accent); }
+.ct-meta svg { flex: 0 0 auto; opacity: .85; }
+.ct-loc { cursor: default; }
 
 @media (max-width: 480px) {
-  .ct-ico { width: 56px; height: 56px; border-radius: 12px; }
-  .ct-ico svg { width: 24px; height: 24px; }
-  /* On touch, tooltip can't be hover-triggered reliably — hide it. */
-  .ct-ico::after { display: none; }
+  .ct-btn { width: 100%; justify-content: center; padding: 16px 20px; font-size: 15.5px; }
+  .ct-cta { gap: 12px; }
+  .ct-meta { gap: 10px 18px; font-size: 12.5px; }
 }
 
 /* ============================================================
