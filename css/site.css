@@ -759,46 +759,83 @@ html.js .reveal.in { opacity: 1; transform: none; }
 }
 
 /* ============================================================
-   CONTACT
+   CONTACT — redesigned 2026-05-29. Editorial typography over the
+   boxed-card pattern. Same restraint as the rest of the site.
    ============================================================ */
-.contact-card {
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: clamp(40px, 6vw, 72px);
-  background:
-    radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.07), transparent 60%),
-    var(--surface);
-  display: grid; grid-template-columns: 1.2fr 1fr;
-  gap: clamp(32px, 5vw, 64px); align-items: center;
-}
-.contact-card h2 {
+.ct-head { max-width: 60ch; }
+.ct-head h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(30px, 4vw, 44px); line-height: 1.05;
-  letter-spacing: -.015em; max-width: 18ch;
+  font-size: clamp(38px, 5.4vw, 64px); line-height: 1.04;
+  letter-spacing: -.02em; margin-top: 16px; max-width: 18ch;
 }
-.contact-card h2 em { font-style: italic; color: var(--accent); }
-.contact-card p {
-  color: var(--muted); font-size: 16px; line-height: 1.65;
-  margin-top: 18px; max-width: 44ch;
+.ct-head h2 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.ct-head .ct-dek {
+  margin-top: 22px;
+  color: var(--ink); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6;
+  font-weight: 300; max-width: 56ch;
 }
-.contact-actions {
-  display: flex; flex-direction: column; gap: 14px;
+
+.ct-grid {
+  margin-top: clamp(40px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
 }
-.contact-line {
-  display: flex; align-items: center; gap: 14px;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+.ct-line {
+  position: relative;
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 4px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
   color: var(--ink);
-  transition: border-color .25s, background .25s, transform .25s var(--ease);
+  text-decoration: none;
+  transition: background .2s, padding .25s var(--ease);
 }
-.contact-line:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
-.contact-line .clab {
+.ct-line:nth-child(2n) { border-right: none; padding-left: 24px; }
+.ct-line:nth-child(2n+1) { padding-right: 24px; }
+.ct-line:hover { background: rgba(217,151,87,.04); padding-left: 12px; }
+.ct-line:nth-child(2n):hover { padding-left: 36px; }
+.ct-line .ct-k {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 11.5px; letter-spacing: .18em; color: var(--faint);
-  text-transform: uppercase; min-width: 70px;
+  font-size: 11px; letter-spacing: .22em; color: var(--faint);
+  text-transform: uppercase;
 }
-.contact-line .cval { font-size: 15px; color: var(--ink); }
+.ct-line:hover .ct-k { color: var(--accent); }
+.ct-line .ct-v {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(18px, 1.7vw, 22px); line-height: 1.2;
+  letter-spacing: -.01em; color: var(--ink);
+}
+.ct-line .ct-arr {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 18px; color: var(--faint);
+  transition: color .2s, transform .25s var(--ease);
+}
+.ct-line:hover .ct-arr { color: var(--accent); transform: translateX(4px); }
+.ct-primary .ct-v { color: var(--accent); }
+.ct-primary .ct-k::after {
+  content: " · primary";
+  letter-spacing: .12em;
+}
+
+@media (max-width: 720px) {
+  .ct-grid { grid-template-columns: 1fr; }
+  .ct-line, .ct-line:nth-child(2n), .ct-line:nth-child(2n+1) {
+    grid-template-columns: 1fr auto;
+    border-right: none;
+    padding: 22px 4px;
+    gap: 6px 16px;
+  }
+  .ct-line .ct-k { grid-column: 1; grid-row: 1; }
+  .ct-line .ct-v { grid-column: 1; grid-row: 2; font-size: 19px; }
+  .ct-line .ct-arr { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .ct-line:hover { padding-left: 12px; }
+  .ct-line:nth-child(2n):hover { padding-left: 12px; }
+}
 
 /* ============================================================
    FOOTER
@@ -837,42 +874,60 @@ footer.foot {
     width: 44px; height: 44px; border-radius: 8px;
     border: 1px solid var(--line-strong); color: var(--ink);
   }
-  /* Mobile nav: full-screen overlay, slides in from right */
+  /* Mobile nav: full-screen overlay, slides in from right.
+     NOTE: do NOT use backdrop-filter on the panel itself — iOS Safari
+     has a known render bug where backdrop-filter + transform breaks
+     pointer-events on the panel's children (the menu opens, the blur
+     shows, but taps don't reach the links). Solid background only. */
   nav.links {
     position: fixed;
     top: 0; right: 0; bottom: 0;
-    width: min(320px, 84vw);
-    background: rgba(12,13,16,.97);
-    backdrop-filter: blur(18px) saturate(140%);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    width: min(340px, 88vw);
+    background: #0c0d10;
     border-left: 1px solid var(--line);
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0;
-    padding: 88px 24px 32px;
+    padding: 88px 22px 32px;
     transform: translateX(100%);
-    transition: transform .35s var(--ease);
-    z-index: 55;
+    transition: transform .32s var(--ease);
+    z-index: 1001;
     box-shadow: -30px 0 60px -20px rgba(0,0,0,.7);
+    pointer-events: none;
+    visibility: hidden;
+    touch-action: manipulation;
   }
-  nav.links.open { transform: translateX(0); }
+  nav.links.open { transform: translateX(0); pointer-events: auto; visibility: visible; }
   nav.links a {
-    width: 100%; padding: 16px 0; font-size: 18px;
-    border-bottom: 1px solid var(--line); color: var(--ink);
+    display: block;
+    width: 100%;
+    padding: 16px 4px;
+    font-size: 18px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(217,151,87,.18);
   }
+  nav.links a:active { background: rgba(217,151,87,.08); }
   nav.links a::after { display: none; }
   nav.links .nav-cta {
     margin-top: 18px; border: 1px solid var(--accent);
     background: var(--accent-soft); padding: 14px 18px;
     border-radius: 8px; border-bottom: 1px solid var(--accent);
+    text-align: center;
   }
-  /* Backdrop behind mobile nav */
+  /* Backdrop behind mobile nav. pointer-events: auto so a tap outside
+     the panel closes the menu via the document click handler. */
   body.menu-open::before {
-    content: ""; position: fixed; inset: 0; z-index: 54;
-    background: rgba(0,0,0,.55); backdrop-filter: blur(2px);
+    content: ""; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.55);
     animation: cmdk-fade .25s ease;
+    pointer-events: auto;
   }
   body.menu-open { overflow: hidden; }
+  /* Make sure the hamburger is always tappable above the backdrop */
+  .menu-btn { z-index: 1002; position: relative; touch-action: manipulation; cursor: pointer; }
   .hero { padding-top: 120px; }
   .hero-top {
     grid-template-columns: 1fr; gap: 40px;
@@ -893,7 +948,7 @@ footer.foot {
 }
 @media (max-width: 900px) {
   .writing-grid { grid-template-columns: 1fr; }
-  .contact-card { grid-template-columns: 1fr; padding: clamp(28px, 6vw, 48px); }
+  /* contact-card replaced by .ct-grid 2026-05-29 */
   .stats { grid-template-columns: repeat(3, 1fr); }
   .stat:nth-child(3n) { border-right: 0; }
   .stat:nth-child(n+1):nth-child(-n+3) { border-bottom: 1px solid var(--line); }
@@ -935,10 +990,8 @@ footer.foot {
   .tmnl { padding: 24px; }
   .tmnl blockquote { font-size: 16px; }
 
-  /* Contact card stack */
-  .contact-card h2 { font-size: 28px; }
-  .contact-line { padding: 14px 16px; min-height: 52px; }
-  .contact-line .cval { font-size: 14.5px; }
+  /* Contact (new .ct- pattern handled in its own MQ at 720px) */
+  .ct-head h2 { font-size: 32px; }
 
   /* Footer wrap */
   .foot-inner { flex-direction: column; align-items: flex-start; gap: 10px; font-size: 11.5px; }

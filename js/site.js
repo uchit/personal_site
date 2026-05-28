@@ -99,8 +99,13 @@ document.documentElement.classList.add('js');
     menuBtn.addEventListener('click', () => {
       navLinks.classList.contains('open') ? closeMenu() : openMenu();
     });
+    // When a link inside the panel is tapped, close the menu but do NOT
+    // preventDefault — let the browser navigate. Close on next tick so
+    // iOS Safari doesn't race the close-transition against navigation.
     navLinks.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeMenu();
+      const link = e.target.closest('a');
+      if (!link) return;
+      setTimeout(closeMenu, 0);
     });
     document.addEventListener('click', (e) => {
       if (!navLinks.classList.contains('open')) return;
