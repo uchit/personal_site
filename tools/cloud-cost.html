@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Cloud Cost Diagnostic — Uchit Vyas</title>
+<meta name="description" content="Eight-capability cloud-cost diagnostic across rightsizing, commitments, storage, egress, idle, observability, ownership and governance." />
+<link rel="canonical" href="https://hellouchit.com/tools/cloud-cost.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Cloud Cost Diagnostic" />
+<meta property="og:description" content="8 capabilities · 5 levels · runs in your browser." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/diagnostic.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="tool-hero"><div class="wrap">
+      <span class="eyebrow">Diagnostic &middot; Cloud / FinOps</span>
+      <h1>Cloud Cost<br /><em>Diagnostic</em>.</h1>
+      <p class="hero-role" style="margin-top:24px;max-width:60ch">
+        Eight questions across rightsizing, commitment coverage, storage tiering,
+        egress, idle waste, observability, ownership and governance &mdash; the line
+        items most likely to be eating your AWS, Azure or GCP bill, with the move
+        that compounds at each maturity level.
+      </p>
+      <div class="tool-meta"><span><b>8</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+    </div></section>
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+      <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-opts" id="qopts"></div></article>
+      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for the bill you actually pay.</span><span></span></div>
+      <div class="result" id="result"><div class="result-card">
+        <span class="result-eyebrow">Your cloud-cost posture</span>
+        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+        <div class="result-level" id="rlevel">&mdash;</div>
+        <div class="result-bar"><div class="fill" id="rfill"></div></div>
+        <div class="result-body" id="rbody"></div>
+        <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
+        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
+          <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
+        </div>
+      </div></div>
+    </div></section>
+  </main>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  Diag.run({
+    questions: [
+      { cap: "Rightsizing", t: "How are compute and database sizes set?",
+        o: ["Whatever was provisioned originally — rarely changed.",
+            "Manual reviews when someone complains about the bill.",
+            "Periodic rightsizing recommendations reviewed quarterly.",
+            "Automated rightsizing suggestions actioned monthly with owner sign-off.",
+            "Workloads continuously rightsized; idle capacity scaled down automatically."] },
+      { cap: "Commitments", t: "How well does commitment coverage match steady-state usage?",
+        o: ["No reservations / savings plans.",
+            "Some commitments, set long ago, not reviewed.",
+            "Coverage targets exist; reviewed annually.",
+            "Coverage 70-90% of steady-state; reviewed quarterly.",
+            "Commitment portfolio actively managed — laddered terms, family flexibility, monthly rebalancing."] },
+      { cap: "Storage tiering", t: "How is storage cost managed?",
+        o: ["Everything sits on default hot tier; nothing deleted.",
+            "Some manual archival; retention rules are folklore.",
+            "Lifecycle policies on the obvious buckets / datasets.",
+            "Tiering driven by access patterns; retention policies enforced by IaC.",
+            "Storage tiers, retention and deletion are policy-as-code; cost-per-byte tracked per data domain."] },
+      { cap: "Egress & networking", t: "Do you know what your network egress costs?",
+        o: ["No idea. Egress is a mystery line item.",
+            "Aggregate egress visible; not attributed.",
+            "Egress attributed to services; top offenders known.",
+            "Cross-AZ / region egress reviewed in design; caching used to cut it.",
+            "Architecture-level egress targets per service; PR review flags egress-heavy patterns."] },
+      { cap: "Idle waste", t: "How much idle / orphaned resource is in your account?",
+        o: ["Unknown — and nobody owns finding out.",
+            "Spot-checks find significant idle; no systematic sweep.",
+            "Weekly scans for unattached disks, idle DBs, stale snapshots; flagged.",
+            "Idle detected, auto-quarantined, deleted after grace period with owner approval.",
+            "Ephemeral by default — long-lived resources are the exception and require justification."] },
+      { cap: "Cost observability", t: "Can a service team see their own cost daily?",
+        o: ["No — finance gets the bill monthly.",
+            "Aggregate cost visible to engineering leadership only.",
+            "Per-team cost dashboards exist; engineers don't look at them.",
+            "Per-service cost shown in the developer portal next to ops metrics.",
+            "Cost is a first-class metric — anomalies alert in the same channels as SLO breaches."] },
+      { cap: "Ownership", t: "When a service's cost spikes 30%, who notices and acts?",
+        o: ["Nobody until finance escalates.",
+            "Finance opens a ticket; engineering investigates if free.",
+            "Service owner is named and notified; expected to respond.",
+            "Auto-alert to owner; postmortem if not resolved in 48h.",
+            "Cost regression is treated like a reliability regression — owner-led, time-bound, documented."] },
+      { cap: "Governance", t: "How are new spend-shape decisions made?",
+        o: ["Whoever provisions decides.",
+            "Tags exist; nobody enforces them.",
+            "Tagging policy + budgets per cost-centre; reviewed quarterly.",
+            "Budget alerts wired to owners; over-budget blocks new provisioning.",
+            "Spend shape is encoded — IaC modules embed cost guardrails; finance reviews trends, not transactions."] }
+    ],
+    levels: [
+      { minPct: 0, maxPct: 0.2, name: "Unmanaged",
+        body: "<b>Cost is happening to you.</b> Bills arrive; finance worries; engineering hopes. The first win is visibility — the moment a service team can see its own cost, behaviour changes without any policy.",
+        recs: ["Tag everything by service and environment. Enforce in IaC, not in policy docs.",
+               "Wire one per-service cost view into engineering's daily view (Slack, developer portal, anywhere they actually look).",
+               "Sweep for the obvious idle: unattached disks, orphaned snapshots, dev environments running 24×7."] },
+      { minPct: 0.2001, maxPct: 0.4, name: "Aware",
+        body: "<b>You see the bill; you don't yet control it.</b> Coverage of commitments and lifecycle policies typically buy 15-30% before any architectural work. The bigger lever from here is putting cost in front of the engineer making the decision, at the moment they make it.",
+        recs: ["Put commitment coverage on a target (70%+ of steady-state). Review quarterly, not annually.",
+               "Set lifecycle policies on the top three storage targets. Measure cost-per-GB before and after.",
+               "Name an owner for every service's spend. Cost regressions get a ticket, like incidents."] },
+      { minPct: 0.4001, maxPct: 0.6, name: "Controlled",
+        body: "<b>You have FinOps in name and partly in practice.</b> The remaining gap is usually idle waste and egress — both architectural. From here, the work is moving cost out of finance's report and into the engineer's PR review.",
+        recs: ["Audit egress by service; pick the worst and fix it with caching or co-location.",
+               "Quarantine idle automatically (with owner notify + grace period). Stop debating whether to delete.",
+               "Add cost-impact estimation to design reviews. Make it as normal as a security review."] },
+      { minPct: 0.6001, maxPct: 0.8, name: "Optimised",
+        body: "<b>FinOps is operating well.</b> The cost picture is honest, owners are clear, regressions get caught. The remaining work is platform-level: making the cheap choice the default choice through IaC modules and developer portal patterns.",
+        recs: ["Bake cost guardrails into the IaC modules engineers use. Make the cheap option the default.",
+               "Push cost-per-outcome (per transaction, per user) into product metrics, not just engineering ones.",
+               "Run quarterly architecture reviews on the top 5 services for spend efficiency — not just performance."] },
+      { minPct: 0.8001, maxPct: 1.0, name: "Engineered",
+        body: "<b>Cost is a property of your platform.</b> The work now is regression discipline and second-order optimisation — AI workloads, data egress shifts, multi-cloud arbitrage. Stay specific; resist the pull back to dashboards.",
+        recs: ["Add a 'cost-per-outcome' SLO to your top revenue-generating services.",
+               "Treat new workload classes (GenAI, vector DBs) as their own cost discipline before they enter the long tail.",
+               "Externalise your FinOps operating model. Recruit the next ten engineers who actually care."] }
+    ]
+  });
+});
+</script>
+</body>
+</html>

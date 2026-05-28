@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Platform Engineering Readiness — Uchit Vyas</title>
+<meta name="description" content="Ten-capability platform-engineering readiness diagnostic — paved paths, golden templates, IDP UX, self-service, team topology and funding model." />
+<link rel="canonical" href="https://hellouchit.com/tools/platform-engineering.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Platform Engineering Readiness" />
+<meta property="og:description" content="10 capabilities · 5 levels · runs in your browser." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/diagnostic.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="tool-hero"><div class="wrap">
+      <span class="eyebrow">Diagnostic &middot; Platform Engineering</span>
+      <h1>Platform Engineering<br /><em>Readiness</em>.</h1>
+      <p class="hero-role" style="margin-top:24px;max-width:60ch">
+        Do you have a developer platform &mdash; or an accumulation of tools? Ten checks
+        across paved paths, golden templates, self-service, IDP UX, observability,
+        team topology, product mindset and funding.
+      </p>
+      <div class="tool-meta"><span><b>10</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+    </div></section>
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+      <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-opts" id="qopts"></div></article>
+      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for the developers&rsquo; lived experience.</span><span></span></div>
+      <div class="result" id="result"><div class="result-card">
+        <span class="result-eyebrow">Your platform readiness</span>
+        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+        <div class="result-level" id="rlevel">&mdash;</div>
+        <div class="result-bar"><div class="fill" id="rfill"></div></div>
+        <div class="result-body" id="rbody"></div>
+        <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
+        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
+          <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
+        </div>
+      </div></div>
+    </div></section>
+  </main>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  Diag.run({
+    questions: [
+      { cap: "Paved paths", t: "How does a new service get from zero to production?",
+        o: ["Pick your own stack; write your own pipeline; figure it out.",
+            "There's a wiki page from 2021 that mostly still works.",
+            "A documented golden path covers the common case.",
+            "Golden-path templates with CI, security, observability baked in.",
+            "Paved-path generates a working service in minutes — including pipelines, dashboards, alerts, runbooks."] },
+      { cap: "Self-service", t: "Can a developer provision what they need without filing a ticket?",
+        o: ["Most things require a ticket and a wait.",
+            "Some self-service for non-production; production needs approval.",
+            "Self-service for most common needs, with audit trail.",
+            "Self-service for everything except a small set of policy-gated actions.",
+            "Self-service is the default; manual provisioning is the rare exception."] },
+      { cap: "IDP UX", t: "What's the developer portal like to use?",
+        o: ["No portal — links live in Confluence.",
+            "We have Backstage / similar, mostly empty.",
+            "Service catalogue + a few useful pages; not loved.",
+            "Catalogue + ownership + scorecards; teams use it daily.",
+            "The portal is where developers spend their day — catalogue, docs, self-service, observability, all unified."] },
+      { cap: "Observability defaults", t: "When a new service hits production, what observability does it inherit?",
+        o: ["Whatever the team remembers to add.",
+            "Logs are captured; metrics are inconsistent.",
+            "Logs, metrics, traces are wired by default from the template.",
+            "Plus SLOs and dashboards generated; on-call rotations linked.",
+            "Full observability + SLOs + alerts + cost views, all visible in the portal from day one."] },
+      { cap: "Cognitive load", t: "How many things does a typical engineer need to hold in their head to ship?",
+        o: ["A lot — and most of it isn't their service.",
+            "Several adjacent systems they shouldn't need to learn.",
+            "Their service + the platform abstractions; reasonable.",
+            "Their service + a thin platform surface; documented well.",
+            "Their service. The platform is a property they consume, not a system they reason about."] },
+      { cap: "Team topology", t: "How is the platform team structured?",
+        o: ["Ops team that 'does platform' on the side.",
+            "Dedicated team, but reactive — fixes tickets, not products.",
+            "Platform team with a roadmap; some product mindset.",
+            "Platform team runs platform as a product — discovery, prioritisation, internal users.",
+            "Platform org with stream-aligned, enabling and complicated-subsystem teams (Team Topologies model) — funded for outcomes, not tickets."] },
+      { cap: "Adoption signal", t: "Do you measure whether the platform is actually being used?",
+        o: ["No — we ship it and hope.",
+            "Anecdotes from teams that complain.",
+            "Adoption metrics tracked per capability; reviewed quarterly.",
+            "NPS / developer-satisfaction surveys; adoption tied to outcomes.",
+            "Adoption + satisfaction + business outcome reported quarterly; under-used capabilities get sunset."] },
+      { cap: "Versioning & change", t: "When the platform changes, what happens to consuming teams?",
+        o: ["Surprise. They find out when something breaks.",
+            "Email a week before; some teams ready, most aren't.",
+            "Versioned APIs / templates; deprecation windows announced.",
+            "Versioned platform with migration tooling and timelines.",
+            "Breaking changes are rare events with auto-migration tooling; consuming teams informed via the portal."] },
+      { cap: "Funding model", t: "How is the platform funded?",
+        o: ["Squeezed out of ops budget.",
+            "Project-funded; lives die with the project.",
+            "Funded as a cost-centre; renegotiated annually.",
+            "Funded as a long-term capability with multi-year commitment.",
+            "Funded as a product — investment tied to outcomes (delivery speed, change-fail rate, adoption)."] },
+      { cap: "Product mindset", t: "How does the platform team decide what to build next?",
+        o: ["Loudest voice / closest stakeholder wins.",
+            "Backlog ordered by squeaky-wheel.",
+            "Roadmap exists; informed by ad-hoc feedback.",
+            "Discovery, prototypes, internal-user interviews drive the roadmap.",
+            "Platform-as-product — opportunity sizing, ICE/RICE scoring, sunset rituals for capabilities that don't earn their keep."] }
+    ],
+    levels: [
+      { minPct: 0, maxPct: 0.2, name: "Tooling",
+        body: "<b>You have tools, not a platform.</b> Developers stitch things together. The single win that compounds: pick one common service-shape and pave that path end-to-end before adding a second.",
+        recs: ["Name one common service archetype. Build a golden path that takes it from zero to staging in <30 min.",
+               "Make logs + metrics + traces inherited, not opted-in. Reduce the security tax to zero for that path.",
+               "Stand up a thin portal with the service catalogue. Don't try to be perfect — try to be the source of truth."] },
+      { minPct: 0.2001, maxPct: 0.4, name: "Emerging",
+        body: "<b>The platform exists; it's not yet loved.</b> Developers know about it; some use it; some route around it. The work is reducing cognitive load and measuring whether they're choosing your path or working around it.",
+        recs: ["Survey 10 developers. Ask: 'what part of the platform do you route around?' Fix that first.",
+               "Add observability defaults to the golden path. Make the portal show ownership, SLOs, dashboards in one place.",
+               "Move from ticket-driven to product-driven. Run a discovery cycle. Stop shipping what nobody asked for."] },
+      { minPct: 0.4001, maxPct: 0.6, name: "Established",
+        body: "<b>You have a working platform that teams use.</b> The jump from here is from 'platform' to 'platform-as-a-product' — measured adoption, sunset rituals, funding for outcomes not tickets.",
+        recs: ["Add developer NPS + per-capability adoption to your quarterly review. Sunset the bottom-quartile.",
+               "Move funding from 'cost-centre' to 'investment with outcomes' — speed, change-fail, adoption.",
+               "Introduce stream-aligned vs enabling team distinction (Team Topologies). Stop being a single big platform team."] },
+      { minPct: 0.6001, maxPct: 0.8, name: "Productised",
+        body: "<b>You're running platform as a product.</b> The remaining gap is usually cognitive-load discipline — keeping the surface small as the team that consumes it grows. The instinct to add capability is the enemy of the instinct to subtract.",
+        recs: ["Set a cognitive-load budget per service archetype. Hold to it when adding new platform capabilities.",
+               "Auto-migration tooling for breaking platform changes. Stop making consuming teams do the migration work.",
+               "Tie platform investment to two-three business outcomes; report quarterly to the people who fund it."] },
+      { minPct: 0.8001, maxPct: 1.0, name: "Property",
+        body: "<b>The platform is a property of the org, not a workstream.</b> Developers consume it without thinking; new joiners reach productive in days; new capabilities are encoded, not announced. The work is regression: keeping it that good as scale and AI workloads erode it.",
+        recs: ["Add AI-workload patterns to the paved path before squads invent their own.",
+               "Externalise your platform model (sanitised). It's how you recruit the next ten platform engineers.",
+               "Run quarterly 'what should we sunset?' rituals. Subtract as ruthlessly as you added."] }
+    ]
+  });
+});
+</script>
+</body>
+</html>

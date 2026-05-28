@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>EA Operating Model Diagnostic — Uchit Vyas</title>
+<meta name="description" content="Eight-capability EA operating-model diagnostic — gate vs enabler, design authority, capability model, principles, decision capture, federation, business linkage." />
+<link rel="canonical" href="https://hellouchit.com/tools/ea-operating-model.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="EA Operating Model Diagnostic" />
+<meta property="og:description" content="8 capabilities · 5 levels · runs in your browser." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/diagnostic.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="tool-hero"><div class="wrap">
+      <span class="eyebrow">Diagnostic &middot; Enterprise Architecture</span>
+      <h1>EA Operating Model<br /><em>Diagnostic</em>.</h1>
+      <p class="hero-role" style="margin-top:24px;max-width:60ch">
+        Is your enterprise architecture function a gate, a consultancy, or a platform?
+        Eight questions on authority, capability model, principles, decision capture,
+        federation, and the link from architecture to business strategy.
+      </p>
+      <div class="tool-meta"><span><b>8</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+    </div></section>
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+      <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-opts" id="qopts"></div></article>
+      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for how EA actually shows up.</span><span></span></div>
+      <div class="result" id="result"><div class="result-card">
+        <span class="result-eyebrow">Your EA operating model</span>
+        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+        <div class="result-level" id="rlevel">&mdash;</div>
+        <div class="result-bar"><div class="fill" id="rfill"></div></div>
+        <div class="result-body" id="rbody"></div>
+        <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
+        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
+          <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
+        </div>
+      </div></div>
+    </div></section>
+  </main>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  Diag.run({
+    questions: [
+      { cap: "Stance", t: "How does EA show up to a delivery team?",
+        o: ["As a gate at the end — engineers route around it.",
+            "As a review function whose output is opinions, not decisions.",
+            "As a consultancy — useful when invited; ignored when not.",
+            "As an enabling team — paves the path teams choose to use.",
+            "As a property of the platform — encoded in templates and policy; rarely felt directly."] },
+      { cap: "Design authority", t: "Who decides architectural questions of scale?",
+        o: ["Whoever is loudest in the meeting.",
+            "A design-authority board that meets monthly and decides slowly.",
+            "Standing forum with documented terms of reference; decisions logged.",
+            "Tiered — local decisions stay local; cross-cutting go to a federated forum.",
+            "Most decisions are encoded — only genuinely new patterns escalate; everything else is paved."] },
+      { cap: "Capability model", t: "Do you have a shared map of what your organisation does?",
+        o: ["No business capability model.",
+            "One exists; nobody uses it.",
+            "Capability model exists; consulted in major investment decisions.",
+            "Capability model drives the architecture roadmap and investment portfolio.",
+            "Capability model is a living artefact — investment, ownership, maturity per capability, refreshed regularly."] },
+      { cap: "Target-state cadence", t: "How current is your target-state architecture?",
+        o: ["A PowerPoint from a few years ago.",
+            "Updated reactively when something major changes.",
+            "Refreshed annually; mostly aligned to current direction.",
+            "Quarterly refresh tied to portfolio reviews.",
+            "Continuously evolving artefact — versioned, diffable, source-of-truth for major investment decisions."] },
+      { cap: "Principle enforcement", t: "How are architecture principles enforced?",
+        o: ["They live in a PDF nobody reads.",
+            "Mentioned in design reviews; selectively applied.",
+            "Cited in design reviews; documented exceptions tracked.",
+            "Most encoded as policy-as-code or platform defaults; exceptions need sign-off.",
+            "Principles you don't enforce don't exist — what's left is encoded, the rest were retired."] },
+      { cap: "Decision capture", t: "When an architectural decision is made, where does it live?",
+        o: ["In someone's head or an old email.",
+            "In Confluence somewhere; hard to find later.",
+            "ADRs (architecture decision records) per project, inconsistently used.",
+            "ADRs are standard; searchable; reviewed in design forums.",
+            "ADRs are first-class — required for changes above a threshold; consulted in postmortems and onboarding."] },
+      { cap: "Federation", t: "How is EA organised vs delivery teams?",
+        o: ["Central tower — EA tells teams what to do.",
+            "Central function that occasionally consults delivery.",
+            "Central function + embedded architects in some streams.",
+            "Federated — domain architects in streams, central EA on cross-cutting concerns.",
+            "EA is mostly stream-aligned; the small central team owns cross-cutting standards, patterns and platform integration."] },
+      { cap: "Business linkage", t: "Can you trace an architecture decision back to a business outcome?",
+        o: ["Architecture and business strategy are different documents.",
+            "Loose alignment; reviewed annually at a strategy offsite.",
+            "Architecture roadmap maps to business priorities at a portfolio level.",
+            "Per-capability investment ties to outcome metrics; reviewed quarterly.",
+            "Architecture is a lens on the business strategy — every major decision shows the outcome it serves."] }
+    ],
+    levels: [
+      { minPct: 0, maxPct: 0.2, name: "Bureaucratic",
+        body: "<b>EA is a tax, not a service.</b> Delivery teams route around you; decisions get made twice; trust is the bottleneck. The single move that changes everything: ship one paved path that a real team actually adopts.",
+        recs: ["Pick one common need (say, a new microservice in cloud X). Build the paved path. Get a team to use it. That's your case study.",
+               "Move from approval to enablement. Stop holding reviews where the answer is no — start running clinics where the answer is 'here's the template'.",
+               "Write three ADRs for decisions already made. Make ADRs the unit of work, not slide decks."] },
+      { minPct: 0.2001, maxPct: 0.4, name: "Consultative",
+        body: "<b>EA is helpful when asked.</b> The gap to influence is visibility — making the architecture story legible to people who aren't architects, and making the easy choice the architecture-aligned choice.",
+        recs: ["Publish your top 10 architecture principles. Encode the top 3 as policy-as-code or template defaults.",
+               "Federate. Place an architect in the two highest-value streams. Stop trying to scale from the centre.",
+               "Build a one-page capability model. Use it in every investment conversation for the next quarter."] },
+      { minPct: 0.4001, maxPct: 0.6, name: "Governed",
+        body: "<b>You have a working EA function.</b> Principles, ADRs, capability model — they all exist. The next jump is from 'governed' to 'enabling' — encoding standards in platforms, not policies.",
+        recs: ["Move 3 more principles from 'policy doc' to 'enforced by platform'. Subtract the rest.",
+               "Tie capability investment to business outcome metrics. Stop reporting on architecture; start reporting on outcomes.",
+               "Make ADRs the source of truth for design reviews. Refuse to discuss decisions that aren't written down."] },
+      { minPct: 0.6001, maxPct: 0.8, name: "Enabling",
+        body: "<b>EA enables delivery rather than gating it.</b> Stream-aligned architects, encoded principles, tight business linkage. The remaining work is regression discipline — preventing the slow drift back to central gating as new leadership joins.",
+        recs: ["Run a 'decisions we don't need to make' audit. Anything an engineer can decide locally should be local. Reduce the central queue.",
+               "Codify your operating model. Onboard one new architect against it. If it survives the first 90 days, it's real.",
+               "Tie a quarterly EA outcome to delivery metrics (lead time, change-fail, time-to-first-deploy). Report on those, not on artefacts."] },
+      { minPct: 0.8001, maxPct: 1.0, name: "Property",
+        body: "<b>Architecture is a property of how you build, not a function you consult.</b> The work now is staying out of the way as scale and AI workloads enter — and externalising the model so it survives leadership turnover.",
+        recs: ["Bake AI-workload patterns into the paved path before squads invent their own.",
+               "Publish (sanitised) ADRs externally for the decisions you'd want competitors to copy. It recruits.",
+               "Set a sunset cadence — every quarter, retire one standard that no longer earns its keep."] }
+    ]
+  });
+});
+</script>
+</body>
+</html>

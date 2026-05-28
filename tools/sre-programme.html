@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>SRE Programme Diagnostic — Uchit Vyas</title>
+<meta name="description" content="Ten-capability SRE programme diagnostic — SLOs, error budgets, blast-radius, runbooks, on-call hygiene, postmortems, chaos, toil and golden signals." />
+<link rel="canonical" href="https://hellouchit.com/tools/sre-programme.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="SRE Programme Diagnostic" />
+<meta property="og:description" content="10 capabilities · 5 levels · runs in your browser." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/diagnostic.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="tool-hero"><div class="wrap">
+      <span class="eyebrow">Diagnostic &middot; SRE</span>
+      <h1>SRE Programme<br /><em>Diagnostic</em>.</h1>
+      <p class="hero-role" style="margin-top:24px;max-width:60ch">
+        SLOs, error budgets, blast-radius design, on-call hygiene, postmortems, chaos,
+        toil, capacity planning, runbooks and golden signals &mdash; the unglamorous
+        work that keeps regulated platforms standing.
+      </p>
+      <div class="tool-meta"><span><b>10</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+    </div></section>
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+      <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-opts" id="qopts"></div></article>
+      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for the on-call engineer&rsquo;s lived experience.</span><span></span></div>
+      <div class="result" id="result"><div class="result-card">
+        <span class="result-eyebrow">Your SRE programme</span>
+        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+        <div class="result-level" id="rlevel">&mdash;</div>
+        <div class="result-bar"><div class="fill" id="rfill"></div></div>
+        <div class="result-body" id="rbody"></div>
+        <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
+        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="result-actions">
+          <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
+          <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
+        </div>
+      </div></div>
+    </div></section>
+  </main>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  Diag.run({
+    questions: [
+      { cap: "SLOs / SLIs", t: "Do your services have SLOs that match what users experience?",
+        o: ["No SLOs — uptime is the proxy.",
+            "SLOs on some services; measured from infra, not user journey.",
+            "User-journey SLOs on critical services; reviewed quarterly.",
+            "SLOs on every customer-facing service; alerted against, owned by squad.",
+            "SLOs are the contract — used in trade-off decisions; SLIs measured from the user's perspective."] },
+      { cap: "Error budgets", t: "What happens when a service burns its error budget?",
+        o: ["Nothing — error budgets are an idea, not a practice.",
+            "We discuss; rarely act.",
+            "Engineering slows feature work until burn rate recovers.",
+            "Budget burn auto-pauses risky changes; reliability work prioritised.",
+            "Error budget is enforced by policy — feature freeze or change-velocity reduction is automatic."] },
+      { cap: "Blast radius", t: "When something fails, how contained is it?",
+        o: ["A failure in one place can take down the whole platform.",
+            "Some isolation; not consistently applied.",
+            "Most services isolated by region / cell / tenant.",
+            "Cell-based architecture for critical paths; blast-radius known and rehearsed.",
+            "Blast-radius is a first-class design constraint — every new service ships with a documented blast-radius and rehearsal."] },
+      { cap: "On-call hygiene", t: "What's on-call like to be on?",
+        o: ["Brutal. People dread it. Burnout drives turnover.",
+            "Survivable but noisy. Many alerts are noise.",
+            "Manageable. Some good runbooks; mostly actionable alerts.",
+            "Healthy. Pager load tracked; tuning happens; on-call comp pays for itself.",
+            "Pager load is a tracked KPI. Anything above threshold triggers reliability work, not toughness."] },
+      { cap: "Postmortems", t: "What happens after an incident?",
+        o: ["Blame and finger-pointing; we move on.",
+            "A doc gets written; rarely read.",
+            "Blameless postmortems; action items tracked.",
+            "Action items closed within SLA; trends reviewed quarterly.",
+            "Postmortems drive platform changes; recurrence rate of past failure modes is a tracked KPI."] },
+      { cap: "Runbooks", t: "When a new on-call gets paged at 3am, do they have what they need?",
+        o: ["A wiki link that doesn't work.",
+            "An outdated runbook from someone who left.",
+            "Runbooks exist; quality varies by service.",
+            "Runbooks per service; tested in game-days; updated after each incident.",
+            "Runbooks are living artefacts — linked from alerts, tested quarterly, deprecated when irrelevant."] },
+      { cap: "Chaos / game-days", t: "Do you actively test resilience?",
+        o: ["No — we hope failure scenarios are rare.",
+            "Occasional game-days when leadership pushes.",
+            "Quarterly game-days for critical services.",
+            "Continuous chaos engineering — failure injection in pre-prod, planned in prod.",
+            "Chaos is integrated — every new service ships with a 'how does this fail?' test as part of CI."] },
+      { cap: "Capacity planning", t: "How do you decide when to scale?",
+        o: ["When something breaks.",
+            "Reactively, when monitoring screams.",
+            "Capacity reviewed quarterly; rough headroom targets.",
+            "Capacity modelled per service; auto-scaling tuned; load tests inform.",
+            "Capacity is a tracked SLO — headroom, growth, cost trade-off reviewed monthly with owners."] },
+      { cap: "Toil tracking", t: "Do you know how much repetitive operational work the team does?",
+        o: ["No — toil is invisible.",
+            "Anecdotally; the team complains.",
+            "Toil is named; some tracking; engineering allocates time to reduce it.",
+            "Toil tracked per quarter; <50% target; investment in automation funded.",
+            "Toil is a primary metric — reductions reported alongside features; team capacity model accounts for it."] },
+      { cap: "Golden signals", t: "Do all your critical services expose the four golden signals (latency, traffic, errors, saturation)?",
+        o: ["Inconsistent — some services have rich telemetry; others have nothing.",
+            "Most have some; quality varies.",
+            "Golden signals on critical paths; dashboards exist.",
+            "Inherited from the platform template; default dashboards per service.",
+            "Golden signals are a platform contract — every service has them, every alert references them, every postmortem cites them."] }
+    ],
+    levels: [
+      { minPct: 0, maxPct: 0.2, name: "Heroic",
+        body: "<b>Reliability depends on individuals.</b> Pager load is high; turnover follows; institutional knowledge walks. The first lever is reducing noise — make alerts mean something, and on-call rotations become survivable.",
+        recs: ["Audit the last month of alerts. Mute, delete or fix the noisy ones. Aim for >70% actionable.",
+               "Pick one critical service and define one SLO from the user's journey. Alert on burn rate, not infra.",
+               "Run one blameless postmortem on the next incident. Don't ask 'who'; ask 'what about the system?'."] },
+      { minPct: 0.2001, maxPct: 0.4, name: "Operational",
+        body: "<b>You have practices, but not yet discipline.</b> The win is making error budgets real — a number that actually changes what the team does next.",
+        recs: ["Define error budgets for the top three services. Agree what 'budget exhausted' triggers.",
+               "Track toil. Aim for <50% of team time. Fund the automation that gets you there.",
+               "Build runbooks for the top 10 alert types. Test one in a game-day this quarter."] },
+      { minPct: 0.4001, maxPct: 0.6, name: "Disciplined",
+        body: "<b>You have a real SRE programme.</b> SLOs, postmortems, runbooks all exist; the jump is from 'practice' to 'platform' — golden signals inherited by default, blast-radius as a design constraint, chaos engineering as a habit.",
+        recs: ["Make golden signals inherited by every new service. Stop relying on teams to remember.",
+               "Adopt cell-based / region-isolated architecture for at least the top two services. Rehearse blast-radius.",
+               "Run quarterly game-days. Make failure rehearsal as normal as code review."] },
+      { minPct: 0.6001, maxPct: 0.8, name: "Engineered",
+        body: "<b>Reliability is engineered, not heroic.</b> The remaining gap is usually toil and capacity discipline — keeping ops investment honest as scale grows and the team gets pulled into new product features.",
+        recs: ["Set a quarterly toil-reduction target. Report it alongside feature delivery, not as a side metric.",
+               "Make capacity planning data-driven — headroom, growth, cost — owned by service teams, reviewed monthly.",
+               "Move chaos from quarterly to continuous in pre-prod, planned in prod. Rehearse like a fire drill."] },
+      { minPct: 0.8001, maxPct: 1.0, name: "Property",
+        body: "<b>Reliability is a property of how you build.</b> Pager is calm; budgets are real; failure modes are rehearsed; toil is named and shrinking. The work now is regression discipline as AI workloads, regulatory shifts and platform changes try to erode it.",
+        recs: ["Add AI-workload SLOs (cost-per-outcome, latency, accuracy) before squads invent their own.",
+               "Run quarterly resilience-debt reviews — what failure modes have we not yet rehearsed?",
+               "Externalise your SRE operating model. It's how you recruit the next ten SREs who actually care."] }
+    ]
+  });
+});
+</script>
+</body>
+</html>

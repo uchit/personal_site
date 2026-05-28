@@ -1,0 +1,98 @@
+/* enhance.css — site-wide craft layer (⌘K command palette · security badge) */
+
+/* ---- Command palette trigger ---- */
+.cmdk-trigger {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+  color: var(--muted);
+  background: rgba(19,21,26,.82); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px; padding: 9px 12px; cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.cmdk-trigger:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-1px); }
+.cmdk-trigger kbd {
+  font-family: inherit; border: 1px solid var(--line-strong);
+  border-radius: 5px; padding: 1px 6px; color: var(--accent);
+}
+@media (pointer: coarse) { .cmdk-trigger { display: none; } }
+
+/* ---- Command palette overlay ---- */
+.cmdk {
+  position: fixed; inset: 0; z-index: 9000;
+  display: none; align-items: flex-start; justify-content: center;
+  padding: 14vh 20px 20px;
+}
+.cmdk.open { display: flex; }
+.cmdk-back {
+  position: absolute; inset: 0;
+  background: rgba(4,6,10,.66); backdrop-filter: blur(4px);
+  animation: cmdk-fade .2s ease;
+}
+@keyframes cmdk-fade { from { opacity: 0; } }
+.cmdk-panel {
+  position: relative; width: min(620px, 100%);
+  background: #11141a; border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,.85);
+  overflow: hidden;
+  animation: cmdk-pop .26s var(--ease);
+}
+@keyframes cmdk-pop { from { opacity: 0; transform: translateY(-10px) scale(.98); } }
+.cmdk-in {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px; border-bottom: 1px solid var(--line);
+}
+.cmdk-in svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.7; flex-shrink: 0; }
+.cmdk-in input {
+  flex: 1; background: none; border: 0; outline: none;
+  color: var(--ink); font-family: inherit; font-size: 16px;
+}
+.cmdk-in input::placeholder { color: var(--faint); }
+.cmdk-in .esc {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--faint); letter-spacing: .1em;
+  border: 1px solid var(--line); padding: 3px 8px; border-radius: 5px;
+}
+.cmdk-list { max-height: 56vh; overflow-y: auto; padding: 8px 0; }
+.cmdk-group {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px; color: var(--faint); letter-spacing: .2em;
+  text-transform: uppercase; padding: 10px 18px 6px;
+}
+.cmdk-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 11px 18px; cursor: pointer; color: var(--ink);
+  font-size: 14.5px; transition: background .15s;
+  border-left: 2px solid transparent;
+}
+.cmdk-item .ic {
+  width: 22px; height: 22px; display: grid; place-items: center;
+  font-size: 13px; color: var(--accent); flex-shrink: 0;
+}
+.cmdk-item:hover, .cmdk-item.active {
+  background: rgba(217,151,87,.07); border-left-color: var(--accent);
+}
+.cmdk-item .hint {
+  margin-left: auto;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px; color: var(--faint); letter-spacing: .08em;
+}
+.cmdk-empty {
+  padding: 28px 18px; text-align: center; color: var(--faint);
+  font-style: italic;
+}
+
+/* ---- Security badge in footer ---- */
+.secbadge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11.5px; color: var(--muted); letter-spacing: .04em;
+}
+.secbadge .sdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--signal); box-shadow: 0 0 8px var(--signal);
+}
+.secbadge:hover { color: var(--accent); }

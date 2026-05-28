@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>DevSecOps Maturity Diagnostic — Uchit Vyas</title>
+<meta name="description" content="Ten-capability DevSecOps maturity diagnostic — scored on five levels with prioritised next-moves. Runs in your browser." />
+<link rel="canonical" href="https://hellouchit.com/tools/devsecops-maturity.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="DevSecOps Maturity Diagnostic" />
+<meta property="og:description" content="10 capabilities · 5 levels · runs in your browser." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/diagnostic.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div>
+  <div class="grid-fx" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand" aria-label="Uchit Vyas — home">
+        <span class="monogram" aria-hidden="true">UV</span>
+        <span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="/#about">About</a>
+        <a href="/#work">Work</a>
+        <a href="/tools/" style="color:var(--ink)">Tools</a>
+        <a href="/writing/">Writing</a>
+        <a href="/#contact" class="nav-cta">Get in touch</a>
+      </nav>
+          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="tool-hero">
+      <div class="wrap">
+        <span class="eyebrow">Diagnostic &middot; DevSecOps</span>
+        <h1>DevSecOps Maturity<br /><em>Diagnostic</em>.</h1>
+        <p class="hero-role" style="margin-top:24px;max-width:60ch">
+          Ten capabilities across pipeline, secrets, supply chain, scanning, ownership,
+          baselines, identity, patching, observability and product integration &mdash; scored
+          on five levels with three prioritised next-moves keyed to where you land.
+        </p>
+        <div class="tool-meta">
+          <span><b>10</b> capabilities</span>
+          <span><b>5</b> levels</span>
+          <span><b>~2</b> min</span>
+          <span>Runs in your browser. Nothing stored.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiz" id="quiz">
+      <div class="wrap" style="max-width:780px">
+        <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+        <article class="q-card" id="qcard">
+          <span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span>
+          <h2 class="q-text" id="qtext"></h2>
+          <div class="q-opts" id="qopts"></div>
+        </article>
+        <div class="q-nav">
+          <button id="qback" disabled>&larr; Back</button>
+          <span>Answer truthfully today &mdash; not aspirationally.</span><span></span>
+        </div>
+
+        <div class="result" id="result">
+          <div class="result-card">
+            <span class="result-eyebrow">Your DevSecOps maturity</span>
+            <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax">/ 50</span></div>
+            <div class="result-level" id="rlevel">&mdash;</div>
+            <div class="result-bar"><div class="fill" id="rfill"></div></div>
+            <div class="result-body" id="rbody"></div>
+            <div class="cap-breakdown">
+              <h3>Capability breakdown</h3>
+              <div id="cbreakdown"></div>
+            </div>
+            <div class="result-recs">
+              <h3>Next three moves</h3>
+              <ol id="rrecs"></ol>
+            </div>
+            <div class="result-actions">
+              <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
+              <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+              <a class="btn btn-ghost" href="/#contact">Talk to me about your programme &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span>
+    </div>
+  </footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+  Diag.run({
+    questions: [
+      { cap: "Pipeline",       t: "How does your code reach production?",
+        o: [ "Manual deploys; releases are scheduled events with change windows.",
+             "Scripted deploys; one or two engineers own the pipeline.",
+             "CI/CD with automated tests; deploys daily during business hours.",
+             "Trunk-based, multiple deploys per day, feature flags for rollback.",
+             "Continuous, auto-promoted on green signals; deploys are non-events." ] },
+      { cap: "Secrets",        t: "Where do secrets live?",
+        o: [ "In code, config files, or shared spreadsheets.",
+             "In env files / CI variables, rotated occasionally.",
+             "In a vault, but apps still pull static long-lived credentials.",
+             "Vault-backed, short-lived tokens for most workloads.",
+             "Workload identity (OIDC/IAM roles); zero static secrets; automatic rotation." ] },
+      { cap: "Supply chain",   t: "How do you find vulnerabilities in dependencies?",
+        o: [ "We don't systematically; we patch after incidents.",
+             "Periodic scans, results reviewed when someone has time.",
+             "SCA runs in CI; high/critical break the build.",
+             "SBOMs generated per artefact; CVE alerts piped to owning team.",
+             "SBOM + signed provenance (SLSA L3+); supply-chain compromise detection in prod." ] },
+      { cap: "App scanning",   t: "How is application code scanned?",
+        o: [ "Annual pen-test; nothing in pipeline.",
+             "SAST tool exists, but findings are ignored or muted.",
+             "SAST + DAST in CI for main branches; criticals block merge.",
+             "IDE-time security feedback + PR comments + auto-fix suggestions.",
+             "Risk-tiered scanning; threat-modelled hot-paths; security-as-code policies enforced." ] },
+      { cap: "Ownership",      t: "Who is accountable when production breaks security policy?",
+        o: [ "Security team chases engineering after the fact.",
+             "Engineering 'owns it' in theory; security still does most of the work.",
+             "Service owners are accountable; security advises.",
+             "Service teams self-attest with auto-evidence; security audits a sample.",
+             "Policy-as-code blocks the deploy before a human is involved." ] },
+      { cap: "Infra baselines", t: "How do you handle infrastructure security baselines?",
+        o: [ "Manually configured by ops; drift is normal.",
+             "Hardened AMIs/templates, but drift detection is best-effort.",
+             "IaC with linting (tfsec / Checkov); known violations tracked.",
+             "Continuous compliance scanning; auto-remediation for common drift.",
+             "Immutable infra, signed images, runtime-enforced baselines (eBPF / OPA / admission)." ] },
+      { cap: "Identity",       t: "What does identity look like for humans and workloads?",
+        o: [ "Shared accounts, long-lived passwords, MFA inconsistent.",
+             "SSO for most apps; service accounts proliferate.",
+             "SSO + MFA enforced; workload identity for new services.",
+             "JIT access for privileged ops; workload identity is default for new builds.",
+             "Zero standing access; everything short-lived, identity-bound, fully audited." ] },
+      { cap: "Patching",       t: "How fast do you ship a security patch?",
+        o: [ "Weeks — patching is its own project.",
+             "Days, with planning and a change advisory board.",
+             "Hours during business; days for low-severity.",
+             "Patch-on-demand; mean time to remediate < 24h for critical.",
+             "Minutes — automated upgrades with canary + auto-rollback." ] },
+      { cap: "Observability",  t: "What does observability for security look like?",
+        o: [ "Logs exist somewhere; nobody queries them proactively.",
+             "Centralised logs; manual hunts when something feels off.",
+             "SIEM with curated detections; SOC reviews alerts in business hours.",
+             "Detection-as-code, tested like software; 24×7 response.",
+             "Threat models drive detections; purple-teamed continuously; signal:noise tracked as a KPI." ] },
+      { cap: "Product integration", t: "How does security show up in product planning?",
+        o: [ "Security is a gate at the end; often delays release.",
+             "Security is a separate workstream with its own backlog.",
+             "Security reps embedded with each squad; consulted early.",
+             "Security stories are written by engineers; threat-models part of design review.",
+             "Security is a property the platform guarantees by default; teams rarely think about it." ] }
+    ],
+    levels: [
+      { minPct: 0,    maxPct: 0.2, name: "Reactive",
+        body: "<b>You're fire-fighting.</b> Security work is event-driven and depends on individual heroics. The fastest move that compounds: pick one capability (typically secrets or SCA) and make it pipeline-enforced — one team, one week, one win to copy across the org.",
+        recs: [ "Stop shared secrets this week. Vault + short-lived tokens for one service. Document the pattern.",
+                "Add SCA to one CI pipeline. Make criticals break the build. Don't boil the ocean.",
+                "Name one Security Champion in engineering. Give them 20% time, not lip service." ] },
+      { minPct: 0.2001, maxPct: 0.4, name: "Repeatable",
+        body: "<b>You have practices, but they're inconsistent.</b> The same control is rigorous on one team and theatre on another. The win at this level isn't new tools — it's making one team's good pattern the platform default.",
+        recs: [ "Audit which teams enforce which controls. Pick the top three gaps in coverage.",
+                "Move one good practice into a paved-path template every new service inherits.",
+                "Define and publish an SLO for time-to-patch on critical CVEs. Measure it weekly." ] },
+      { minPct: 0.4001, maxPct: 0.6, name: "Defined",
+        body: "<b>You have a real DevSecOps practice.</b> Most controls are codified, enforced in CI, and owned by service teams. The next jump is from 'we have policies' to 'the platform enforces them' — policy-as-code, workload identity, signed artefacts.",
+        recs: [ "Replace static credentials with workload identity (OIDC) on at least one critical pipeline.",
+                "Introduce policy-as-code (OPA / Kyverno) for one class of deploy-blocking rule.",
+                "Start emitting SBOMs per artefact; close the loop with a CVE-to-owner alert path." ] },
+      { minPct: 0.6001, maxPct: 0.8, name: "Managed",
+        body: "<b>You're in the top quartile.</b> Security is encoded, audited and instrumented; service teams own their posture; security advises and audits rather than gating. The remaining gap is usually supply-chain provenance and continuous validation.",
+        recs: [ "Adopt SLSA Level 3+ for at least the high-blast-radius services. Verify on deploy.",
+                "Move from periodic pen-tests to continuous purple-team exercises with detection-as-code.",
+                "Publish a service-level posture score per team; make it visible on the developer portal." ] },
+      { minPct: 0.8001, maxPct: 1.0, name: "Optimising",
+        body: "<b>You're at the top of the curve.</b> Security is a platform property, not a workflow. The work now is regression discipline: protecting what you have as scale, AI workloads, and the next platform shift try to erode it.",
+        recs: [ "Bake an 'AI-workload security baseline' into the platform before GenAI features ship.",
+                "Run security chaos engineering: assume one control fails, prove the others catch it.",
+                "Mentor a peer organisation. Externalising the model is what makes it survive your tenure." ] }
+    ]
+  });
+});
+</script>
+</body>
+</html>
