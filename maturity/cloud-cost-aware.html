@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cloud Cost · Aware tier — what stuck looks like — Uchit Vyas</title>
+<meta name="description" content="Cloud Cost Aware tier: ~42% of orgs (FinOps 2024). You see the bill; you don't yet control it. Commitments + lifecycle + ownership are the next 15-30%." />
+<link rel="canonical" href="https://hellouchit.com/maturity/cloud-cost-aware.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cloud Cost · Aware — the stuck-tier" />
+<meta property="og:description" content="You see the bill; you don't yet control it. The 3 substrate moves to Controlled." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/essay.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .m-hero { padding: clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px); }
+  .m-hero .tier { font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.22em; color:var(--accent); text-transform:uppercase; }
+  .m-hero h1 { font-family:"Fraunces",serif; font-weight:500; font-size:clamp(40px,6vw,72px); line-height:1.02; letter-spacing:-.02em; margin-top:14px; max-width:22ch; }
+  .m-hero h1 em { font-style:italic; color:var(--accent); font-weight:500; }
+  .m-hero .dek { margin-top:20px; color:var(--ink); font-size:clamp(17px,1.5vw,21px); line-height:1.55; max-width:58ch; font-weight:300; }
+  .m-hero .dek b { color:var(--accent); font-weight:500; }
+  .m-bench { margin-top:24px; padding:18px 22px; border-left:2px solid var(--accent); background:rgba(217,151,87,.05); border-radius:0 8px 8px 0; }
+  .m-bench b { color:var(--accent); }
+  .m-bench cite { color:var(--muted); font-style:normal; }
+  .m-bench cite a { color:var(--muted); border-bottom:1px dotted var(--line-strong); }
+  .m-bench cite a:hover { color:var(--accent); border-color:var(--accent); }
+  .m-nav-ctx { margin:clamp(28px,4vw,44px) 0; padding:16px 22px; border:1px dashed var(--line); border-radius:10px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.04em; color:var(--muted); display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; }
+  .m-nav-ctx b { color:var(--accent); font-weight:500; letter-spacing:.14em; text-transform:uppercase; font-size:10.5px; }
+  .m-nav-ctx a { color:var(--ink); border-bottom:1px dotted var(--accent); padding-bottom:1px; }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="m-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><a href="/maturity/" style="color:var(--muted)">Maturity</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Cloud Cost Aware</span></nav>
+      <span class="tier">Cloud Cost · Tier 2 of 5</span>
+      <h1>Cloud Cost &mdash; <em>Aware</em>.</h1>
+      <p class="dek"><b>You see the bill. You don&rsquo;t yet control it</b>. Visibility exists, tags exist, dashboards exist &mdash; behaviour hasn&rsquo;t changed. Coverage of commitments and lifecycle policy are the next 15-30%, but ownership is the unlock.</p>
+      <div class="m-bench"><b>~42%</b> of orgs at this stage per <cite><a href="https://data.finops.org/" target="_blank" rel="noopener">FinOps Foundation State of FinOps 2024</a></cite>. Typical realised savings YoY: <b>5-12%</b>. CFO has visibility; engineers don&rsquo;t change behaviour yet.</div>
+      <div class="m-nav-ctx"><b>Diagnostic</b> <a href="/tools/cloud-cost.html">Cloud Cost</a> <b>Framework</b> <a href="/4-discipline-stack/">The 4-Discipline Stack</a> <b>Related anti-patterns</b> <a href="/anti-patterns/#kpi-cargo-cult">KPI Cargo Cult</a></div>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <h2>What this tier actually <em>looks like</em>.</h2>
+      <p>The CFO has a cloud-cost dashboard. The CIO presents trend slides quarterly. Per-team cost is visible somewhere &mdash; but nobody on the engineering team looks at it before designing the next service. Anomalies get flagged a week after they happen.</p>
+<p>You probably have:</p>
+<ul>
+<li>A FinOps function (sometimes one person, sometimes embedded in finance).</li>
+<li>Tags applied to most resources (some, somewhere &mdash; consistency varies).</li>
+<li>A cost dashboard visible to engineering leadership.</li>
+<li>Some commitment coverage (Savings Plans, Reservations, CUDs) &mdash; set long ago, not reviewed.</li>
+<li>Lifecycle policies on storage if you&rsquo;re lucky; default-hot if you&rsquo;re not.</li>
+<li>Annual cost reviews where the answer is &ldquo;we&rsquo;ll do better next year.&rdquo;</li>
+</ul>
+
+      <h2>Why most teams get <em>stuck</em> here.</h2>
+      <p>Aware-tier orgs typically stall because they treat cost as a finance problem. Three patterns that keep teams here:</p>
+<ul>
+<li><b>Cost dashboards no engineer opens.</b> Visibility without point-of-decision visibility doesn&rsquo;t change architecture.</li>
+<li><b>Commitment coverage set-and-forget.</b> A 3-year commit made 2 years ago at a different scale is now over- or under-coverage. Both leak money.</li>
+<li><b>Idle waste invisible.</b> Unattached disks, orphaned snapshots, dev environments running 24×7 add up to 5-15% of cloud bill and require zero architectural change to fix.</li>
+</ul>
+<p>The substrate move is <b>changing where the cost signal lives</b>: out of finance&rsquo;s monthly report, into the engineer&rsquo;s daily flow.</p>
+
+      <h2>The three substrate moves to the <em>next tier</em>.</h2>
+      <h3>1. Per-service cost in the developer&rsquo;s daily view.</h3>
+<p>Wire per-service cost into <a href="https://backstage.io/" target="_blank" rel="noopener">Backstage</a> / <a href="https://www.cortex.io/" target="_blank" rel="noopener">Cortex</a> / Slack / wherever engineers already look. <a href="https://www.opencost.io/" target="_blank" rel="noopener">OpenCost</a>, <a href="https://www.kubecost.com/" target="_blank" rel="noopener">Kubecost</a>, CloudHealth, Vantage all do this.</p>
+<h3>2. Commitment coverage on a quarterly review cadence, target 70-90%.</h3>
+<p>FinOps Foundation guidance. Coverage above 70% buys 15-25% off on covered usage. Below 50%, you&rsquo;re leaving real money on the table. Above 90%, you&rsquo;re locked into the current spend shape; risky for orgs anticipating growth or divestiture.</p>
+<h3>3. Named owner per service spend. Cost regressions become incidents.</h3>
+<p>Every service has an owner attached to its monthly spend. Cost spike &gt; 30%? Owner-alert, expected-response SLA, postmortem if not resolved within 48 hours. Cost becomes a reliability metric, not a finance ask.</p>
+
+      <h2>What changes when you cross.</h2>
+      <ul>
+<li><b>Architecture choices change at design time.</b> Engineers see cost-of-this-design before they ship.</li>
+<li><b>Commitment portfolio breathes with growth.</b> Quarterly review replaces annual forgetting.</li>
+<li><b>Idle waste drops to noise level.</b> Auto-quarantine after grace period eliminates 5-15% of bill.</li>
+<li><b>You move from 5-12% YoY savings to 20-35% from baseline.</b> This is the Controlled tier.</li>
+</ul>
+<p>The <a href="/tools/calculators/commitment-optimiser.html">Cloud Commitment Optimiser</a> calculator is the tool for tuning the second move. The <a href="/tools/calculators/genai-cost.html">GenAI Cost-Per-Outcome</a> calculator is the one to add when AI inference becomes &gt;5% of cloud spend.</p>
+
+      <h2>Run the diagnostic.</h2>
+      <p>To find out whether your team scores at this tier or another, run <a href="/tools/cloud-cost.html">Cloud Cost</a>. It takes 2&ndash;4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.</p>
+      <p>For the bigger picture: <a href="/tools/compound/">the compound diagnostic</a> takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.</p>
+
+      <div class="e-related">
+        <h3>Related</h3>
+        <div class="row" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="/tools/cloud-cost.html">Cloud Cost Diagnostic &rarr;</a>
+          <a href="/4-discipline-stack/">The 4-Discipline Stack &rarr;</a>
+          <a href="/anti-patterns/">Anti-patterns &rarr;</a>
+          <a href="/tools/compound/">Compound diagnostic &rarr;</a>
+        </div>
+      </div>
+    </article>
+
+    <footer class="e-foot"><div class="wrap">
+      <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <a href="/maturity/">&larr; All maturity tiers</a><span>&middot;</span>
+        <a href="/letters/">Subscribe to Letters</a><span>&middot;</span>
+        <a href="/#contact">Talk about your stack &rarr;</a>
+      </div>
+    </div></footer>
+  </main>
+</body>
+</html>
