@@ -37,4 +37,9 @@
 
   <!-- Glossary -->
   <url><loc>https://hellouchit.com/glossary/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- New: Press, Letters, OSS -->
+  <url><loc>https://hellouchit.com/press/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/letters/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hellouchit.com/oss/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Press &amp; Speaker Kit — Uchit Vyas</title>
+<meta name="description" content="Press &amp; speaker kit for Uchit Vyas — bios at three lengths, headshots, talk abstracts, podcast pitch, press contact. Reduce inbound friction." />
+<link rel="canonical" href="https://hellouchit.com/press/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Press &amp; Speaker Kit — Uchit Vyas" />
+<meta property="og:description" content="Bios, headshots, talk abstracts, podcast pitch, brand assets. For journalists, podcast hosts, conference organisers." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .p-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
+  .p-hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+    letter-spacing: -.02em; margin-top: 14px; max-width: 22ch;
+  }
+  .p-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .p-hero .dek {
+    margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 1.65; max-width: 60ch;
+  }
+  .p-quick {
+    margin-top: 28px; padding: 22px 26px;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: rgba(255,255,255,.012);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px 24px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: .04em; color: var(--muted);
+  }
+  .p-quick b { display: block; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; font-size: 10.5px; margin-bottom: 4px; font-weight: 500; }
+  .p-quick a { color: var(--ink); border-bottom: 1px dotted var(--line-strong); padding-bottom: 1px; }
+  .p-quick a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .p-section { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--line); }
+  .p-section h2 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 38px); line-height: 1.1;
+    letter-spacing: -.015em; margin-bottom: 18px;
+  }
+  .p-section h2 em { font-style: italic; color: var(--accent); }
+  .p-section p, .p-section li { color: var(--muted); font-size: 16px; line-height: 1.75; }
+
+  .p-bio {
+    border: 1px solid var(--line); border-radius: var(--r);
+    background: var(--surface); padding: clamp(24px, 3vw, 36px);
+    margin-bottom: 18px;
+  }
+  .p-bio header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 14px; margin-bottom: 14px;
+  }
+  .p-bio header .lab {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+  }
+  .p-bio header .wc {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    color: var(--faint); letter-spacing: .08em;
+  }
+  .p-bio p { color: var(--ink); font-size: 15.5px; line-height: 1.7; }
+  .p-bio .copy {
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    color: var(--accent); cursor: pointer; letter-spacing: .08em;
+    background: none; border: 0; padding: 0;
+  }
+  .p-bio .copy:hover { text-decoration: underline; }
+
+  .p-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .p-card {
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 24px;
+    background: rgba(255,255,255,.012);
+    transition: border-color .2s, background .2s;
+  }
+  .p-card:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .p-card .lab {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .18em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .p-card h3 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: 19px; line-height: 1.25; margin-bottom: 8px;
+  }
+  .p-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .p-card a.dl {
+    display: inline-block; margin-top: 12px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    color: var(--accent); letter-spacing: .08em;
+  }
+
+  .p-quote {
+    border-left: 2px solid var(--accent);
+    padding: 14px 0 14px 22px;
+    margin: 16px 0;
+    font-family: "Fraunces", serif; font-style: italic;
+    font-size: 18px; line-height: 1.5; color: var(--ink);
+    max-width: 56ch;
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="p-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Press &amp; Speaker Kit</span></nav>
+      <span class="eyebrow">For journalists · podcast hosts · conference organisers</span>
+      <h1>Press &amp; <em>Speaker Kit</em>.</h1>
+      <p class="dek">
+        Everything you might need to write about, interview, or book Uchit
+        without an email exchange &mdash; bios at three lengths, headshots,
+        talk abstracts, podcast pitch, brand assets, quote sheet.
+      </p>
+      <div class="p-quick">
+        <div><b>Press contact</b><a href="mailto:contact@hellouchit.com?subject=Press%20inquiry">contact@hellouchit.com</a></div>
+        <div><b>Booking</b><a href="https://calendly.com/uchit/30min" target="_blank" rel="noopener">calendly.com/uchit/30min</a></div>
+        <div><b>Based</b>Melbourne, Australia &middot; GMT+11</div>
+        <div><b>Travels</b>ANZ &middot; ASEAN &middot; EU &middot; USA</div>
+      </div>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Bios &mdash; three <em>lengths</em>.</h2>
+      <p style="margin-bottom:24px;color:var(--muted);font-size:15px">Copy the one that fits your word count. All factually accurate as of May 2026.</p>
+
+      <article class="p-bio">
+        <header><span class="lab">Short &middot; 50 words</span><span class="wc">~50 wds</span></header>
+        <p id="bio-short">
+          Uchit Vyas is an enterprise architect and platform engineering leader at Accenture ANZ, with 15+ years across cloud, DevSecOps, data and applied GenAI in regulated industries. Author of five books, named on the Top 50 DevSecOps Influencers list, and inventor on US patent US11334348B2.
+        </p>
+        <button class="copy" data-src="bio-short">Copy bio</button>
+      </article>
+
+      <article class="p-bio">
+        <header><span class="lab">Medium &middot; 100 words</span><span class="wc">~100 wds</span></header>
+        <p id="bio-mid">
+          Uchit Vyas is Core Modernisation, Platform Engineering &amp; AI Lead at Accenture ANZ, based in Melbourne. He has spent 15+ years building the platforms banks, telcos and government agencies run on &mdash; spanning enterprise architecture, DevSecOps, data modernisation and applied GenAI in regulated environments. Previously Associate Director (CIO Advisory, Cloud &amp; DevSecOps) at KPMG Singapore, and Principal Technology Architect at Accenture ASEAN. He is the author of five books with Apress and Packt, inventor on US patent US11334348B2 (Specs Monster), and was named on the Top 50 DevSecOps Influencers list. He has delivered 30+ keynotes across ASEAN, Europe and the US.
+        </p>
+        <button class="copy" data-src="bio-mid">Copy bio</button>
+      </article>
+
+      <article class="p-bio">
+        <header><span class="lab">Long &middot; 250 words</span><span class="wc">~250 wds</span></header>
+        <p id="bio-long">
+          Uchit Vyas is Core Modernisation, Platform Engineering &amp; AI Lead at Accenture ANZ, based in Melbourne. He has spent 15+ years helping Tier-1 banks, telcos and government departments move from ambitious digital strategy to live, audited production &mdash; across enterprise architecture, cloud transformation, DevSecOps, SRE, data modernisation, and most recently applied GenAI inside regulated environments.
+          <br /><br />
+          His career spans Accenture ANZ (since 2022), KPMG Singapore as Associate Director in CIO Advisory (2021&ndash;22), Accenture ASEAN as Principal Technology Architect (2017&ndash;21), Oracle as Senior Technology Architect, plus earlier roles at REAN Cloud, Infosys, Attune Infocom and TCS.
+          <br /><br />
+          He is the author of five books on cloud architecture, DevSecOps and integration patterns, published by Apress and Packt. He holds US patent US11334348B2 (&ldquo;Specs Monster &mdash; an intelligent design collaboration tool&rdquo;). He has been recognised on the Top 50 DevSecOps Influencers list globally, and received internal Bunsen Burner and Delivery Heroes awards at Accenture. He has delivered 30+ talks and keynotes at industry conferences across ASEAN, Europe and the United States, including HashiConf, APIDays, Cloud Expo Asia, and TopConf.
+          <br /><br />
+          He is the author of <i>The 4-Discipline Stack</i> &mdash; the practitioner framework for how enterprise architecture, platform engineering &amp; DevSecOps, data modernisation and applied GenAI compound through a shared operating substrate &mdash; and publishes the annual <i>State of Enterprise Tech in Regulated Industries</i> report at hellouchit.com.
+        </p>
+        <button class="copy" data-src="bio-long">Copy bio</button>
+      </article>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Headshots &amp; <em>brand assets</em>.</h2>
+      <p style="margin-bottom:20px;color:var(--muted);font-size:15px">All assets free for editorial use with attribution &ldquo;Uchit Vyas&rdquo; or &ldquo;Uchit Vyas / hellouchit.com&rdquo;.</p>
+
+      <div class="p-grid">
+        <div class="p-card">
+          <div class="lab">Headshot &middot; primary</div>
+          <h3>Hero portrait, 1200&times;1800</h3>
+          <p>Studio portrait, transparent background PNG. Best for editorial features and conference programmes.</p>
+          <a class="dl" href="/images/Uchit-cutout.png" download>Download PNG &darr;</a>
+        </div>
+        <div class="p-card">
+          <div class="lab">Headshot &middot; web optimised</div>
+          <h3>Hero portrait, WebP</h3>
+          <p>Same image, smaller file (~135 KB). For web embeds.</p>
+          <a class="dl" href="/images/Uchit-cutout.webp" download>Download WebP &darr;</a>
+        </div>
+        <div class="p-card">
+          <div class="lab">Headshot &middot; original</div>
+          <h3>Original studio, 1200&times;1800</h3>
+          <p>Original photo with studio backdrop, JPG.</p>
+          <a class="dl" href="/images/Uchit1-hero.jpg" download>Download JPG &darr;</a>
+        </div>
+        <div class="p-card">
+          <div class="lab">Brand &middot; OG image</div>
+          <h3>OG banner, 1200&times;630</h3>
+          <p>Social-share banner for editorial use.</p>
+          <a class="dl" href="/images/og-banner.jpg" download>Download JPG &darr;</a>
+        </div>
+        <div class="p-card">
+          <div class="lab">Brand &middot; monogram</div>
+          <h3>UV mark, SVG</h3>
+          <p>Site favicon &amp; monogram (copper on dark) for byline use.</p>
+          <a class="dl" href="/images/favicon.svg" download>Download SVG &darr;</a>
+        </div>
+        <div class="p-card">
+          <div class="lab">Profile &middot; CV</div>
+          <h3>LinkedIn profile PDF</h3>
+          <p>Full LinkedIn export &mdash; career history, certifications, publications.</p>
+          <a class="dl" href="/Profile_linkedin.pdf" download>Download PDF &darr;</a>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Quotes for <em>media pickup</em>.</h2>
+      <p style="margin-bottom:14px;color:var(--muted);font-size:15px">Pre-cleared one-liners on the topics most asked about. Use verbatim with attribution &ldquo;Uchit Vyas&rdquo;.</p>
+
+      <div class="p-quote">&ldquo;Architecture principles you don&rsquo;t encode in platform defaults or policy-as-code don&rsquo;t exist.&rdquo;</div>
+      <div class="p-quote">&ldquo;GenAI is a property of your platform, not a workload.&rdquo;</div>
+      <div class="p-quote">&ldquo;Post-XZ Utils, post-Snowflake: the credential is the vulnerability. Workload identity is the new bar.&rdquo;</div>
+      <div class="p-quote">&ldquo;The substrate is the moat. Four functions don&rsquo;t compound without a shared one.&rdquo;</div>
+      <div class="p-quote">&ldquo;EU AI Act enforcement from August 2026 isn&rsquo;t the model card. It&rsquo;s the audit-evidence pipeline you build now.&rdquo;</div>
+      <div class="p-quote">&ldquo;The first 12% of enterprises shipped GenAI to production because they built the substrate before the use-cases.&rdquo;</div>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Talk <em>abstracts</em>.</h2>
+      <p style="margin-bottom:20px;color:var(--muted);font-size:15px">Available for keynote, breakout or workshop format. Adaptable to 20, 45 or 90 minutes.</p>
+
+      <div class="p-grid">
+        <div class="p-card">
+          <div class="lab">Keynote · 45 min</div>
+          <h3>The 4-Discipline Stack</h3>
+          <p>Why enterprise architecture, platform engineering, data and applied GenAI compound through a shared substrate &mdash; or don&rsquo;t compound at all. With case studies from regulated industries.</p>
+        </div>
+        <div class="p-card">
+          <div class="lab">Breakout · 30 min</div>
+          <h3>GenAI in regulated environments: the nine controls</h3>
+          <p>Between a demo and audited production. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10. Practical sequencing for a 90-day ship.</p>
+        </div>
+        <div class="p-card">
+          <div class="lab">Breakout · 30 min</div>
+          <h3>DevSecOps stopped being about Sec</h3>
+          <p>Why the highest-leverage 2026 security work is supply chain, workload identity and policy-as-code &mdash; not the AppSec consolidation the vendor market is selling.</p>
+        </div>
+        <div class="p-card">
+          <div class="lab">Workshop · 90 min</div>
+          <h3>Platform engineering as the AI delivery moat</h3>
+          <p>Hands-on workshop. Map your platform readiness against AI delivery. Walk away with a 90-day substrate-investment plan.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;color:var(--muted);font-size:14.5px">
+        Full speaker history at <a href="/#speaking" style="color:var(--accent);border-bottom:1px dotted var(--accent)">/#speaking</a>. Decks and recordings on request.
+      </p>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Podcast <em>pitch</em>.</h2>
+      <p>Topics I&rsquo;ll go deep on, with examples ready:</p>
+      <ul>
+        <li><b>The 4-Discipline Stack:</b> why the seam between EA, platform, data and AI is where moats live.</li>
+        <li><b>Regulated GenAI:</b> how to ship LLM features that survive a regulator visit, drawing from APRA CPS 230/234, EU AI Act, ISO/IEC 42001.</li>
+        <li><b>The supply chain pivot:</b> what XZ Utils, Snowflake, Polyfill and CrowdStrike changed for enterprise security in 2026.</li>
+        <li><b>The encoded enterprise architect:</b> why TOGAF is the manual, not the job.</li>
+        <li><b>Australian regulatory clock:</b> what changed in the last 18 months that most boards haven&rsquo;t mapped yet.</li>
+      </ul>
+      <p style="margin-top:14px"><b>Format:</b> 45&ndash;60 min, audio or video, in person (Melbourne) or remote. Same-day turnaround on booking requests via <a href="mailto:contact@hellouchit.com?subject=Podcast%20pitch" style="color:var(--accent);border-bottom:1px dotted var(--accent)">contact@hellouchit.com</a>.</p>
+    </div></section>
+
+    <section class="p-section"><div class="wrap">
+      <h2>Recent <em>writing &amp; publications</em>.</h2>
+      <ul>
+        <li><a href="/state-of-2026/" style="color:var(--ink);border-bottom:1px solid var(--accent)">State of Enterprise Tech in Regulated Industries &mdash; 2026</a> &mdash; annual practitioner report, 10 findings.</li>
+        <li><a href="/writing/" style="color:var(--ink);border-bottom:1px solid var(--accent)">Six cornerstone essays</a> &mdash; EA, GenAI, DevSecOps, platform engineering, synthesis, Australian regulation.</li>
+        <li>5 books with Apress &amp; Packt: Applied OpenStack Design Patterns, Mastering AWS Development, AWS Development Essentials, DynamoDB Applied Design Patterns, Mule ESB Cookbook.</li>
+        <li>US Patent <a href="https://patents.google.com/patent/US11334348B2/en" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">US11334348B2</a> &mdash; <i>Specs Monster: an intelligent design collaboration tool</i>.</li>
+      </ul>
+    </div></section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/4-discipline-stack/">Framework</a> &middot; <a href="/tools/">Tools</a> &middot; <a href="/writing/">Writing</a></span>
+    </div>
+  </footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(b => {
+  b.addEventListener('click', () => {
+    const src = document.getElementById(b.dataset.src);
+    if (!src) return;
+    const txt = src.innerText.replace(/\s+/g, ' ').trim();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt).then(() => {
+        const orig = b.textContent;
+        b.textContent = 'Copied ✓';
+        setTimeout(() => b.textContent = orig, 1800);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Open Source — Uchit Vyas</title>
+<meta name="description" content="Open-source policy bundles and tools by Uchit Vyas. opa-nist-ai-rmf — OPA policies enforcing NIST AI RMF + EU AI Act controls on AI workload manifests at deploy time." />
+<link rel="canonical" href="https://hellouchit.com/oss/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Open Source — Uchit Vyas" />
+<meta property="og:description" content="Practitioner OSS: OPA policy bundles enforcing AI governance frameworks at deploy time." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .o-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
+  .o-hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+    letter-spacing: -.02em; margin-top: 14px; max-width: 22ch;
+  }
+  .o-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .o-hero .dek {
+    margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 1.7; max-width: 62ch;
+  }
+
+  .repo {
+    margin-top: clamp(40px, 5vw, 56px);
+    border: 1px solid var(--line-strong); border-radius: var(--r);
+    background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.06), transparent 60%), var(--surface);
+    padding: clamp(28px, 4vw, 44px);
+  }
+  .repo header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 14px;
+  }
+  .repo .name {
+    font-family: "IBM Plex Mono", monospace; font-size: clamp(20px, 2.4vw, 26px);
+    color: var(--ink); letter-spacing: -.005em; font-weight: 500;
+  }
+  .repo .name span { color: var(--accent); }
+  .repo .meta {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: .08em; color: var(--faint);
+    display: flex; flex-wrap: wrap; gap: 12px 18px;
+  }
+  .repo .meta b { color: var(--accent); font-weight: 500; }
+  .repo h3 {
+    font-family: "Fraunces", serif; font-weight: 500; font-style: italic;
+    font-size: clamp(20px, 2.2vw, 24px); line-height: 1.3;
+    color: var(--accent); margin: 16px 0;
+  }
+  .repo p { color: var(--muted); font-size: 15.5px; line-height: 1.7; margin-bottom: 14px; }
+  .repo p b { color: var(--ink); font-weight: 500; }
+  .repo ul {
+    list-style: none; padding: 0; margin: 14px 0;
+  }
+  .repo ul li {
+    position: relative; padding-left: 26px; margin-bottom: 8px;
+    color: var(--muted); font-size: 14.5px; line-height: 1.6;
+  }
+  .repo ul li::before {
+    content: ""; position: absolute; left: 4px; top: 11px;
+    width: 12px; height: 1px; background: var(--accent);
+  }
+  .repo .actions {
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .repo pre {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px 20px; margin: 14px 0;
+    overflow-x: auto;
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    color: var(--ink); line-height: 1.55;
+  }
+  .repo pre .c { color: var(--faint); }
+  .repo pre .a { color: var(--accent); }
+
+  .more {
+    margin-top: clamp(48px, 6vw, 72px); padding: 24px 28px;
+    border: 1px dashed var(--line); border-radius: var(--r);
+    color: var(--muted); font-size: 14.5px; line-height: 1.7;
+  }
+  .more b { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="o-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Open Source</span></nav>
+      <span class="eyebrow">Open Source</span>
+      <h1>Tools <em>worth pulling</em>, not pitches.</h1>
+      <p class="dek">
+        Small, runnable, opinionated. Each project is the encoded version
+        of an essay or reference architecture on this site &mdash; the
+        receipts of doing the work, not just talking about it. MIT-licensed,
+        documented, tested. Use, fork, ship.
+      </p>
+    </div></section>
+
+    <section style="padding-bottom:clamp(80px,10vw,128px)"><div class="wrap">
+
+      <article class="repo">
+        <header>
+          <div class="name">uchit / <span>opa-nist-ai-rmf</span></div>
+          <div class="meta">
+            <span><b>Lang</b> Rego (OPA)</span>
+            <span><b>License</b> MIT</span>
+            <span><b>v0.1</b> · 12 rules</span>
+          </div>
+        </header>
+
+        <h3>OPA policy bundle enforcing NIST AI RMF + EU AI Act controls at deploy time.</h3>
+
+        <p>
+          Most enterprises in 2026 are being asked the same question by
+          their regulators: <b>&ldquo;how do you actually enforce the NIST AI
+          RMF and EU AI Act controls on your AI workloads?&rdquo;</b> The
+          usual answer is &ldquo;we have a policy document.&rdquo; That isn&rsquo;t
+          enforcement; it&rsquo;s hope.
+        </p>
+        <p>
+          This bundle turns the controls into <b>deploy-time machine
+          checks</b> &mdash; the kind of policy that breaks the build when an
+          AI workload manifest doesn&rsquo;t carry the audit-evidence pipeline,
+          the human-oversight mechanism, or the model-version pin a
+          regulator can verify.
+        </p>
+
+        <p><b>What it enforces (12 rules, each citing a primary source):</b></p>
+        <ul>
+          <li>Accountability officer declared <small style="color:var(--faint)">(NIST GOVERN-1.3 · EU AI Act Art.9)</small></li>
+          <li>Risk tier declared with rationale <small style="color:var(--faint)">(NIST GOVERN-2)</small></li>
+          <li>Data lineage attached <small style="color:var(--faint)">(NIST MAP-2 · EU AI Act Art.10)</small></li>
+          <li>Eval set referenced on medium/high-risk <small style="color:var(--faint)">(NIST MEASURE-2.7)</small></li>
+          <li>Prompts in a versioned registry — no inline strings <small style="color:var(--faint)">(OWASP LLM01)</small></li>
+          <li>Model version pinned — no floating tags <small style="color:var(--faint)">(NIST MAP-3.4)</small></li>
+          <li>Input + output guardrails declared <small style="color:var(--faint)">(MITRE ATLAS)</small></li>
+          <li>Audit-evidence sink + retention <small style="color:var(--faint)">(EU AI Act Art.12)</small></li>
+          <li>Human-oversight pattern declared for high-risk <small style="color:var(--faint)">(EU AI Act Art.14)</small></li>
+          <li>Cost-attribution tag for FinOps for AI</li>
+          <li>EU high-risk conformity assessment reference <small style="color:var(--faint)">(EU AI Act Annex III)</small></li>
+          <li>Model provider + region pinned <small style="color:var(--faint)">(data-residency, supply chain)</small></li>
+        </ul>
+
+        <pre><span class="c"># Try it in 60 seconds</span>
+git clone https://github.com/uchit/opa-nist-ai-rmf
+cd opa-nist-ai-rmf
+brew install opa  <span class="c"># or: download binary</span>
+
+opa eval -d policy/ -i examples/compliant.yaml <span class="a">'data.ai.rmf.deny'</span>
+<span class="c"># []   ← empty = compliant</span>
+
+opa eval -d policy/ -i examples/missing-evals.yaml <span class="a">'data.ai.rmf.deny'</span>
+<span class="c"># [&quot;eval_set_required: ...&quot;]</span>
+
+opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
+
+        <p style="margin-top:14px"><b>Wire it into:</b> Kubernetes (Gatekeeper), CI (Conftest, Sentinel), Terraform (Sentinel or OPA pre-apply). Reference implementation for the
+        <a href="/reference-architectures/regulated-genai-platform.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Regulated GenAI Platform reference architecture</a>
+        and the <a href="/writing/genai-9-controls.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">9 controls essay</a>.</p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/uchit/opa-nist-ai-rmf" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://github.com/uchit/opa-nist-ai-rmf/blob/main/README.md" target="_blank" rel="noopener">Read the README</a>
+          <a class="btn btn-ghost" href="https://github.com/uchit/opa-nist-ai-rmf/blob/main/docs/control-mapping.md" target="_blank" rel="noopener">Control mapping</a>
+        </div>
+      </article>
+
+      <div class="more">
+        <b>Coming next.</b> One small, runnable thing per quarter:
+        a Terraform reusable workflow for SLSA L3+ paved paths;
+        a CLI that takes JSON output from the six diagnostics and prints
+        a compound-maturity report; an OPA bundle for ISO/IEC 42001
+        controls. Star <a href="https://github.com/uchit/opa-nist-ai-rmf" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">opa-nist-ai-rmf</a>
+        to be notified.
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/4-discipline-stack/">Framework</a> &middot; <a href="/tools/">Tools</a> &middot; <a href="/writing/">Writing</a></span>
+    </div>
+  </footer>
+</body>
+</html>

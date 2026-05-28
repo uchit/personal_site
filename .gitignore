@@ -1,2 +1,4 @@
-.DS_Store
-Thumbs.db
+# The OSS repo content lives in oss-projects/<name>/ as a separate repo
+# that will be pushed to its own GitHub repository. Don't include it
+# inside this hellouchit.com Pages deploy.
+oss-projects/
