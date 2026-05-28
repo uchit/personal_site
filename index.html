@@ -32,8 +32,8 @@
 <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon" sizes="32x32" />
 <link rel="apple-touch-icon" href="images/favicon-192.png" />
 
-<!-- Preload hero portrait -->
-<link rel="preload" as="image" href="images/Uchit1-hero.jpg" fetchpriority="high" />
+<!-- Preload hero portrait (transparent cutout) -->
+<link rel="preload" as="image" href="images/Uchit-cutout.webp" fetchpriority="high" type="image/webp" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,15 +89,12 @@
             </span>
 
             <h1 class="reveal" data-d="2">
-              Complex technology,<br />
-              turned into <em>platforms</em><br />
-              people trust.
+              Platforms<br />people <em>trust</em>.
             </h1>
 
             <p class="hero-role reveal" data-d="3">
               Enterprise architecture, cloud, DevSecOps and GenAI &mdash;
-              fifteen years moving large organisations from
-              <b>ambitious strategy to live, audited production</b>.
+              from <b>ambitious strategy to live, audited production</b>.
             </p>
 
             <div class="cta-row reveal" data-d="4">
@@ -115,10 +112,13 @@
 
           <figure class="portrait reveal" data-d="2" id="portrait">
             <div class="portrait-frame">
-              <img src="images/Uchit1-hero.jpg"
-                   alt="Portrait of Uchit Vyas, Enterprise Architect"
-                   loading="eager" decoding="async" fetchpriority="high"
-                   onerror="this.closest('.portrait').classList.add('fallback')" />
+              <picture>
+                <source srcset="images/Uchit-cutout.webp" type="image/webp" />
+                <img src="images/Uchit-cutout.png"
+                     alt="Portrait of Uchit Vyas, Enterprise Architect"
+                     loading="eager" decoding="async" fetchpriority="high"
+                     onerror="this.closest('.portrait').classList.add('fallback')" />
+              </picture>
               <div class="portrait-fallback" aria-hidden="true">UV</div>
             </div>
           </figure>
