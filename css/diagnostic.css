@@ -1,14 +1,14 @@
 /* diagnostic.css — shared styles for tool pages */
 .tool-hero { padding: clamp(140px, 16vw, 200px) 0 clamp(40px, 5vw, 64px); }
 .tool-hero h1 {
-  font-family: "Cormorant Garamond", serif; font-weight: 500;
+  font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
   letter-spacing: -.02em; margin-top: 18px; max-width: 18ch;
 }
 .tool-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
 .tool-meta {
   display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px;
-  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
   letter-spacing: .1em; color: var(--muted);
 }
 .tool-meta span { display: inline-flex; align-items: center; gap: 8px; }
@@ -24,7 +24,7 @@
 }
 .q-progress .ptxt {
   position: absolute; right: 0; top: 8px;
-  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
   color: var(--faint); letter-spacing: .14em;
 }
 .q-card {
@@ -33,16 +33,16 @@
   background: linear-gradient(180deg, rgba(255,255,255,.012), transparent), var(--surface);
 }
 .q-num {
-  font-family: "JetBrains Mono", monospace; font-size: 11.5px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
   letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
 }
 .q-cap {
-  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
   letter-spacing: .14em; color: var(--faint); text-transform: uppercase;
   margin-left: 14px;
 }
 .q-text {
-  font-family: "Cormorant Garamond", serif; font-weight: 500;
+  font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(24px, 2.8vw, 34px); line-height: 1.25; letter-spacing: -.01em;
   margin: 14px 0 28px; max-width: 36ch;
 }
@@ -56,7 +56,7 @@
 }
 .q-opt:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
 .q-opt .lvl {
-  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
   letter-spacing: .16em; color: var(--accent); flex-shrink: 0;
   min-width: 28px; padding-top: 3px;
 }
@@ -64,7 +64,7 @@
 .q-nav {
   display: flex; justify-content: space-between; align-items: center;
   margin-top: 24px;
-  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
   color: var(--faint); letter-spacing: .08em;
 }
 .q-nav button {
@@ -84,17 +84,17 @@
   background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.08), transparent 60%), var(--surface);
 }
 .result-eyebrow {
-  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
   letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
 }
 .result-score {
-  font-family: "Cormorant Garamond", serif; font-weight: 500;
+  font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(64px, 9vw, 120px); line-height: .95;
   letter-spacing: -.02em; margin: 14px 0 6px;
 }
 .result-score .of { color: var(--faint); font-size: .42em; vertical-align: super; margin-left: 6px; }
 .result-level {
-  font-family: "Cormorant Garamond", serif; font-style: italic;
+  font-family: "Fraunces", serif; font-style: italic;
   font-size: clamp(22px, 2.4vw, 30px); color: var(--accent);
   margin-bottom: 28px;
 }
@@ -111,7 +111,7 @@
 .result-body b { color: var(--ink); font-weight: 500; }
 .result-recs { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line); }
 .result-recs h3 {
-  font-family: "Cormorant Garamond", serif; font-weight: 500;
+  font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(22px, 2.2vw, 28px); margin-bottom: 16px;
 }
 .result-recs ol { list-style: none; counter-reset: rec; padding: 0; }
@@ -124,7 +124,7 @@
 .result-recs li::before {
   content: counter(rec, decimal-leading-zero);
   position: absolute; left: 0; top: 14px;
-  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
   color: var(--accent); letter-spacing: .1em;
 }
 .result-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
@@ -133,7 +133,7 @@
 /* Capability breakdown bars */
 .cap-breakdown { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line); }
 .cap-breakdown h3 {
-  font-family: "Cormorant Garamond", serif; font-weight: 500;
+  font-family: "Fraunces", serif; font-weight: 500;
   font-size: clamp(22px, 2.2vw, 28px); margin-bottom: 16px;
 }
 .cap-row {
@@ -152,6 +152,6 @@
   width: 0%; transition: width 1.1s var(--ease);
 }
 .cap-score {
-  font-family: "JetBrains Mono", monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 12px; color: var(--accent); text-align: right;
 }
