@@ -256,39 +256,38 @@ nav.links a:hover::after { width: 100%; }
 }
 .btn-ghost svg { stroke: var(--ink); }
 
-/* ---------- Hero portrait ---------- */
+/* ---------- Hero portrait — frameless, fades into the page bg ---------- */
 .portrait {
   position: relative; justify-self: end;
-  width: 100%; max-width: 420px;
+  width: 100%; max-width: 540px;
 }
 .portrait::after {
-  content: ""; position: absolute; inset: -12% -8% -8% -12%;
+  content: ""; position: absolute; inset: -8% -6% -6% -8%;
   z-index: -1; border-radius: 50%;
-  background: radial-gradient(55% 55% at 60% 35%, rgba(217,151,87,.22), transparent 70%);
-  filter: blur(14px);
+  background: radial-gradient(55% 55% at 55% 40%, rgba(217,151,87,.28), transparent 72%);
+  filter: blur(34px);
 }
-/* Frameless portrait: image fades into the bg at corners via radial mask.
-   No border, no crop chrome, no caption pill. Just an ambient floating portrait. */
+/* Frameless: NO surface bg, NO border, NO box. Image fades to transparent
+   at all edges via a soft radial mask. */
 .portrait-frame {
   position: relative;
-  background: transparent;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible;
   transition: transform .6s var(--ease), filter .6s var(--ease);
 }
-.portrait:hover .portrait-frame { transform: translateY(-4px); filter: saturate(1.05); }
-.portrait-frame::before { /* deep copper underglow */
-  content: ""; position: absolute;
-  inset: 6% -4% -4% 6%; z-index: -1;
-  background: radial-gradient(60% 55% at 50% 50%, rgba(217,151,87,.18), transparent 70%);
-  filter: blur(28px);
-}
+.portrait:hover .portrait-frame { transform: translateY(-3px); filter: saturate(1.05); }
 .portrait-frame img {
   display: block; width: 100%; height: auto;
-  filter: saturate(1.0) contrast(1.04);
-  /* Soft oval mask: fully opaque centre, fades to transparent at edges/corners */
-  -webkit-mask-image: radial-gradient(ellipse 78% 88% at 50% 46%,
-                        #000 52%, rgba(0,0,0,.85) 68%, transparent 100%);
-          mask-image: radial-gradient(ellipse 78% 88% at 50% 46%,
-                        #000 52%, rgba(0,0,0,.85) 68%, transparent 100%);
+  background: transparent;
+  filter: saturate(1.02) contrast(1.05);
+  /* Soft mask: opaque centre, full fade to transparent before any edge */
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 44%,
+                        #000 40%, rgba(0,0,0,.7) 62%, transparent 92%);
+          mask-image: radial-gradient(ellipse 70% 80% at 50% 44%,
+                        #000 40%, rgba(0,0,0,.7) 62%, transparent 92%);
+  -webkit-mask-mode: alpha; mask-mode: alpha;
 }
 /* monogram fallback if image fails */
 .portrait.fallback .portrait-frame img { display: none; }
@@ -297,7 +296,7 @@ nav.links a:hover::after { width: 100%; }
   background: radial-gradient(120% 90% at 50% 20%, var(--surface-2), transparent 75%);
   place-items: center;
   font-family: "Cormorant Garamond", serif; font-weight: 500;
-  font-size: 120px; color: var(--accent); letter-spacing: -.02em;
+  font-size: 130px; color: var(--accent); letter-spacing: -.02em;
 }
 .portrait.fallback .portrait-fallback { display: grid; }
 

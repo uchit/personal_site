@@ -28,7 +28,7 @@
 <meta name="twitter:image" content="https://hellouchit.com/images/og-banner.jpg" />
 
 <!-- Icons -->
-<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml" />
 <link rel="alternate icon" href="images/favicon.ico" type="image/x-icon" sizes="32x32" />
 <link rel="apple-touch-icon" href="images/favicon-192.png" />
 
@@ -69,7 +69,7 @@
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#tools">Tools</a>
-        <a href="#writing">Writing</a>
+        <a href="/glossary/">Glossary</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
@@ -124,12 +124,6 @@
           </figure>
         </div>
 
-        <div class="hero-foot mono" aria-hidden="true">
-          <span><span class="ix">01</span> &nbsp;&nbsp; Hello</span>
-          <span>hellouchit.com / v3</span>
-          <span>Melbourne · GMT+11</span>
-        </div>
-
         <!-- Stats wall -->
         <div class="stats reveal" data-d="6" aria-label="At a glance">
           <div class="stat">
@@ -156,20 +150,6 @@
             <div class="num">Top<span class="u" data-count="50">0</span></div>
             <div class="lbl">Most influential<br />DevSecOps · global</div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SECTORS ============ -->
-    <section class="sectors" aria-label="Industries served">
-      <div class="wrap reveal">
-        <div class="sectors-label">Built and shipped inside</div>
-        <div class="sectors-list">
-          Banking <span class="sep">/</span>
-          Government <span class="sep">/</span>
-          Retail <span class="sep">/</span>
-          Telecom <span class="sep">/</span>
-          <span class="accent">FinTech</span>
         </div>
       </div>
     </section>
@@ -352,10 +332,10 @@
           <span class="section-index">/ voices</span>
         </header>
 
-        <div class="tmnls-grid">
+        <div class="tmnls-grid" style="grid-template-columns:repeat(2,1fr)">
           <figure class="tmnl reveal" data-d="1">
             <blockquote>
-              What do you do when you have a project that doesn&rsquo;t have requirements, an owner with no time, technology that&rsquo;s never been used at the company, an unrealistic deadline and not enough money &mdash; but a vision so grand you feel compelled to deliver? <b style="color:var(--accent);font-style:normal;font-weight:500">Call Uchit.</b> His technical skills, although exemplary, are not what set him apart &mdash; it&rsquo;s the ability to accept rapid change, pivot with calm, and keep moving no matter what gets thrown at the team.
+              What do you do when you have a project with no requirements, an owner with no time, technology never used before, an unrealistic deadline and not enough money &mdash; but a vision so grand you feel compelled to deliver? <b style="color:var(--accent);font-style:normal;font-weight:500">Call Uchit.</b> His technical skills, although exemplary, are not what set him apart &mdash; it&rsquo;s the ability to accept rapid change, pivot with calm, and keep moving no matter what gets thrown at the team.
             </blockquote>
             <figcaption class="who">
               <b>Program Director</b>
@@ -365,21 +345,11 @@
 
           <figure class="tmnl reveal" data-d="2">
             <blockquote>
-              When I think of Uchit, I think of a <b style="color:var(--accent);font-style:normal;font-weight:500">techno-businessman</b>. Few technical people understand the meaning of words like &lsquo;delivering value&rsquo; and &lsquo;business growth&rsquo; &mdash; Uchit is one of those rare people who can balance technology with a business goal. Would love to work with him anytime there is an opportunity.
+              When I think of Uchit, I think of a <b style="color:var(--accent);font-style:normal;font-weight:500">techno-businessman</b>. Few technical people understand words like &lsquo;delivering value&rsquo; and &lsquo;business growth&rsquo; &mdash; Uchit is one of those rare people who can balance technology with a business goal.
             </blockquote>
             <figcaption class="who">
               <b>Business Leader</b>
               <span>Cloud advisory engagement</span>
-            </figcaption>
-          </figure>
-
-          <figure class="tmnl reveal" data-d="3">
-            <blockquote>
-              I had the pleasure of working with Uchit at Opex and REAN. He is by far the <b style="color:var(--accent);font-style:normal;font-weight:500">most genius person</b> I have come across &mdash; expert in DevOps, HashiCorp tools and a great content writer. Always up for speaking at conferences, solving complex technical and business problems, and always had answers to everything.
-            </blockquote>
-            <figcaption class="who">
-              <b>Senior Engineering Peer</b>
-              <span>Opex &middot; REAN</span>
             </figcaption>
           </figure>
         </div>
@@ -476,22 +446,6 @@
             </div>
             <span class="talk-place">Europe</span>
           </div>
-          <div class="talk-row">
-            <span class="talk-year">Industry</span>
-            <div class="talk-title">
-              VCs on Line 1 &mdash; Scaling Under Pressure
-              <small>Founders &amp; engineering leadership track</small>
-            </div>
-            <span class="talk-place">ASEAN</span>
-          </div>
-          <div class="talk-row">
-            <span class="talk-year">Industry</span>
-            <div class="talk-title">
-              Rapid Infrastructure Provisioning at Scale
-              <small>Infrastructure-as-code &amp; automation track</small>
-            </div>
-            <span class="talk-place">ASEAN &middot; USA</span>
-          </div>
         </div>
 
         <p class="talk-more">
@@ -513,42 +467,30 @@
 
         <div class="writing-grid reveal">
           <a class="essay" href="/tools/devsecops-maturity.html">
-            <span class="essay-meta">DevSecOps</span>
+            <span class="essay-meta">DevSecOps &middot; 10 capabilities</span>
             <h3>DevSecOps Maturity.</h3>
-            <p>Ten capabilities across pipeline, secrets, supply chain, identity, observability and ownership. Scored against the model I use in delivery.</p>
+            <p>Pipeline, secrets, supply chain, scanning, ownership, baselines, identity, patching, observability, product integration.</p>
             <span class="essay-cta">Run the diagnostic &rarr;</span>
           </a>
           <a class="essay" href="/tools/genai-readiness.html">
-            <span class="essay-meta">GenAI</span>
+            <span class="essay-meta">GenAI &middot; 12 capabilities</span>
             <h3>GenAI Readiness.</h3>
-            <p>Twelve checks across data, guardrails, evals, governance and audit-readiness &mdash; can you put an LLM in front of a customer <em>and</em> a regulator?</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-          <a class="essay" href="/tools/cloud-cost.html">
-            <span class="essay-meta">Cloud &middot; FinOps</span>
-            <h3>Cloud Cost.</h3>
-            <p>Eight questions that localise the line item most likely eating your AWS / Azure / GCP bill &mdash; rightsizing, commitments, storage, egress, idle.</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-          <a class="essay" href="/tools/platform-engineering.html">
-            <span class="essay-meta">Platform Eng</span>
-            <h3>Platform Engineering Readiness.</h3>
-            <p>Do you have a developer platform or an accumulation of tools? Ten checks across paved paths, IDP UX, team topology and funding model.</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-          <a class="essay" href="/tools/ea-operating-model.html">
-            <span class="essay-meta">Enterprise Architecture</span>
-            <h3>EA Operating Model.</h3>
-            <p>Is your enterprise architecture function a gate, a consultancy or a platform? Eight questions on authority, capability model, principles and business linkage.</p>
+            <p>Data, model selection, RAG, prompts, evals, guardrails, observability, cost, governance, audit, operating model.</p>
             <span class="essay-cta">Run the diagnostic &rarr;</span>
           </a>
           <a class="essay" href="/tools/sre-programme.html">
-            <span class="essay-meta">SRE</span>
+            <span class="essay-meta">SRE &middot; 10 capabilities</span>
             <h3>SRE Programme.</h3>
-            <p>SLOs, error budgets, blast-radius design, on-call hygiene, postmortems, chaos, toil. The unglamorous work that keeps regulated platforms standing.</p>
+            <p>SLOs, error budgets, blast radius, on-call, postmortems, runbooks, chaos, capacity, toil, golden signals.</p>
             <span class="essay-cta">Run the diagnostic &rarr;</span>
           </a>
         </div>
+
+        <p class="writing-all" style="margin-top:32px">
+          Three more &mdash; Cloud Cost, Platform Engineering, EA Operating Model &rarr;
+          <a href="/tools/">see all six</a>.
+          Or browse the <a href="/glossary/">practitioner glossary</a>.
+        </p>
       </div>
     </section>
 

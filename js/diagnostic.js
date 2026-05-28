@@ -60,9 +60,14 @@
           this.state.answers[i] = k + 1;
           if (i < n - 1) {
             this.state.i++; this.renderQ();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            // No scroll — swap in place. Keep card position stable.
           } else {
             this.finish();
+            // On finish, scroll the result into view from the top.
+            requestAnimationFrame(() => {
+              const r = document.getElementById("result");
+              if (r) r.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
           }
         });
         opts.appendChild(b);

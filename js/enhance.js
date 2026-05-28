@@ -34,6 +34,7 @@
     { t: "Books & patent",                u: "/#books",      g: "Pages",     ic: "▥" },
     { t: "Speaking",                      u: "/#speaking",   g: "Pages",     ic: "◎" },
     { t: "Writing",                       u: "/writing/",    g: "Pages",     ic: "✎" },
+    { t: "Glossary",                      u: "/glossary/",   g: "Reference", ic: "≡" },
     { t: "Get in touch",                  u: "/#contact",    g: "Pages",     ic: "✉" },
     { t: "All diagnostics",               u: "/tools/",      g: "Tools",     ic: "▤" },
     { t: "DevSecOps Maturity Diagnostic", u: "/tools/devsecops-maturity.html",  g: "Tools", ic: "◈" },

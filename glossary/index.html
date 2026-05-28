@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Glossary — Uchit Vyas</title>
+<meta name="description" content="Practitioner glossary across enterprise architecture, platform engineering, DevSecOps, SRE, cloud and generative AI — definitions written for engineers and the executives who fund them." />
+<link rel="canonical" href="https://hellouchit.com/glossary/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Practitioner Glossary — Uchit Vyas" />
+<meta property="og:description" content="Definitions across EA, platform engineering, DevSecOps, SRE, cloud and GenAI — anchorable, searchable." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<style>
+  /* Glossary-specific */
+  .g-hero { padding: clamp(140px, 16vw, 200px) 0 clamp(28px, 4vw, 48px); }
+  .g-hero h1 {
+    font-family: "Cormorant Garamond", serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+    letter-spacing: -.02em; margin-top: 16px; max-width: 22ch;
+  }
+  .g-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .g-hero p { color: var(--muted); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.7; max-width: 60ch; margin-top: 22px; }
+
+  .g-search {
+    position: sticky; top: 72px; z-index: 30;
+    background: rgba(12,13,16,.85);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  .g-search .wrap {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .g-search input {
+    flex: 1; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 16px; color: var(--ink); font: inherit; font-size: 15px;
+    outline: none;
+  }
+  .g-search input:focus { border-color: var(--accent); background: var(--surface-2); }
+  .g-count {
+    font-family: "JetBrains Mono", monospace; font-size: 11.5px;
+    letter-spacing: .14em; color: var(--faint); white-space: nowrap;
+  }
+  .g-count b { color: var(--accent); font-weight: 500; }
+
+  .g-az {
+    display: flex; flex-wrap: wrap; gap: 4px; padding: 16px 0 0;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+  }
+  .g-az a {
+    color: var(--faint); padding: 4px 8px; border-radius: 4px;
+    transition: color .2s, background .2s;
+    letter-spacing: .08em;
+  }
+  .g-az a:hover { color: var(--accent); background: var(--accent-soft); }
+  .g-az a.empty { opacity: .3; pointer-events: none; }
+
+  .g-list {
+    padding: clamp(48px, 6vw, 80px) 0 clamp(80px, 10vw, 128px);
+  }
+  .g-letter {
+    margin-top: clamp(40px, 5vw, 64px); padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .g-letter:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+  .g-letter h2 {
+    font-family: "Cormorant Garamond", serif; font-weight: 500;
+    font-size: clamp(48px, 7vw, 84px); line-height: 1; color: var(--accent);
+    font-style: italic; margin-bottom: 24px; letter-spacing: -.01em;
+  }
+  .g-term {
+    display: grid; grid-template-columns: 1fr 80px;
+    gap: 12px; align-items: baseline;
+    padding: 22px 0; border-bottom: 1px solid var(--line);
+    scroll-margin-top: 160px;
+  }
+  .g-term:last-child { border-bottom: 0; }
+  .g-term h3 {
+    font-family: "Cormorant Garamond", serif; font-weight: 500;
+    font-size: clamp(20px, 1.8vw, 24px); line-height: 1.2;
+    letter-spacing: -.01em; color: var(--ink);
+  }
+  .g-term .g-domain {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); text-align: right;
+  }
+  .g-term p {
+    grid-column: 1 / -1; color: var(--muted);
+    font-size: 15.5px; line-height: 1.7; max-width: 72ch; margin-top: 8px;
+  }
+  .g-term p b { color: var(--ink); font-weight: 500; }
+  .g-term.hidden { display: none; }
+
+  .g-empty {
+    padding: 60px 0; text-align: center; color: var(--faint);
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    font-size: 22px;
+  }
+
+  @media (max-width: 700px) {
+    .g-term { grid-template-columns: 1fr; gap: 4px; }
+    .g-term .g-domain { text-align: left; }
+    .g-letter h2 { font-size: 56px; }
+    .g-search { top: 64px; }
+  }
+</style>
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div>
+  <div class="grid-fx" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand" aria-label="Uchit Vyas — home">
+        <span class="monogram" aria-hidden="true">UV</span>
+        <span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="/#about">About</a>
+        <a href="/#work">Work</a>
+        <a href="/tools/">Tools</a>
+        <a href="/glossary/" style="color:var(--ink)">Glossary</a>
+        <a href="/#contact" class="nav-cta">Get in touch</a>
+      </nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="g-hero">
+      <div class="wrap">
+        <span class="eyebrow">Reference &middot; Glossary</span>
+        <h1>Practitioner <em>glossary</em>.</h1>
+        <p>
+          Definitions across enterprise architecture, platform engineering, DevSecOps,
+          SRE, cloud and generative AI &mdash; written for the engineer being asked
+          the question and the executive being asked to fund the answer.
+        </p>
+      </div>
+    </section>
+
+    <section class="g-search" aria-label="Search glossary">
+      <div class="wrap">
+        <input type="text" id="gq" placeholder="Search terms, definitions, domains…" aria-label="Search glossary" />
+        <span class="g-count"><b id="gn">0</b> terms</span>
+      </div>
+      <div class="wrap">
+        <div class="g-az" id="gaz" aria-label="Jump to letter"></div>
+      </div>
+    </section>
+
+    <section class="g-list">
+      <div class="wrap">
+        <div id="glist"></div>
+        <div class="g-empty" id="gempty" style="display:none">No matching terms. Try a different word, or browse by letter above.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/tools/">Tools</a></span>
+    </div>
+  </footer>
+
+<script>
+/* ============ Practitioner glossary ============ */
+const TERMS = [
+  // A
+  { t: "ADR — Architecture Decision Record", d: "EA", body: "A short, dated document that captures one architectural decision: context, options, decision and consequences. ADRs are the unit of truth for design history — better than slide decks because they survive leadership change and can be searched, linked and refuted." },
+  { t: "Agent (AI)", d: "GenAI", body: "An LLM-driven process that plans, calls tools, observes results and iterates toward a goal. Distinct from a single LLM call by its loop and its ability to use external systems. Evaluate agents on cost-per-resolved-task and trajectory quality, not just final output." },
+  { t: "AiOps", d: "SRE", body: "Applying machine-learning and pattern-recognition techniques to IT operations data — anomaly detection, alert correlation, root-cause hints. Useful as a layer on top of strong observability; useless as a substitute for it." },
+  { t: "Anti-corruption layer (ACL)", d: "EA", body: "A boundary translation layer that prevents the model of one bounded context from leaking into another. The mechanism that lets you incrementally replace a legacy system without inheriting its data model." },
+  { t: "ATO — Authority to Operate", d: "DevSecOps", body: "A formal authorisation from an accreditation body that a system may operate in a given environment, granted on review of its security controls and risk posture. The artefact that DevSecOps tooling produces continuously, rather than at the end of a release cycle." },
+
+  // B
+  { t: "BIAN — Banking Industry Architecture Network", d: "EA", body: "A reference framework for banking capability decomposition. A BIAN-aligned target state speeds vendor selection and partner integration — fewer arguments about what a 'customer onboarding' service actually does." },
+  { t: "Blast radius", d: "SRE", body: "The scope of impact when a component fails. A first-class architectural constraint, not an afterthought. 'How does this fail?' should be a design-review question for every new service." },
+  { t: "Blameless postmortem", d: "SRE", body: "An incident review that focuses on the systemic conditions that allowed failure, not the individuals who acted within them. The mechanism that turns incidents into platform changes instead of resignations." },
+
+  // C
+  { t: "Cell-based architecture", d: "SRE", body: "Partitioning a system into independent, isolated cells (per region, tenant or shard) so that failure or compromise in one cell doesn't cascade. The pattern that underwrites high availability at scale." },
+  { t: "Chaos engineering", d: "SRE", body: "Deliberately injecting failure into systems to verify they degrade safely. Mature chaos engineering is continuous in pre-prod and planned in prod; it is a property of how you build, not an annual exercise." },
+  { t: "Cognitive load (Team Topologies)", d: "Platform Eng", body: "The amount a team must hold in its head to deliver. Platform engineering's central job is reducing the cognitive load on stream-aligned teams by encoding patterns and providing self-service." },
+  { t: "Commitment coverage", d: "Cloud / FinOps", body: "The percentage of steady-state cloud usage covered by reservations or savings plans. Coverage in the 70–90% range typically buys 15–30% before any architectural change." },
+  { t: "Capability model", d: "EA", body: "A hierarchical map of what an organisation does, decoupled from how it does it. A living capability model is the substrate for investment decisions, architecture roadmaps and vendor selection." },
+
+  // D
+  { t: "DAST — Dynamic Application Security Testing", d: "DevSecOps", body: "Security testing of a running application by sending crafted requests, complementing static (SAST) analysis. Critical findings block merge in mature pipelines; informational findings inform the backlog." },
+  { t: "Detection-as-code", d: "DevSecOps", body: "Treating SIEM detections like software: versioned, peer-reviewed, tested against known-good and known-bad signals, deployed through CI. The reason detection coverage stops being a guess." },
+  { t: "Distroless image", d: "DevSecOps", body: "A container image containing only the application and its runtime dependencies — no shell, no package manager. Reduces attack surface and CVE noise; harder to debug but right for most production workloads." },
+  { t: "Domain decomposition", d: "EA", body: "Breaking a monolith along bounded-context lines so each new service owns a coherent slice of the business. Done well, services align with team ownership and have clear, stable contracts." },
+
+  // E
+  { t: "Eval (model evaluation)", d: "GenAI", body: "A test of an LLM's behaviour on a curated set of inputs with known-good outputs. The gate that makes prompt and model changes safe to ship. Evals run continuously in mature programmes, not just before release." },
+  { t: "Egress (network)", d: "Cloud / FinOps", body: "Data leaving a cloud region or account. The mystery line item on cloud bills; the architecture-level driver of cost where caching and co-location pay back fastest." },
+  { t: "Error budget", d: "SRE", body: "The allowable amount of unreliability over a time window, derived from an SLO. When the budget is burnt, feature work pauses and reliability work prioritises. Real error budgets change team behaviour; aspirational ones do not." },
+  { t: "Event-driven architecture", d: "EA", body: "A style where services communicate by publishing and consuming events rather than calling each other synchronously. Loosens coupling at the cost of observability discipline — distributed traces and a schema registry are non-negotiable." },
+
+  // F
+  { t: "Feature flag", d: "Platform Eng", body: "A switch that decouples deploy from release. Reduces deployment risk (rollback is a flag flip) and enables progressive delivery, A/B testing and per-tenant configuration. Necessary for trunk-based development at scale." },
+  { t: "FinOps", d: "Cloud / FinOps", body: "The discipline of making cloud cost a shared engineering, finance and product concern. Mature FinOps shows engineers their cost daily and makes the cheap choice the default choice." },
+
+  // G
+  { t: "Golden path", d: "Platform Eng", body: "A documented, supported, default way for engineers to ship a common service archetype — pipeline, observability, security baked in. The opposite of a golden cage: teams choose to use it because it's faster than rolling their own." },
+  { t: "Golden signals", d: "SRE", body: "The four metrics Google recommends every service expose: latency, traffic, errors and saturation. The minimum viable observability for any production service." },
+  { t: "Guardrail (AI)", d: "GenAI", body: "An input or output check that prevents an LLM from producing unsafe or off-policy content. Mature guardrails are layered (input policy, model policy, output policy) and tested adversarially, not just trusted because they exist." },
+  { t: "Governance (AI)", d: "GenAI", body: "The decision rights, controls and audit evidence around how AI systems are built, deployed and used. Risk-tiered governance scales; blanket review committees do not." },
+
+  // H
+  { t: "HSM — Hardware Security Module", d: "DevSecOps", body: "Tamper-resistant hardware for cryptographic key storage and operations. The substrate underneath any non-trivial regulated workload — payment, identity, signing." },
+
+  // I
+  { t: "IDP — Internal Developer Platform", d: "Platform Eng", body: "The set of self-service capabilities — golden paths, service catalogue, environments, secrets, observability — that an engineering org provides to itself. Built well, it's a property of how you build. Built badly, it's a tool stack with a portal on top." },
+  { t: "IaC — Infrastructure as Code", d: "Cloud", body: "Declaring infrastructure in versioned, diffable code (Terraform, Pulumi, Bicep). The substrate that makes drift detection, policy-as-code and audited change real." },
+  { t: "Idempotency", d: "EA", body: "A property of an operation such that running it twice produces the same result as running it once. The minimum design discipline for any retried call across service boundaries." },
+
+  // J
+  { t: "JIT access — Just-in-time access", d: "DevSecOps", body: "Granting privileged access for a bounded window on request, with audit, instead of standing privilege. The mechanism that lets you say 'zero standing access' honestly." },
+
+  // L
+  { t: "LCP — Largest Contentful Paint", d: "Cloud / Web Perf", body: "The Core Web Vital that measures when the largest visible element finishes rendering. Under 2.5s on cable is the target; over 4s costs revenue at any meaningful scale." },
+  { t: "LLM-as-judge", d: "GenAI", body: "Using one LLM to evaluate the output of another against a rubric. A scalable evals technique — but only when the judge is calibrated against human ratings and re-checked when models change." },
+
+  // M
+  { t: "Model card", d: "GenAI", body: "A versioned document describing a model's intended use, performance characteristics, evaluation results and known limitations. Required artefact in a regulator-readable AI programme." },
+  { t: "MTTR / MTTD — Mean time to recovery / detection", d: "SRE", body: "The two operational metrics that matter most after availability: how fast you notice a failure and how fast you recover from it. The numbers that improving observability and runbooks are supposed to move." },
+
+  // N
+  { t: "Non-human identity (NHI)", d: "DevSecOps", body: "Identities used by workloads — service accounts, machine certs, API tokens. NHIs outnumber human identities 10–50× and are the dominant attack vector in modern compromises; managed via workload identity (OIDC), not static secrets." },
+
+  // O
+  { t: "OPA — Open Policy Agent", d: "DevSecOps / Platform Eng", body: "A general-purpose policy engine for enforcing rules across infrastructure and applications. Common substrate for policy-as-code in Kubernetes, CI pipelines and microservice authz." },
+  { t: "Observability", d: "SRE", body: "The property of a system that lets you ask new questions of it without redeploying. Implies logs, metrics, traces, and the discipline to instrument what matters before you need to." },
+
+  // P
+  { t: "Paved path", d: "Platform Eng", body: "Synonym for golden path. Used to underline that the path exists because the platform paved it, not because teams stumbled onto it." },
+  { t: "Policy-as-code", d: "DevSecOps", body: "Encoding security, compliance and architectural rules as machine-evaluated checks — usually OPA, Kyverno or cloud-native equivalents. The mechanism that makes 'security is encoded' more than rhetoric." },
+  { t: "Postmortem", d: "SRE", body: "The document produced after an incident, capturing timeline, root causes, and action items. Mature programmes track recurrence rate of past failure modes as a primary KPI." },
+  { t: "Provenance (supply chain)", d: "DevSecOps", body: "Verifiable evidence of how an artefact was built — who, when, from which source, with which dependencies. SLSA defines escalating levels of provenance assurance; L3+ is the bar for high-risk services." },
+
+  // R
+  { t: "RAG — Retrieval-Augmented Generation", d: "GenAI", body: "Architecture that retrieves relevant documents from a knowledge store and includes them in the prompt, so the model answers from grounded context rather than memory. Quality of retrieval is usually the bottleneck, not quality of generation." },
+  { t: "Rightsizing", d: "Cloud / FinOps", body: "Matching cloud resource size to actual demand. The single highest-leverage cost lever after commitment coverage." },
+  { t: "Runbook", d: "SRE", body: "An actionable, tested playbook for responding to a known alert or incident. Living runbooks are linked from alerts, tested in game-days, and deprecated when no longer relevant." },
+
+  // S
+  { t: "SAFe — Scaled Agile Framework", d: "EA / Delivery", body: "A framework for coordinating agile delivery across many teams and programmes. Useful where it's used honestly; ceremony theatre where it's not. The architecture team's job in SAFe is to keep target-state coherent across PIs." },
+  { t: "SAST — Static Application Security Testing", d: "DevSecOps", body: "Security analysis of source code without running it. Catches a class of bugs cheaply in CI; suppression discipline is what separates real SAST from theatre." },
+  { t: "SBOM — Software Bill of Materials", d: "DevSecOps", body: "A signed, machine-readable list of all components in a built artefact. The substrate for supply-chain vulnerability response, license compliance and incident scoping." },
+  { t: "SLO / SLI", d: "SRE", body: "Service Level Objective / Indicator. An SLI is a measurable user-experience signal; an SLO is the target on that signal. The right unit of contract between platform, product and ops." },
+  { t: "SLSA — Supply-chain Levels for Software Artefacts", d: "DevSecOps", body: "An escalating framework for build-provenance assurance. L1 is having provenance; L3+ is having tamper-resistant build infrastructure with verified provenance on deploy." },
+  { t: "Strangler-fig pattern", d: "EA", body: "Incrementally replacing a legacy system by routing new functionality through a façade and migrating existing functionality piece by piece, until the legacy can be retired. The default pattern for high-risk core modernisation." },
+
+  // T
+  { t: "Team Topologies", d: "Platform Eng", body: "A model that distinguishes stream-aligned, enabling, complicated-subsystem and platform team types, and the interaction patterns between them. The model that gives platform engineering its operating shape." },
+  { t: "Threat modelling", d: "DevSecOps", body: "A structured exercise to identify what could go wrong with a system, by whom, and what controls are in place. Done early in design, it costs hours; done late, it costs sprints." },
+  { t: "Toil (SRE)", d: "SRE", body: "Repetitive, automatable operational work that has no enduring value. Healthy SRE programmes track toil as a primary KPI and target <50% of team time." },
+  { t: "Trunk-based development", d: "Platform Eng", body: "Working in short-lived branches off a single integration branch, with multiple integrations per day, gated by feature flags. The pre-requisite for genuine continuous delivery." },
+
+  // V
+  { t: "Vector database", d: "GenAI", body: "A database optimised for similarity search over high-dimensional embeddings. The retrieval substrate underneath most RAG systems; hybrid retrieval (semantic + keyword) usually beats pure vector." },
+
+  // W
+  { t: "Workload identity", d: "DevSecOps", body: "Authentication for non-human workloads via short-lived, identity-bound credentials (OIDC, IAM roles) rather than static secrets. The single biggest reduction in attack surface available to most organisations." },
+
+  // Z
+  { t: "Zero standing access", d: "DevSecOps", body: "An identity model in which no principal has privileged access at rest; all privilege is requested, time-bound, audited and revoked automatically. The end-state JIT access points at." }
+];
+
+const list = document.getElementById("glist");
+const empty = document.getElementById("gempty");
+const az = document.getElementById("gaz");
+const search = document.getElementById("gq");
+const countEl = document.getElementById("gn");
+
+function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+function firstLetter(t) { return (t.match(/[A-Za-z]/) || ["#"])[0].toUpperCase(); }
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const present = new Set(TERMS.map(t => firstLetter(t.t)));
+
+// Build A–Z bar
+az.replaceChildren(...letters.map(L => {
+  const a = document.createElement("a");
+  a.href = "#L-" + L;
+  a.textContent = L;
+  if (!present.has(L)) a.classList.add("empty");
+  return a;
+}));
+
+// Build list grouped by letter
+function render() {
+  const q = (search.value || "").trim().toLowerCase();
+  list.replaceChildren();
+  let groups = {};
+  let shown = 0;
+  TERMS.forEach(term => {
+    const haystack = (term.t + " " + term.d + " " + term.body).toLowerCase();
+    if (q && !haystack.includes(q)) return;
+    const L = firstLetter(term.t);
+    (groups[L] = groups[L] || []).push(term);
+    shown++;
+  });
+  countEl.textContent = String(shown);
+  if (shown === 0) { empty.style.display = "block"; return; }
+  empty.style.display = "none";
+
+  Object.keys(groups).sort().forEach(L => {
+    const sec = document.createElement("div");
+    sec.className = "g-letter"; sec.id = "L-" + L;
+    const h2 = document.createElement("h2"); h2.textContent = L;
+    sec.appendChild(h2);
+    groups[L].forEach(term => {
+      const row = document.createElement("article");
+      row.className = "g-term"; row.id = slug(term.t);
+      const h3 = document.createElement("h3");
+      const link = document.createElement("a");
+      link.href = "#" + slug(term.t); link.textContent = term.t;
+      link.style.color = "inherit";
+      h3.appendChild(link);
+      const dom = document.createElement("span"); dom.className = "g-domain"; dom.textContent = term.d;
+      const p = document.createElement("p"); p.innerHTML = term.body;
+      row.append(h3, dom, p);
+      sec.appendChild(row);
+    });
+    list.appendChild(sec);
+  });
+}
+search.addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
