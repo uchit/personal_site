@@ -58,7 +58,7 @@
     { t: "Writing — The 4-Discipline Stack", u: "/writing/4-discipline-stack-essay.html", g: "Writing", ic: "✎" },
     { t: "Writing — AU AI Safety Standard decoded", u: "/writing/au-ai-safety-decoded.html", g: "Writing", ic: "✎" },
     { t: "Book a 30-min call",            u: "https://calendly.com/uchit/30min", g: "Actions", ic: "⤓" },
-    { t: "Email — hello@hellouchit.com",  u: "mailto:hello@hellouchit.com", g: "Actions", ic: "✉" },
+    { t: "Email — contact@hellouchit.com",  u: "mailto:contact@hellouchit.com", g: "Actions", ic: "✉" },
     { t: "LinkedIn — /in/uchitvyas",      u: "https://www.linkedin.com/in/uchitvyas/", g: "Actions", ic: "in" },
     { t: "Download LinkedIn profile (PDF)", u: "/Profile_linkedin.pdf", g: "Actions", ic: "⤓" }
   ];
