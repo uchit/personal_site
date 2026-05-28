@@ -561,7 +561,14 @@ function compound() {
   });
   history.replaceState(null, "", "#" + params.toString());
 
-  $("#results").scrollIntoView({ behavior: "smooth", block: "start" });
+  // Scroll results just below the sticky nav (not under it).
+  requestAnimationFrame(() => {
+    const r = $("#results");
+    if (!r) return;
+    const navH = (document.querySelector("header.nav")?.offsetHeight) || 64;
+    const top = r.getBoundingClientRect().top + window.scrollY - navH - 16;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  });
 }
 
 function fromHash() {

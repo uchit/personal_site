@@ -21,6 +21,19 @@
   "use strict";
   const $  = (s, r = document) => r.querySelector(s);
 
+  // Scroll a target element to just below the sticky nav so it reads
+  // immediately (replaces scrollIntoView({block:"start"}) which leaves
+  // the new content hidden behind the fixed header).
+  function scrollToBelowNav(selector) {
+    requestAnimationFrame(() => {
+      const card = typeof selector === "string" ? document.querySelector(selector) : selector;
+      if (!card) return;
+      const navH = (document.querySelector("header.nav")?.offsetHeight) || 64;
+      const top = card.getBoundingClientRect().top + window.scrollY - navH - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    });
+  }
+
   function fromHash(n) {
     const h = location.hash.replace(/^#/, "");
     const m = h.match(/^a=([1-5]+)(?:&s=([a-z]+))?$/);
@@ -106,13 +119,12 @@
         b.append(lvl, body);
         b.addEventListener("click", () => {
           this.state.answers[i] = k + 1;
-          if (i < n - 1) { this.state.i++; this.renderQ(); }
-          else {
+          if (i < n - 1) {
+            this.state.i++; this.renderQ();
+            scrollToBelowNav("#qcard");
+          } else {
             this.finish();
-            requestAnimationFrame(() => {
-              const r = document.getElementById("result");
-              if (r) r.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
+            scrollToBelowNav("#result");
           }
         });
         opts.appendChild(b);
