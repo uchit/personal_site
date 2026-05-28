@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GenAI Readiness Diagnostic — Uchit Vyas</title>
-<meta name="description" content="Twelve-capability GenAI readiness diagnostic — data, guardrails, evals, governance, audit. Can you put an LLM in front of a customer and a regulator?" />
+<meta name="description" content="Twelve-capability GenAI readiness diagnostic — mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10. Sector-aware. Runs in your browser." />
 <link rel="canonical" href="https://hellouchit.com/tools/genai-readiness.html" />
 <meta name="theme-color" content="#0c0d10" />
 <link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
 <meta property="og:title" content="GenAI Readiness Diagnostic" />
-<meta property="og:description" content="12 capabilities · 5 levels · runs in your browser." />
+<meta property="og:description" content="12 capabilities · mapped to NIST AI RMF, EU AI Act, ISO 42001, OWASP LLM Top 10." />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,151 +27,249 @@
   <header class="nav" role="banner">
     <div class="wrap nav-inner">
       <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
-          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/glossary/">Glossary</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
     </div>
   </header>
+
   <main id="main" tabindex="-1">
     <section class="tool-hero"><div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/tools/">Tools</a><span class="sep">/</span><span class="here">GenAI Readiness</span></nav>
       <span class="eyebrow">Diagnostic &middot; GenAI</span>
       <h1>GenAI Readiness<br /><em>Diagnostic</em>.</h1>
-      <p class="hero-role" style="margin-top:24px;max-width:62ch">
-        Twelve capabilities across data foundations, model selection, RAG, prompts,
-        evals, safety, observability, governance and audit&#8209;readiness &mdash;
-        the difference between a demo and something a customer (and a regulator) can use.
+      <p class="hero-role" style="margin-top:20px;max-width:64ch">
+        Twelve capabilities scored against the public risk frameworks that
+        regulators and procurement teams now expect to see &mdash; NIST AI RMF,
+        the EU AI Act (high-risk enforcement from <b>2 Aug 2026</b>),
+        ISO/IEC 42001, and the OWASP LLM Top 10. Built for the difference
+        between a demo and something a customer &mdash; and a regulator &mdash; can use.
       </p>
-      <div class="tool-meta"><span><b>12</b> capabilities</span><span><b>5</b> levels</span><span><b>~3</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+      <div class="tool-meta">
+        <span><b>12</b> capabilities</span><span><b>5</b> levels</span><span><b>~4</b> min</span><span>Browser-only. No data collected.</span>
+      </div>
+      <div class="fw-strip">
+        <span class="fw-lab">Mapped to</span>
+        <a class="fw-chip" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF 1.0</a>
+        <a class="fw-chip" href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">NIST AI 600-1</a>
+        <a class="fw-chip" href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act</a>
+        <a class="fw-chip" href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001</a>
+        <a class="fw-chip" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP LLM Top 10</a>
+        <a class="fw-chip" href="https://www.industry.gov.au/publications/voluntary-ai-safety-standard" target="_blank" rel="noopener">AU Voluntary AI Safety Std</a>
+        <a class="fw-chip" href="https://atlas.mitre.org/" target="_blank" rel="noopener">MITRE ATLAS</a>
+      </div>
+      <div class="sector-sel" id="sectorsel"></div>
     </div></section>
 
-    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:820px">
       <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
-      <article class="q-card" id="qcard">
-        <span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span>
-        <h2 class="q-text" id="qtext"></h2>
-        <div class="q-opts" id="qopts"></div>
-      </article>
-      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer truthfully today.</span><span></span></div>
-      <div class="result" id="result"><div class="result-card">
-        <span class="result-eyebrow">Your GenAI readiness</span>
-        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
-        <div class="result-level" id="rlevel">&mdash;</div>
-        <div class="result-bar"><div class="fill" id="rfill"></div></div>
-        <div class="result-body" id="rbody"></div>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-refs" id="qrefs"></div><div class="q-opts" id="qopts"></div></article>
+      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for what you've shipped, not what's on the roadmap.</span><span></span></div>
+
+      <div class="result" id="result">
+        <div class="result-hero">
+          <div class="result-hero-left">
+            <span class="result-eyebrow">Your GenAI readiness</span>
+            <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+            <div class="result-level" id="rlevel">&mdash;</div>
+            <div class="result-bar"><div class="fill" id="rfill"></div></div>
+            <div class="result-bench" id="rbench"></div>
+          </div>
+          <div class="result-hero-right">
+            <div class="result-body" id="rbody"></div>
+            <div class="result-recs-mini"><h3>Next three moves</h3><ol id="rmini"></ol></div>
+          </div>
+        </div>
+        <div class="sector-lens" id="rsectorlens"></div>
         <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
-        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="recs-detail"><h3>Recommendations &mdash; with tools, constraints and citations</h3><ol id="rdetail"></ol></div>
+        <div class="refs-section"><h3>References &amp; frameworks cited</h3><div class="refs-grid" id="refslib"></div></div>
         <div class="result-actions">
           <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
           <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/tools/">&larr; All diagnostics</a>
           <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
         </div>
-      </div></div>
+      </div>
     </div></section>
   </main>
+
   <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
 
 <script>
 window.addEventListener("DOMContentLoaded", function () {
+  const RMF = "https://www.nist.gov/itl/ai-risk-management-framework";
+  const RMF600 = "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf";
+  const AIACT = "https://artificialintelligenceact.eu/the-act/";
+  const ISO42001 = "https://www.iso.org/standard/81230.html";
+  const LLM10 = "https://owasp.org/www-project-top-10-for-large-language-model-applications/";
+  const ATLAS = "https://atlas.mitre.org/";
+
   Diag.run({
+    sectors: {
+      tech: {label:"Tech / SaaS", lens:"For tech, GenAI is a feature-velocity race &mdash; but the floor is rising. <a href='https://www.iso.org/standard/81230.html' target='_blank' rel='noopener'>ISO/IEC 42001</a> certification is becoming a customer-procurement requirement. SOC 2 auditors now ask about model evals and prompt injection. <b>Model selection</b>, <b>evals</b> and <b>observability</b> are your differentiators."},
+      fsi:  {label:"Financial services", lens:"In FSI, model risk falls under <a href='https://www.federalreserve.gov/supervisionreg/srletters/sr1107a1.pdf' target='_blank' rel='noopener'>SR 11-7</a> (US), APRA <a href='https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management' target='_blank' rel='noopener'>CPS 230</a>, MAS, FCA. EU customer-facing GenAI in lending or insurance is <b>high-risk</b> under the AI Act &mdash; conformity assessment required. <b>Governance</b>, <b>audit-readiness</b> and <b>evals</b> are non-negotiable."},
+      government: {label:"Government", lens:"Australian Gov: <a href='https://www.digital.gov.au/policy/ai-in-government/policy-implementation' target='_blank' rel='noopener'>DTA Policy for Responsible Use of AI</a> (eff. 1 Sep 2024) requires transparency statements + AI accountability officer. US: <a href='https://www.whitehouse.gov/wp-content/uploads/2024/03/M-24-10-Advancing-Governance-Innovation-and-Risk-Management-for-Agency-Use-of-Artificial-Intelligence.pdf' target='_blank' rel='noopener'>OMB M-24-10</a>. <b>Governance</b> and <b>audit-readiness</b> are mandatory."},
+      healthcare: {label:"Healthcare", lens:"For health, FDA SaMD + the <a href='https://www.fda.gov/medical-devices/software-medical-device-samd/predetermined-change-control-plans-machine-learning-enabled-medical-devices' target='_blank' rel='noopener'>FDA PCCP guidance</a> govern ML in clinical decision-making. EU AI Act lists medical-device AI as <b>high-risk</b>. Watch <b>evals</b>, <b>data foundations</b> and <b>governance</b> hardest."},
+      retail: {label:"Retail", lens:"For retail, GenAI in recommendations and personalisation is bounded by GDPR/CCPA on personal data and <a href='https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2065' target='_blank' rel='noopener'>EU DSA</a> on algorithmic transparency. <b>Guardrails</b> and <b>data foundations</b> are the constraints; <b>cost &amp; latency</b> the differentiator at scale."},
+      critinfra: {label:"Critical infra", lens:"In critical infrastructure, AI use in OT/control systems is being scrutinised. The <a href='https://www.cisc.gov.au/legislative-information-and-reforms/critical-infrastructure' target='_blank' rel='noopener'>SOCI Act</a> RMP requires risk assessment of new tech. <b>Guardrails</b>, <b>audit-readiness</b> and <b>cost-per-outcome</b> all matter; recovery time is the constraint."}
+    },
+
     questions: [
-      { cap: "Use-case clarity", t: "How well-defined is the business use-case for GenAI?",
-        o: ["We're 'looking at AI' — no specific use-case agreed.",
-            "A few ideas in a backlog; nobody owns them.",
-            "One primary use-case named, with a sponsor.",
-            "Use-case decomposed into measurable outcomes; baseline known.",
-            "Use-case ranked against alternatives (rules, ML, humans); GenAI chosen on cost-vs-quality evidence."] },
-      { cap: "Data foundations", t: "What's the state of the data the model needs?",
-        o: ["Scattered across systems; quality unknown.",
-            "Centralised somewhere, but no lineage or freshness contract.",
-            "Catalogued with owners; quality and freshness measured.",
-            "Versioned datasets with PII controls; access governed.",
-            "Production-grade feature/data store with SLAs, lineage, retention and right-to-erasure built in."] },
-      { cap: "Model selection", t: "How do you decide which model to use?",
-        o: ["Whichever was in the demo.",
-            "One model picked on vibes — never re-evaluated.",
-            "A short-list with rough cost/latency notes.",
-            "Routed by use-case; cheaper model used where quality is equivalent.",
-            "Gateway with model routing, fallbacks and per-use-case A/B; cost and quality tracked per call."] },
-      { cap: "RAG architecture", t: "If you're doing retrieval-augmented generation, what does it look like?",
-        o: ["No RAG — we stuff context into the prompt.",
-            "Single vector store, basic chunking, no metadata filtering.",
-            "Hybrid retrieval (semantic + keyword); metadata filters; eval set.",
-            "Re-ranking, query rewriting, recursive retrieval; eval set covers edge cases.",
-            "Multi-index, source-aware citations, freshness-aware, with retrieval quality measured separately from generation quality."] },
-      { cap: "Prompts as code", t: "How are prompts managed?",
-        o: ["Hard-coded strings; whoever last edited 'owns' them.",
-            "In a config file; changes are ad-hoc.",
-            "Versioned in a prompt library; reviewed like code.",
-            "Prompt registry with semver, owners and per-version evals.",
-            "Prompts deployed and rolled back like code, with regression evals on every change."] },
-      { cap: "Evals", t: "How do you measure whether the model is doing the right thing?",
-        o: ["We don't. We look at outputs and feel.",
-            "Manual spot-checks before each release.",
-            "An eval set exists and is run before changes.",
-            "Curated eval suites per use-case + LLM-as-judge with calibration.",
-            "Continuous evals in production, regression-gated deploys, human-in-the-loop for edge cases."] },
-      { cap: "Guardrails", t: "What stops the model from producing unsafe / off-policy output?",
-        o: ["Nothing systematic.",
-            "Light system-prompt instructions ('don't say X').",
-            "Input/output filters for obvious categories (PII, profanity).",
-            "Policy-tuned classifiers + content filters + jailbreak detection.",
-            "Layered defence: input policy, model policy, output policy, escalation path; tested adversarially."] },
-      { cap: "Observability", t: "Can you trace why the model said what it said?",
-        o: ["No — outputs disappear after the API call.",
-            "We log prompts and outputs somewhere.",
-            "Per-request tracing: prompt, retrieved context, model, latency, cost.",
-            "End-to-end traces linked to user session; quality and cost dashboards per use-case.",
-            "Replayable traces with version pinning; production evals tied to traces; cost-per-outcome tracked."] },
-      { cap: "Cost & latency", t: "Do you know the cost-per-outcome of the feature?",
-        o: ["No idea. The bill arrives monthly.",
-            "Aggregate spend tracked; per-feature is a guess.",
-            "Cost-per-request known; latency P50/P95 tracked.",
-            "Cost-per-resolved-task known; budgets per use-case.",
-            "Cost-per-outcome and quality-per-dollar tracked; routing decisions auto-tune for both."] },
-      { cap: "Governance", t: "Who decides what the model is allowed to do — and who approves changes?",
-        o: ["Nobody formally. Engineering ships what works.",
-            "Security/legal reviewed it once; haven't looked since.",
-            "A standing AI committee reviews high-risk changes.",
-            "Risk-tiered governance: low-risk self-service, high-risk reviewed; decisions logged.",
-            "Governance is encoded — model cards, eval thresholds and policy checks block non-compliant deploys."] },
-      { cap: "Audit-readiness", t: "If a regulator asked tomorrow to see how a decision was made, could you show them?",
-        o: ["No — we'd scramble.",
-            "We could reconstruct from scattered logs given time.",
-            "We can produce per-decision traces within hours.",
-            "Per-decision evidence pack is one API call; retention is policy-controlled.",
-            "Evidence is generated and signed at decision time; audit views are pre-built for known regulator questions."] },
-      { cap: "People & operating model", t: "Who owns GenAI features in production?",
-        o: ["A central 'AI team' that other teams escalate to.",
-            "One squad runs it; nobody else can touch it.",
-            "Each owning product squad runs their model; central team advises.",
-            "Platform team provides golden-path templates; squads run their own evals and rollouts.",
-            "GenAI is a property the platform provides; squads consume safely without thinking about model ops."] }
+      { cap:"Use-case clarity", t:"How well-defined is the business use-case for GenAI?",
+        refs:[{name:"NIST AI RMF GOVERN-1.3",url:RMF},{name:"AU AI Safety Std Guardrail 1",url:"https://www.industry.gov.au/publications/voluntary-ai-safety-standard"}],
+        o:["We're 'looking at AI' — no specific use-case agreed.","A few ideas in a backlog; nobody owns them.","One primary use-case named, with a sponsor.","Use-case decomposed into measurable outcomes; baseline known.","Use-case ranked against alternatives (rules, ML, humans); GenAI chosen on cost-vs-quality evidence."] },
+      { cap:"Data foundations", t:"What's the state of the data the model needs?",
+        refs:[{name:"NIST AI 600-1 §3.1",url:RMF600},{name:"EU AI Act Art.10",url:AIACT}],
+        o:["Scattered across systems; quality unknown.","Centralised somewhere, but no lineage or freshness contract.","Catalogued with owners; quality and freshness measured.","Versioned datasets with PII controls; access governed.","Production-grade feature/data store with SLAs, lineage, retention and right-to-erasure built in."] },
+      { cap:"Model selection", t:"How do you decide which model to use?",
+        refs:[{name:"NIST AI RMF MAP-3.4",url:RMF},{name:"Stanford HELM",url:"https://crfm.stanford.edu/helm/"}],
+        o:["Whichever was in the demo.","One model picked on vibes — never re-evaluated.","A short-list with rough cost/latency notes.","Routed by use-case; cheaper model used where quality matches.","Gateway with model routing, fallbacks and per-use-case A/B; cost &amp; quality tracked per call."] },
+      { cap:"RAG architecture", t:"If you're doing retrieval-augmented generation, what does it look like?",
+        refs:[{name:"OWASP LLM01 (Prompt Injection)",url:LLM10},{name:"Anthropic Contextual Retrieval",url:"https://www.anthropic.com/news/contextual-retrieval"}],
+        o:["No RAG — we stuff context into the prompt.","Single vector store, basic chunking, no metadata filtering.","Hybrid retrieval (semantic + keyword); metadata filters; eval set.","Re-ranking, query rewriting, recursive retrieval; eval set covers edge cases.","Multi-index, source-aware citations, freshness-aware, retrieval quality measured separately from generation."] },
+      { cap:"Prompts as code", t:"How are prompts managed?",
+        refs:[{name:"OWASP LLM01",url:LLM10},{name:"NIST AI RMF MEASURE-2.7",url:RMF}],
+        o:["Hard-coded strings; whoever last edited owns them.","In a config file; changes are ad-hoc.","Versioned in a prompt library; reviewed like code.","Prompt registry with semver, owners and per-version evals.","Prompts deployed and rolled back like code; regression evals on every change."] },
+      { cap:"Evals", t:"How do you measure whether the model is doing the right thing?",
+        refs:[{name:"NIST AI 600-1 §4",url:RMF600},{name:"OWASP LLM09 (Misinformation)",url:LLM10},{name:"OpenAI Evals",url:"https://github.com/openai/evals"}],
+        o:["We don't. We look at outputs and feel.","Manual spot-checks before each release.","An eval set exists and is run before changes.","Curated eval suites per use-case + LLM-as-judge with calibration.","Continuous evals in production, regression-gated deploys, human-in-the-loop for edge cases."] },
+      { cap:"Guardrails", t:"What stops the model from producing unsafe / off-policy output?",
+        refs:[{name:"OWASP LLM01/02/06",url:LLM10},{name:"MITRE ATLAS",url:ATLAS},{name:"NVIDIA NeMo Guardrails",url:"https://github.com/NVIDIA/NeMo-Guardrails"}],
+        o:["Nothing systematic.","Light system-prompt instructions ('don't say X').","Input/output filters for obvious categories (PII, profanity).","Policy-tuned classifiers + content filters + jailbreak detection.","Layered defence: input policy, model policy, output policy, escalation path; tested adversarially."] },
+      { cap:"Observability", t:"Can you trace why the model said what it said?",
+        refs:[{name:"OpenTelemetry GenAI semconv",url:"https://opentelemetry.io/docs/specs/semconv/gen-ai/"},{name:"NIST AI RMF MEASURE-3.2",url:RMF}],
+        o:["No — outputs disappear after the API call.","We log prompts and outputs somewhere.","Per-request tracing: prompt, retrieved context, model, latency, cost.","End-to-end traces linked to user session; quality &amp; cost dashboards per use-case.","Replayable traces with version pinning; production evals tied to traces; cost-per-outcome tracked."] },
+      { cap:"Cost &amp; latency", t:"Do you know the cost-per-outcome of the feature?",
+        refs:[{name:"FinOps for AI WG",url:"https://www.finops.org/wg/ai/"},{name:"AWS Bedrock cost allocation",url:"https://docs.aws.amazon.com/bedrock/latest/userguide/cost-allocation.html"}],
+        o:["No idea. The bill arrives monthly.","Aggregate spend tracked; per-feature is a guess.","Cost-per-request known; latency P50/P95 tracked.","Cost-per-resolved-task known; budgets per use-case.","Cost-per-outcome and quality-per-dollar tracked; routing decisions auto-tune for both."] },
+      { cap:"Governance", t:"Who decides what the model is allowed to do — and who approves changes?",
+        refs:[{name:"ISO/IEC 42001",url:ISO42001},{name:"NIST AI RMF GOVERN-2",url:RMF},{name:"EU AI Act Art.9",url:AIACT}],
+        o:["Nobody formally. Engineering ships what works.","Security/legal reviewed it once; haven't looked since.","A standing AI committee reviews high-risk changes.","Risk-tiered governance: low-risk self-service, high-risk reviewed; decisions logged.","Governance is encoded — model cards, eval thresholds and policy checks block non-compliant deploys."] },
+      { cap:"Audit-readiness", t:"If a regulator asked tomorrow to see how a decision was made, could you show them?",
+        refs:[{name:"EU AI Act Art.12 (Logging)",url:AIACT},{name:"NIST AI RMF MEASURE-3.3",url:RMF}],
+        o:["No — we'd scramble.","We could reconstruct from scattered logs given time.","We can produce per-decision traces within hours.","Per-decision evidence pack is one API call; retention is policy-controlled.","Evidence is generated and signed at decision time; audit views are pre-built for known regulator questions."] },
+      { cap:"Operating model", t:"Who owns GenAI features in production?",
+        refs:[{name:"NIST AI RMF GOVERN-3",url:RMF},{name:"CNCF Platform Eng Maturity",url:"https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"}],
+        o:["A central 'AI team' that other teams escalate to.","One squad runs it; nobody else can touch it.","Each owning product squad runs their model; central team advises.","Platform team provides golden-path templates; squads run their own evals and rollouts.","GenAI is a property the platform provides; squads consume safely without thinking about model ops."] }
     ],
+
     levels: [
-      { minPct: 0, maxPct: 0.2, name: "Experimenting",
-        body: "<b>You're prototyping.</b> Output quality is hand-checked, governance is implicit, cost is invisible. That's fine — until the first real customer interaction. The single move that matters: pick one use-case and instrument it end-to-end (eval set, traces, cost) before adding a second.",
-        recs: ["Name one production use-case and one sponsor. Kill the rest until that one ships honestly.",
-               "Build an eval set of 50 cases with known-good answers. Run it weekly. Don't ship without passing.",
-               "Add per-request tracing (prompt + retrieved context + output + cost). Even basic logs beat none."] },
-      { minPct: 0.2001, maxPct: 0.4, name: "Piloting",
-        body: "<b>You have something in users' hands.</b> The gap to a defensible production feature is usually three things: evals you trust, guardrails you've tested adversarially, and cost-per-outcome you can defend in a budget review.",
-        recs: ["Move prompts into a versioned registry. Tag every production trace with the prompt version.",
-               "Add input + output guardrails for the two failure modes you most fear. Test them with red-team prompts.",
-               "Instrument cost-per-resolved-task. Set a budget. Alert on burn."] },
-      { minPct: 0.4001, maxPct: 0.6, name: "Operating",
-        body: "<b>You're running GenAI like a real service.</b> Evals exist, traces exist, governance exists. The next jump is from 'we measure' to 'the platform enforces' — regression-gated deploys, risk-tiered governance, replayable traces.",
-        recs: ["Gate deploys on eval regression. Block merges where any critical metric drops.",
-               "Introduce model-routing with a fallback. Cheaper model where quality matches; premium where it doesn't.",
-               "Define a risk-tiered governance model — what's self-service, what's reviewed, what's blocked."] },
-      { minPct: 0.6001, maxPct: 0.8, name: "Industrialising",
-        body: "<b>You're in the top quartile of GenAI delivery.</b> The remaining work is supply-chain (model provenance, prompt provenance), continuous evals in production, and regulator-grade audit evidence — the boring stuff that decides whether you can put the feature in front of an actual customer in a regulated domain.",
-        recs: ["Sign and pin model versions per environment. Make rollback a one-command operation.",
-               "Move evals into production (shadow evals on real traffic). Surface regression in the same incident channel as availability.",
-               "Pre-build the three audit views a regulator would ask for. Test them with internal audit before they're asked for externally."] },
-      { minPct: 0.8001, maxPct: 1.0, name: "Platforming",
-        body: "<b>GenAI is a property of your platform, not a workstream.</b> Squads consume safely; quality, cost and governance are encoded. The work now is regression discipline: keeping standards as more squads ship more use-cases, and staying ahead of the next model generation.",
-        recs: ["Run quarterly adversarial reviews. Assume one guardrail layer fails; prove the others catch it.",
-               "Track cost-per-outcome and quality-per-dollar as primary KPIs; let routing tune both.",
-               "Publish your governance model externally (sanitised). It's how you recruit the next ten engineers who care."] }
+      { minPct:0, maxPct:0.2, name:"Experimenting",
+        benchmark:'<cite><a href="https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/" target="_blank" rel="noopener">Menlo Ventures State of GenAI 2024</a></cite> finds <b>~60%</b> of enterprises still in pilot/PoC. Median time-to-production: <b>9+ months</b>. Not ready for EU AI Act high-risk obligations (Aug 2026).',
+        body:"<b>You're prototyping.</b> Output quality is hand-checked, governance is implicit, cost is invisible. That's fine — until the first real customer interaction. The single move that matters: pick one use-case and instrument it end-to-end (eval set, traces, cost) before adding a second.",
+        recs:[
+          { what:"Name one production use-case and one sponsor. Kill the rest until that one ships honestly.",
+            why:"Pilot proliferation is the #1 cause of GenAI programmes never reaching production.",
+            tools:"Internal — sponsor + delivery lead alignment.",
+            constraint:"Saying 'no' to a CFO-favourite PoC is politically expensive but cheaper than failing in production.",
+            refs:[{name:"NIST AI RMF GOVERN-1.3",url:RMF}] },
+          { what:"Build an eval set of 50+ cases with known-good answers. Run it weekly.",
+            why:"Without evals, you cannot tell whether a prompt change made things better or worse. <a href='https://www.promptfoo.dev/' target='_blank' rel='noopener'>Promptfoo</a> is free and good enough to start.",
+            tools:"<a href='https://www.promptfoo.dev/' target='_blank' rel='noopener'>Promptfoo</a> · <a href='https://github.com/confident-ai/deepeval' target='_blank' rel='noopener'>DeepEval</a> · LangSmith · Braintrust · Weights &amp; Biases",
+            constraint:"Getting subject-matter experts to label 50 cases is the bottleneck, not the tooling.",
+            refs:[{name:"NIST AI 600-1 §4",url:RMF600}] },
+          { what:"Add per-request tracing (prompt + retrieved context + output + cost).",
+            why:"You cannot debug what you cannot replay. <a href='https://opentelemetry.io/docs/specs/semconv/gen-ai/' target='_blank' rel='noopener'>OTel GenAI semconv</a> is stabilising; use it now.",
+            tools:"LangSmith · Langfuse · Arize Phoenix · Helicone · Honeycomb (with OTel)",
+            constraint:"PII in prompts may need redaction at log time — design the policy before turning on logging.",
+            refs:[{name:"OTel GenAI conventions",url:"https://opentelemetry.io/docs/specs/semconv/gen-ai/"}] }
+        ] },
+      { minPct:0.2001, maxPct:0.4, name:"Piloting",
+        benchmark:'<b>~25%</b> of enterprises (Menlo 2024). One or two use-cases in limited production; governance ad-hoc. Approaching threshold to need <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001</a> if selling B2B.',
+        body:"<b>You have something in users' hands.</b> The gap to a defensible production feature is usually three things: evals you trust, guardrails you've tested adversarially, and cost-per-outcome you can defend in a budget review.",
+        recs:[
+          { what:"Move prompts into a versioned registry. Tag every production trace with the prompt version.",
+            why:"Without versioning you cannot attribute regressions or roll back. A prompt is a configuration; treat it like code.",
+            tools:"<a href='https://docs.smith.langchain.com/old/prompt_engineering/concepts' target='_blank' rel='noopener'>LangSmith Prompts</a> · Langfuse Prompts · PromptHub · in-repo .prompt files",
+            constraint:"Existing inline prompts need migration — start with new features, retrofit lazily.",
+            refs:[{name:"NIST AI RMF MEASURE-2.7",url:RMF}] },
+          { what:"Add input + output guardrails for the two failure modes you most fear. Test adversarially.",
+            why:"OWASP LLM01 (prompt injection) and LLM06 (sensitive info disclosure) are the most common production incidents.",
+            tools:"<a href='https://github.com/NVIDIA/NeMo-Guardrails' target='_blank' rel='noopener'>NVIDIA NeMo Guardrails</a> · <a href='https://www.guardrailsai.com/' target='_blank' rel='noopener'>Guardrails AI</a> · Lakera Guard · Azure AI Content Safety · AWS Bedrock Guardrails",
+            constraint:"Guardrail latency adds 50-300ms — design for async where possible.",
+            refs:[{name:"OWASP LLM Top 10",url:LLM10},{name:"MITRE ATLAS",url:ATLAS}] },
+          { what:"Instrument cost-per-resolved-task. Set a budget. Alert on burn.",
+            why:"GenAI feature costs scale super-linearly with adoption. Without per-outcome cost, you cannot pace adoption to budget.",
+            tools:"Helicone · LangSmith · Langfuse · cloud-native (Bedrock cost allocation, OpenAI usage API)",
+            constraint:"Attributing cost to product features requires tag discipline on every call.",
+            refs:[{name:"FinOps for AI WG",url:"https://www.finops.org/wg/ai/"}] }
+        ] },
+      { minPct:0.4001, maxPct:0.6, name:"Operating",
+        benchmark:'<b>~12%</b> of enterprises operate GenAI as a real service (Menlo 2024). Multiple use-cases, gated evals, real observability. Will pass <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO 42001</a> readiness review.',
+        body:"<b>You're running GenAI like a real service.</b> Evals exist, traces exist, governance exists. The next jump is from 'we measure' to 'the platform enforces' &mdash; regression-gated deploys, risk-tiered governance, replayable traces.",
+        recs:[
+          { what:"Gate deploys on eval regression. Block merges where any critical metric drops.",
+            why:"Without an enforced gate, evals become a status report rather than a control.",
+            tools:"GitHub Actions + Promptfoo/Braintrust · Vertex AI Eval · Bedrock Eval",
+            constraint:"Defining 'critical' regression vs noise is a calibration exercise — expect 2-3 iterations.",
+            refs:[{name:"NIST AI RMF MEASURE-2.7",url:RMF}] },
+          { what:"Introduce model-routing with a fallback. Cheaper model where quality matches.",
+            why:"GPT-4-class quality is not needed for all calls. Routing typically buys 30-60% cost reduction without quality loss.",
+            tools:"<a href='https://openrouter.ai/' target='_blank' rel='noopener'>OpenRouter</a> · <a href='https://www.litellm.ai/' target='_blank' rel='noopener'>LiteLLM</a> · AWS Bedrock Intelligent Prompt Routing · self-built",
+            constraint:"Routing decisions need their own eval set — wrong route is worse than no route.",
+            refs:[{name:"Anyscale model-routing benchmark",url:"https://www.anyscale.com/blog/llm-router-routing-to-the-best-llm-for-any-prompt"}] },
+          { what:"Define a risk-tiered governance model — self-service, reviewed, blocked.",
+            why:"Blanket-review committees become bottlenecks and get routed around. Tiering preserves both speed and rigour.",
+            tools:"Internal RACI + checklist · ISO 42001 control mapping",
+            constraint:"Tiering criteria must be objective — 'I think it's high-risk' becomes a fight.",
+            refs:[{name:"ISO/IEC 42001",url:ISO42001},{name:"AU Voluntary AI Safety Std",url:"https://www.industry.gov.au/publications/voluntary-ai-safety-standard"}] }
+        ] },
+      { minPct:0.6001, maxPct:0.8, name:"Industrialising",
+        benchmark:'<b>~3%</b> of enterprises (Menlo). Conforms to EU AI Act high-risk obligations. ISO 42001 certifiable. Ready for FSI/healthcare/government procurement.',
+        body:"<b>You're in the top quartile of GenAI delivery.</b> The remaining work is supply-chain (model and prompt provenance), continuous evals in production, and regulator-grade audit evidence — the boring stuff that decides whether you can put the feature in front of an actual customer in a regulated domain.",
+        recs:[
+          { what:"Sign and pin model versions per environment. Make rollback one command.",
+            why:"Model deprecations and silent updates have caused production outages (Anthropic, OpenAI shipped breaking changes in 2024).",
+            tools:"Provider version-pinning APIs · GitOps for prompt+model config",
+            constraint:"Pinned versions reach end-of-life — automate the migration warning.",
+            refs:[{name:"OpenAI model deprecations",url:"https://platform.openai.com/docs/deprecations"},{name:"Anthropic model cards",url:"https://docs.anthropic.com/en/docs/about-claude/models"}] },
+          { what:"Move evals into production (shadow evals on real traffic). Wire regression alerts into incident channels.",
+            why:"Pre-deploy evals miss data-drift and adversarial drift. Production evals catch them.",
+            tools:"Arize Phoenix · LangSmith Online Eval · custom on traces",
+            constraint:"Shadow eval cost must be budgeted — typically 5-15% of prod traffic cost.",
+            refs:[{name:"NIST AI 600-1 §5 (drift)",url:RMF600}] },
+          { what:"Pre-build the three audit views a regulator would ask for. Test with internal audit first.",
+            why:"<a href='https://artificialintelligenceact.eu/the-act/' target='_blank' rel='noopener'>EU AI Act Art.12</a> requires automatic logging sufficient to reconstruct any output. Build the view once; reuse forever.",
+            tools:"Internal — derived from traces + eval results + model cards.",
+            constraint:"Legal owns the regulator-question list — partner early.",
+            refs:[{name:"EU AI Act Art.12",url:AIACT},{name:"ISO/IEC 42001 A.6.2.4",url:ISO42001}] }
+        ] },
+      { minPct:0.8001, maxPct:1.0, name:"Platforming",
+        benchmark:'Sub-<b>1%</b> of enterprises. Platform-as-product for AI: squads consume safely without thinking about model ops. Reference customers for model providers.',
+        body:"<b>GenAI is a property of your platform, not a workstream.</b> Squads consume safely; quality, cost and governance are encoded. The work now is regression discipline.",
+        recs:[
+          { what:"Run quarterly adversarial reviews. Assume one guardrail layer fails; prove the others catch it.",
+            why:"<a href='https://atlas.mitre.org/' target='_blank' rel='noopener'>MITRE ATLAS</a> documents real attacker TTPs against AI systems. Rehearse them.",
+            tools:"MITRE ATLAS Navigator · Atomic Red Team for AI · internal red team",
+            constraint:"Production-safe adversarial testing needs the same chaos-engineering discipline as security chaos.",
+            refs:[{name:"MITRE ATLAS",url:ATLAS}] },
+          { what:"Track cost-per-outcome and quality-per-dollar as primary KPIs; let routing tune both.",
+            why:"Routing decisions tuned for cost-per-outcome (not cost-per-token) align platform incentives with business value.",
+            tools:"Internal model-routing layer + finance feed.",
+            constraint:"Quality definition is per use-case — no global quality metric works.",
+            refs:[{name:"FinOps for AI",url:"https://www.finops.org/wg/ai/"}] },
+          { what:"Publish your governance model externally (sanitised). It's how you recruit the next ten AI engineers who care.",
+            why:"Top AI engineers in 2026 are choosing employers based on responsible-AI maturity, not just compensation.",
+            tools:"Public model cards · responsible AI report · OpenSSF AI/ML WG contributions",
+            constraint:"Legal review of every public artefact slows cadence — pre-approve a template.",
+            refs:[{name:"OpenSSF AI/ML Security WG",url:"https://github.com/ossf/ai-ml-security"}] }
+        ] }
+    ],
+
+    references: [
+      { domain:"Framework",   name:"NIST AI Risk Management Framework 1.0", desc:"The default AI risk taxonomy. GOVERN/MAP/MEASURE/MANAGE; the basis for everything serious.", url:RMF },
+      { domain:"Framework",   name:"NIST AI 600-1 (GenAI Profile)", desc:"NIST's GenAI-specific companion to AI RMF. Maps risks unique to foundation models.", url:RMF600 },
+      { domain:"Framework",   name:"ISO/IEC 42001",        desc:"International AI management system standard. The first certifiable AI standard.", url:ISO42001 },
+      { domain:"Framework",   name:"OWASP LLM Top 10",     desc:"Practitioner-grade catalogue of LLM-application vulnerabilities.", url:LLM10 },
+      { domain:"Framework",   name:"MITRE ATLAS",          desc:"Adversarial threat-landscape for AI systems. ATT&CK for AI.", url:ATLAS },
+      { domain:"Regulation",  name:"EU AI Act",            desc:"World's first horizontal AI regulation. High-risk obligations from 2 Aug 2026; general-purpose from Aug 2025.", url:AIACT },
+      { domain:"Regulation",  name:"AU Voluntary AI Safety Standard", desc:"DISR-published 10 guardrails. Mandatory standard signposted for 2025-26.", url:"https://www.industry.gov.au/publications/voluntary-ai-safety-standard" },
+      { domain:"Regulation",  name:"OMB M-24-10",          desc:"US federal AI use policy. Risk management, transparency, accountability for agency AI.", url:"https://www.whitehouse.gov/wp-content/uploads/2024/03/M-24-10-Advancing-Governance-Innovation-and-Risk-Management-for-Agency-Use-of-Artificial-Intelligence.pdf" },
+      { domain:"Regulation",  name:"DTA Policy for Responsible AI (AU Gov)", desc:"Transparency statements + accountability officer required from 1 Sep 2024.", url:"https://www.digital.gov.au/policy/ai-in-government/policy-implementation" },
+      { domain:"Benchmark",   name:"Menlo State of GenAI 2024", desc:"Quantitative state-of-deployment across 600+ enterprises.", url:"https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/" },
+      { domain:"Benchmark",   name:"Stanford HELM",        desc:"Holistic Evaluation of Language Models — academic-grade benchmarking.", url:"https://crfm.stanford.edu/helm/" },
+      { domain:"Observability", name:"OpenTelemetry GenAI semantic conventions", desc:"Standard schema for AI observability. Adopt now to avoid migration later.", url:"https://opentelemetry.io/docs/specs/semconv/gen-ai/" },
+      { domain:"FinOps",      name:"FinOps Foundation AI Working Group", desc:"Reference body for cost discipline on GenAI workloads.", url:"https://www.finops.org/wg/ai/" }
     ]
   });
 });

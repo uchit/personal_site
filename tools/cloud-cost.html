@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Cloud Cost Diagnostic — Uchit Vyas</title>
-<meta name="description" content="Eight-capability cloud-cost diagnostic across rightsizing, commitments, storage, egress, idle, observability, ownership and governance." />
+<meta name="description" content="Eight-capability cloud-cost diagnostic — mapped to the FinOps Foundation Framework, AWS Well-Architected Cost Pillar, and ISO/IEC 38505. Sector-aware." />
 <link rel="canonical" href="https://hellouchit.com/tools/cloud-cost.html" />
 <meta name="theme-color" content="#0c0d10" />
 <link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
 <meta property="og:title" content="Cloud Cost Diagnostic" />
-<meta property="og:description" content="8 capabilities · 5 levels · runs in your browser." />
+<meta property="og:description" content="8 capabilities · mapped to FinOps Framework, AWS WAF, ISO 38505." />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,123 +27,231 @@
   <header class="nav" role="banner">
     <div class="wrap nav-inner">
       <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
-          <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/glossary/">Glossary</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
     </div>
   </header>
+
   <main id="main" tabindex="-1">
     <section class="tool-hero"><div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/tools/">Tools</a><span class="sep">/</span><span class="here">Cloud Cost</span></nav>
       <span class="eyebrow">Diagnostic &middot; Cloud / FinOps</span>
       <h1>Cloud Cost<br /><em>Diagnostic</em>.</h1>
-      <p class="hero-role" style="margin-top:24px;max-width:60ch">
-        Eight questions across rightsizing, commitment coverage, storage tiering,
-        egress, idle waste, observability, ownership and governance &mdash; the line
-        items most likely to be eating your AWS, Azure or GCP bill, with the move
-        that compounds at each maturity level.
+      <p class="hero-role" style="margin-top:20px;max-width:64ch">
+        Eight capabilities scored against the FinOps Foundation Framework v3
+        (Inform / Optimize / Operate) and the AWS Well-Architected Cost Pillar &mdash;
+        with 2026 context for GPU spend, GenAI inference, and the EU CSRD
+        sustainability-reporting overlap.
       </p>
-      <div class="tool-meta"><span><b>8</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Runs in your browser. Nothing stored.</span></div>
+      <div class="tool-meta">
+        <span><b>8</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Browser-only. No data collected.</span>
+      </div>
+      <div class="fw-strip">
+        <span class="fw-lab">Mapped to</span>
+        <a class="fw-chip" href="https://www.finops.org/framework/" target="_blank" rel="noopener">FinOps Framework v3</a>
+        <a class="fw-chip" href="https://aws.amazon.com/architecture/well-architected/" target="_blank" rel="noopener">AWS WAF Cost Pillar</a>
+        <a class="fw-chip" href="https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/" target="_blank" rel="noopener">Azure WAF Cost</a>
+        <a class="fw-chip" href="https://cloud.google.com/architecture/framework/cost-optimization" target="_blank" rel="noopener">GCP Cost Optimization</a>
+        <a class="fw-chip" href="https://focus.finops.org/" target="_blank" rel="noopener">FOCUS billing schema</a>
+        <a class="fw-chip" href="https://www.iso.org/standard/56639.html" target="_blank" rel="noopener">ISO/IEC 38505</a>
+        <a class="fw-chip" href="https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en" target="_blank" rel="noopener">EU CSRD</a>
+      </div>
+      <div class="sector-sel" id="sectorsel"></div>
     </div></section>
-    <section class="quiz" id="quiz"><div class="wrap" style="max-width:780px">
+
+    <section class="quiz" id="quiz"><div class="wrap" style="max-width:820px">
       <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
-      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-opts" id="qopts"></div></article>
+      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-refs" id="qrefs"></div><div class="q-opts" id="qopts"></div></article>
       <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for the bill you actually pay.</span><span></span></div>
-      <div class="result" id="result"><div class="result-card">
-        <span class="result-eyebrow">Your cloud-cost posture</span>
-        <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
-        <div class="result-level" id="rlevel">&mdash;</div>
-        <div class="result-bar"><div class="fill" id="rfill"></div></div>
-        <div class="result-body" id="rbody"></div>
+      <div class="result" id="result">
+        <div class="result-hero">
+          <div class="result-hero-left">
+            <span class="result-eyebrow">Your cloud-cost posture</span>
+            <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+            <div class="result-level" id="rlevel">&mdash;</div>
+            <div class="result-bar"><div class="fill" id="rfill"></div></div>
+            <div class="result-bench" id="rbench"></div>
+          </div>
+          <div class="result-hero-right">
+            <div class="result-body" id="rbody"></div>
+            <div class="result-recs-mini"><h3>Next three moves</h3><ol id="rmini"></ol></div>
+          </div>
+        </div>
+        <div class="sector-lens" id="rsectorlens"></div>
         <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
-        <div class="result-recs"><h3>Next three moves</h3><ol id="rrecs"></ol></div>
+        <div class="recs-detail"><h3>Recommendations &mdash; with tools, constraints and citations</h3><ol id="rdetail"></ol></div>
+        <div class="refs-section"><h3>References &amp; frameworks cited</h3><div class="refs-grid" id="refslib"></div></div>
         <div class="result-actions">
           <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>
           <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
+          <a class="btn btn-ghost" href="/tools/">&larr; All diagnostics</a>
           <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
         </div>
-      </div></div>
+      </div>
     </div></section>
   </main>
+
   <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
 
 <script>
 window.addEventListener("DOMContentLoaded", function () {
+  const FINOPS = "https://www.finops.org/framework/";
+  const AWSWAF = "https://aws.amazon.com/architecture/well-architected/";
+  const FOCUS = "https://focus.finops.org/";
+
   Diag.run({
+    sectors: {
+      tech:{label:"Tech / SaaS", lens:"For SaaS, cloud is COGS &mdash; gross margin compresses linearly with poor cost discipline. <a href='https://www.public.com/learn/rule-of-40-saas' target='_blank' rel='noopener'>Rule of 40</a> investors will mark you down. Watch <b>rightsizing</b>, <b>commitments</b> and <b>cost observability</b> hardest. <a href='https://focus.finops.org/' target='_blank' rel='noopener'>FOCUS</a> billing schema is the new portability baseline."},
+      fsi:{label:"Financial services", lens:"In FSI, cloud cost is a board-reported KPI. <a href='https://www.apra.gov.au/sites/default/files/cps_230_-_operational_risk_management_-_july_2023.pdf' target='_blank' rel='noopener'>APRA CPS 230</a> names cost concentration as material operational risk. <b>Ownership</b>, <b>governance</b> and <b>egress</b> are scrutinised; long-term commitments may need credit-risk treatment."},
+      government:{label:"Government", lens:"Government cloud spend is publicly visible (e.g. <a href='https://www.dta.gov.au/help-and-advice/digital-and-ict-investment/whole-australian-government-cloud' target='_blank' rel='noopener'>DTA Whole-of-Govt Cloud</a>). <b>Idle waste</b> and <b>tagging discipline</b> are the easiest wins; political reputational risk on overspend is high."},
+      healthcare:{label:"Healthcare", lens:"In healthcare, regulated workloads (PHI/EMR) carry data-residency premiums. <b>Storage tiering</b> on retention-bound clinical data is the largest savings lever; egress on imaging is the largest risk."},
+      retail:{label:"Retail", lens:"For retail, peak-event cost (Black Friday, EOFY) dwarfs steady-state. <b>Commitments</b> sized to off-peak; on-demand or spot for surge. <b>Egress</b> on rich media is the silent cost."},
+      critinfra:{label:"Critical infra", lens:"For critical infrastructure, resilience overrides cost &mdash; multi-region active-active drives cost up 1.8-2.2&times;. <b>Ownership</b> and <b>governance</b> are the controls; rightsizing is bounded by performance/resilience floors."}
+    },
+
     questions: [
-      { cap: "Rightsizing", t: "How are compute and database sizes set?",
-        o: ["Whatever was provisioned originally — rarely changed.",
-            "Manual reviews when someone complains about the bill.",
-            "Periodic rightsizing recommendations reviewed quarterly.",
-            "Automated rightsizing suggestions actioned monthly with owner sign-off.",
-            "Workloads continuously rightsized; idle capacity scaled down automatically."] },
-      { cap: "Commitments", t: "How well does commitment coverage match steady-state usage?",
-        o: ["No reservations / savings plans.",
-            "Some commitments, set long ago, not reviewed.",
-            "Coverage targets exist; reviewed annually.",
-            "Coverage 70-90% of steady-state; reviewed quarterly.",
-            "Commitment portfolio actively managed — laddered terms, family flexibility, monthly rebalancing."] },
-      { cap: "Storage tiering", t: "How is storage cost managed?",
-        o: ["Everything sits on default hot tier; nothing deleted.",
-            "Some manual archival; retention rules are folklore.",
-            "Lifecycle policies on the obvious buckets / datasets.",
-            "Tiering driven by access patterns; retention policies enforced by IaC.",
-            "Storage tiers, retention and deletion are policy-as-code; cost-per-byte tracked per data domain."] },
-      { cap: "Egress & networking", t: "Do you know what your network egress costs?",
-        o: ["No idea. Egress is a mystery line item.",
-            "Aggregate egress visible; not attributed.",
-            "Egress attributed to services; top offenders known.",
-            "Cross-AZ / region egress reviewed in design; caching used to cut it.",
-            "Architecture-level egress targets per service; PR review flags egress-heavy patterns."] },
-      { cap: "Idle waste", t: "How much idle / orphaned resource is in your account?",
-        o: ["Unknown — and nobody owns finding out.",
-            "Spot-checks find significant idle; no systematic sweep.",
-            "Weekly scans for unattached disks, idle DBs, stale snapshots; flagged.",
-            "Idle detected, auto-quarantined, deleted after grace period with owner approval.",
-            "Ephemeral by default — long-lived resources are the exception and require justification."] },
-      { cap: "Cost observability", t: "Can a service team see their own cost daily?",
-        o: ["No — finance gets the bill monthly.",
-            "Aggregate cost visible to engineering leadership only.",
-            "Per-team cost dashboards exist; engineers don't look at them.",
-            "Per-service cost shown in the developer portal next to ops metrics.",
-            "Cost is a first-class metric — anomalies alert in the same channels as SLO breaches."] },
-      { cap: "Ownership", t: "When a service's cost spikes 30%, who notices and acts?",
-        o: ["Nobody until finance escalates.",
-            "Finance opens a ticket; engineering investigates if free.",
-            "Service owner is named and notified; expected to respond.",
-            "Auto-alert to owner; postmortem if not resolved in 48h.",
-            "Cost regression is treated like a reliability regression — owner-led, time-bound, documented."] },
-      { cap: "Governance", t: "How are new spend-shape decisions made?",
-        o: ["Whoever provisions decides.",
-            "Tags exist; nobody enforces them.",
-            "Tagging policy + budgets per cost-centre; reviewed quarterly.",
-            "Budget alerts wired to owners; over-budget blocks new provisioning.",
-            "Spend shape is encoded — IaC modules embed cost guardrails; finance reviews trends, not transactions."] }
+      { cap:"Rightsizing", t:"How are compute and database sizes set?",
+        refs:[{name:"AWS WAF COST05-BP02",url:AWSWAF},{name:"Azure Advisor",url:"https://learn.microsoft.com/en-us/azure/advisor/advisor-overview"}],
+        o:["Whatever was provisioned originally — rarely changed.","Manual reviews when someone complains about the bill.","Periodic rightsizing recommendations reviewed quarterly.","Automated rightsizing suggestions actioned monthly with owner sign-off.","Workloads continuously rightsized; idle capacity scaled down automatically."] },
+      { cap:"Commitments", t:"How well does commitment coverage match steady-state usage?",
+        refs:[{name:"FinOps: Commitment Mgmt",url:FINOPS},{name:"AWS Savings Plans",url:"https://aws.amazon.com/savingsplans/"}],
+        o:["No reservations / savings plans.","Some commitments, set long ago, not reviewed.","Coverage targets exist; reviewed annually.","Coverage 70-90% of steady-state; reviewed quarterly.","Commitment portfolio actively managed — laddered terms, family flexibility, monthly rebalancing."] },
+      { cap:"Storage tiering", t:"How is storage cost managed?",
+        refs:[{name:"AWS S3 lifecycle",url:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html"},{name:"Azure Storage tiers",url:"https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"}],
+        o:["Everything sits on default hot tier; nothing deleted.","Some manual archival; retention rules are folklore.","Lifecycle policies on the obvious buckets / datasets.","Tiering driven by access patterns; retention policies enforced by IaC.","Storage tiers, retention and deletion are policy-as-code; cost-per-byte tracked per data domain."] },
+      { cap:"Egress / networking", t:"Do you know what your network egress costs?",
+        refs:[{name:"AWS WAF COST07-BP04",url:AWSWAF},{name:"Cloudflare Bandwidth Alliance",url:"https://www.cloudflare.com/bandwidth-alliance/"}],
+        o:["No idea. Egress is a mystery line item.","Aggregate egress visible; not attributed.","Egress attributed to services; top offenders known.","Cross-AZ / region egress reviewed in design; caching used to cut it.","Architecture-level egress targets per service; PR review flags egress-heavy patterns."] },
+      { cap:"Idle waste", t:"How much idle / orphaned resource is in your account?",
+        refs:[{name:"FinOps Waste Reduction",url:FINOPS},{name:"AWS Trusted Advisor",url:"https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"}],
+        o:["Unknown — and nobody owns finding out.","Spot-checks find significant idle; no systematic sweep.","Weekly scans for unattached disks, idle DBs, stale snapshots; flagged.","Idle detected, auto-quarantined, deleted after grace period with owner approval.","Ephemeral by default — long-lived resources are the exception and require justification."] },
+      { cap:"Cost observability", t:"Can a service team see their own cost daily?",
+        refs:[{name:"FOCUS billing schema",url:FOCUS},{name:"OpenCost",url:"https://www.opencost.io/"}],
+        o:["No — finance gets the bill monthly.","Aggregate cost visible to engineering leadership only.","Per-team cost dashboards exist; engineers don't look at them.","Per-service cost shown in the developer portal next to ops metrics.","Cost is a first-class metric — anomalies alert in the same channels as SLO breaches."] },
+      { cap:"Ownership", t:"When a service's cost spikes 30%, who notices and acts?",
+        refs:[{name:"FinOps Personas",url:FINOPS}],
+        o:["Nobody until finance escalates.","Finance opens a ticket; engineering investigates if free.","Service owner is named and notified; expected to respond.","Auto-alert to owner; postmortem if not resolved in 48h.","Cost regression is treated like a reliability regression — owner-led, time-bound, documented."] },
+      { cap:"Governance", t:"How are new spend-shape decisions made?",
+        refs:[{name:"FinOps Policy &amp; Governance",url:FINOPS},{name:"ISO/IEC 38505-1",url:"https://www.iso.org/standard/56639.html"}],
+        o:["Whoever provisions decides.","Tags exist; nobody enforces them.","Tagging policy + budgets per cost-centre; reviewed quarterly.","Budget alerts wired to owners; over-budget blocks new provisioning.","Spend shape is encoded — IaC modules embed cost guardrails; finance reviews trends, not transactions."] }
     ],
+
     levels: [
-      { minPct: 0, maxPct: 0.2, name: "Unmanaged",
-        body: "<b>Cost is happening to you.</b> Bills arrive; finance worries; engineering hopes. The first win is visibility — the moment a service team can see its own cost, behaviour changes without any policy.",
-        recs: ["Tag everything by service and environment. Enforce in IaC, not in policy docs.",
-               "Wire one per-service cost view into engineering's daily view (Slack, developer portal, anywhere they actually look).",
-               "Sweep for the obvious idle: unattached disks, orphaned snapshots, dev environments running 24×7."] },
-      { minPct: 0.2001, maxPct: 0.4, name: "Aware",
-        body: "<b>You see the bill; you don't yet control it.</b> Coverage of commitments and lifecycle policies typically buy 15-30% before any architectural work. The bigger lever from here is putting cost in front of the engineer making the decision, at the moment they make it.",
-        recs: ["Put commitment coverage on a target (70%+ of steady-state). Review quarterly, not annually.",
-               "Set lifecycle policies on the top three storage targets. Measure cost-per-GB before and after.",
-               "Name an owner for every service's spend. Cost regressions get a ticket, like incidents."] },
-      { minPct: 0.4001, maxPct: 0.6, name: "Controlled",
-        body: "<b>You have FinOps in name and partly in practice.</b> The remaining gap is usually idle waste and egress — both architectural. From here, the work is moving cost out of finance's report and into the engineer's PR review.",
-        recs: ["Audit egress by service; pick the worst and fix it with caching or co-location.",
-               "Quarantine idle automatically (with owner notify + grace period). Stop debating whether to delete.",
-               "Add cost-impact estimation to design reviews. Make it as normal as a security review."] },
-      { minPct: 0.6001, maxPct: 0.8, name: "Optimised",
-        body: "<b>FinOps is operating well.</b> The cost picture is honest, owners are clear, regressions get caught. The remaining work is platform-level: making the cheap choice the default choice through IaC modules and developer portal patterns.",
-        recs: ["Bake cost guardrails into the IaC modules engineers use. Make the cheap option the default.",
-               "Push cost-per-outcome (per transaction, per user) into product metrics, not just engineering ones.",
-               "Run quarterly architecture reviews on the top 5 services for spend efficiency — not just performance."] },
-      { minPct: 0.8001, maxPct: 1.0, name: "Engineered",
-        body: "<b>Cost is a property of your platform.</b> The work now is regression discipline and second-order optimisation — AI workloads, data egress shifts, multi-cloud arbitrage. Stay specific; resist the pull back to dashboards.",
-        recs: ["Add a 'cost-per-outcome' SLO to your top revenue-generating services.",
-               "Treat new workload classes (GenAI, vector DBs) as their own cost discipline before they enter the long tail.",
-               "Externalise your FinOps operating model. Recruit the next ten engineers who actually care."] }
+      { minPct:0, maxPct:0.2, name:"Unmanaged",
+        benchmark:'<cite><a href="https://data.finops.org/" target="_blank" rel="noopener">FinOps State of FinOps 2024</a></cite>: <b>~13%</b> of orgs have no formal practice. Typical avoidable spend: <b>20-35%</b> of total cloud bill.',
+        body:"<b>Cost is happening to you.</b> Bills arrive; finance worries; engineering hopes. The first win is visibility — the moment a service team can see its own cost, behaviour changes without any policy.",
+        recs:[
+          { what:"Tag everything by service and environment. Enforce in IaC, not in policy docs.",
+            why:"Without tags you cannot attribute. Without attribution you cannot improve.",
+            tools:"AWS Tag Policies · Azure Policy · GCP Org Policy · Terraform default_tags",
+            constraint:"Retroactive tagging of long-lived resources can require recreation.",
+            refs:[{name:"AWS Tag Policies",url:"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html"}] },
+          { what:"Wire one per-service cost view into engineering's daily view (Slack, dev portal).",
+            why:"<a href='https://data.finops.org/' target='_blank' rel='noopener'>FinOps research</a> identifies visibility as the highest-leverage first move.",
+            tools:"<a href='https://www.opencost.io/' target='_blank' rel='noopener'>OpenCost</a> · <a href='https://www.kubecost.com/' target='_blank' rel='noopener'>Kubecost</a> · CloudHealth · Vantage · CloudZero",
+            constraint:"Engineers ignore static dashboards — push notifications into their existing flow.",
+            refs:[{name:"FinOps Framework",url:FINOPS}] },
+          { what:"Sweep for obvious idle: unattached disks, orphaned snapshots, dev environments running 24×7.",
+            why:"Typically 5-15% of cloud bill on day one.",
+            tools:"AWS Trusted Advisor · Azure Advisor · GCP Recommender · Cloud Custodian · Komiser",
+            constraint:"'Idle' is not 'unused' — confirm with owners before deletion.",
+            refs:[{name:"AWS Trusted Advisor",url:"https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"}] }
+        ] },
+      { minPct:0.2001, maxPct:0.4, name:"Aware",
+        benchmark:'<b>~42%</b> of orgs at this stage (FinOps 2024). Typical realised savings YoY: <b>5-12%</b>.',
+        body:"<b>You see the bill; you don't yet control it.</b> Coverage of commitments and lifecycle policies typically buy 15-30% before any architectural work.",
+        recs:[
+          { what:"Put commitment coverage on a target (70%+ of steady-state). Review quarterly.",
+            why:"Savings Plans / RIs are the single highest-leverage discount lever. Coverage > 70% typically buys 15-25% on covered usage.",
+            tools:"AWS Savings Plans · Azure Reservations · GCP Committed Use Discounts · ProsperOps · Spot.io Eco",
+            constraint:"3-year terms reduce flexibility — model headroom for divestiture and tech refresh.",
+            refs:[{name:"AWS Savings Plans",url:"https://aws.amazon.com/savingsplans/"}] },
+          { what:"Set lifecycle policies on top three storage targets. Measure cost-per-GB before/after.",
+            why:"Most enterprise storage spend sits on hot tier for objects accessed once a year.",
+            tools:"AWS S3 Intelligent-Tiering · Azure Blob lifecycle · GCS Object Lifecycle Management",
+            constraint:"Intelligent-tiering has monitoring cost — model breakeven at object count.",
+            refs:[{name:"S3 Storage Classes",url:"https://aws.amazon.com/s3/storage-classes/"}] },
+          { what:"Name an owner for every service's spend. Cost regressions get a ticket, like incidents.",
+            why:"Unowned cost is unimprovable cost.",
+            tools:"Service catalogue (Backstage / Cortex) + Cost Explorer / Vantage feeds",
+            constraint:"Some shared platform costs are genuinely unattributable — define an allocation key honestly.",
+            refs:[{name:"FinOps Personas &amp; Roles",url:FINOPS}] }
+        ] },
+      { minPct:0.4001, maxPct:0.6, name:"Controlled",
+        benchmark:'<b>~30%</b> of orgs (FinOps 2024). FinOps team funded; CFO visibility; trend lines.',
+        body:"<b>You have FinOps in name and partly in practice.</b> The remaining gap is usually idle waste and egress — both architectural. From here, move cost out of finance's report and into the engineer's PR review.",
+        recs:[
+          { what:"Audit egress by service; pick the worst and fix it with caching or co-location.",
+            why:"Egress is the most-overlooked cost line. AZ/region/internet egress all charge differently.",
+            tools:"Cloudflare R2 (egress-free) · AWS CloudFront · GCP Cloud CDN · Bandwidth Alliance partners",
+            constraint:"Architectural changes to reduce egress can affect latency budgets.",
+            refs:[{name:"AWS Egress costs explained",url:"https://aws.amazon.com/blogs/architecture/overview-of-data-transfer-costs-for-common-architectures/"}] },
+          { what:"Quarantine idle automatically (with owner notify + grace period).",
+            why:"Eliminates the political debate. Owners reactivate within grace if needed.",
+            tools:"Cloud Custodian · AWS Instance Scheduler · Azure Automation · GCP Cloud Scheduler + Functions",
+            constraint:"Production needs stricter quarantine criteria than dev — separate policies.",
+            refs:[{name:"Cloud Custodian",url:"https://cloudcustodian.io/"}] },
+          { what:"Add cost-impact estimation to design reviews. Make it as normal as a security review.",
+            why:"Catching cost in design is 10-100&times; cheaper than catching it in prod.",
+            tools:"Infracost · AWS Pricing Calculator · Azure / GCP Pricing Calculators",
+            constraint:"Estimates are wrong by 20-40% for new workloads — flag as ranges, not numbers.",
+            refs:[{name:"Infracost",url:"https://www.infracost.io/"}] }
+        ] },
+      { minPct:0.6001, maxPct:0.8, name:"Optimised",
+        benchmark:'<b>~12%</b> of orgs (FinOps "Run"). Realised savings 20-35% from baseline. Cost is a tracked product metric.',
+        body:"<b>FinOps is operating well.</b> The remaining work is platform-level: making the cheap choice the default through IaC modules and developer portal patterns.",
+        recs:[
+          { what:"Bake cost guardrails into the IaC modules engineers use. Make the cheap option the default.",
+            why:"Defaults beat policies. If the Terraform module produces cost-optimal config without thinking, that's what teams ship.",
+            tools:"Internal Terraform/Pulumi modules · OPA / Sentinel policies · Atmos · Backstage Scaffolder",
+            constraint:"Module changes require a migration story for live services.",
+            refs:[{name:"AWS WAF Cost Pillar BP",url:AWSWAF}] },
+          { what:"Push cost-per-outcome (per transaction, per user) into product metrics.",
+            why:"Engineering dollar measures are abstract; product cost-per-outcome changes priorities.",
+            tools:"Internal product analytics + cost-attribution feed",
+            constraint:"Joining business metrics to cloud bills requires either FOCUS-compliant data or significant data work.",
+            refs:[{name:"FOCUS billing schema",url:FOCUS}] },
+          { what:"Run quarterly architecture reviews on top-5 services for spend efficiency.",
+            why:"Architecture changes (caching, queueing, batch consolidation) buy 30-60% on individual services.",
+            tools:"Internal cadence + external benchmark from <a href='https://data.finops.org/' target='_blank' rel='noopener'>FinOps State data</a>",
+            constraint:"Architecture work takes quarters, not sprints — sequence carefully.",
+            refs:[{name:"FinOps State of FinOps",url:"https://data.finops.org/"}] }
+        ] },
+      { minPct:0.8001, maxPct:1.0, name:"Engineered",
+        benchmark:'<b>~3%</b> of orgs operate here. Cost is encoded in the platform. Realised savings 30-50%.',
+        body:"<b>Cost is a property of your platform.</b> The work now is regression discipline and second-order optimisation — AI workloads, data egress shifts, multi-cloud arbitrage.",
+        recs:[
+          { what:"Add a 'cost-per-outcome' SLO to your top revenue-generating services.",
+            why:"Without an SLO, cost regression is invisible until it hits gross margin.",
+            tools:"Internal product analytics + cost feed",
+            constraint:"SLO target requires a baseline — measure for a quarter before setting one.",
+            refs:[{name:"FinOps Anomaly Mgmt",url:FINOPS}] },
+          { what:"Treat new workload classes (GenAI, vector DBs, GPU) as their own cost discipline.",
+            why:"GenAI inference cost grew 5-10&times; in many enterprises through 2024-25. Default-routing assumptions break.",
+            tools:"Bedrock Intelligent Prompt Routing · OpenRouter · self-built routing · GPU spot fleets · AWS Trainium / Inferentia",
+            constraint:"Multi-provider routing complicates audit and incident response.",
+            refs:[{name:"FinOps for AI WG",url:"https://www.finops.org/wg/ai/"}] },
+          { what:"Externalise your FinOps operating model. Recruit the next ten engineers who care.",
+            why:"FinOps talent is scarce; published practice attracts.",
+            tools:"FinOps Foundation case studies · external talks · open-sourced internal tooling",
+            constraint:"Legal review of every public artefact slows cadence.",
+            refs:[{name:"FinOps case studies",url:"https://www.finops.org/case-studies/"}] }
+        ] }
+    ],
+
+    references: [
+      { domain:"Framework",  name:"FinOps Foundation Framework v3", desc:"Inform / Optimize / Operate phases plus 6 capability domains.", url:FINOPS },
+      { domain:"Framework",  name:"AWS Well-Architected Cost Pillar", desc:"AWS's prescriptive guidance with 60+ design questions.", url:AWSWAF },
+      { domain:"Framework",  name:"Azure WAF Cost Optimization", desc:"Microsoft equivalent — pillar-based design guidance.", url:"https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/" },
+      { domain:"Framework",  name:"GCP Architecture Framework — Cost Optimization", desc:"Google's design guidance for cost-aware architecture.", url:"https://cloud.google.com/architecture/framework/cost-optimization" },
+      { domain:"Standard",   name:"FOCUS billing schema",  desc:"FinOps Open Cost &amp; Usage Specification — emerging vendor-neutral billing standard.", url:FOCUS },
+      { domain:"Standard",   name:"ISO/IEC 38505-1",        desc:"IT cost &amp; data governance for the board. Useful for regulated industries.", url:"https://www.iso.org/standard/56639.html" },
+      { domain:"Benchmark",  name:"FinOps State of FinOps",  desc:"Annual report — practice maturity, realised savings, team structure data.", url:"https://data.finops.org/" },
+      { domain:"Tooling",    name:"OpenCost",                desc:"CNCF Kubernetes-native cost-allocation spec. The OSS baseline.", url:"https://www.opencost.io/" },
+      { domain:"Tooling",    name:"Cloud Custodian",         desc:"OSS rules engine for cloud policy + remediation.", url:"https://cloudcustodian.io/" },
+      { domain:"Tooling",    name:"Infracost",               desc:"IaC cost diffs in pull requests. Catches cost at design time.", url:"https://www.infracost.io/" },
+      { domain:"Regulation", name:"APRA CPS 230",           desc:"Australian operational-risk standard. Names cost concentration as material risk.", url:"https://www.apra.gov.au/sites/default/files/cps_230_-_operational_risk_management_-_july_2023.pdf" },
+      { domain:"Regulation", name:"EU CSRD",                desc:"Corporate Sustainability Reporting Directive. Cloud-attributable emissions are in-scope.", url:"https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en" }
     ]
   });
 });
