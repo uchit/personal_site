@@ -1084,8 +1084,9 @@ table {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Images never overflow */
-img, svg, video, iframe { max-width: 100%; height: auto; }
+/* Content images/iframes never overflow. SVGs deliberately excluded:
+   they're usually inline icons whose size is set by the parent. */
+img, video, iframe { max-width: 100%; height: auto; }
 
 /* Touch targets: minimum 44×44 for all interactive elements on small screens */
 @media (max-width: 640px) {
