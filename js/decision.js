@@ -100,7 +100,7 @@
     node.opts.forEach((opt, i) => {
       const btn = el("button", {
         class: "d-opt",
-        onclick: () => { path = path.concat([i]); persist(); render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+        onclick: () => { path = path.concat([i]); persist(); render(); scrollToStage(); }
       });
       const head = el("div", { class: "ohead" });
       if (opt.tag) head.appendChild(el("span", { class: "otag" }, opt.tag));
@@ -183,7 +183,7 @@
     // Actions
     const actions = el("div", { class: "actions" });
     actions.appendChild(el("button", {
-      onclick: () => { path = []; persist(); render(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+      onclick: () => { path = []; persist(); render(); scrollToStage(); }
     }, "Run again"));
     actions.appendChild(el("a", { href: "/decisions/", class: "primary" }, "All decisions →"));
     const sh = el("button", {
@@ -199,6 +199,18 @@
     wrap.appendChild(actions);
 
     mount.replaceChildren(wrap);
+  }
+
+  // Scroll the newly-rendered question/leaf card just below the sticky nav,
+  // so the user can immediately read it without scrolling down themselves.
+  function scrollToStage() {
+    requestAnimationFrame(() => {
+      const card = mount.querySelector(".d-q, .d-leaf");
+      if (!card) return;
+      const navH = (document.querySelector("header.nav")?.offsetHeight) || 64;
+      const top = card.getBoundingClientRect().top + window.scrollY - navH - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    });
   }
 
   // ----- Persist to URL hash -----
