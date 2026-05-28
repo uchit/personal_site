@@ -49,6 +49,7 @@
     { t: "Anti-patterns — 15 named failure modes", u: "/anti-patterns/", g: "Reference", ic: "✗" },
     { t: "Get in touch",                  u: "/#contact",    g: "Pages",     ic: "✉" },
     { t: "All diagnostics",               u: "/tools/",      g: "Tools",     ic: "▤" },
+    { t: "Compound diagnostic — substrate gap", u: "/tools/compound/", g: "Tools", ic: "⊕" },
     { t: "DevSecOps Maturity Diagnostic", u: "/tools/devsecops-maturity.html",  g: "Tools", ic: "◈" },
     { t: "GenAI Readiness Diagnostic",    u: "/tools/genai-readiness.html",     g: "Tools", ic: "◇" },
     { t: "Cloud Cost Diagnostic",         u: "/tools/cloud-cost.html",          g: "Tools", ic: "▲" },
