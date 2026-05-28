@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Regulated GenAI Platform — Reference Architecture — Uchit Vyas</title>
+<meta name="description" content="A practitioner reference architecture for GenAI inside regulated environments. Model gateway, RAG, guardrails, evals, audit-evidence pipeline. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001." />
+<link rel="canonical" href="https://hellouchit.com/reference-architectures/regulated-genai-platform.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Regulated GenAI Platform — Reference Architecture" />
+<meta property="og:description" content="The platform you build before squads build their own. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/ra.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="ra-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><a href="/reference-architectures/" style="color:var(--muted)">Reference Architectures</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Regulated GenAI Platform</span></nav>
+      <span class="eyebrow">Reference Architecture &middot; Applied GenAI</span>
+      <h1>Regulated GenAI <em>Platform</em>.</h1>
+      <p class="dek">
+        The platform you build <b>before</b> squads build their own
+        bespoke version. Designed for the obligations of NIST AI RMF,
+        EU AI Act (high-risk enforcement from 2 Aug 2026), ISO/IEC 42001
+        and APRA CPS 230 / CPS 234.
+      </p>
+    </div></section>
+
+    <div class="wrap">
+      <div class="ra-diagram">
+        <svg class="ra-svg" viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Regulated GenAI Platform Reference Architecture">
+          <defs>
+            <linearGradient id="rg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".04"/>
+            </linearGradient>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#d99757"/>
+            </marker>
+          </defs>
+
+          <!-- Top: Consumer Surface -->
+          <rect x="40" y="30" width="920" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+          <text x="56" y="56" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">CONSUMER SURFACE</text>
+          <text x="56" y="84" fill="#ecedf0" font-family="Fraunces, serif" font-size="17" font-weight="500">Web · Mobile · Internal apps · Agents · MCP servers · Embedded copilots</text>
+
+          <!-- Gateway -->
+          <rect x="40" y="124" width="920" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="150" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">MODEL GATEWAY · ROUTING · VERSION PINNING · INPUT GUARDRAILS</text>
+          <text x="56" y="178" fill="#ecedf0" font-family="Fraunces, serif" font-size="17" font-weight="500">LiteLLM · OpenRouter · Bedrock IPR · Lakera/NeMo input policy · workload identity (OIDC)</text>
+
+          <!-- Models row -->
+          <g>
+            <rect x="40"  y="218" width="220" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="56" y="244" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PREMIUM</text>
+            <text x="56" y="270" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Opus 4.7 · GPT-5</text>
+            <text x="56" y="286" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Reasoning &middot; long-context</text>
+
+            <rect x="280" y="218" width="220" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="296" y="244" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">WORKHORSE</text>
+            <text x="296" y="270" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Sonnet 4.6 · GPT-4.1</text>
+            <text x="296" y="286" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Default route</text>
+
+            <rect x="520" y="218" width="220" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="536" y="244" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">CHEAP / FAST</text>
+            <text x="536" y="270" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Haiku · GPT-4.1 mini</text>
+            <text x="536" y="286" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Bulk · classification</text>
+
+            <rect x="760" y="218" width="200" height="74" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="776" y="244" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PRIVATE</text>
+            <text x="776" y="270" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Llama / self-host</text>
+            <text x="776" y="286" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Sensitive · sovereign</text>
+          </g>
+
+          <!-- RAG + Vector + Tools -->
+          <g>
+            <rect x="40" y="312" width="460" height="100" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="56" y="338" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">RETRIEVAL · RAG · TOOLS</text>
+            <text x="56" y="362" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Hybrid retrieval (semantic + keyword) · re-ranker · query rewriter</text>
+            <text x="56" y="384" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Vector store: pgvector · Pinecone · Weaviate · Vertex Search</text>
+            <text x="56" y="402" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Tool registry: MCP servers · function specs · scoped credentials</text>
+
+            <rect x="520" y="312" width="440" height="100" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.4)" stroke-width="1"/>
+            <text x="536" y="338" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PROMPT REGISTRY · EVALS · ROLLOUT</text>
+            <text x="536" y="362" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Versioned prompts · eval set · regression-gated deploy</text>
+            <text x="536" y="384" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Promptfoo / LangSmith / Braintrust · shadow evals in prod</text>
+            <text x="536" y="402" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Canary · feature flags · auto-rollback on burn-rate</text>
+          </g>
+
+          <!-- Output guardrails -->
+          <rect x="40" y="432" width="920" height="56" rx="8" fill="url(#rg1)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="458" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">OUTPUT GUARDRAILS · POLICY-TUNED CLASSIFIERS · JAILBREAK DETECTION · CONTENT FILTERS</text>
+          <text x="56" y="479" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">NeMo Guardrails · Guardrails AI · Azure Content Safety · Bedrock Guardrails &mdash; tested adversarially against OWASP LLM Top 10 + MITRE ATLAS</text>
+
+          <!-- Substrate -->
+          <rect x="40" y="508" width="920" height="100" rx="8" fill="rgba(217,151,87,.08)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="534" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SHARED SUBSTRATE</text>
+          <text x="56" y="558" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">OTel GenAI traces · per-decision audit evidence (signed) · cost-per-outcome · workload identity · policy-as-code</text>
+          <text x="56" y="580" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Audited against: NIST AI RMF · NIST AI 600-1 · EU AI Act Art.9-15 · ISO/IEC 42001 · APRA CPS 234 ¶21-26 · OWASP LLM Top 10 · MITRE ATLAS</text>
+          <text x="56" y="600" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">Generated at decision time. Replayable on demand. Pre-built audit views for the three regulator questions you can predict.</text>
+        </svg>
+        <div class="ra-caption">
+          <b>Regulated GenAI Platform</b> &middot; reference architecture v1.0 &middot;
+          <a href="/writing/genai-9-controls.html">read the 9 controls essay</a>
+        </div>
+      </div>
+
+      <div class="ra-body">
+        <section>
+          <h2>What this architecture <em>solves</em>.</h2>
+          <p>
+            The single most common pattern in 2026 enterprise GenAI: every squad builds
+            its own bespoke gateway, picks its own evals tool, rolls its own audit
+            logging, and discovers the EU AI Act obligations late. The platform
+            below pre-builds the substrate so squads consume it safely instead
+            of replicating it badly.
+          </p>
+          <p>
+            Run this against the
+            <a href="/tools/genai-readiness.html">GenAI Readiness diagnostic</a>: an
+            org with this architecture in place scores in the &ldquo;Industrialising&rdquo;
+            band (60-80% maturity) by construction.
+          </p>
+        </section>
+
+        <section>
+          <h2>Layers, top to bottom.</h2>
+
+          <div class="ra-layer">
+            <div class="ix">L1 &middot; Consumer surface</div>
+            <h4>Where AI shows up to users and other systems.</h4>
+            <p>Web / mobile apps, internal copilots, agent runtimes, and MCP servers. The platform doesn&rsquo;t dictate the surface; it dictates that any surface that wants to call a model goes through the gateway below.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L2 &middot; Model gateway (single ingress point)</div>
+            <h4>The choke point for governance.</h4>
+            <p>Every AI call goes through one logical gateway. The gateway authenticates the caller via workload identity (OIDC, not API keys), routes by use-case to the right model tier, enforces input guardrails, and emits the per-request trace before the model sees the prompt.</p>
+            <div class="tools">
+              <span><b>Tools</b></span>
+              <a href="https://www.litellm.ai/" target="_blank" rel="noopener">LiteLLM</a>
+              <a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a>
+              <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference-prompt-router.html" target="_blank" rel="noopener">Bedrock IPR</a>
+              <a href="https://www.lakera.ai/" target="_blank" rel="noopener">Lakera Guard</a>
+              <a href="https://github.com/NVIDIA/NeMo-Guardrails" target="_blank" rel="noopener">NeMo Guardrails</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L3 &middot; Model tier (multi-class)</div>
+            <h4>Premium · Workhorse · Cheap-fast · Private.</h4>
+            <p>Routing across four tiers, not one model. Premium for reasoning-heavy or long-context; workhorse as default; cheap-fast for high-volume classification; private (Llama / self-hosted) for sensitive or data-sovereign workloads. <a href="/tools/calculators/genai-cost.html">Cost calculator</a> shows the leverage from routing.</p>
+            <div class="tools">
+              <span><b>Models 2026-05</b></span>
+              <a href="https://www.anthropic.com/claude" target="_blank" rel="noopener">Claude (Opus/Sonnet/Haiku)</a>
+              <a href="https://openai.com/" target="_blank" rel="noopener">OpenAI (GPT-5 / 4.1)</a>
+              <a href="https://deepmind.google/technologies/gemini/" target="_blank" rel="noopener">Gemini 2.5</a>
+              <a href="https://www.llama.com/" target="_blank" rel="noopener">Llama 3.3</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L4 &middot; Retrieval, RAG, tools</div>
+            <h4>What the model sees besides the user prompt.</h4>
+            <p>Hybrid retrieval (semantic + keyword + metadata filters) with re-ranker and query rewriter. Vector store choice is mostly fungible at scale. Tools / MCP servers are scoped credentials, not bearer tokens. Retrieval quality is evaluated separately from generation quality.</p>
+            <div class="tools">
+              <span><b>Tools</b></span>
+              <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener">pgvector</a>
+              <a href="https://www.pinecone.io/" target="_blank" rel="noopener">Pinecone</a>
+              <a href="https://weaviate.io/" target="_blank" rel="noopener">Weaviate</a>
+              <a href="https://cloud.google.com/enterprise-search" target="_blank" rel="noopener">Vertex Search</a>
+              <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP servers</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L5 &middot; Prompt registry, evals, rollout</div>
+            <h4>The deploy gate.</h4>
+            <p>Versioned prompt registry (semver, owners). Eval set per use-case, gated in CI. Rollout via feature flags + canary; auto-rollback on burn-rate (per the <a href="/tools/calculators/error-budget.html">Error Budget calculator</a> pattern). Shadow evals on production traffic.</p>
+            <div class="tools">
+              <span><b>Tools</b></span>
+              <a href="https://www.promptfoo.dev/" target="_blank" rel="noopener">Promptfoo</a>
+              <a href="https://www.langchain.com/langsmith" target="_blank" rel="noopener">LangSmith</a>
+              <a href="https://www.braintrust.dev/" target="_blank" rel="noopener">Braintrust</a>
+              <a href="https://arize.com/" target="_blank" rel="noopener">Arize Phoenix</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L6 &middot; Output guardrails (last line)</div>
+            <h4>Catches what gateway and model didn&rsquo;t.</h4>
+            <p>Output policy tuned classifiers, jailbreak-success detection, content filters, citation enforcement. Tested adversarially against OWASP LLM Top 10 and MITRE ATLAS &mdash; not just configured.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L7 &middot; Shared substrate (the moat)</div>
+            <h4>OTel GenAI · per-decision audit · cost-per-outcome · workload identity · policy-as-code.</h4>
+            <p>These five primitives sit underneath every layer above. Without them, each layer rolls its own observability, identity, audit and policy &mdash; the patchwork that makes regulator-grade audit impossible.</p>
+            <div class="tools">
+              <span><b>Audited against</b></span>
+              <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF</a>
+              <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act</a>
+              <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001</a>
+              <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP LLM Top 10</a>
+              <a href="https://atlas.mitre.org/" target="_blank" rel="noopener">MITRE ATLAS</a>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>What this architecture <em>doesn&rsquo;t</em> solve.</h2>
+          <ul>
+            <li><b>Use-case selection.</b> Wrong use-case will fail even with this platform. <a href="/writing/genai-9-controls.html">Control 1</a> still matters.</li>
+            <li><b>Data quality.</b> The platform retrieves and consumes data; it doesn&rsquo;t curate it. <a href="/reference-architectures/modern-data-platform.html">Modern Data Platform</a> is the companion architecture.</li>
+            <li><b>Agent reliability.</b> Multi-step agents add a class of failure modes (loop, drift, tool-misuse) that the gateway can&rsquo;t catch. Plan agent observability and step-level evals separately.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sequencing for a 90&#8209;day build.</h2>
+          <ol>
+            <li><b>Weeks 1-3:</b> Model gateway + workload identity + OTel GenAI traces. One use-case flowing through.</li>
+            <li><b>Weeks 4-6:</b> Prompt registry + eval set + eval-gated deploy. Input + output guardrails for the first use-case.</li>
+            <li><b>Weeks 7-9:</b> Audit-evidence pipeline. Risk-tiered governance encoded. Second use-case onboards in days.</li>
+            <li><b>Weeks 10-12:</b> Routing + cost-per-outcome instrumentation. Shadow evals in prod. Third use-case onboards without changes to the platform.</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/reference-architectures/">&larr; All architectures</a> &middot; <a href="/tools/genai-readiness.html">GenAI Readiness diagnostic</a></span></div></footer>
+</body>
+</html>

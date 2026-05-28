@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modern Data Platform — Reference Architecture — Uchit Vyas</title>
+<meta name="description" content="A practitioner reference architecture for a modern data platform: lakehouse + governed mesh with ingestion, contracts, lineage, semantic layer and audit retention." />
+<link rel="canonical" href="https://hellouchit.com/reference-architectures/modern-data-platform.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Modern Data Platform — Reference Architecture" />
+<meta property="og:description" content="Lakehouse + governed mesh, with lineage, semantic layer and audit retention." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/ra.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ra-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><a href="/reference-architectures/" style="color:var(--muted)">Reference Architectures</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Modern Data Platform</span></nav>
+      <span class="eyebrow">Reference Architecture &middot; Data Modernisation</span>
+      <h1>Modern Data <em>Platform</em>.</h1>
+      <p class="dek">
+        Lakehouse + governed mesh: <b>ingestion, contracts, lineage,
+        catalogue, semantic layer, feature store, audit retention</b>.
+        Aligned to DCAM, DAMA-DMBOK, ISO 8000, and the data-residency
+        requirements of EU GDPR, APRA CPS 234 and HIPAA.
+      </p>
+    </div></section>
+
+    <div class="wrap">
+      <div class="ra-diagram">
+        <svg class="ra-svg" viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modern Data Platform">
+          <defs>
+            <linearGradient id="rg3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".04"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Sources -->
+          <rect x="40" y="36" width="920" height="64" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="60" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SOURCES</text>
+          <text x="56" y="84" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">OLTP DBs · SaaS · Files · Events · IoT · 3rd&#8209;party · CDC streams</text>
+
+          <!-- Ingestion -->
+          <rect x="40" y="116" width="920" height="64" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="140" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">INGESTION + CONTRACTS</text>
+          <text x="56" y="164" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Kafka · Debezium · Fivetran · Airbyte · custom CDC &mdash; with versioned schemas + data contracts</text>
+
+          <!-- Lakehouse zones -->
+          <g>
+            <rect x="40" y="196" width="300" height="80" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+            <text x="56" y="220" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">BRONZE &middot; RAW</text>
+            <text x="56" y="244" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Append-only · immutable</text>
+            <text x="56" y="262" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Source-of-truth · audit retention</text>
+
+            <rect x="350" y="196" width="300" height="80" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+            <text x="366" y="220" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SILVER &middot; CONFORMED</text>
+            <text x="366" y="244" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Cleaned · validated · joined</text>
+            <text x="366" y="262" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Quality SLAs · contract-bound</text>
+
+            <rect x="660" y="196" width="300" height="80" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+            <text x="676" y="220" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">GOLD &middot; CONSUMABLE</text>
+            <text x="676" y="244" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Analytics · features · marts</text>
+            <text x="676" y="262" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Owner = domain team</text>
+          </g>
+
+          <!-- Mesh products -->
+          <rect x="40" y="292" width="920" height="64" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="316" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">DATA PRODUCTS &middot; DOMAIN OWNED</text>
+          <text x="56" y="340" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Each domain (customer · payment · risk · clinical) owns its products with SLAs, contracts and versioning</text>
+
+          <!-- Semantic + Feature store -->
+          <g>
+            <rect x="40" y="372" width="450" height="76" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+            <text x="56" y="396" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SEMANTIC LAYER &middot; METRICS</text>
+            <text x="56" y="420" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Cube · dbt Semantic · Looker LookML</text>
+            <text x="56" y="438" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">One definition of revenue, churn, NPS &mdash; consumed by BI, agents, dashboards alike</text>
+
+            <rect x="510" y="372" width="450" height="76" rx="8" fill="url(#rg3)" stroke="rgba(217,151,87,.4)"/>
+            <text x="526" y="396" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">FEATURE STORE + VECTOR</text>
+            <text x="526" y="420" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Feast · Tecton · Databricks FS · pgvector / Pinecone</text>
+            <text x="526" y="438" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Online + offline parity · feeds ML and GenAI RAG with the same governed substrate</text>
+          </g>
+
+          <!-- Substrate -->
+          <rect x="40" y="464" width="920" height="100" rx="8" fill="rgba(217,151,87,.08)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="490" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SHARED SUBSTRATE</text>
+          <text x="56" y="512" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Catalogue + lineage · access control · PII classification · retention &amp; right-to-erasure · data quality monitoring</text>
+          <text x="56" y="534" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">DataHub · OpenMetadata · Atlas · Unity Catalog · OpenLineage</text>
+          <text x="56" y="555" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">Audited against: DCAM · DAMA-DMBOK · ISO 8000 · GDPR · APRA CPS 234 · HIPAA · sector residency reqs</text>
+        </svg>
+        <div class="ra-caption">
+          <b>Modern Data Platform</b> &middot; reference architecture v1.0
+        </div>
+      </div>
+
+      <div class="ra-body">
+        <section>
+          <h2>What this architecture <em>solves</em>.</h2>
+          <p>
+            The pattern that lets BI, ML and GenAI consume the same governed substrate without bespoke pipelines per consumer. Bronze/Silver/Gold lakehouse for storage discipline; domain-owned data products for accountability; semantic layer for one definition of business metrics; feature store + vector for parity between ML and AI workloads.
+          </p>
+        </section>
+
+        <section>
+          <h2>Why this shape.</h2>
+          <p>The two design tensions that drive this architecture:</p>
+          <ul>
+            <li><b>Lakehouse vs warehouse.</b> Lakehouse (Delta, Iceberg, Hudi) gives storage flexibility, format portability and ML-readiness. The traditional warehouse still wins on sub-second BI; semantic layer + materialised marts close the gap.</li>
+            <li><b>Central platform vs domain mesh.</b> Pure mesh struggles with cross-domain consistency; pure central platform becomes a bottleneck. The hybrid: central platform owns the substrate (catalogue, lineage, access, contracts); domain teams own their data products inside it.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Layers, top to bottom.</h2>
+
+          <div class="ra-layer">
+            <div class="ix">L1 &middot; Sources</div>
+            <h4>OLTP, SaaS, events, IoT, third-party.</h4>
+            <p>Every source has a documented owner and a contract for what changes when. CDC (Debezium, Fivetran) is the dominant ingestion path for OLTP; event streams (Kafka) for system-of-record events.</p>
+            <div class="tools"><span><b>Tools</b></span>
+              <a href="https://kafka.apache.org/" target="_blank" rel="noopener">Kafka</a>
+              <a href="https://debezium.io/" target="_blank" rel="noopener">Debezium</a>
+              <a href="https://www.fivetran.com/" target="_blank" rel="noopener">Fivetran</a>
+              <a href="https://airbyte.com/" target="_blank" rel="noopener">Airbyte</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L2 &middot; Lakehouse (Bronze · Silver · Gold)</div>
+            <h4>The storage discipline.</h4>
+            <p>Bronze is append-only raw (audit retention satisfies most regulators by itself). Silver is conformed and validated. Gold is consumable &mdash; analytics-ready, owned by the domain. <a href="https://delta.io/" target="_blank" rel="noopener">Delta Lake</a>, <a href="https://iceberg.apache.org/" target="_blank" rel="noopener">Iceberg</a> and <a href="https://hudi.apache.org/" target="_blank" rel="noopener">Hudi</a> are the three open table formats; format choice matters less than ownership clarity.</p>
+            <div class="tools"><span><b>Tools</b></span>
+              <a href="https://www.databricks.com/" target="_blank" rel="noopener">Databricks</a>
+              <a href="https://www.snowflake.com/" target="_blank" rel="noopener">Snowflake</a>
+              <a href="https://www.getdbt.com/" target="_blank" rel="noopener">dbt</a>
+              <a href="https://duckdb.org/" target="_blank" rel="noopener">DuckDB</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L3 &middot; Data products &mdash; domain owned</div>
+            <h4>Customer, payment, risk, clinical &mdash; each a product.</h4>
+            <p>Following the data-mesh pattern. Each domain owns its products with documented SLAs (freshness, completeness), versioned contracts, and on-call ownership. The central platform provides the substrate; domains own the products.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L4 &middot; Semantic layer</div>
+            <h4>One definition of business metrics.</h4>
+            <p>The single most under-invested layer in 2026 enterprises. Without it, three teams report three different revenue numbers from the same warehouse. Cube, dbt Semantic Layer, LookML are options; pick one and stop letting BI tools define metrics.</p>
+            <div class="tools"><span><b>Tools</b></span>
+              <a href="https://cube.dev/" target="_blank" rel="noopener">Cube</a>
+              <a href="https://docs.getdbt.com/docs/build/about-metricflow" target="_blank" rel="noopener">dbt Semantic Layer</a>
+              <a href="https://cloud.google.com/looker" target="_blank" rel="noopener">Looker / LookML</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L5 &middot; Feature store + vector</div>
+            <h4>The substrate ML and GenAI consume.</h4>
+            <p>Feature store gives ML training/serving parity (offline/online). Vector store gives RAG its retrievable corpus. Both should consume from the Gold zone, not bespoke pipelines &mdash; this is what enables the <a href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform</a>.</p>
+            <div class="tools"><span><b>Tools</b></span>
+              <a href="https://feast.dev/" target="_blank" rel="noopener">Feast</a>
+              <a href="https://www.tecton.ai/" target="_blank" rel="noopener">Tecton</a>
+              <a href="https://www.databricks.com/product/feature-store" target="_blank" rel="noopener">Databricks FS</a>
+              <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener">pgvector</a>
+              <a href="https://www.pinecone.io/" target="_blank" rel="noopener">Pinecone</a>
+            </div>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">L6 &middot; Shared substrate (the moat)</div>
+            <h4>Catalogue · lineage · access · PII · retention · quality.</h4>
+            <p>Catalogue (DataHub, OpenMetadata, Unity, Atlas) + lineage (OpenLineage) + access control + PII classification + retention/erasure + data-quality monitoring (Soda, Great Expectations). The pieces that make the rest auditable.</p>
+            <div class="tools"><span><b>Tools</b></span>
+              <a href="https://datahubproject.io/" target="_blank" rel="noopener">DataHub</a>
+              <a href="https://open-metadata.org/" target="_blank" rel="noopener">OpenMetadata</a>
+              <a href="https://openlineage.io/" target="_blank" rel="noopener">OpenLineage</a>
+              <a href="https://www.soda.io/" target="_blank" rel="noopener">Soda</a>
+              <a href="https://greatexpectations.io/" target="_blank" rel="noopener">Great Expectations</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/reference-architectures/">&larr; All architectures</a></span></div></footer>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platform Engineering IDP — Reference Architecture — Uchit Vyas</title>
+<meta name="description" content="A practitioner reference architecture for an Internal Developer Platform: paved paths, golden templates, service catalogue, scorecards, self-service. Aligned to CNCF Platform Eng Maturity + Team Topologies + DORA." />
+<link rel="canonical" href="https://hellouchit.com/reference-architectures/platform-engineering-idp.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Platform Engineering IDP — Reference Architecture" />
+<meta property="og:description" content="Paved paths, golden templates, catalogue, scorecards, self-service. CNCF + Team Topologies + DORA aligned." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/ra.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ra-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><a href="/reference-architectures/" style="color:var(--muted)">Reference Architectures</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Platform Engineering IDP</span></nav>
+      <span class="eyebrow">Reference Architecture &middot; Platform Engineering</span>
+      <h1>Platform Engineering <em>IDP</em>.</h1>
+      <p class="dek">
+        Internal Developer Platform with <b>paved paths, golden templates,
+        service catalogue, scorecards, self-service</b>. Aligned to the
+        CNCF Platform Engineering Maturity Model, Team Topologies, and
+        DORA elite-performer criteria.
+      </p>
+    </div></section>
+
+    <div class="wrap">
+      <div class="ra-diagram">
+        <svg class="ra-svg" viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Platform Engineering IDP">
+          <defs>
+            <linearGradient id="rg4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".04"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Developer surface -->
+          <rect x="40" y="36" width="920" height="74" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="62" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">DEVELOPER PORTAL · ONE PANE OF GLASS</text>
+          <text x="56" y="86" fill="#ecedf0" font-family="Fraunces, serif" font-size="17" font-weight="500">Backstage · Cortex · OpsLevel · Port</text>
+          <text x="56" y="104" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Catalogue · docs · self-service · scorecards · ownership · observability links</text>
+
+          <!-- Paved paths -->
+          <g>
+            <rect x="40" y="130" width="220" height="100" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+            <text x="56" y="154" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PAVED PATH · MICROSERVICE</text>
+            <text x="56" y="178" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Backstage template</text>
+            <text x="56" y="198" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">CI + SLSA L3 + IAM + OTel + SLOs</text>
+            <text x="56" y="216" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">0 → staging in &lt;30 min</text>
+
+            <rect x="280" y="130" width="220" height="100" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+            <text x="296" y="154" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PAVED PATH · DATA JOB</text>
+            <text x="296" y="178" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">dbt + Airflow scaffold</text>
+            <text x="296" y="198" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Lineage + contracts default</text>
+            <text x="296" y="216" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Gold-zone owner = team</text>
+
+            <rect x="520" y="130" width="220" height="100" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+            <text x="536" y="154" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PAVED PATH · GENAI FEATURE</text>
+            <text x="536" y="178" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Gateway + evals + guardrails</text>
+            <text x="536" y="198" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Prompt registry · audit pipe</text>
+            <text x="536" y="216" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">Inherits the 9 controls</text>
+
+            <rect x="760" y="130" width="200" height="100" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+            <text x="776" y="154" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PAVED PATH · BATCH</text>
+            <text x="776" y="178" fill="#ecedf0" font-family="Fraunces, serif" font-size="14" font-weight="500">Scheduled jobs</text>
+            <text x="776" y="198" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">OTel · retry · DLQ</text>
+            <text x="776" y="216" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="11.5">SLO-bounded</text>
+          </g>
+
+          <!-- Self-service capabilities -->
+          <rect x="40" y="250" width="920" height="74" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="276" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SELF-SERVICE CAPABILITIES</text>
+          <text x="56" y="300" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">DBs · queues · secrets · DNS · TLS · namespaces · IAM roles · feature flags · sandbox AI keys</text>
+          <text x="56" y="320" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Provisioned by Terraform/Pulumi behind a portal action. Audited. Policy-as-code enforced.</text>
+
+          <!-- Scorecards -->
+          <rect x="40" y="344" width="920" height="74" rx="8" fill="url(#rg4)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="370" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">SCORECARDS · POSTURE · ADOPTION</text>
+          <text x="56" y="394" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Per-service production-readiness · security posture · cost · SLO health · ownership freshness</text>
+          <text x="56" y="414" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Auto-derived from real signals (no self-attestation). Visible to developer + leadership.</text>
+
+          <!-- Substrate -->
+          <rect x="40" y="438" width="920" height="116" rx="8" fill="rgba(217,151,87,.08)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="464" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">PLATFORM SUBSTRATE (THE PRODUCT THE TEAM RUNS)</text>
+          <text x="56" y="486" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Kubernetes / managed runtime · Terraform modules · OTel · OIDC workload identity · OPA · cost feed · service catalogue</text>
+          <text x="56" y="508" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Team topology: stream-aligned + enabling teams · platform-as-a-product · funded for outcomes (DORA + adoption)</text>
+          <text x="56" y="528" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Versioned platform with auto-migration tooling for breaking changes &mdash; consuming teams don&rsquo;t do the migration work</text>
+          <text x="56" y="548" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">Audited against: CNCF Platform Eng Maturity Model · Team Topologies · DORA Accelerate · SPACE / DX</text>
+        </svg>
+        <div class="ra-caption">
+          <b>Platform Engineering IDP</b> &middot; reference architecture v1.0 &middot;
+          <a href="/writing/platform-engineering-ai-moat.html">read the AI moat essay</a>
+        </div>
+      </div>
+
+      <div class="ra-body">
+        <section>
+          <h2>What this architecture <em>solves</em>.</h2>
+          <p>
+            The shape that turns a tool stack into a platform. Paved paths
+            absorb the substrate (CI, security, identity, observability,
+            cost) so a developer&rsquo;s job is to write business logic, not
+            to integrate ten tools. Scorecards make posture visible without
+            self-attestation. The substrate runs as a versioned product with
+            consumers, owners and SLOs &mdash; not as a tool stack with a
+            portal on top.
+          </p>
+        </section>
+
+        <section>
+          <h2>The four paved paths.</h2>
+
+          <div class="ra-layer">
+            <div class="ix">P1 &middot; Microservice paved path</div>
+            <h4>Default for new services.</h4>
+            <p>Backstage Software Template scaffolds: repo with CI configured for SLSA L3, OIDC for cloud access, OpenTelemetry instrumentation, SLO definitions, default dashboards, on-call rotation linked. Zero to staging in &lt;30 minutes.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">P2 &middot; Data job paved path</div>
+            <h4>For dbt models, Airflow DAGs, Spark jobs.</h4>
+            <p>Scaffold includes lineage emission (OpenLineage), data-quality tests (Soda / Great Expectations), contract definitions, Gold-zone landing convention. The team that owns the model owns the data product.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">P3 &middot; GenAI feature paved path</div>
+            <h4>The Regulated GenAI platform as a template.</h4>
+            <p>Scaffold integrates with the gateway, prompt registry, eval-gated deploy and audit-evidence pipeline of the <a href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform</a>. New GenAI features inherit the <a href="/writing/genai-9-controls.html">nine controls</a> by construction.</p>
+          </div>
+
+          <div class="ra-layer">
+            <div class="ix">P4 &middot; Batch job paved path</div>
+            <h4>Scheduled, idempotent, observable.</h4>
+            <p>Cron + retry + DLQ + OTel + SLO-bounded. The path most platform teams ignore because it&rsquo;s unsexy &mdash; and most legacy ops debt accumulates against.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Self-service capabilities.</h2>
+          <p>
+            Every common provisioning need behind a portal action: DB instance, queue, secret, DNS record, TLS cert, namespace, IAM role, feature flag, sandbox AI key. Each provisioned by Terraform/Pulumi modules with policy-as-code embedded. Audit trail per action; no tickets.
+          </p>
+        </section>
+
+        <section>
+          <h2>Scorecards &mdash; auto-derived, not self-attested.</h2>
+          <p>
+            Per service: production-readiness (CI green? SBOM emitted? SLO defined? on-call wired?), security posture (signed image? KEV CVE count? MFA?), cost (per-month vs budget? trending), SLO health, ownership freshness (owner active in last 30 days?).
+          </p>
+          <p>
+            Scorecards must be hard to game. Self-attested fields decay; auto-derived fields don&rsquo;t.
+          </p>
+        </section>
+
+        <section>
+          <h2>How the platform is funded and run.</h2>
+          <ul>
+            <li><b>Funded as a product</b> with outcome metrics: lead time, change-fail rate, time-to-first-deploy, paved-path adoption, developer NPS. Not as a cost-centre.</li>
+            <li><b>Stream-aligned + enabling teams</b> per <a href="https://teamtopologies.com/" target="_blank" rel="noopener">Team Topologies</a>. Central platform team is small; enabling teams move into streams temporarily to help them adopt the platform.</li>
+            <li><b>Versioned with auto-migration tooling.</b> Breaking changes ship with codemods (jscodeshift, OpenRewrite, ast-grep) and a migration job. Consuming teams don&rsquo;t do the migration work.</li>
+            <li><b>Sunset rituals quarterly.</b> Subtract capabilities that aren&rsquo;t adopted. Without sunset, every platform eventually becomes a tool stack again.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sequencing for the first 90 days.</h2>
+          <ol>
+            <li><b>Weeks 1-4:</b> Backstage stood up with service catalogue. One paved path (microservice) shipped with one team.</li>
+            <li><b>Weeks 5-8:</b> Self-service for the top three needs (DB, queue, secrets). Scorecards for production-readiness.</li>
+            <li><b>Weeks 9-12:</b> Second and third paved paths added. Auto-migration tooling for the first breaking change. Developer NPS baseline.</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/reference-architectures/">&larr; All architectures</a> &middot; <a href="/tools/platform-engineering.html">Platform Eng diagnostic</a></span></div></footer>
+</body>
+</html>
