@@ -41,6 +41,8 @@
     { t: "Letters — monthly email",       u: "/letters/",    g: "Pages",     ic: "✉" },
     { t: "Press & Speaker Kit",           u: "/press/",      g: "Pages",     ic: "▣" },
     { t: "Open Source",                   u: "/oss/",        g: "Pages",     ic: "{}" },
+    { t: "Observability — this site's posture", u: "/observability/", g: "Pages", ic: "◉" },
+    { t: "Security — posture & threat model",   u: "/security/",       g: "Pages", ic: "⛨" },
     { t: "opa-nist-ai-rmf (OSS · GitHub)", u: "https://github.com/uchit/opa-nist-ai-rmf", g: "Pages", ic: "★" },
     { t: "Glossary",                      u: "/glossary/",   g: "Reference", ic: "≡" },
     { t: "Get in touch",                  u: "/#contact",    g: "Pages",     ic: "✉" },

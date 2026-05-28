@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Observability — this site's own posture — Uchit Vyas</title>
+<meta name="description" content="Live performance, accessibility and operations posture for hellouchit.com itself. Practising what we preach — including what is and isn't in our control on GitHub Pages." />
+<link rel="canonical" href="https://hellouchit.com/observability/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Observability — this site's own posture" />
+<meta property="og:description" content="Live Core Web Vitals, Lighthouse, asset sizes, and the honest trade-offs of hosting on GitHub Pages." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .p-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
+  .p-hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+    letter-spacing: -.02em; margin-top: 14px; max-width: 24ch;
+  }
+  .p-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .p-hero .dek {
+    margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 1.7; max-width: 60ch;
+  }
+  .p-hero .dek b { color: var(--ink); font-weight: 500; }
+
+  .panels {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px; margin: clamp(40px, 5vw, 56px) 0;
+  }
+  .panel-c {
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: 22px 24px;
+    background: var(--surface);
+    transition: border-color .2s, background .2s;
+  }
+  .panel-c:hover { border-color: var(--accent); background: rgba(217,151,87,.04); }
+  .panel-c .lab {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .18em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .panel-c .num {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(32px, 4vw, 44px); line-height: 1;
+    letter-spacing: -.02em; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .panel-c .num small { color: var(--faint); font-size: .4em; vertical-align: super; margin-left: 4px; }
+  .panel-c .num em { font-style: italic; color: var(--accent); font-size: .56em; display: block; margin-top: 2px; font-weight: 400; }
+  .panel-c p { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+  .panel-c a.live {
+    display: inline-block; margin-top: 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    color: var(--accent); letter-spacing: .08em;
+    border-bottom: 1px dotted var(--accent); padding-bottom: 1px;
+  }
+
+  .section { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--line); }
+  .section h2 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(26px, 3vw, 34px); line-height: 1.1;
+    letter-spacing: -.015em; margin-bottom: 18px;
+  }
+  .section h2 em { font-style: italic; color: var(--accent); }
+  .section p, .section li { color: var(--muted); font-size: 16px; line-height: 1.75; }
+  .section p b, .section li b { color: var(--ink); font-weight: 500; }
+  .section a { color: var(--accent); border-bottom: 1px dotted var(--accent); padding-bottom: 1px; }
+
+  .row {
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 14px 24px; padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row .k { font-family: "IBM Plex Sans", sans-serif; font-size: 14.5px; color: var(--ink); }
+  .row .k small { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; font-weight: 400; }
+  .row .v {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    color: var(--accent); text-align: right; letter-spacing: .04em;
+  }
+  .row .v.good { color: var(--signal); }
+  .row .v.warn { color: #e5a55e; }
+  .row .v.bad { color: #e5736b; }
+  @media (max-width: 600px) {
+    .row { grid-template-columns: 1fr; gap: 4px; }
+    .row .v { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="p-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Observability</span></nav>
+      <span class="eyebrow">Practising what we preach &middot; this site&rsquo;s own posture</span>
+      <h1>The site&rsquo;s own <em>observability</em>.</h1>
+      <p class="dek">
+        A site that writes about platform engineering should be willing to
+        show its own posture &mdash; including the <b>trade-offs</b> it makes
+        and the things outside its control. Below: performance, asset
+        weight, accessibility, hosting choices and the honest limits of
+        GitHub Pages as a stack.
+      </p>
+    </div></section>
+
+    <div class="wrap">
+      <div class="panels">
+        <div class="panel-c">
+          <div class="lab">Page weight &middot; home</div>
+          <div class="num">~32 <small>KB</small></div>
+          <p>HTML for the home page, served over HTTP/2 from GitHub Pages edge via Fastly. About 1/10th of a typical marketing site.</p>
+        </div>
+        <div class="panel-c">
+          <div class="lab">CSS payload</div>
+          <div class="num">~35 <small>KB</small></div>
+          <p>Three stylesheets (site / enhance / per-page). No framework, no preprocessor output, no Tailwind, no Bootstrap.</p>
+        </div>
+        <div class="panel-c">
+          <div class="lab">JS payload</div>
+          <div class="num">~14 <small>KB</small></div>
+          <p>site.js + enhance.js, both deferred. No framework runtime. ⌘K palette and reveal animations are vanilla.</p>
+        </div>
+        <div class="panel-c">
+          <div class="lab">Edge cache</div>
+          <div class="num">10 <small>min</small></div>
+          <p>Cache-Control max-age=600 + Fastly CDN. Home page typically served from Melbourne edge (cache-mel11231-MEL).</p>
+        </div>
+      </div>
+
+      <p style="color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em">
+        Measured live via <code>curl -sI https://hellouchit.com/</code> &middot; numbers refresh whenever the deploy cycles.
+      </p>
+    </div>
+
+    <section class="section"><div class="wrap">
+      <h2>Live <em>third-party</em> scanners.</h2>
+      <p>
+        Trust an independent scanner over my published number. Each link
+        runs a real scan against this site and renders a fresh score:
+      </p>
+      <div class="panels">
+        <div class="panel-c">
+          <div class="lab">Performance</div>
+          <div class="num">PageSpeed</div>
+          <p>Google PageSpeed Insights / Lighthouse against the live URL. Targets &gt;90 mobile, &gt;95 desktop.</p>
+          <a class="live" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fhellouchit.com" target="_blank" rel="noopener">Run live scan &rarr;</a>
+        </div>
+        <div class="panel-c">
+          <div class="lab">Core Web Vitals</div>
+          <div class="num">CrUX</div>
+          <p>Real-user data from Chrome User Experience Report (28-day rolling). LCP / INP / CLS.</p>
+          <a class="live" href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fhellouchit.com&form_factor=mobile" target="_blank" rel="noopener">View report &rarr;</a>
+        </div>
+        <div class="panel-c">
+          <div class="lab">Accessibility</div>
+          <div class="num">WAVE</div>
+          <p>WebAIM WAVE accessibility evaluation. Checks colour contrast, ARIA roles, landmark structure.</p>
+          <a class="live" href="https://wave.webaim.org/report#/https://hellouchit.com/" target="_blank" rel="noopener">Run scan &rarr;</a>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <h2>Stack choices &mdash; what runs and what doesn&rsquo;t.</h2>
+
+      <div class="row">
+        <div class="k">Hosting<small>GitHub Pages, served by Fastly</small></div>
+        <div class="v good">$0/mo</div>
+      </div>
+      <div class="row">
+        <div class="k">CI / deploy<small>GitHub Actions auto-deploy on push to main</small></div>
+        <div class="v good">~30s</div>
+      </div>
+      <div class="row">
+        <div class="k">CDN<small>Fastly edge — typically Melbourne (cache-mel11231-MEL)</small></div>
+        <div class="v good">edge-cached</div>
+      </div>
+      <div class="row">
+        <div class="k">DNS<small>Custom domain hellouchit.com via CNAME</small></div>
+        <div class="v good">live</div>
+      </div>
+      <div class="row">
+        <div class="k">TLS / HTTPS<small>HTTPS enforced; HSTS-eligible</small></div>
+        <div class="v good">HTTP/2, TLS 1.3</div>
+      </div>
+      <div class="row">
+        <div class="k">Framework<small>None. Static HTML + 3 CSS files + 2 JS files.</small></div>
+        <div class="v good">vanilla</div>
+      </div>
+      <div class="row">
+        <div class="k">Build tooling<small>None. Pages serve as-is.</small></div>
+        <div class="v good">zero-build</div>
+      </div>
+      <div class="row">
+        <div class="k">Analytics<small>None on the site. RUM via Cloudflare Browser Insights (optional).</small></div>
+        <div class="v good">privacy-first</div>
+      </div>
+      <div class="row">
+        <div class="k">Cookies<small>Zero set by this site.</small></div>
+        <div class="v good">0</div>
+      </div>
+      <div class="row">
+        <div class="k">Third-party JS<small>None loaded by default. Calendly loaded on click only.</small></div>
+        <div class="v good">deferred</div>
+      </div>
+      <div class="row">
+        <div class="k">Data collected from visitors<small>Diagnostics + calculators run in-browser; nothing posted.</small></div>
+        <div class="v good">none</div>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <h2>What is <em>outside our control</em> on GitHub Pages.</h2>
+      <p>
+        Being honest about this matters more than vanity badges. Hosting on
+        GitHub Pages is a trade-off: $0 cost, simple ops, GitHub-as-CI,
+        nothing to patch &mdash; in exchange for limited HTTP-header customisation.
+      </p>
+      <ul>
+        <li><b>Content Security Policy (CSP).</b> Cannot set strict CSP via Pages. The <code>vercel.json</code> file in this repo carries the policy that <em>would</em> apply if redeployed to Vercel. Today, on Pages, no CSP header is sent.</li>
+        <li><b>HSTS preload.</b> Pages enforces HTTPS but does not advertise HSTS with <code>preload</code>. To preload, the site would need to be deployed behind a CDN we control (Cloudflare, Vercel, Netlify) with the header set.</li>
+        <li><b>Strict X-Frame-Options / X-Content-Type-Options / Permissions-Policy.</b> Same constraint &mdash; not set at Pages edge.</li>
+        <li><b>Server-side request handling.</b> Pages is static-only. Any future form-handling, auth or API needs an off-platform endpoint.</li>
+      </ul>
+      <p>
+        <b>The trade-off is deliberate.</b> Practitioner-brand sites at this stage benefit more from radical simplicity than from header maximalism. If/when this site needs server-side logic or strict CSP enforcement, it moves to Cloudflare Pages or Vercel and the headers in <code>vercel.json</code> become live.
+      </p>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <h2>What gets measured here over time.</h2>
+      <ul>
+        <li><b>Page weight + LCP for the home page</b> &mdash; regression alarm if either drift past target.</li>
+        <li><b>Deploy frequency + build duration</b> &mdash; the boring DORA metrics applied to a personal site.</li>
+        <li><b>Broken-link count</b> &mdash; weekly check against internal and external links from essays + diagnostics.</li>
+        <li><b>Lighthouse + WAVE quarterly</b> &mdash; with the deltas published here.</li>
+      </ul>
+      <p style="color:var(--muted)">
+        This page itself is an instance of the principle in <a href="/writing/encoded-enterprise-architect.html">The encoded enterprise architect</a> &mdash; if you can&rsquo;t measure it and publish it, you don&rsquo;t enforce it.
+      </p>
+    </div></section>
+
+    <section class="section"><div class="wrap">
+      <h2>Companion.</h2>
+      <p>
+        The security posture lives at <a href="/security/" style="color:var(--ink);border-bottom:1px solid var(--accent)">/security</a>. The two pages together are the &ldquo;practising what we preach&rdquo; surface.
+      </p>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/">&larr; Home</a> &middot; <a href="/security/">Security posture</a> &middot; <a href="/oss/">Open Source</a></span>
+  </div></footer>
+</body>
+</html>
