@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>The 4-Discipline Stack — Uchit Vyas</title>
+<meta name="description" content="The 4-Discipline Stack — Enterprise Architecture · Platform Engineering & DevSecOps · Data Modernisation · Applied GenAI. The compound capability set that decides whether ambitious digital strategy ships, scales and survives audit." />
+<link rel="canonical" href="https://hellouchit.com/4-discipline-stack/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The 4-Discipline Stack — Uchit Vyas" />
+<meta property="og:description" content="The compound capability set that decides whether ambitious digital strategy ships, scales and survives audit." />
+<meta property="og:url" content="https://hellouchit.com/4-discipline-stack/" />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+
+<style>
+  .fw-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(36px, 4vw, 56px); }
+  .fw-hero h1 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(48px, 7.4vw, 96px); line-height: 1; letter-spacing: -.02em;
+    margin-top: 16px; max-width: 16ch;
+  }
+  .fw-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .fw-hero .lede {
+    margin-top: 26px; font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.55; color: var(--ink); max-width: 56ch; font-weight: 300;
+  }
+  .fw-hero .lede b { color: var(--accent); font-weight: 500; }
+
+  .fw-diagram {
+    margin: clamp(48px, 6vw, 80px) 0;
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: clamp(28px, 4vw, 56px);
+    background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.06), transparent 60%), var(--surface);
+  }
+  .fw-svg { width: 100%; height: auto; max-width: 880px; margin: 0 auto; display: block; }
+
+  .fw-caption {
+    margin-top: 18px; text-align: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: .14em; color: var(--faint); text-transform: uppercase;
+  }
+  .fw-caption b { color: var(--accent); font-weight: 500; }
+
+  .fw-thesis {
+    padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--line);
+  }
+  .fw-thesis-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .fw-thesis-grid h2 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -.015em;
+    max-width: 16ch;
+  }
+  .fw-thesis-grid h2 em { font-style: italic; color: var(--accent); }
+  .fw-thesis-grid p { color: var(--muted); font-size: 17px; line-height: 1.75; }
+  .fw-thesis-grid p + p { margin-top: 16px; }
+  .fw-thesis-grid b { color: var(--ink); font-weight: 500; }
+  .fw-thesis-grid a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .fw-thesis-grid a:hover { background: var(--accent-soft); }
+
+  .fw-disciplines { padding: clamp(56px, 7vw, 88px) 0; border-top: 1px solid var(--line); }
+  .fw-disc {
+    display: grid; grid-template-columns: 120px 1fr; gap: clamp(24px, 4vw, 48px);
+    padding: clamp(36px, 5vw, 56px) 0; border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .fw-disc:last-child { border-bottom: 0; }
+  .fw-disc-num {
+    font-family: "Fraunces", serif; font-weight: 500; font-style: italic;
+    font-size: clamp(64px, 8vw, 96px); line-height: 1;
+    color: var(--accent); letter-spacing: -.02em;
+  }
+  .fw-disc h3 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(26px, 3vw, 36px); line-height: 1.15;
+    letter-spacing: -.015em; margin-bottom: 10px;
+  }
+  .fw-disc h3 em { font-style: italic; color: var(--accent); }
+  .fw-disc .role {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px; display: block;
+  }
+  .fw-disc p { color: var(--muted); font-size: 16px; line-height: 1.75; max-width: 64ch; }
+  .fw-disc p + p { margin-top: 12px; }
+  .fw-disc b { color: var(--ink); font-weight: 500; }
+  .fw-disc a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+  .fw-disc-meta {
+    margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px 18px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    color: var(--faint); letter-spacing: .04em;
+  }
+  .fw-disc-meta b { color: var(--accent); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+  .fw-disc-meta a { color: var(--muted); border-color: var(--line-strong); border-bottom-style: dotted; }
+
+  .fw-maturity {
+    padding: clamp(56px, 7vw, 88px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .fw-mat-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border: 1px solid var(--line); border-radius: var(--r);
+    overflow: hidden;
+    margin-top: clamp(28px, 4vw, 40px);
+  }
+  .fw-mat {
+    padding: clamp(20px, 2.4vw, 28px);
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .fw-mat:last-child { border-right: 0; }
+  .fw-mat .lvl {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .fw-mat h4 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: 20px; line-height: 1.1; margin-bottom: 12px;
+  }
+  .fw-mat p { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+
+  .fw-use {
+    padding: clamp(56px, 7vw, 88px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .fw-use h2 {
+    font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(32px, 4vw, 44px); line-height: 1.05;
+    letter-spacing: -.015em; margin-bottom: 28px; max-width: 20ch;
+  }
+  .fw-use h2 em { font-style: italic; color: var(--accent); }
+  .fw-use ol {
+    list-style: none; counter-reset: fwu; padding: 0;
+    display: grid; gap: 18px;
+  }
+  .fw-use li {
+    counter-increment: fwu; position: relative;
+    padding: 22px 24px 22px 64px;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: rgba(255,255,255,.012);
+    color: var(--ink); line-height: 1.6;
+  }
+  .fw-use li::before {
+    content: counter(fwu, decimal-leading-zero);
+    position: absolute; left: 22px; top: 24px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--accent); letter-spacing: .12em;
+  }
+  .fw-use li b { color: var(--accent); font-weight: 500; }
+
+  .fw-cta {
+    padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .fw-thesis-grid { grid-template-columns: 1fr; gap: 28px; }
+    .fw-disc { grid-template-columns: 1fr; gap: 8px; }
+    .fw-disc-num { font-size: 48px; }
+    .fw-mat-grid { grid-template-columns: 1fr 1fr; }
+    .fw-mat:nth-child(2n) { border-right: 0; }
+    .fw-mat:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 500px) {
+    .fw-mat-grid { grid-template-columns: 1fr; }
+    .fw-mat { border-right: 0; border-bottom: 1px solid var(--line); }
+    .fw-mat:last-child { border-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div>
+  <div class="grid-fx" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand" aria-label="Uchit Vyas — home">
+        <span class="monogram" aria-hidden="true">UV</span>
+        <span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="/#about">About</a>
+        <a href="/#work">Work</a>
+        <a href="/tools/">Tools</a>
+        <a href="/writing/">Writing</a>
+        <a href="/#contact" class="nav-cta">Get in touch</a>
+      </nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="fw-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px" aria-label="Breadcrumb">
+        <a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span>
+        <span style="color:var(--accent)">The 4-Discipline Stack</span>
+      </nav>
+      <span class="eyebrow">Framework &middot; The 4-Discipline Stack</span>
+      <h1>The four <em>disciplines</em> that compound.</h1>
+      <p class="lede">
+        Enterprise Architecture &middot; Platform Engineering &amp; DevSecOps &middot;
+        Data Modernisation &middot; Applied GenAI. Most organisations buy these
+        as separate workstreams. <b>The compound only emerges when they share
+        the same operating substrate.</b>
+      </p>
+    </div></section>
+
+    <section><div class="wrap">
+      <div class="fw-diagram">
+        <svg class="fw-svg" viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The 4-Discipline Stack diagram">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".15"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".03"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".08"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Background plate -->
+          <rect x="40" y="40" width="800" height="440" rx="14"
+                fill="url(#g1)" stroke="rgba(217,151,87,.2)" stroke-width="1"/>
+
+          <!-- Substrate label -->
+          <text x="60" y="76" fill="#d99757" font-family="IBM Plex Mono, monospace"
+                font-size="10.5" letter-spacing="2.4">SHARED OPERATING SUBSTRATE</text>
+          <text x="60" y="100" fill="#ecedf0" font-family="Fraunces, serif"
+                font-size="18" font-weight="500">Encoded policy · workload identity · paved paths · observability defaults · audit trail</text>
+
+          <!-- Four pillars -->
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2.2">
+            <!-- D1 -->
+            <rect x="60" y="138" width="180" height="310" rx="10"
+                  fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
+            <text x="78" y="168" fill="#d99757">D1 · ARCHITECTURE</text>
+            <text x="78" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Enterprise</text>
+            <text x="78" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Architecture</text>
+            <text x="78" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The shape.</text>
+            <text x="78" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Capability model · ADRs ·</text>
+            <text x="78" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">target-state · principles.</text>
+            <text x="78" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">TOGAF · BIAN · ArchiMate</text>
+            <line x1="78" y1="380" x2="222" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="78" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Where decisions live.</text>
+            <text x="78" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Mostly invisible if it works.</text>
+
+            <!-- D2 -->
+            <rect x="250" y="138" width="180" height="310" rx="10"
+                  fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
+            <text x="268" y="168" fill="#d99757">D2 · DELIVERY</text>
+            <text x="268" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Platform Eng</text>
+            <text x="268" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">&amp; DevSecOps</text>
+            <text x="268" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The substrate.</text>
+            <text x="268" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Paved paths · CI/CD · IAM ·</text>
+            <text x="268" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">SLSA · OPA · observability.</text>
+            <text x="268" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">CNCF · Team Topologies · DORA</text>
+            <line x1="268" y1="380" x2="412" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="268" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">How the work ships.</text>
+            <text x="268" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Encoded > documented.</text>
+
+            <!-- D3 -->
+            <rect x="440" y="138" width="180" height="310" rx="10"
+                  fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
+            <text x="458" y="168" fill="#d99757">D3 · SIGNAL</text>
+            <text x="458" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Data</text>
+            <text x="458" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Modernisation</text>
+            <text x="458" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The truth.</text>
+            <text x="458" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Lineage · governance ·</text>
+            <text x="458" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">retention · analytics-ready.</text>
+            <text x="458" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">Data mesh · Lakehouse · DCAM</text>
+            <line x1="458" y1="380" x2="602" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="458" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">What AI consumes.</text>
+            <text x="458" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Garbage-in, garbage-everywhere.</text>
+
+            <!-- D4 -->
+            <rect x="630" y="138" width="180" height="310" rx="10"
+                  fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
+            <text x="648" y="168" fill="#d99757">D4 · INTELLIGENCE</text>
+            <text x="648" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Applied</text>
+            <text x="648" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">GenAI</text>
+            <text x="648" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The accelerant.</text>
+            <text x="648" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">RAG · evals · guardrails ·</text>
+            <text x="648" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">governance · cost-per-outcome.</text>
+            <text x="648" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.2">NIST AI RMF · EU AI Act · ISO 42001</text>
+            <line x1="648" y1="380" x2="792" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="648" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Only as good as D1-D3.</text>
+            <text x="648" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.2">Or it's prompt-injection theatre.</text>
+          </g>
+
+          <!-- Compound arrow / brace at bottom -->
+          <text x="440" y="478" fill="#d99757" font-family="Fraunces, serif" font-style="italic"
+                font-size="18" font-weight="500" text-anchor="middle">
+            compound capability &mdash; not a sum, a multiplier
+          </text>
+        </svg>
+        <div class="fw-caption">
+          The <b>4-Discipline Stack</b> &middot; Uchit Vyas &middot; v1.0
+        </div>
+      </div>
+    </div></section>
+
+    <section class="fw-thesis"><div class="wrap">
+      <div class="fw-thesis-grid">
+        <h2>The compound is the <em>moat</em>.</h2>
+        <div>
+          <p>
+            Most enterprises buy these as four <b>independent</b> workstreams &mdash;
+            a CTO sponsors EA, a VP Engineering sponsors platform, a CDO sponsors
+            data, a Chief AI Officer (now) sponsors GenAI. Four budgets, four
+            roadmaps, four reports. Four good capabilities, often delivered well in
+            isolation. Almost no compound.
+          </p>
+          <p>
+            The compound only emerges when all four share a <b>single operating
+            substrate</b>: encoded policy that the platform enforces, workload
+            identity that data and AI inherit, observability defaults that span
+            from a Terraform module to an LLM inference call, audit evidence that's
+            generated at decision time rather than scrambled at audit time.
+          </p>
+          <p>
+            With the substrate in place, each discipline accelerates the next.
+            Architecture decisions encode into platform defaults. Platform defaults
+            propagate governance to data. Trusted data makes GenAI auditable.
+            Auditable GenAI surfaces new capabilities that change the architecture.
+            <b>Without the substrate, you have four projects competing for the
+            same engineers.</b>
+          </p>
+          <p>
+            Each of the <a href="/tools/">six diagnostics</a> on this site measures
+            one slice of the substrate. They are intentionally framed so the same
+            organisation taking all six should see the same maturity gaps recur &mdash;
+            because the gap is rarely in the discipline, almost always in the
+            substrate beneath it.
+          </p>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="fw-disciplines"><div class="wrap">
+      <header class="section-head">
+        <div>
+          <span class="eyebrow">The four disciplines</span>
+          <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.015em;margin-top:14px;max-width:24ch">
+            Each one has its <em>own job</em>. None of them work alone.
+          </h2>
+        </div>
+        <span class="section-index">/ disciplines</span>
+      </header>
+
+      <article class="fw-disc">
+        <div class="fw-disc-num">D1</div>
+        <div>
+          <span class="role">The shape</span>
+          <h3>Enterprise Architecture.</h3>
+          <p>
+            EA defines <b>what</b> the organisation does, separately from <b>how</b>
+            it currently does it. A living capability model &mdash; not a slide pack &mdash;
+            anchors investment decisions, vendor selection and the target-state
+            architecture. Decisions are captured as
+            <a href="https://adr.github.io/" target="_blank" rel="noopener">ADRs</a> not
+            slide decks. Principles that aren't <b>encoded</b> in platform defaults
+            or policy-as-code don't exist.
+          </p>
+          <p>
+            In 2026, EA's job is no longer the heroic five-year target diagram. It's
+            running a <b>small federated function</b> that paves paths, encodes
+            decisions, and stays mostly invisible because the platform enforces what
+            the architecture decided.
+          </p>
+          <div class="fw-disc-meta">
+            <span><b>Maps to</b> <a href="https://www.opengroup.org/togaf" target="_blank" rel="noopener">TOGAF 10</a> · <a href="https://bian.org/" target="_blank" rel="noopener">BIAN</a> · <a href="https://www.opengroup.org/archimate-forum/archimate-overview" target="_blank" rel="noopener">ArchiMate</a> · <a href="https://www.bizbok.org/" target="_blank" rel="noopener">BIZBOK</a></span>
+            <span><b>Diagnostic</b> <a href="/tools/ea-operating-model.html">EA Operating Model</a></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="fw-disc">
+        <div class="fw-disc-num">D2</div>
+        <div>
+          <span class="role">The substrate</span>
+          <h3>Platform Engineering <em>&amp;</em> DevSecOps.</h3>
+          <p>
+            The single capability that decides whether D1 decisions become real.
+            <b>Paved paths</b> that take a new service from zero to audited
+            production in minutes. <b>Encoded policy</b> via OPA/Kyverno that blocks
+            non-compliant deploys before a human is involved. <b>Workload identity</b>
+            (OIDC, SPIFFE) so static secrets stop being the largest breach vector.
+            <b>SBOM + signed provenance</b> (SLSA L3+) so the supply chain isn't
+            built on hope.
+          </p>
+          <p>
+            Post-XZ Utils, post-Snowflake, post-CrowdStrike: this is the discipline
+            with the highest <b>regulator visibility</b>. APRA CPS 234, EU DORA,
+            US EO 14028 and CISA's Secure Software Attestation all operate at this
+            layer. The substrate's quality decides everything above it.
+          </p>
+          <div class="fw-disc-meta">
+            <span><b>Maps to</b> <a href="https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/" target="_blank" rel="noopener">CNCF Platform Eng Maturity</a> · <a href="https://teamtopologies.com/" target="_blank" rel="noopener">Team Topologies</a> · <a href="https://csrc.nist.gov/Projects/ssdf" target="_blank" rel="noopener">NIST SSDF</a> · <a href="https://slsa.dev/" target="_blank" rel="noopener">SLSA</a></span>
+            <span><b>Diagnostics</b> <a href="/tools/platform-engineering.html">Platform Eng</a> · <a href="/tools/devsecops-maturity.html">DevSecOps</a> · <a href="/tools/sre-programme.html">SRE</a></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="fw-disc">
+        <div class="fw-disc-num">D3</div>
+        <div>
+          <span class="role">The truth</span>
+          <h3>Data Modernisation.</h3>
+          <p>
+            Trusted, lineage-aware, analytics-ready data. <b>Governed</b> by domain
+            with clear ownership and retention. <b>Audit-grade</b> for regulators
+            (PII handling, right-to-erasure, residency). The data layer that the
+            platform secures and the architecture decided was needed.
+          </p>
+          <p>
+            The discipline most underestimated in GenAI rollouts. Foundation models
+            don't fix bad data &mdash; they amplify it. The <a href="/tools/genai-readiness.html">GenAI
+            Readiness diagnostic</a> reliably scores Data Foundations as the
+            highest-correlated gap with downstream failure modes.
+          </p>
+          <div class="fw-disc-meta">
+            <span><b>Maps to</b> Data mesh · Lakehouse · DCAM · DAMA-DMBOK · ISO 8000</span>
+            <span><b>Diagnostic</b> <em style="color:var(--faint);font-style:normal">Coming soon</em></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="fw-disc">
+        <div class="fw-disc-num">D4</div>
+        <div>
+          <span class="role">The accelerant</span>
+          <h3>Applied <em>GenAI</em>.</h3>
+          <p>
+            GenAI in production &mdash; with <b>evals you trust</b>, <b>guardrails
+            you've tested adversarially</b>, <b>governance encoded in the platform</b>
+            and <b>audit evidence generated at decision time</b>. Not the demo, the
+            service. Not the prototype, the regulated feature with a sponsor and an
+            SLO.
+          </p>
+          <p>
+            The discipline with the steepest 2026 regulatory clock: <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act</a>
+            high-risk enforcement begins <b>2 Aug 2026</b>. ISO/IEC 42001
+            certification is becoming a procurement requirement in B2B. The work
+            isn't to build more agents &mdash; it's to make the platform safe for
+            squads to build them on.
+          </p>
+          <div class="fw-disc-meta">
+            <span><b>Maps to</b> <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF</a> · <a href="https://www.iso.org/standard/81230.html" target="_blank" rel="noopener">ISO/IEC 42001</a> · <a href="https://artificialintelligenceact.eu/the-act/" target="_blank" rel="noopener">EU AI Act</a> · <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP LLM Top 10</a></span>
+            <span><b>Diagnostic</b> <a href="/tools/genai-readiness.html">GenAI Readiness</a></span>
+          </div>
+        </div>
+      </article>
+    </div></section>
+
+    <section class="fw-maturity"><div class="wrap">
+      <header class="section-head">
+        <div>
+          <span class="eyebrow">Compound maturity</span>
+          <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.015em;margin-top:14px;max-width:22ch">
+            Five tiers. Where do you <em>actually</em> sit?
+          </h2>
+        </div>
+        <span class="section-index">/ tiers</span>
+      </header>
+
+      <p style="color:var(--muted);font-size:16px;line-height:1.75;max-width:60ch;margin-top:8px">
+        Compound maturity is not the average of the four disciplines. It's
+        rate-limited by the weakest of the four <b>and</b> the maturity of the
+        shared substrate between them.
+      </p>
+
+      <div class="fw-mat-grid">
+        <div class="fw-mat">
+          <div class="lvl">Tier 1 · Siloed</div>
+          <h4>Four projects.</h4>
+          <p>Four budgets, four roadmaps, four reports. No shared substrate. Each discipline delivers in isolation; the compound never appears.</p>
+        </div>
+        <div class="fw-mat">
+          <div class="lvl">Tier 2 · Coordinated</div>
+          <h4>Shared backlog.</h4>
+          <p>The four functions talk monthly. Architecture has opinions on platform; data has opinions on AI. Coordination overhead is high; cycle times are long.</p>
+        </div>
+        <div class="fw-mat">
+          <div class="lvl">Tier 3 · Federated</div>
+          <h4>Encoded principles.</h4>
+          <p>Architecture principles encoded as policy-as-code. Platform defaults inherited by data and AI. Federated decision-making; standing decisions don't get re-litigated.</p>
+        </div>
+        <div class="fw-mat">
+          <div class="lvl">Tier 4 · Composed</div>
+          <h4>Substrate-first.</h4>
+          <p>The four disciplines share the same identity, observability, policy and audit primitives. A new GenAI use-case inherits data lineage, platform guardrails and architecture principles by default.</p>
+        </div>
+        <div class="fw-mat">
+          <div class="lvl">Tier 5 · Property</div>
+          <h4>Invisible compound.</h4>
+          <p>The disciplines are properties of how the organisation builds, not workstreams it runs. Squads consume the substrate; the compound is the moat. Reference customers; published practice.</p>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="fw-use"><div class="wrap">
+      <h2>How to use this <em>framework</em>.</h2>
+      <ol>
+        <li><b>Diagnose each discipline.</b> Run the four corresponding diagnostics &mdash; <a href="/tools/ea-operating-model.html">EA</a>, <a href="/tools/platform-engineering.html">Platform Eng</a>, <a href="/tools/devsecops-maturity.html">DevSecOps</a>, <a href="/tools/genai-readiness.html">GenAI</a>. Score honestly. Compound maturity is bounded by the weakest.</li>
+        <li><b>Find the substrate gap.</b> Look across the capability breakdowns. The capabilities that recur as weak across multiple diagnostics (identity, observability, ownership, governance, policy-as-code) are the substrate gap. That's where investment compounds.</li>
+        <li><b>Sequence the work by substrate, not by discipline.</b> A workload-identity (OIDC) programme improves DevSecOps, data, AI and platform simultaneously. A policy-as-code programme does the same. Pick substrate moves; let the disciplines benefit.</li>
+        <li><b>Map roles to disciplines, not to projects.</b> If your EA function only writes about EA, your platform team only writes about platform, etc., the substrate has nobody. Name a substrate-aligned role &mdash; often the platform engineering leader.</li>
+        <li><b>Report compound metrics, not discipline metrics.</b> Time-to-first-audited-deploy. Time-to-customer-facing-GenAI-feature. Percent of services with inherited observability + identity + governance. These force substrate investment.</li>
+      </ol>
+    </div></section>
+
+    <section class="fw-cta"><div class="wrap" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.18em;color:var(--faint);text-transform:uppercase">Run the diagnostics</span>
+      <a class="btn btn-ghost" href="/tools/ea-operating-model.html">EA Operating Model &rarr;</a>
+      <a class="btn btn-ghost" href="/tools/platform-engineering.html">Platform Engineering &rarr;</a>
+      <a class="btn btn-ghost" href="/tools/devsecops-maturity.html">DevSecOps &rarr;</a>
+      <a class="btn btn-ghost" href="/tools/genai-readiness.html">GenAI Readiness &rarr;</a>
+      <a class="btn btn-primary" href="/#contact">Talk about your stack &rarr;</a>
+    </div></section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+      <span>The 4-Discipline Stack &middot; v1.0</span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/tools/">Tools</a> &middot; <a href="/glossary/">Glossary</a></span>
+    </div>
+  </footer>
+</body>
+</html>

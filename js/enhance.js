@@ -28,9 +28,8 @@
   const PAGES = [
     { t: "Home",                          u: "/#home",       g: "Pages",     ic: "⌂" },
     { t: "About",                         u: "/#about",      g: "Pages",     ic: "✦" },
-    { t: "Expertise",                     u: "/#expertise",  g: "Pages",     ic: "✦" },
+    { t: "The 4-Discipline Stack — framework", u: "/4-discipline-stack/", g: "Pages", ic: "◰" },
     { t: "Selected work · case studies",  u: "/#work",       g: "Pages",     ic: "▣" },
-    { t: "In their words",                u: "/#voices",     g: "Pages",     ic: "❝" },
     { t: "Books & patent",                u: "/#books",      g: "Pages",     ic: "▥" },
     { t: "Speaking",                      u: "/#speaking",   g: "Pages",     ic: "◎" },
     { t: "Writing",                       u: "/writing/",    g: "Pages",     ic: "✎" },
