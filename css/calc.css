@@ -1,0 +1,175 @@
+/* calc.css — shared styles for live-slider calculators */
+
+.calc-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(24px, 4vw, 40px); }
+.calc-hero h1 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+  letter-spacing: -.02em; margin-top: 14px; max-width: 20ch;
+}
+.calc-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.calc-hero .dek {
+  margin-top: 20px; color: var(--muted); font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.65; max-width: 62ch;
+}
+.calc-hero .dek b { color: var(--ink); font-weight: 500; }
+
+.calc {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 48px);
+  padding: clamp(40px, 5vw, 64px) 0 clamp(64px, 8vw, 96px);
+  align-items: start;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: clamp(24px, 3vw, 36px);
+}
+.panel h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 24px); line-height: 1.15;
+  letter-spacing: -.01em; margin-bottom: 18px;
+}
+
+.ctrl { margin-bottom: 22px; }
+.ctrl:last-child { margin-bottom: 0; }
+.ctrl .lab {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px; margin-bottom: 8px;
+}
+.ctrl .lab b {
+  font-size: 14.5px; color: var(--ink); font-weight: 500;
+}
+.ctrl .lab .v {
+  font-family: "IBM Plex Mono", monospace; font-size: 13px;
+  color: var(--accent); letter-spacing: .04em;
+}
+.ctrl .hint {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  color: var(--faint); letter-spacing: .08em; margin-top: 6px;
+}
+.ctrl input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; background: var(--line);
+  border-radius: 4px; outline: none; cursor: pointer;
+}
+.ctrl input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  border: 2px solid #14110b;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.ctrl input[type="range"]::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  border: 2px solid #14110b;
+}
+.ctrl select, .ctrl input[type="number"] {
+  width: 100%; padding: 10px 12px;
+  background: var(--bg-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 8px;
+  font: inherit; font-size: 14px; outline: none;
+}
+.ctrl select:focus, .ctrl input[type="number"]:focus { border-color: var(--accent); }
+
+.seg {
+  display: flex; gap: 4px; background: var(--bg-2);
+  border: 1px solid var(--line); border-radius: 8px; padding: 3px;
+}
+.seg button {
+  flex: 1; padding: 8px 10px; font: inherit; font-size: 13px;
+  color: var(--muted); border: 0; background: transparent;
+  border-radius: 6px; cursor: pointer; transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+.seg button:hover { color: var(--ink); }
+.seg button.on { background: rgba(217,151,87,.14); color: var(--accent); }
+
+/* Verdict panel (right column, sticky) */
+.verdict {
+  position: sticky; top: 96px;
+  border-radius: var(--r); border: 1px solid var(--line-strong);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.07), transparent 60%),
+    var(--surface);
+  overflow: hidden;
+}
+.verdict-body { padding: clamp(28px, 3.4vw, 40px); }
+.v-label {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
+}
+.v-num {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(48px, 6vw, 72px); line-height: 1;
+  letter-spacing: -.02em; margin: 8px 0 6px; color: var(--ink);
+  transition: color .3s;
+}
+.v-num small { font-size: .42em; color: var(--faint); font-weight: 400; margin-left: 6px; }
+.v-sub {
+  color: var(--muted); font-size: 14.5px; line-height: 1.55;
+}
+.v-bar {
+  height: 8px; background: var(--bg-2); border-radius: 6px;
+  overflow: hidden; margin: 18px 0 10px;
+  border: 1px solid var(--line);
+}
+.v-bar i {
+  display: block; height: 100%; border-radius: 6px;
+  background: var(--accent); width: 0%;
+  transition: width .35s var(--ease), background .35s;
+}
+.v-scale {
+  display: flex; justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  color: var(--faint); letter-spacing: .06em;
+}
+
+.v-block {
+  margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line);
+}
+.v-block .k {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .16em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 8px; display: block;
+}
+.v-block .big {
+  font-family: "Fraunces", serif; font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.2; color: var(--ink); font-weight: 500;
+}
+.v-block p {
+  color: var(--muted); font-size: 13.5px; line-height: 1.6;
+  margin-top: 6px;
+}
+
+.v-insights { margin-top: 22px; display: grid; gap: 10px; }
+.v-insight {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 13.5px; line-height: 1.55; color: var(--ink);
+}
+.v-insight .pip {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); margin-top: 6px; flex-shrink: 0;
+}
+.v-insight.warn .pip { background: #e5736b; }
+.v-insight.good .pip { background: var(--signal); }
+.v-insight a { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+
+.v-live {
+  margin-top: 18px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  color: var(--faint); display: flex; align-items: center; gap: 8px;
+}
+.v-live .ld {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--signal); box-shadow: 0 0 8px var(--signal);
+  animation: vpulse 2s ease-in-out infinite;
+}
+@keyframes vpulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+
+@media (max-width: 900px) {
+  .calc { grid-template-columns: 1fr; gap: 32px; }
+  .verdict { position: static; }
+}

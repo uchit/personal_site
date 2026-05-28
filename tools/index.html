@@ -53,10 +53,12 @@
         </header>
 
         <p style="color:var(--muted);font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.75;max-width:60ch;margin-bottom:48px">
-          Each diagnostic asks 8&ndash;12 capability questions, scores on five levels, and returns three
-          prioritised next-moves keyed to where you land. Runs in your browser. Nothing stored.
-          Results are shareable via a URL hash &mdash; useful for a team to fill in independently and compare.
+          Six diagnostics &mdash; capability-scored, framework-cited &mdash; plus three live-slider
+          calculators. All run in your browser. Nothing stored. Results shareable via URL hash.
+          Anchored to <a href="/4-discipline-stack/" style="color:var(--ink);border-bottom:1px solid var(--accent)">The 4&#8209;Discipline Stack</a> and the <a href="/glossary/" style="color:var(--ink);border-bottom:1px solid var(--accent)">practitioner glossary</a>.
         </p>
+
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;margin-top:8px">Diagnostics</h3>
 
         <div class="writing-grid reveal">
           <a class="essay" href="/tools/devsecops-maturity.html">
@@ -94,6 +96,29 @@
             <h3>SRE Programme.</h3>
             <p>SLOs, error budgets, blast radius, on-call, postmortems, runbooks, chaos, capacity, toil, golden signals.</p>
             <span class="essay-cta">Run the diagnostic &rarr;</span>
+          </a>
+        </div>
+
+        <h3 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;margin-top:48px">Live calculators</h3>
+
+        <div class="writing-grid reveal">
+          <a class="essay" href="/tools/calculators/genai-cost.html">
+            <span class="essay-meta">GenAI &middot; live slider</span>
+            <h3>GenAI Cost-Per-Outcome.</h3>
+            <p>Tune model, tokens, cache hit rate, volume and success rate &mdash; see cost-per-resolved-task and annualised spend update live. Vendor pricing 2026-05.</p>
+            <span class="essay-cta">Open the calculator &rarr;</span>
+          </a>
+          <a class="essay" href="/tools/calculators/error-budget.html">
+            <span class="essay-meta">SRE &middot; live slider</span>
+            <h3>Error Budget.</h3>
+            <p>Input SLO, window, deploy cadence and change-fail rate &mdash; see error budget, expected burn rate and time-to-exhaustion. Google SRE Workbook alignment.</p>
+            <span class="essay-cta">Open the calculator &rarr;</span>
+          </a>
+          <a class="essay" href="/tools/calculators/commitment-optimiser.html">
+            <span class="essay-meta">Cloud / FinOps &middot; live slider</span>
+            <h3>Cloud Commitment Optimiser.</h3>
+            <p>Pick provider, set steady-state %, 1y/3y mix, All-Upfront share &mdash; see savings, lock-in risk and breakeven. AWS / Azure / GCP rates 2026-05.</p>
+            <span class="essay-cta">Open the calculator &rarr;</span>
           </a>
         </div>
       </div>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>GenAI Cost-Per-Outcome Calculator — Uchit Vyas</title>
+<meta name="description" content="Live calculator: model choice, tokens per call, cache hit rate, monthly volume → cost-per-resolved-task + annualised spend. Vendor pricing as of 2026-05." />
+<link rel="canonical" href="https://hellouchit.com/tools/calculators/genai-cost.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="GenAI Cost-Per-Outcome Calculator" />
+<meta property="og:description" content="See cost-per-resolved-task move as you tune model, tokens, cache and volume. Shareable URL." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<link rel="stylesheet" href="/css/calc.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="calc-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><span style="color:var(--accent)">GenAI Cost Calculator</span></nav>
+      <span class="eyebrow">Calculator &middot; GenAI</span>
+      <h1>GenAI <em>Cost&#8209;Per&#8209;Outcome</em> Calculator.</h1>
+      <p class="dek">
+        Tune model choice, tokens per call, cache hit rate, monthly volume and
+        success rate &mdash; see <b>cost-per-resolved-task</b> and annualised
+        spend update live. Vendor pricing as of <b>2026-05</b>, sourced from
+        the model providers&rsquo; published pages
+        (<a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Anthropic</a>,
+        <a href="https://openai.com/api/pricing/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">OpenAI</a>,
+        <a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Bedrock</a>,
+        <a href="https://cloud.google.com/vertex-ai/generative-ai/pricing" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Vertex</a>).
+        Aligned to the <a href="https://www.finops.org/wg/ai/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">FinOps for AI</a> cost-per-outcome framing.
+      </p>
+    </div></section>
+
+    <section><div class="wrap"><div class="calc">
+
+      <div class="panel">
+        <h2>Inputs</h2>
+
+        <div class="ctrl">
+          <div class="lab"><b>Model</b><span class="v" id="vModel">claude-sonnet-4-6</span></div>
+          <select id="model">
+            <optgroup label="Premium reasoning">
+              <option value="claude-opus-4-7">Claude Opus 4.7 &mdash; $15 / $75</option>
+              <option value="gpt-5">GPT-5 &mdash; $10 / $50</option>
+              <option value="gemini-2-5-pro">Gemini 2.5 Pro &mdash; $7 / $21</option>
+            </optgroup>
+            <optgroup label="Workhorse">
+              <option value="claude-sonnet-4-6" selected>Claude Sonnet 4.6 &mdash; $3 / $15</option>
+              <option value="gpt-4-1">GPT-4.1 &mdash; $2.5 / $10</option>
+              <option value="gemini-2-5-flash">Gemini 2.5 Flash &mdash; $0.30 / $2.50</option>
+            </optgroup>
+            <optgroup label="Cheap / fast">
+              <option value="claude-haiku-4-5">Claude Haiku 4.5 &mdash; $1 / $5</option>
+              <option value="gpt-4-1-mini">GPT-4.1 mini &mdash; $0.40 / $1.60</option>
+              <option value="llama-3-3-70b">Llama 3.3 70B (Bedrock) &mdash; $0.72 / $0.72</option>
+            </optgroup>
+            <optgroup label="Open">
+              <option value="self-hosted">Self-hosted (GPU amortised) &mdash; ~$0.15 / $0.15</option>
+            </optgroup>
+          </select>
+          <div class="hint">Per-1M tokens. Input / Output. Reflects public list pricing 2026-05.</div>
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Input tokens per call</b><span class="v" id="vIn">2,400</span></div>
+          <input type="range" id="inTok" min="100" max="50000" value="2400" step="100" />
+          <div class="hint">Includes system prompt, conversation, retrieved RAG context. Typical agent call: 8k-15k.</div>
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Output tokens per call</b><span class="v" id="vOut">350</span></div>
+          <input type="range" id="outTok" min="50" max="8000" value="350" step="50" />
+          <div class="hint">Typical chat: 200-500. Structured extraction: 50-200. Long generation: 1500+.</div>
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Prompt-cache hit rate</b><span class="v" id="vCache">60%</span></div>
+          <input type="range" id="cache" min="0" max="95" value="60" step="5" />
+          <div class="hint">Anthropic / Bedrock / OpenAI all bill cached input at ~10% of read price. RAG with shared context = high hit rate.</div>
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Calls per month</b><span class="v" id="vVol">500,000</span></div>
+          <input type="range" id="vol" min="1000" max="10000000" value="500000" step="1000" />
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Success rate (eval-graded)</b><span class="v" id="vOk">78%</span></div>
+          <input type="range" id="ok" min="20" max="100" value="78" step="1" />
+          <div class="hint">Percentage of calls that produce an acceptable outcome (per your eval set). Lower = retries inflate cost-per-outcome.</div>
+        </div>
+
+        <div class="ctrl">
+          <div class="lab"><b>Sector lens</b></div>
+          <div class="seg" id="sector">
+            <button data-s="tech" class="on">Tech</button>
+            <button data-s="fsi">FSI</button>
+            <button data-s="gov">Gov</button>
+            <button data-s="health">Health</button>
+            <button data-s="retail">Retail</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="verdict">
+        <div class="verdict-body">
+          <span class="v-label">Cost per resolved task</span>
+          <div class="v-num"><span id="cpr">0.00</span> <small id="curr">¢</small></div>
+          <div class="v-sub" id="cprSub">&mdash;</div>
+
+          <div class="v-bar"><i id="cprBar"></i></div>
+          <div class="v-scale"><span>&lt; 0.1¢ Elite</span><span>1¢ Good</span><span>5¢ Watch</span><span>&gt; 20¢ Investigate</span></div>
+
+          <div class="v-block">
+            <span class="k">Monthly spend</span>
+            <div class="big"><span id="monthly">$0</span></div>
+            <p id="monthlySub">For the volume + model + cache mix selected.</p>
+          </div>
+
+          <div class="v-block">
+            <span class="k">Annualised</span>
+            <div class="big"><span id="annual">$0</span></div>
+          </div>
+
+          <div class="v-block">
+            <span class="k">Sector lens</span>
+            <div id="lens" class="v-sub" style="margin-top:6px;line-height:1.65">&mdash;</div>
+          </div>
+
+          <div class="v-insights" id="insights"></div>
+
+          <div class="v-live"><span class="ld"></span> Live &middot; pricing 2026-05 &middot; <a href="#" id="share" style="color:var(--accent);border-bottom:1px dotted var(--accent);margin-left:6px">copy shareable link</a></div>
+        </div>
+      </aside>
+
+    </div></div></section>
+
+    <section style="padding-bottom:clamp(64px,8vw,96px)"><div class="wrap" style="max-width:780px">
+      <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,2.8vw,30px);margin-bottom:14px">How the calculator works</h2>
+      <p style="color:var(--muted);font-size:15.5px;line-height:1.7;margin-bottom:14px">
+        For every call: <code style="font-family:'IBM Plex Mono',monospace;font-size:.9em;background:rgba(255,255,255,.04);padding:1px 6px;border-radius:4px">cost = input&times;(1&minus;hit)&times;in_price + input&times;hit&times;cached_price + output&times;out_price</code>.
+        <b style="color:var(--ink)">Cost-per-resolved-task</b> divides by your eval-graded success rate &mdash; a call that doesn&rsquo;t resolve still costs full tokens, plus the retry. Monthly = per-call &times; volume.
+      </p>
+      <p style="color:var(--muted);font-size:15.5px;line-height:1.7;margin-bottom:14px">
+        Cached input is billed at ~10% of standard input across Anthropic, Bedrock, OpenAI and Vertex prompt caching. High cache-hit rate (common in RAG with shared system+corpus context) drops cost dramatically &mdash; this is the largest free lever most teams haven&rsquo;t pulled.
+      </p>
+      <p style="color:var(--muted);font-size:15.5px;line-height:1.7">
+        Pricing is approximate, rounded, and reflects public list-price as of 2026-05. Enterprise contracts, batch APIs, regional pricing and reserved-capacity discounts shift these materially. Use this for shape, not for procurement.
+      </p>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a> &middot; <a href="/writing/genai-9-controls.html">GenAI nine controls &rarr;</a></span></div></footer>
+
+<script>
+// Pricing per 1M tokens: [input, output, cached_input]. Cached typically 10% of input.
+const PRICES = {
+  "claude-opus-4-7":   [15.00, 75.00, 1.50],
+  "gpt-5":             [10.00, 50.00, 1.25],
+  "gemini-2-5-pro":    [ 7.00, 21.00, 0.70],
+  "claude-sonnet-4-6": [ 3.00, 15.00, 0.30],
+  "gpt-4-1":           [ 2.50, 10.00, 0.625],
+  "gemini-2-5-flash":  [ 0.30,  2.50, 0.075],
+  "claude-haiku-4-5":  [ 1.00,  5.00, 0.10],
+  "gpt-4-1-mini":      [ 0.40,  1.60, 0.10],
+  "llama-3-3-70b":     [ 0.72,  0.72, 0.10],
+  "self-hosted":       [ 0.15,  0.15, 0.15]
+};
+
+const SECTORS = {
+  tech:   "For tech, the question is gross margin. Sub-1¢ cost-per-outcome on a customer-facing feature is the difference between feature-driven growth and feature-driven margin compression. Cache hit rate is your most under-pulled lever.",
+  fsi:    "In FSI, <a href='https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management' target='_blank' rel='noopener'>APRA CPS 230</a> names cost concentration as material operational risk. Document model-provider dependency. Multi-provider routing isn't just for cost &mdash; it's for resilience.",
+  gov:    "Government spend is publicly visible. Cost-per-outcome is the only metric a parliamentary committee will recognise &mdash; not cost-per-token. Pin model versions; expect FOI on prompt registry.",
+  health: "Health workloads carry PHI premiums (residency, encrypted-at-rest specifics). Inference cost is often dwarfed by the data-handling envelope; watch storage & egress, not just inference.",
+  retail: "Retail has peak-event spikes (Black Friday, EOFY). Provision for 5-10&times; your steady-state. Bedrock/Vertex provisioned-throughput vs on-demand is the right Q4 question."
+};
+
+const $ = s => document.querySelector(s);
+const state = { model:"claude-sonnet-4-6", inTok:2400, outTok:350, cache:60, vol:500000, ok:78, sector:"tech" };
+
+function fmtMoney(n) {
+  if (n >= 1e6) return "$" + (n/1e6).toFixed(2) + "M";
+  if (n >= 1e3) return "$" + (n/1e3).toFixed(1) + "k";
+  if (n >= 1)   return "$" + n.toFixed(2);
+  if (n >= 0.01) return (n*100).toFixed(2) + "¢";
+  return (n*100).toFixed(4) + "¢";
+}
+function fmtInt(n) { return n.toLocaleString(); }
+
+function compute() {
+  const p = PRICES[state.model];
+  const inT = state.inTok, outT = state.outTok, hit = state.cache/100;
+  // cost in dollars per call
+  const inCost  = (inT * (1-hit) * p[0] / 1e6) + (inT * hit * p[2] / 1e6);
+  const outCost = (outT * p[1] / 1e6);
+  const perCall = inCost + outCost;
+  const okPct = state.ok/100;
+  const perOutcome = okPct > 0 ? perCall / okPct : perCall;
+  const monthly = perCall * state.vol;
+  const annual = monthly * 12;
+
+  // Display
+  $("#vModel").textContent = state.model;
+  $("#vIn").textContent = fmtInt(state.inTok);
+  $("#vOut").textContent = fmtInt(state.outTok);
+  $("#vCache").textContent = state.cache + "%";
+  $("#vVol").textContent = fmtInt(state.vol);
+  $("#vOk").textContent = state.ok + "%";
+
+  // Cost-per-resolved-task
+  const cprCents = perOutcome * 100;
+  let cprDisp, currDisp;
+  if (cprCents >= 100) { cprDisp = "$" + (cprCents/100).toFixed(2); currDisp = ""; }
+  else if (cprCents >= 1) { cprDisp = cprCents.toFixed(2); currDisp = "¢"; }
+  else { cprDisp = cprCents.toFixed(3); currDisp = "¢"; }
+  $("#cpr").textContent = cprDisp;
+  $("#curr").textContent = currDisp;
+
+  // Cost bar: log scale 0.01¢ → 100¢
+  const v = Math.log10(Math.max(cprCents, 0.001));
+  const pct = Math.min(100, Math.max(0, (v + 3) / 5 * 100));
+  $("#cprBar").style.width = pct + "%";
+  $("#cprBar").style.background = cprCents < 1 ? "var(--signal)" : cprCents < 5 ? "var(--accent)" : "#e5736b";
+
+  // Sub
+  let subTxt;
+  if (cprCents < 0.1) subTxt = "Elite tier. Feature can scale to 10× volume without margin pressure.";
+  else if (cprCents < 1) subTxt = "Healthy. Most consumer-facing GenAI features sustainable.";
+  else if (cprCents < 5) subTxt = "Watch. Profitable only at high-value outcomes. Audit cache hit + model routing.";
+  else if (cprCents < 20) subTxt = "Investigate. Likely over-modeled or under-cached. 30-60% reduction usually available.";
+  else subTxt = "Critical. Re-architect before adding more volume.";
+  $("#cprSub").textContent = subTxt;
+
+  $("#monthly").textContent = fmtMoney(monthly);
+  $("#annual").textContent = fmtMoney(annual);
+  $("#lens").innerHTML = SECTORS[state.sector];
+
+  // Insights
+  const ins = $("#insights"); ins.innerHTML = "";
+  function add(kind, html) {
+    const el = document.createElement("div"); el.className = "v-insight " + kind;
+    el.innerHTML = '<span class="pip"></span><span>' + html + '</span>';
+    ins.appendChild(el);
+  }
+  if (state.cache < 30 && inT > 1000) add("warn", "Cache hit rate &lt; 30% with large input. Prompt caching could cut cost by 40-70%.");
+  if (state.ok < 60) add("warn", "Success rate &lt; 60% &mdash; retries dominate cost-per-outcome. Eval gap or model choice issue.");
+  if (state.model.includes("opus") || state.model === "gpt-5") add("warn", "Premium model on volume &gt;100k/mo. Route 60-80% to a workhorse model with eval-gated fallback.");
+  if (state.outTok > 2000) add("warn", "High output token count. Most cost is generation, not retrieval. Check whether shorter structured output works.");
+  if (cprCents < 0.5 && state.vol > 100000) add("good", "Strong cost shape. Lever now: track quality-per-dollar to defend feature against premium-model creep.");
+  if (state.model === "self-hosted") add("good", "Self-hosted economics assume amortised GPU. Watch utilisation &mdash; below 40% sustained, hosted APIs usually win.");
+  if (ins.children.length === 0) add("good", "Healthy configuration. Track <a href='/writing/genai-9-controls.html'>cost-per-outcome</a> as a primary KPI; let model routing tune.");
+
+  // URL hash for sharing
+  const h = `m=${state.model}&i=${state.inTok}&o=${state.outTok}&c=${state.cache}&v=${state.vol}&k=${state.ok}&s=${state.sector}`;
+  history.replaceState(null, "", "#" + h);
+}
+
+function fromHash() {
+  const h = location.hash.replace(/^#/, "");
+  if (!h) return;
+  h.split("&").forEach(kv => {
+    const [k, v] = kv.split("=");
+    if (k === "m" && PRICES[v]) state.model = v;
+    if (k === "i") state.inTok = parseInt(v) || state.inTok;
+    if (k === "o") state.outTok = parseInt(v) || state.outTok;
+    if (k === "c") state.cache = parseInt(v) ?? state.cache;
+    if (k === "v") state.vol = parseInt(v) || state.vol;
+    if (k === "k") state.ok = parseInt(v) || state.ok;
+    if (k === "s" && SECTORS[v]) state.sector = v;
+  });
+  $("#model").value = state.model;
+  $("#inTok").value = state.inTok;
+  $("#outTok").value = state.outTok;
+  $("#cache").value = state.cache;
+  $("#vol").value = state.vol;
+  $("#ok").value = state.ok;
+  document.querySelectorAll("#sector button").forEach(b => b.classList.toggle("on", b.dataset.s === state.sector));
+}
+
+// Wire
+$("#model").addEventListener("change", e => { state.model = e.target.value; compute(); });
+$("#inTok").addEventListener("input", e => { state.inTok = +e.target.value; compute(); });
+$("#outTok").addEventListener("input", e => { state.outTok = +e.target.value; compute(); });
+$("#cache").addEventListener("input", e => { state.cache = +e.target.value; compute(); });
+$("#vol").addEventListener("input", e => { state.vol = +e.target.value; compute(); });
+$("#ok").addEventListener("input", e => { state.ok = +e.target.value; compute(); });
+document.querySelectorAll("#sector button").forEach(b => b.addEventListener("click", () => {
+  state.sector = b.dataset.s;
+  document.querySelectorAll("#sector button").forEach(x => x.classList.remove("on"));
+  b.classList.add("on"); compute();
+}));
+$("#share").addEventListener("click", e => {
+  e.preventDefault();
+  const url = location.href;
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => {
+    e.target.textContent = "link copied ✓";
+    setTimeout(() => e.target.textContent = "copy shareable link", 1800);
+  }); else prompt("Copy this URL:", url);
+});
+
+fromHash();
+compute();
+</script>
+</body>
+</html>
