@@ -74,6 +74,16 @@
   <!-- Reading list -->
   <url><loc>https://hellouchit.com/reading/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
+  <!-- Decision trees -->
+  <url><loc>https://hellouchit.com/decisions/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hellouchit.com/decisions/ai-gateway.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://hellouchit.com/decisions/llm-integration-pattern.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://hellouchit.com/decisions/policy-engine.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hellouchit.com/decisions/tenancy-model.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hellouchit.com/decisions/compute-platform.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hellouchit.com/decisions/service-communication.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://hellouchit.com/decisions/service-decomposition.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
   <!-- Sector bundles -->
   <url><loc>https://hellouchit.com/for/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hellouchit.com/for/banks/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>

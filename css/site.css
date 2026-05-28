@@ -1005,3 +1005,93 @@ body { overflow-x: hidden; max-width: 100vw; }
   }
   .dot::after { animation: none; }
 }
+
+/* ============================================================
+   Mobile safety layer — site-wide guardrails. Loaded on every page.
+   ============================================================ */
+
+/* No horizontal scroll. Period. */
+html, body { max-width: 100vw; overflow-x: clip; }
+
+/* Long URLs, code, and monospace content must wrap, not overflow */
+a, code, kbd, samp, .essay-meta, .meta, .crumb, .e-meta, .d-hero .meta {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Code blocks can scroll horizontally inside their container, not the page */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Tables (e.g. comparison tables in essays) scroll inside a container */
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Images never overflow */
+img, svg, video, iframe { max-width: 100%; height: auto; }
+
+/* Touch targets: minimum 44×44 for all interactive elements on small screens */
+@media (max-width: 640px) {
+  button, .essay-cta, .nav-cta, .secbadge, .cmdk-item,
+  .d-opt, .reset, .nc, .dx-card, .s-card, .nc { min-height: 44px; }
+
+  /* Hero h1 must fit without forcing scroll */
+  h1 { word-break: break-word; hyphens: auto; }
+
+  /* Pros/cons grid in decision leaves: stack */
+  .d-leaf .pros-cons { grid-template-columns: 1fr !important; gap: 14px; }
+
+  /* Compound diagnostic + sector card grids: single column when very narrow */
+  .dx-grid, .s-cards, .writing-grid, .next-cards { grid-template-columns: 1fr !important; }
+
+  /* Tighten heavy section padding so above-fold content shows */
+  .d-hero, .s-hero, .r-hero, .m-hero { padding-top: clamp(96px, 18vw, 140px); }
+
+  /* Decision-tree question card: ease the radius/padding */
+  .d-q { padding: 22px 18px; border-radius: 10px; }
+  .d-opt { padding: 16px 16px; border-radius: 8px; }
+  .d-opt .ohead { flex-direction: column; gap: 4px; align-items: flex-start; }
+  .d-opt .ohead h3 { font-size: 17px; }
+  .d-opt .otag { font-size: 10px; }
+
+  /* Path breadcrumb: easier to scan, smaller chips */
+  .d-path .wrap { font-size: 10.5px; }
+  .d-path .step { padding: 3px 8px; }
+  .d-path .reset { margin-left: 0; margin-top: 6px; width: 100%; text-align: center; }
+
+  /* Maturity benchmark + nav-ctx blocks: trim padding */
+  .m-bench, .m-nav-ctx { padding: 14px 16px; }
+  .m-nav-ctx { font-size: 10.5px; }
+
+  /* Reading-list rows already collapse via their own MQ; reinforce */
+  .r-item { grid-template-columns: 1fr; gap: 6px; }
+  .r-item .kind { padding-top: 0; }
+
+  /* Essay foot rows wrap cleanly */
+  .e-foot .wrap > .row, .e-foot .wrap { font-size: 13px; }
+
+  /* Footer brand row */
+  .foot-inner { flex-direction: column; gap: 10px; text-align: center; align-items: center; }
+
+  /* Cmd-K trigger smaller on mobile (no clutter) */
+  .cmdk-trigger { right: 12px; bottom: 12px; padding: 8px 12px; font-size: 12px; }
+
+  /* Tier nav-ctx labels wrap, not crush */
+  .m-nav-ctx b { display: inline-block; margin-right: 4px; }
+}
+
+/* Very narrow phones (iPhone SE, older Androids) */
+@media (max-width: 380px) {
+  .d-hero h1, .s-hero h1, .r-hero h1, .m-hero h1, .e-body h1 { font-size: 30px !important; line-height: 1.08; }
+  .d-q h2, .d-leaf h2 { font-size: 22px !important; }
+  .nav-inner { padding-left: 14px; padding-right: 14px; }
+  .brand .blab { display: none; } /* keep only monogram */
+  .crumb, .d-hero .crumb { font-size: 10.5px; }
+}
