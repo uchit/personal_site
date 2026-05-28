@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Regulation × Control × Tooling Dataset &mdash; Uchit Vyas</title>
+<meta name="description" content="A curated, browsable map of 56 regulatory controls across 28 regulations with the tools that implement them and the evidence shape that passes audit. Free, CC BY 4.0, no signup." />
+<link rel="canonical" href="https://hellouchit.com/dataset/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Regulation &times; Control &times; Tooling Dataset &mdash; Uchit Vyas" />
+<meta property="og:description" content="The browsable controls-and-tooling map for regulated industries. 56 controls × 28 regulations × 261+ tools." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/dataset.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ds-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Tools</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Dataset</span></nav>
+      <span class="eyebrow">Reference dataset</span>
+      <h1>Regulation &times; control &times; <em>tooling</em>.</h1>
+      <p class="dek">A curated, browsable map: <b>56 concrete controls</b> across <b>28 regulations</b>, each with the tooling options that implement it and the evidence shape that passes audit. Designed so you can answer "<em>which tool actually closes APRA CPS 234's workload-identity control, and what evidence do I produce?</em>" in under a minute.</p>
+      <div class="meta">
+        <span>Updated <b>2026-05-30</b></span>
+        <span>License <b>CC BY 4.0</b></span>
+        <span><a href="/dataset/dataset.json" target="_blank">JSON</a></span>
+        <span><a href="/dataset/dataset.csv" target="_blank">CSV</a></span>
+        <span><a href="https://github.com/uchit/personal_site/blob/main/dataset/dataset.json">Source on GitHub</a></span>
+      </div>
+    </div></section>
+
+    <div class="ds-filters">
+      <div class="wrap">
+        <div class="ds-fgroup">
+          <span class="glab">Regulation</span>
+          <button class="ds-chip" data-filter="reg" data-value="cps234">APRA CPS 234 <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="cps230">APRA CPS 230 <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="soci">SOCI Act 2018+ <span class="count">5</span></button><button class="ds-chip" data-filter="reg" data-value="ai_safety_au">AU AI Safety Std <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="privacy_au">AU Privacy Act <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="e8">ASD Essential 8 <span class="count">10</span></button><button class="ds-chip" data-filter="reg" data-value="irap">IRAP <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="eu_ai_act">EU AI Act <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="dora">EU DORA <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="nis2">EU NIS2 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="gdpr">EU GDPR <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="circia">US CIRCIA <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="hipaa">HIPAA <span class="count">8</span></button><button class="ds-chip" data-filter="reg" data-value="fda_samd">FDA SaMD <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="cisa_ssa">CISA SSA <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="ssdf">NIST SSDF (800-218) <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="ai_rmf">NIST AI RMF <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="sp80053">NIST SP 800-53 <span class="count">18</span></button><button class="ds-chip" data-filter="reg" data-value="iso42001">ISO/IEC 42001 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="iso27001">ISO/IEC 27001 <span class="count">26</span></button><button class="ds-chip" data-filter="reg" data-value="slsa">SLSA v1.0 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="owasp_llm">OWASP LLM Top 10 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="atlas">MITRE ATLAS <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="bcbs239">BCBS 239 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="pci">PCI DSS 4.0 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="iec62443">IEC 62443 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iso13485">ISO 13485 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iec62304">IEC 62304 <span class="count">1</span></button>
+        </div>
+        <div class="ds-fgroup">
+          <span class="glab">Category</span>
+          <button class="ds-chip" data-filter="cat" data-value="Identity & access">Identity & access <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Supply chain & provenance">Supply chain & provenance <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Data governance">Data governance <span class="count">6</span></button><button class="ds-chip" data-filter="cat" data-value="Audit & logging">Audit & logging <span class="count">1</span></button><button class="ds-chip" data-filter="cat" data-value="AI evals & guardrails">AI evals & guardrails <span class="count">9</span></button><button class="ds-chip" data-filter="cat" data-value="Resilience & continuity">Resilience & continuity <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Change & release management">Change & release management <span class="count">4</span></button><button class="ds-chip" data-filter="cat" data-value="Vulnerability management">Vulnerability management <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Cryptography & secrets">Cryptography & secrets <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Access reviews">Access reviews <span class="count">1</span></button><button class="ds-chip" data-filter="cat" data-value="Incident response">Incident response <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Third-party risk">Third-party risk <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Operational risk">Operational risk <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Observability">Observability <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Workload isolation">Workload isolation <span class="count">6</span></button>
+        </div>
+        <div class="ds-fgroup">
+          <span class="glab">Sector</span>
+          <button class="ds-chip" data-filter="sector" data-value="banks">banks <span class="count">29</span></button><button class="ds-chip" data-filter="sector" data-value="government">government <span class="count">26</span></button><button class="ds-chip" data-filter="sector" data-value="healthcare">healthcare <span class="count">22</span></button><button class="ds-chip" data-filter="sector" data-value="critical-infrastructure">critical infrastructure <span class="count">25</span></button>
+        </div>
+        <div class="ds-fgroup">
+          <input type="search" class="ds-search" placeholder="Search controls, tools, surfaces…" aria-label="Search dataset" />
+          <button class="ds-clear" type="button">Clear all</button>
+          <span class="ds-status">Showing <b id="ds-count">56</b> of 56</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="ds-table"><div class="wrap">
+      <div class="ds-rows" id="ds-rows">
+
+    <div class="ds-row" data-id="r001"
+         data-regs="cps234 e8 iso27001 soci"
+         data-cat="Identity & access"
+         data-sectors="banks government critical-infrastructure"
+         data-text="workload identity (no static long-lived credentials) cloud · ci/cd · k8s identity & access">
+      <div class="reg">APRA CPS 234<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Workload identity (no static long-lived credentials)</div>
+        <span class="ctrl-sub">Cloud · CI/CD · K8s</span>
+      </div>
+      <div class="cat">Identity & access</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS IAM Roles for Service Accounts / IRSA<span class="ttype">managed</span></span><span class="tool managed">GCP Workload Identity Federation<span class="ttype">managed</span></span><span class="tool managed">Azure Federated Credentials (OIDC)<span class="ttype">managed</span></span><span class="tool oss">SPIFFE / SPIRE<span class="ttype">oss</span></span><span class="tool managed">GitHub Actions OIDC<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>IAM policy export showing zero static long-lived credentials in the path. OIDC trust policy showing federated identity provider configured. Rotation logs from any remaining service accounts (target: none in 12 months).</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Often confused with credential rotation — rotation alone doesn't close the audit finding. The control requires federated identity (the workload proves who it is to the cloud), not just shorter-lived static creds. Foundation for SOCI 2022 SLACIP-amendment maturity.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ASD Essential 8, ISO/IEC 27001, SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r002"
+         data-regs="cps234 iso27001 sp80053"
+         data-cat="Identity & access"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="least-privilege iam (no wildcard policies) cloud · k8s identity & access">
+      <div class="reg">APRA CPS 234<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Least-privilege IAM (no wildcard policies)</div>
+        <span class="ctrl-sub">Cloud · K8s</span>
+      </div>
+      <div class="cat">Identity & access</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS IAM Access Analyzer<span class="ttype">managed</span></span><span class="tool managed">GCP IAM Recommender<span class="ttype">managed</span></span><span class="tool managed">Azure Entra Permission Management<span class="ttype">managed</span></span><span class="tool oss">Cloudsplaining<span class="ttype">oss</span></span><span class="tool oss">Policy Sentry<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Static + runtime analysis report: count of wildcard (*) actions in production policies, trending to zero. AccessAnalyzer findings cleared monthly.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Wildcards in production IAM are the most common audit finding. The control is *demonstrated* least-privilege (Access Analyzer says so), not *intended* least-privilege.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r003"
+         data-regs="e8 iso27001 sp80053"
+         data-cat="Identity & access"
+         data-sectors="banks government critical-infrastructure"
+         data-text="privileged access management (pam) for breakglass cloud · on-prem identity & access">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Privileged access management (PAM) for breakglass</div>
+        <span class="ctrl-sub">Cloud · On-prem</span>
+      </div>
+      <div class="cat">Identity & access</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">HashiCorp Boundary<span class="ttype">oss</span></span><span class="tool managed">AWS IAM Identity Center + permission sets<span class="ttype">managed</span></span><span class="tool commercial">Teleport<span class="ttype">commercial</span></span><span class="tool commercial">CyberArk PAM<span class="ttype">commercial</span></span><span class="tool managed">Azure PIM<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Just-in-time access requests log. Approval audit trail. Session recording for production breakglass. Account-of-last-resort tested quarterly.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>E8 ML2+ requires PAM, not 'we have admins with persistent access we trust.'</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r004"
+         data-regs="hipaa gdpr privacy_au iso27001"
+         data-cat="Identity & access"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="mfa enforced for all human access (no exceptions) identity provider identity & access">
+      <div class="reg">HIPAA<span class="reg-jur">US +3</span></div>
+      <div>
+        <div class="ctrl">MFA enforced for all human access (no exceptions)</div>
+        <span class="ctrl-sub">Identity provider</span>
+      </div>
+      <div class="cat">Identity & access</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Okta<span class="ttype">commercial</span></span><span class="tool managed">Microsoft Entra ID<span class="ttype">managed</span></span><span class="tool managed">Google Workspace 2SV / Titan<span class="ttype">managed</span></span><span class="tool commercial">Duo Security<span class="ttype">commercial</span></span><span class="tool standard">YubiKey / WebAuthn passkeys<span class="ttype">standard</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Conditional access policy export. Zero users with MFA-disabled status. WebAuthn / passkey adoption % trending up; SMS/voice OTP trending to zero.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>SMS-OTP no longer counts as strong MFA per NIST SP 800-63B Revision 4 draft. Passkeys / hardware tokens are the target.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU GDPR, AU Privacy Act, ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r005"
+         data-regs="slsa ssdf cisa_ssa cps234"
+         data-cat="Supply chain & provenance"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="signed build provenance (slsa l2+) ci/cd supply chain & provenance">
+      <div class="reg">SLSA v1.0<span class="reg-jur">INTL +3</span></div>
+      <div>
+        <div class="ctrl">Signed build provenance (SLSA L2+)</div>
+        <span class="ctrl-sub">CI/CD</span>
+      </div>
+      <div class="cat">Supply chain & provenance</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Sigstore (cosign + Rekor + Fulcio)<span class="ttype">oss</span></span><span class="tool managed">GitHub Actions attestations<span class="ttype">managed</span></span><span class="tool managed">GitLab CI build attestations<span class="ttype">managed</span></span><span class="tool oss">Tekton Chains<span class="ttype">oss</span></span><span class="tool standard">in-toto attestations<span class="ttype">standard</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Signed in-toto / SLSA provenance attached to every production artefact. Rekor transparency log entry for every signed artefact. Verification step in deploy pipeline that *blocks* if signature absent or invalid.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>SLSA L2 = signed provenance; L3 = hardened builder (isolated, ephemeral). L3 needed for US-federal procurement under CISA SSA in many cases.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SSDF (800-218), CISA SSA, APRA CPS 234</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r006"
+         data-regs="ssdf cisa_ssa cps234 dora nis2 soci"
+         data-cat="Supply chain & provenance"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="sbom emission + kev-driven owner-alert loop ci/cd · runtime supply chain & provenance">
+      <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL +5</span></div>
+      <div>
+        <div class="ctrl">SBOM emission + KEV-driven owner-alert loop</div>
+        <span class="ctrl-sub">CI/CD · Runtime</span>
+      </div>
+      <div class="cat">Supply chain & provenance</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Syft (SPDX/CycloneDX SBOM)<span class="ttype">oss</span></span><span class="tool oss">OWASP Dependency-Track<span class="ttype">oss</span></span><span class="tool oss">GUAC (SBOM graph)<span class="ttype">oss</span></span><span class="tool commercial">Chainguard Enforce<span class="ttype">commercial</span></span><span class="tool commercial">Snyk<span class="ttype">commercial</span></span><span class="tool oss">Trivy<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>SBOM per artefact stored centrally. CISA KEV catalogue subscribed; on match, owner-of-service alerted within minutes (not central security inbox). MTTR for KEV-listed CVEs measured and trending down.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Emitting SBOMs is necessary but not sufficient. The audit-passing control is the *loop*: SBOM → vulnerability → owner-alert → patch within SLA. Pure SBOM-collection = shelfware.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> CISA SSA, APRA CPS 234, EU DORA, EU NIS2, SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r007"
+         data-regs="slsa ssdf"
+         data-cat="Supply chain & provenance"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="verified image signatures at admission k8s admission supply chain & provenance">
+      <div class="reg">SLSA v1.0<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Verified image signatures at admission</div>
+        <span class="ctrl-sub">K8s admission</span>
+      </div>
+      <div class="cat">Supply chain & provenance</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Kyverno (verifyImages)<span class="ttype">oss</span></span><span class="tool oss">Sigstore Policy Controller<span class="ttype">oss</span></span><span class="tool oss">Connaisseur<span class="ttype">oss</span></span><span class="tool managed">AWS Signer + ECR<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Admission-controller logs showing rejection of unsigned/untrusted images. Policy-as-code repo defining trusted signers + repositories. Test workload with bad signature must fail.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Verifying signatures at deploy-time, not at scan-time. Catches the malicious-rebuild and tampered-mirror attack class.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SSDF (800-218)</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r008"
+         data-regs="ssdf"
+         data-cat="Supply chain & provenance"
+         data-sectors="government critical-infrastructure"
+         data-text="hermetic / reproducible builds ci/cd supply chain & provenance">
+      <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL</span></div>
+      <div>
+        <div class="ctrl">Hermetic / reproducible builds</div>
+        <span class="ctrl-sub">CI/CD</span>
+      </div>
+      <div class="cat">Supply chain & provenance</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Bazel<span class="ttype">oss</span></span><span class="tool oss">Nix / Nixpkgs<span class="ttype">oss</span></span><span class="tool oss">Guix<span class="ttype">oss</span></span><span class="tool oss">Docker BuildKit (with --no-cache + pinned base)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Same source produces byte-identical artefact across builds. Diffoscope output showing no drift. CI configured to reject non-hermetic dependencies.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Hard to reach for most teams; necessary for the most exposed federal / defence workloads (SLSA L4).</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r009"
+         data-regs="ssdf iso27001"
+         data-cat="Supply chain & provenance"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="locked dependency versions (no floating tags / ranges in prod) source · ci/cd supply chain & provenance">
+      <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Locked dependency versions (no floating tags / ranges in prod)</div>
+        <span class="ctrl-sub">Source · CI/CD</span>
+      </div>
+      <div class="cat">Supply chain & provenance</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Renovate<span class="ttype">oss</span></span><span class="tool managed">Dependabot<span class="ttype">managed</span></span><span class="tool standard">npm shrinkwrap / package-lock<span class="ttype">standard</span></span><span class="tool oss">pip-tools / uv lock<span class="ttype">oss</span></span><span class="tool oss">Bazel maven_install (with shas)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Lockfile present + committed for every project. CI rejects builds whose lockfile is older than X weeks or where dependencies drift from lock.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Floating tags (:latest, ^1.x) make supply chain unsafe at any speed. Lockfile + freshness SLA is the control.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r010"
+         data-regs="bcbs239 gdpr privacy_au hipaa"
+         data-cat="Data governance"
+         data-sectors="banks"
+         data-text="data lineage (column-level) data platform data governance">
+      <div class="reg">BCBS 239<span class="reg-jur">INTL +3</span></div>
+      <div>
+        <div class="ctrl">Data lineage (column-level)</div>
+        <span class="ctrl-sub">Data platform</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">OpenLineage<span class="ttype">oss</span></span><span class="tool oss">Marquez<span class="ttype">oss</span></span><span class="tool commercial">Collibra<span class="ttype">commercial</span></span><span class="tool commercial">dbt + dbt docs lineage graph<span class="ttype">commercial</span></span><span class="tool commercial">Atlan<span class="ttype">commercial</span></span><span class="tool managed">Microsoft Purview<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Column-level lineage graph from source-of-truth to downstream consumers. BCBS 239 risk-aggregation reports traceable to source systems with timestamp.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>BCBS 239 has been live since 2016 and is still failed by most G-SIBs at audit. Lineage at column level (not table level) is the bar.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU GDPR, AU Privacy Act, HIPAA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r011"
+         data-regs="gdpr privacy_au hipaa"
+         data-cat="Data governance"
+         data-sectors="all"
+         data-text="data subject access / deletion (dsar) within statutory window all data stores data governance">
+      <div class="reg">EU GDPR<span class="reg-jur">EU +2</span></div>
+      <div>
+        <div class="ctrl">Data subject access / deletion (DSAR) within statutory window</div>
+        <span class="ctrl-sub">All data stores</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">OneTrust<span class="ttype">commercial</span></span><span class="tool commercial">BigID<span class="ttype">commercial</span></span><span class="tool commercial">DataGrail<span class="ttype">commercial</span></span><span class="tool commercial">Transcend<span class="ttype">commercial</span></span><span class="tool managed">Custom RPC + queue per data domain<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Time-bounded DSAR pipeline. Tested quarterly. Per-data-domain owners with documented response SLAs. Audit log of every DSAR fulfilled.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Statutory windows: GDPR 30 days, AU Privacy Act 30 days (under reform), HIPAA 30 days for access requests. Untested DSAR pipelines fail at first regulator-driven test.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU Privacy Act, HIPAA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r012"
+         data-regs="gdpr privacy_au hipaa"
+         data-cat="Data governance"
+         data-sectors="all"
+         data-text="data classification + handling rules encoded data platform · all apps data governance">
+      <div class="reg">EU GDPR<span class="reg-jur">EU +2</span></div>
+      <div>
+        <div class="ctrl">Data classification + handling rules encoded</div>
+        <span class="ctrl-sub">Data platform · All apps</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Microsoft Purview Information Protection<span class="ttype">managed</span></span><span class="tool managed">Google DLP<span class="ttype">managed</span></span><span class="tool managed">AWS Macie<span class="ttype">managed</span></span><span class="tool commercial">Immuta<span class="ttype">commercial</span></span><span class="tool oss">OpenMetadata (with classification tags)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Every data asset tagged. Handling rules (encryption, retention, residency) inherited from classification. DLP rules tested via canary records.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>The control is not 'we have a data classification standard'. It's 'every dataset wears its classification and the platform enforces handling rules.'</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU Privacy Act, HIPAA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r013"
+         data-regs="gdpr privacy_au"
+         data-cat="Data governance"
+         data-sectors="banks government healthcare"
+         data-text="data residency / sovereignty (per-tenant region pinning) cloud infra data governance">
+      <div class="reg">EU GDPR<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">Data residency / sovereignty (per-tenant region pinning)</div>
+        <span class="ctrl-sub">Cloud infra</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Local Zones / AWS Wavelength<span class="ttype">managed</span></span><span class="tool managed">Azure sovereign cloud regions<span class="ttype">managed</span></span><span class="tool managed">GCP region restrictions (Org Policy)<span class="ttype">managed</span></span><span class="tool managed">Cloudflare data localisation suite<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Tenant-to-region routing table. Network policies that block egress to other regions. Sample request trace showing data stays in-region end-to-end.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Soft-residency (claim) vs hard-residency (architecturally enforceable). Auditors increasingly want the latter.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU Privacy Act</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r014"
+         data-regs="eu_ai_act iso42001 ai_rmf ai_safety_au"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="eval-set gating in ci for ai applications ci/cd ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +3</span></div>
+      <div>
+        <div class="ctrl">Eval-set gating in CI for AI applications</div>
+        <span class="ctrl-sub">CI/CD</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Promptfoo<span class="ttype">oss</span></span><span class="tool commercial">LangSmith (eval suites)<span class="ttype">commercial</span></span><span class="tool oss">Langfuse<span class="ttype">oss</span></span><span class="tool oss">OpenAI Evals<span class="ttype">oss</span></span><span class="tool oss">DeepEval<span class="ttype">oss</span></span><span class="tool oss">Inspect AI<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Versioned eval set per prompt + model + version. CI run on every change that touches prompt or model. Merge blocked on critical-regression. Eval-set drift report quarterly.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU AI Act Art. 15 (accuracy / robustness) is enforceable only with eval-set discipline. NIST AI RMF MEASURE function depends on it.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, AU AI Safety Std</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#eval-set-never-runs" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r015"
+         data-regs="eu_ai_act ai_safety_au owasp_llm atlas"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="layered guardrails (input + output) tested adversarially runtime · ai gateway ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +3</span></div>
+      <div>
+        <div class="ctrl">Layered guardrails (input + output) tested adversarially</div>
+        <span class="ctrl-sub">Runtime · AI gateway</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">NVIDIA NeMo Guardrails<span class="ttype">oss</span></span><span class="tool oss">Guardrails AI<span class="ttype">oss</span></span><span class="tool managed">AWS Bedrock Guardrails<span class="ttype">managed</span></span><span class="tool managed">Azure AI Content Safety<span class="ttype">managed</span></span><span class="tool commercial">Lakera Guard<span class="ttype">commercial</span></span><span class="tool oss">Llama Guard<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Guardrail policy version-controlled. Adversarial-prompt suite run weekly against guardrail (not against base model). False-negative + false-positive rate tracked. Per-incident postmortem when guardrail breached.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Guardrails encoded in the system prompt = no guardrail. The control is a distinct layer that intercepts before & after the model.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU AI Safety Std, OWASP LLM Top 10, MITRE ATLAS</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r016"
+         data-regs="eu_ai_act iso42001"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="per-decision audit evidence pack (llm) runtime · storage ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">Per-decision audit evidence pack (LLM)</div>
+        <span class="ctrl-sub">Runtime · Storage</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Langfuse (with retention policy)<span class="ttype">oss</span></span><span class="tool commercial">LangSmith<span class="ttype">commercial</span></span><span class="tool oss">Helicone<span class="ttype">oss</span></span><span class="tool oss">OpenTelemetry (with GenAI semantic conventions)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per request: prompt, retrieved context, model + version, guardrails applied, output, latency, cost. Signed, immutable, retention-policy-controlled. Replay-able at any time.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU AI Act Art. 12 (logging) becomes operational evidence here. Without per-decision logs you cannot answer regulator's 'why did the model decide X for this customer'.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r017"
+         data-regs="eu_ai_act ai_safety_au"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare"
+         data-text="human-in-loop for high-risk decisions runtime · ui ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">Human-in-loop for high-risk decisions</div>
+        <span class="ctrl-sub">Runtime · UI</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Custom workflow engine + queue per domain<span class="ttype">managed</span></span><span class="tool oss">Temporal (long-running approval)<span class="ttype">oss</span></span><span class="tool commercial">ServiceNow workflows<span class="ttype">commercial</span></span><span class="tool oss">Camunda BPMN<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Trigger conditions documented (confidence threshold, risk tier, regulator-defined). Human reviewer queue with SLA. Audit trail showing human approval per decision.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Art. 14 (human oversight) is operational, not declarative. 'A human can override' isn't oversight; 'a human must approve high-risk decisions' is.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU AI Safety Std</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r018"
+         data-regs="owasp_llm atlas"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="prompt injection defence + red-team programme runtime · ci ai evals & guardrails">
+      <div class="reg">OWASP LLM Top 10<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Prompt injection defence + red-team programme</div>
+        <span class="ctrl-sub">Runtime · CI</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Garak (LLM red-team scanner)<span class="ttype">oss</span></span><span class="tool oss">PyRIT<span class="ttype">oss</span></span><span class="tool commercial">HiddenLayer AI Security<span class="ttype">commercial</span></span><span class="tool commercial">Robust Intelligence AI Validation<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Quarterly red-team report with documented attack categories. Pre-deploy adversarial test suite. CVE-equivalent tracking for AI vulnerabilities found.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>OWASP LLM01 (prompt injection) is the most common attack vector; defending requires both input-side and output-side controls.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> MITRE ATLAS</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r019"
+         data-regs="eu_ai_act iso42001 ai_rmf"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="model card + data card for production model documentation ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +2</span></div>
+      <div>
+        <div class="ctrl">Model card + data card for production model</div>
+        <span class="ctrl-sub">Documentation</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool standard">Hugging Face model cards<span class="ttype">standard</span></span><span class="tool oss">Google Model Card Toolkit<span class="ttype">oss</span></span><span class="tool oss">NVIDIA Model Card++<span class="ttype">oss</span></span><span class="tool managed">Custom YAML schema in repo<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per model in production: model card (training data, eval results, intended use, limitations). Per dataset: data card (provenance, consent basis, refresh cadence). Both versioned with the model.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU AI Act technical documentation (Art. 11 / Annex IV) maps to model + data cards.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r020"
+         data-regs="cps230 dora nis2 soci"
+         data-cat="Resilience & continuity"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="documented + tested service-level recovery (rto/rpo) operations resilience & continuity">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Documented + tested service-level recovery (RTO/RPO)</div>
+        <span class="ctrl-sub">Operations</span>
+      </div>
+      <div class="cat">Resilience & continuity</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Resilience Hub<span class="ttype">managed</span></span><span class="tool managed">Azure Site Recovery<span class="ttype">managed</span></span><span class="tool managed">GCP Backup and DR Service<span class="ttype">managed</span></span><span class="tool commercial">Veeam<span class="ttype">commercial</span></span><span class="tool managed">Tabletop runbooks + game-day cadence<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per critical service: RTO + RPO defined. Recovery tested at least annually with timed result. Gap-to-target tracked. Multi-region failover rehearsed.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>CPS 230 (live in AU FS) requires this for every 'critical operation'. DORA RTS expects testing artefacts the regulator can review.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU DORA, EU NIS2, SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r021"
+         data-regs="cps230 dora nis2 circia"
+         data-cat="Third-party risk"
+         data-sectors="banks critical-infrastructure"
+         data-text="third-party / critical-vendor concentration tracking operations · vendor mgmt third-party risk">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Third-party / critical-vendor concentration tracking</div>
+        <span class="ctrl-sub">Operations · Vendor mgmt</span>
+      </div>
+      <div class="cat">Third-party risk</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">OneTrust Vendor Risk<span class="ttype">commercial</span></span><span class="tool commercial">ServiceNow VRM<span class="ttype">commercial</span></span><span class="tool commercial">Whistic<span class="ttype">commercial</span></span><span class="tool managed">Internal spreadsheet with quarterly review<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Vendor catalogue with criticality classification. Concentration risk (% of critical operations on one vendor) measured. Exit-plan for top-N critical vendors documented.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>DORA introduced critical ICT third-party designation (CTPP). APRA CPS 230 has equivalent material-service-provider rules. Both need real numbers, not 'we use AWS'.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU DORA, EU NIS2, US CIRCIA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r022"
+         data-regs="cps230 dora"
+         data-cat="Resilience & continuity"
+         data-sectors="banks critical-infrastructure"
+         data-text="chaos engineering / failure injection in production production resilience & continuity">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +1</span></div>
+      <div>
+        <div class="ctrl">Chaos engineering / failure injection in production</div>
+        <span class="ctrl-sub">Production</span>
+      </div>
+      <div class="cat">Resilience & continuity</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Fault Injection Service<span class="ttype">managed</span></span><span class="tool oss">Chaos Mesh<span class="ttype">oss</span></span><span class="tool commercial">Gremlin<span class="ttype">commercial</span></span><span class="tool oss">Litmus<span class="ttype">oss</span></span><span class="tool commercial">Steadybit<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Scheduled chaos experiments with documented blast radius. Hypothesis-driven (we expect X to happen; did it?). Postmortem when hypothesis was wrong.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>DORA Art. 25 (threat-led penetration testing) implies dynamic resilience testing; chaos engineering is its operational analogue.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU DORA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r023"
+         data-regs="nis2 circia cps234 soci"
+         data-cat="Incident response"
+         data-sectors="banks government critical-infrastructure"
+         data-text="fast incident reporting capability (≤72h) security operations incident response">
+      <div class="reg">EU NIS2<span class="reg-jur">EU +3</span></div>
+      <div>
+        <div class="ctrl">Fast incident reporting capability (≤72h)</div>
+        <span class="ctrl-sub">Security operations</span>
+      </div>
+      <div class="cat">Incident response</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">PagerDuty (with regulator templates)<span class="ttype">commercial</span></span><span class="tool commercial">FireHydrant<span class="ttype">commercial</span></span><span class="tool commercial">Incident.io<span class="ttype">commercial</span></span><span class="tool commercial">Rootly<span class="ttype">commercial</span></span><span class="tool managed">Custom Slack workflow + templates<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Pre-templated regulator-notification drafts (per regulator). Drill quarterly: time from detection to draft sent. Audit trail of incident decisions.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>US CIRCIA: 72h incident, 24h ransom payment. NIS2: 24h early-warning, 72h notification. SOCI 2018: critical infrastructure asset incidents 72h. The shape of the obligation is similar globally.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> US CIRCIA, APRA CPS 234, SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r024"
+         data-regs="e8 iso27001"
+         data-cat="Incident response"
+         data-sectors="all"
+         data-text="blameless postmortems for every sev-1 + sev-2 operations incident response">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +1</span></div>
+      <div>
+        <div class="ctrl">Blameless postmortems for every Sev-1 + Sev-2</div>
+        <span class="ctrl-sub">Operations</span>
+      </div>
+      <div class="cat">Incident response</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Notion / Confluence templates<span class="ttype">commercial</span></span><span class="tool commercial">PagerDuty Postmortems<span class="ttype">commercial</span></span><span class="tool commercial">Jeli (acquired by PagerDuty)<span class="ttype">commercial</span></span><span class="tool oss">Howie (the post-incident guide)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Postmortem published within 14 days of every Sev-1/2. Action items tracked with closure-SLA. Quarterly read-back: themes, contributing factors, systemic gaps.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Action items that don't close = postmortems that don't compound. Google SRE Workbook Chapter 10 is the canonical reference.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r025"
+         data-regs="e8 ssdf cisa_ssa cps234 dora nis2"
+         data-cat="Vulnerability management"
+         data-sectors="all"
+         data-text="patching sla for kev-listed cves (≤14 days) production vulnerability management">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +5</span></div>
+      <div>
+        <div class="ctrl">Patching SLA for KEV-listed CVEs (≤14 days)</div>
+        <span class="ctrl-sub">Production</span>
+      </div>
+      <div class="cat">Vulnerability management</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool standard">CISA KEV catalog (free RSS/JSON feed)<span class="ttype">standard</span></span><span class="tool commercial">Tenable.io<span class="ttype">commercial</span></span><span class="tool commercial">Qualys VMDR<span class="ttype">commercial</span></span><span class="tool commercial">Wiz<span class="ttype">commercial</span></span><span class="tool oss">Aqua / Trivy + Dependency-Track for SBOM-driven<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per-CVE: detection time, patch-deployed time. MTTR for KEV-class trending below 14 days. Out-of-SLA list (in writing, with owner) for any gap.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>CISA KEV is the actually-exploited subset; far better priority than CVSS-score alone.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SSDF (800-218), CISA SSA, APRA CPS 234, EU DORA, EU NIS2</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r026"
+         data-regs="e8 hipaa iso27001 sp80053"
+         data-cat="Audit & logging"
+         data-sectors="all"
+         data-text="tamper-evident, centralised, queryable audit logs all services audit & logging">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Tamper-evident, centralised, queryable audit logs</div>
+        <span class="ctrl-sub">All services</span>
+      </div>
+      <div class="cat">Audit & logging</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS CloudTrail + CloudWatch Logs Insights<span class="ttype">managed</span></span><span class="tool managed">Azure Monitor + Sentinel<span class="ttype">managed</span></span><span class="tool managed">GCP Cloud Audit Logs<span class="ttype">managed</span></span><span class="tool commercial">Splunk<span class="ttype">commercial</span></span><span class="tool commercial">Datadog Audit Trail<span class="ttype">commercial</span></span><span class="tool oss">Loki + Grafana<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per audit event: who, what, when, source. Retention per regulator (HIPAA 6 years; GDPR variable). Immutability proof (object-lock / write-once / hash-chain).</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Local log files don't pass audit. Centralised + tamper-evident is the baseline.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> HIPAA, ISO/IEC 27001, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r027"
+         data-regs="pci hipaa iso27001"
+         data-cat="Cryptography & secrets"
+         data-sectors="all"
+         data-text="tls 1.3 everywhere (no fallback to tls 1.0/1.1) network cryptography & secrets">
+      <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">TLS 1.3 everywhere (no fallback to TLS 1.0/1.1)</div>
+        <span class="ctrl-sub">Network</span>
+      </div>
+      <div class="cat">Cryptography & secrets</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS ACM + ELB cipher policies<span class="ttype">managed</span></span><span class="tool managed">Cloudflare TLS settings<span class="ttype">managed</span></span><span class="tool oss">Mozilla SSL Config Generator<span class="ttype">oss</span></span><span class="tool oss">testssl.sh<span class="ttype">oss</span></span><span class="tool oss">Wireshark + Zeek for traffic verification<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>External scan (Qualys SSL Labs / testssl) showing A+ grade. Cipher allow-list documented. Audit log of any TLS-version-downgrade attempts.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>PCI DSS 4.0 explicitly requires TLS 1.2+ (not 1.0/1.1) since 30 March 2025.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> HIPAA, ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r028"
+         data-regs="pci hipaa iso27001"
+         data-cat="Cryptography & secrets"
+         data-sectors="banks healthcare government"
+         data-text="per-customer / per-tenant kms keys (byok or cmk) data plane cryptography & secrets">
+      <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">Per-customer / per-tenant KMS keys (BYOK or CMK)</div>
+        <span class="ctrl-sub">Data plane</span>
+      </div>
+      <div class="cat">Cryptography & secrets</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS KMS (with per-tenant CMK)<span class="ttype">managed</span></span><span class="tool managed">GCP Cloud KMS / EKM<span class="ttype">managed</span></span><span class="tool managed">Azure Key Vault Managed HSM<span class="ttype">managed</span></span><span class="tool oss">HashiCorp Vault Transit secrets engine<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per-tenant key inventory. Key-rotation cadence enforced. Key-deletion as a real operation (crypto-shredding for tenant offboarding).</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>BYOK only meaningful if you can demonstrate the key is exclusive to one tenant and rotated independently.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> HIPAA, ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r029"
+         data-regs="iso27001 sp80053"
+         data-cat="Cryptography & secrets"
+         data-sectors="all"
+         data-text="secret scanning + auto-revocation in ci source · ci/cd cryptography & secrets">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Secret scanning + auto-revocation in CI</div>
+        <span class="ctrl-sub">Source · CI/CD</span>
+      </div>
+      <div class="cat">Cryptography & secrets</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">GitGuardian<span class="ttype">commercial</span></span><span class="tool managed">GitHub Advanced Security secret scanning<span class="ttype">managed</span></span><span class="tool oss">Trufflehog<span class="ttype">oss</span></span><span class="tool managed">AWS IAM Access Analyzer unused-key<span class="ttype">managed</span></span><span class="tool oss">HashiCorp Vault leases (auto-revoke)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Pre-commit + push-time + retroactive scanning. Detected-secret-to-revocation MTTR. Quarterly retroactive scan of all repos.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>A leaked secret rotated in 30 days is a breach. Auto-revocation pipeline matters more than detection.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r030"
+         data-regs="cps230 iso27001 sp80053"
+         data-cat="Change & release management"
+         data-sectors="all"
+         data-text="progressive deployment / blast-radius reduction release pipeline change & release management">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Progressive deployment / blast-radius reduction</div>
+        <span class="ctrl-sub">Release pipeline</span>
+      </div>
+      <div class="cat">Change & release management</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">ArgoCD (with rollouts)<span class="ttype">oss</span></span><span class="tool oss">Flagger<span class="ttype">oss</span></span><span class="tool commercial">LaunchDarkly<span class="ttype">commercial</span></span><span class="tool commercial">Statsig<span class="ttype">commercial</span></span><span class="tool oss">Spinnaker<span class="ttype">oss</span></span><span class="tool managed">AWS CodeDeploy linear/canary<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per service: deployment shape (canary % · linear N-min · blue-green). Auto-rollback metrics defined. Recent rollback events with timing.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Big-bang prod deploys are a CPS 230 finding-in-waiting. Progressive deployment with auto-rollback is the operational standard.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r031"
+         data-regs="e8 sp80053 iso27001"
+         data-cat="Change & release management"
+         data-sectors="government critical-infrastructure"
+         data-text="application allowlisting (no unsigned code execution in prod) endpoint · server change & release management">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Application allowlisting (no unsigned code execution in prod)</div>
+        <span class="ctrl-sub">Endpoint · Server</span>
+      </div>
+      <div class="cat">Change & release management</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Microsoft AppLocker / WDAC<span class="ttype">managed</span></span><span class="tool commercial">VMware Carbon Black App Control<span class="ttype">commercial</span></span><span class="tool managed">AWS Bottlerocket (immutable AMI)<span class="ttype">managed</span></span><span class="tool oss">OpenSCAP profiles<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Endpoint policy export. Test execution of unsigned binary must be blocked. Exception list with owner + expiry.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>E8 ML2+ requires application control. Hard to retrofit; bake into golden image / paved path.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53, ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r032"
+         data-regs="cps230 dora nis2 sp80053"
+         data-cat="Observability"
+         data-sectors="all"
+         data-text="inherited golden signals (latency, traffic, errors, saturation) all services observability">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Inherited golden signals (latency, traffic, errors, saturation)</div>
+        <span class="ctrl-sub">All services</span>
+      </div>
+      <div class="cat">Observability</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">OpenTelemetry (auto-instrumentation)<span class="ttype">oss</span></span><span class="tool commercial">Datadog APM<span class="ttype">commercial</span></span><span class="tool oss">Grafana Tempo + Mimir + Loki<span class="ttype">oss</span></span><span class="tool commercial">Honeycomb<span class="ttype">commercial</span></span><span class="tool commercial">New Relic<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per service: 4 golden signals dashboard inherited from paved path. SLO + error-budget per critical service. Alert quality (actionable-rate) ≥70%.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Inherited (paved path) beats per-team-set-up-their-own. The control is consistency across the fleet.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> EU DORA, EU NIS2, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r033"
+         data-regs="iso27001 sp80053"
+         data-cat="Observability"
+         data-sectors="all"
+         data-text="siem / soc integration with detection-as-code security operations observability">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">SIEM / SOC integration with detection-as-code</div>
+        <span class="ctrl-sub">Security operations</span>
+      </div>
+      <div class="cat">Observability</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Microsoft Sentinel (KQL detection)<span class="ttype">managed</span></span><span class="tool commercial">Splunk Enterprise Security<span class="ttype">commercial</span></span><span class="tool commercial">Panther<span class="ttype">commercial</span></span><span class="tool commercial">Elastic Security<span class="ttype">commercial</span></span><span class="tool oss">Sigma rules + sigma-cli<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Detection rules in git. PR-reviewed. CI-tested against historical events. Rule effectiveness reviewed monthly.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Detection-as-code beats SIEM-managed-by-vendor. Treats security like the engineering practice it is.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r034"
+         data-regs="sp80053 iso27001 iec62443"
+         data-cat="Workload isolation"
+         data-sectors="critical-infrastructure"
+         data-text="network segmentation between it and ot zones network workload isolation">
+      <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">Network segmentation between IT and OT zones</div>
+        <span class="ctrl-sub">Network</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Cisco TrustSec / ISE<span class="ttype">commercial</span></span><span class="tool commercial">Palo Alto Networks NGFW with zones<span class="ttype">commercial</span></span><span class="tool commercial">Illumio (zero-trust segmentation)<span class="ttype">commercial</span></span><span class="tool managed">Industrial DMZ + jump hosts<span class="ttype">managed</span></span><span class="tool commercial">Microsoft Defender for IoT<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Zone-and-conduit model documented (per IEC 62443-3-2). Inter-zone traffic logged. Conduits monitored. Unauthorised flow alerts.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>IEC 62443 zone-and-conduit model is now the de-facto bar for OT/ICS environments. SOCI 2022 SLACIP-amendment audits ask after this.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, IEC 62443</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r035"
+         data-regs="sp80053 iso27001"
+         data-cat="Workload isolation"
+         data-sectors="banks healthcare government"
+         data-text="service mesh mtls between microservices k8s · network workload isolation">
+      <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Service mesh mTLS between microservices</div>
+        <span class="ctrl-sub">K8s · Network</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Istio<span class="ttype">oss</span></span><span class="tool oss">Linkerd<span class="ttype">oss</span></span><span class="tool oss">HashiCorp Consul Connect<span class="ttype">oss</span></span><span class="tool managed">AWS App Mesh<span class="ttype">managed</span></span><span class="tool oss">Cilium Service Mesh<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>100% intra-cluster traffic encrypted (mesh dashboard). Strict mTLS mode (no plaintext fallback). Cert rotation cadence.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Service mesh is real platform investment. Adopt if 20+ services and a platform team; defer otherwise.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r036"
+         data-regs="sp80053 iso27001 pci"
+         data-cat="Workload isolation"
+         data-sectors="all"
+         data-text="production workload runs without privileged escalation k8s · container workload isolation">
+      <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">Production workload runs without privileged escalation</div>
+        <span class="ctrl-sub">K8s · Container</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Kyverno (disallow-privileged)<span class="ttype">oss</span></span><span class="tool oss">OPA Gatekeeper PSS profiles<span class="ttype">oss</span></span><span class="tool oss">Falco runtime detection<span class="ttype">oss</span></span><span class="tool standard">Pod Security Standards: restricted<span class="ttype">standard</span></span><span class="tool oss">Bottlerocket / gVisor for sandboxing<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Admission policy enforcing restricted PSS profile. No privileged: true in production. Exception list with owner + expiry.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Default-deny privileged execution; allow only with explicit exception. This is the bar Kubernetes Pod Security Standards 'restricted' enforces.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, PCI DSS 4.0</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r037"
+         data-regs="iso27001 sp80053 cps234"
+         data-cat="Access reviews"
+         data-sectors="banks government healthcare"
+         data-text="quarterly user-access review (uar) with attestation identity access reviews">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">Quarterly user-access review (UAR) with attestation</div>
+        <span class="ctrl-sub">Identity</span>
+      </div>
+      <div class="cat">Access reviews</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Okta Access Certifications<span class="ttype">commercial</span></span><span class="tool commercial">SailPoint IdentityNow<span class="ttype">commercial</span></span><span class="tool managed">Microsoft Entra Access Reviews<span class="ttype">managed</span></span><span class="tool managed">AWS IAM Access Analyzer (last-used)<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per quarter: every privileged user reviewed by a manager. Review evidence signed. Revocations logged with timing.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Manual UARs by spreadsheet collapse at scale. The control needs an attestation engine, not a Friday-afternoon Excel.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53, APRA CPS 234</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r038"
+         data-regs="cps230 soci"
+         data-cat="Operational risk"
+         data-sectors="banks critical-infrastructure"
+         data-text="critical operation register with substitutability analysis risk function operational risk">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +1</span></div>
+      <div>
+        <div class="ctrl">Critical operation register with substitutability analysis</div>
+        <span class="ctrl-sub">Risk function</span>
+      </div>
+      <div class="cat">Operational risk</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">ServiceNow Operational Risk<span class="ttype">commercial</span></span><span class="tool managed">Custom register in confluence / wiki<span class="ttype">managed</span></span><span class="tool commercial">Riskonnect<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Critical operations enumerated. Per operation: substitute (manual / backup / contracted alternative) tested. Tolerance for disruption set.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>CPS 230 explicitly requires this. The 'tolerance for disruption' is the regulator's pet metric.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r039"
+         data-regs="hipaa"
+         data-cat="Third-party risk"
+         data-sectors="healthcare"
+         data-text="business associate agreement (baa) with every phi handler vendor mgmt third-party risk">
+      <div class="reg">HIPAA<span class="reg-jur">US</span></div>
+      <div>
+        <div class="ctrl">Business Associate Agreement (BAA) with every PHI handler</div>
+        <span class="ctrl-sub">Vendor mgmt</span>
+      </div>
+      <div class="cat">Third-party risk</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">OneTrust BAA module<span class="ttype">commercial</span></span><span class="tool commercial">DocuSign + central BAA registry<span class="ttype">commercial</span></span><span class="tool managed">AWS BAA (signed)<span class="ttype">managed</span></span><span class="tool managed">GCP BAA (signed)<span class="ttype">managed</span></span><span class="tool managed">Azure BAA (signed)<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>BAA registry. Every vendor processing PHI on signed BAA. Annual review. Termination + data-return clauses tested.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Major cloud providers offer pre-signed BAAs; smaller vendors often forgotten and become the audit finding.</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r040"
+         data-regs="fda_samd iso13485 iec62304"
+         data-cat="AI evals & guardrails"
+         data-sectors="healthcare"
+         data-text="post-market surveillance (pms) plan for samd documentation · operations ai evals & guardrails">
+      <div class="reg">FDA SaMD<span class="reg-jur">US +2</span></div>
+      <div>
+        <div class="ctrl">Post-market surveillance (PMS) plan for SaMD</div>
+        <span class="ctrl-sub">Documentation · Operations</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Greenlight Guru QMS<span class="ttype">commercial</span></span><span class="tool commercial">Matrix Requirements<span class="ttype">commercial</span></span><span class="tool managed">Custom QMS in confluence + git<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>PMS plan document. Adverse-event capture mechanism. Periodic safety update report (PSUR) cadence. Field-action procedure tested.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>FDA expects PMS for any clinical AI. Maps to ISO 14971 risk management.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO 13485, IEC 62304</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r041"
+         data-regs="e8 iso27001 sp80053"
+         data-cat="Change & release management"
+         data-sectors="all"
+         data-text="infrastructure-as-code with plan-time policy check ci/cd change & release management">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Infrastructure-as-code with plan-time policy check</div>
+        <span class="ctrl-sub">CI/CD</span>
+      </div>
+      <div class="cat">Change & release management</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Terraform + Conftest/OPA<span class="ttype">oss</span></span><span class="tool commercial">Pulumi + Policy-as-Code<span class="ttype">commercial</span></span><span class="tool oss">Checkov<span class="ttype">oss</span></span><span class="tool oss">tfsec / Trivy IaC<span class="ttype">oss</span></span><span class="tool managed">AWS CloudFormation Guard<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Every infra change via PR. Plan-time policy check blocks bad configs (public S3, root-account use, untagged resources). Out-of-band changes alerted.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>ClickOps in production = audit finding. IaC + plan-time policy is the bar.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r042"
+         data-regs="sp80053 iso27001"
+         data-cat="Change & release management"
+         data-sectors="all"
+         data-text="drift detection (cloud config matches iac source-of-truth) cloud · tooling change & release management">
+      <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Drift detection (cloud config matches IaC source-of-truth)</div>
+        <span class="ctrl-sub">Cloud · Tooling</span>
+      </div>
+      <div class="cat">Change & release management</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Config Rules<span class="ttype">managed</span></span><span class="tool managed">Azure Policy compliance<span class="ttype">managed</span></span><span class="tool managed">GCP Asset Inventory + policy<span class="ttype">managed</span></span><span class="tool oss">Driftctl<span class="ttype">oss</span></span><span class="tool commercial">Terraform Cloud / Enterprise drift detection<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Daily / hourly drift report. Out-of-IaC changes alerted to owner. Closed-loop: drift → patched in code + applied, not patched in cloud alone.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Drift accumulates silently. Detection alone is necessary but not sufficient — the loop must close back to code.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r043"
+         data-regs="cps230"
+         data-cat="Operational risk"
+         data-sectors="all"
+         data-text="per-service / per-tenant cost attribution cloud · finops operational risk">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU</span></div>
+      <div>
+        <div class="ctrl">Per-service / per-tenant cost attribution</div>
+        <span class="ctrl-sub">Cloud · FinOps</span>
+      </div>
+      <div class="cat">Operational risk</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Cost Categories + CUR<span class="ttype">managed</span></span><span class="tool managed">GCP Billing reports + labels<span class="ttype">managed</span></span><span class="tool managed">Azure Cost Management + tags<span class="ttype">managed</span></span><span class="tool commercial">Vantage<span class="ttype">commercial</span></span><span class="tool oss">OpenCost / Kubecost<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per service / per tenant cost trend monthly. Cost spike (>30%) triggers owner alert. Cost-per-resolved-task / cost-per-transaction trending.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>CPS 230 doesn't name cost explicitly, but financial sustainability of critical operations is in scope. FinOps Foundation Framework is the operational substrate.</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r044"
+         data-regs="iso27001 sp80053"
+         data-cat="Cryptography & secrets"
+         data-sectors="banks government critical-infrastructure"
+         data-text="crypto-agility plan (pqc transition readiness) engineering cryptography & secrets">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Crypto-agility plan (PQC transition readiness)</div>
+        <span class="ctrl-sub">Engineering</span>
+      </div>
+      <div class="cat">Cryptography & secrets</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Open Quantum Safe (liboqs)<span class="ttype">oss</span></span><span class="tool managed">AWS KMS PQC support<span class="ttype">managed</span></span><span class="tool commercial">CryptoNext Security<span class="ttype">commercial</span></span><span class="tool standard">NIST PQC standards (ML-KEM, ML-DSA, SLH-DSA)<span class="ttype">standard</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Crypto inventory (where is asymmetric crypto used). PQC transition plan with milestones. Pilot with hybrid (classical + PQC) on one critical path.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>NIST finalised PQC standards Aug 2024 (FIPS 203/204/205). Regulators are starting to ask about transition plans.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r045"
+         data-regs="eu_ai_act iso42001"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="ai risk classification + impact assessment governance ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">AI risk classification + impact assessment</div>
+        <span class="ctrl-sub">Governance</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Custom risk-classification template<span class="ttype">managed</span></span><span class="tool commercial">Credo AI<span class="ttype">commercial</span></span><span class="tool commercial">Holistic AI<span class="ttype">commercial</span></span><span class="tool managed">Microsoft Responsible AI Impact Assessment<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per AI use-case: risk tier (per EU AI Act + internal taxonomy). Impact assessment signed. Review cadence + trigger events.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU AI Act Art. 9 (risk management system). NIST AI RMF MAP function. ISO 42001 Annex A.6.1.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r046"
+         data-regs="eu_ai_act iso42001"
+         data-cat="AI evals & guardrails"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="data poisoning + model-supply-chain controls ml pipeline ai evals & guardrails">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">Data poisoning + model-supply-chain controls</div>
+        <span class="ctrl-sub">ML pipeline</span>
+      </div>
+      <div class="cat">AI evals & guardrails</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Hugging Face model scanning (Picklescan)<span class="ttype">oss</span></span><span class="tool commercial">Protect AI Guardian (model scanning)<span class="ttype">commercial</span></span><span class="tool standard">ML-BOM (CycloneDX ML extension)<span class="ttype">standard</span></span><span class="tool oss">MLflow model registry with sigstore<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>All models scanned for serialised-code exploits. ML-BOM published per model. Training-data provenance documented.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Pickle files in shared model registries are an active attack surface. ML-supply-chain is the new software-supply-chain.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r047"
+         data-regs="bcbs239"
+         data-cat="Data governance"
+         data-sectors="banks"
+         data-text="risk data aggregation traceability (bcbs 239) risk data platform data governance">
+      <div class="reg">BCBS 239<span class="reg-jur">INTL</span></div>
+      <div>
+        <div class="ctrl">Risk data aggregation traceability (BCBS 239)</div>
+        <span class="ctrl-sub">Risk data platform</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Solidatus<span class="ttype">commercial</span></span><span class="tool commercial">Manta<span class="ttype">commercial</span></span><span class="tool oss">OpenLineage + dbt<span class="ttype">oss</span></span><span class="tool commercial">Collibra<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Risk report → upstream system traceable. Adjustments logged. Materiality of each manual override classified.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>G-SIBs were given BCBS 239 in 2013, due 2016, mostly still failing 2024 (BCBS reviews are public). The substrate is the gap, not the regulation.</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r048"
+         data-regs="irap"
+         data-cat="Workload isolation"
+         data-sectors="government"
+         data-text="sovereign cloud region with assessed controls cloud workload isolation">
+      <div class="reg">IRAP<span class="reg-jur">AU</span></div>
+      <div>
+        <div class="ctrl">Sovereign cloud region with assessed controls</div>
+        <span class="ctrl-sub">Cloud</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Sydney Region (IRAP-assessed)<span class="ttype">managed</span></span><span class="tool managed">Azure Sydney + Canberra regions (IRAP-assessed)<span class="ttype">managed</span></span><span class="tool managed">GCP Sydney + Melbourne regions (IRAP-assessed)<span class="ttype">managed</span></span><span class="tool commercial">Vault / sovereign IaaS (specific deployments)<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>IRAP assessment letter from provider. Workload placement policy. Data egress controls preventing cross-region routing.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Up to PROTECTED on assessed regions; SECRET typically on sovereign-only platforms.</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r049"
+         data-regs="e8 iso27001"
+         data-cat="Resilience & continuity"
+         data-sectors="all"
+         data-text="immutable backups with offline / air-gapped copy backup infrastructure resilience & continuity">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +1</span></div>
+      <div>
+        <div class="ctrl">Immutable backups with offline / air-gapped copy</div>
+        <span class="ctrl-sub">Backup infrastructure</span>
+      </div>
+      <div class="cat">Resilience & continuity</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Backup + Vault Lock<span class="ttype">managed</span></span><span class="tool managed">Azure Backup immutable vault<span class="ttype">managed</span></span><span class="tool managed">GCP Backup and DR Service<span class="ttype">managed</span></span><span class="tool commercial">Veeam (immutable repository)<span class="ttype">commercial</span></span><span class="tool oss">MinIO with object locking<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Backup inventory + retention. Restore test quarterly. Immutability window > regulator-defined retention. Air-gap proven via network path test.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>E8 ML2+ requires immutable + tested backups. Ransomware resilience is the underlying threat.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r050"
+         data-regs="gdpr privacy_au"
+         data-cat="Data governance"
+         data-sectors="all"
+         data-text="granular consent capture + revocation propagation frontend · backend data governance">
+      <div class="reg">EU GDPR<span class="reg-jur">EU +1</span></div>
+      <div>
+        <div class="ctrl">Granular consent capture + revocation propagation</div>
+        <span class="ctrl-sub">Frontend · backend</span>
+      </div>
+      <div class="cat">Data governance</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">OneTrust Cookie Consent<span class="ttype">commercial</span></span><span class="tool commercial">Cookiebot<span class="ttype">commercial</span></span><span class="tool managed">Custom consent management with audit log<span class="ttype">managed</span></span><span class="tool commercial">Transcend Consent Management<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Consent capture audit log per user. Revocation triggers downstream-system removal within N hours. Granularity matches actual purposes (not 'accept all').</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Cookie banner alone doesn't satisfy. The control is propagation of revocation to every downstream consumer.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> AU Privacy Act</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r051"
+         data-regs="sp80053 iso27001 e8"
+         data-cat="Identity & access"
+         data-sectors="all"
+         data-text="zero-trust network access (replace vpn) network · identity identity & access">
+      <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">Zero-trust network access (replace VPN)</div>
+        <span class="ctrl-sub">Network · Identity</span>
+      </div>
+      <div class="cat">Identity & access</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Cloudflare Zero Trust<span class="ttype">commercial</span></span><span class="tool commercial">Zscaler ZPA<span class="ttype">commercial</span></span><span class="tool commercial">Tailscale<span class="ttype">commercial</span></span><span class="tool commercial">Twingate<span class="ttype">commercial</span></span><span class="tool commercial">Google BeyondCorp Enterprise<span class="ttype">commercial</span></span><span class="tool managed">AWS Verified Access<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>VPN decommissioning roadmap (or done). Per-app access tied to identity + device posture. Audit log per access decision.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Always-on VPN is the legacy. ZTNA per-app, per-identity, per-posture is the bar.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, ASD Essential 8</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r052"
+         data-regs="iso27001"
+         data-cat="Cryptography & secrets"
+         data-sectors="all"
+         data-text="dnssec + caa records + mta-sts dns · email cryptography & secrets">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL</span></div>
+      <div>
+        <div class="ctrl">DNSSEC + CAA records + MTA-STS</div>
+        <span class="ctrl-sub">DNS · Email</span>
+      </div>
+      <div class="cat">Cryptography & secrets</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Cloudflare DNS (DNSSEC, CAA)<span class="ttype">managed</span></span><span class="tool managed">AWS Route 53 (DNSSEC)<span class="ttype">managed</span></span><span class="tool oss">Hardenize.com (audit)<span class="ttype">oss</span></span><span class="tool oss">internet.nl (audit)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>DNSSEC validated externally. CAA records limit cert issuance. SPF + DKIM + DMARC at p=reject. MTA-STS published.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Often skipped because 'we have HTTPS'; the DNS + email-auth controls close a different attack class.</p>
+          <div class="meta-line">
+            
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r053"
+         data-regs="pci sp80053 iso27001"
+         data-cat="Workload isolation"
+         data-sectors="all"
+         data-text="api rate limiting + authentication on every endpoint api gateway workload isolation">
+      <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +2</span></div>
+      <div>
+        <div class="ctrl">API rate limiting + authentication on every endpoint</div>
+        <span class="ctrl-sub">API gateway</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS API Gateway + WAF<span class="ttype">managed</span></span><span class="tool managed">Azure API Management<span class="ttype">managed</span></span><span class="tool oss">Kong<span class="ttype">oss</span></span><span class="tool oss">Tyk<span class="ttype">oss</span></span><span class="tool commercial">Cloudflare API Shield<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Per endpoint: auth method documented (API key / OAuth / mTLS). Rate-limit profile applied. Unauthenticated endpoints registry (intentional exceptions only).</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>OWASP API Security Top 10 (BOLA, BOPLA, broken auth) maps to deficiencies here. API gateway + auth-per-endpoint is the structural control.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53, ISO/IEC 27001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r054"
+         data-regs="e8 iso27001 pci"
+         data-cat="Vulnerability management"
+         data-sectors="all"
+         data-text="automated os patching (≤30 days for high-severity) compute vulnerability management">
+      <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
+      <div>
+        <div class="ctrl">Automated OS patching (≤30 days for high-severity)</div>
+        <span class="ctrl-sub">Compute</span>
+      </div>
+      <div class="cat">Vulnerability management</div>
+      <div class="tcount">6 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">AWS Systems Manager Patch Manager<span class="ttype">managed</span></span><span class="tool managed">Azure Update Manager<span class="ttype">managed</span></span><span class="tool managed">GCP OS patch management<span class="ttype">managed</span></span><span class="tool commercial">BigFix<span class="ttype">commercial</span></span><span class="tool commercial">Tanium<span class="ttype">commercial</span></span><span class="tool oss">Bottlerocket (auto-updating immutable OS)<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Patch compliance dashboard. % of fleet patched within N days of release. Out-of-SLA list with mitigation.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>E8 ML2 requires 48-hour patching for working exploits, 1-month for known vulns. The structural fix is immutable / auto-updating base images.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 27001, PCI DSS 4.0</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r055"
+         data-regs="pci sp80053"
+         data-cat="Workload isolation"
+         data-sectors="all"
+         data-text="waf with managed rule sets + bot management edge workload isolation">
+      <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">WAF with managed rule sets + bot management</div>
+        <span class="ctrl-sub">Edge</span>
+      </div>
+      <div class="cat">Workload isolation</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool commercial">Cloudflare WAF + Bot Management<span class="ttype">commercial</span></span><span class="tool managed">AWS WAF + Managed Rules<span class="ttype">managed</span></span><span class="tool managed">Azure Front Door WAF<span class="ttype">managed</span></span><span class="tool commercial">Fastly Next-Gen WAF (Signal Sciences)<span class="ttype">commercial</span></span><span class="tool oss">OWASP ModSecurity Core Rule Set<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>WAF enabled in blocking mode. Managed-rule subscription current. Custom rules version-controlled. Per-incident WAF-block review.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>WAF in 'monitor' mode never moved to 'block' is the most common shelfware control.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-row" data-id="r056"
+         data-regs="iso27001 iso42001"
+         data-cat="Operational risk"
+         data-sectors="banks critical-infrastructure healthcare"
+         data-text="board-level reporting on technology risk (quarterly) governance operational risk">
+      <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
+      <div>
+        <div class="ctrl">Board-level reporting on technology risk (quarterly)</div>
+        <span class="ctrl-sub">Governance</span>
+      </div>
+      <div class="cat">Operational risk</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Custom board pack template<span class="ttype">managed</span></span><span class="tool commercial">Diligent Boards<span class="ttype">commercial</span></span><span class="tool commercial">Internal dashboard (Looker / Tableau)<span class="ttype">commercial</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Quarterly board pack with technology / cyber / AI risk reporting. Action items tracked. Materiality threshold documented.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU NIS2 explicit board accountability. APRA CPS 234 + CPS 230 board-level oversight. ISO 42001 top management responsibility.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+      </div>
+      <div class="ds-empty" id="ds-empty" hidden>No rows match the current filters.</div>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span>Dataset <b style="color:var(--accent)">CC BY 4.0</b> &middot; <a href="/dataset/dataset.json">JSON</a> &middot; <a href="/dataset/dataset.csv">CSV</a></span>
+  </div></footer>
+
+  <script src="/js/dataset.js" defer></script>
+</body>
+</html>

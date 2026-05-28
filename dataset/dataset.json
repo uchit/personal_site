@@ -1,0 +1,2504 @@
+{
+  "version": "2026-05-30",
+  "license": "CC BY 4.0",
+  "source": "https://hellouchit.com/dataset/",
+  "regulations": {
+    "cps234": {
+      "label": "APRA CPS 234",
+      "jurisdiction": "AU"
+    },
+    "cps230": {
+      "label": "APRA CPS 230",
+      "jurisdiction": "AU"
+    },
+    "soci": {
+      "label": "SOCI Act 2018+",
+      "jurisdiction": "AU"
+    },
+    "ai_safety_au": {
+      "label": "AU AI Safety Std",
+      "jurisdiction": "AU"
+    },
+    "privacy_au": {
+      "label": "AU Privacy Act",
+      "jurisdiction": "AU"
+    },
+    "e8": {
+      "label": "ASD Essential 8",
+      "jurisdiction": "AU"
+    },
+    "irap": {
+      "label": "IRAP",
+      "jurisdiction": "AU"
+    },
+    "eu_ai_act": {
+      "label": "EU AI Act",
+      "jurisdiction": "EU"
+    },
+    "dora": {
+      "label": "EU DORA",
+      "jurisdiction": "EU"
+    },
+    "nis2": {
+      "label": "EU NIS2",
+      "jurisdiction": "EU"
+    },
+    "gdpr": {
+      "label": "EU GDPR",
+      "jurisdiction": "EU"
+    },
+    "circia": {
+      "label": "US CIRCIA",
+      "jurisdiction": "US"
+    },
+    "hipaa": {
+      "label": "HIPAA",
+      "jurisdiction": "US"
+    },
+    "fda_samd": {
+      "label": "FDA SaMD",
+      "jurisdiction": "US"
+    },
+    "cisa_ssa": {
+      "label": "CISA SSA",
+      "jurisdiction": "US"
+    },
+    "ssdf": {
+      "label": "NIST SSDF (800-218)",
+      "jurisdiction": "INTL"
+    },
+    "ai_rmf": {
+      "label": "NIST AI RMF",
+      "jurisdiction": "INTL"
+    },
+    "sp80053": {
+      "label": "NIST SP 800-53",
+      "jurisdiction": "INTL"
+    },
+    "iso42001": {
+      "label": "ISO/IEC 42001",
+      "jurisdiction": "INTL"
+    },
+    "iso27001": {
+      "label": "ISO/IEC 27001",
+      "jurisdiction": "INTL"
+    },
+    "slsa": {
+      "label": "SLSA v1.0",
+      "jurisdiction": "INTL"
+    },
+    "owasp_llm": {
+      "label": "OWASP LLM Top 10",
+      "jurisdiction": "INTL"
+    },
+    "atlas": {
+      "label": "MITRE ATLAS",
+      "jurisdiction": "INTL"
+    },
+    "bcbs239": {
+      "label": "BCBS 239",
+      "jurisdiction": "INTL"
+    },
+    "pci": {
+      "label": "PCI DSS 4.0",
+      "jurisdiction": "INTL"
+    },
+    "iec62443": {
+      "label": "IEC 62443",
+      "jurisdiction": "INTL"
+    },
+    "iso13485": {
+      "label": "ISO 13485",
+      "jurisdiction": "INTL"
+    },
+    "iec62304": {
+      "label": "IEC 62304",
+      "jurisdiction": "INTL"
+    }
+  },
+  "rows": [
+    {
+      "reg": [
+        "cps234",
+        "e8",
+        "iso27001",
+        "soci"
+      ],
+      "ctrl": "Workload identity (no static long-lived credentials)",
+      "cat": "Identity & access",
+      "surface": "Cloud \u00b7 CI/CD \u00b7 K8s",
+      "tools": [
+        [
+          "AWS IAM Roles for Service Accounts / IRSA",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP Workload Identity Federation",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure Federated Credentials (OIDC)",
+          "managed",
+          "Azure"
+        ],
+        [
+          "SPIFFE / SPIRE",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "GitHub Actions OIDC",
+          "managed",
+          "GitHub"
+        ]
+      ],
+      "evidence": "IAM policy export showing zero static long-lived credentials in the path. OIDC trust policy showing federated identity provider configured. Rotation logs from any remaining service accounts (target: none in 12 months).",
+      "anti_pattern": "vault-theatre",
+      "sectors": [
+        "banks",
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "Often confused with credential rotation \u2014 rotation alone doesn't close the audit finding. The control requires federated identity (the workload proves who it is to the cloud), not just shorter-lived static creds. Foundation for SOCI 2022 SLACIP-amendment maturity.",
+      "id": "r001"
+    },
+    {
+      "reg": [
+        "cps234",
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Least-privilege IAM (no wildcard policies)",
+      "cat": "Identity & access",
+      "surface": "Cloud \u00b7 K8s",
+      "tools": [
+        [
+          "AWS IAM Access Analyzer",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP IAM Recommender",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure Entra Permission Management",
+          "managed",
+          "Azure"
+        ],
+        [
+          "Cloudsplaining",
+          "oss",
+          "Salesforce"
+        ],
+        [
+          "Policy Sentry",
+          "oss",
+          "Salesforce"
+        ]
+      ],
+      "evidence": "Static + runtime analysis report: count of wildcard (*) actions in production policies, trending to zero. AccessAnalyzer findings cleared monthly.",
+      "anti_pattern": "vault-theatre",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Wildcards in production IAM are the most common audit finding. The control is *demonstrated* least-privilege (Access Analyzer says so), not *intended* least-privilege.",
+      "id": "r002"
+    },
+    {
+      "reg": [
+        "e8",
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Privileged access management (PAM) for breakglass",
+      "cat": "Identity & access",
+      "surface": "Cloud \u00b7 On-prem",
+      "tools": [
+        [
+          "HashiCorp Boundary",
+          "oss",
+          "HashiCorp"
+        ],
+        [
+          "AWS IAM Identity Center + permission sets",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Teleport",
+          "commercial",
+          "Teleport"
+        ],
+        [
+          "CyberArk PAM",
+          "commercial",
+          "CyberArk"
+        ],
+        [
+          "Azure PIM",
+          "managed",
+          "Azure"
+        ]
+      ],
+      "evidence": "Just-in-time access requests log. Approval audit trail. Session recording for production breakglass. Account-of-last-resort tested quarterly.",
+      "sectors": [
+        "banks",
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "E8 ML2+ requires PAM, not 'we have admins with persistent access we trust.'",
+      "id": "r003"
+    },
+    {
+      "reg": [
+        "hipaa",
+        "gdpr",
+        "privacy_au",
+        "iso27001"
+      ],
+      "ctrl": "MFA enforced for all human access (no exceptions)",
+      "cat": "Identity & access",
+      "surface": "Identity provider",
+      "tools": [
+        [
+          "Okta",
+          "commercial",
+          "Okta"
+        ],
+        [
+          "Microsoft Entra ID",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "Google Workspace 2SV / Titan",
+          "managed",
+          "Google"
+        ],
+        [
+          "Duo Security",
+          "commercial",
+          "Cisco"
+        ],
+        [
+          "YubiKey / WebAuthn passkeys",
+          "standard",
+          "FIDO Alliance"
+        ]
+      ],
+      "evidence": "Conditional access policy export. Zero users with MFA-disabled status. WebAuthn / passkey adoption % trending up; SMS/voice OTP trending to zero.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "SMS-OTP no longer counts as strong MFA per NIST SP 800-63B Revision 4 draft. Passkeys / hardware tokens are the target.",
+      "id": "r004"
+    },
+    {
+      "reg": [
+        "slsa",
+        "ssdf",
+        "cisa_ssa",
+        "cps234"
+      ],
+      "ctrl": "Signed build provenance (SLSA L2+)",
+      "cat": "Supply chain & provenance",
+      "surface": "CI/CD",
+      "tools": [
+        [
+          "Sigstore (cosign + Rekor + Fulcio)",
+          "oss",
+          "OpenSSF"
+        ],
+        [
+          "GitHub Actions attestations",
+          "managed",
+          "GitHub"
+        ],
+        [
+          "GitLab CI build attestations",
+          "managed",
+          "GitLab"
+        ],
+        [
+          "Tekton Chains",
+          "oss",
+          "CDF"
+        ],
+        [
+          "in-toto attestations",
+          "standard",
+          "in-toto"
+        ]
+      ],
+      "evidence": "Signed in-toto / SLSA provenance attached to every production artefact. Rekor transparency log entry for every signed artefact. Verification step in deploy pipeline that *blocks* if signature absent or invalid.",
+      "anti_pattern": "sbom-shelfware",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "SLSA L2 = signed provenance; L3 = hardened builder (isolated, ephemeral). L3 needed for US-federal procurement under CISA SSA in many cases.",
+      "id": "r005"
+    },
+    {
+      "reg": [
+        "ssdf",
+        "cisa_ssa",
+        "cps234",
+        "dora",
+        "nis2",
+        "soci"
+      ],
+      "ctrl": "SBOM emission + KEV-driven owner-alert loop",
+      "cat": "Supply chain & provenance",
+      "surface": "CI/CD \u00b7 Runtime",
+      "tools": [
+        [
+          "Syft (SPDX/CycloneDX SBOM)",
+          "oss",
+          "Anchore"
+        ],
+        [
+          "OWASP Dependency-Track",
+          "oss",
+          "OWASP"
+        ],
+        [
+          "GUAC (SBOM graph)",
+          "oss",
+          "OpenSSF"
+        ],
+        [
+          "Chainguard Enforce",
+          "commercial",
+          "Chainguard"
+        ],
+        [
+          "Snyk",
+          "commercial",
+          "Snyk"
+        ],
+        [
+          "Trivy",
+          "oss",
+          "Aqua Security"
+        ]
+      ],
+      "evidence": "SBOM per artefact stored centrally. CISA KEV catalogue subscribed; on match, owner-of-service alerted within minutes (not central security inbox). MTTR for KEV-listed CVEs measured and trending down.",
+      "anti_pattern": "sbom-shelfware",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Emitting SBOMs is necessary but not sufficient. The audit-passing control is the *loop*: SBOM \u2192 vulnerability \u2192 owner-alert \u2192 patch within SLA. Pure SBOM-collection = shelfware.",
+      "id": "r006"
+    },
+    {
+      "reg": [
+        "slsa",
+        "ssdf"
+      ],
+      "ctrl": "Verified image signatures at admission",
+      "cat": "Supply chain & provenance",
+      "surface": "K8s admission",
+      "tools": [
+        [
+          "Kyverno (verifyImages)",
+          "oss",
+          "Kyverno"
+        ],
+        [
+          "Sigstore Policy Controller",
+          "oss",
+          "Sigstore"
+        ],
+        [
+          "Connaisseur",
+          "oss",
+          "SDA"
+        ],
+        [
+          "AWS Signer + ECR",
+          "managed",
+          "AWS"
+        ]
+      ],
+      "evidence": "Admission-controller logs showing rejection of unsigned/untrusted images. Policy-as-code repo defining trusted signers + repositories. Test workload with bad signature must fail.",
+      "anti_pattern": "pdf-principles",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Verifying signatures at deploy-time, not at scan-time. Catches the malicious-rebuild and tampered-mirror attack class.",
+      "id": "r007"
+    },
+    {
+      "reg": [
+        "ssdf"
+      ],
+      "ctrl": "Hermetic / reproducible builds",
+      "cat": "Supply chain & provenance",
+      "surface": "CI/CD",
+      "tools": [
+        [
+          "Bazel",
+          "oss",
+          "Google"
+        ],
+        [
+          "Nix / Nixpkgs",
+          "oss",
+          "NixOS Foundation"
+        ],
+        [
+          "Guix",
+          "oss",
+          "GNU"
+        ],
+        [
+          "Docker BuildKit (with --no-cache + pinned base)",
+          "oss",
+          "Docker"
+        ]
+      ],
+      "evidence": "Same source produces byte-identical artefact across builds. Diffoscope output showing no drift. CI configured to reject non-hermetic dependencies.",
+      "sectors": [
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "Hard to reach for most teams; necessary for the most exposed federal / defence workloads (SLSA L4).",
+      "id": "r008"
+    },
+    {
+      "reg": [
+        "ssdf",
+        "iso27001"
+      ],
+      "ctrl": "Locked dependency versions (no floating tags / ranges in prod)",
+      "cat": "Supply chain & provenance",
+      "surface": "Source \u00b7 CI/CD",
+      "tools": [
+        [
+          "Renovate",
+          "oss",
+          "Mend"
+        ],
+        [
+          "Dependabot",
+          "managed",
+          "GitHub"
+        ],
+        [
+          "npm shrinkwrap / package-lock",
+          "standard",
+          "npm"
+        ],
+        [
+          "pip-tools / uv lock",
+          "oss",
+          "pip / Astral"
+        ],
+        [
+          "Bazel maven_install (with shas)",
+          "oss",
+          "Google"
+        ]
+      ],
+      "evidence": "Lockfile present + committed for every project. CI rejects builds whose lockfile is older than X weeks or where dependencies drift from lock.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Floating tags (:latest, ^1.x) make supply chain unsafe at any speed. Lockfile + freshness SLA is the control.",
+      "id": "r009"
+    },
+    {
+      "reg": [
+        "bcbs239",
+        "gdpr",
+        "privacy_au",
+        "hipaa"
+      ],
+      "ctrl": "Data lineage (column-level)",
+      "cat": "Data governance",
+      "surface": "Data platform",
+      "tools": [
+        [
+          "OpenLineage",
+          "oss",
+          "LF AI & Data"
+        ],
+        [
+          "Marquez",
+          "oss",
+          "LF AI & Data"
+        ],
+        [
+          "Collibra",
+          "commercial",
+          "Collibra"
+        ],
+        [
+          "dbt + dbt docs lineage graph",
+          "commercial",
+          "dbt Labs"
+        ],
+        [
+          "Atlan",
+          "commercial",
+          "Atlan"
+        ],
+        [
+          "Microsoft Purview",
+          "managed",
+          "Microsoft"
+        ]
+      ],
+      "evidence": "Column-level lineage graph from source-of-truth to downstream consumers. BCBS 239 risk-aggregation reports traceable to source systems with timestamp.",
+      "sectors": [
+        "banks"
+      ],
+      "notes": "BCBS 239 has been live since 2016 and is still failed by most G-SIBs at audit. Lineage at column level (not table level) is the bar.",
+      "id": "r010"
+    },
+    {
+      "reg": [
+        "gdpr",
+        "privacy_au",
+        "hipaa"
+      ],
+      "ctrl": "Data subject access / deletion (DSAR) within statutory window",
+      "cat": "Data governance",
+      "surface": "All data stores",
+      "tools": [
+        [
+          "OneTrust",
+          "commercial",
+          "OneTrust"
+        ],
+        [
+          "BigID",
+          "commercial",
+          "BigID"
+        ],
+        [
+          "DataGrail",
+          "commercial",
+          "DataGrail"
+        ],
+        [
+          "Transcend",
+          "commercial",
+          "Transcend"
+        ],
+        [
+          "Custom RPC + queue per data domain",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "Time-bounded DSAR pipeline. Tested quarterly. Per-data-domain owners with documented response SLAs. Audit log of every DSAR fulfilled.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Statutory windows: GDPR 30 days, AU Privacy Act 30 days (under reform), HIPAA 30 days for access requests. Untested DSAR pipelines fail at first regulator-driven test.",
+      "id": "r011"
+    },
+    {
+      "reg": [
+        "gdpr",
+        "privacy_au",
+        "hipaa"
+      ],
+      "ctrl": "Data classification + handling rules encoded",
+      "cat": "Data governance",
+      "surface": "Data platform \u00b7 All apps",
+      "tools": [
+        [
+          "Microsoft Purview Information Protection",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "Google DLP",
+          "managed",
+          "GCP"
+        ],
+        [
+          "AWS Macie",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Immuta",
+          "commercial",
+          "Immuta"
+        ],
+        [
+          "OpenMetadata (with classification tags)",
+          "oss",
+          "Collate"
+        ]
+      ],
+      "evidence": "Every data asset tagged. Handling rules (encryption, retention, residency) inherited from classification. DLP rules tested via canary records.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "The control is not 'we have a data classification standard'. It's 'every dataset wears its classification and the platform enforces handling rules.'",
+      "id": "r012"
+    },
+    {
+      "reg": [
+        "gdpr",
+        "privacy_au"
+      ],
+      "ctrl": "Data residency / sovereignty (per-tenant region pinning)",
+      "cat": "Data governance",
+      "surface": "Cloud infra",
+      "tools": [
+        [
+          "AWS Local Zones / AWS Wavelength",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure sovereign cloud regions",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP region restrictions (Org Policy)",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Cloudflare data localisation suite",
+          "managed",
+          "Cloudflare"
+        ]
+      ],
+      "evidence": "Tenant-to-region routing table. Network policies that block egress to other regions. Sample request trace showing data stays in-region end-to-end.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare"
+      ],
+      "notes": "Soft-residency (claim) vs hard-residency (architecturally enforceable). Auditors increasingly want the latter.",
+      "id": "r013"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf",
+        "ai_safety_au"
+      ],
+      "ctrl": "Eval-set gating in CI for AI applications",
+      "cat": "AI evals & guardrails",
+      "surface": "CI/CD",
+      "tools": [
+        [
+          "Promptfoo",
+          "oss",
+          "Promptfoo"
+        ],
+        [
+          "LangSmith (eval suites)",
+          "commercial",
+          "LangChain"
+        ],
+        [
+          "Langfuse",
+          "oss",
+          "Langfuse"
+        ],
+        [
+          "OpenAI Evals",
+          "oss",
+          "OpenAI"
+        ],
+        [
+          "DeepEval",
+          "oss",
+          "Confident AI"
+        ],
+        [
+          "Inspect AI",
+          "oss",
+          "UK AISI"
+        ]
+      ],
+      "evidence": "Versioned eval set per prompt + model + version. CI run on every change that touches prompt or model. Merge blocked on critical-regression. Eval-set drift report quarterly.",
+      "anti_pattern": "eval-set-never-runs",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "EU AI Act Art. 15 (accuracy / robustness) is enforceable only with eval-set discipline. NIST AI RMF MEASURE function depends on it.",
+      "id": "r014"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "ai_safety_au",
+        "owasp_llm",
+        "atlas"
+      ],
+      "ctrl": "Layered guardrails (input + output) tested adversarially",
+      "cat": "AI evals & guardrails",
+      "surface": "Runtime \u00b7 AI gateway",
+      "tools": [
+        [
+          "NVIDIA NeMo Guardrails",
+          "oss",
+          "NVIDIA"
+        ],
+        [
+          "Guardrails AI",
+          "oss",
+          "Guardrails AI"
+        ],
+        [
+          "AWS Bedrock Guardrails",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure AI Content Safety",
+          "managed",
+          "Azure"
+        ],
+        [
+          "Lakera Guard",
+          "commercial",
+          "Lakera"
+        ],
+        [
+          "Llama Guard",
+          "oss",
+          "Meta"
+        ]
+      ],
+      "evidence": "Guardrail policy version-controlled. Adversarial-prompt suite run weekly against guardrail (not against base model). False-negative + false-positive rate tracked. Per-incident postmortem when guardrail breached.",
+      "anti_pattern": "inline-prompt-pattern",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Guardrails encoded in the system prompt = no guardrail. The control is a distinct layer that intercepts before & after the model.",
+      "id": "r015"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "iso42001"
+      ],
+      "ctrl": "Per-decision audit evidence pack (LLM)",
+      "cat": "AI evals & guardrails",
+      "surface": "Runtime \u00b7 Storage",
+      "tools": [
+        [
+          "Langfuse (with retention policy)",
+          "oss",
+          "Langfuse"
+        ],
+        [
+          "LangSmith",
+          "commercial",
+          "LangChain"
+        ],
+        [
+          "Helicone",
+          "oss",
+          "Helicone"
+        ],
+        [
+          "OpenTelemetry (with GenAI semantic conventions)",
+          "oss",
+          "CNCF"
+        ]
+      ],
+      "evidence": "Per request: prompt, retrieved context, model + version, guardrails applied, output, latency, cost. Signed, immutable, retention-policy-controlled. Replay-able at any time.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "EU AI Act Art. 12 (logging) becomes operational evidence here. Without per-decision logs you cannot answer regulator's 'why did the model decide X for this customer'.",
+      "id": "r016"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "ai_safety_au"
+      ],
+      "ctrl": "Human-in-loop for high-risk decisions",
+      "cat": "AI evals & guardrails",
+      "surface": "Runtime \u00b7 UI",
+      "tools": [
+        [
+          "Custom workflow engine + queue per domain",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Temporal (long-running approval)",
+          "oss",
+          "Temporal"
+        ],
+        [
+          "ServiceNow workflows",
+          "commercial",
+          "ServiceNow"
+        ],
+        [
+          "Camunda BPMN",
+          "oss",
+          "Camunda"
+        ]
+      ],
+      "evidence": "Trigger conditions documented (confidence threshold, risk tier, regulator-defined). Human reviewer queue with SLA. Audit trail showing human approval per decision.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare"
+      ],
+      "notes": "Art. 14 (human oversight) is operational, not declarative. 'A human can override' isn't oversight; 'a human must approve high-risk decisions' is.",
+      "id": "r017"
+    },
+    {
+      "reg": [
+        "owasp_llm",
+        "atlas"
+      ],
+      "ctrl": "Prompt injection defence + red-team programme",
+      "cat": "AI evals & guardrails",
+      "surface": "Runtime \u00b7 CI",
+      "tools": [
+        [
+          "Garak (LLM red-team scanner)",
+          "oss",
+          "NVIDIA"
+        ],
+        [
+          "PyRIT",
+          "oss",
+          "Microsoft"
+        ],
+        [
+          "HiddenLayer AI Security",
+          "commercial",
+          "HiddenLayer"
+        ],
+        [
+          "Robust Intelligence AI Validation",
+          "commercial",
+          "Robust Intelligence"
+        ]
+      ],
+      "evidence": "Quarterly red-team report with documented attack categories. Pre-deploy adversarial test suite. CVE-equivalent tracking for AI vulnerabilities found.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "OWASP LLM01 (prompt injection) is the most common attack vector; defending requires both input-side and output-side controls.",
+      "id": "r018"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf"
+      ],
+      "ctrl": "Model card + data card for production model",
+      "cat": "AI evals & guardrails",
+      "surface": "Documentation",
+      "tools": [
+        [
+          "Hugging Face model cards",
+          "standard",
+          "Hugging Face"
+        ],
+        [
+          "Google Model Card Toolkit",
+          "oss",
+          "Google"
+        ],
+        [
+          "NVIDIA Model Card++",
+          "oss",
+          "NVIDIA"
+        ],
+        [
+          "Custom YAML schema in repo",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "Per model in production: model card (training data, eval results, intended use, limitations). Per dataset: data card (provenance, consent basis, refresh cadence). Both versioned with the model.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "EU AI Act technical documentation (Art. 11 / Annex IV) maps to model + data cards.",
+      "id": "r019"
+    },
+    {
+      "reg": [
+        "cps230",
+        "dora",
+        "nis2",
+        "soci"
+      ],
+      "ctrl": "Documented + tested service-level recovery (RTO/RPO)",
+      "cat": "Resilience & continuity",
+      "surface": "Operations",
+      "tools": [
+        [
+          "AWS Resilience Hub",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Site Recovery",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP Backup and DR Service",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Veeam",
+          "commercial",
+          "Veeam"
+        ],
+        [
+          "Tabletop runbooks + game-day cadence",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "Per critical service: RTO + RPO defined. Recovery tested at least annually with timed result. Gap-to-target tracked. Multi-region failover rehearsed.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "CPS 230 (live in AU FS) requires this for every 'critical operation'. DORA RTS expects testing artefacts the regulator can review.",
+      "id": "r020"
+    },
+    {
+      "reg": [
+        "cps230",
+        "dora",
+        "nis2",
+        "circia"
+      ],
+      "ctrl": "Third-party / critical-vendor concentration tracking",
+      "cat": "Third-party risk",
+      "surface": "Operations \u00b7 Vendor mgmt",
+      "tools": [
+        [
+          "OneTrust Vendor Risk",
+          "commercial",
+          "OneTrust"
+        ],
+        [
+          "ServiceNow VRM",
+          "commercial",
+          "ServiceNow"
+        ],
+        [
+          "Whistic",
+          "commercial",
+          "Whistic"
+        ],
+        [
+          "Internal spreadsheet with quarterly review",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "Vendor catalogue with criticality classification. Concentration risk (% of critical operations on one vendor) measured. Exit-plan for top-N critical vendors documented.",
+      "sectors": [
+        "banks",
+        "critical-infrastructure"
+      ],
+      "notes": "DORA introduced critical ICT third-party designation (CTPP). APRA CPS 230 has equivalent material-service-provider rules. Both need real numbers, not 'we use AWS'.",
+      "id": "r021"
+    },
+    {
+      "reg": [
+        "cps230",
+        "dora"
+      ],
+      "ctrl": "Chaos engineering / failure injection in production",
+      "cat": "Resilience & continuity",
+      "surface": "Production",
+      "tools": [
+        [
+          "AWS Fault Injection Service",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Chaos Mesh",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Gremlin",
+          "commercial",
+          "Gremlin"
+        ],
+        [
+          "Litmus",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Steadybit",
+          "commercial",
+          "Steadybit"
+        ]
+      ],
+      "evidence": "Scheduled chaos experiments with documented blast radius. Hypothesis-driven (we expect X to happen; did it?). Postmortem when hypothesis was wrong.",
+      "sectors": [
+        "banks",
+        "critical-infrastructure"
+      ],
+      "notes": "DORA Art. 25 (threat-led penetration testing) implies dynamic resilience testing; chaos engineering is its operational analogue.",
+      "id": "r022"
+    },
+    {
+      "reg": [
+        "nis2",
+        "circia",
+        "cps234",
+        "soci"
+      ],
+      "ctrl": "Fast incident reporting capability (\u226472h)",
+      "cat": "Incident response",
+      "surface": "Security operations",
+      "tools": [
+        [
+          "PagerDuty (with regulator templates)",
+          "commercial",
+          "PagerDuty"
+        ],
+        [
+          "FireHydrant",
+          "commercial",
+          "FireHydrant"
+        ],
+        [
+          "Incident.io",
+          "commercial",
+          "Incident.io"
+        ],
+        [
+          "Rootly",
+          "commercial",
+          "Rootly"
+        ],
+        [
+          "Custom Slack workflow + templates",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "Pre-templated regulator-notification drafts (per regulator). Drill quarterly: time from detection to draft sent. Audit trail of incident decisions.",
+      "sectors": [
+        "banks",
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "US CIRCIA: 72h incident, 24h ransom payment. NIS2: 24h early-warning, 72h notification. SOCI 2018: critical infrastructure asset incidents 72h. The shape of the obligation is similar globally.",
+      "id": "r023"
+    },
+    {
+      "reg": [
+        "e8",
+        "iso27001"
+      ],
+      "ctrl": "Blameless postmortems for every Sev-1 + Sev-2",
+      "cat": "Incident response",
+      "surface": "Operations",
+      "tools": [
+        [
+          "Notion / Confluence templates",
+          "commercial",
+          "Notion / Atlassian"
+        ],
+        [
+          "PagerDuty Postmortems",
+          "commercial",
+          "PagerDuty"
+        ],
+        [
+          "Jeli (acquired by PagerDuty)",
+          "commercial",
+          "PagerDuty"
+        ],
+        [
+          "Howie (the post-incident guide)",
+          "oss",
+          "Jeli"
+        ]
+      ],
+      "evidence": "Postmortem published within 14 days of every Sev-1/2. Action items tracked with closure-SLA. Quarterly read-back: themes, contributing factors, systemic gaps.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Action items that don't close = postmortems that don't compound. Google SRE Workbook Chapter 10 is the canonical reference.",
+      "id": "r024"
+    },
+    {
+      "reg": [
+        "e8",
+        "ssdf",
+        "cisa_ssa",
+        "cps234",
+        "dora",
+        "nis2"
+      ],
+      "ctrl": "Patching SLA for KEV-listed CVEs (\u226414 days)",
+      "cat": "Vulnerability management",
+      "surface": "Production",
+      "tools": [
+        [
+          "CISA KEV catalog (free RSS/JSON feed)",
+          "standard",
+          "CISA"
+        ],
+        [
+          "Tenable.io",
+          "commercial",
+          "Tenable"
+        ],
+        [
+          "Qualys VMDR",
+          "commercial",
+          "Qualys"
+        ],
+        [
+          "Wiz",
+          "commercial",
+          "Wiz"
+        ],
+        [
+          "Aqua / Trivy + Dependency-Track for SBOM-driven",
+          "oss",
+          "Aqua / OWASP"
+        ]
+      ],
+      "evidence": "Per-CVE: detection time, patch-deployed time. MTTR for KEV-class trending below 14 days. Out-of-SLA list (in writing, with owner) for any gap.",
+      "anti_pattern": "sbom-shelfware",
+      "sectors": [
+        "all"
+      ],
+      "notes": "CISA KEV is the actually-exploited subset; far better priority than CVSS-score alone.",
+      "id": "r025"
+    },
+    {
+      "reg": [
+        "e8",
+        "hipaa",
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Tamper-evident, centralised, queryable audit logs",
+      "cat": "Audit & logging",
+      "surface": "All services",
+      "tools": [
+        [
+          "AWS CloudTrail + CloudWatch Logs Insights",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Monitor + Sentinel",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP Cloud Audit Logs",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Splunk",
+          "commercial",
+          "Splunk"
+        ],
+        [
+          "Datadog Audit Trail",
+          "commercial",
+          "Datadog"
+        ],
+        [
+          "Loki + Grafana",
+          "oss",
+          "Grafana Labs"
+        ]
+      ],
+      "evidence": "Per audit event: who, what, when, source. Retention per regulator (HIPAA 6 years; GDPR variable). Immutability proof (object-lock / write-once / hash-chain).",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Local log files don't pass audit. Centralised + tamper-evident is the baseline.",
+      "id": "r026"
+    },
+    {
+      "reg": [
+        "pci",
+        "hipaa",
+        "iso27001"
+      ],
+      "ctrl": "TLS 1.3 everywhere (no fallback to TLS 1.0/1.1)",
+      "cat": "Cryptography & secrets",
+      "surface": "Network",
+      "tools": [
+        [
+          "AWS ACM + ELB cipher policies",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Cloudflare TLS settings",
+          "managed",
+          "Cloudflare"
+        ],
+        [
+          "Mozilla SSL Config Generator",
+          "oss",
+          "Mozilla"
+        ],
+        [
+          "testssl.sh",
+          "oss",
+          "Drwetter"
+        ],
+        [
+          "Wireshark + Zeek for traffic verification",
+          "oss",
+          "\u2014"
+        ]
+      ],
+      "evidence": "External scan (Qualys SSL Labs / testssl) showing A+ grade. Cipher allow-list documented. Audit log of any TLS-version-downgrade attempts.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "PCI DSS 4.0 explicitly requires TLS 1.2+ (not 1.0/1.1) since 30 March 2025.",
+      "id": "r027"
+    },
+    {
+      "reg": [
+        "pci",
+        "hipaa",
+        "iso27001"
+      ],
+      "ctrl": "Per-customer / per-tenant KMS keys (BYOK or CMK)",
+      "cat": "Cryptography & secrets",
+      "surface": "Data plane",
+      "tools": [
+        [
+          "AWS KMS (with per-tenant CMK)",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP Cloud KMS / EKM",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure Key Vault Managed HSM",
+          "managed",
+          "Azure"
+        ],
+        [
+          "HashiCorp Vault Transit secrets engine",
+          "oss",
+          "HashiCorp"
+        ]
+      ],
+      "evidence": "Per-tenant key inventory. Key-rotation cadence enforced. Key-deletion as a real operation (crypto-shredding for tenant offboarding).",
+      "sectors": [
+        "banks",
+        "healthcare",
+        "government"
+      ],
+      "notes": "BYOK only meaningful if you can demonstrate the key is exclusive to one tenant and rotated independently.",
+      "id": "r028"
+    },
+    {
+      "reg": [
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Secret scanning + auto-revocation in CI",
+      "cat": "Cryptography & secrets",
+      "surface": "Source \u00b7 CI/CD",
+      "tools": [
+        [
+          "GitGuardian",
+          "commercial",
+          "GitGuardian"
+        ],
+        [
+          "GitHub Advanced Security secret scanning",
+          "managed",
+          "GitHub"
+        ],
+        [
+          "Trufflehog",
+          "oss",
+          "Truffle Security"
+        ],
+        [
+          "AWS IAM Access Analyzer unused-key",
+          "managed",
+          "AWS"
+        ],
+        [
+          "HashiCorp Vault leases (auto-revoke)",
+          "oss",
+          "HashiCorp"
+        ]
+      ],
+      "evidence": "Pre-commit + push-time + retroactive scanning. Detected-secret-to-revocation MTTR. Quarterly retroactive scan of all repos.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "A leaked secret rotated in 30 days is a breach. Auto-revocation pipeline matters more than detection.",
+      "id": "r029"
+    },
+    {
+      "reg": [
+        "cps230",
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Progressive deployment / blast-radius reduction",
+      "cat": "Change & release management",
+      "surface": "Release pipeline",
+      "tools": [
+        [
+          "ArgoCD (with rollouts)",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Flagger",
+          "oss",
+          "Flux"
+        ],
+        [
+          "LaunchDarkly",
+          "commercial",
+          "LaunchDarkly"
+        ],
+        [
+          "Statsig",
+          "commercial",
+          "Statsig"
+        ],
+        [
+          "Spinnaker",
+          "oss",
+          "Spinnaker"
+        ],
+        [
+          "AWS CodeDeploy linear/canary",
+          "managed",
+          "AWS"
+        ]
+      ],
+      "evidence": "Per service: deployment shape (canary % \u00b7 linear N-min \u00b7 blue-green). Auto-rollback metrics defined. Recent rollback events with timing.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Big-bang prod deploys are a CPS 230 finding-in-waiting. Progressive deployment with auto-rollback is the operational standard.",
+      "id": "r030"
+    },
+    {
+      "reg": [
+        "e8",
+        "sp80053",
+        "iso27001"
+      ],
+      "ctrl": "Application allowlisting (no unsigned code execution in prod)",
+      "cat": "Change & release management",
+      "surface": "Endpoint \u00b7 Server",
+      "tools": [
+        [
+          "Microsoft AppLocker / WDAC",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "VMware Carbon Black App Control",
+          "commercial",
+          "VMware"
+        ],
+        [
+          "AWS Bottlerocket (immutable AMI)",
+          "managed",
+          "AWS"
+        ],
+        [
+          "OpenSCAP profiles",
+          "oss",
+          "OpenSCAP"
+        ]
+      ],
+      "evidence": "Endpoint policy export. Test execution of unsigned binary must be blocked. Exception list with owner + expiry.",
+      "sectors": [
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "E8 ML2+ requires application control. Hard to retrofit; bake into golden image / paved path.",
+      "id": "r031"
+    },
+    {
+      "reg": [
+        "cps230",
+        "dora",
+        "nis2",
+        "sp80053"
+      ],
+      "ctrl": "Inherited golden signals (latency, traffic, errors, saturation)",
+      "cat": "Observability",
+      "surface": "All services",
+      "tools": [
+        [
+          "OpenTelemetry (auto-instrumentation)",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Datadog APM",
+          "commercial",
+          "Datadog"
+        ],
+        [
+          "Grafana Tempo + Mimir + Loki",
+          "oss",
+          "Grafana Labs"
+        ],
+        [
+          "Honeycomb",
+          "commercial",
+          "Honeycomb"
+        ],
+        [
+          "New Relic",
+          "commercial",
+          "New Relic"
+        ]
+      ],
+      "evidence": "Per service: 4 golden signals dashboard inherited from paved path. SLO + error-budget per critical service. Alert quality (actionable-rate) \u226570%.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Inherited (paved path) beats per-team-set-up-their-own. The control is consistency across the fleet.",
+      "id": "r032"
+    },
+    {
+      "reg": [
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "SIEM / SOC integration with detection-as-code",
+      "cat": "Observability",
+      "surface": "Security operations",
+      "tools": [
+        [
+          "Microsoft Sentinel (KQL detection)",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "Splunk Enterprise Security",
+          "commercial",
+          "Splunk"
+        ],
+        [
+          "Panther",
+          "commercial",
+          "Panther"
+        ],
+        [
+          "Elastic Security",
+          "commercial",
+          "Elastic"
+        ],
+        [
+          "Sigma rules + sigma-cli",
+          "oss",
+          "Sigma project"
+        ]
+      ],
+      "evidence": "Detection rules in git. PR-reviewed. CI-tested against historical events. Rule effectiveness reviewed monthly.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Detection-as-code beats SIEM-managed-by-vendor. Treats security like the engineering practice it is.",
+      "id": "r033"
+    },
+    {
+      "reg": [
+        "sp80053",
+        "iso27001",
+        "iec62443"
+      ],
+      "ctrl": "Network segmentation between IT and OT zones",
+      "cat": "Workload isolation",
+      "surface": "Network",
+      "tools": [
+        [
+          "Cisco TrustSec / ISE",
+          "commercial",
+          "Cisco"
+        ],
+        [
+          "Palo Alto Networks NGFW with zones",
+          "commercial",
+          "Palo Alto"
+        ],
+        [
+          "Illumio (zero-trust segmentation)",
+          "commercial",
+          "Illumio"
+        ],
+        [
+          "Industrial DMZ + jump hosts",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Microsoft Defender for IoT",
+          "commercial",
+          "Microsoft"
+        ]
+      ],
+      "evidence": "Zone-and-conduit model documented (per IEC 62443-3-2). Inter-zone traffic logged. Conduits monitored. Unauthorised flow alerts.",
+      "sectors": [
+        "critical-infrastructure"
+      ],
+      "notes": "IEC 62443 zone-and-conduit model is now the de-facto bar for OT/ICS environments. SOCI 2022 SLACIP-amendment audits ask after this.",
+      "id": "r034"
+    },
+    {
+      "reg": [
+        "sp80053",
+        "iso27001"
+      ],
+      "ctrl": "Service mesh mTLS between microservices",
+      "cat": "Workload isolation",
+      "surface": "K8s \u00b7 Network",
+      "tools": [
+        [
+          "Istio",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Linkerd",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "HashiCorp Consul Connect",
+          "oss",
+          "HashiCorp"
+        ],
+        [
+          "AWS App Mesh",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Cilium Service Mesh",
+          "oss",
+          "Cilium"
+        ]
+      ],
+      "evidence": "100% intra-cluster traffic encrypted (mesh dashboard). Strict mTLS mode (no plaintext fallback). Cert rotation cadence.",
+      "sectors": [
+        "banks",
+        "healthcare",
+        "government"
+      ],
+      "notes": "Service mesh is real platform investment. Adopt if 20+ services and a platform team; defer otherwise.",
+      "id": "r035"
+    },
+    {
+      "reg": [
+        "sp80053",
+        "iso27001",
+        "pci"
+      ],
+      "ctrl": "Production workload runs without privileged escalation",
+      "cat": "Workload isolation",
+      "surface": "K8s \u00b7 Container",
+      "tools": [
+        [
+          "Kyverno (disallow-privileged)",
+          "oss",
+          "Kyverno"
+        ],
+        [
+          "OPA Gatekeeper PSS profiles",
+          "oss",
+          "OPA"
+        ],
+        [
+          "Falco runtime detection",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Pod Security Standards: restricted",
+          "standard",
+          "Kubernetes"
+        ],
+        [
+          "Bottlerocket / gVisor for sandboxing",
+          "oss",
+          "AWS / Google"
+        ]
+      ],
+      "evidence": "Admission policy enforcing restricted PSS profile. No privileged: true in production. Exception list with owner + expiry.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Default-deny privileged execution; allow only with explicit exception. This is the bar Kubernetes Pod Security Standards 'restricted' enforces.",
+      "id": "r036"
+    },
+    {
+      "reg": [
+        "iso27001",
+        "sp80053",
+        "cps234"
+      ],
+      "ctrl": "Quarterly user-access review (UAR) with attestation",
+      "cat": "Access reviews",
+      "surface": "Identity",
+      "tools": [
+        [
+          "Okta Access Certifications",
+          "commercial",
+          "Okta"
+        ],
+        [
+          "SailPoint IdentityNow",
+          "commercial",
+          "SailPoint"
+        ],
+        [
+          "Microsoft Entra Access Reviews",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "AWS IAM Access Analyzer (last-used)",
+          "managed",
+          "AWS"
+        ]
+      ],
+      "evidence": "Per quarter: every privileged user reviewed by a manager. Review evidence signed. Revocations logged with timing.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare"
+      ],
+      "notes": "Manual UARs by spreadsheet collapse at scale. The control needs an attestation engine, not a Friday-afternoon Excel.",
+      "id": "r037"
+    },
+    {
+      "reg": [
+        "cps230",
+        "soci"
+      ],
+      "ctrl": "Critical operation register with substitutability analysis",
+      "cat": "Operational risk",
+      "surface": "Risk function",
+      "tools": [
+        [
+          "ServiceNow Operational Risk",
+          "commercial",
+          "ServiceNow"
+        ],
+        [
+          "Custom register in confluence / wiki",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Riskonnect",
+          "commercial",
+          "Riskonnect"
+        ]
+      ],
+      "evidence": "Critical operations enumerated. Per operation: substitute (manual / backup / contracted alternative) tested. Tolerance for disruption set.",
+      "sectors": [
+        "banks",
+        "critical-infrastructure"
+      ],
+      "notes": "CPS 230 explicitly requires this. The 'tolerance for disruption' is the regulator's pet metric.",
+      "id": "r038"
+    },
+    {
+      "reg": [
+        "hipaa"
+      ],
+      "ctrl": "Business Associate Agreement (BAA) with every PHI handler",
+      "cat": "Third-party risk",
+      "surface": "Vendor mgmt",
+      "tools": [
+        [
+          "OneTrust BAA module",
+          "commercial",
+          "OneTrust"
+        ],
+        [
+          "DocuSign + central BAA registry",
+          "commercial",
+          "DocuSign"
+        ],
+        [
+          "AWS BAA (signed)",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP BAA (signed)",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure BAA (signed)",
+          "managed",
+          "Azure"
+        ]
+      ],
+      "evidence": "BAA registry. Every vendor processing PHI on signed BAA. Annual review. Termination + data-return clauses tested.",
+      "sectors": [
+        "healthcare"
+      ],
+      "notes": "Major cloud providers offer pre-signed BAAs; smaller vendors often forgotten and become the audit finding.",
+      "id": "r039"
+    },
+    {
+      "reg": [
+        "fda_samd",
+        "iso13485",
+        "iec62304"
+      ],
+      "ctrl": "Post-market surveillance (PMS) plan for SaMD",
+      "cat": "AI evals & guardrails",
+      "surface": "Documentation \u00b7 Operations",
+      "tools": [
+        [
+          "Greenlight Guru QMS",
+          "commercial",
+          "Greenlight Guru"
+        ],
+        [
+          "Matrix Requirements",
+          "commercial",
+          "Matrix"
+        ],
+        [
+          "Custom QMS in confluence + git",
+          "managed",
+          "\u2014"
+        ]
+      ],
+      "evidence": "PMS plan document. Adverse-event capture mechanism. Periodic safety update report (PSUR) cadence. Field-action procedure tested.",
+      "sectors": [
+        "healthcare"
+      ],
+      "notes": "FDA expects PMS for any clinical AI. Maps to ISO 14971 risk management.",
+      "id": "r040"
+    },
+    {
+      "reg": [
+        "e8",
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Infrastructure-as-code with plan-time policy check",
+      "cat": "Change & release management",
+      "surface": "CI/CD",
+      "tools": [
+        [
+          "Terraform + Conftest/OPA",
+          "oss",
+          "HashiCorp + OPA"
+        ],
+        [
+          "Pulumi + Policy-as-Code",
+          "commercial",
+          "Pulumi"
+        ],
+        [
+          "Checkov",
+          "oss",
+          "Bridgecrew (Palo Alto)"
+        ],
+        [
+          "tfsec / Trivy IaC",
+          "oss",
+          "Aqua Security"
+        ],
+        [
+          "AWS CloudFormation Guard",
+          "managed",
+          "AWS"
+        ]
+      ],
+      "evidence": "Every infra change via PR. Plan-time policy check blocks bad configs (public S3, root-account use, untagged resources). Out-of-band changes alerted.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "ClickOps in production = audit finding. IaC + plan-time policy is the bar.",
+      "id": "r041"
+    },
+    {
+      "reg": [
+        "sp80053",
+        "iso27001"
+      ],
+      "ctrl": "Drift detection (cloud config matches IaC source-of-truth)",
+      "cat": "Change & release management",
+      "surface": "Cloud \u00b7 Tooling",
+      "tools": [
+        [
+          "AWS Config Rules",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Policy compliance",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP Asset Inventory + policy",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Driftctl",
+          "oss",
+          "Snyk"
+        ],
+        [
+          "Terraform Cloud / Enterprise drift detection",
+          "commercial",
+          "HashiCorp"
+        ]
+      ],
+      "evidence": "Daily / hourly drift report. Out-of-IaC changes alerted to owner. Closed-loop: drift \u2192 patched in code + applied, not patched in cloud alone.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Drift accumulates silently. Detection alone is necessary but not sufficient \u2014 the loop must close back to code.",
+      "id": "r042"
+    },
+    {
+      "reg": [
+        "cps230"
+      ],
+      "ctrl": "Per-service / per-tenant cost attribution",
+      "cat": "Operational risk",
+      "surface": "Cloud \u00b7 FinOps",
+      "tools": [
+        [
+          "AWS Cost Categories + CUR",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP Billing reports + labels",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure Cost Management + tags",
+          "managed",
+          "Azure"
+        ],
+        [
+          "Vantage",
+          "commercial",
+          "Vantage"
+        ],
+        [
+          "OpenCost / Kubecost",
+          "oss",
+          "FinOps Foundation"
+        ]
+      ],
+      "evidence": "Per service / per tenant cost trend monthly. Cost spike (>30%) triggers owner alert. Cost-per-resolved-task / cost-per-transaction trending.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "CPS 230 doesn't name cost explicitly, but financial sustainability of critical operations is in scope. FinOps Foundation Framework is the operational substrate.",
+      "id": "r043"
+    },
+    {
+      "reg": [
+        "iso27001",
+        "sp80053"
+      ],
+      "ctrl": "Crypto-agility plan (PQC transition readiness)",
+      "cat": "Cryptography & secrets",
+      "surface": "Engineering",
+      "tools": [
+        [
+          "Open Quantum Safe (liboqs)",
+          "oss",
+          "OQS Project"
+        ],
+        [
+          "AWS KMS PQC support",
+          "managed",
+          "AWS"
+        ],
+        [
+          "CryptoNext Security",
+          "commercial",
+          "CryptoNext"
+        ],
+        [
+          "NIST PQC standards (ML-KEM, ML-DSA, SLH-DSA)",
+          "standard",
+          "NIST"
+        ]
+      ],
+      "evidence": "Crypto inventory (where is asymmetric crypto used). PQC transition plan with milestones. Pilot with hybrid (classical + PQC) on one critical path.",
+      "sectors": [
+        "banks",
+        "government",
+        "critical-infrastructure"
+      ],
+      "notes": "NIST finalised PQC standards Aug 2024 (FIPS 203/204/205). Regulators are starting to ask about transition plans.",
+      "id": "r044"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "iso42001"
+      ],
+      "ctrl": "AI risk classification + impact assessment",
+      "cat": "AI evals & guardrails",
+      "surface": "Governance",
+      "tools": [
+        [
+          "Custom risk-classification template",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Credo AI",
+          "commercial",
+          "Credo AI"
+        ],
+        [
+          "Holistic AI",
+          "commercial",
+          "Holistic AI"
+        ],
+        [
+          "Microsoft Responsible AI Impact Assessment",
+          "managed",
+          "Microsoft"
+        ]
+      ],
+      "evidence": "Per AI use-case: risk tier (per EU AI Act + internal taxonomy). Impact assessment signed. Review cadence + trigger events.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "EU AI Act Art. 9 (risk management system). NIST AI RMF MAP function. ISO 42001 Annex A.6.1.",
+      "id": "r045"
+    },
+    {
+      "reg": [
+        "eu_ai_act",
+        "iso42001"
+      ],
+      "ctrl": "Data poisoning + model-supply-chain controls",
+      "cat": "AI evals & guardrails",
+      "surface": "ML pipeline",
+      "tools": [
+        [
+          "Hugging Face model scanning (Picklescan)",
+          "oss",
+          "Hugging Face"
+        ],
+        [
+          "Protect AI Guardian (model scanning)",
+          "commercial",
+          "Protect AI"
+        ],
+        [
+          "ML-BOM (CycloneDX ML extension)",
+          "standard",
+          "CycloneDX"
+        ],
+        [
+          "MLflow model registry with sigstore",
+          "oss",
+          "Linux Foundation"
+        ]
+      ],
+      "evidence": "All models scanned for serialised-code exploits. ML-BOM published per model. Training-data provenance documented.",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Pickle files in shared model registries are an active attack surface. ML-supply-chain is the new software-supply-chain.",
+      "id": "r046"
+    },
+    {
+      "reg": [
+        "bcbs239"
+      ],
+      "ctrl": "Risk data aggregation traceability (BCBS 239)",
+      "cat": "Data governance",
+      "surface": "Risk data platform",
+      "tools": [
+        [
+          "Solidatus",
+          "commercial",
+          "Solidatus"
+        ],
+        [
+          "Manta",
+          "commercial",
+          "IBM Manta"
+        ],
+        [
+          "OpenLineage + dbt",
+          "oss",
+          "LF AI & dbt Labs"
+        ],
+        [
+          "Collibra",
+          "commercial",
+          "Collibra"
+        ]
+      ],
+      "evidence": "Risk report \u2192 upstream system traceable. Adjustments logged. Materiality of each manual override classified.",
+      "sectors": [
+        "banks"
+      ],
+      "notes": "G-SIBs were given BCBS 239 in 2013, due 2016, mostly still failing 2024 (BCBS reviews are public). The substrate is the gap, not the regulation.",
+      "id": "r047"
+    },
+    {
+      "reg": [
+        "irap"
+      ],
+      "ctrl": "Sovereign cloud region with assessed controls",
+      "cat": "Workload isolation",
+      "surface": "Cloud",
+      "tools": [
+        [
+          "AWS Sydney Region (IRAP-assessed)",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Sydney + Canberra regions (IRAP-assessed)",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP Sydney + Melbourne regions (IRAP-assessed)",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Vault / sovereign IaaS (specific deployments)",
+          "commercial",
+          "Vault Cloud"
+        ]
+      ],
+      "evidence": "IRAP assessment letter from provider. Workload placement policy. Data egress controls preventing cross-region routing.",
+      "sectors": [
+        "government"
+      ],
+      "notes": "Up to PROTECTED on assessed regions; SECRET typically on sovereign-only platforms.",
+      "id": "r048"
+    },
+    {
+      "reg": [
+        "e8",
+        "iso27001"
+      ],
+      "ctrl": "Immutable backups with offline / air-gapped copy",
+      "cat": "Resilience & continuity",
+      "surface": "Backup infrastructure",
+      "tools": [
+        [
+          "AWS Backup + Vault Lock",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Backup immutable vault",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP Backup and DR Service",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Veeam (immutable repository)",
+          "commercial",
+          "Veeam"
+        ],
+        [
+          "MinIO with object locking",
+          "oss",
+          "MinIO"
+        ]
+      ],
+      "evidence": "Backup inventory + retention. Restore test quarterly. Immutability window > regulator-defined retention. Air-gap proven via network path test.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "E8 ML2+ requires immutable + tested backups. Ransomware resilience is the underlying threat.",
+      "id": "r049"
+    },
+    {
+      "reg": [
+        "gdpr",
+        "privacy_au"
+      ],
+      "ctrl": "Granular consent capture + revocation propagation",
+      "cat": "Data governance",
+      "surface": "Frontend \u00b7 backend",
+      "tools": [
+        [
+          "OneTrust Cookie Consent",
+          "commercial",
+          "OneTrust"
+        ],
+        [
+          "Cookiebot",
+          "commercial",
+          "Usercentrics"
+        ],
+        [
+          "Custom consent management with audit log",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Transcend Consent Management",
+          "commercial",
+          "Transcend"
+        ]
+      ],
+      "evidence": "Consent capture audit log per user. Revocation triggers downstream-system removal within N hours. Granularity matches actual purposes (not 'accept all').",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Cookie banner alone doesn't satisfy. The control is propagation of revocation to every downstream consumer.",
+      "id": "r050"
+    },
+    {
+      "reg": [
+        "sp80053",
+        "iso27001",
+        "e8"
+      ],
+      "ctrl": "Zero-trust network access (replace VPN)",
+      "cat": "Identity & access",
+      "surface": "Network \u00b7 Identity",
+      "tools": [
+        [
+          "Cloudflare Zero Trust",
+          "commercial",
+          "Cloudflare"
+        ],
+        [
+          "Zscaler ZPA",
+          "commercial",
+          "Zscaler"
+        ],
+        [
+          "Tailscale",
+          "commercial",
+          "Tailscale"
+        ],
+        [
+          "Twingate",
+          "commercial",
+          "Twingate"
+        ],
+        [
+          "Google BeyondCorp Enterprise",
+          "commercial",
+          "Google"
+        ],
+        [
+          "AWS Verified Access",
+          "managed",
+          "AWS"
+        ]
+      ],
+      "evidence": "VPN decommissioning roadmap (or done). Per-app access tied to identity + device posture. Audit log per access decision.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Always-on VPN is the legacy. ZTNA per-app, per-identity, per-posture is the bar.",
+      "id": "r051"
+    },
+    {
+      "reg": [
+        "iso27001"
+      ],
+      "ctrl": "DNSSEC + CAA records + MTA-STS",
+      "cat": "Cryptography & secrets",
+      "surface": "DNS \u00b7 Email",
+      "tools": [
+        [
+          "Cloudflare DNS (DNSSEC, CAA)",
+          "managed",
+          "Cloudflare"
+        ],
+        [
+          "AWS Route 53 (DNSSEC)",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Hardenize.com (audit)",
+          "oss",
+          "Red Sift"
+        ],
+        [
+          "internet.nl (audit)",
+          "oss",
+          "Internet.nl"
+        ]
+      ],
+      "evidence": "DNSSEC validated externally. CAA records limit cert issuance. SPF + DKIM + DMARC at p=reject. MTA-STS published.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Often skipped because 'we have HTTPS'; the DNS + email-auth controls close a different attack class.",
+      "id": "r052"
+    },
+    {
+      "reg": [
+        "pci",
+        "sp80053",
+        "iso27001"
+      ],
+      "ctrl": "API rate limiting + authentication on every endpoint",
+      "cat": "Workload isolation",
+      "surface": "API gateway",
+      "tools": [
+        [
+          "AWS API Gateway + WAF",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure API Management",
+          "managed",
+          "Azure"
+        ],
+        [
+          "Kong",
+          "oss",
+          "Kong"
+        ],
+        [
+          "Tyk",
+          "oss",
+          "Tyk"
+        ],
+        [
+          "Cloudflare API Shield",
+          "commercial",
+          "Cloudflare"
+        ]
+      ],
+      "evidence": "Per endpoint: auth method documented (API key / OAuth / mTLS). Rate-limit profile applied. Unauthenticated endpoints registry (intentional exceptions only).",
+      "sectors": [
+        "all"
+      ],
+      "notes": "OWASP API Security Top 10 (BOLA, BOPLA, broken auth) maps to deficiencies here. API gateway + auth-per-endpoint is the structural control.",
+      "id": "r053"
+    },
+    {
+      "reg": [
+        "e8",
+        "iso27001",
+        "pci"
+      ],
+      "ctrl": "Automated OS patching (\u226430 days for high-severity)",
+      "cat": "Vulnerability management",
+      "surface": "Compute",
+      "tools": [
+        [
+          "AWS Systems Manager Patch Manager",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Update Manager",
+          "managed",
+          "Azure"
+        ],
+        [
+          "GCP OS patch management",
+          "managed",
+          "GCP"
+        ],
+        [
+          "BigFix",
+          "commercial",
+          "HCL"
+        ],
+        [
+          "Tanium",
+          "commercial",
+          "Tanium"
+        ],
+        [
+          "Bottlerocket (auto-updating immutable OS)",
+          "oss",
+          "AWS"
+        ]
+      ],
+      "evidence": "Patch compliance dashboard. % of fleet patched within N days of release. Out-of-SLA list with mitigation.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "E8 ML2 requires 48-hour patching for working exploits, 1-month for known vulns. The structural fix is immutable / auto-updating base images.",
+      "id": "r054"
+    },
+    {
+      "reg": [
+        "pci",
+        "sp80053"
+      ],
+      "ctrl": "WAF with managed rule sets + bot management",
+      "cat": "Workload isolation",
+      "surface": "Edge",
+      "tools": [
+        [
+          "Cloudflare WAF + Bot Management",
+          "commercial",
+          "Cloudflare"
+        ],
+        [
+          "AWS WAF + Managed Rules",
+          "managed",
+          "AWS"
+        ],
+        [
+          "Azure Front Door WAF",
+          "managed",
+          "Azure"
+        ],
+        [
+          "Fastly Next-Gen WAF (Signal Sciences)",
+          "commercial",
+          "Fastly"
+        ],
+        [
+          "OWASP ModSecurity Core Rule Set",
+          "oss",
+          "OWASP"
+        ]
+      ],
+      "evidence": "WAF enabled in blocking mode. Managed-rule subscription current. Custom rules version-controlled. Per-incident WAF-block review.",
+      "sectors": [
+        "all"
+      ],
+      "notes": "WAF in 'monitor' mode never moved to 'block' is the most common shelfware control.",
+      "id": "r055"
+    },
+    {
+      "reg": [
+        "iso27001",
+        "iso42001"
+      ],
+      "ctrl": "Board-level reporting on technology risk (quarterly)",
+      "cat": "Operational risk",
+      "surface": "Governance",
+      "tools": [
+        [
+          "Custom board pack template",
+          "managed",
+          "\u2014"
+        ],
+        [
+          "Diligent Boards",
+          "commercial",
+          "Diligent"
+        ],
+        [
+          "Internal dashboard (Looker / Tableau)",
+          "commercial",
+          "Google / Salesforce"
+        ]
+      ],
+      "evidence": "Quarterly board pack with technology / cyber / AI risk reporting. Action items tracked. Materiality threshold documented.",
+      "sectors": [
+        "banks",
+        "critical-infrastructure",
+        "healthcare"
+      ],
+      "notes": "EU NIS2 explicit board accountability. APRA CPS 234 + CPS 230 board-level oversight. ISO 42001 top management responsibility.",
+      "id": "r056"
+    }
+  ]
+}
