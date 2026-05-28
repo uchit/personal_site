@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anti-patterns — Uchit Vyas</title>
+<meta name="description" content="15 named anti-patterns I've seen recur across regulated-industry engagements — across EA, platform engineering, DevSecOps, GenAI and data. Each: where it appears, why it's bad, what to do instead." />
+<link rel="canonical" href="https://hellouchit.com/anti-patterns/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:title" content="Anti-patterns — Uchit Vyas" />
+<meta property="og:description" content="15 named failure patterns from regulated-industry tech. Forward to the colleague who can't yet name what's going wrong." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<style>
+  .ap-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
+  .ap-hero h1 { font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -.02em;
+    max-width: 22ch; margin-top: 14px; }
+  .ap-hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+  .ap-hero .dek { margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 1.7; max-width: 62ch; }
+  .ap-hero .dek b { color: var(--ink); font-weight: 500; }
+
+  .ap-filter {
+    position: sticky; top: 72px; z-index: 30;
+    background: rgba(12,13,16,.85);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  .ap-filter .wrap {
+    display: flex; flex-wrap: wrap; gap: 6px 8px;
+  }
+  .ap-filter .lab {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: .2em; color: var(--faint); text-transform: uppercase;
+    align-self: center; margin-right: 8px;
+  }
+  .ap-filter button {
+    font: inherit; font-size: 12.5px; padding: 6px 11px;
+    color: var(--muted); background: transparent;
+    border: 1px solid var(--line); border-radius: 100px; cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .ap-filter button:hover { color: var(--ink); border-color: var(--line-strong); }
+  .ap-filter button.on { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  @media (max-width: 700px) { .ap-filter { top: 64px; } }
+
+  .ap-list { padding: clamp(40px, 5vw, 64px) 0 clamp(80px, 10vw, 128px); }
+  .ap {
+    border-bottom: 1px solid var(--line);
+    padding: clamp(36px, 5vw, 56px) 0;
+    scroll-margin-top: 180px;
+  }
+  .ap:first-child { padding-top: 0; }
+  .ap:last-child { border-bottom: 0; }
+  .ap.hidden { display: none; }
+
+  .ap-head {
+    display: grid; grid-template-columns: 70px 1fr auto;
+    gap: 20px 24px; align-items: baseline; margin-bottom: 16px;
+  }
+  .ap-num { font-family: "IBM Plex Mono", monospace; color: var(--faint);
+    font-size: 12.5px; letter-spacing: .14em; }
+  .ap-head h2 { font-family: "Fraunces", serif; font-weight: 500;
+    font-size: clamp(26px, 3.2vw, 36px); line-height: 1.1;
+    letter-spacing: -.015em; }
+  .ap-head h2 em { font-style: italic; color: var(--accent); }
+  .ap-dom {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .14em; color: var(--accent); text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid var(--line); border-radius: 100px;
+    white-space: nowrap; align-self: start; margin-top: 6px;
+  }
+  @media (max-width: 700px) {
+    .ap-head { grid-template-columns: 1fr; gap: 6px; }
+    .ap-dom { justify-self: start; }
+  }
+
+  .ap-body {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 36px);
+    margin-left: 90px;
+  }
+  @media (max-width: 800px) { .ap-body { grid-template-columns: 1fr; gap: 18px; margin-left: 0; } }
+
+  .ap-block { padding: 18px 20px; border: 1px solid var(--line); border-radius: 10px;
+    background: rgba(255,255,255,.012); }
+  .ap-block .ix {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .18em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px; display: block;
+  }
+  .ap-block p { color: var(--ink); font-size: 14.5px; line-height: 1.65; }
+  .ap-block p + p { margin-top: 8px; }
+  .ap-block b { color: var(--accent); font-weight: 500; }
+  .ap-block em { font-style: italic; color: var(--muted); }
+
+  .ap-fix { grid-column: 1 / -1;
+    padding: 18px 22px; border-left: 2px solid var(--accent);
+    background: rgba(217,151,87,.05); border-radius: 0 8px 8px 0; }
+  .ap-fix .lbl {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .2em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 8px; display: block;
+  }
+  .ap-fix p { color: var(--ink); font-size: 15px; line-height: 1.7; }
+  .ap-fix b { color: var(--accent); font-weight: 500; }
+
+  .ap-meta {
+    grid-column: 1 / -1; margin-top: 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    color: var(--faint); letter-spacing: .04em;
+    display: flex; flex-wrap: wrap; gap: 4px 18px;
+  }
+  .ap-meta b { color: var(--accent); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+  .ap-meta a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); padding-bottom: 1px; }
+  .ap-meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .ap-share {
+    margin-top: 12px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    color: var(--faint); letter-spacing: .04em;
+  }
+  .ap-share a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); padding-bottom: 1px; }
+  .ap-share a:hover { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ap-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Anti-patterns</span></nav>
+      <span class="eyebrow">Reference &middot; 15 named failure patterns</span>
+      <h1>The things that quietly stop <em>working</em>.</h1>
+      <p class="dek">
+        Fifteen named anti-patterns I&rsquo;ve watched recur across regulated-
+        industry engagements &mdash; in enterprise architecture, platform
+        engineering &amp; DevSecOps, applied GenAI, data, and operating-model
+        design. Each one: <b>where it appears, why it&rsquo;s bad, what to do
+        instead</b>. Forward to the colleague who can&rsquo;t yet name what&rsquo;s
+        going wrong.
+      </p>
+    </div></section>
+
+    <section class="ap-filter"><div class="wrap">
+      <span class="lab">Filter</span>
+      <button class="on" data-f="all">All (15)</button>
+      <button data-f="ea">Enterprise Architecture</button>
+      <button data-f="platform">Platform Engineering</button>
+      <button data-f="devsecops">DevSecOps</button>
+      <button data-f="genai">Applied GenAI</button>
+      <button data-f="data">Data</button>
+      <button data-f="ops">Operating model</button>
+    </div></section>
+
+    <section class="ap-list"><div class="wrap">
+
+      <article class="ap" id="pdf-principles" data-f="ea">
+        <header class="ap-head">
+          <span class="ap-num">01</span>
+          <h2><em>PDF Principles.</em></h2>
+          <span class="ap-dom">Enterprise Architecture</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>An architecture function publishes a 70-page principles document. Linked from a wiki nobody opens. Cited only by the architects who wrote it. Delivery teams have never read it.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Principles that aren&rsquo;t encoded in platform defaults or policy-as-code <b>don&rsquo;t exist</b>. The PDF creates the illusion of governance while the substrate stays unenforced.</p>
+            <p><em>Tell: when teams violate &ldquo;principles&rdquo; routinely without consequence, the PDF is theatre.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Encode your top 3 principles as policy-as-code (OPA / Kyverno / Conftest), platform templates (Backstage scaffolders), or admission controllers. <b>Subtract the rest.</b> A principle nobody can violate without warning is a principle. Everything else is rhetoric.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/ea-operating-model.html">EA Operating Model Diagnostic</a> &middot; <a href="/writing/encoded-enterprise-architect.html">The encoded enterprise architect</a></span>
+          </div>
+          <div class="ap-share"><a href="#pdf-principles">#pdf-principles</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="architect-as-reviewer" data-f="ea">
+        <header class="ap-head">
+          <span class="ap-num">02</span>
+          <h2>The <em>Architect-as-Reviewer</em> Trap.</h2>
+          <span class="ap-dom">Enterprise Architecture</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>EA function exists to chair design reviews. Engineers must &ldquo;present to architecture&rdquo; before they can build. The reviews produce opinions, rarely decisions. Teams learn to route around the gate.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>EA-as-gate breeds resentment and creates two systems: the official one and the one that ships. The function&rsquo;s output becomes performance, not impact.</p>
+            <p><em>Tell: design reviews where the answer is mostly &ldquo;no&rdquo; or &ldquo;please come back with more detail.&rdquo;</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Replace the review board with an <b>enablement clinic</b>. The answer is never &ldquo;no.&rdquo; It&rsquo;s &ldquo;here&rsquo;s the template,&rdquo; or &ldquo;here&rsquo;s the ADR you should write,&rdquo; or &ldquo;here&rsquo;s the exception process and what it costs.&rdquo; Approval queues become paving queues.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/ea-operating-model.html">EA Diagnostic</a> &middot; <a href="/writing/encoded-enterprise-architect.html">The encoded enterprise architect</a></span>
+          </div>
+          <div class="ap-share"><a href="#architect-as-reviewer">#architect-as-reviewer</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="capability-model-theatre" data-f="ea">
+        <header class="ap-head">
+          <span class="ap-num">03</span>
+          <h2><em>Capability-Model</em> Theatre.</h2>
+          <span class="ap-dom">Enterprise Architecture</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>A beautiful capability model exists in LeanIX / Ardoq / a Visio file. Architects update it quarterly. The CFO doesn&rsquo;t consult it for investment decisions. Product managers don&rsquo;t consult it for roadmap decisions. The capability model is a project artefact, not a living instrument.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>An uncoupled capability model is overhead. Worse, it creates a false sense of EA maturity.</p>
+            <p><em>Tell: ask the CFO when they last looked at the capability model. The answer is &ldquo;never.&rdquo;</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Tie capability investment to <b>outcome metrics</b> the business already reports. Run every major investment decision through the capability lens, visibly. If the model doesn&rsquo;t survive that, simplify it until it does.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/ea-operating-model.html">EA Diagnostic</a> &middot; <a href="/4-discipline-stack/">4-Discipline Stack</a></span>
+          </div>
+          <div class="ap-share"><a href="#capability-model-theatre">#capability-model-theatre</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="ai-coe-trap" data-f="ops genai">
+        <header class="ap-head">
+          <span class="ap-num">04</span>
+          <h2>The <em>AI Centre of Excellence</em> Trap.</h2>
+          <span class="ap-dom">Operating model</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Enterprise creates a Chief AI Officer + AI CoE separate from platform engineering. CoE does great work on model selection, evals, use-case ideation. CoE owns nothing in the substrate &mdash; identity, observability, deployment pipelines &mdash; that real production AI requires.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>AI ships only as fast as the substrate underneath it. CoE-as-parallel-to-platform spends quarters waiting on platform team for the controls regulators require. By the time the substrate exists, the use-case window has closed.</p>
+            <p><em>Tell: AI roadmap dates always slip on dependencies the CoE can&rsquo;t deliver itself.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Fund AI substrate <b>inside platform engineering</b>, not parallel to it. CoE owns model selection, evals, use-case sourcing. Platform owns gateway, observability, audit-evidence, identity. Same paved path serves both.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/writing/platform-engineering-ai-moat.html">Platform engineering is the AI moat</a> &middot; <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic</a> &middot; <a href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#ai-coe-trap">#ai-coe-trap</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="ai-workshop-tourism" data-f="ops">
+        <header class="ap-head">
+          <span class="ap-num">05</span>
+          <h2><em>AI Workshop</em> Tourism.</h2>
+          <span class="ap-dom">Operating model</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Executive team attends an AI workshop. Then another. Then a third. Vendor pitches, demos, capability tours. No production use-case is named. No sponsor is assigned. No budget is allocated. Repeat for six quarters.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Workshop tourism feels like progress because it produces calendar events and slide decks. It produces no shipped capability. By the time the org commits, competitors have shipped use-cases two years deep.</p>
+            <p><em>Tell: count the workshops. Compare to count of named production use-cases with sponsors. If the ratio is &gt;3:1, it&rsquo;s tourism.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Cap the next workshop at <b>one</b>. Use it to name a use-case, name a sponsor, name a measurable outcome and a 90-day milestone. <a href="/writing/genai-9-controls.html">Apply the 9 controls</a>. Ship. The substrate built for use-case 1 carries use-cases 2&ndash;10 for free.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic</a> &middot; <a href="/writing/genai-9-controls.html">The 9 controls</a></span>
+          </div>
+          <div class="ap-share"><a href="#ai-workshop-tourism">#ai-workshop-tourism</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="kpi-cargo-cult" data-f="ops">
+        <header class="ap-head">
+          <span class="ap-num">06</span>
+          <h2><em>KPI</em> Cargo Cult.</h2>
+          <span class="ap-dom">Operating model</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Engineering org adopts DORA / SPACE / DX metrics because someone read the book. Numbers go on a dashboard. Targets are set. Nothing changes about how engineering is funded, prioritised or rewarded. The numbers become inputs to an annual ritual nobody acts on.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Metrics that don&rsquo;t change behaviour are noise. Worse: tracked-but-unused metrics breed cynicism (&ldquo;they want us to game the deploy-frequency number&rdquo;).</p>
+            <p><em>Tell: ask the team how the metric changes what gets prioritised this sprint. If the answer is &ldquo;it doesn&rsquo;t,&rdquo; it&rsquo;s cargo cult.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Pick <b>one or two metrics</b> tied to a real decision: &ldquo;if MTTR exceeds 24h on three deploys in a row, feature work pauses until reliability work catches up.&rdquo; Make the metric&rsquo;s consequence concrete, automatic and visible. Subtract the rest.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/sre-programme.html">SRE Diagnostic</a> &middot; <a href="/tools/calculators/error-budget.html">Error Budget calculator</a></span>
+          </div>
+          <div class="ap-share"><a href="#kpi-cargo-cult">#kpi-cargo-cult</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="vault-theatre" data-f="devsecops">
+        <header class="ap-head">
+          <span class="ap-num">07</span>
+          <h2><em>Vault</em> Theatre.</h2>
+          <span class="ap-dom">DevSecOps</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Org &ldquo;moved secrets to the vault.&rdquo; Engineers proudly cite this in audits. Applications still pull <b>static long-lived credentials</b> from the vault at startup. The credentials sit in env vars for the lifetime of the workload, then sit in logs, then sit in CI artefacts, then sit in incident war-room screenshots.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Vaulted-static is still static. The credential is the vulnerability, not its storage. Snowflake 2024 (100+ breaches via stuffed credentials) was a vault-theatre incident at scale.</p>
+            <p><em>Tell: ask &ldquo;how long is the credential valid?&rdquo; If the answer is &gt;1 hour, it&rsquo;s static.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p><b>Workload identity</b> &mdash; OIDC, SPIFFE, AWS IAM Roles, GCP Workload Identity Federation, Azure Federated Credentials. Short-lived (minutes), identity-bound, can&rsquo;t be exfiltrated meaningfully because they expire before they can be used externally.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/devsecops-maturity.html">DevSecOps Diagnostic</a> &middot; <a href="/writing/devsecops-is-supply-chain.html">DevSecOps is supply chain</a> &middot; <a href="/reference-architectures/devsecops-paved-path.html">SLSA L3+ Paved Path RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#vault-theatre">#vault-theatre</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="sbom-shelfware" data-f="devsecops">
+        <header class="ap-head">
+          <span class="ap-num">08</span>
+          <h2><em>SBOM</em> Shelfware.</h2>
+          <span class="ap-dom">DevSecOps</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Org emits SBOMs per artefact (CycloneDX, SPDX) because procurement asked. The SBOMs land in a folder. Nothing reads them. CVEs in the dependency graph never reach a service owner. When a critical CVE drops, security still spends weeks doing manual application-to-service mapping.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>SBOMs are <b>infrastructure for the alert-to-owner loop</b>. Without that loop, they&rsquo;re compliance theatre and double the storage bill.</p>
+            <p><em>Tell: ask how a Log4Shell-class CVE would flow from disclosure to remediation. If the answer involves &ldquo;manual triage,&rdquo; the SBOMs are shelfware.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Wire SBOMs to a graph store (<a href="https://guac.sh/" target="_blank" rel="noopener">GUAC</a>, <a href="https://dependencytrack.org/" target="_blank" rel="noopener">OWASP Dependency-Track</a>). Wire <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">CISA KEV</a> + <a href="https://github.com/advisories" target="_blank" rel="noopener">GitHub Advisory Database</a> alerts to the service owner directly &mdash; not to a central inbox. <b>The loop is the asset; the SBOM is the input.</b></p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/devsecops-maturity.html">DevSecOps Diagnostic</a> &middot; <a href="/reference-architectures/devsecops-paved-path.html">SLSA L3+ Paved Path RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#sbom-shelfware">#sbom-shelfware</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="sast-as-strategy" data-f="devsecops">
+        <header class="ap-head">
+          <span class="ap-num">09</span>
+          <h2><em>SAST&#8209;as&#8209;Strategy.</em></h2>
+          <span class="ap-dom">DevSecOps</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Security programme&rsquo;s top-3 line items are SAST consolidation, DAST rollout, container scanning. Workload identity, signed provenance, SBOM-to-owner are absent or scheduled for next year. The roadmap mirrors the AppSec vendor market.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>2024 incidents that defined the year (XZ Utils, Snowflake, Polyfill, CrowdStrike) were not findings on a SAST report. The vendor markets are selling 2018&rsquo;s problem.</p>
+            <p><em>Tell: ask what would have caught XZ Utils. If the answer is more SAST scans, the roadmap is misaligned with the threat.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Treat AppSec hygiene as <b>baseline</b>, not headline. Move the headline to supply chain: workload identity, signed provenance (SLSA L3+), SBOM-to-owner alerting, policy-as-code at deploy. Those are what regulators &amp; attackers both care about now.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/writing/devsecops-is-supply-chain.html">DevSecOps is supply chain</a> &middot; <a href="/tools/devsecops-maturity.html">DevSecOps Diagnostic</a></span>
+          </div>
+          <div class="ap-share"><a href="#sast-as-strategy">#sast-as-strategy</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="paved-path-no-adoption" data-f="platform">
+        <header class="ap-head">
+          <span class="ap-num">10</span>
+          <h2><em>Paved Path</em> Without Adoption.</h2>
+          <span class="ap-dom">Platform Engineering</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Platform team built a beautiful paved path. Backstage templates, observability defaults, security baked in. No squad uses it. Squads keep rolling their own pipelines. The platform team is hurt; the platform&rsquo;s adoption metric is invisible because nobody tracks it.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>A paved path that nobody chose is just another tool stack. Worse: the platform team feels successful (they shipped the path) while engineering velocity stays unchanged.</p>
+            <p><em>Tell: count adoption per capability per quarter. If a capability is &lt;30% adopted 6 months in, it&rsquo;s not paved &mdash; it&rsquo;s parked.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Survey 10 developers. Ask what they route around and why. <b>Fix that first</b>, not what the platform team thinks should be next. Treat platform-as-a-product: adoption is the only metric that matters; sunset what isn&rsquo;t adopted.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/platform-engineering.html">Platform Engineering Diagnostic</a> &middot; <a href="/reference-architectures/platform-engineering-idp.html">Platform Engineering IDP RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#paved-path-no-adoption">#paved-path-no-adoption</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="inline-prompt-pattern" data-f="genai">
+        <header class="ap-head">
+          <span class="ap-num">11</span>
+          <h2>The <em>Inline Prompt</em> Pattern.</h2>
+          <span class="ap-dom">Applied GenAI</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Production GenAI feature&rsquo;s prompts are hard-coded as Python / Go / TypeScript string literals. Whoever last edited them owns them. No versioning, no review, no eval gate. When the model misbehaves, nobody can attribute the regression to a prompt change because there&rsquo;s no change log.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>A prompt is a configuration that determines model behaviour. Treating it as a string literal in code makes it un-versionable, un-reviewable and un-rollback-able. <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP LLM01</a> failure modes hide here.</p>
+            <p><em>Tell: ask &ldquo;what changed in the prompt last week?&rdquo; If the answer requires git-archaeology, the prompt is inline.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p><b>Prompt registry</b> with semver, owners, per-version evals. Production traces tagged with the prompt version that produced them. Treat prompts as code: PR review, change log, rollback path. <a href="https://docs.smith.langchain.com/" target="_blank" rel="noopener">LangSmith</a>, <a href="https://www.promptfoo.dev/" target="_blank" rel="noopener">Promptfoo</a>, Langfuse all do this.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic</a> &middot; <a href="/writing/genai-9-controls.html">The 9 controls</a></span>
+          </div>
+          <div class="ap-share"><a href="#inline-prompt-pattern">#inline-prompt-pattern</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="eval-set-never-runs" data-f="genai">
+        <header class="ap-head">
+          <span class="ap-num">12</span>
+          <h2>The <em>Eval Set</em> That Never Runs.</h2>
+          <span class="ap-dom">Applied GenAI</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Org wrote an eval set of 50 cases when launching the GenAI feature. The eval set lives in a repo. The CI pipeline doesn&rsquo;t run it. Engineers don&rsquo;t know it exists. When prompts change, deploys ship without an eval gate.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>An eval set that doesn&rsquo;t gate deploys is documentation of intent, not enforcement of quality. The most common GenAI production regressions land via prompt or model-version changes that an eval set would have caught.</p>
+            <p><em>Tell: ask what would happen to a deploy whose prompt change drops a critical eval score by 30%. If the answer is &ldquo;it would ship,&rdquo; the eval set is decorative.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p><b>Eval-regression-gated deploys.</b> CI runs the eval set on every prompt or model change. Critical-metric regression blocks merge. Once landed: add shadow evals on production traffic to catch data-drift the pre-deploy suite misses.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic</a> &middot; <a href="/writing/genai-9-controls.html">The 9 controls</a> &middot; <a href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#eval-set-never-runs">#eval-set-never-runs</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="model-as-latest" data-f="genai">
+        <header class="ap-head">
+          <span class="ap-num">13</span>
+          <h2><em>Model&#8209;as&#8209;Latest.</em></h2>
+          <span class="ap-dom">Applied GenAI</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Production GenAI workload uses <code style="font-family:'IBM Plex Mono',monospace;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px">model: latest</code> (or equivalent floating reference) instead of a pinned semantic version. Model provider silently ships a behaviour change. Production suddenly produces different outputs. Nobody can attribute the regression because there&rsquo;s no version change log.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Both Anthropic and OpenAI shipped breaking model changes in 2024 that broke prompts in production for orgs using floating references. The fix isn&rsquo;t complaining to the provider; the fix is pinning.</p>
+            <p><em>Tell: grep your code for &ldquo;latest&rdquo;, &ldquo;stable&rdquo;, &ldquo;current&rdquo;, &ldquo;default&rdquo;. Each hit is an incident waiting to happen.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p><b>Pin model versions semantically per environment.</b> Dev → mid-tier; staging → version-matching-prod; prod → fully pinned. Track <a href="https://platform.openai.com/docs/deprecations" target="_blank" rel="noopener">OpenAI</a> / <a href="https://docs.anthropic.com/en/docs/about-claude/models" target="_blank" rel="noopener">Anthropic</a> deprecation schedules; promote new versions through the eval gate before prod.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/tools/genai-readiness.html">GenAI Readiness Diagnostic</a> &middot; <a href="/tools/calculators/genai-cost.html">GenAI Cost calculator</a></span>
+          </div>
+          <div class="ap-share"><a href="#model-as-latest">#model-as-latest</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="data-mesh-no-substrate" data-f="data">
+        <header class="ap-head">
+          <span class="ap-num">14</span>
+          <h2><em>Data Mesh</em> Without Substrate.</h2>
+          <span class="ap-dom">Data</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Org labels its data programme &ldquo;data mesh&rdquo; because the book is popular. Domain teams now own their data products. There&rsquo;s no shared catalogue. No lineage. No contracts. No access governance. The mesh is sociotechnically just &ldquo;decentralised silos.&rdquo;</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Data mesh without substrate &mdash; catalogue, lineage, contracts, governance &mdash; is just <a href="https://martinfowler.com/bliki/DataLake.html" target="_blank" rel="noopener">the data-lake problem rebranded</a>. Domain teams now own incompatible interpretations of &ldquo;customer.&rdquo;</p>
+            <p><em>Tell: ask three product teams for the customer count. Three different numbers from three different sources.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p>Build the <b>shared substrate first</b>: catalogue (DataHub / OpenMetadata / Atlas / Unity), lineage (<a href="https://openlineage.io/" target="_blank" rel="noopener">OpenLineage</a>), data contracts, access governance, PII classification. Then domain ownership of data products on top. Order matters; the substrate is the &ldquo;mesh&rdquo; part of data mesh.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/reference-architectures/modern-data-platform.html">Modern Data Platform RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#data-mesh-no-substrate">#data-mesh-no-substrate</a></div>
+        </header>
+      </article>
+
+      <article class="ap" id="lakehouse-as-swamp" data-f="data">
+        <header class="ap-head">
+          <span class="ap-num">15</span>
+          <h2>The <em>Lakehouse-as-Swamp</em>.</h2>
+          <span class="ap-dom">Data</span>
+        </header>
+        <div class="ap-body">
+          <div class="ap-block">
+            <span class="ix">Where it appears</span>
+            <p>Org adopts a lakehouse (Databricks, Snowflake, BigQuery + Iceberg). Bronze zone fills with raw ingest from everywhere &mdash; CDC, exports, SaaS sync, vendor file drops. No Silver discipline. No Gold zone. No domain ownership. Lakehouse = warehouse + lake&rsquo;s worst attributes combined.</p>
+          </div>
+          <div class="ap-block">
+            <span class="ix">Why it&rsquo;s bad</span>
+            <p>Lakehouse tooling doesn&rsquo;t enforce the Bronze/Silver/Gold discipline; the team has to. Without it, you&rsquo;re paying lakehouse prices for swamp performance and credibility damage when BI / ML / AI consume conflicting data.</p>
+            <p><em>Tell: count tables in Gold zone vs Bronze. Healthy ratio: 1 Gold for every 5&ndash;10 Bronze. Swamp ratio: 0 Gold, 500 Bronze.</em></p>
+          </div>
+          <div class="ap-fix">
+            <span class="lbl">What to do instead</span>
+            <p><b>Zone discipline + domain ownership</b>. Bronze is immutable + append-only (audit value). Silver is conformed, contracted, quality-checked. Gold is consumable, domain-owned, with SLAs. Every table&rsquo;s zone is visible in the catalogue. Sunset Bronze that doesn&rsquo;t earn promotion to Silver within an agreed window.</p>
+          </div>
+          <div class="ap-meta">
+            <span><b>Related</b> <a href="/reference-architectures/modern-data-platform.html">Modern Data Platform RA</a></span>
+          </div>
+          <div class="ap-share"><a href="#lakehouse-as-swamp">#lakehouse-as-swamp</a></div>
+        </header>
+      </article>
+
+      <p style="margin-top:48px;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:60ch">
+        Spotted an anti-pattern that should be here? Reply to <a href="/letters/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Letters</a> or <a href="/#contact" style="color:var(--accent);border-bottom:1px dotted var(--accent)">get in touch</a>. The list grows quarterly with the patterns that recur most often in engagement.
+      </p>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/">&larr; Home</a> &middot; <a href="/glossary/">Glossary</a> &middot; <a href="/4-discipline-stack/">Framework</a> &middot; <a href="/tools/">Tools</a></span>
+  </div></footer>
+
+<script>
+// Filter
+document.querySelectorAll('.ap-filter button').forEach(b => {
+  b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    document.querySelectorAll('.ap-filter button').forEach(x => x.classList.toggle('on', x === b));
+    document.querySelectorAll('.ap').forEach(ap => {
+      const tags = (ap.dataset.f || '').split(/\s+/);
+      const show = f === 'all' || tags.includes(f);
+      ap.classList.toggle('hidden', !show);
+    });
+    // Update visible count in the All button
+    const allBtn = document.querySelector('.ap-filter button[data-f="all"]');
+    const total = document.querySelectorAll('.ap').length;
+    if (f === 'all') allBtn.textContent = `All (${total})`;
+    else {
+      const visible = document.querySelectorAll('.ap:not(.hidden)').length;
+      allBtn.textContent = `All (${total})`;
+      b.textContent = b.textContent.replace(/\s*\(\d+\)$/, '') + ` (${visible})`;
+    }
+  });
+});
+
+// Smooth-scroll for in-page anchors so the sticky filter doesn't hide the heading
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', () => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+  });
+});
+</script>
+</body>
+</html>

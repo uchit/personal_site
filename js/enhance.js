@@ -46,6 +46,7 @@
     { t: "How I work — engagement model",        u: "/how-i-work/",     g: "Pages", ic: "$" },
     { t: "opa-nist-ai-rmf (OSS · GitHub)", u: "https://github.com/uchit/opa-nist-ai-rmf", g: "Pages", ic: "★" },
     { t: "Glossary",                      u: "/glossary/",   g: "Reference", ic: "≡" },
+    { t: "Anti-patterns — 15 named failure modes", u: "/anti-patterns/", g: "Reference", ic: "✗" },
     { t: "Get in touch",                  u: "/#contact",    g: "Pages",     ic: "✉" },
     { t: "All diagnostics",               u: "/tools/",      g: "Tools",     ic: "▤" },
     { t: "DevSecOps Maturity Diagnostic", u: "/tools/devsecops-maturity.html",  g: "Tools", ic: "◈" },

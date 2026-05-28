@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Issue 01 · State of Enterprise Tech in Regulated Industries — 2026</title>
+<style>
+  body { font-family: Georgia, "Times New Roman", serif; max-width: 720px; margin: 40px auto; padding: 0 24px; line-height: 1.6; color: #111; }
+  h1 { font-size: 28px; line-height: 1.2; margin-bottom: 6px; }
+  h2 { font-size: 22px; line-height: 1.25; margin-top: 32px; margin-bottom: 10px; color: #111; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  a { color: #1a5fb4; }
+  hr { border: 0; border-top: 1px solid #ddd; margin: 24px 0; }
+  .subtitle { color: #666; font-style: italic; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<h1>Issue 01 · State of Enterprise Tech in Regulated Industries — 2026</h1>
+<p class="subtitle">A welcome — and the substrate thesis behind it.</p>
+
+<p>If you're reading this in your inbox, thank you. The promise is one substantive email a month — and to mean it, the first issue has to actually be substantive.</p>
+
+<p>So: rather than spend it on a welcome, let me share the practitioner read I've been writing up across 2026 — the one finding pattern that keeps recurring across every regulated-industry engagement I sit in.</p>
+
+<h2>The pattern: it's the substrate, not the discipline.</h2>
+
+<p>Four functions inside most enterprises:</p>
+
+<ol>
+  <li>Enterprise architecture (CTO or chief architect)</li>
+  <li>Platform engineering &amp; DevSecOps (VP Engineering or CISO)</li>
+  <li>Data modernisation (CDO)</li>
+  <li>Applied GenAI (new Chief AI Officer or AI Centre of Excellence)</li>
+</ol>
+
+<p>Each is staffed by good people. Each delivers honestly inside its own scope. And in most enterprises, almost no compound emerges between them.</p>
+
+<p>The reason isn't competence. It's that the work that compounds — the <em>substrate</em> — lives in the seam between the four. No single function owns the substrate. Each builds its half; the halves never meet.</p>
+
+<p>What's the substrate? In 2026, roughly five capabilities:</p>
+
+<ul>
+  <li><strong>Identity</strong> — workload identity (OIDC, SPIFFE) as the universal authn primitive across services, data, AI.</li>
+  <li><strong>Observability</strong> — OpenTelemetry as the universal instrumentation, spanning from a Terraform module to an LLM inference call.</li>
+  <li><strong>Policy</strong> — policy-as-code (OPA / Kyverno) enforced at deploy. Architecture principles written as policies, not as PDFs.</li>
+  <li><strong>Audit evidence</strong> — per-decision evidence packs generated at decision time, signed, retention-controlled.</li>
+  <li><strong>Data lineage</strong> — catalogued data with owners, freshness, residency. Consumable by AI, BI, ops alike.</li>
+</ul>
+
+<p>The 12% of enterprises that shipped GenAI to real customers in 2026 all share one thing: they built this substrate first. The other 88% built use-cases first and are now retrofitting controls under EU AI Act pressure (high-risk obligations enforceable from 2 August 2026).</p>
+
+<h2>Why I'm writing about it</h2>
+
+<p>I just published the <a href="https://hellouchit.com/state-of-2026/">first edition</a> of an annual report on this — the <strong>State of Enterprise Tech in Regulated Industries, 2026</strong> — with ten findings, each anchored in cited public evidence (DORA 2024, Menlo Ventures State of GenAI 2024, FinOps State of FinOps 2024, Verizon DBIR 2024, BSIMM, regulatory primary sources). It takes ~15 minutes to read.</p>
+
+<p>Three findings I'd flag from it specifically:</p>
+
+<ul>
+  <li><strong>Supply chain replaced AppSec as the highest-leverage 2026 security work.</strong> Post-XZ Utils, post-Snowflake, post-CrowdStrike — none of these were findings on a SAST report. They were workload-identity, provenance and SBOM-to-owner failures. The vendor markets haven't caught up. <a href="https://hellouchit.com/writing/devsecops-is-supply-chain.html">Read the full essay →</a></li>
+  <li><strong>Platform engineering became the AI delivery moat.</strong> Orgs whose paved paths already encoded identity, observability and policy can ship AI features in days. Orgs whose AI Centre of Excellence runs parallel to platform engineering ship in months and stall. <a href="https://hellouchit.com/writing/platform-engineering-ai-moat.html">Read the full essay →</a></li>
+  <li><strong>Australia's regulatory clock advanced faster than most boards noticed.</strong> APRA CPS 230 (eff. 1 Jul 2025), DISR AI Safety Standard (Sep 2024, mandatory signposted), DTA AI Policy (1 Sep 2024), EU DORA reaching AU subsidiaries from Jan 2025. By mid-2027 the regulatory floor will be substantially harder than 2024 — with limited extra budget.</li>
+</ul>
+
+<h2>What this newsletter is</h2>
+
+<p>One thoughtful email a month. Substantive, cited, no marketing. New writing where I have it; deep notes on what's shipping (and not) across the four disciplines that actually compound.</p>
+
+<p>You can also follow on:</p>
+
+<ul>
+  <li>RSS → <a href="https://hellouchit.com/writing/feed.xml">hellouchit.com/writing/feed.xml</a></li>
+  <li>LinkedIn → <a href="https://www.linkedin.com/in/uchitvyas/">linkedin.com/in/uchitvyas</a></li>
+  <li>Open source → <a href="https://github.com/uchit/opa-nist-ai-rmf">github.com/uchit/opa-nist-ai-rmf</a> (OPA policy bundle enforcing NIST AI RMF + EU AI Act controls)</li>
+</ul>
+
+<h2>What I'd love from you back</h2>
+
+<p>If one of the findings in the State of 2026 maps to something you're seeing in your own organisation — or contradicts it — reply to this email. The annual report is v1.0 and will compound by being read by practitioners who push back.</p>
+
+<p>Thank you for the first read.</p>
+
+<p>— Uchit<br />
+Melbourne, AU<br />
+<a href="https://hellouchit.com/">hellouchit.com</a></p>
+
+</body>
+</html>
