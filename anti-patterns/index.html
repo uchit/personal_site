@@ -620,5 +620,30 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+
+  <!-- Per-page Article schema — author refs canonical Person on home page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Anti-patterns",
+    "description": "15 named anti-patterns I",
+    "url": "https://hellouchit.com/anti-patterns/",
+    "datePublished": "2026-05-15",
+    "dateModified": "2026-05-29",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://hellouchit.com/#website"
+    },
+    "author": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "mainEntityOfPage": "https://hellouchit.com/anti-patterns/",
+    "image": "https://hellouchit.com/images/og-banner.jpg"
+  }
+  </script>
 </body>
 </html>

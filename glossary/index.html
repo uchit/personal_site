@@ -344,5 +344,30 @@ function render() {
 search.addEventListener("input", render);
 render();
 </script>
+
+  <!-- Per-page Article schema — author refs canonical Person on home page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Glossary",
+    "description": "Practitioner glossary across enterprise architecture, platform engineering, DevSecOps, SRE, cloud and generative AI \u2014 definitions written for engineers and the executives who fund them.",
+    "url": "https://hellouchit.com/glossary/",
+    "datePublished": "2026-05-15",
+    "dateModified": "2026-05-29",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://hellouchit.com/#website"
+    },
+    "author": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "mainEntityOfPage": "https://hellouchit.com/glossary/",
+    "image": "https://hellouchit.com/images/og-banner.jpg"
+  }
+  </script>
 </body>
 </html>
