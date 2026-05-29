@@ -1156,3 +1156,50 @@ img, video, iframe { max-width: 100%; height: auto; }
   .brand .blab { display: none; } /* keep only monogram */
   .crumb, .d-hero .crumb { font-size: 10.5px; }
 }
+
+/* ============================================================
+   "Also on this site" — single restrained discoverability row.
+   Sits just above the Contact section. No boxes; just labels.
+   ============================================================ */
+.also-strip {
+  padding: clamp(40px, 5vw, 60px) 0 clamp(16px, 2vw, 24px);
+  border-top: 1px solid var(--line);
+}
+.also-strip .lab {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.also-strip .also-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 4px;
+  align-items: center;
+}
+.also-strip .also-links a {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-bottom: 1px dotted transparent;
+  transition: color .2s, border-color .2s;
+}
+.also-strip .also-links a:hover,
+.also-strip .also-links a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+.also-strip .also-links a + a {
+  border-left: 1px solid var(--line);
+}
+@media (max-width: 480px) {
+  .also-strip .also-links a { font-size: 12.5px; padding: 5px 10px; }
+  .also-strip .also-links a + a { border-left: none; }
+}
