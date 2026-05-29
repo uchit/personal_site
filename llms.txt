@@ -99,6 +99,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 
 ## Identity & sameAs
 
+- **Wikidata entity: Q139971067** ([wikidata.org/entity/Q139971067](https://www.wikidata.org/entity/Q139971067)) — canonical entity ID
 - Canonical URL: https://hellouchit.com/
 - LinkedIn: https://www.linkedin.com/in/uchitvyas/
 - GitHub: https://github.com/uchit
