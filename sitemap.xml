@@ -77,6 +77,13 @@
   <!-- Reference dataset -->
   <url><loc>https://hellouchit.com/dataset/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
 
+  <!-- Architecture teardowns -->
+  <url><loc>https://hellouchit.com/teardowns/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://hellouchit.com/teardowns/claude-ai.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://hellouchit.com/teardowns/linear.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hellouchit.com/teardowns/notion.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://hellouchit.com/teardowns/vercel.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
   <!-- 90-day playbooks -->
   <url><loc>https://hellouchit.com/playbooks/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
   <url><loc>https://hellouchit.com/playbooks/eu-ai-act-12-weeks.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>

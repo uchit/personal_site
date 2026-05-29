@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vercel &mdash; the edge platform that earned its primitive &mdash; Teardown &mdash; Uchit Vyas</title>
+<meta name="description" content="Architecture teardown of Vercel from public signals. Immutable atomic deploys, Fluid Compute, Routing Middleware, AI Gateway." />
+<link rel="canonical" href="https://hellouchit.com/teardowns/vercel.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Vercel &mdash; the edge platform that earned its primitive &mdash; Architecture teardown" />
+<meta property="og:description" content="Immutable atomic deploys, Fluid Compute, Routing Middleware, AI Gateway." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/teardown.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="td-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/teardowns/" style="color:var(--muted)">Teardowns</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Vercel</span></nav>
+      <span class="eyebrow">Architecture teardown</span>
+      <h1>Vercel &mdash; the <em>edge platform</em> that earned its primitive.</h1>
+      <p class="dek">Vercel&rsquo;s entire product velocity hinges on a single architectural primitive: <b>every deploy is immutable, addressable, and atomic</b>. Preview URLs, atomic rollback, time-travel debugging &mdash; all derive from this one decision.</p>
+      <div class="td-stats">
+        <div class="s"><span class="lab">Product</span><span class="val">Vercel</span></div>
+        <div class="s"><span class="lab">Signal density</span><span class="val"><b>Very dense</b> &mdash; docs · blog · changelog · Next.js Conf talks</span></div>
+        <div class="s"><span class="lab">Stack (inferred)</span><span class="val">Anycast edge (Fastly + own) · CDN · Fluid Compute · Routing Middleware · AI Gateway · Stripe metering</span></div>
+        <div class="s"><span class="lab">Pattern</span><span class="val">Immutable artefacts · unified runtime · framework-agnostic middleware · Active CPU pricing</span></div>
+      </div>
+    </div></section>
+
+    <section class="td-arch"><div class="wrap">
+      <h2>The architecture &mdash; from public signals</h2>
+      <div class="diagram-wrap"><svg viewBox="0 0 1100 600" xmlns="http://www.w3.org/2000/svg"><defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#8a8d94"/>
+  </marker>
+</defs>
+<text x="20" y="32" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="2.5" fill="#d99757">VERCEL · INFERRED EDGE PLATFORM</text>
+
+<rect x="20" y="60" width="340" height="280" rx="12" fill="none" stroke="#5a5d64" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="34" y="80" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="2.5" fill="#5a5d64">BUILD PLANE</text>
+<rect x="50" y="100" width="280" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="190.0" y="128.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Git push → webhook</text>
+    <text x="190.0" y="144.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">GitHub · GitLab · Bitbucket</text>
+<rect x="50" y="195" width="280" height="80" rx="8" fill="rgba(217,151,87,0.08)" stroke="#d99757" stroke-width="1.4"/>
+    <text x="190.0" y="231.0" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#d99757">Build executor</text>
+    <text x="190.0" y="247.0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Ephemeral container · per-deploy</text>
+<rect x="50" y="290" width="280" height="35" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="190.0" y="303.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Artefact registry</text>
+    <text x="190.0" y="319.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Immutable</text>
+
+<rect x="390" y="60" width="340" height="530" rx="12" fill="none" stroke="#5a5d64" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="404" y="80" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="2.5" fill="#5a5d64">EDGE PLANE (GLOBAL)</text>
+<rect x="420" y="100" width="280" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="560.0" y="128.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Anycast (Fastly + own)</text>
+    <text x="560.0" y="144.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">TLS · WAF</text>
+<rect x="420" y="195" width="280" height="80" rx="8" fill="rgba(217,151,87,0.08)" stroke="#d99757" stroke-width="1.4"/>
+    <text x="560.0" y="231.0" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#d99757">CDN cache (static · ISR)</text>
+    <text x="560.0" y="247.0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Per-deploy immutable URLs</text>
+<rect x="420" y="305" width="280" height="80" rx="8" fill="rgba(217,151,87,0.08)" stroke="#d99757" stroke-width="1.4"/>
+    <text x="560.0" y="341.0" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#d99757">Fluid Compute</text>
+    <text x="560.0" y="357.0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Node · Python · Bun · warm instances</text>
+<rect x="420" y="415" width="280" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="560.0" y="443.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Routing Middleware</text>
+    <text x="560.0" y="459.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Framework-agnostic</text>
+<rect x="420" y="510" width="280" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="560.0" y="538.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">AI Gateway</text>
+    <text x="560.0" y="554.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Provider abstraction · 0-retention</text>
+
+<rect x="760" y="60" width="320" height="530" rx="12" fill="none" stroke="#5a5d64" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="774" y="80" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="2.5" fill="#5a5d64">CONTROL PLANE</text>
+<rect x="790" y="100" width="260" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="920.0" y="128.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Dashboard + CLI</text>
+    <text x="920.0" y="144.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Project · team · domains</text>
+<rect x="790" y="195" width="260" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="920.0" y="223.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Deployment API</text>
+    <text x="920.0" y="239.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">CI/CD · vercel.ts config</text>
+<rect x="790" y="290" width="260" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="920.0" y="318.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Observability + logs</text>
+    <text x="920.0" y="334.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Per-project drains</text>
+<rect x="790" y="385" width="260" height="65" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="920.0" y="413.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">DNS + auto TLS</text>
+    <text x="920.0" y="429.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Custom domains</text>
+<rect x="790" y="480" width="260" height="75" rx="8" fill="rgba(255,255,255,0.025)" stroke="#3a3d44" stroke-width="1.4"/>
+    <text x="920.0" y="513.5" text-anchor="middle" font-family="Fraunces,serif" font-size="14" font-weight="500" fill="#e8e9ec">Stripe (metering)</text>
+    <text x="920.0" y="529.5" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#8a8d94">Active CPU · bandwidth · invocations</text>
+
+<line x1="190" y1="275" x2="190" y2="290" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)"/>
+    
+<line x1="330" y1="305" x2="420" y2="235" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)"/>
+    <text x="375.0" y="263.0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8a8d94">deploy</text>
+<line x1="560" y1="165" x2="560" y2="195" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)"/>
+    
+<line x1="560" y1="275" x2="560" y2="305" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+    
+<line x1="560" y1="385" x2="560" y2="415" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+    
+<line x1="560" y1="480" x2="560" y2="510" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+    
+<line x1="700" y1="130" x2="790" y2="130" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)"/>
+    
+<line x1="700" y1="235" x2="790" y2="220" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+    
+<line x1="700" y1="345" x2="790" y2="320" stroke="#8a8d94" stroke-width="1.4" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+    
+</svg></div>
+      <div class="legend">
+        <span class="accent"><span class="sw"></span>Core component (the architectural bet)</span>
+        <span class="std"><span class="sw"></span>Standard service</span>
+        <span class="dashed"><span class="sw"></span>Async / inferred dataflow</span>
+      </div>
+    </div></section>
+
+    <section class="td-components"><div class="wrap">
+      <h2>The <em>five</em> things you can see from outside.</h2>
+      <div class="td-cgrid"><div class="td-comp"><span class="num">01</span><h3><em>Immutable atomic deploys</em></h3><p>Push → build → produces an artefact → gets a permanent URL that never changes. Production aliases point to one artefact at a time. <b>Atomic rollback is a DNS-like update.</b> Preview URLs fall out for free.</p></div><div class="td-comp"><span class="num">02</span><h3><em>Fluid Compute</em> unified the runtime</h3><p>Pre-2024 split (Edge Functions vs Serverless Functions) was confusing. Fluid Compute gives full Node compatibility + low cold-start (instances reused across concurrent requests). Middleware is now Fluid Compute under the hood.</p></div><div class="td-comp"><span class="num">03</span><h3>Routing Middleware <em>generalised</em></h3><p>What was &ldquo;Next.js middleware&rdquo; became framework-agnostic Vercel Routing Middleware. Runs for every request before framework code. Usable by SvelteKit, Nuxt, Astro, raw Node.</p></div><div class="td-comp"><span class="num">04</span><h3><em>Active CPU</em> pricing</h3><p>Pay for CPU time when computing, not wall-clock when waiting on I/O. Rewards efficient code; reflects the Fluid Compute reality that instances stay warm across requests.</p></div><div class="td-comp"><span class="num">05</span><h3>AI Gateway as a <em>platform tier</em></h3><p>Since 2025: unified API across Anthropic · OpenAI · Google · OSS, observability, fallbacks, zero data retention. Textbook example of the <a href="/decisions/ai-gateway.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">AI gateway decision</a> answered &ldquo;buy from your platform&rdquo;.</p></div></div>
+    </div></section>
+
+    <section class="td-decisions"><div class="wrap">
+      <h2>What to <em>steal</em>. What to <em>avoid copying</em>.</h2>
+      <div class="sub">Read these together &mdash; the same pattern can be right for one team and wrong for another.</div>
+      <div class="td-cols">
+        <div class="td-col steal">
+          <h3>Steal &mdash; the patterns that compound</h3>
+          <ul><li><b>Immutable addressable artefacts</b> as the deploy primitive &mdash; whether your platform is K8s, Cloud Run, or bare metal. Preview environments and atomic rollback come for free.</li><li><b>Unified runtime over &ldquo;pick fast or pick compatible&rdquo;</b> &mdash; the Edge-vs-Serverless split was confusing. Consolidate, even at the cost of 6 months of platform work.</li><li><b>Routing middleware as a generic layer</b> &mdash; auth, A/B routing, feature flags live there, not inside each application.</li><li><b>Active CPU as the meter</b> &mdash; the cost-attribution conversation gets honest.</li><li><b>Configuration as typed code</b> (<code>vercel.ts</code>) &mdash; logic in code; pure data in tiny YAML.</li></ul>
+        </div>
+        <div class="td-col avoid">
+          <h3>Avoid copying &mdash; unless you're them</h3>
+          <ul><li><b>Edge-first if your workload is database-bound</b> &mdash; the function runs near the user but waits for a DB in a different continent. Net-negative latency.</li><li><b>Vendor lock-in via Vercel-specific primitives</b> (KV, Blob, Cron, Queues) &mdash; great DX, deepens lock-in. Standard primitives (Postgres, S3, SQS-equivalent) port.</li><li><b>Serverless mental model for long-running workloads</b> &mdash; training jobs, batch processing, websocket-heavy services need container platforms.</li></ul>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="td-blind"><div class="wrap">
+      <h3>What this teardown can't tell you</h3>
+      <ul><li>Exact own-infra vs Fastly vs other split at the edge.</li><li>Build-cache architecture (cache key, hit rate, storage).</li><li>AI Gateway provider mix, semantic-cache rate, zero-retention economics.</li><li>Cold-start instance-reuse heuristics (Fluid Compute internals).</li></ul>
+    </div></section>
+
+    <section class="td-thesis"><div class="wrap">
+      <span class="lab">Thesis</span>
+      <blockquote><b>Vercel earned its position by being opinionated about the deploy primitive (immutable · addressable · atomic) and patient about the runtime question (Edge and Serverless co-existed for years before Fluid Compute consolidated them).</b> The right model for internal platform teams to imitate is the same combination: be opinionated about the unbreakable parts; patient about the parts that need to evolve.</blockquote>
+    </div></section>
+
+    <section class="td-method"><div class="wrap" style="max-width:760px">
+      <h3>Methodology &amp; sources</h3>
+      <p><b style="color:var(--accent)">Public signals only.</b> Company engineering blog posts, conference talks, job ads, public GitHub, podcasts, product behaviour from the outside. No NDA-covered information; no private conversations. The architecture inferred is my analysis &mdash; not endorsed by or affiliated with Vercel.</p>
+      <p>Primary sources:</p>
+      <ul>
+        <li>Vercel engineering blog &middot; <a href="https://vercel.com/blog" target="_blank" rel="noopener">vercel.com/blog</a></li><li>Vercel documentation &middot; <a href="https://vercel.com/docs" target="_blank" rel="noopener">vercel.com/docs</a> (Fluid Compute · AI Gateway · Routing Middleware)</li><li>Vercel changelog &middot; <a href="https://vercel.com/changelog" target="_blank" rel="noopener">vercel.com/changelog</a></li><li>Next.js Conf 2023 / 2024 / 2025 talks</li><li>Vercel public job listings (platform · infrastructure)</li><li>Direct observation of build duration, cold-start, atomic rollback timing.</li>
+      </ul>
+    </div></section>
+
+    <section class="td-foot"><div class="wrap">
+      <h3>Found this useful? <em>More coming</em>.</h3>
+      <p>One teardown per quarter. Tell me which architecture you'd want analysed next.</p>
+      <div class="row">
+        <a class="primary" href="/teardowns/">All teardowns &rarr;</a>
+        <a href="/letters/">Subscribe to Letters</a>
+        <a href="mailto:contact@hellouchit.com">Suggest the next teardown</a>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/teardowns/">&larr; All teardowns</a></span>
+  </div></footer>
+</body>
+</html>

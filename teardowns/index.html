@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Architecture teardowns — Uchit Vyas</title>
+<meta name="description" content="Public-architecture teardowns: Claude.ai, Linear, Notion, Vercel. Diagrammed, decoded from public signals only, with what to steal and what to avoid." />
+<link rel="canonical" href="https://hellouchit.com/teardowns/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Architecture teardowns — Uchit Vyas" />
+<meta property="og:description" content="Public-architecture teardowns of Claude.ai, Linear, Notion, Vercel. Diagrammed; decoded from public signals only." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/teardown.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Tools</a><a href="/writing/" style="color:var(--ink)">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="td-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Teardowns</span></nav>
+      <span class="eyebrow">Architecture teardowns</span>
+      <h1>Decoded from <em>public signals</em>.</h1>
+      <p class="dek">Each teardown analyses a public architecture from <b>public signals only</b> &mdash; engineering blog posts, conference talks, job ads, GitHub, observable behaviour. Diagrammed, decoded, with what to steal and what to avoid. <b>No NDAs. No private conversations.</b></p>
+    </div></section>
+
+    <section style="padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,128px);border-top:1px solid var(--line)"><div class="wrap">
+      <div class="td-grid">
+
+        <a class="td-card" href="/teardowns/claude-ai.html">
+          <span class="tdtag">GenAI &middot; streaming-first &middot; plane separation</span>
+          <h3>Claude.ai &mdash; the <em>streaming-first</em> AI product.</h3>
+          <p>Plane separation (app vs AI), async safety telemetry, model gateway, MCP runtime, per-decision audit. The pattern Anthropic ships in its own product is the right substrate for enterprise GenAI in 2026.</p>
+          <div class="tdcap">Signal density: <b style="color:var(--accent)">Dense</b> &middot; eng blog &middot; MCP spec &middot; live product</div>
+          <span class="tdarr">Open teardown &rarr;</span>
+        </a>
+
+        <a class="td-card" href="/teardowns/linear.html">
+          <span class="tdtag">Local-first &middot; sync engine &middot; tenancy</span>
+          <h3>Linear &mdash; the <em>local-first sync engine</em>.</h3>
+          <p>Custom sync engine over generic CRDT. WebSocket transport. Workspace logical sharding with cell-readiness. Two protocol surfaces (GraphQL for partners; bespoke for client). The substrate that makes Linear feel instant.</p>
+          <div class="tdcap">Signal density: <b style="color:var(--accent)">Dense</b> &middot; eng blog series &middot; founder talks</div>
+          <span class="tdarr">Open teardown &rarr;</span>
+        </a>
+
+        <a class="td-card" href="/teardowns/notion.html">
+          <span class="tdtag">Block model &middot; Postgres sharding &middot; AI as service tier</span>
+          <h3>Notion &mdash; <em>one decision</em>, ten years of consequences.</h3>
+          <p>Block model drives every product superpower and every engineering pain. Per-block ACLs. Postgres re-shard journey (1 → 32 → 96 → Citus). Notion AI as RAG over existing blocks. Canonical block-store reference.</p>
+          <div class="tdcap">Signal density: <b style="color:var(--accent)">Good</b> &middot; re-shard blog series &middot; talks &middot; public API</div>
+          <span class="tdarr">Open teardown &rarr;</span>
+        </a>
+
+        <a class="td-card" href="/teardowns/vercel.html">
+          <span class="tdtag">Edge platform &middot; immutable deploys &middot; Fluid Compute</span>
+          <h3>Vercel &mdash; the <em>edge platform</em> that earned its primitive.</h3>
+          <p>Immutable atomic addressable deploys are the primitive everything else derives from. Fluid Compute consolidated the runtime. Routing Middleware generalised. AI Gateway as platform tier. Lessons for any internal platform team.</p>
+          <div class="tdcap">Signal density: <b style="color:var(--accent)">Very dense</b> &middot; docs &middot; blog &middot; changelog &middot; talks</div>
+          <span class="tdarr">Open teardown &rarr;</span>
+        </a>
+
+      </div>
+
+      <p style="margin-top:48px;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:64ch">
+        One teardown per quarter. On the queue: <em>Stripe Billing &middot; Cloudflare R2 &middot; Supabase &middot; Anthropic API gateway internals (from MCP signals)</em>. If there's one you'd want first, <a href="/#contact" style="color:var(--accent);border-bottom:1px dotted var(--accent)">tell me</a>.
+      </p>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/writing/">Writing</a> &middot; <a href="/dataset/">Dataset</a> &middot; <a href="/decisions/">Decisions</a></span>
+  </div></footer>
+</body>
+</html>
