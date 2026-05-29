@@ -107,6 +107,8 @@
     { t: "Writing — Platform engineering is the AI moat", u: "/writing/platform-engineering-ai-moat.html", g: "Writing", ic: "✎" },
     { t: "Writing — The 4-Discipline Stack", u: "/writing/4-discipline-stack-essay.html", g: "Writing", ic: "✎" },
     { t: "Writing — AU AI Safety Standard decoded", u: "/writing/au-ai-safety-decoded.html", g: "Writing", ic: "✎" },
+    { t: "EU AI Act Compliance Coach (Custom GPT)",  u: "https://chatgpt.com/g/g-6a190782474481919a3f65aa8cd5692a-eu-ai-act-compliance-coach", g: "Custom GPTs", ic: "◇" },
+    { t: "AU AI Safety Standard Coach (Custom GPT)", u: "https://chatgpt.com/g/g-6a1919922bc08191b9f595adeb543532-au-ai-safety-standard-coach",  g: "Custom GPTs", ic: "◇" },
     { t: "Book a 30-min call",            u: "https://calendly.com/uchit/30min", g: "Actions", ic: "⤓" },
     { t: "Email — contact@hellouchit.com",  u: "mailto:contact@hellouchit.com", g: "Actions", ic: "✉" },
     { t: "LinkedIn — /in/uchitvyas",      u: "https://www.linkedin.com/in/uchitvyas/", g: "Actions", ic: "in" },
