@@ -1,4 +1,95 @@
+# robots.txt — hellouchit.com
+# Last updated 2026-05-30.
+# Policy: ALLOW all crawlers, including AI ingestion crawlers.
+# The content here is meant to be found, cited, and quoted.
+
 User-agent: *
 Allow: /
 
+# ─────────────────────────────────────────────────────────────
+# AI ingestion + training crawlers — explicitly allowed.
+# Listing them by name signals intent; many default to "deny"
+# when the operator hasn't explicitly decided.
+# ─────────────────────────────────────────────────────────────
+
+# OpenAI (ChatGPT browsing + crawling + search)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google Gemini & Vertex AI (separate from classic Google search indexing)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Mistral
+User-agent: MistralAI-User
+Allow: /
+
+# Common Crawl (underlying corpus for many open models)
+User-agent: CCBot
+Allow: /
+
+# Diffbot (knowledge-graph extraction)
+User-agent: Diffbot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Bytespider (ByteDance / TikTok / Doubao AI)
+User-agent: Bytespider
+Allow: /
+
+# DuckDuckGo Assist
+User-agent: DuckAssistBot
+Allow: /
+
+# Brave Search
+User-agent: BraveBot
+Allow: /
+
+# ─────────────────────────────────────────────────────────────
+# Sitemaps + AI manifest pointer
+# ─────────────────────────────────────────────────────────────
 Sitemap: https://hellouchit.com/sitemap.xml
+
+# Pointer to the AI-readable manifest (llmstxt.org convention)
+# https://hellouchit.com/llms.txt

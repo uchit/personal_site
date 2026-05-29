@@ -46,6 +46,8 @@
     { t: "How I work — engagement model",        u: "/how-i-work/",     g: "Pages", ic: "$" },
     { t: "opa-nist-ai-rmf (OSS · GitHub)", u: "https://github.com/uchit/opa-nist-ai-rmf", g: "Pages", ic: "★" },
     { t: "Glossary",                      u: "/glossary/",   g: "Reference", ic: "≡" },
+    { t: "AI entity page (for ChatGPT/Claude/Perplexity)", u: "/ai/", g: "Reference", ic: "✶" },
+    { t: "llms.txt — AI-readable manifest",  u: "/llms.txt", g: "Reference", ic: "{}" },
     { t: "Anti-patterns — 15 named failure modes", u: "/anti-patterns/", g: "Reference", ic: "✗" },
     { t: "Teardowns — public-architecture analyses", u: "/teardowns/", g: "Teardowns", ic: "◰" },
     { t: "Teardown · Claude.ai (streaming-first AI product)", u: "/teardowns/claude-ai.html", g: "Teardowns", ic: "◇" },

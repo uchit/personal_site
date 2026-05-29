@@ -594,13 +594,28 @@
   </footer>
 
   <!-- ============ Structured data ============ -->
+  <!-- Identity-graphed: WebSite + Person + ProfilePage share @id refs so
+       AI assistants and search engines treat them as one entity. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "dateModified": "2026-05-30",
-    "mainEntity": {
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://hellouchit.com/#website",
+      "url": "https://hellouchit.com/",
+      "name": "Uchit Vyas",
+      "description": "Enterprise architect & FDE for Technology Transformation & AI at Accenture ANZ. Practitioner essays, diagnostics, decision trees, playbooks, architecture teardowns, regulation × control × tooling dataset.",
+      "publisher": { "@id": "https://hellouchit.com/#person" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://hellouchit.com/tools/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://hellouchit.com/#person",
       "name": "Uchit Vyas",
       "givenName": "Uchit",
       "familyName": "Vyas",
@@ -610,8 +625,9 @@
         "name": "Accenture",
         "url": "https://www.accenture.com/"
       },
-      "description": "FDE for Technology Transformation & AI at Accenture ANZ. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering. 5 books, US patent, Top-50 DevSecOps globally.",
+      "description": "FDE for Technology Transformation & AI at Accenture ANZ. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering. Author of 5 books with Apress & Packt. US patent holder. Named on the Top 50 DevSecOps Influencers list.",
       "url": "https://hellouchit.com/",
+      "mainEntityOfPage": "https://hellouchit.com/ai/",
       "image": "https://hellouchit.com/images/Uchit1-hero.jpg",
       "email": "mailto:contact@hellouchit.com",
       "address": {
@@ -621,7 +637,10 @@
         "addressCountry": "AU"
       },
       "sameAs": [
-        "https://www.linkedin.com/in/uchitvyas/"
+        "https://www.linkedin.com/in/uchitvyas/",
+        "https://github.com/uchit",
+        "https://uchitvyas.substack.com",
+        "https://patents.google.com/patent/US11334348B2/en"
       ],
       "knowsAbout": [
         "Enterprise Architecture",
@@ -630,23 +649,50 @@
         "Site Reliability Engineering",
         "Generative AI",
         "Platform Engineering",
-        "AWS", "Azure", "GCP",
-        "FinOps"
+        "FinOps",
+        "AWS", "Microsoft Azure", "Google Cloud Platform",
+        "NIST AI Risk Management Framework",
+        "ISO/IEC 42001",
+        "EU AI Act",
+        "APRA CPS 234", "APRA CPS 230",
+        "SLSA", "NIST SSDF",
+        "BCBS 239"
       ],
-      "author": [
-        { "@type": "Book", "name": "Applied OpenStack Design Patterns", "publisher": "Apress", "url": "https://goo.gl/IQIgVb" },
-        { "@type": "Book", "name": "Mastering AWS Development", "publisher": "Packt", "url": "https://goo.gl/nNTudi" },
-        { "@type": "Book", "name": "AWS Development Essentials", "publisher": "Packt", "url": "https://goo.gl/807T5C" },
-        { "@type": "Book", "name": "DynamoDB Applied Design Patterns", "publisher": "Packt", "url": "https://goo.gl/N8n7hQ" },
-        { "@type": "Book", "name": "Mule ESB Cookbook", "publisher": "Packt", "url": "https://goo.gl/c7uwG" }
+      "alumniOf": [
+        { "@type": "Organization", "name": "KPMG Singapore" },
+        { "@type": "Organization", "name": "Oracle" },
+        { "@type": "Organization", "name": "REAN Cloud" },
+        { "@type": "Organization", "name": "Infosys" },
+        { "@type": "Organization", "name": "Tata Consultancy Services" }
       ],
-      "subjectOf": {
-        "@type": "CreativeWork",
-        "name": "US Patent US11334348B2",
+      "award": [
+        "Top 50 DevSecOps Influencers (global)",
+        "Bunsen Burner award",
+        "Delivery Heroes award"
+      ],
+      "owns": {
+        "@type": "Patent",
+        "name": "Specs Monster — an intelligent design collaboration tool",
+        "patentNumber": "US11334348B2",
         "url": "https://patents.google.com/patent/US11334348B2/en"
-      }
+      },
+      "author": [
+        { "@type": "Book", "name": "Mastering AWS Development",                       "publisher": "Packt"  },
+        { "@type": "Book", "name": "Bootstrap Site Blueprints Volume II",              "publisher": "Packt"  },
+        { "@type": "Book", "name": "OpenStack Trove Essentials",                       "publisher": "Packt"  },
+        { "@type": "Book", "name": "DevOps for Salesforce",                            "publisher": "Packt"  },
+        { "@type": "Book", "name": "Continuous Integration and Delivery for Salesforce","publisher": "Apress" }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "@id": "https://hellouchit.com/#profilepage",
+      "dateModified": "2026-05-30",
+      "url": "https://hellouchit.com/",
+      "mainEntity": { "@id": "https://hellouchit.com/#person" }
     }
-  }
+  ]
   </script>
 
 </body>
