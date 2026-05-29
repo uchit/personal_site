@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vault Theatre → Workload Identity migration &mdash; Playbook &mdash; Uchit Vyas</title>
+<meta name="description" content="Week-by-week to move from 'we have a vault holding static credentials' to 'workloads prove who they are via federated identity, no static creds in the path'. Closes Vault Theatre anti-pattern." />
+<link rel="canonical" href="https://hellouchit.com/playbooks/vault-theatre-to-workload-identity.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Vault Theatre → Workload Identity migration &mdash; 90-day playbook" />
+<meta property="og:description" content="From static-creds-in-a-vault to workload identity in 12 weeks." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/playbook.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="pb-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/playbooks/" style="color:var(--muted)">Playbooks</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Workload Identity migration</span></nav>
+      <span class="eyebrow">90-day playbook</span>
+      <h1>Static creds &rarr; <em>workload identity</em>.</h1>
+      <p class="dek">If your credentials are static, rotating them faster doesn't close the audit finding &mdash; only <b>workload identity</b> does. Twelve weeks from "we have a vault" to "the workload proves who it is to the cloud, end-to-end". Closes the <a href="/anti-patterns/#vault-theatre">Vault Theatre</a> anti-pattern.</p>
+      <div class="meta">
+        <div class="meta-row">
+          <span><b>Audience</b> Platform / SRE / security engineer leading credential hygiene across the estate</span>
+          <span><b>Pre-req</b> HashiCorp Vault or cloud-native secrets manager exists. Cloud SSO works for humans. Some services use static service-account credentials.</span>
+        </div>
+        <div class="meta-row" style="margin-top:8px">
+          <span><b>End state</b> Zero static long-lived credentials in production paths · workload identity (OIDC) for CI/CD, K8s, and serverless · remaining humans use SSO + PAM · auditable trail for every workload-to-cloud assertion.</span>
+        </div>
+        <div class="meta-row" style="margin-top:8px">
+          <span><b>Re-run diagnostic at week 13</b> <a href="/tools/devsecops-maturity.html" style="color:var(--muted);border-bottom:1px dotted var(--line-strong)">DevSecOps Maturity diagnostic</a></span>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="pb-timeline"><div class="wrap">
+      
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 1</span>
+          <div class="pweeks">Weeks 1–4</div>
+        </div>
+        <div>
+          <h2>Inventory, classify, <em>pick the wedge</em>.</h2>
+          <p class="pintro">Phase 1 builds the credential map. Most teams discover they have 10× more static credentials than they thought, in places nobody's looked since the system was first set up.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 1</div><div class="wbody">
+        <h3>Inventory every credential path &mdash; CI · K8s · serverless · humans.</h3>
+        <ul>
+          <li><b>CI/CD:</b> GitHub Actions secrets · GitLab CI variables · Jenkins credentials · CircleCI contexts</li>
+          <li><b>Production workloads:</b> K8s service account tokens · Lambda env vars · Cloud Function env vars · VM instance profiles</li>
+          <li><b>Third-party SaaS:</b> Datadog · PagerDuty · Slack apps · vendor integrations</li>
+          <li><b>Humans:</b> IAM users · cloud-console logins · long-lived access tokens</li>
+        </ul>
+        <div class="gate"><b>Gate 1 &middot; Credential register exists</b><p>Spreadsheet (or ITSM record). Every static credential listed: owner · purpose · age · last-rotated · privilege scope.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 2</div><div class="wbody">
+        <h3>Classify by blast-radius. Tackle highest first.</h3>
+        <ul>
+          <li><b>Tier 0 &mdash; sovereign destroyer:</b> AWS root account · GCP org-admin · Azure global-admin · prod DB superuser. Should be near-zero already; verify</li>
+          <li><b>Tier 1 &mdash; production write:</b> deploy keys with prod write · prod K8s admin tokens · DB write creds</li>
+          <li><b>Tier 2 &mdash; production read or non-prod write:</b> monitoring read · staging admin</li>
+          <li><b>Tier 3 &mdash; low-privilege:</b> dev-environment creds</li>
+        </ul>
+        <div class="gate"><b>Gate 2 &middot; Every Tier 0/1 credential identified, with owner</b><p>Plan exists for retiring each. No silent unknowns at Tier 0/1.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 3</div><div class="wbody">
+        <h3>Pick the wedge pipeline / workload &mdash; one that proves the pattern.</h3>
+        <ul>
+          <li><b>Criteria:</b> high blast-radius (so the win is meaningful) · simple enough to migrate cleanly · owned by a team that can champion the pattern</li>
+          <li><b>Document the &ldquo;before&rdquo;:</b> credential path · rotation cadence · last incident · audit findings</li>
+        </ul>
+        <div class="gate"><b>Gate 3 &middot; Wedge identified + signed</b><p>Engineering + security agree this is the right first migration. Success criteria documented.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 4</div><div class="wbody">
+        <h3>Choose the workload-identity stack per platform.</h3>
+        <ul>
+          <li><b>GitHub Actions ↔ AWS:</b> <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services" target="_blank" rel="noopener">OIDC + AWS IAM role trust policy</a></li>
+          <li><b>GitHub Actions ↔ GCP:</b> Workload Identity Federation</li>
+          <li><b>GitHub Actions ↔ Azure:</b> Federated Credentials</li>
+          <li><b>K8s pods ↔ AWS:</b> IRSA (IAM Roles for Service Accounts) · Pod Identity</li>
+          <li><b>K8s pods ↔ GCP:</b> Workload Identity</li>
+          <li><b>K8s pods ↔ Azure:</b> Azure AD Workload Identity</li>
+          <li><b>Multi-cloud / on-prem:</b> SPIFFE / SPIRE</li>
+        </ul>
+        <div class="gate"><b>Gate 4 &middot; Stack chosen per platform with rationale</b><p>Decision documented; future migrations don't re-litigate.</p></div>
+        </div></div></div>
+      </div>
+    </div>
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 2</span>
+          <div class="pweeks">Weeks 5–8</div>
+        </div>
+        <div>
+          <h2>Migrate the wedge &amp; <em>document the pattern</em>.</h2>
+          <p class="pintro">Phase 2 lands workload identity on the wedge pipeline end-to-end, then converts the experience into a repeatable paved-path template.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 5</div><div class="wbody">
+        <h3>Configure trust on the cloud side.</h3>
+        <ul>
+          <li><b>AWS:</b> create IAM role with trust policy on GitHub OIDC provider · scoped to specific repo/branch (claim conditions)</li>
+          <li><b>GCP:</b> create Workload Identity Pool + Provider · service account impersonation grant</li>
+          <li><b>Azure:</b> create app registration · federated credential subject pinned to repo:branch</li>
+          <li><b>Test from a sandbox repo first.</b> Verify token-claim conditions are tight enough (no broad <code>repo:*</code>)</li>
+        </ul>
+        <div class="gate"><b>Gate 5 &middot; Trust policy live + audit-log verified</b><p>Test assertion from sandbox succeeds. Audit log shows the federated identity + claim conditions enforced.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 6</div><div class="wbody">
+        <h3>Migrate the wedge pipeline.</h3>
+        <ul>
+          <li><b>Replace static creds:</b> remove <code>AWS_ACCESS_KEY_ID</code> / <code>GCP_SA_KEY</code> from secret store</li>
+          <li><b>Configure OIDC step:</b> <code>actions/configure-aws-credentials@v4</code> with <code>role-to-assume</code> · <code>aws-region</code> &mdash; no <code>aws-access-key-id</code></li>
+          <li><b>Run the pipeline.</b> Pipeline succeeds → credentials never touched a secret store</li>
+          <li><b>Delete the old static creds.</b> Not "rotate one last time" &mdash; <em>delete</em></li>
+        </ul>
+        <div class="gate"><b>Gate 6 &middot; Wedge pipeline running on workload identity</b><p>Test deploy completed. Original static creds deleted (verified absent in secret store).</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 7</div><div class="wbody">
+        <h3>Document the paved-path template.</h3>
+        <ul>
+          <li><b>Reusable workflow / shared action:</b> standard OIDC-assume snippet with claim-condition examples</li>
+          <li><b>Terraform module:</b> per-pipeline cloud-side trust setup, accepts repo + branch + role-scope as inputs</li>
+          <li><b>Developer-portal docs:</b> "how to migrate your pipeline off static creds" with a 1-hour walkthrough</li>
+          <li><b>Anti-pattern callouts:</b> what NOT to do (broad claim conditions · over-broad role policies · keeping a back-up static cred &ldquo;just in case&rdquo;)</li>
+        </ul>
+        <div class="gate"><b>Gate 7 &middot; Paved-path template published + tested by 2nd team</b><p>A team that didn't do the wedge migrates a pipeline using only the docs. Time tracked; iterate on the docs.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 8</div><div class="wbody">
+        <h3>Migrate K8s workloads on the wedge cluster.</h3>
+        <ul>
+          <li><b>Enable</b> IRSA / GCP Workload Identity / Azure WI on the cluster</li>
+          <li><b>Per service account:</b> annotate to assume cloud role · remove static-credential mounts</li>
+          <li><b>Verify pods</b> get credentials from the metadata service · audit log shows federated identity, not service-account key</li>
+        </ul>
+        <div class="gate"><b>Gate 8 &middot; Cluster on workload identity, zero pod-mounted static creds</b><p>Cluster audit clean. Test pod with missing service-account assumption fails as expected.</p></div>
+        </div></div></div>
+      </div>
+    </div>
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 3</span>
+          <div class="pweeks">Weeks 9–12</div>
+        </div>
+        <div>
+          <h2>Roll across, <em>retire vault</em> usage.</h2>
+          <p class="pintro">Phase 3 propagates the pattern across the estate and retires the static-credential paths systematically. The vault stays — for things that genuinely need a secret store — but its role shrinks.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 9</div><div class="wbody">
+        <h3>Roll the pattern to 5 more pipelines, 2 more clusters.</h3>
+        <ul>
+          <li><b>Onboarding workshop:</b> 2-hour session for engineering leads · live-migrate one pipeline per attendee</li>
+          <li><b>Office hours:</b> weekly drop-in for engineers needing migration help</li>
+          <li><b>Track</b> migration count + time-to-onboard. Iterate on docs as patterns emerge</li>
+        </ul>
+        <div class="gate"><b>Gate 9 &middot; 5 pipelines + 2 clusters migrated</b><p>Critical mass. Pattern is now &ldquo;how we do it&rdquo;, not &ldquo;the new thing&rdquo;.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 10</div><div class="wbody">
+        <h3>Retire static-creds for SaaS integrations where the vendor supports OIDC.</h3>
+        <ul>
+          <li><b>Datadog · PagerDuty · Snowflake · Databricks · etc.:</b> many now support cloud-native OIDC or short-lived tokens</li>
+          <li><b>Audit each integration:</b> vendor doc says what's possible · migrate where supported</li>
+          <li><b>Leftover static-credentials:</b> moved to a dedicated &ldquo;legacy&rdquo; vault namespace with quarterly rotation cadence and named owner</li>
+        </ul>
+        <div class="gate"><b>Gate 10 &middot; Every SaaS-vendor static cred classified as &ldquo;migrated&rdquo; or &ldquo;legacy-pinned&rdquo;</b><p>Legacy list shrinks each quarter. New integrations default to OIDC where available.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 11</div><div class="wbody">
+        <h3>Detection &mdash; flag any new static credential creation.</h3>
+        <ul>
+          <li><b>Cloud-side:</b> AWS Config rule / Azure Policy / GCP Org Policy that alerts on <code>iam:CreateAccessKey</code> · service-account-key creation</li>
+          <li><b>Source-side:</b> PR linter that catches new <code>AWS_ACCESS_KEY_ID</code> patterns in code or YAML</li>
+          <li><b>Vault audit:</b> log any new long-lived secret put. Owner must justify</li>
+        </ul>
+        <div class="gate"><b>Gate 11 &middot; New-static-credential alarm live, ack'd weekly</b><p>Detection is the moat &mdash; without it the estate drifts back. Alarm reviewed by a named owner.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 12</div><div class="wbody">
+        <h3>Document the &ldquo;before / after&rdquo; for the audit story.</h3>
+        <ul>
+          <li><b>Per regulator-relevant area</b> (APRA CPS 234 · NIST 800-53 IA-5 · E8 ML2): before-state credential count vs after-state · evidence of the rollout</li>
+          <li><b>Architecture diagram:</b> updated to show federated-identity path · static-credential removal</li>
+          <li><b>External assurance / internal audit:</b> review the work · sign off · file the evidence for next audit cycle</li>
+        </ul>
+        <div class="gate"><b>Gate 12 &middot; Audit-ready evidence pack</b><p>If APRA / IRAP / SOC 2 auditor asks &ldquo;show me your credential-management posture&rdquo;, you produce a binder in &lt;1 hour, not 1 week. <a href="/anti-patterns/#vault-theatre">Vault Theatre</a> anti-pattern closed.</p></div>
+        </div></div></div>
+      </div>
+    </div>
+    </div></section>
+
+    <section class="pb-end"><div class="wrap">
+      <h2>End of <em>week 13</em>.</h2>
+      <p>Once workload identity is the default, the credential rotation question vanishes &mdash; there are no static credentials to rotate. The audit finding for APRA CPS 234 / NIST 800-53 / E8 ML2+ closes structurally, not procedurally.</p>
+      <div class="row">
+        <a class="primary" href="/tools/devsecops-maturity.html">Re-run DevSecOps Maturity diagnostic &rarr;</a>
+        <a href="/playbooks/">All playbooks</a>
+        <a href="/#contact">Talk through specifics</a>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/playbooks/">&larr; All playbooks</a></span>
+  </div></footer>
+</body>
+</html>

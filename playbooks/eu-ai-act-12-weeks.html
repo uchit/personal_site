@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EU AI Act high-risk readiness in 12 weeks &mdash; Playbook &mdash; Uchit Vyas</title>
+<meta name="description" content="A week-by-week playbook to take a high-risk AI use-case from 'piloting' to 'EU AI Act ready' by 2 Aug 2026. Gates, anti-patterns, and the diagnostic to re-run at week 13." />
+<link rel="canonical" href="https://hellouchit.com/playbooks/eu-ai-act-12-weeks.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="EU AI Act high-risk readiness in 12 weeks &mdash; 90-day playbook" />
+<meta property="og:description" content="Week-by-week from Piloting to EU AI Act high-risk ready by 2 Aug 2026." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/playbook.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Tools</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="pb-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/playbooks/" style="color:var(--muted)">Playbooks</a><span style="opacity:.5">/</span><span style="color:var(--accent)">EU AI Act 12 weeks</span></nav>
+      <span class="eyebrow">90-day playbook</span>
+      <h1>EU AI Act <em>high-risk</em>, in 12 weeks.</h1>
+      <p class="dek">If you're shipping (or about to ship) an AI use-case classified high-risk under <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">EU AI Act Annex III</a>, this is the substrate-first path to ready by <b>2 Aug 2026</b>. Twelve weeks. Three phases. Twelve named gates.</p>
+      <div class="meta">
+        <div class="meta-row">
+          <span><b>Audience</b> Engineering + product + risk lead on a high-risk AI use-case (credit scoring · employment screening · biometrics · law-enforcement · critical infrastructure · healthcare triage)</span>
+          <span><b>Pre-req</b> 1+ AI use-case in production or pre-launch. NIST AI RMF read.</span>
+        </div>
+        <div class="meta-row" style="margin-top:8px">
+          <span><b>End state</b> Per-decision audit pipeline · prompt registry + eval-gated CI · layered tested guardrails · model + data cards · risk classification + impact assessment signed. Pass an external Art. 9-15 review.</span>
+        </div>
+        <div class="meta-row" style="margin-top:8px">
+          <span><b>Re-run diagnostic at week 13</b> <a href="/tools/genai-readiness.html" style="color:var(--muted);border-bottom:1px dotted var(--line-strong)">GenAI Readiness diagnostic</a></span>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="pb-timeline"><div class="wrap">
+      
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 1</span>
+          <div class="pweeks">Weeks 1–4</div>
+        </div>
+        <div>
+          <h2>Triage &amp; <em>classify</em>.</h2>
+          <p class="pintro">You can't comply with what you haven't named. Phase 1 catalogues every AI use-case, classifies each per the EU AI Act risk tiers, and surfaces the ones that need the substrate work in phases 2–3.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 1</div><div class="wbody">
+        <h3>Inventory every AI use-case &mdash; <em>actually every one</em>.</h3>
+        <p>Include the proof-of-concepts on a single laptop. Include the third-party tools your teams use that have AI features turned on. Include the GenAI plugins in your existing SaaS (Salesforce Einstein, Microsoft Copilot, etc.).</p>
+        <ul>
+          <li><b>Per use-case:</b> name · owner · current stage (POC / pilot / production) · estimated user reach · data sensitivity</li>
+          <li><b>Per use-case:</b> AI Act role &mdash; are you <em>provider</em> (built it), <em>deployer</em> (use it), or both?</li>
+        </ul>
+        <div class="gate"><b>Gate 1 &middot; Catalogue published</b><p>Single source-of-truth visible to risk, legal, product, and engineering leadership. If risk + legal don't see it, the catalogue doesn't exist.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 2</div><div class="wbody">
+        <h3>Classify each use-case by AI Act risk tier.</h3>
+        <p>Walk every use-case against <a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener">EU AI Act Annex III</a> (high-risk areas) and Art. 5 (prohibited). Most use-cases will be <em>limited</em> or <em>minimal</em>; the high-risk ones drive the playbook.</p>
+        <ul>
+          <li><b>High-risk Annex III categories:</b> biometric identification · critical-infra safety components · education/vocational training · employment HR · essential services (credit, insurance, public benefits) · law enforcement · migration · justice/democracy</li>
+          <li><b>General-purpose AI (GPAI) systemic-risk:</b> separate obligations from Art. 51-55 (less likely to apply to deployers; matters for providers of foundation models)</li>
+        </ul>
+        <div class="gate"><b>Gate 2 &middot; Tier signed</b><p>Risk-tier per use-case signed off by risk + legal. Document the reasoning, not just the verdict. Annex III judgements are sometimes argued.</p></div>
+        <p class="anti"><b>Avoid &mdash;</b> the wishful-thinking classification ("our use-case isn't <em>really</em> credit scoring even though it informs credit decisions"). Regulator's view, not yours.</p>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 3</div><div class="wbody">
+        <h3>Per high-risk use-case: AI risk + impact assessment.</h3>
+        <p>EU AI Act Art. 9 (risk management system) + Art. 27 (fundamental rights impact assessment, for deployers in some cases) need an artefact you can hand to a regulator.</p>
+        <ul>
+          <li><b>Risk assessment:</b> identified risks &middot; affected populations &middot; severity + likelihood &middot; mitigations &middot; residual risk</li>
+          <li><b>Impact assessment (FRIA where required):</b> who's affected &middot; how decisions affect them &middot; redress route &middot; oversight mechanism</li>
+          <li><b>Map to NIST AI RMF</b> MAP function. Reduces double-work and gives a recognised framework</li>
+        </ul>
+        <div class="gate"><b>Gate 3 &middot; Assessments published</b><p>One assessment per high-risk use-case. Reviewed by a multi-disciplinary panel (engineering · risk · legal · product · ideally a domain expert).</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 4</div><div class="wbody">
+        <h3>Stand up the GenAI platform team &mdash; or name the owner.</h3>
+        <p>The substrate work in phases 2–3 needs a team. Without a named owner the work scatters across feature teams and never lands.</p>
+        <ul>
+          <li><b>Smallest workable shape:</b> 1 platform engineer + 1 ML engineer + 0.5 risk/governance partner. Bigger orgs need more</li>
+          <li><b>Funding model:</b> not project-funded. The substrate is permanent infrastructure</li>
+          <li><b>Reports to:</b> engineering, with dotted line to risk. Not the AI CoE if one exists (see anti-pattern)</li>
+        </ul>
+        <div class="gate"><b>Gate 4 &middot; Team funded + reporting line agreed</b><p>Headcount approved, calendar invites for weekly stand-up + monthly steering exist. Without these the team is theatre.</p></div>
+        <p class="anti"><b>Avoid &mdash;</b> the <a href="/anti-patterns/#ai-coe-trap">AI CoE Trap</a>. The CoE doesn't own platform substrate; the platform team does.</p>
+        </div></div></div>
+      </div>
+    </div>
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 2</span>
+          <div class="pweeks">Weeks 5–8</div>
+        </div>
+        <div>
+          <h2>Build the <em>substrate</em>.</h2>
+          <p class="pintro">The eight weeks where you stop architecting and start shipping. Substrate first; one feature on it second. The order matters — gateway and prompt registry come before evals can be meaningful.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 5</div><div class="wbody">
+        <h3>Stand up an AI gateway &mdash; <em>buy</em>, don't build.</h3>
+        <p>The gateway is where the audit pipeline lives. Build only if you have a 5+ engineer platform team and sovereignty needs that rule out commercial. (See the <a href="/decisions/ai-gateway.html">AI gateway decision tree</a>.)</p>
+        <ul>
+          <li><b>Candidates:</b> Portkey · LiteLLM (managed) · AWS Bedrock + Guardrails · Azure AI Foundry · GCP Vertex AI</li>
+          <li><b>Non-negotiables:</b> per-decision logging · pluggable guardrails · model-version pinning · cost attribution</li>
+          <li><b>Verify before signing:</b> data-residency · zero-retention DPA · audit-log export format</li>
+        </ul>
+        <div class="gate"><b>Gate 5 &middot; Gateway routing 100% of LLM calls for high-risk use-case</b><p>Direct provider calls are now blocked at network egress (or PR-time at minimum). One use-case migrated end-to-end; second use-case starts later.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 6</div><div class="wbody">
+        <h3>Prompt registry + eval-gated CI.</h3>
+        <p>Prompts move out of code into a versioned registry. Evals run on every change. Merge blocks on critical regression.</p>
+        <ul>
+          <li><b>Registry candidates:</b> Langfuse · LangSmith · Promptfoo (good for the eval side specifically)</li>
+          <li><b>Eval set:</b> 50–100 known-answer cases per use-case. Domain expert reviews; stored in git</li>
+          <li><b>CI gate:</b> PR that changes a prompt runs the eval; merge blocked if critical-eval score drops &gt;X%</li>
+        </ul>
+        <div class="gate"><b>Gate 6 &middot; Zero inline prompts in production code</b><p>Source-tree scan finds none. PR linter catches new ones. The <a href="/anti-patterns/#inline-prompt-pattern">inline-prompt anti-pattern</a> is closed for this use-case.</p></div>
+        <p class="anti"><b>Avoid &mdash;</b> the <a href="/anti-patterns/#eval-set-never-runs">eval-set-that-never-runs</a>. If the set isn't gating CI it doesn't exist.</p>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 7</div><div class="wbody">
+        <h3>Layered guardrails &mdash; tested <em>adversarially</em>, not theoretically.</h3>
+        <p>Input + output guardrails at the gateway layer. Tested with an adversarial prompt suite. False-positive + false-negative rate tracked.</p>
+        <ul>
+          <li><b>Input side:</b> prompt-injection detection · PII detection · jailbreak patterns &mdash; OWASP LLM01 + LLM02 coverage</li>
+          <li><b>Output side:</b> structured-output validation · content safety · groundedness check · leak detection</li>
+          <li><b>Tools:</b> NeMo Guardrails · Guardrails AI · Bedrock Guardrails · Azure AI Content Safety · Lakera Guard · Llama Guard</li>
+          <li><b>Adversarial test suite:</b> Garak (NVIDIA) · PyRIT (Microsoft) for red-team automation</li>
+        </ul>
+        <div class="gate"><b>Gate 7 &middot; Adversarial suite passes acceptance threshold</b><p>Critical attacks (top-3 OWASP LLM) blocked. False-positive rate documented (because over-blocking is its own problem). Suite scheduled weekly.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 8</div><div class="wbody">
+        <h3>Per-decision audit pipeline + retention.</h3>
+        <p>EU AI Act Art. 12 (logging) becomes operational. Every high-risk decision is replay-able.</p>
+        <ul>
+          <li><b>Per request, persisted:</b> prompt · retrieved context · model + version · guardrails applied · output · confidence · latency · cost</li>
+          <li><b>Signed + immutable:</b> append-only store (object-lock or hash-chain). Tamper-detection on retrieval</li>
+          <li><b>Retention:</b> EU AI Act says ≥6 months for high-risk (Art. 12). Most banks/healthcare regulators want longer; default to 7 years</li>
+          <li><b>Replay-able:</b> dev can reconstruct any decision given the audit record + frozen model version</li>
+        </ul>
+        <div class="gate"><b>Gate 8 &middot; Replay test passes</b><p>Random sample of 5 production decisions reconstructed by a dev who didn't make the original requests, byte-equivalent answers. Audit log is real.</p></div>
+        </div></div></div>
+      </div>
+    </div>
+    <div class="pb-phase">
+      <div class="head">
+        <div>
+          <span class="ptag">Phase 3</span>
+          <div class="pweeks">Weeks 9–12</div>
+        </div>
+        <div>
+          <h2>Documentation, oversight, conformity.</h2>
+          <p class="pintro">Phase 3 is the documentation, governance, and pre-conformity work that turns a working substrate into a regulator-defensible system. Less code; more artefacts.</p>
+        </div>
+      </div>
+      <div class="pb-weeks">
+        <div></div>
+        <div><div class="pb-week"><div class="wnum">Week 9</div><div class="wbody">
+        <h3>Model card + data card per high-risk use-case.</h3>
+        <ul>
+          <li><b>Model card:</b> training/fine-tuning data summary · eval results (with hold-out methodology) · intended use · limitations · ethical considerations</li>
+          <li><b>Data card:</b> sources · consent basis · refresh cadence · known biases · de-identification approach</li>
+          <li><b>Templates:</b> Google Model Card Toolkit · Hugging Face model-card spec · NVIDIA Model Card++ · custom YAML in repo if simpler</li>
+          <li><b>Versioned with the model:</b> not a separate Confluence page that drifts</li>
+        </ul>
+        <div class="gate"><b>Gate 9 &middot; Cards published + reviewed</b><p>Risk + legal + a domain expert read them. Edits are tracked. Card lives in the repo with the model.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 10</div><div class="wbody">
+        <h3>Technical documentation pack (Art. 11 / Annex IV).</h3>
+        <p>If you're a provider, this is the regulator-facing package. If you're a deployer, you assemble equivalent records for your supervisory authority.</p>
+        <ul>
+          <li><b>General description:</b> intended purpose · users · context · how it's been verified</li>
+          <li><b>Detailed description:</b> system design · key design choices · data requirements · pre-determined changes · validation procedures</li>
+          <li><b>Monitoring + post-market plan:</b> what you log · what you alert on · how you respond to incidents</li>
+          <li><b>Conformity declaration draft:</b> standards applied (ISO 42001, harmonised standards as they emerge)</li>
+        </ul>
+        <div class="gate"><b>Gate 10 &middot; Doc pack peer-reviewed</b><p>External or independent-internal reviewer can navigate the doc pack and answer questions about the system without help. Doc pack quality predicts conformity-assessment outcome.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 11</div><div class="wbody">
+        <h3>Human oversight mechanism (Art. 14) made <em>operational</em>.</h3>
+        <p>'A human can override' isn't oversight. 'A human approves high-risk decisions above a threshold' is.</p>
+        <ul>
+          <li><b>Triggers documented:</b> confidence threshold · risk tier · regulator-defined categories &mdash; what flags a decision for human review</li>
+          <li><b>Reviewer queue:</b> SLA (typically &lt;24h for service decisions) · reviewer trained · audit trail of approval/override</li>
+          <li><b>Override metrics:</b> rate · direction (over-reliance vs second-guessing) · review by week</li>
+          <li><b>Engine candidates:</b> Temporal (long-running approval) · ServiceNow workflow · custom queue + UI</li>
+        </ul>
+        <div class="gate"><b>Gate 11 &middot; Oversight tested on prod traffic</b><p>Real flagged decisions actually go through human review. SLA tracked. No silent bypass route exists.</p></div>
+        </div></div>
+<div class="pb-week"><div class="wnum">Week 12</div><div class="wbody">
+        <h3>External or independent-internal pre-conformity review.</h3>
+        <p>Before regulator looks, your friendly external looks. The cost of finding a gap now versus during a real conformity assessment is 100×.</p>
+        <ul>
+          <li><b>Scope:</b> Art. 9 (RMS) · Art. 10 (data) · Art. 11 (docs) · Art. 12 (logging) · Art. 13 (transparency) · Art. 14 (oversight) · Art. 15 (accuracy/robustness/cybersec)</li>
+          <li><b>Reviewer:</b> external assurance firm OR an independent internal-audit function. Not the team that built it</li>
+          <li><b>Output:</b> findings register · remediation plan with owners · target dates</li>
+          <li><b>For providers:</b> identify your notified body (if route requires) and confirm assessment timeline</li>
+        </ul>
+        <div class="gate"><b>Gate 12 &middot; Findings closed or formally accepted</b><p>Every finding either remediated, scheduled with owner + date, or formally risk-accepted with sign-off at appropriate level. No silent open items.</p></div>
+        </div></div></div>
+      </div>
+    </div>
+    </div></section>
+
+    <section class="pb-end"><div class="wrap">
+      <h2>End of <em>week 13</em>.</h2>
+      <p>If you've completed the gates honestly, you've moved from <em>Piloting</em> to <em>Operating</em> on the maturity tier scale — the substrate that EU AI Act Art. 9–15 actually expects. The remaining work (notified-body conformity assessment if you're a provider; deployer obligations if you're a deployer) sits on top of this, not before it.</p>
+      <div class="row">
+        <a class="primary" href="/tools/genai-readiness.html">Re-run GenAI Readiness diagnostic &rarr;</a>
+        <a href="/playbooks/">All playbooks</a>
+        <a href="/#contact">Talk through specifics</a>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><a href="/playbooks/">&larr; All playbooks</a></span>
+  </div></footer>
+</body>
+</html>
