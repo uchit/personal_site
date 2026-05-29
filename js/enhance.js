@@ -36,7 +36,7 @@
     { t: "Case · Retail platform modernisation",            u: "/case-studies/retail-modernisation.html", g: "Case studies", ic: "▦" },
     { t: "Case · Enterprise data archival ($50M+ savings)", u: "/case-studies/data-archival.html",     g: "Case studies", ic: "▤" },
     { t: "Books & patent",                u: "/#books",      g: "Pages",     ic: "▥" },
-    { t: "Speaking",                      u: "/#speaking",   g: "Pages",     ic: "◎" },
+    { t: "Talks — conference history (2015→)", u: "/talks/",  g: "Pages",     ic: "◎" },
     { t: "Writing",                       u: "/writing/",    g: "Pages",     ic: "✎" },
     { t: "Letters — monthly email",       u: "/letters/",    g: "Pages",     ic: "✉" },
     { t: "Press & Speaker Kit",           u: "/press/",      g: "Pages",     ic: "▣" },
