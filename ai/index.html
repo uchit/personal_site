@@ -50,6 +50,29 @@
 
   .ai-quote { padding: 22px 26px; border-left: 2px solid var(--accent); background: rgba(217,151,87,.04); border-radius: 0 8px 8px 0; font-style: italic; color: var(--ink); font-size: 17px; line-height: 1.6; margin: 18px 0; max-width: 64ch; }
 </style>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  // Outbound-link + AI-source attribution events
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a||!a.href)return;
+    var u;try{u=new URL(a.href,location.href);}catch(_){return;}
+    if(!u.hostname||u.hostname===location.hostname)return;
+    var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
+    if(/substack\.com$/.test(h))dest='substack_click';
+    else if(/calendly\.com$/.test(h))dest='calendly_click';
+    else if(/linkedin\.com$/.test(h))dest='linkedin_click';
+    else if(/github\.com$/.test(h))dest='github_click';
+    else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
+    else if(/claude\.ai$/.test(h)||/anthropic\.com$/.test(h))dest='claude_click';
+    gtag('event',dest,{link_url:a.href,link_domain:h,link_text:(a.innerText||'').slice(0,80)});
+  });
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
