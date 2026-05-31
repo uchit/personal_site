@@ -42,7 +42,11 @@
     padding: clamp(28px, 4vw, 56px);
     background: radial-gradient(120% 80% at 0% 0%, rgba(217,151,87,.06), transparent 60%), var(--surface);
   }
-  .fw-svg { width: 100%; height: auto; max-width: 880px; margin: 0 auto; display: block; }
+  .fw-svg { width: 100%; height: auto; max-width: 1040px; margin: 0 auto; display: block; }
+  @media (max-width: 760px) {
+    .fw-diagram { padding: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .fw-svg { min-width: 760px; }
+  }
 
   .fw-caption {
     margin-top: 18px; text-align: center;
@@ -245,7 +249,7 @@
 
     <section><div class="wrap">
       <div class="fw-diagram">
-        <svg class="fw-svg" viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The 4-Discipline Stack diagram">
+        <svg class="fw-svg" viewBox="0 0 1040 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The 4-Discipline Stack diagram">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#d99757" stop-opacity=".15"/>
@@ -258,19 +262,19 @@
           </defs>
 
           <!-- Background plate -->
-          <rect x="40" y="40" width="800" height="440" rx="14"
+          <rect x="40" y="40" width="960" height="460" rx="14"
                 fill="url(#g1)" stroke="rgba(217,151,87,.2)" stroke-width="1"/>
 
           <!-- Substrate label -->
           <text x="60" y="76" fill="#d99757" font-family="IBM Plex Mono, monospace"
                 font-size="10.5" letter-spacing="2.4">SHARED OPERATING SUBSTRATE</text>
           <text x="60" y="100" fill="#ecedf0" font-family="Fraunces, serif"
-                font-size="16" font-weight="500">Encoded policy · workload identity · paved paths · observability defaults · audit trail</text>
+                font-size="15" font-weight="500">Encoded policy · workload identity · paved paths · observability defaults · audit trail</text>
 
           <!-- Four pillars -->
           <g font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2.2">
             <!-- D1 -->
-            <rect x="60" y="138" width="180" height="310" rx="10"
+            <rect x="60" y="138" width="225" height="330" rx="10"
                   fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
             <text x="78" y="168" fill="#d99757">D1 · ARCHITECTURE</text>
             <text x="78" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Enterprise</text>
@@ -279,56 +283,56 @@
             <text x="78" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Capability model · ADRs ·</text>
             <text x="78" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">target-state · principles.</text>
             <text x="78" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">TOGAF · BIAN · ArchiMate</text>
-            <line x1="78" y1="380" x2="222" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <line x1="78" y1="380" x2="267" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
             <text x="78" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Where decisions live.</text>
             <text x="78" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Mostly invisible if it works.</text>
 
             <!-- D2 -->
-            <rect x="250" y="138" width="180" height="310" rx="10"
+            <rect x="295" y="138" width="225" height="330" rx="10"
                   fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
-            <text x="268" y="168" fill="#d99757">D2 · DELIVERY</text>
-            <text x="268" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Platform Eng</text>
-            <text x="268" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">&amp; DevSecOps</text>
-            <text x="268" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The substrate.</text>
-            <text x="268" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Paved paths · CI/CD · IAM ·</text>
-            <text x="268" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">SLSA · OPA · observability.</text>
-            <text x="268" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">CNCF · Team Topologies · DORA</text>
-            <line x1="268" y1="380" x2="412" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
-            <text x="268" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">How the work ships.</text>
-            <text x="268" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Encoded > documented.</text>
+            <text x="313" y="168" fill="#d99757">D2 · DELIVERY</text>
+            <text x="313" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Platform Eng</text>
+            <text x="313" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">&amp; DevSecOps</text>
+            <text x="313" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The substrate.</text>
+            <text x="313" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Paved paths · CI/CD · IAM ·</text>
+            <text x="313" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">SLSA · OPA · observability.</text>
+            <text x="313" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">CNCF · Team Topologies · DORA</text>
+            <line x1="313" y1="380" x2="502" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="313" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">How the work ships.</text>
+            <text x="313" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Encoded > documented.</text>
 
             <!-- D3 -->
-            <rect x="440" y="138" width="180" height="310" rx="10"
+            <rect x="530" y="138" width="225" height="330" rx="10"
                   fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
-            <text x="458" y="168" fill="#d99757">D3 · SIGNAL</text>
-            <text x="458" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Data</text>
-            <text x="458" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Modernisation</text>
-            <text x="458" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The truth.</text>
-            <text x="458" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Lineage · governance ·</text>
-            <text x="458" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">retention · analytics-ready.</text>
-            <text x="458" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">Data mesh · Lakehouse · DCAM</text>
-            <line x1="458" y1="380" x2="602" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
-            <text x="458" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">What AI consumes.</text>
-            <text x="458" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Garbage-in, garbage-everywhere.</text>
+            <text x="548" y="168" fill="#d99757">D3 · SIGNAL</text>
+            <text x="548" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Data</text>
+            <text x="548" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Modernisation</text>
+            <text x="548" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The truth.</text>
+            <text x="548" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">Lineage · governance ·</text>
+            <text x="548" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">retention · analytics-ready.</text>
+            <text x="548" y="346" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">Data mesh · Lakehouse · DCAM</text>
+            <line x1="548" y1="380" x2="737" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="548" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">What AI consumes.</text>
+            <text x="548" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Garbage-in, garbage-everywhere.</text>
 
             <!-- D4 -->
-            <rect x="630" y="138" width="180" height="310" rx="10"
+            <rect x="765" y="138" width="225" height="330" rx="10"
                   fill="url(#g2)" stroke="rgba(217,151,87,.45)" stroke-width="1.5"/>
-            <text x="648" y="168" fill="#d99757">D4 · INTELLIGENCE</text>
-            <text x="648" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Applied</text>
-            <text x="648" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">GenAI</text>
-            <text x="648" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The accelerant.</text>
-            <text x="648" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">RAG · evals · guardrails ·</text>
-            <text x="648" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">governance · cost-per-outcome.</text>
-            <text x="648" y="340" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">NIST AI RMF · EU AI Act</text>
-            <text x="648" y="356" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">ISO 42001 · OWASP LLM</text>
-            <line x1="648" y1="380" x2="792" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
-            <text x="648" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Only as good as D1-D3.</text>
-            <text x="648" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Or it's prompt-injection theatre.</text>
+            <text x="783" y="168" fill="#d99757">D4 · INTELLIGENCE</text>
+            <text x="783" y="208" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">Applied</text>
+            <text x="783" y="234" fill="#ecedf0" font-family="Fraunces, serif" font-size="22" font-weight="500">GenAI</text>
+            <text x="783" y="270" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">The accelerant.</text>
+            <text x="783" y="290" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">RAG · evals · guardrails ·</text>
+            <text x="783" y="308" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5" letter-spacing="0">governance · cost-per-outcome.</text>
+            <text x="783" y="340" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">NIST AI RMF · EU AI Act</text>
+            <text x="783" y="356" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".4">ISO 42001 · OWASP LLM</text>
+            <line x1="783" y1="380" x2="972" y2="380" stroke="rgba(217,151,87,.3)" stroke-width=".5"/>
+            <text x="783" y="402" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Only as good as D1-D3.</text>
+            <text x="783" y="424" fill="#5a6170" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".3">Or it's prompt-injection theatre.</text>
           </g>
 
           <!-- Compound arrow / brace at bottom -->
-          <text x="440" y="478" fill="#d99757" font-family="Fraunces, serif" font-style="italic"
+          <text x="520" y="495" fill="#d99757" font-family="Fraunces, serif" font-style="italic"
                 font-size="18" font-weight="500" text-anchor="middle">
             compound capability &mdash; not a sum, a multiplier
           </text>
