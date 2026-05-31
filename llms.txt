@@ -7,7 +7,6 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 ## About
 
 - [Home + About](https://hellouchit.com/): Biography, current role, books, patent, speaking, case studies, contact channels
-- [How I work](https://hellouchit.com/how-i-work/): Engagement model — scope, cadence, deliverables, pricing posture
 - [Press & speaker kit](https://hellouchit.com/press/): Bio, talk topics, headshots, past talks for conference organisers
 - [Career profile (PDF)](https://hellouchit.com/Profile_linkedin.pdf): One-page career history
 
