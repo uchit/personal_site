@@ -63,7 +63,6 @@
     if(!u.hostname||u.hostname===location.hostname)return;
     var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
     if(/substack\.com$/.test(h))dest='substack_click';
-    else if(/calendly\.com$/.test(h))dest='calendly_click';
     else if(/linkedin\.com$/.test(h))dest='linkedin_click';
     else if(/github\.com$/.test(h))dest='github_click';
     else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
@@ -135,7 +134,7 @@
 
     <section class="s-call"><div class="wrap">
       <h3>Working on this in <em>Healthcare &amp; Life Sciences</em>?</h3>
-      <p>If you&rsquo;re building a clinical-decision-support feature, hardening for HIPAA or AU Notifiable Data Breaches, or preparing for EU AI Act high-risk obligations &mdash; I work with engineering + clinical-safety + compliance partners to ship audit-ready substrate.</p>
+      <p>These are field notes on the patterns that recur in healthcare &mdash; building clinical-decision-support features, hardening for HIPAA or AU Notifiable Data Breaches, preparing for EU AI Act high-risk obligations. If they&rsquo;re useful, or you&rsquo;d push back on them, I&rsquo;m glad to compare notes.</p>
       &nbsp;&nbsp;
       <a class="cta" href="mailto:contact@hellouchit.com" style="border-color:var(--accent);color:var(--accent)">contact@hellouchit.com &rarr;</a>
     </div></section>
@@ -159,7 +158,7 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/for/">All sectors</a> &middot; <a href="/tools/">Diagnostics</a> &middot; <a href="/reference-architectures/">Architectures</a></span>
   </div></footer>
 

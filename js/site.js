@@ -52,34 +52,6 @@ document.documentElement.classList.add('js');
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Calendly — defer until user clicks the CTA
-  const calendlyBtn = document.querySelector('[data-calendly]');
-  if (calendlyBtn) {
-    let loaded = false;
-    const CAL_URL = calendlyBtn.getAttribute('data-calendly');
-    calendlyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const open = () => {
-        if (window.Calendly) {
-          window.Calendly.initPopupWidget({ url: CAL_URL });
-        } else {
-          window.open(CAL_URL, '_blank', 'noopener');
-        }
-      };
-      if (loaded) { open(); return; }
-      loaded = true;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://assets.calendly.com/assets/external/widget.css';
-      document.head.appendChild(link);
-      const s = document.createElement('script');
-      s.src = 'https://assets.calendly.com/assets/external/widget.js';
-      s.async = true;
-      s.onload = open;
-      document.body.appendChild(s);
-    });
-  }
-
   // Mobile nav toggle
   const menuBtn = document.querySelector('.menu-btn');
   const navLinks = document.querySelector('nav.links');

@@ -63,7 +63,6 @@
     if(!u.hostname||u.hostname===location.hostname)return;
     var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
     if(/substack\.com$/.test(h))dest='substack_click';
-    else if(/calendly\.com$/.test(h))dest='calendly_click';
     else if(/linkedin\.com$/.test(h))dest='linkedin_click';
     else if(/github\.com$/.test(h))dest='github_click';
     else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
@@ -135,7 +134,7 @@
 
     <section class="s-call"><div class="wrap">
       <h3>Working on this in <em>Critical Infrastructure</em>?</h3>
-      <p>If you&rsquo;re responding to SOCI / NIS2 / CIRCIA obligations, hardening IT-OT integration points, or rebuilding the SRE programme behind a critical-service SLA &mdash; I run focused engagements with the architecture / platform / security partners that own this work.</p>
+      <p>These are field notes on the patterns that recur in critical infrastructure &mdash; responding to SOCI / NIS2 / CIRCIA obligations, hardening IT-OT integration points, rebuilding the SRE programme behind a critical-service SLA. If they&rsquo;re useful, or you&rsquo;d push back on them, I&rsquo;m glad to compare notes.</p>
       &nbsp;&nbsp;
       <a class="cta" href="mailto:contact@hellouchit.com" style="border-color:var(--accent);color:var(--accent)">contact@hellouchit.com &rarr;</a>
     </div></section>
@@ -159,7 +158,7 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/for/">All sectors</a> &middot; <a href="/tools/">Diagnostics</a> &middot; <a href="/reference-architectures/">Architectures</a></span>
   </div></footer>
 

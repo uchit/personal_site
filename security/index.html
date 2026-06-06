@@ -119,7 +119,6 @@
     if(!u.hostname||u.hostname===location.hostname)return;
     var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
     if(/substack\.com$/.test(h))dest='substack_click';
-    else if(/calendly\.com$/.test(h))dest='calendly_click';
     else if(/linkedin\.com$/.test(h))dest='linkedin_click';
     else if(/github\.com$/.test(h))dest='github_click';
     else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
@@ -223,7 +222,7 @@
         <div class="v good">0</div>
       </div>
       <div class="row">
-        <div class="k">Third-party scripts<small>None loaded by default; Calendly only on user click</small></div>
+        <div class="k">Third-party scripts<small>None loaded by default</small></div>
         <div class="v good">deferred</div>
       </div>
       <div class="row">
@@ -334,7 +333,7 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/">&larr; Home</a> &middot; <a href="/observability/">Observability posture</a> &middot; <a href="/oss/">Open Source</a></span>
   </div></footer>
 

@@ -51,7 +51,6 @@
     if(!u.hostname||u.hostname===location.hostname)return;
     var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
     if(/substack\.com$/.test(h))dest='substack_click';
-    else if(/calendly\.com$/.test(h))dest='calendly_click';
     else if(/linkedin\.com$/.test(h))dest='linkedin_click';
     else if(/github\.com$/.test(h))dest='github_click';
     else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
@@ -152,7 +151,7 @@
 
   <footer class="e-foot"><div class="wrap">
       <div class="row" style="display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
-        <span>&copy; Uchit Vyas &middot; Melbourne, AU</span><span>&middot;</span>
+        <span>&copy; Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span><span>&middot;</span>
         <a href="/maturity/">&larr; All maturity tiers</a><span>&middot;</span>
         <a href="/letters/">Subscribe to Letters</a><span>&middot;</span>
         <a href="/#contact">Talk about your stack &rarr;</a>

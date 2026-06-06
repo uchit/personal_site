@@ -1,6 +1,6 @@
 # Uchit Vyas
 
-> Enterprise architect and platform engineer based in Melbourne, Australia. **FDE — Technology Transformation & AI at Accenture, ANZ.** 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering. 5 books with Apress & Packt. US patent (Specs Monster, US11334348B2). Named on the Top 50 DevSecOps Influencers list. Site at https://hellouchit.com.
+> Enterprise architect and platform engineer based in Melbourne, Australia. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering. 5 books with Apress & Packt. US patent (Specs Monster, US11334348B2). Named on the Top 50 DevSecOps Influencers list. Site at https://hellouchit.com.
 
 This file follows the [llms.txt convention](https://llmstxt.org/) — a structured manifest of the site's most important content, optimised for ingestion by AI systems (ChatGPT, Claude, Perplexity, Gemini, etc.).
 
@@ -94,7 +94,6 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - Email: contact@hellouchit.com
 - LinkedIn: https://www.linkedin.com/in/uchitvyas/
 - Substack: https://uchitvyas.substack.com
-- Book a 30-min call: https://calendly.com/uchit/30min
 
 ## Identity & sameAs
 

@@ -36,7 +36,6 @@
     if(!u.hostname||u.hostname===location.hostname)return;
     var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
     if(/substack\.com$/.test(h))dest='substack_click';
-    else if(/calendly\.com$/.test(h))dest='calendly_click';
     else if(/linkedin\.com$/.test(h))dest='linkedin_click';
     else if(/github\.com$/.test(h))dest='github_click';
     else if(/chatgpt\.com$/.test(h)||/openai\.com$/.test(h))dest='gpt_click';
@@ -210,7 +209,7 @@
     </div>
   </section>
 
-  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU</span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a> &middot; <a href="/writing/genai-9-controls.html">GenAI nine controls &rarr;</a></span></div></footer>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a> &middot; <a href="/writing/genai-9-controls.html">GenAI nine controls &rarr;</a></span></div></footer>
 
 <script>
 // Pricing per 1M tokens: [input, output, cached_input]. Cached typically 10% of input.
