@@ -690,7 +690,8 @@
         "banks"
       ],
       "notes": "BCBS 239 has been live since 2016 and is still failed by most G-SIBs at audit. Lineage at column level (not table level) is the bar.",
-      "id": "r010"
+      "id": "r010",
+      "anti_pattern": "lakehouse-as-swamp"
     },
     {
       "reg": [
@@ -780,7 +781,8 @@
         "all"
       ],
       "notes": "The control is not 'we have a data classification standard'. It's 'every dataset wears its classification and the platform enforces handling rules.'",
-      "id": "r012"
+      "id": "r012",
+      "anti_pattern": "data-mesh-no-substrate"
     },
     {
       "reg": [
@@ -2169,7 +2171,8 @@
           "yields": "Plan-time policy result",
           "checked": false
         }
-      ]
+      ],
+      "anti_pattern": "paved-path-no-adoption"
     },
     {
       "reg": [
@@ -2349,7 +2352,8 @@
         "critical-infrastructure"
       ],
       "notes": "EU AI Act Art. 9 (risk management system). NIST AI RMF MAP function. ISO 42001 Annex A.6.1.",
-      "id": "r045"
+      "id": "r045",
+      "anti_pattern": "ai-workshop-tourism"
     },
     {
       "reg": [
@@ -2394,7 +2398,8 @@
         "r005",
         "r009"
       ],
-      "depends_why": "Model supply-chain integrity reuses the provenance and pinning the software chain established."
+      "depends_why": "Model supply-chain integrity reuses the provenance and pinning the software chain established.",
+      "anti_pattern": "model-as-latest"
     },
     {
       "reg": [
