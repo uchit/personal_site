@@ -383,6 +383,10 @@ That is the job worth doing.
 
 The 4-Discipline Stack → EA Operating Model Diagnostic → Platform Engineering Readiness → Glossary: ADR →
 
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
+
 
 ## GenAI in regulated environments: the nine controls
 Source: https://hellouchit.com/writing/genai-9-controls
@@ -505,6 +509,10 @@ Run the GenAI Readiness Diagnostic to see which of these controls your org has a
 #### Related
 
 GenAI Readiness Diagnostic → The 4-Discipline Stack → AU AI Safety Standard decoded → Glossary: Guardrails →
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ## DevSecOps stopped being about Sec. It's about supply chain.
@@ -633,6 +641,10 @@ The shift from “Sec” to “Supply Chain” doesn’t make the security team 
 
 DevSecOps Maturity Diagnostic → The 4-Discipline Stack → Glossary: SLSA → Glossary: Workload Identity →
 
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
+
 
 ## Platform engineering is the AI delivery moat
 Source: https://hellouchit.com/writing/platform-engineering-ai-moat
@@ -744,6 +756,10 @@ Most orgs do.
 #### Related
 
 Platform Engineering Readiness → GenAI Readiness Diagnostic → The 4-Discipline Stack → Why your four functions don’t compound →
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ## The 4-Discipline Stack: why your four functions don't compound
@@ -901,6 +917,10 @@ It’s also the thing that makes the four functions, each doing their job, final
 
 The 4-Discipline Stack → All six diagnostics → Platform engineering is the AI moat → The encoded enterprise architect →
 
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
+
 
 ## Australia's AI Safety Standard, decoded
 Source: https://hellouchit.com/writing/au-ai-safety-decoded
@@ -1003,6 +1023,10 @@ Open the GPT → Multinational? Pair with the EU AI Act Compliance Coach.
 
 The nine GenAI controls → GenAI Readiness Diagnostic → The 4-Discipline Stack → DISR Voluntary AI Safety Standard →
 
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
+
 
 ========================================================================
 SECTION: Case studies
@@ -1096,6 +1120,10 @@ Closing insight
 The 4-Discipline Stack → SRE Programme Diagnostic → DevSecOps Maturity Diagnostic → DevSecOps is supply chain →
 
 Originally published on Medium · read the original
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ## Enterprise architecture governance at Asia's largest bank
@@ -1202,6 +1230,10 @@ The job of EA governance isn’t to review decisions. It’s to make the right d
 EA Operating Model Diagnostic → The 4-Discipline Stack → The encoded enterprise architect → Platform Engineering IDP RA →
 
 Originally published on Medium · read the original
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ## High-speed digital lending platform at scale
@@ -1329,6 +1361,10 @@ Platform Engineering Readiness → SRE Programme Diagnostic → DevSecOps Maturi
 
 Originally published on Medium · read the original
 
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
+
 
 ## Retail platform modernisation & innovation roadmap
 Source: https://hellouchit.com/case-studies/retail-modernisation
@@ -1414,6 +1450,10 @@ Sustainable innovation in retail platforms doesn’t come from rewriting everyth
 EA Operating Model Diagnostic → Cloud Cost Diagnostic → The 4-Discipline Stack →
 
 Originally published on Medium · read the original
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ## Enterprise data archival platform
@@ -1538,6 +1578,10 @@ Data archival stops being a constraint and becomes a strategic enabler the momen
 Modern Data Platform RA → Cloud Cost Diagnostic → Cloud Commitment Optimiser → The 4-Discipline Stack →
 
 Originally published on Medium · read the original
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
 
 ========================================================================
@@ -3385,6 +3429,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 
 EA Operating Model Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
 
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
+
 
 ## DevSecOps Maturity · Repeatable tier
 Source: https://hellouchit.com/maturity/devsecops-repeatable
@@ -3489,6 +3537,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 
 DevSecOps Maturity Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
 
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
+
 
 ## GenAI Readiness · Piloting tier
 Source: https://hellouchit.com/maturity/genai-piloting
@@ -3589,6 +3641,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 
 GenAI Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
 
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
+
 
 ## Platform Engineering · Emerging tier
 Source: https://hellouchit.com/maturity/platform-eng-emerging
@@ -3667,6 +3723,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 
 Platform Engineering Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
 
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
+
 
 ## SRE Programme · Operational tier
 Source: https://hellouchit.com/maturity/sre-operational
@@ -3744,6 +3804,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 #### Related
 
 SRE Programme Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
 
 
 ## Cloud Cost · Aware tier
@@ -3824,6 +3888,10 @@ For the bigger picture: the compound diagnostic takes results from all six diagn
 #### Related
 
 Cloud Cost Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+
+The Method
+
+← 02 Locate it 03 · Check it 04 Decide it →
 
 
 ========================================================================
@@ -5146,4 +5214,8 @@ v1.0 15 May 2026
 First publication. Ten findings across GenAI, EU AI Act, supply-chain security, platform engineering, DORA, FinOps for AI, and regulated-industry delivery.
 
 Next scheduled review: January 2027 — or sooner if EU AI Act enforcement, APRA CPS 230 or the AU AI Safety Standard shifts materially.
+
+The Method
+
+← 06 Prove it 07 · Go deeper back to 01 Name it →
 
