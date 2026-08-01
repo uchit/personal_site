@@ -1,0 +1,330 @@
+{
+  "name": "Anti-patterns catalogue",
+  "description": "Named failure modes in enterprise architecture, platform engineering, DevSecOps and applied GenAI — where each appears, why it fails, and what to do instead.",
+  "version": "2026-08-01",
+  "license": "CC BY 4.0",
+  "attribution": "Uchit Vyas — hellouchit.com",
+  "source": "https://hellouchit.com",
+  "antiPatternCount": 15,
+  "antiPatterns": [
+    {
+      "id": "pdf-principles",
+      "number": "01",
+      "name": "PDF Principles",
+      "domain": "Enterprise Architecture",
+      "domainKey": "ea",
+      "url": "https://hellouchit.com/anti-patterns/#pdf-principles",
+      "whereItAppears": "An architecture function publishes a 70-page principles document. Linked from a wiki nobody opens. Cited only by the architects who wrote it. Delivery teams have never read it.",
+      "whyItsBad": "Principles that aren’t encoded in platform defaults or policy-as-code don’t exist. The PDF creates the illusion of governance while the substrate stays unenforced. Tell: when teams violate “principles” routinely without consequence, the PDF is theatre.",
+      "whatToDoInstead": "Encode your top 3 principles as policy-as-code (OPA / Kyverno / Conftest), platform templates (Backstage scaffolders), or admission controllers. Subtract the rest. A principle nobody can violate without warning is a principle. Everything else is rhetoric.",
+      "related": [
+        {
+          "title": "EA Operating Model Diagnostic",
+          "url": "https://hellouchit.com/tools/ea-operating-model.html"
+        },
+        {
+          "title": "The encoded enterprise architect",
+          "url": "https://hellouchit.com/writing/encoded-enterprise-architect.html"
+        }
+      ]
+    },
+    {
+      "id": "architect-as-reviewer",
+      "number": "02",
+      "name": "The Architect-as-Reviewer Trap",
+      "domain": "Enterprise Architecture",
+      "domainKey": "ea",
+      "url": "https://hellouchit.com/anti-patterns/#architect-as-reviewer",
+      "whereItAppears": "EA function exists to chair design reviews. Engineers must “present to architecture” before they can build. The reviews produce opinions, rarely decisions. Teams learn to route around the gate.",
+      "whyItsBad": "EA-as-gate breeds resentment and creates two systems: the official one and the one that ships. The function’s output becomes performance, not impact. Tell: design reviews where the answer is mostly “no” or “please come back with more detail.”",
+      "whatToDoInstead": "Replace the review board with an enablement clinic. The answer is never “no.” It’s “here’s the template,” or “here’s the ADR you should write,” or “here’s the exception process and what it costs.” Approval queues become paving queues.",
+      "related": [
+        {
+          "title": "EA Diagnostic",
+          "url": "https://hellouchit.com/tools/ea-operating-model.html"
+        },
+        {
+          "title": "The encoded enterprise architect",
+          "url": "https://hellouchit.com/writing/encoded-enterprise-architect.html"
+        }
+      ]
+    },
+    {
+      "id": "capability-model-theatre",
+      "number": "03",
+      "name": "Capability-Model Theatre",
+      "domain": "Enterprise Architecture",
+      "domainKey": "ea",
+      "url": "https://hellouchit.com/anti-patterns/#capability-model-theatre",
+      "whereItAppears": "A beautiful capability model exists in LeanIX / Ardoq / a Visio file. Architects update it quarterly. The CFO doesn’t consult it for investment decisions. Product managers don’t consult it for roadmap decisions. The capability model is a project artefact, not a living instrument.",
+      "whyItsBad": "An uncoupled capability model is overhead. Worse, it creates a false sense of EA maturity. Tell: ask the CFO when they last looked at the capability model. The answer is “never.”",
+      "whatToDoInstead": "Tie capability investment to outcome metrics the business already reports. Run every major investment decision through the capability lens, visibly. If the model doesn’t survive that, simplify it until it does.",
+      "related": [
+        {
+          "title": "EA Diagnostic",
+          "url": "https://hellouchit.com/tools/ea-operating-model.html"
+        },
+        {
+          "title": "4-Discipline Stack",
+          "url": "https://hellouchit.com/4-discipline-stack/"
+        }
+      ]
+    },
+    {
+      "id": "ai-coe-trap",
+      "number": "04",
+      "name": "The AI Centre of Excellence Trap",
+      "domain": "Operating model",
+      "domainKey": "ops genai",
+      "url": "https://hellouchit.com/anti-patterns/#ai-coe-trap",
+      "whereItAppears": "Enterprise creates a Chief AI Officer + AI CoE separate from platform engineering. CoE does great work on model selection, evals, use-case ideation. CoE owns nothing in the substrate — identity, observability, deployment pipelines — that real production AI requires.",
+      "whyItsBad": "AI ships only as fast as the substrate underneath it. CoE-as-parallel-to-platform spends quarters waiting on platform team for the controls regulators require. By the time the substrate exists, the use-case window has closed. Tell: AI roadmap dates always slip on dependencies the CoE can’t deliver itself.",
+      "whatToDoInstead": "Fund AI substrate inside platform engineering, not parallel to it. CoE owns model selection, evals, use-case sourcing. Platform owns gateway, observability, audit-evidence, identity. Same paved path serves both.",
+      "related": [
+        {
+          "title": "Platform engineering is the AI moat",
+          "url": "https://hellouchit.com/writing/platform-engineering-ai-moat.html"
+        },
+        {
+          "title": "GenAI Readiness Diagnostic",
+          "url": "https://hellouchit.com/tools/genai-readiness.html"
+        },
+        {
+          "title": "Regulated GenAI Platform RA",
+          "url": "https://hellouchit.com/reference-architectures/regulated-genai-platform.html"
+        }
+      ]
+    },
+    {
+      "id": "ai-workshop-tourism",
+      "number": "05",
+      "name": "AI Workshop Tourism",
+      "domain": "Operating model",
+      "domainKey": "ops",
+      "url": "https://hellouchit.com/anti-patterns/#ai-workshop-tourism",
+      "whereItAppears": "Executive team attends an AI workshop. Then another. Then a third. Vendor pitches, demos, capability tours. No production use-case is named. No sponsor is assigned. No budget is allocated. Repeat for six quarters.",
+      "whyItsBad": "Workshop tourism feels like progress because it produces calendar events and slide decks. It produces no shipped capability. By the time the org commits, competitors have shipped use-cases two years deep. Tell: count the workshops. Compare to count of named production use-cases with sponsors. If the ratio is >3:1, it’s tourism.",
+      "whatToDoInstead": "Cap the next workshop at one. Use it to name a use-case, name a sponsor, name a measurable outcome and a 90-day milestone. Apply the 9 controls. Ship. The substrate built for use-case 1 carries use-cases 2–10 for free.",
+      "related": [
+        {
+          "title": "GenAI Readiness Diagnostic",
+          "url": "https://hellouchit.com/tools/genai-readiness.html"
+        },
+        {
+          "title": "The 9 controls",
+          "url": "https://hellouchit.com/writing/genai-9-controls.html"
+        }
+      ]
+    },
+    {
+      "id": "kpi-cargo-cult",
+      "number": "06",
+      "name": "KPI Cargo Cult",
+      "domain": "Operating model",
+      "domainKey": "ops",
+      "url": "https://hellouchit.com/anti-patterns/#kpi-cargo-cult",
+      "whereItAppears": "Engineering org adopts DORA / SPACE / DX metrics because someone read the book. Numbers go on a dashboard. Targets are set. Nothing changes about how engineering is funded, prioritised or rewarded. The numbers become inputs to an annual ritual nobody acts on.",
+      "whyItsBad": "Metrics that don’t change behaviour are noise. Worse: tracked-but-unused metrics breed cynicism (“they want us to game the deploy-frequency number”). Tell: ask the team how the metric changes what gets prioritised this sprint. If the answer is “it doesn’t,” it’s cargo cult.",
+      "whatToDoInstead": "Pick one or two metrics tied to a real decision: “if MTTR exceeds 24h on three deploys in a row, feature work pauses until reliability work catches up.” Make the metric’s consequence concrete, automatic and visible. Subtract the rest.",
+      "related": [
+        {
+          "title": "SRE Diagnostic",
+          "url": "https://hellouchit.com/tools/sre-programme.html"
+        },
+        {
+          "title": "Error Budget calculator",
+          "url": "https://hellouchit.com/tools/calculators/error-budget.html"
+        }
+      ]
+    },
+    {
+      "id": "vault-theatre",
+      "number": "07",
+      "name": "Vault Theatre",
+      "domain": "DevSecOps",
+      "domainKey": "devsecops",
+      "url": "https://hellouchit.com/anti-patterns/#vault-theatre",
+      "whereItAppears": "Org “moved secrets to the vault.” Engineers proudly cite this in audits. Applications still pull static long-lived credentials from the vault at startup. The credentials sit in env vars for the lifetime of the workload, then sit in logs, then sit in CI artefacts, then sit in incident war-room screenshots.",
+      "whyItsBad": "Vaulted-static is still static. The credential is the vulnerability, not its storage. Snowflake 2024 (100+ breaches via stuffed credentials) was a vault-theatre incident at scale. Tell: ask “how long is the credential valid?” If the answer is >1 hour, it’s static.",
+      "whatToDoInstead": "Workload identity — OIDC, SPIFFE, AWS IAM Roles, GCP Workload Identity Federation, Azure Federated Credentials. Short-lived (minutes), identity-bound, can’t be exfiltrated meaningfully because they expire before they can be used externally.",
+      "related": [
+        {
+          "title": "DevSecOps Diagnostic",
+          "url": "https://hellouchit.com/tools/devsecops-maturity.html"
+        },
+        {
+          "title": "DevSecOps is supply chain",
+          "url": "https://hellouchit.com/writing/devsecops-is-supply-chain.html"
+        },
+        {
+          "title": "SLSA L3+ Paved Path RA",
+          "url": "https://hellouchit.com/reference-architectures/devsecops-paved-path.html"
+        }
+      ]
+    },
+    {
+      "id": "sbom-shelfware",
+      "number": "08",
+      "name": "SBOM Shelfware",
+      "domain": "DevSecOps",
+      "domainKey": "devsecops",
+      "url": "https://hellouchit.com/anti-patterns/#sbom-shelfware",
+      "whereItAppears": "Org emits SBOMs per artefact (CycloneDX, SPDX) because procurement asked. The SBOMs land in a folder. Nothing reads them. CVEs in the dependency graph never reach a service owner. When a critical CVE drops, security still spends weeks doing manual application-to-service mapping.",
+      "whyItsBad": "SBOMs are infrastructure for the alert-to-owner loop. Without that loop, they’re compliance theatre and double the storage bill. Tell: ask how a Log4Shell-class CVE would flow from disclosure to remediation. If the answer involves “manual triage,” the SBOMs are shelfware.",
+      "whatToDoInstead": "Wire SBOMs to a graph store (GUAC, OWASP Dependency-Track). Wire CISA KEV + GitHub Advisory Database alerts to the service owner directly — not to a central inbox. The loop is the asset; the SBOM is the input.",
+      "related": [
+        {
+          "title": "DevSecOps Diagnostic",
+          "url": "https://hellouchit.com/tools/devsecops-maturity.html"
+        },
+        {
+          "title": "SLSA L3+ Paved Path RA",
+          "url": "https://hellouchit.com/reference-architectures/devsecops-paved-path.html"
+        }
+      ]
+    },
+    {
+      "id": "sast-as-strategy",
+      "number": "09",
+      "name": "SAST-as-Strategy",
+      "domain": "DevSecOps",
+      "domainKey": "devsecops",
+      "url": "https://hellouchit.com/anti-patterns/#sast-as-strategy",
+      "whereItAppears": "Security programme’s top-3 line items are SAST consolidation, DAST rollout, container scanning. Workload identity, signed provenance, SBOM-to-owner are absent or scheduled for next year. The roadmap mirrors the AppSec vendor market.",
+      "whyItsBad": "2024 incidents that defined the year (XZ Utils, Snowflake, Polyfill, CrowdStrike) were not findings on a SAST report. The vendor markets are selling 2018’s problem. Tell: ask what would have caught XZ Utils. If the answer is more SAST scans, the roadmap is misaligned with the threat.",
+      "whatToDoInstead": "Treat AppSec hygiene as baseline, not headline. Move the headline to supply chain: workload identity, signed provenance (SLSA L3+), SBOM-to-owner alerting, policy-as-code at deploy. Those are what regulators & attackers both care about now.",
+      "related": [
+        {
+          "title": "DevSecOps is supply chain",
+          "url": "https://hellouchit.com/writing/devsecops-is-supply-chain.html"
+        },
+        {
+          "title": "DevSecOps Diagnostic",
+          "url": "https://hellouchit.com/tools/devsecops-maturity.html"
+        }
+      ]
+    },
+    {
+      "id": "paved-path-no-adoption",
+      "number": "10",
+      "name": "Paved Path Without Adoption",
+      "domain": "Platform Engineering",
+      "domainKey": "platform",
+      "url": "https://hellouchit.com/anti-patterns/#paved-path-no-adoption",
+      "whereItAppears": "Platform team built a beautiful paved path. Backstage templates, observability defaults, security baked in. No squad uses it. Squads keep rolling their own pipelines. The platform team is hurt; the platform’s adoption metric is invisible because nobody tracks it.",
+      "whyItsBad": "A paved path that nobody chose is just another tool stack. Worse: the platform team feels successful (they shipped the path) while engineering velocity stays unchanged. Tell: count adoption per capability per quarter. If a capability is <30% adopted 6 months in, it’s not paved — it’s parked.",
+      "whatToDoInstead": "Survey 10 developers. Ask what they route around and why. Fix that first, not what the platform team thinks should be next. Treat platform-as-a-product: adoption is the only metric that matters; sunset what isn’t adopted.",
+      "related": [
+        {
+          "title": "Platform Engineering Diagnostic",
+          "url": "https://hellouchit.com/tools/platform-engineering.html"
+        },
+        {
+          "title": "Platform Engineering IDP RA",
+          "url": "https://hellouchit.com/reference-architectures/platform-engineering-idp.html"
+        }
+      ]
+    },
+    {
+      "id": "inline-prompt-pattern",
+      "number": "11",
+      "name": "The Inline Prompt Pattern",
+      "domain": "Applied GenAI",
+      "domainKey": "genai",
+      "url": "https://hellouchit.com/anti-patterns/#inline-prompt-pattern",
+      "whereItAppears": "Production GenAI feature’s prompts are hard-coded as Python / Go / TypeScript string literals. Whoever last edited them owns them. No versioning, no review, no eval gate. When the model misbehaves, nobody can attribute the regression to a prompt change because there’s no change log.",
+      "whyItsBad": "A prompt is a configuration that determines model behaviour. Treating it as a string literal in code makes it un-versionable, un-reviewable and un-rollback-able. OWASP LLM01 failure modes hide here. Tell: ask “what changed in the prompt last week?” If the answer requires git-archaeology, the prompt is inline.",
+      "whatToDoInstead": "Prompt registry with semver, owners, per-version evals. Production traces tagged with the prompt version that produced them. Treat prompts as code: PR review, change log, rollback path. LangSmith, Promptfoo, Langfuse all do this.",
+      "related": [
+        {
+          "title": "GenAI Readiness Diagnostic",
+          "url": "https://hellouchit.com/tools/genai-readiness.html"
+        },
+        {
+          "title": "The 9 controls",
+          "url": "https://hellouchit.com/writing/genai-9-controls.html"
+        }
+      ]
+    },
+    {
+      "id": "eval-set-never-runs",
+      "number": "12",
+      "name": "The Eval Set That Never Runs",
+      "domain": "Applied GenAI",
+      "domainKey": "genai",
+      "url": "https://hellouchit.com/anti-patterns/#eval-set-never-runs",
+      "whereItAppears": "Org wrote an eval set of 50 cases when launching the GenAI feature. The eval set lives in a repo. The CI pipeline doesn’t run it. Engineers don’t know it exists. When prompts change, deploys ship without an eval gate.",
+      "whyItsBad": "An eval set that doesn’t gate deploys is documentation of intent, not enforcement of quality. The most common GenAI production regressions land via prompt or model-version changes that an eval set would have caught. Tell: ask what would happen to a deploy whose prompt change drops a critical eval score by 30%. If the answer is “it would ship,” the eval set is decorative.",
+      "whatToDoInstead": "Eval-regression-gated deploys. CI runs the eval set on every prompt or model change. Critical-metric regression blocks merge. Once landed: add shadow evals on production traffic to catch data-drift the pre-deploy suite misses.",
+      "related": [
+        {
+          "title": "GenAI Readiness Diagnostic",
+          "url": "https://hellouchit.com/tools/genai-readiness.html"
+        },
+        {
+          "title": "The 9 controls",
+          "url": "https://hellouchit.com/writing/genai-9-controls.html"
+        },
+        {
+          "title": "Regulated GenAI Platform RA",
+          "url": "https://hellouchit.com/reference-architectures/regulated-genai-platform.html"
+        }
+      ]
+    },
+    {
+      "id": "model-as-latest",
+      "number": "13",
+      "name": "Model-as-Latest",
+      "domain": "Applied GenAI",
+      "domainKey": "genai",
+      "url": "https://hellouchit.com/anti-patterns/#model-as-latest",
+      "whereItAppears": "Production GenAI workload uses model: latest (or equivalent floating reference) instead of a pinned semantic version. Model provider silently ships a behaviour change. Production suddenly produces different outputs. Nobody can attribute the regression because there’s no version change log.",
+      "whyItsBad": "Both Anthropic and OpenAI shipped breaking model changes in 2024 that broke prompts in production for orgs using floating references. The fix isn’t complaining to the provider; the fix is pinning. Tell: grep your code for “latest”, “stable”, “current”, “default”. Each hit is an incident waiting to happen.",
+      "whatToDoInstead": "Pin model versions semantically per environment. Dev → mid-tier; staging → version-matching-prod; prod → fully pinned. Track OpenAI / Anthropic deprecation schedules; promote new versions through the eval gate before prod.",
+      "related": [
+        {
+          "title": "GenAI Readiness Diagnostic",
+          "url": "https://hellouchit.com/tools/genai-readiness.html"
+        },
+        {
+          "title": "GenAI Cost calculator",
+          "url": "https://hellouchit.com/tools/calculators/genai-cost.html"
+        }
+      ]
+    },
+    {
+      "id": "data-mesh-no-substrate",
+      "number": "14",
+      "name": "Data Mesh Without Substrate",
+      "domain": "Data",
+      "domainKey": "data",
+      "url": "https://hellouchit.com/anti-patterns/#data-mesh-no-substrate",
+      "whereItAppears": "Org labels its data programme “data mesh” because the book is popular. Domain teams now own their data products. There’s no shared catalogue. No lineage. No contracts. No access governance. The mesh is sociotechnically just “decentralised silos.”",
+      "whyItsBad": "Data mesh without substrate — catalogue, lineage, contracts, governance — is just the data-lake problem rebranded. Domain teams now own incompatible interpretations of “customer.” Tell: ask three product teams for the customer count. Three different numbers from three different sources.",
+      "whatToDoInstead": "Build the shared substrate first: catalogue (DataHub / OpenMetadata / Atlas / Unity), lineage (OpenLineage), data contracts, access governance, PII classification. Then domain ownership of data products on top. Order matters; the substrate is the “mesh” part of data mesh.",
+      "related": [
+        {
+          "title": "Modern Data Platform RA",
+          "url": "https://hellouchit.com/reference-architectures/modern-data-platform.html"
+        }
+      ]
+    },
+    {
+      "id": "lakehouse-as-swamp",
+      "number": "15",
+      "name": "The Lakehouse-as-Swamp",
+      "domain": "Data",
+      "domainKey": "data",
+      "url": "https://hellouchit.com/anti-patterns/#lakehouse-as-swamp",
+      "whereItAppears": "Org adopts a lakehouse (Databricks, Snowflake, BigQuery + Iceberg). Bronze zone fills with raw ingest from everywhere — CDC, exports, SaaS sync, vendor file drops. No Silver discipline. No Gold zone. No domain ownership. Lakehouse = warehouse + lake’s worst attributes combined.",
+      "whyItsBad": "Lakehouse tooling doesn’t enforce the Bronze/Silver/Gold discipline; the team has to. Without it, you’re paying lakehouse prices for swamp performance and credibility damage when BI / ML / AI consume conflicting data. Tell: count tables in Gold zone vs Bronze. Healthy ratio: 1 Gold for every 5–10 Bronze. Swamp ratio: 0 Gold, 500 Bronze.",
+      "whatToDoInstead": "Zone discipline + domain ownership. Bronze is immutable + append-only (audit value). Silver is conformed, contracted, quality-checked. Gold is consumable, domain-owned, with SLAs. Every table’s zone is visible in the catalogue. Sunset Bronze that doesn’t earn promotion to Silver within an agreed window.",
+      "related": [
+        {
+          "title": "Modern Data Platform RA",
+          "url": "https://hellouchit.com/reference-architectures/modern-data-platform.html"
+        }
+      ]
+    }
+  ]
+}

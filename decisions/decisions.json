@@ -1,0 +1,2093 @@
+{
+  "name": "Architecture decision trees",
+  "description": "Seven interactive decision trees for recurring architecture choices, each ending in a recommendation with trade-offs, watch-outs and when-not-to-pick conditions. ADR-shaped: usable as decision records.",
+  "version": "2026-08-01",
+  "license": "CC BY 4.0",
+  "attribution": "Uchit Vyas — hellouchit.com",
+  "source": "https://hellouchit.com",
+  "treeCount": 7,
+  "decisions": [
+    {
+      "id": "ai-gateway",
+      "title": "Build or buy an AI gateway",
+      "url": "https://hellouchit.com/decisions/ai-gateway.html",
+      "startNode": "q1",
+      "questionCount": 4,
+      "endStateCount": 6,
+      "resultUrlFormat": "https://hellouchit.com/decisions/ai-gateway.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "How many production GenAI use-cases will you run in the next 12 months?",
+          "qhelp": "An AI gateway centralises model routing, prompt/version pinning, evals hookup, guardrails, observability, cost attribution, and audit. The economics shift sharply around 2–3 use-cases; below that the buy/build question is mostly noise.",
+          "opts": [
+            {
+              "tag": "1 use-case",
+              "label": "One — we're shipping a single feature.",
+              "body": "Single chatbot, one assistant, one workflow. Maybe a second exploratory pilot.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Skip the gateway entirely. Use the provider SDK + a thin wrapper.",
+                "verdict": "For one use-case, a gateway is over-engineering — you'll spend more time on plumbing than on the feature. Wrap the provider SDK in your own small llmClient module: one file, retry/timeout policy, hard-coded model+version, structured logging, eval-set-aware hook. When the second use-case lands, you re-run this decision.",
+                "when_to_pick": [
+                  "You're 6–12 weeks from shipping the only GenAI feature in the roadmap.",
+                  "Your team has not yet defined a model-pinning policy or evals.",
+                  "You're using one provider (OpenAI, Anthropic, Vertex, Bedrock) for everything."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest time-to-prod. Zero infrastructure to operate.",
+                    "Easiest to migrate to a real gateway later (the wrapper becomes the interface).",
+                    "No team-wide coordination tax."
+                  ],
+                  "cons": [
+                    "When the second use-case ships, you'll re-implement evals/logging/cost-attrib in two places.",
+                    "Provider lock-in by default. Acceptable for one feature; painful at three.",
+                    "No central place to enforce guardrails or audit policy."
+                  ]
+                },
+                "watch_outs": [
+                  "Pin the model version explicitly. Avoid gpt-4o floating; use a dated alias. The hidden upgrade is the #1 cause of silent regressions.",
+                  "Log prompt + retrieved context + model + version + output from day one. Replay is the only debugging tool you have.",
+                  "Don't not evaluate just because you skipped the gateway. The eval-set is the gateway's job; without one, ship a CLI that runs 20 cases through your wrapper before each deploy."
+                ],
+                "when_not_to_pick": "any use-case touches regulated decisions (clinical, credit, insurance, government benefits). At that point the audit + per-decision evidence pack obligation needs the gateway pattern even for one use-case.",
+                "next_steps": [
+                  {
+                    "tag": "Diagnostic",
+                    "title": "GenAI Readiness",
+                    "body": "12 capabilities scored; tells you whether you'll regret skipping the gateway.",
+                    "href": "/tools/genai-readiness.html"
+                  },
+                  {
+                    "tag": "Essay",
+                    "title": "The nine controls that make GenAI defensible",
+                    "body": "Even a single use-case needs four of these; the gateway gives you the other five.",
+                    "href": "/writing/genai-9-controls.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "2-5 use-cases",
+              "label": "Two to five — expansion is funded.",
+              "body": "We're past the first feature, the org has greenlit two more in the next two quarters, and the team is starting to talk about \"the GenAI platform.\"",
+              "next": "q2"
+            },
+            {
+              "tag": "6+ use-cases",
+              "label": "Six or more — this is now platform-shaped.",
+              "body": "We're funding a GenAI platform team. Multiple business lines have committed use-cases on the roadmap.",
+              "next": "q3"
+            }
+          ]
+        },
+        "q2": {
+          "q": "Are you in a regulated industry (financial services, healthcare, government, critical infrastructure)?",
+          "qhelp": "Regulation shifts the threshold. EU AI Act high-risk obligations (2 Aug 2026 enforcement), APRA CPS 234, HIPAA audit trail, FDA SaMD post-market evidence — all need the per-decision audit pipeline that a gateway centralises.",
+          "opts": [
+            {
+              "tag": "Yes — regulated",
+              "label": "Yes — we're regulated.",
+              "body": "EU AI Act / APRA / HIPAA / SOCI / FDA. Audit + per-decision evidence is non-negotiable.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Buy a managed gateway and own the policy layer.",
+                "verdict": "Buy the substrate (gateway + observability + provider abstraction); build the policy layer (prompt registry conventions, eval sets, guardrail rules, evidence-pack schema). Managed-gateway candidates: Portkey, LiteLLM (self-hosted but ops-light), AWS Bedrock + Guardrails, Azure AI Foundry, GCP Vertex AI. The build-vs-buy regret in regulated settings is one-way: building means you also re-implement evals, observability, and audit — usually badly — under audit-pressure deadlines.",
+                "when_to_pick": [
+                  "2–5 GenAI use-cases on the roadmap.",
+                  "EU AI Act high-risk classification likely (Annex III) for at least one use-case.",
+                  "Your security/compliance team will need to attest to per-decision audit, not just usage logs.",
+                  "You don't have a 5+ engineer GenAI platform team yet."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Day-1 observability + guardrails + provider abstraction.",
+                    "Vendor handles model-deprecation churn (provider model versions change quarterly).",
+                    "Audit-friendly evidence pipelines are pre-built; you adapt rather than design.",
+                    "Procurement vetted once; expansion to use-case 3, 4, 5 is config not code."
+                  ],
+                  "cons": [
+                    "Vendor risk: gateway is on the hot path of every LLM call.",
+                    "Cost-per-call markup (varies; usually 0–15%). Negotiate.",
+                    "Roadmap dependency. Their priorities aren't yours.",
+                    "Data-residency / sovereignty: must verify (especially AU PROTECTED / EU sovereign requirements)."
+                  ]
+                },
+                "watch_outs": [
+                  "Validate the audit-pack output against your actual regulatory ask. Many gateways produce excellent observability and adequate (not regulatory-grade) audit evidence.",
+                  "Test the failover path. Single-provider gateways become a single point of failure on top of the single point of failure they were supposed to mitigate.",
+                  "Negotiate a data-processing agreement before signing. “Zero data retention” from the gateway vendor matters; from upstream providers also matters.",
+                  "Keep your own prompt registry. The gateway is the proxy; the prompt + eval-set is your IP."
+                ],
+                "when_not_to_pick": "you already have a 5+ engineer team specifically funded for the GenAI platform and a 3-year roadmap with sovereignty constraints that no commercial gateway can satisfy. In that case go to the 6+ use-case branch and consider building on top of LiteLLM or similar OSS.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "The opinionated paved-path that surrounds the gateway choice — prompt registry, evals, audit pipeline.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Essay",
+                    "title": "The nine controls that make GenAI defensible",
+                    "body": "Maps gateway capabilities to NIST AI RMF, ISO 42001, OWASP LLM Top 10.",
+                    "href": "/writing/genai-9-controls.html"
+                  },
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "Inline Prompt Pattern",
+                    "body": "What you're avoiding by adopting a registry behind the gateway.",
+                    "href": "/anti-patterns/#inline-prompt-pattern"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No — unregulated",
+              "label": "No — we're not in a heavily regulated industry.",
+              "body": "Standard enterprise data-handling posture; no per-decision audit obligation.",
+              "next": "q2a"
+            }
+          ]
+        },
+        "q2a": {
+          "q": "Do you have, or are you funding, a GenAI platform team of 3+ engineers?",
+          "qhelp": "A gateway is software; running one in production is operational work. Without a dedicated team, the operational tax is paid by whichever feature team is closest — usually the wrong one.",
+          "opts": [
+            {
+              "tag": "Yes — funded team",
+              "label": "Yes — 3+ dedicated engineers.",
+              "body": "We're treating GenAI as platform; we have headcount.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Buy the gateway. Build the policy & integration layer.",
+                "verdict": "With a platform team, buy still wins on time-to-value, but the platform team's job is to own the integration shape: provider SDK abstraction, prompt registry, eval harness wired to CI, cost attribution, guardrail policy. Candidate gateways: Portkey, Helicone, LiteLLM (self-hosted), Bedrock + Guardrails, Azure AI Foundry. Re-evaluate at the 12 use-case threshold — that's the next natural decision point.",
+                "when_to_pick": [
+                  "2–5 use-cases, multiple providers in play, internal platform-team funded.",
+                  "Teams are starting to ask “which model are we on for X?”",
+                  "Cost-per-feature is becoming an executive question."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Fastest path from 2 to 5 use-cases.",
+                    "Platform team adds value at the policy layer, not at the proxy plumbing layer.",
+                    "Provider-swap is a config change, not an engineering project."
+                  ],
+                  "cons": [
+                    "Two layers to operate (gateway + platform-team integration).",
+                    "Vendor markup on inference cost.",
+                    "Migration risk if the chosen gateway gets acquired / sunsets."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't let the platform team build a custom gateway as a learning project. The opportunity cost is your second-quarter delivery.",
+                  "Standardise on one prompt-registry tool (Langfuse, LangSmith, Promptfoo). The gateway logs calls; the registry holds the versioned prompts + evals. Two different tools.",
+                  "Audit cost-attribution every month. Cost-per-token is the wrong unit; cost-per-resolved-task is the right one."
+                ],
+                "when_not_to_pick": "your platform team is mainly a Kubernetes / observability team without ML/AI experience — they will struggle to evaluate evals + guardrails. Better to hire 1 ML-engineer first.",
+                "next_steps": [
+                  {
+                    "tag": "Calculator",
+                    "title": "GenAI Cost-Per-Outcome",
+                    "body": "Tune model + tokens + cache rate; see the unit-economics break-even between providers.",
+                    "href": "/tools/calculators/genai-cost.html"
+                  },
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "Even outside regulated industries, the substrate shape is right.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Maturity",
+                    "title": "GenAI Piloting tier — the 3 substrate moves",
+                    "body": "What separates the 12% that cross from the 88% that retrofit.",
+                    "href": "/maturity/genai-piloting.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No team — feature-led",
+              "label": "No — feature teams own this.",
+              "body": "GenAI work is distributed across feature teams; no central platform investment.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Buy the lowest-overhead managed gateway. Resist building.",
+                "verdict": "Without a platform team, building a gateway is the surest way to discover that you needed a platform team. Pick the lowest-operational-overhead managed option (Portkey, Helicone, or your existing cloud's offering — Bedrock, Azure AI Foundry, Vertex AI) and let the feature teams consume a single endpoint with team-tagged API keys. Revisit at 6 use-cases or when one team starts maintaining their own bypass.",
+                "when_to_pick": [
+                  "2–5 use-cases, no platform team, no clear path to one in the next two quarters.",
+                  "Feature teams are starting to duplicate provider-handling code.",
+                  "Finance has asked “what does each GenAI feature cost?”"
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Cost attribution + observability + provider abstraction with near-zero ops.",
+                    "Single procurement contract instead of 5.",
+                    "Easy migration path when you do fund a platform team."
+                  ],
+                  "cons": [
+                    "Vendor markup; less control over edge cases.",
+                    "Provider-team has roadmap power over you.",
+                    "Without internal champion, the gateway becomes shelfware: teams route around when it inconveniences them."
+                  ]
+                },
+                "watch_outs": [
+                  "Assign one named owner (even part-time) for the gateway across teams. The AI CoE Trap hits hardest here.",
+                  "Don't pick a gateway that locks prompts inside its UI. Prompts live in git; gateway is the proxy."
+                ],
+                "when_not_to_pick": "your security/compliance posture rules out third-party LLM-call inspection. Then self-host LiteLLM and accept the operational tax.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "The AI CoE Trap",
+                    "body": "Why the “central AI team will figure this out” framing fails.",
+                    "href": "/anti-patterns/#ai-coe-trap"
+                  },
+                  {
+                    "tag": "Calculator",
+                    "title": "GenAI Cost-Per-Outcome",
+                    "body": "Build the per-feature cost-attribution conversation before procurement.",
+                    "href": "/tools/calculators/genai-cost.html"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q3": {
+          "q": "Do you have hard data-residency / sovereignty constraints that no commercial gateway satisfies?",
+          "qhelp": "AU PROTECTED, EU sovereign-cloud-only, certain healthcare deployments — the gateway sits on the hot path of every prompt and response, so its hosting matters as much as the model's.",
+          "opts": [
+            {
+              "tag": "Yes — sovereign-only",
+              "label": "Yes — sovereign / in-country only.",
+              "body": "Sovereign-cloud requirements rule out most commercial managed gateways.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Build on top of LiteLLM (or equivalent OSS). Operate it yourselves.",
+                "verdict": "For 6+ use-cases under sovereignty constraints, the only viable shape is OSS-substrate-on-your-infrastructure. LiteLLM (Apache 2.0) gives you ~80% of a commercial gateway — provider abstraction, routing, retries, logging hooks, observability hooks — that you host in your VPC. You add: prompt registry (Langfuse self-hosted), eval harness, audit pipeline, internal cost-attribution. Plan for 1.5–3 FTE on the gateway+integration layer steady-state. Treat this as platform investment, not project work.",
+                "when_to_pick": [
+                  "6+ use-cases under sovereignty constraints commercial gateways can't satisfy.",
+                  "You have a 5+ engineer platform team with at least 1 ML-experienced engineer.",
+                  "Provider model-choice flexibility is strategic (you want to be able to swap Anthropic ↔ OpenAI ↔ open-weights)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Full control over data path, audit, eval, guardrail logic.",
+                    "No vendor markup on per-call cost.",
+                    "Sovereignty-compliance is yours to attest, not your vendor's."
+                  ],
+                  "cons": [
+                    "Operational tax: 1.5–3 FTE steady-state, more during incidents.",
+                    "Provider-version churn lands on your team (model deprecations, API changes).",
+                    "Internal-tools UX always lags commercial gateways; teams will complain."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't fork the OSS unless absolutely necessary. Upstream-tracking is the #1 maintenance burden.",
+                  "Wire eval-gated CI from day one. The minute prompts are not versioned-with-evals, the platform's value disappears.",
+                  "Plan the migration from your own gateway to a commercial one as a fallback option. Treating it as “forever” lets bad designs entrench."
+                ],
+                "when_not_to_pick": "your platform team is <5 engineers or doesn't have ML experience — you'll under-deliver and the experience will sour the org on platform work generally.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "Self-hostable shape of the substrate around the gateway.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Sector view",
+                    "title": "For Government & Public Sector",
+                    "body": "IRAP / E8 / AU AI Safety considerations for sovereign GenAI.",
+                    "href": "/for/government/"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No — commercial OK",
+              "label": "No — commercial gateways are acceptable.",
+              "body": "Standard public-cloud or hybrid; sovereignty isn't an absolute blocker.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Buy a managed gateway. Standardise the platform around it.",
+                "verdict": "At 6+ use-cases, buy is decisive: the operational tax of self-hosting compounds and the platform team's marginal hour is better spent on the policy + integration layer. Candidate gateways: Portkey, LiteLLM Cloud, Bedrock, Azure AI Foundry, Vertex AI. The platform team owns the prompt registry, eval harness, guardrail policy, audit shape; the gateway owns proxy + observability + routing. Re-evaluate at 20 use-cases or 12 months — whichever first.",
+                "when_to_pick": [
+                  "6+ use-cases on the roadmap.",
+                  "Multi-provider flexibility is a stated need.",
+                  "Platform team funded; org-level cost attribution and security review are quarterly conversations."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest aggregate operational cost across 6+ use-cases.",
+                    "Provider abstraction + observability + cost attribution out of the box.",
+                    "Procurement + DPA done once; scale-out is config."
+                  ],
+                  "cons": [
+                    "Vendor on hot path. Acceptable if SLA is real; review monthly.",
+                    "Markup on per-call cost; negotiate volume tiers.",
+                    "Custom audit needs (per-decision evidence shape) are your team's work, not the vendor's."
+                  ]
+                },
+                "watch_outs": [
+                  "Run a 90-day pilot with two providers before signing a multi-year deal.",
+                  "Cap gateway-vendor data retention to zero by contract.",
+                  "Confirm region-pinning of inference; some gateways route across regions for capacity and that breaks AU/EU data-residency claims."
+                ],
+                "when_not_to_pick": "your cost-per-token is your headline business metric (e.g. you're shipping inference at consumer-app scale) — the markup at that volume is the build justification.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "Shape of the substrate the gateway plugs into.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Calculator",
+                    "title": "GenAI Cost-Per-Outcome",
+                    "body": "Build the per-feature cost-attribution conversation.",
+                    "href": "/tools/calculators/genai-cost.html"
+                  },
+                  {
+                    "tag": "Maturity",
+                    "title": "GenAI Operating tier — what changes when you cross",
+                    "body": "What the substrate enables.",
+                    "href": "/maturity/genai-piloting.html"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "llm-integration-pattern",
+      "title": "RAG, fine-tune, prompt, or hybrid",
+      "url": "https://hellouchit.com/decisions/llm-integration-pattern.html",
+      "startNode": "q1",
+      "questionCount": 4,
+      "endStateCount": 7,
+      "resultUrlFormat": "https://hellouchit.com/decisions/llm-integration-pattern.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "Does your use-case depend primarily on knowledge or on behaviour?",
+          "qhelp": "The single most common mistake in LLM-product design is reaching for fine-tuning when the problem is knowledge (use RAG), or reaching for RAG when the problem is behaviour (use fine-tuning or prompt design). The two problems look similar; the right shape is opposite.",
+          "opts": [
+            {
+              "tag": "Knowledge",
+              "label": "Knowledge — answers depend on specific facts/docs the base model doesn't know.",
+              "body": "Customer-support over your KB. Q&A over your codebase / specs / policies. Compliance-aware answering. Internal-doc search.",
+              "next": "q2_kn"
+            },
+            {
+              "tag": "Behaviour",
+              "label": "Behaviour — the model must respond in a specific style/format/decision-shape.",
+              "body": "Always-JSON output. Specific tone. Decision rules learned from many examples. Classification with domain-specific labels.",
+              "next": "q2_bh"
+            },
+            {
+              "tag": "Both",
+              "label": "Both — need new knowledge AND new behaviour.",
+              "body": "E.g. customer-support that uses your KB AND follows a strict response format AND escalates on specific triggers.",
+              "next": "q2_both"
+            }
+          ]
+        },
+        "q2_kn": {
+          "q": "How often does the knowledge change?",
+          "qhelp": "Knowledge that changes weekly/daily must be retrievable; knowledge that's stable for years can be a candidate for fine-tuning. The threshold isn't strict, but the further you move from “changes daily” the more options open up.",
+          "opts": [
+            {
+              "tag": "Often",
+              "label": "Often — docs change weekly or faster.",
+              "body": "Product docs, policy updates, ticket history, code changes.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "RAG. The right primitive for changing knowledge.",
+                "verdict": "For changing knowledge, RAG is the right pattern. Retrieve relevant context at query-time, pass it to the model, ground the answer in it. Cite the source. The model stays general; the knowledge stays current; the failure modes are debuggable (you can see which docs were retrieved). Fine-tuning for this use-case is anti-pattern: every doc update means a retrain.",
+                "when_to_pick": [
+                  "Knowledge changes faster than your training cadence.",
+                  "Citations / source-attribution is a requirement.",
+                  "You need to add/remove docs without redeploying the model."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Knowledge updates are data ops, not training ops.",
+                    "Citations + provenance are natural.",
+                    "Failure mode (\"retrieved the wrong context\") is debuggable."
+                  ],
+                  "cons": [
+                    "Retrieval quality is the bottleneck; bad retrieval = bad answers.",
+                    "Latency: retrieval + LLM call instead of just LLM call.",
+                    "Cost: longer prompts (retrieved context tokens)."
+                  ]
+                },
+                "watch_outs": [
+                  "Chunking strategy matters more than embedding choice. Test 200/500/1000-token chunks with overlap; tune before optimising the embedding model.",
+                  "Hybrid search (BM25 + vector) beats vector-alone in most enterprise corpora. Read Anthropic's contextual retrieval post.",
+                  "Treat the eval set as part of the RAG system: 50 known-answer cases, run on every prompt or retriever change.",
+                  "Show citations to the user. Forces the system to be honest about what it retrieved."
+                ],
+                "when_not_to_pick": "your knowledge is stable and the failure mode is behaviour, not facts (a customer-service tone that needs many examples). Use fine-tuning.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "Where RAG fits in the broader substrate (retrieval, evals, audit).",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Essay",
+                    "title": "Nine controls that make GenAI defensible",
+                    "body": "RAG quality is one of the nine; here are the other eight.",
+                    "href": "/writing/genai-9-controls.html"
+                  },
+                  {
+                    "tag": "Paper",
+                    "title": "Original RAG paper (Lewis et al., 2020)",
+                    "body": "The framing is still the most useful primer.",
+                    "href": "https://arxiv.org/abs/2005.11401"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Rarely",
+              "label": "Rarely — the knowledge is stable for years.",
+              "body": "E.g. domain ontology, slow-moving regulatory text, well-defined product taxonomy.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "RAG first; consider fine-tune only if retrieval fundamentally underperforms.",
+                "verdict": "Even for stable knowledge, RAG is the right default — the source-of-truth stays in the docs, citations work, debugging is straightforward. Only consider fine-tuning if you've proven RAG hits a quality ceiling: the model needs to internalise a vocabulary or ontology to reason fluently in it, and prompt-stuffed examples aren't enough. Even then, fine-tune on top of RAG (RAFT-style approaches), don't replace it.",
+                "when_to_pick": [
+                  "Stable knowledge, RAG-first delivery, prove it before considering FT.",
+                  "Citations / provenance are still a requirement.",
+                  "You haven't yet hit a quality ceiling you can attribute to retrieval failure."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Same as the high-change case — updates are data ops.",
+                    "Optionality: you can fine-tune later if proven necessary.",
+                    "Simplest path to first defensible answer."
+                  ],
+                  "cons": [
+                    "Some queries that would benefit from learned vocabulary still pay the retrieval-quality tax."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't fine-tune as the first move. Fine-tune-without-RAG is the most common expensive mistake.",
+                  "If you eventually fine-tune, fine-tune on top of RAG (RAFT-style). The model learns to use retrieved context better; it doesn't replace it."
+                ],
+                "when_not_to_pick": "the use-case is genuinely behavioural (output format / decision style) rather than knowledge-driven. Go to the behaviour branch.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "The RAG substrate.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_bh": {
+          "q": "How many examples of the desired behaviour can you reliably curate?",
+          "qhelp": "Fine-tuning needs data. Below ~50 high-quality examples, prompt engineering beats fine-tuning; above ~1000, fine-tuning starts to win on consistency + cost. The middle is judgement-and-eval-set territory.",
+          "opts": [
+            {
+              "tag": "<50 examples",
+              "label": "Fewer than ~50 good examples.",
+              "body": "Small dataset, hand-curated, hard to grow without manual labelling effort.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Prompt engineering + few-shot examples. Fine-tuning is not justified.",
+                "verdict": "Below ~50 examples, prompt engineering with few-shot examples beats fine-tuning on cost, latency, and iteration speed. Use the examples as in-context demonstrations; pin the model version; build an eval set from the same examples (split train/eval to avoid overfit). Re-evaluate fine-tuning when you have 200+ examples or the prompt becomes unwieldy.",
+                "when_to_pick": [
+                  "Small dataset of desired-behaviour examples.",
+                  "Iteration speed matters more than absolute accuracy.",
+                  "You haven't established a defensible eval set yet."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Cheapest, fastest, most reversible.",
+                    "Prompt + few-shot is iterable in minutes; fine-tunes take hours.",
+                    "No model-lifecycle to manage."
+                  ],
+                  "cons": [
+                    "Token cost per call is higher (examples in every prompt).",
+                    "Consistency varies more than fine-tuned models.",
+                    "Prompt-length ceiling caps the number of examples you can pass."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't skip the eval set even at this scale. 20 cases is enough to catch the bad changes.",
+                  "Pin model version explicitly. Prompt-engineered behaviour can drift across silent model updates.",
+                  "Capture all production prompts in the registry — not in inline code (Inline Prompt Pattern)."
+                ],
+                "when_not_to_pick": "consistency is the hard requirement (e.g. always-valid-JSON, always-same-format) and even with few-shot you're seeing >5% format violations. Then fine-tune or use a constrained-decoding library.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "Inline Prompt Pattern",
+                    "body": "How not to land prompt-engineered behaviour.",
+                    "href": "/anti-patterns/#inline-prompt-pattern"
+                  },
+                  {
+                    "tag": "Diagnostic",
+                    "title": "GenAI Readiness",
+                    "body": "How your prompt-and-eval substrate scores.",
+                    "href": "/tools/genai-readiness.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "50-1000",
+              "label": "50–1000 examples.",
+              "body": "Solid dataset, not enormous. Curated from production traffic or domain experts.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Try both. Fine-tune a small model as the production-quality target; keep prompted larger model as the backstop.",
+                "verdict": "In this band, the answer is empirical: fine-tune a small model (e.g. Llama 3 8B / GPT-4o-mini / Claude Haiku) and benchmark against a prompted larger model on your eval set. Often the fine-tuned small model wins on cost-per-task and consistency; the prompted large model wins on edge-case robustness. Production shape: fine-tuned model as the default path, large model as fallback when confidence is low.",
+                "when_to_pick": [
+                  "50–1000 high-quality examples.",
+                  "Cost-per-call is meaningful at your volume.",
+                  "Consistency on the happy-path matters."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Cost reduction often 5–20x vs always-large-model.",
+                    "Consistency improves (the model learns the format).",
+                    "Backstop pattern (fine-tune for routine, large for edge) handles both."
+                  ],
+                  "cons": [
+                    "Two models to maintain (fine-tuned + fallback).",
+                    "Fine-tune cycle adds CI/CD complexity.",
+                    "Drift: production distribution shifts, fine-tuned model needs refresh."
+                  ]
+                },
+                "watch_outs": [
+                  "Hold-out evaluation: never evaluate on training examples. The split is the first thing reviewers ask about.",
+                  "Monitor production distribution shift. The fine-tuned model's accuracy decays as the real distribution diverges from your training set; plan refresh cadence.",
+                  "Don't fine-tune a closed-weights model lightly. Vendor lock-in deepens; portability vanishes."
+                ],
+                "when_not_to_pick": "your volume is low and the cost-per-call savings don't justify the additional pipeline. Stay on prompted-large-model.",
+                "next_steps": [
+                  {
+                    "tag": "Calculator",
+                    "title": "GenAI Cost-Per-Outcome",
+                    "body": "Compute the break-even between fine-tuned-small and prompted-large.",
+                    "href": "/tools/calculators/genai-cost.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "1000+",
+              "label": "More than ~1000 examples.",
+              "body": "Large dataset, growing organically from production.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Fine-tune a small model as the production default.",
+                "verdict": "Above ~1000 examples, fine-tuning a small model (or LoRA-tuning) is the cost-and-consistency winner for behaviour-shaped tasks. Use the prompted large model only as a fallback for low-confidence cases. Pipeline: training data → fine-tune → eval-gate (must beat baseline on hold-out) → deploy as default → measure production accuracy + cost. Plan retrain cadence quarterly (or distribution-shift-triggered).",
+                "when_to_pick": [
+                  "1000+ high-quality examples, growing.",
+                  "Cost-per-call is a material business metric.",
+                  "You have ML / data-engineering capability on the team."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Best cost-per-call.",
+                    "Best consistency on training distribution.",
+                    "Smaller models inference faster (latency win)."
+                  ],
+                  "cons": [
+                    "Training pipeline is real engineering work.",
+                    "Distribution drift management is ongoing.",
+                    "Open-weights model picks bring infra responsibility."
+                  ]
+                },
+                "watch_outs": [
+                  "Treat the training data as the most valuable artefact. Version it; review additions; gate eval-set changes.",
+                  "Eval-set must beat the prompted baseline by a meaningful margin before deploy. Marginal wins don't justify the pipeline cost.",
+                  "Plan a fallback path to the prompted model for production incidents (bad training run, distribution shift)."
+                ],
+                "when_not_to_pick": "you don't yet have an eval set that the team trusts. Build the eval discipline first; fine-tune second.",
+                "next_steps": [
+                  {
+                    "tag": "Maturity",
+                    "title": "GenAI Piloting → Operating",
+                    "body": "The three substrate moves that fine-tuning sits on top of.",
+                    "href": "/maturity/genai-piloting.html"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_both": {
+          "q": "Is the behaviour requirement strict (e.g. always-JSON, always-cite, always-escalate-on-X)?",
+          "qhelp": "When you need both new knowledge AND new behaviour, the question is whether the behaviour is loose (style/tone) or strict (format/decision rule). Strict behaviour calls for a different ground-truthing approach.",
+          "opts": [
+            {
+              "tag": "Strict behaviour",
+              "label": "Strict — format / decision rules / escalation triggers must be exact.",
+              "body": "Always-valid-JSON; always-cite-source; escalate-on-trigger-X; deny-list-on-Y.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "RAG + guardrails + (optionally) fine-tuned router. Don't fine-tune the answering model.",
+                "verdict": "When knowledge and strict behaviour both matter, the right shape is: RAG for knowledge + layered guardrails for strict behaviour + (optionally) a fine-tuned small “router” model for routing/escalation decisions. The answering model stays a general LLM with RAG context; the strict-behaviour requirements are enforced by guardrails (output schema validation, classifier-based content checks, structured-output decoding) and the routing decisions (escalate? deny? clarify?) are a separate small fine-tuned classifier. This is what most regulated-industry GenAI systems actually look like in production.",
+                "when_to_pick": [
+                  "Need new knowledge AND strict format/decision behaviour.",
+                  "Regulated or high-stakes domain (clinical, financial, government).",
+                  "Audit obligation for both the knowledge basis and the decision shape."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Separation of concerns: each component is debuggable.",
+                    "Routing decisions are deterministic (small classifier or rules), not LLM-magic.",
+                    "Auditable end-to-end: retrieved context + applied guardrails + routing decision."
+                  ],
+                  "cons": [
+                    "More moving parts than pure prompt-RAG.",
+                    "Routing model needs its own training + eval.",
+                    "Latency: retrieval + LLM + guardrail + router."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't try to encode the strict behaviour in the prompt alone. Prompts drift; guardrails don't.",
+                  "Use a structured-output library (Pydantic + instructor / outlines / DSPy) instead of begging the LLM for JSON.",
+                  "Test adversarial cases against the guardrail layer. The behaviour requirements are the threat model."
+                ],
+                "when_not_to_pick": "knowledge isn't actually changing — you might be over-engineering. Re-check whether knowledge is truly dynamic or whether it could live in a prompt.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Regulated GenAI Platform",
+                    "body": "The end-to-end shape including guardrails + routing.",
+                    "href": "/reference-architectures/regulated-genai-platform.html"
+                  },
+                  {
+                    "tag": "Essay",
+                    "title": "Nine controls that make GenAI defensible",
+                    "body": "How guardrails + routing map to NIST AI RMF + ISO 42001.",
+                    "href": "/writing/genai-9-controls.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Loose behaviour",
+              "label": "Loose — style / tone / general format.",
+              "body": "Want a specific brand voice or general response shape; small deviations are OK.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "RAG + a behaviour-aware system prompt. Iterate; consider fine-tune later if needed.",
+                "verdict": "For knowledge + loose behaviour, RAG plus a system prompt that encodes the tone/format + 2–5 in-context examples is usually enough. Don't over-engineer. If after a quarter the behaviour still drifts (drift = the system prompt is too long, edge cases keep slipping), then fine-tune a small model on a curated set of behaviour examples while keeping RAG as the knowledge source.",
+                "when_to_pick": [
+                  "Knowledge + style/tone but no strict format/decision rules.",
+                  "You're early in the use-case lifecycle; iteration matters.",
+                  "Low-to-medium-stakes domain."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest engineering investment.",
+                    "Iterable in days, not months.",
+                    "Easy migration path to fine-tune if needed later."
+                  ],
+                  "cons": [
+                    "Consistency on tone/format is in the 80–95% range, not 99%+.",
+                    "Token cost slightly higher (system prompt + examples in every call)."
+                  ]
+                },
+                "watch_outs": [
+                  "Eval-set covers tone/format checks too, not just answer correctness.",
+                  "If the system prompt grows past ~2000 tokens, you're past the “loose behaviour” threshold — revisit the strict-behaviour branch."
+                ],
+                "when_not_to_pick": "the use-case is regulated or has any strict-output requirement — go strict-behaviour.",
+                "next_steps": [
+                  {
+                    "tag": "Diagnostic",
+                    "title": "GenAI Readiness",
+                    "body": "Whether prompt-and-eval substrate is sufficient.",
+                    "href": "/tools/genai-readiness.html"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "policy-engine",
+      "title": "Pick a policy engine",
+      "url": "https://hellouchit.com/decisions/policy-engine.html",
+      "startNode": "q1",
+      "questionCount": 3,
+      "endStateCount": 5,
+      "resultUrlFormat": "https://hellouchit.com/decisions/policy-engine.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "Where will policy decisions need to be evaluated?",
+          "qhelp": "Policy-as-code is the encoded form of architecture principles. The right engine depends almost entirely on where the decision needs to be made — the policy language is secondary. The three serious options today are OPA (general-purpose, Rego language), Kyverno (Kubernetes-native, YAML/CEL), and Cedar (AWS-originated, fine-grained authorisation).",
+          "opts": [
+            {
+              "tag": "K8s admission only",
+              "label": "Kubernetes admission — that's it.",
+              "body": "Block bad manifests at deploy. No CI/CD policy. No app-level authorisation. Just admission control on the cluster.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Kyverno. Kubernetes-native; the lowest-friction win.",
+                "verdict": "Kyverno is the right answer for “just Kubernetes admission”. Policies are YAML (the language your team already speaks), the CRDs match Kubernetes conventions, mutation + validation + image-verification + generation all in one engine. No Rego learning curve, no sidecar to operate. CNCF Graduated — production-grade.",
+                "when_to_pick": [
+                  "Your policy surface is “deploys that violate X should fail” on a Kubernetes platform.",
+                  "Team is YAML-native; Rego learning would slow the win.",
+                  "You want image-signature verification (cosign) in the same engine.",
+                  "Multi-tenant clusters where namespace-scoped policy varies."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest time-to-first-enforced-rule of any option.",
+                    "Mutation + validation + image-verify + generation in one tool.",
+                    "Strong defaults: the policy library at kyverno.io/policies covers 80% of common admission rules.",
+                    "CNCF Graduated; stable production base."
+                  ],
+                  "cons": [
+                    "Kubernetes-only. Will not help you with CI/CD, IaC, or app-authz.",
+                    "YAML logic grows ugly fast for complex rules; reach for CEL when YAML gets unwieldy.",
+                    "If you adopt OPA later for something else, you'll have two engines."
+                  ]
+                },
+                "watch_outs": [
+                  "Run new policies in audit mode first. Move to enforce after a sprint of clean reports.",
+                  "Wire policy reports to a backstop dashboard. Without visibility, even audit-mode failures get ignored.",
+                  "Don't try to enforce business rules at admission. Admission is for invariants (signed images, ownership annotations); business logic belongs in app/CI policy."
+                ],
+                "when_not_to_pick": "you also need to enforce policy in CI (Terraform-plan-time, container-build-time) or at runtime in applications. You'll either run two engines or wish you'd picked OPA.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "PDF Principles",
+                    "body": "What you're solving: principles that aren't encoded as policy.",
+                    "href": "/anti-patterns/#pdf-principles"
+                  },
+                  {
+                    "tag": "Reference architecture",
+                    "title": "DevSecOps SLSA L3+ Paved Path",
+                    "body": "Where Kyverno fits in the broader supply-chain story.",
+                    "href": "/reference-architectures/devsecops-paved-path.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Multiple surfaces",
+              "label": "Multiple surfaces — admission + CI + IaC + maybe app.",
+              "body": "We want one engine for K8s admission, Terraform plan validation (conftest), CI image checks, and possibly per-API authz.",
+              "next": "q2"
+            },
+            {
+              "tag": "Fine-grained app authz",
+              "label": "Per-resource app authorisation — that's the main job.",
+              "body": "We need fine-grained, per-resource authorisation in services (e.g. \"can user X read document Y in role R\"). Often paired with RBAC + ReBAC + ABAC patterns.",
+              "next": "q3"
+            }
+          ]
+        },
+        "q2": {
+          "q": "Do you have, or are you ready to invest in, Rego skill on the team?",
+          "qhelp": "OPA + Rego is the multi-surface answer — admission (via Gatekeeper or OPA), CI (via conftest), IaC plan-time, application-authz (via OPA sidecar or library). Rego is genuinely different from imperative code; teams that don't invest land in a worse place than not having policy-as-code at all.",
+          "opts": [
+            {
+              "tag": "Yes — Rego OK",
+              "label": "Yes — we'll learn Rego.",
+              "body": "Team has appetite for a new DSL, or already has Rego experience. CNCF/security skills present.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "OPA. One engine across admission, CI, IaC, and (optionally) app authz.",
+                "verdict": "OPA is the multi-surface answer. One engine, one language (Rego), one bundle-distribution mechanism. Run it at K8s admission (via Gatekeeper or OPA-as-admission), at CI plan-time (conftest for Terraform/JSON/YAML), at container-build time (conftest on Dockerfiles), and optionally as a sidecar for application authorisation. CNCF Graduated. The trade-off is Rego itself — budget 2–4 weeks for the team to get past “why does this look like Prolog” to fluent.",
+                "when_to_pick": [
+                  "Policy surface spans 3+ enforcement points (admission, CI, IaC, app).",
+                  "Team will invest in Rego (and you have or can hire one champion).",
+                  "You want a single audit story: one engine's logs, one rules repo, one CI pipeline."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Genuinely general-purpose; one engine reduces the cognitive-load tax.",
+                    "Excellent test framework (Rego unit tests in CI).",
+                    "Bundle-server pattern lets you version + roll out policy changes cleanly.",
+                    "Mature OSS (graduated CNCF), strong ecosystem, big-co usage."
+                  ],
+                  "cons": [
+                    "Rego learning curve is real; without a champion the rollout stalls.",
+                    "Operational surface is larger than Kyverno (especially Gatekeeper).",
+                    "For K8s-only use-cases, Kyverno is faster to value."
+                  ]
+                },
+                "watch_outs": [
+                  "Pick one champion who owns Rego conventions. Without a style/test convention, the rules repo becomes the next PDF (unreadable by anyone but the author).",
+                  "Treat policy bundles like application releases. Versioned, staged (audit → enforce), reversible.",
+                  "Mind admission performance. Heavy ConstraintTemplate queries on Gatekeeper can slow the API server. Profile before rolling out org-wide."
+                ],
+                "when_not_to_pick": "your team's bandwidth is already saturated and you only need K8s admission today. The Rego cost isn't worth it for one surface.",
+                "next_steps": [
+                  {
+                    "tag": "OSS",
+                    "title": "opa-nist-ai-rmf",
+                    "body": "Sample OPA policy bundle implementing NIST AI RMF + GenAI Profile controls.",
+                    "href": "https://github.com/uchit/opa-nist-ai-rmf"
+                  },
+                  {
+                    "tag": "Reference architecture",
+                    "title": "DevSecOps SLSA L3+ Paved Path",
+                    "body": "Where OPA + conftest + Gatekeeper fit across the build/deploy substrate.",
+                    "href": "/reference-architectures/devsecops-paved-path.html"
+                  },
+                  {
+                    "tag": "Essay",
+                    "title": "The encoded enterprise architect",
+                    "body": "Why policy-as-code, not PDFs, is the move.",
+                    "href": "/writing/encoded-enterprise-architect.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No — keep it simple",
+              "label": "No — we won't invest in Rego.",
+              "body": "Team is small or stretched; learning a DSL would derail the rollout.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Kyverno for K8s. Checkov + tflint for IaC. Accept the two-engine tax.",
+                "verdict": "Without Rego investment, the right multi-surface answer is “the best tool per surface, accept the heterogeneity.” Kyverno for Kubernetes admission, Checkov + tflint for Terraform / CloudFormation / Kubernetes-IaC at plan-time, native cloud-provider policy (AWS SCPs, Azure Policy, GCP Org Policy) for cloud control. Two-or-three engines, but each in a language the team already reads. Re-visit when team has bandwidth to evaluate OPA again.",
+                "when_to_pick": [
+                  "Multi-surface need but team can't absorb a DSL right now.",
+                  "Cloud-native posture leans into provider-native policy (AWS SCPs / Azure Policy).",
+                  "You want short time-to-first-enforced-rule above engine-consolidation."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Each tool is approachable in its native form.",
+                    "Cloud-provider policy gives you a guardrail before workloads even reach a cluster.",
+                    "Lower training cost than OPA in the short term."
+                  ],
+                  "cons": [
+                    "Audit story has multiple sources; consolidating into one report needs effort.",
+                    "Policy duplication risk: the same intent encoded in two engines drifts.",
+                    "Decision-fatigue: every new surface needs a new policy-engine evaluation."
+                  ]
+                },
+                "watch_outs": [
+                  "Maintain a single policy catalogue (markdown / docs). Each policy file lists which engine enforces it and where, so the duplication is visible.",
+                  "Re-evaluate quarterly. Tool-sprawl is fine while it's tracked and shrinking; bad when it's invisible and growing."
+                ],
+                "when_not_to_pick": "you're being audited against a single regulatory framework (e.g. CPS 234) that expects one consolidated policy attestation — the multi-engine evidence trail will become work later.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "PDF Principles",
+                    "body": "What you're avoiding even with the heterogeneous approach.",
+                    "href": "/anti-patterns/#pdf-principles"
+                  },
+                  {
+                    "tag": "Diagnostic",
+                    "title": "DevSecOps Maturity",
+                    "body": "Where this leaves you on policy-as-code capability.",
+                    "href": "/tools/devsecops-maturity.html"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q3": {
+          "q": "Is the authz model fixed-RBAC, or does it need fine-grained ReBAC / ABAC with policy-language flexibility?",
+          "qhelp": "Application-level authorisation has its own engine landscape: AWS Cedar (and the Cedar-derived Verified Permissions service), OpenFGA (Google Zanzibar-inspired ReBAC), SpiceDB (also Zanzibar-style), and OPA-as-sidecar. The choice splits on whether the model is closer to roles or relationships.",
+          "opts": [
+            {
+              "tag": "RBAC + simple ABAC",
+              "label": "RBAC + attribute checks — roles plus a few attributes.",
+              "body": "Per-resource roles, plus attribute-based rules (department = X, region = Y, classification = Z).",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Cedar (or AWS Verified Permissions if you're on AWS).",
+                "verdict": "Cedar is the right fit for RBAC + ABAC at the application layer. The language is purpose-built for authz (much easier to read than Rego), the model maps cleanly to typical SaaS / enterprise-app authz needs, and AWS Verified Permissions gives you a managed Cedar evaluation service if you're on AWS. Open-source under Apache 2.0; rust-based reference implementation; bindings for major languages.",
+                "when_to_pick": [
+                  "App-level per-resource authz with roles + attributes.",
+                  "You want a language designed for authz (not a general policy DSL).",
+                  "On AWS, Verified Permissions removes most operational concerns."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Authz-purpose-built language: smaller learning curve than Rego for authz use-cases.",
+                    "Formal analysis: Cedar policies have provable properties (which Rego does not).",
+                    "AWS Verified Permissions is a credible managed option."
+                  ],
+                  "cons": [
+                    "Newer ecosystem (compared to OPA); fewer war stories.",
+                    "Not designed for K8s admission or CI policy — authz only.",
+                    "If you're multi-cloud and want the same engine everywhere, Verified Permissions doesn't help."
+                  ]
+                },
+                "watch_outs": [
+                  "Model the entity store before writing policies. Cedar's strength is the entity model; design that first.",
+                  "Treat policies as a versioned artefact, not a config table. Authz changes are deployments."
+                ],
+                "when_not_to_pick": "your authorisation model is heavily relationship-based (Google Docs / Notion / Linear style \"who can access what through which sharing chain\"). Use OpenFGA or SpiceDB instead.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "Cedar policy language docs",
+                    "body": "Read the spec and run the examples before committing.",
+                    "href": "https://docs.cedarpolicy.com/"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "ReBAC — relationships",
+              "label": "ReBAC — relationships drive permissions.",
+              "body": "Permissions flow through relationships: folders contain documents, teams contain users, share-links grant access. Google Docs / Notion / Linear-shaped authz.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "OpenFGA (or SpiceDB). Zanzibar-style ReBAC.",
+                "verdict": "OpenFGA is the OSS Zanzibar-inspired ReBAC engine for relationship-driven authz (CNCF Sandbox; backed by Auth0/Okta). SpiceDB (AuthZed) is the equivalent commercial-friendly option. Both implement the Google Zanzibar paper that powers Drive / Docs / YouTube / Calendar authz. Pick OpenFGA for OSS + community; SpiceDB for managed cloud + commercial support.",
+                "when_to_pick": [
+                  "Permissions flow through relationships, not just role assignments.",
+                  "“Can user U do action A on resource R?” is the question millions of times per second.",
+                  "Per-resource sharing (links, invites, nested folders) is core to the product."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Purpose-built for ReBAC at scale.",
+                    "Latency-optimised consistency model (zookies / consistency tokens).",
+                    "Strong eventing model for permission changes."
+                  ],
+                  "cons": [
+                    "Model design is the hard part; teams underestimate it.",
+                    "Operational footprint is non-trivial (datastore + service).",
+                    "Migration from a roles-table to ReBAC is a meaningful project."
+                  ]
+                },
+                "watch_outs": [
+                  "Read the Zanzibar paper. The model is not intuitive without it.",
+                  "Don't model business logic in the authz schema. ReBAC is for “can”; business rules go in the service.",
+                  "Plan for the migration path from your current authz table to ReBAC. It's typically 2–4 quarters of work for a real product."
+                ],
+                "when_not_to_pick": "your authz is fundamentally RBAC + simple attributes — you'll over-engineer with ReBAC and pay the operational + cognitive tax for years.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "OpenFGA docs",
+                    "body": "Model definition language + production case studies.",
+                    "href": "https://openfga.dev/docs/"
+                  },
+                  {
+                    "tag": "Paper",
+                    "title": "Google Zanzibar (OSDI '19)",
+                    "body": "The original. ~16 pages.",
+                    "href": "https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tenancy-model",
+      "title": "Pick a tenancy model",
+      "url": "https://hellouchit.com/decisions/tenancy-model.html",
+      "startNode": "q1",
+      "questionCount": 4,
+      "endStateCount": 6,
+      "resultUrlFormat": "https://hellouchit.com/decisions/tenancy-model.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "Will any one customer's load, blast-radius, or compliance need to exceed the others by >10x?",
+          "qhelp": "Tenancy determines blast-radius, cost shape, deployment cadence, and audit story. The three credible models are: shared multi-tenant (one app, all customers, namespaces or tenant IDs in the data model), cell-based (sharded into independent “cells” with N customers per cell), and single-tenant (one stack per customer). Pick the wrong one and you'll re-platform mid-growth.",
+          "opts": [
+            {
+              "tag": "No — uniform load",
+              "label": "No — customer load and posture is uniform.",
+              "body": "Customers are similar in size, regulation, and SLA. Internal benchmark: top-10% is <5x median.",
+              "next": "q2"
+            },
+            {
+              "tag": "Yes — one big one",
+              "label": "Yes — we have one (or will have) a 10x+ customer.",
+              "body": "Big enterprise contract, public-sector tenant with sovereignty requirements, or one customer driving 50%+ of traffic.",
+              "next": "q3"
+            },
+            {
+              "tag": "Yes — heterogeneous",
+              "label": "Yes — many tenants are heterogeneous (mix of small + big).",
+              "body": "Long-tail of small tenants plus a chunky head of enterprise tenants with distinct SLA / data-residency / version needs.",
+              "next": "q4"
+            }
+          ]
+        },
+        "q2": {
+          "q": "Are you under hard data-isolation constraints (per-tenant encryption keys, sovereign data residency, regulator-required dedicated storage)?",
+          "qhelp": "Even uniform-load workloads sometimes face hard isolation rules — healthcare PHI, government PROTECTED data, certain financial-services regulators. These are gates the architecture must respect.",
+          "opts": [
+            {
+              "tag": "No — soft isolation",
+              "label": "No — logical isolation is acceptable.",
+              "body": "Standard SaaS-grade isolation: per-tenant IDs in the data model, IAM / RLS guards, encrypted at rest with a shared key.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Shared multi-tenant. Highest leverage; most operational simplicity.",
+                "verdict": "Shared multi-tenant is the right shape for uniform-load, soft-isolation SaaS. One application; one data plane; tenant ID propagated through every query (RLS in Postgres, or app-layer guards). Lowest unit cost; fastest feature rollout; easiest to operate. Discipline matters more than tooling here: tenant-ID propagation must be 100% covered by tests; cross-tenant data leaks are the failure mode and they're often discovered by a customer, not by you.",
+                "when_to_pick": [
+                  "Uniform load + soft isolation + you have a small platform team.",
+                  "Per-tenant cost is going to be low (consumer-SaaS or low-ARPU B2B).",
+                  "Feature-rollout velocity is your competitive advantage."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest unit cost. Resources are shared; idle capacity amortises.",
+                    "Single deployment pipeline; features land for everyone at once.",
+                    "Smallest operational footprint."
+                  ],
+                  "cons": [
+                    "Blast-radius is global: a P0 bug affects every customer.",
+                    "Noisy-neighbour risk: one tenant's burst affects others.",
+                    "Per-tenant configurability is limited; one-off requirements compound."
+                  ]
+                },
+                "watch_outs": [
+                  "Enforce tenant-ID at the data layer (RLS in Postgres, query-guard middleware in Mongo/DynamoDB). Application-layer-only enforcement always eventually fails.",
+                  "Write a tenant-isolation test that runs in CI. Asserts no query path bypasses tenant scoping. This is the single highest-ROI test you can write.",
+                  "Plan the migration to cell-based now, even if you don't ship it. Your data model should already include a logical “cell ID” field so the sharding move later is non-breaking."
+                ],
+                "when_not_to_pick": "any tenant brings dedicated-storage or per-tenant-KMS requirements. At that point you're forcing the architecture to do work it wasn't designed for.",
+                "next_steps": [
+                  {
+                    "tag": "Diagnostic",
+                    "title": "SRE Programme",
+                    "body": "Blast-radius and noisy-neighbour are SRE concerns; this surfaces where you stand.",
+                    "href": "/tools/sre-programme.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Yes — hard isolation",
+              "label": "Yes — hard isolation required.",
+              "body": "Per-tenant KMS keys, dedicated storage volumes per regulated tenant, sovereign-residency-per-tenant.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Cell-based — one cell per isolation-class. Don't go fully single-tenant unless forced.",
+                "verdict": "Hard-isolation requirements push you to cell-based architecture: each cell is a self-contained slice of the app + data, and tenants are placed into cells based on isolation class (e.g. one cell per sovereign region; one cell for hard-isolated tenants; the rest sharded across general cells). The pattern from AWS Builder's Library on cell-based architecture is canonical. Single-tenant only when the customer contractually demands it and pays for the dedicated stack — otherwise the operational tax is brutal.",
+                "when_to_pick": [
+                  "Hard isolation needed for some tenants, but you still want operational economies of scale.",
+                  "Sovereign-residency varies by tenant.",
+                  "You have a platform team that can operate fleet-of-cells (Terraform + control plane for placement)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Per-cell blast-radius: P0 in one cell doesn't affect others.",
+                    "Per-cell rollout: progressive deployment is natural.",
+                    "Per-cell scaling: noisy-neighbour stays inside one cell.",
+                    "Tenant-placement engine is your isolation-policy lever."
+                  ],
+                  "cons": [
+                    "Significant control-plane work: routing, placement, fleet management.",
+                    "Multi-cell observability is harder than single-stack.",
+                    "Schema migrations across many cells need coordination + tooling.",
+                    "Per-cell idle cost adds up."
+                  ]
+                },
+                "watch_outs": [
+                  "Build the control plane before you need it. Cell placement, tenant routing, fleet config — bolting on later is painful.",
+                  "Treat cells as cattle. Per-cell snowflakes erase the model's benefits.",
+                  "Plan schema-migration tooling. Migrating N cells safely is a tooling problem, not a heroics problem."
+                ],
+                "when_not_to_pick": "you're a 3-engineer team running a SaaS with 50 customers. The cell-control-plane is heavier than your business can support; stay shared-MT with tenant-ID rigour, and migrate when scale forces it.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "AWS Builder's Library — cell-based architecture",
+                    "body": "The canonical write-up.",
+                    "href": "https://aws.amazon.com/builders-library/"
+                  },
+                  {
+                    "tag": "Sector view",
+                    "title": "For Government & Public Sector",
+                    "body": "Where per-cell sovereignty often lands.",
+                    "href": "/for/government/"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q3": {
+          "q": "Is that big customer's stack legitimately different (different version, custom integrations, contractual SLO that the shared stack can't meet)?",
+          "qhelp": "“Big customer” alone doesn't justify a different model — many big customers are happy on shared multi-tenant. The question is whether the big customer's technical requirements diverge.",
+          "opts": [
+            {
+              "tag": "No — just bigger",
+              "label": "No — same product, just more of it.",
+              "body": "The customer is big but on the same product, same features, same version, same integrations.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Cell-based. Put the big customer in a dedicated cell; keep everyone else in shared cells.",
+                "verdict": "Cell-based architecture lets you isolate the big tenant's blast-radius and capacity without going single-tenant. One large cell sized for the big customer (could be one tenant per cell at this size); 1–3 shared cells for everyone else. Same code, same deploy pipeline, different routing. The big customer gets noisy-neighbour-free operation + dedicated scaling, you keep one deployment story.",
+                "when_to_pick": [
+                  "Big customer's load justifies isolation but not a custom stack.",
+                  "You want to preserve a single product/feature rollout path.",
+                  "You have the platform team to operate a fleet of cells (even just 2–5)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Blast-radius isolation without per-customer engineering.",
+                    "Single feature rollout path (all cells run same code).",
+                    "Big customer gets the SLO they need without contractual heroics.",
+                    "Add cells as you grow."
+                  ],
+                  "cons": [
+                    "Control-plane investment is real (placement, routing, fleet config).",
+                    "Per-cell idle cost.",
+                    "Multi-cell observability needs investment."
+                  ]
+                },
+                "watch_outs": [
+                  "Avoid the cell-as-a-snowflake trap. The big-customer cell should be the same code as everyone else's, just sized differently.",
+                  "Negotiate cell-rollout into the SLA. Big customer gets new features 1 sprint later? That's an acceptable trade for blast-radius isolation."
+                ],
+                "when_not_to_pick": "the big customer is contractually demanding a separate stack with separate version, separate integrations. Then go single-tenant for them.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "AWS Builder's Library — cell-based",
+                    "body": "The pattern.",
+                    "href": "https://aws.amazon.com/builders-library/"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Yes — bespoke",
+              "label": "Yes — truly bespoke needs.",
+              "body": "Custom integrations, version pinning, contractual SLO/SLA that the shared stack can't meet, regulator-required deployment shape.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Single-tenant for that customer. Cell-based for the rest. Don't pretend the bespoke stack is the same product.",
+                "verdict": "When a customer's needs are genuinely bespoke, run a single-tenant stack for them and a cell-based architecture for everyone else. Critically: do not let the bespoke stack become the trunk — the bespoke fork drifts and eventually you're maintaining two products with one team. Make the bespoke stack pull from main; never the other way. Price the bespoke stack to cover the engineering overhead it creates (typically 1.5–3x base ARR; sometimes 5x+).",
+                "when_to_pick": [
+                  "One (or a few) customers contractually require a bespoke deployment shape.",
+                  "Revenue from those customers justifies a dedicated platform investment.",
+                  "Your sales motion is enterprise-led, not product-led."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lets you win the contract.",
+                    "Bespoke needs don't pollute the main product.",
+                    "Per-customer SLAs are independently achievable."
+                  ],
+                  "cons": [
+                    "Maintenance compounds linearly with #single-tenant customers.",
+                    "Feature parity drift between bespoke fork and main is a constant tax.",
+                    "Operationally expensive: one production environment per customer.",
+                    "Cultural risk: bespoke customer becomes the loudest voice in roadmap."
+                  ]
+                },
+                "watch_outs": [
+                  "Encode the rule: bespoke pulls from main; main never pulls from bespoke. The moment that rule breaks, the two products start drifting.",
+                  "Cap the number of single-tenant customers. Past ~5–10 (depending on team size), the maintenance burden eats more than the revenue.",
+                  "Price for the overhead. Free single-tenant deployments are a path to bankruptcy."
+                ],
+                "when_not_to_pick": "you don't have a platform team large enough to operate a fleet of stacks. Then renegotiate the customer back onto cell-based.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "Paved Path Without Adoption",
+                    "body": "Same dynamic at the platform layer.",
+                    "href": "/anti-patterns/#paved-path-no-adoption"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q4": {
+          "q": "How many tenants are on the heterogeneous “head”?",
+          "qhelp": "Heterogeneous tenancy is the most common SaaS shape: a long tail of small tenants on shared, a head of large enterprise tenants with distinct needs. The number on the head is the variable.",
+          "opts": [
+            {
+              "tag": "1-3 head tenants",
+              "label": "1–3 head tenants.",
+              "body": "A small number of large enterprises with distinct requirements.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Shared MT for the tail + single-tenant for the head. Plan for cells when head >3.",
+                "verdict": "For 1–3 head tenants, the operational simplicity of shared-MT + single-tenant-per-head is fine. Keep main on shared multi-tenant; spin up a single-tenant stack per head tenant where needed. As soon as the head grows to 4+, plan the migration to cell-based — the single-tenant operational tax scales linearly with customer count.",
+                "when_to_pick": [
+                  "Long tail of small tenants + 1–3 enterprise heads.",
+                  "Head tenants justify dedicated stacks contractually.",
+                  "Platform team is small (cells would be too much investment for the current scale)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Operational simplicity: shared-MT for 95% of customers; bespoke for 1–3.",
+                    "Each head customer gets full isolation.",
+                    "No control-plane investment yet."
+                  ],
+                  "cons": [
+                    "Doesn't scale past ~3 head customers.",
+                    "Per-head-stack feature drift if you're not disciplined."
+                  ]
+                },
+                "watch_outs": [
+                  "Migrate to cells before the 4th head tenant. Reactive migration is much harder than proactive.",
+                  "Same fork-discipline as the bespoke case: head stacks pull from main; main never pulls from head."
+                ],
+                "when_not_to_pick": "the head is already 4+, or growth-rate forecasts that within 12 months. Skip to cells.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "AWS Builder's Library — cells",
+                    "body": "Pre-read for the eventual migration.",
+                    "href": "https://aws.amazon.com/builders-library/"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "4+ head tenants",
+              "label": "4 or more head tenants — or growing fast.",
+              "body": "A meaningful head of enterprise tenants with distinct needs and the count is growing.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Cell-based. Heterogeneity is the natural fit for cells.",
+                "verdict": "Cell-based architecture is the natural shape for heterogeneous tenancy at scale. Place each head tenant in its own cell (or pair); shard the tail across shared cells; tenant-placement is your isolation-policy lever. Invest in the control plane: routing, placement, fleet config, schema-migration tooling, multi-cell observability. This is the model major SaaS vendors converge to (Slack, Notion, Linear, Snowflake all run cells).",
+                "when_to_pick": [
+                  "4+ enterprise heads with distinct posture / SLA / residency / version needs.",
+                  "Long-tail of smaller tenants you want to serve at low unit cost.",
+                  "Platform team funded for control-plane work."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Per-cell blast-radius, capacity, rollout.",
+                    "Tenant-placement engine is the policy lever for residency / isolation / SLA.",
+                    "Scales sub-linearly: adding a 10th cell isn't 10x the work of the first."
+                  ],
+                  "cons": [
+                    "Control-plane is a real platform investment (1.5–3+ FTE steady-state).",
+                    "Per-cell idle cost.",
+                    "Multi-cell observability + migrations need real tooling."
+                  ]
+                },
+                "watch_outs": [
+                  "Build the control plane and migration tooling before shipping the second cell. Don't shard manually — you'll regret it at cell #5.",
+                  "Standardise cell ops: same Terraform, same dashboards, same alerts. Snowflake cells are the failure mode."
+                ],
+                "when_not_to_pick": "team is <5 engineers total. Cells will starve the rest of product delivery.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Platform Engineering IDP",
+                    "body": "Where the cell control-plane fits in the platform substrate.",
+                    "href": "/reference-architectures/platform-engineering-idp.html"
+                  },
+                  {
+                    "tag": "Diagnostic",
+                    "title": "Platform Engineering Readiness",
+                    "body": "Whether you're ready to operate a fleet.",
+                    "href": "/tools/platform-engineering.html"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "compute-platform",
+      "title": "Pick a compute platform",
+      "url": "https://hellouchit.com/decisions/compute-platform.html",
+      "startNode": "q1",
+      "questionCount": 4,
+      "endStateCount": 6,
+      "resultUrlFormat": "https://hellouchit.com/decisions/compute-platform.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "How many services / workloads will run on this platform in 12 months?",
+          "qhelp": "Compute-platform choice is dominated by operational economics, not technology preference. The right answer at 5 services is wrong at 50, and vice versa. The three credible shapes today: managed PaaS (Vercel, Render, Fly.io, App Runner, Container Apps), managed Kubernetes (EKS / GKE / AKS), FaaS (Lambda / Cloud Run / Functions).",
+          "opts": [
+            {
+              "tag": "1-10 services",
+              "label": "1–10 services / workloads.",
+              "body": "Small product surface; small team; rare service additions.",
+              "next": "q2_small"
+            },
+            {
+              "tag": "10-50",
+              "label": "10–50 services.",
+              "body": "Mid-sized product surface; established team; regular new-service additions.",
+              "next": "q2_mid"
+            },
+            {
+              "tag": "50+",
+              "label": "50+ services / workloads.",
+              "body": "Large org or platform-style company; many teams shipping services.",
+              "next": "q2_large"
+            }
+          ]
+        },
+        "q2_small": {
+          "q": "Is your traffic spiky or steady-state?",
+          "qhelp": "At small scale, the question between PaaS and FaaS comes down to traffic shape and operational preference.",
+          "opts": [
+            {
+              "tag": "Spiky",
+              "label": "Spiky — bursty traffic or scheduled jobs.",
+              "body": "Variable load; long idle windows; rare batch processing.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "FaaS (Lambda / Cloud Run / Functions). Don't stand up Kubernetes.",
+                "verdict": "For spiky, low-volume workloads, FaaS is the right shape. Pay-per-invocation amortises idle to zero; the operational surface is just the function code + IAM + monitoring. Avoid Kubernetes — the control-plane and node operational tax for 1–10 services is wildly disproportionate. Pick Cloud Run / AWS Lambda / Azure Functions based on your cloud, not on FaaS framework preference.",
+                "when_to_pick": [
+                  "Spiky / bursty traffic with long idle.",
+                  "Small team that wants to avoid cluster ops.",
+                  "Stateless workloads (or state in managed services).",
+                  "Latency-tolerant for cold-start (or use provisioned-concurrency for the hot endpoints)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Zero idle cost on most providers.",
+                    "Operational simplicity: code + IAM + monitoring.",
+                    "Auto-scales to zero and back.",
+                    "Pay-per-request economics align with revenue."
+                  ],
+                  "cons": [
+                    "Cold-start latency on first invocation.",
+                    "Function-runtime + execution-time limits (15 min on Lambda).",
+                    "Vendor lock-in shape (event sources, deployment shape).",
+                    "Per-invocation cost can be expensive at very high volume."
+                  ]
+                },
+                "watch_outs": [
+                  "Stay stateless or push state to managed services (DynamoDB / RDS / Firestore).",
+                  "Use provisioned concurrency only for hot, latency-sensitive paths. Otherwise you're paying for idle.",
+                  "Monitor function cold-start vs warm distribution; mismatched timeout settings here cause “mysterious” outages."
+                ],
+                "when_not_to_pick": "the workload is long-running (>15 min Lambda, >60 min Cloud Run), latency-sensitive on cold, or stateful in a way that requires persistent local context.",
+                "next_steps": [
+                  {
+                    "tag": "Decision",
+                    "title": "Service communication",
+                    "body": "Sync vs async vs event-driven sits naturally on top of FaaS.",
+                    "href": "/decisions/service-communication.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Steady",
+              "label": "Steady — consistent load, hours-on workloads.",
+              "body": "Web apps, background workers running all the time, predictable traffic.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed PaaS (Render / Fly.io / Vercel / App Runner / Container Apps).",
+                "verdict": "For steady-state, small-service workloads, managed PaaS is the cost+ops sweet spot. The operational surface is git push → deploy; scaling is configured, not engineered; observability is built-in. Pick based on stack and region: Vercel (Next.js / frontend-heavy), Render (general containers + Postgres bundles), Fly.io (global low-latency, full-stack), AWS App Runner (in-AWS), Azure Container Apps (in-Azure). Re-evaluate when you cross ~10 services or need primitives only K8s offers.",
+                "when_to_pick": [
+                  "Steady-state traffic, 1–10 services.",
+                  "Team is <10 engineers, no dedicated platform person.",
+                  "Standard stack (containers + Postgres + Redis); no esoteric runtime needs."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Lowest operational overhead of any non-FaaS option.",
+                    "Built-in: HTTPS, deploy pipeline, observability, secrets.",
+                    "Faster time-to-prod than K8s for typical apps."
+                  ],
+                  "cons": [
+                    "Cost-per-resource is higher than raw EC2 / GCE.",
+                    "Limited primitives compared to K8s (CronJobs, StatefulSets, custom controllers).",
+                    "Vendor-shape lock-in (procfile, build pipeline, networking model).",
+                    "Less flexible for unusual workloads (long-running batch, GPU, custom runtimes)."
+                  ]
+                },
+                "watch_outs": [
+                  "Validate the cost trajectory. PaaS economics are great at small scale; can flip at mid-scale.",
+                  "Keep workloads container-portable. When you migrate off PaaS, a Dockerfile + standard env-var config moves cleanly.",
+                  "Don't lean on platform-specific features unless necessary (e.g. Vercel's edge functions, Render's preview environments). Each one deepens lock-in."
+                ],
+                "when_not_to_pick": "you anticipate crossing 10 services within a year and want a unified deployment story, or workloads are GPU-bound / require custom runtimes / need K8s primitives.",
+                "next_steps": []
+              }
+            }
+          ]
+        },
+        "q2_mid": {
+          "q": "Do you have a dedicated platform team (3+ engineers)?",
+          "qhelp": "At 10–50 services, the K8s vs PaaS conversation depends almost entirely on whether you have the platform team to operate K8s well.",
+          "opts": [
+            {
+              "tag": "Yes — platform team",
+              "label": "Yes — dedicated platform team.",
+              "body": "3+ engineers focused on the developer/operational platform.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed Kubernetes (EKS / GKE / AKS). Standardise the substrate.",
+                "verdict": "At 10–50 services with a platform team, managed Kubernetes is the right substrate. The operational economics flip in K8s's favour at this scale: shared cluster resources, standard tooling across all services, paved-path scaffolds, one observability stack, one secrets model, one policy engine (see policy engine decision). Pair with a developer portal (Backstage, Cortex, Port) and golden-path templates. Avoid running the K8s control plane yourselves; the managed offerings are good enough.",
+                "when_to_pick": [
+                  "10–50 services, multiple teams, platform-team funded.",
+                  "Mixed workloads (web, batch, streaming, ML inference).",
+                  "Multi-tenancy at the platform level (namespace-per-team or cluster-per-environment)."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Single substrate across all services.",
+                    "Operational economy of scale.",
+                    "Massive ecosystem (operators, controllers, helm charts).",
+                    "Portable: same workloads run on EKS, GKE, AKS, on-prem K8s."
+                  ],
+                  "cons": [
+                    "Cognitive load on developers (without paved paths).",
+                    "Platform-team headcount is the floor.",
+                    "Cluster lifecycle (versions, upgrades, node-pool ops) is real work.",
+                    "Cost overruns from over-provisioned requests/limits."
+                  ]
+                },
+                "watch_outs": [
+                  "Build paved paths before opening the cluster to teams. Without templates + golden defaults, K8s becomes the cognitive-load problem it was meant to solve.",
+                  "Standardise observability + ownership annotations as inherited defaults (not per-team responsibility).",
+                  "Plan upgrade cadence. Quarterly minor upgrades; budget a 1-day window per cluster per upgrade.",
+                  "Watch resource-request inflation: most clusters run at ~30% utilisation because requests are over-set. Kubecost / OpenCost visibility helps."
+                ],
+                "when_not_to_pick": "the platform team doesn't have K8s experience yet. Pay the learning curve in a controlled scope (one team, one cluster, paved-path for one workload type) before opening it up.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Platform Engineering IDP",
+                    "body": "The substrate around the K8s platform.",
+                    "href": "/reference-architectures/platform-engineering-idp.html"
+                  },
+                  {
+                    "tag": "Decision",
+                    "title": "Policy engine",
+                    "body": "Pair K8s with the right policy engine for admission control.",
+                    "href": "/decisions/policy-engine.html"
+                  },
+                  {
+                    "tag": "Diagnostic",
+                    "title": "Platform Engineering Readiness",
+                    "body": "Where you stand on adoption and cognitive-load capabilities.",
+                    "href": "/tools/platform-engineering.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No — feature teams",
+              "label": "No — no dedicated platform team.",
+              "body": "Feature teams are autonomous; ops is shared. No funded platform investment.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed PaaS or container-services. Don't adopt K8s without the team to operate it.",
+                "verdict": "K8s without a platform team becomes K8s-as-a-tax: every feature team ends up doing operational work badly, in slightly different ways. Stay on managed PaaS (App Runner / Container Apps / Cloud Run for containers + native managed databases) until you fund a platform team. The pattern of adopting K8s “to attract good engineers” or “to be cloud-native” without the team to operate it is a well-documented anti-pattern.",
+                "when_to_pick": [
+                  "10–50 services but no platform team funded.",
+                  "Feature teams want to own deploys; managed PaaS gives them that.",
+                  "You'd rather not pay the K8s operational tax."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "No platform-team requirement.",
+                    "Each team can adopt independently.",
+                    "Operational ceiling is the platform vendor's, not yours."
+                  ],
+                  "cons": [
+                    "Different teams may pick different PaaS — observability + security become harder.",
+                    "Cost-per-service is higher than K8s at this scale.",
+                    "Migration to K8s later is a real project; the longer you wait, the bigger it is."
+                  ]
+                },
+                "watch_outs": [
+                  "Standardise on one PaaS if at all possible. Multi-PaaS becomes the cognitive-load problem.",
+                  "Track when PaaS cost crosses the platform-team-headcount break-even. That's when you fund the team."
+                ],
+                "when_not_to_pick": "you can fund a 3+ engineer platform team in the next quarter. Just start with K8s and the paved-path investment.",
+                "next_steps": [
+                  {
+                    "tag": "Anti-pattern",
+                    "title": "Paved Path Without Adoption",
+                    "body": "What goes wrong when you adopt K8s without the team to make it usable.",
+                    "href": "/anti-patterns/#paved-path-no-adoption"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_large": {
+          "q": "Are you running multi-region, multi-cloud, or heavily heterogeneous workloads?",
+          "qhelp": "At 50+ services, the question is no longer K8s-or-not (yes, K8s); it's the shape of the K8s estate.",
+          "opts": [
+            {
+              "tag": "Yes — multi-cluster",
+              "label": "Yes — multi-region / multi-cloud / heterogeneous.",
+              "body": "Multiple regions for residency or latency; multiple clouds for sovereignty or redundancy; mix of CPU / GPU / batch / streaming workloads.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed K8s + multi-cluster control plane. Treat clusters as cattle.",
+                "verdict": "At 50+ services across regions/clouds, the K8s estate is itself a platform. Don't run one giant cluster; run many small clusters (per region, per environment, per blast-radius zone) and operate them via a multi-cluster control plane (ArgoCD / Flux ApplicationSets, Cluster API, Karmada, or commercial: Rancher / Anthos / EKS Anywhere fleet). The platform team's job becomes fleet management: golden cluster templates, policy distribution, observability aggregation, multi-cluster rollouts.",
+                "when_to_pick": [
+                  "50+ services across multiple regions or clouds.",
+                  "Sovereignty / residency drives separate clusters.",
+                  "Blast-radius isolation requires multiple clusters per region."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Per-cluster blast radius.",
+                    "Per-region / per-cloud isolation respects residency without bolt-ons.",
+                    "Standardised cluster templates compound across the fleet."
+                  ],
+                  "cons": [
+                    "Fleet management is a real engineering investment.",
+                    "Multi-cluster observability + service-mesh adds complexity.",
+                    "Cost amortisation is worse than a single giant cluster."
+                  ]
+                },
+                "watch_outs": [
+                  "Don't let any cluster become a snowflake. Snowflake clusters erase the fleet model.",
+                  "Policy distribution is the control plane's job (OPA bundle server, Kyverno policies-as-CRDs distributed via GitOps).",
+                  "Multi-cluster service mesh is hard. Don't adopt mesh-everywhere as the first move; pair traffic patterns to mesh adoption."
+                ],
+                "when_not_to_pick": "you only need multiple clusters for environments (dev/staging/prod) and they're all in the same region. That's one operational model; not multi-cluster proper.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Platform Engineering IDP",
+                    "body": "The substrate that sits across the fleet.",
+                    "href": "/reference-architectures/platform-engineering-idp.html"
+                  },
+                  {
+                    "tag": "Maturity",
+                    "title": "Platform Eng Emerging → Established",
+                    "body": "What the substrate needs to look like at this scale.",
+                    "href": "/maturity/platform-eng-emerging.html"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "No — single estate",
+              "label": "No — single region/cloud, homogeneous workloads.",
+              "body": "Big org but one cloud, one region (or a few same-region clusters), standard workload shapes.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed K8s, one (or a few) production clusters, paved-path-driven.",
+                "verdict": "For 50+ services in a single estate, managed K8s + platform-team-owned paved paths is the answer. Run 1 production cluster per blast-radius zone (typically prod / staging / dev) + a tenant-isolation model in production (namespaces + RBAC + network policies). The work is the paved-path layer: scaffolds, golden defaults, observability inheritance, ownership annotations, policy enforcement. The cluster itself should feel boring; the platform on top is the value.",
+                "when_to_pick": [
+                  "50+ services, single region/cloud, homogeneous workloads.",
+                  "Platform team funded and product-mindset-oriented.",
+                  "You want a single deployment story across all teams."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Operational simplicity vs multi-cluster.",
+                    "Best cost amortisation across services.",
+                    "Single observability + policy + ownership story."
+                  ],
+                  "cons": [
+                    "Blast-radius is the cluster.",
+                    "Capacity events affect all teams.",
+                    "Migration to multi-cluster later is real work."
+                  ]
+                },
+                "watch_outs": [
+                  "Plan the second-cluster pattern from day one. Eventually you'll add another for blast radius or region; templates should support it.",
+                  "Pod-disruption-budgets + cluster-autoscaler tuning become real engineering at this scale."
+                ],
+                "when_not_to_pick": "you anticipate multi-region within 12 months. Start with the multi-cluster pattern even if you only have one cluster live.",
+                "next_steps": [
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Platform Engineering IDP",
+                    "body": "Where paved-paths and golden defaults live.",
+                    "href": "/reference-architectures/platform-engineering-idp.html"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "service-communication",
+      "title": "Sync, async, or event-driven",
+      "url": "https://hellouchit.com/decisions/service-communication.html",
+      "startNode": "q1",
+      "questionCount": 3,
+      "endStateCount": 5,
+      "resultUrlFormat": "https://hellouchit.com/decisions/service-communication.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "Does the caller need an answer to complete its own work?",
+          "qhelp": "The fundamental fork in service-to-service communication is whether the caller needs the callee's response synchronously. Get this wrong and you'll either over-engineer with queues (when sync would have worked) or build hidden coupling chains (when async would have decoupled).",
+          "opts": [
+            {
+              "tag": "Yes — needs response",
+              "label": "Yes — the caller needs the result.",
+              "body": "Authorisation check, pricing lookup, account validation, inventory check — the caller's next step depends on the response.",
+              "next": "q2_sync"
+            },
+            {
+              "tag": "No — fire and forget",
+              "label": "No — the caller just notifies.",
+              "body": "Order-placed; user-created; payment-completed — many downstream things care, but the caller doesn't need their work to complete its own.",
+              "next": "q2_async"
+            },
+            {
+              "tag": "Hybrid",
+              "label": "Sometimes both — same domain event, multiple consumers, different needs.",
+              "body": "“User signed up” — auth needs sync confirmation; analytics, email, recommendation, billing can be async.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Sync for the critical path + event for the rest. The shape is “CQRS-lite” at the service boundary.",
+                "verdict": "The right answer for mixed-consumer events is: sync API call for the part the caller depends on (e.g. \"create user, return user ID\") + event publish for everything else (\"user.created\" event, consumed independently by analytics, email, recs, billing). This avoids both over-coupling (everything sync) and under-confirming (everything async, no caller confirmation). The event-bus is the integration substrate; the API is the contract for the caller's critical path.",
+                "when_to_pick": [
+                  "Multiple downstream consumers of the same domain event.",
+                  "Caller needs confirmation of one slice but not the others.",
+                  "You want to decouple analytics / notification / billing from the critical path."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Critical path stays fast and confirmed.",
+                    "Non-critical consumers can fail / be slow without affecting the caller.",
+                    "New consumers don't change the API contract."
+                  ],
+                  "cons": [
+                    "Two paths to operate (sync + event-bus).",
+                    "Idempotency on both paths matters.",
+                    "Eventual consistency in the async paths needs to be reflected in product UX."
+                  ]
+                },
+                "watch_outs": [
+                  "Idempotency keys on both the sync API and the event consumers. Without them, retries cause duplicates.",
+                  "Order matters when it matters. If two events on the same entity must be ordered, you need a partitioned event bus (Kafka by key) or a sequencing strategy.",
+                  "Don't make the event bus the source of truth for the caller's critical-path data. The sync return value is the authoritative record."
+                ],
+                "when_not_to_pick": "your event bus isn't reliable (no durability, no exactly-once-or-better delivery). Then keep everything sync until the bus is production-grade.",
+                "next_steps": [
+                  {
+                    "tag": "Decision",
+                    "title": "Compute platform",
+                    "body": "Event-driven shapes interact with compute choice (FaaS for consumers is great).",
+                    "href": "/decisions/compute-platform.html"
+                  },
+                  {
+                    "tag": "Reference",
+                    "title": "Outbox pattern (microservices.io)",
+                    "body": "How to write sync + event atomically.",
+                    "href": "https://microservices.io/patterns/data/transactional-outbox.html"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_sync": {
+          "q": "Is the call cross-organisation, cross-team, or cross-platform?",
+          "qhelp": "Sync calls have a protocol choice: REST/HTTP, gRPC, GraphQL. The choice depends largely on who's on each end of the wire.",
+          "opts": [
+            {
+              "tag": "Cross-org / public",
+              "label": "Cross-org or public — external consumers.",
+              "body": "Partner API, public SDK, mobile/web clients you don't control.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "REST + OpenAPI. Don't make external consumers learn your framework.",
+                "verdict": "For cross-organisation / public APIs, REST + OpenAPI 3.x is the right default. Every language has good tooling; every developer can read it; OpenAPI gives you contract-driven SDK generation; HTTP semantics work through every proxy/CDN/firewall. gRPC works only if you control both sides; GraphQL works for a narrow set of mobile-app-shaped consumers but adds significant operational complexity for general use. Pair REST with consumer-driven contract tests (Pact) to catch breaking changes.",
+                "when_to_pick": [
+                  "Cross-organisation, partner-facing, or public-SDK APIs.",
+                  "Heterogeneous consumer stack (mobile, web, partner-server, scripts).",
+                  "You can't push tooling updates to consumers in lockstep."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Universal tooling, debuggable with curl/browser.",
+                    "OpenAPI generates client SDKs in every language.",
+                    "Works through every network appliance.",
+                    "Semantic HTTP (caching, retries, idempotency) is well understood."
+                  ],
+                  "cons": [
+                    "Verbose payloads compared to gRPC/Protobuf.",
+                    "Versioning discipline is on you (URL versioning, semver schemas, deprecation).",
+                    "REST design is genuinely hard to do well; team conventions matter."
+                  ]
+                },
+                "watch_outs": [
+                  "Generate the OpenAPI spec from code (not the other way), or vice versa — pick one and enforce it. Hand-maintaining both is the path to drift.",
+                  "Contract tests beat integration tests for cross-org APIs. Pact pattern.",
+                  "Deprecation policy: published, dated, enforced. Without it, removal becomes a political negotiation."
+                ],
+                "when_not_to_pick": "you absolutely need streaming over the same connection (server-push / bidi). Then gRPC or WebSockets/SSE for the streaming surface.",
+                "next_steps": []
+              }
+            },
+            {
+              "tag": "Intra-platform",
+              "label": "Intra-platform — you control both ends.",
+              "body": "Internal microservices on your own platform, consistent stack, deploy lockstep possible.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "gRPC + Protobuf. Significantly better than REST for internal calls.",
+                "verdict": "For internal service-to-service calls where you control both ends, gRPC is materially better than REST: schema-first contracts (Protobuf), strongly-typed clients in every language, smaller payloads, native streaming support, HTTP/2 multiplexing. Add a service mesh (Istio / Linkerd / consul-connect) for mTLS, retries, observability defaults — these matter at intra-platform scale. Use REST at the platform edge (BFF / API gateway); gRPC behind it.",
+                "when_to_pick": [
+                  "Internal service-to-service calls.",
+                  "Multiple languages on the platform (Protobuf is genuinely cross-language).",
+                  "Streaming or bi-directional flows matter.",
+                  "You have or can adopt a service mesh."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Strongly-typed contracts; breaking changes show at compile time.",
+                    "Smaller payloads, faster encoding.",
+                    "Native streaming + HTTP/2 multiplexing.",
+                    "Protobuf evolution rules are explicit and well-documented."
+                  ],
+                  "cons": [
+                    "Less debuggable than REST (need grpcurl + reflection).",
+                    "Browsers + most proxies don't speak gRPC natively.",
+                    "Learning curve for teams new to Protobuf.",
+                    "Service-mesh complexity if adopted."
+                  ]
+                },
+                "watch_outs": [
+                  "Treat .proto files as the source of truth. Stored in a single proto-repo (or per-domain), versioned, compatibility-checked in CI (buf breaking).",
+                  "Plan a REST/HTTP edge for browser clients. gRPC-Web works but isn't a free lunch.",
+                  "Don't adopt service-mesh as the first move. Start without mesh; add when latency/observability/security gaps justify it."
+                ],
+                "when_not_to_pick": "your platform is heterogeneous and you can't deploy clients in lockstep (e.g. third-party plugins). REST is more forgiving.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "buf — Protobuf tooling",
+                    "body": "Linting + breaking-change detection in CI.",
+                    "href": "https://buf.build/"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_async": {
+          "q": "Do you need ordering, replay, or many independent consumers?",
+          "qhelp": "Async messaging splits into queue (one consumer per message; no ordering / replay) vs event log / stream (many consumers; ordered; replayable). The choice depends on what you'll do with the events later.",
+          "opts": [
+            {
+              "tag": "Queue — simple",
+              "label": "Queue — one consumer, work distribution.",
+              "body": "Background jobs, send email, process upload. One consumer pulls; competing consumers OK for throughput.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Managed queue (SQS / Cloud Tasks / Service Bus / RabbitMQ).",
+                "verdict": "For work-distribution patterns (one logical consumer per message), pick the managed queue native to your cloud: AWS SQS, GCP Cloud Tasks, Azure Service Bus. Operational simplicity, durable, scales sub-linearly with cost. Skip Kafka here — you don't need its features and you'll pay its operational tax. RabbitMQ is fine if you need richer routing patterns (topic exchanges, fanout) without committing to a streaming platform.",
+                "when_to_pick": [
+                  "Work distribution: produce-once, consume-once.",
+                  "Don't need replay, ordering, or many consumers.",
+                  "Want operational simplicity."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Operationally minimal (managed).",
+                    "Cheap.",
+                    "Right primitive for the job."
+                  ],
+                  "cons": [
+                    "No replay (you can't reprocess yesterday's messages).",
+                    "Generally not ordered (FIFO queues exist but at lower throughput).",
+                    "Pivoting to event-streaming later is real work."
+                  ]
+                },
+                "watch_outs": [
+                  "Always set dead-letter queues + alarms on DLQ depth. Silent failures otherwise.",
+                  "Idempotent consumers. At-least-once delivery is the default; design for it.",
+                  "Visibility timeouts tuned to the work, not the default."
+                ],
+                "when_not_to_pick": "you anticipate adding multiple independent consumers of the same events later. Pick an event-streaming primitive from the start; queue-to-stream migration is expensive.",
+                "next_steps": []
+              }
+            },
+            {
+              "tag": "Event stream",
+              "label": "Event stream — many consumers, ordered, replayable.",
+              "body": "Domain events: \"order.placed\" consumed by ten different downstream systems. Need replay for new consumers / backfills.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Kafka (or managed: MSK / Confluent Cloud / Redpanda / Azure Event Hubs).",
+                "verdict": "For multi-consumer ordered replayable event streams, Kafka (or a Kafka-compatible managed service) is the industry default. Partitioning gives you ordered-per-key semantics; retention gives you replay; consumer groups give you many independent consumers. Use managed (MSK / Confluent / Aiven / Redpanda Cloud) unless you have a dedicated streaming-platform team; self-managed Kafka is a real operational commitment. Azure Event Hubs is a viable Kafka-protocol alternative in Azure-native estates.",
+                "when_to_pick": [
+                  "Many independent consumers of the same events.",
+                  "Need replay (new consumer joins → consumes from offset N or beginning).",
+                  "Ordering per-entity matters.",
+                  "Stream-processing on the events (KSQL, Flink, Beam) is on the roadmap."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Right primitive for many-consumer event flow.",
+                    "Replay enables new consumers to backfill from history.",
+                    "Partitioning gives ordered-per-key semantics at scale.",
+                    "Ecosystem: Kafka Connect, Streams, KSQL, Schema Registry."
+                  ],
+                  "cons": [
+                    "Operational footprint is real even when managed (partition planning, consumer-group management, schema evolution).",
+                    "Cost at scale is material.",
+                    "Over-engineering risk: many orgs adopt Kafka before they need it."
+                  ]
+                },
+                "watch_outs": [
+                  "Schema Registry (Avro / Protobuf) is non-optional for any non-trivial event flow.",
+                  "Partition key choice is the single most important schema decision. Changing it later requires re-keying.",
+                  "Plan consumer-lag monitoring + alerts. Lag = a consumer is falling behind or stuck; silent.",
+                  "Don't over-partition early. Adding partitions to a topic is operationally awkward; start conservatively."
+                ],
+                "when_not_to_pick": "your event volume is <100K events/day and there are 1–2 consumers. Use a queue.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "Confluent docs — Kafka design",
+                    "body": "Best primer on partitioning, consumer groups, schemas.",
+                    "href": "https://docs.confluent.io/"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "service-decomposition",
+      "title": "Monolith, modular monolith, or microservices",
+      "url": "https://hellouchit.com/decisions/service-decomposition.html",
+      "startNode": "q1",
+      "questionCount": 2,
+      "endStateCount": 4,
+      "resultUrlFormat": "https://hellouchit.com/decisions/service-decomposition.html#<base36 option index per step>",
+      "nodes": {
+        "q1": {
+          "q": "How many engineers are working in this codebase today?",
+          "qhelp": "The strongest predictor of the right decomposition is team size + coordination overhead, not technology fit. Microservices were popularised because Conway's Law made coordination across large orgs intolerable — not because they made the software better. Pick based on how many people need to ship independently.",
+          "opts": [
+            {
+              "tag": "1-10",
+              "label": "1–10 engineers.",
+              "body": "Single team or two small teams. Everyone can read every change in standup.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Monolith. Not as a compromise — as the right answer.",
+                "verdict": "A monolith for 1–10 engineers is not a stop-gap; it's the right answer. One codebase, one deploy, one process, one observability stack. The microservices tax (separate deploys, network calls, distributed tracing, service-mesh, etc.) costs more than the coordination it saves at this scale. If you've adopted microservices at 1–10 engineers, you're paying the wrong tax. Re-evaluate at 10+ engineers or when one team is consistently blocked by another's deploy cadence.",
+                "when_to_pick": [
+                  "1–10 engineers.",
+                  "Single team or 2 small teams.",
+                  "Product is still finding shape; refactoring within a monolith is faster than across services."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "One codebase to navigate, refactor, test.",
+                    "One deploy pipeline.",
+                    "Cheapest operationally.",
+                    "Refactoring is local, not distributed.",
+                    "No network-call failure modes between modules."
+                  ],
+                  "cons": [
+                    "Single deploy: a bug in one feature blocks all deploys.",
+                    "Single scale unit: can't scale features independently.",
+                    "Team coordination overhead grows past ~10."
+                  ]
+                },
+                "watch_outs": [
+                  "Even monoliths need module boundaries. Keep concerns separated in code (package-per-domain), even if you deploy as one.",
+                  "Don't bake in global mutable state. The monolith-to-modular-monolith migration is easy; monolith-with-globals to anything is hard.",
+                  "Pick a framework you can grow with (Rails / Django / Phoenix / Spring / Laravel / Next.js full-stack) — not one optimised for tiny apps."
+                ],
+                "when_not_to_pick": "you're at 10+ engineers already — you're already past this decision point.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "Modular monolith pattern",
+                    "body": "How to keep a monolith healthy as you grow.",
+                    "href": "https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "10-50",
+              "label": "10–50 engineers.",
+              "body": "Multiple teams; coordination overhead is starting to be felt; deploy cadence is contested.",
+              "next": "q2_mid"
+            },
+            {
+              "tag": "50+",
+              "label": "50+ engineers.",
+              "body": "Large organisation; many teams; cross-team coordination is its own problem.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Microservices, organised by Team Topologies shapes.",
+                "verdict": "At 50+ engineers, microservices stop being optional. The cost of cross-team coordination in a single codebase outweighs the cost of distributed-systems complexity. Critical: decompose by team and bounded context, not by technical layer. Use Team Topologies shapes — stream-aligned teams own end-to-end services; enabling teams cross-pollinate; platform teams own the substrate. Skipping this and decomposing by technical layer (UI service, business-logic service, data service) recreates the monolith problem with network hops.",
+                "when_to_pick": [
+                  "50+ engineers, multiple teams.",
+                  "Multiple business lines / product areas.",
+                  "Platform team funded; service mesh / observability substrate in place."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Independent deploys; teams move at their own pace.",
+                    "Independent scaling per service.",
+                    "Team ownership is clear.",
+                    "Failures are local-by-default (if designed right)."
+                  ],
+                  "cons": [
+                    "Distributed-systems complexity (consistency, partial failure, tracing).",
+                    "Operational footprint multiplies with service count.",
+                    "Need real platform substrate (deploy, observability, mesh, secrets, IDP).",
+                    "Wrong boundaries = network-call hell."
+                  ]
+                },
+                "watch_outs": [
+                  "Boundaries follow team / bounded context, never layer. If a service exists because “the UI team made it,” it'll always be coupled to one other service.",
+                  "Plan distributed-tracing + centralised logs from day one.",
+                  "Service ownership annotations are required, not optional. Anonymous services rot.",
+                  "Watch out for the distributed monolith: services that can't deploy independently because every change touches three of them. That's coupling pretending to be decoupling."
+                ],
+                "when_not_to_pick": "you're decomposing for technology reasons (\"to use Go\" / \"to be cloud-native\") rather than team reasons. Restart from the team-boundary lens.",
+                "next_steps": [
+                  {
+                    "tag": "Decision",
+                    "title": "Service communication",
+                    "body": "Sync / async / event choices follow naturally.",
+                    "href": "/decisions/service-communication.html"
+                  },
+                  {
+                    "tag": "Reference architecture",
+                    "title": "Platform Engineering IDP",
+                    "body": "The substrate that makes microservices operable at this scale.",
+                    "href": "/reference-architectures/platform-engineering-idp.html"
+                  },
+                  {
+                    "tag": "Book",
+                    "title": "Team Topologies (reading list)",
+                    "body": "The vocabulary for the team-shape work.",
+                    "href": "/reading/"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "q2_mid": {
+          "q": "Are teams genuinely blocked by each other's deploy cadence or coordination overhead?",
+          "qhelp": "“Microservices would let us move faster” is often aspirational at this scale. The diagnostic question is whether the blocking is real or imagined.",
+          "opts": [
+            {
+              "tag": "No — not really blocked",
+              "label": "No — coordination works fine.",
+              "body": "Teams can deploy on their own cadence inside the monolith. Coordination overhead is manageable.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Modular monolith. Get the team-boundary benefits without the network-call tax.",
+                "verdict": "The modular monolith is the under-rated middle ground for 10–50 engineers when coordination isn't broken yet. One deploy unit, but enforced module boundaries (package-per-domain, dependency rules, internal APIs between modules). Teams own modules; deploys are shared but predictable. Refactoring across module boundaries is easier than across services. This is the shape that big-monolith success stories (Shopify, GitHub, Basecamp, Stack Overflow at various points) actually run.",
+                "when_to_pick": [
+                  "10–50 engineers, multiple teams, but deploy cadence isn't a fight yet.",
+                  "Product is still evolving; bounded contexts are not yet stable.",
+                  "You want the team-ownership clarity of services without the distributed-systems tax."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Module ownership without service operational tax.",
+                    "Refactoring across modules is local, not distributed.",
+                    "Single deploy story; single observability stack.",
+                    "Pivots between bounded contexts are cheap."
+                  ],
+                  "cons": [
+                    "Module boundary discipline must be enforced (in code, in CI).",
+                    "Coupled deploys: a release-blocker in one module blocks others.",
+                    "Scale unit is still global.",
+                    "Migration to microservices later is a real project (but easier from a modular monolith than from a tangled one)."
+                  ]
+                },
+                "watch_outs": [
+                  "Enforce module boundaries in CI. Compile-time / package-level dependency rules. Without enforcement, modules become friends-with-benefits.",
+                  "Internal APIs between modules should be treated like real APIs. Versioned; tested; deprecated cleanly.",
+                  "Quarterly review: are any modules ready to graduate to services? The right time to extract a service is when team ownership is stable, the module has a high deploy contention rate, and its dependencies on the rest are minimal."
+                ],
+                "when_not_to_pick": "team coordination is genuinely broken — teams routinely block each other on releases. Then extract the contended modules to services.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "Modular monolith primer",
+                    "body": "Practical patterns.",
+                    "href": "https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer"
+                  }
+                ]
+              }
+            },
+            {
+              "tag": "Yes — coordination broken",
+              "label": "Yes — teams routinely block each other.",
+              "body": "Deploy queues; merge contention; release-trains that nobody likes. Coordination overhead is felt every sprint.",
+              "leaf": {
+                "tag": "Recommendation",
+                "title": "Selective extraction to services — not big-bang microservices.",
+                "verdict": "The wrong move here is the big-bang microservices migration; the right move is selective extraction. Identify the modules with the highest deploy-contention (where teams routinely wait on each other), the most stable bounded contexts (won't be re-shaped in 6 months), and the fewest cross-module dependencies. Extract those first; leave the rest in the monolith. The monolith stays the centre of gravity for product-finding work; extracted services exist where independence is paid for in operational tax willingly. Plan to grow the extracted-service count over 2–4 quarters, not overnight.",
+                "when_to_pick": [
+                  "10–50 engineers, real deploy-coordination pain.",
+                  "Some bounded contexts are stable and could move independently.",
+                  "Platform team funded (or being funded) to operate the extracted services."
+                ],
+                "trade_offs": {
+                  "pros": [
+                    "Solves the actual problem (specific teams blocking each other) without buying the full microservices tax.",
+                    "Extraction is incremental, reversible.",
+                    "Monolith stays as the playground for new bounded contexts."
+                  ],
+                  "cons": [
+                    "Two operational worlds (monolith + N services).",
+                    "Need data-ownership clarity at every extraction.",
+                    "Cross-monolith-and-service queries become coordination work."
+                  ]
+                },
+                "watch_outs": [
+                  "Strangler-fig pattern: extract by routing traffic, not by big-bang rewrite. Martin Fowler's original post.",
+                  "Data ownership moves with the service. If the extracted service still queries the monolith's database, it's not extracted; it's a distributed coupling.",
+                  "Don't extract for the sake of extraction. Each extraction must close a specific coordination pain — otherwise you're paying operational tax for nothing."
+                ],
+                "when_not_to_pick": "you're at 50+ engineers — go straight to the microservices recommendation; selective extraction is too slow at that scale.",
+                "next_steps": [
+                  {
+                    "tag": "Reference",
+                    "title": "StranglerFigApplication (Martin Fowler)",
+                    "body": "The canonical migration pattern.",
+                    "href": "https://martinfowler.com/bliki/StranglerFigApplication.html"
+                  },
+                  {
+                    "tag": "Decision",
+                    "title": "Service communication",
+                    "body": "Sync vs async between the monolith and extracted services.",
+                    "href": "/decisions/service-communication.html"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

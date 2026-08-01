@@ -1,0 +1,365 @@
+{
+  "name": "Practitioner glossary",
+  "description": "Named concepts and trade-offs across enterprise architecture, platform engineering, DevSecOps, SRE, data and applied GenAI.",
+  "version": "2026-08-01",
+  "license": "CC BY 4.0",
+  "attribution": "Uchit Vyas — hellouchit.com",
+  "source": "https://hellouchit.com",
+  "termCount": 59,
+  "terms": [
+    {
+      "term": "ADR — Architecture Decision Record",
+      "domain": "EA",
+      "definition": "A short, dated document that captures one architectural decision: context, options, decision and consequences. ADRs are the unit of truth for design history — better than slide decks because they survive leadership change and can be searched, linked and refuted.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Agent (AI)",
+      "domain": "GenAI",
+      "definition": "An LLM-driven process that plans, calls tools, observes results and iterates toward a goal. Distinct from a single LLM call by its loop and its ability to use external systems. Evaluate agents on cost-per-resolved-task and trajectory quality, not just final output.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "AiOps",
+      "domain": "SRE",
+      "definition": "Applying machine-learning and pattern-recognition techniques to IT operations data — anomaly detection, alert correlation, root-cause hints. Useful as a layer on top of strong observability; useless as a substitute for it.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Anti-corruption layer (ACL)",
+      "domain": "EA",
+      "definition": "A boundary translation layer that prevents the model of one bounded context from leaking into another. The mechanism that lets you incrementally replace a legacy system without inheriting its data model.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "ATO — Authority to Operate",
+      "domain": "DevSecOps",
+      "definition": "A formal authorisation from an accreditation body that a system may operate in a given environment, granted on review of its security controls and risk posture. The artefact that DevSecOps tooling produces continuously, rather than at the end of a release cycle.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "BIAN — Banking Industry Architecture Network",
+      "domain": "EA",
+      "definition": "A reference framework for banking capability decomposition. A BIAN-aligned target state speeds vendor selection and partner integration — fewer arguments about what a 'customer onboarding' service actually does.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Blast radius",
+      "domain": "SRE",
+      "definition": "The scope of impact when a component fails. A first-class architectural constraint, not an afterthought. 'How does this fail?' should be a design-review question for every new service.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Blameless postmortem",
+      "domain": "SRE",
+      "definition": "An incident review that focuses on the systemic conditions that allowed failure, not the individuals who acted within them. The mechanism that turns incidents into platform changes instead of resignations.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Cell-based architecture",
+      "domain": "SRE",
+      "definition": "Partitioning a system into independent, isolated cells (per region, tenant or shard) so that failure or compromise in one cell doesn't cascade. The pattern that underwrites high availability at scale.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Chaos engineering",
+      "domain": "SRE",
+      "definition": "Deliberately injecting failure into systems to verify they degrade safely. Mature chaos engineering is continuous in pre-prod and planned in prod; it is a property of how you build, not an annual exercise.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Cognitive load (Team Topologies)",
+      "domain": "Platform Eng",
+      "definition": "The amount a team must hold in its head to deliver. Platform engineering's central job is reducing the cognitive load on stream-aligned teams by encoding patterns and providing self-service.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Commitment coverage",
+      "domain": "Cloud / FinOps",
+      "definition": "The percentage of steady-state cloud usage covered by reservations or savings plans. Coverage in the 70–90% range typically buys 15–30% before any architectural change.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Capability model",
+      "domain": "EA",
+      "definition": "A hierarchical map of what an organisation does, decoupled from how it does it. A living capability model is the substrate for investment decisions, architecture roadmaps and vendor selection.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "DAST — Dynamic Application Security Testing",
+      "domain": "DevSecOps",
+      "definition": "Security testing of a running application by sending crafted requests, complementing static (SAST) analysis. Critical findings block merge in mature pipelines; informational findings inform the backlog.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Detection-as-code",
+      "domain": "DevSecOps",
+      "definition": "Treating SIEM detections like software: versioned, peer-reviewed, tested against known-good and known-bad signals, deployed through CI. The reason detection coverage stops being a guess.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Distroless image",
+      "domain": "DevSecOps",
+      "definition": "A container image containing only the application and its runtime dependencies — no shell, no package manager. Reduces attack surface and CVE noise; harder to debug but right for most production workloads.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Domain decomposition",
+      "domain": "EA",
+      "definition": "Breaking a monolith along bounded-context lines so each new service owns a coherent slice of the business. Done well, services align with team ownership and have clear, stable contracts.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Eval (model evaluation)",
+      "domain": "GenAI",
+      "definition": "A test of an LLM's behaviour on a curated set of inputs with known-good outputs. The gate that makes prompt and model changes safe to ship. Evals run continuously in mature programmes, not just before release.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Egress (network)",
+      "domain": "Cloud / FinOps",
+      "definition": "Data leaving a cloud region or account. The mystery line item on cloud bills; the architecture-level driver of cost where caching and co-location pay back fastest.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Error budget",
+      "domain": "SRE",
+      "definition": "The allowable amount of unreliability over a time window, derived from an SLO. When the budget is burnt, feature work pauses and reliability work prioritises. Real error budgets change team behaviour; aspirational ones do not.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Event-driven architecture",
+      "domain": "EA",
+      "definition": "A style where services communicate by publishing and consuming events rather than calling each other synchronously. Loosens coupling at the cost of observability discipline — distributed traces and a schema registry are non-negotiable.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Feature flag",
+      "domain": "Platform Eng",
+      "definition": "A switch that decouples deploy from release. Reduces deployment risk (rollback is a flag flip) and enables progressive delivery, A/B testing and per-tenant configuration. Necessary for trunk-based development at scale.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "FinOps",
+      "domain": "Cloud / FinOps",
+      "definition": "The discipline of making cloud cost a shared engineering, finance and product concern. Mature FinOps shows engineers their cost daily and makes the cheap choice the default choice.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Golden path",
+      "domain": "Platform Eng",
+      "definition": "A documented, supported, default way for engineers to ship a common service archetype — pipeline, observability, security baked in. The opposite of a golden cage: teams choose to use it because it's faster than rolling their own.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Golden signals",
+      "domain": "SRE",
+      "definition": "The four metrics Google recommends every service expose: latency, traffic, errors and saturation. The minimum viable observability for any production service.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Guardrail (AI)",
+      "domain": "GenAI",
+      "definition": "An input or output check that prevents an LLM from producing unsafe or off-policy content. Mature guardrails are layered (input policy, model policy, output policy) and tested adversarially, not just trusted because they exist.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Governance (AI)",
+      "domain": "GenAI",
+      "definition": "The decision rights, controls and audit evidence around how AI systems are built, deployed and used. Risk-tiered governance scales; blanket review committees do not.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "HSM — Hardware Security Module",
+      "domain": "DevSecOps",
+      "definition": "Tamper-resistant hardware for cryptographic key storage and operations. The substrate underneath any non-trivial regulated workload — payment, identity, signing.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "IDP — Internal Developer Platform",
+      "domain": "Platform Eng",
+      "definition": "The set of self-service capabilities — golden paths, service catalogue, environments, secrets, observability — that an engineering org provides to itself. Built well, it's a property of how you build. Built badly, it's a tool stack with a portal on top.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "IaC — Infrastructure as Code",
+      "domain": "Cloud",
+      "definition": "Declaring infrastructure in versioned, diffable code (Terraform, Pulumi, Bicep). The substrate that makes drift detection, policy-as-code and audited change real.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Idempotency",
+      "domain": "EA",
+      "definition": "A property of an operation such that running it twice produces the same result as running it once. The minimum design discipline for any retried call across service boundaries.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "JIT access — Just-in-time access",
+      "domain": "DevSecOps",
+      "definition": "Granting privileged access for a bounded window on request, with audit, instead of standing privilege. The mechanism that lets you say 'zero standing access' honestly.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "LCP — Largest Contentful Paint",
+      "domain": "Cloud / Web Perf",
+      "definition": "The Core Web Vital that measures when the largest visible element finishes rendering. Under 2.5s on cable is the target; over 4s costs revenue at any meaningful scale.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "LLM-as-judge",
+      "domain": "GenAI",
+      "definition": "Using one LLM to evaluate the output of another against a rubric. A scalable evals technique — but only when the judge is calibrated against human ratings and re-checked when models change.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Model card",
+      "domain": "GenAI",
+      "definition": "A versioned document describing a model's intended use, performance characteristics, evaluation results and known limitations. Required artefact in a regulator-readable AI programme.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "MTTR / MTTD — Mean time to recovery / detection",
+      "domain": "SRE",
+      "definition": "The two operational metrics that matter most after availability: how fast you notice a failure and how fast you recover from it. The numbers that improving observability and runbooks are supposed to move.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Non-human identity (NHI)",
+      "domain": "DevSecOps",
+      "definition": "Identities used by workloads — service accounts, machine certs, API tokens. NHIs outnumber human identities 10–50× and are the dominant attack vector in modern compromises; managed via workload identity (OIDC), not static secrets.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "OPA — Open Policy Agent",
+      "domain": "DevSecOps / Platform Eng",
+      "definition": "A general-purpose policy engine for enforcing rules across infrastructure and applications. Common substrate for policy-as-code in Kubernetes, CI pipelines and microservice authz.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Observability",
+      "domain": "SRE",
+      "definition": "The property of a system that lets you ask new questions of it without redeploying. Implies logs, metrics, traces, and the discipline to instrument what matters before you need to.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Paved path",
+      "domain": "Platform Eng",
+      "definition": "Synonym for golden path. Used to underline that the path exists because the platform paved it, not because teams stumbled onto it.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Policy-as-code",
+      "domain": "DevSecOps",
+      "definition": "Encoding security, compliance and architectural rules as machine-evaluated checks — usually OPA, Kyverno or cloud-native equivalents. The mechanism that makes 'security is encoded' more than rhetoric.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Postmortem",
+      "domain": "SRE",
+      "definition": "The document produced after an incident, capturing timeline, root causes, and action items. Mature programmes track recurrence rate of past failure modes as a primary KPI.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Provenance (supply chain)",
+      "domain": "DevSecOps",
+      "definition": "Verifiable evidence of how an artefact was built — who, when, from which source, with which dependencies. SLSA defines escalating levels of provenance assurance; L3+ is the bar for high-risk services.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "RAG — Retrieval-Augmented Generation",
+      "domain": "GenAI",
+      "definition": "Architecture that retrieves relevant documents from a knowledge store and includes them in the prompt, so the model answers from grounded context rather than memory. Quality of retrieval is usually the bottleneck, not quality of generation.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Rightsizing",
+      "domain": "Cloud / FinOps",
+      "definition": "Matching cloud resource size to actual demand. The single highest-leverage cost lever after commitment coverage.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Runbook",
+      "domain": "SRE",
+      "definition": "An actionable, tested playbook for responding to a known alert or incident. Living runbooks are linked from alerts, tested in game-days, and deprecated when no longer relevant.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "SAFe — Scaled Agile Framework",
+      "domain": "EA / Delivery",
+      "definition": "A framework for coordinating agile delivery across many teams and programmes. Useful where it's used honestly; ceremony theatre where it's not. The architecture team's job in SAFe is to keep target-state coherent across PIs.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "SAST — Static Application Security Testing",
+      "domain": "DevSecOps",
+      "definition": "Security analysis of source code without running it. Catches a class of bugs cheaply in CI; suppression discipline is what separates real SAST from theatre.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "SBOM — Software Bill of Materials",
+      "domain": "DevSecOps",
+      "definition": "A signed, machine-readable list of all components in a built artefact. The substrate for supply-chain vulnerability response, license compliance and incident scoping.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "SLO / SLI",
+      "domain": "SRE",
+      "definition": "Service Level Objective / Indicator. An SLI is a measurable user-experience signal; an SLO is the target on that signal. The right unit of contract between platform, product and ops.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "SLSA — Supply-chain Levels for Software Artefacts",
+      "domain": "DevSecOps",
+      "definition": "An escalating framework for build-provenance assurance. L1 is having provenance; L3+ is having tamper-resistant build infrastructure with verified provenance on deploy.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Strangler-fig pattern",
+      "domain": "EA",
+      "definition": "Incrementally replacing a legacy system by routing new functionality through a façade and migrating existing functionality piece by piece, until the legacy can be retired. The default pattern for high-risk core modernisation.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Team Topologies",
+      "domain": "Platform Eng",
+      "definition": "A model that distinguishes stream-aligned, enabling, complicated-subsystem and platform team types, and the interaction patterns between them. The model that gives platform engineering its operating shape.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Threat modelling",
+      "domain": "DevSecOps",
+      "definition": "A structured exercise to identify what could go wrong with a system, by whom, and what controls are in place. Done early in design, it costs hours; done late, it costs sprints.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Toil (SRE)",
+      "domain": "SRE",
+      "definition": "Repetitive, automatable operational work that has no enduring value. Healthy SRE programmes track toil as a primary KPI and target <50% of team time.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Trunk-based development",
+      "domain": "Platform Eng",
+      "definition": "Working in short-lived branches off a single integration branch, with multiple integrations per day, gated by feature flags. The pre-requisite for genuine continuous delivery.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Vector database",
+      "domain": "GenAI",
+      "definition": "A database optimised for similarity search over high-dimensional embeddings. The retrieval substrate underneath most RAG systems; hybrid retrieval (semantic + keyword) usually beats pure vector.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Workload identity",
+      "domain": "DevSecOps",
+      "definition": "Authentication for non-human workloads via short-lived, identity-bound credentials (OIDC, IAM roles) rather than static secrets. The single biggest reduction in attack surface available to most organisations.",
+      "url": "https://hellouchit.com/glossary/"
+    },
+    {
+      "term": "Zero standing access",
+      "domain": "DevSecOps",
+      "definition": "An identity model in which no principal has privileged access at rest; all privilege is requested, time-bound, audited and revoked automatically. The end-state JIT access points at.",
+      "url": "https://hellouchit.com/glossary/"
+    }
+  ]
+}

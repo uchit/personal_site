@@ -1,0 +1,4309 @@
+{
+  "name": "Practitioner diagnostics",
+  "description": "Six capability-scored diagnostics for regulated-industry engineering. Each capability maps to named public frameworks (NIST, ISO, OWASP, EU AI Act, APRA and others).",
+  "version": "2026-08-01",
+  "license": "CC BY 4.0",
+  "attribution": "Uchit Vyas — hellouchit.com",
+  "source": "https://hellouchit.com",
+  "diagnosticCount": 6,
+  "diagnostics": [
+    {
+      "id": "devsecops-maturity",
+      "title": "DevSecOps Maturity Diagnostic",
+      "url": "https://hellouchit.com/tools/devsecops-maturity.html",
+      "capabilityCount": 10,
+      "maxScore": 50,
+      "resultUrlFormat": "https://hellouchit.com/tools/devsecops-maturity.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For tech and SaaS, customers will judge you through SOC 2 Type II and ISO 27001 audits, and downstream consumers will judge you through your SLSA attestations. Supply-chain compromise (Snowflake, Polyfill, XZ Utils) hit this sector hardest in 2024. Treat provenance, workload identity and SBOM-to-owner alerting as customer-acquisition, not a compliance cost."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, APRA CPS 234 ¶21–24 requires demonstrable, testable controls. From 17 Jan 2025 EU DORA ICT-risk obligations apply. Your identity, patching, observability and policy-as-code scores carry the most regulatory weight. Expect to evidence them in writing, not just demos."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "Australian Gov: ACSC Essential Eight + ISM. US Federal: EO 14028 + CISA self-attestation. Patching and identity are compliance gates, not nice-to-haves. SBOM is now contractually required on most federal procurements."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "For health, HIPAA Security Rule + the proposed 2025 update tighten identity, encryption and audit logging. The Change Healthcare 2024 incident (one missing MFA) drives boards to look at identity, blast radius and patching first."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, PCI DSS 4.0 is fully enforced from 31 Mar 2025 on systems in CDE scope. Scanning, identity and patching are non-negotiable. Watch supply chain (Magecart / Polyfill class) and secrets hardest."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "Under the SOCI Act Risk Management Program, identity, blast radius, patching and incident reporting are board-reportable. OT/ICS environments add ISA/IEC 62443 on top."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "Pipeline",
+          "question": "How does your code reach production?",
+          "mapsTo": [
+            {
+              "name": "NIST SSDF PO.3.2",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "DORA Accelerate (deploy freq)",
+              "url": "https://dora.community/research/2024/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Manual deploys; releases are scheduled events with change windows."
+            },
+            {
+              "level": 2,
+              "description": "Scripted deploys; one or two engineers own the pipeline."
+            },
+            {
+              "level": 3,
+              "description": "CI/CD with automated tests; deploys daily during business hours."
+            },
+            {
+              "level": 4,
+              "description": "Trunk-based, multiple deploys per day, feature flags for rollback."
+            },
+            {
+              "level": 5,
+              "description": "Continuous, auto-promoted on green signals; deploys are non-events."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Secrets",
+          "question": "Where do secrets live?",
+          "mapsTo": [
+            {
+              "name": "NIST SSDF PS.1.1",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "OWASP ASVS V2.10",
+              "url": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "name": "CIS Control 6",
+              "url": "https://www.cisecurity.org/controls/access-control-management"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "In code, config files, or shared spreadsheets."
+            },
+            {
+              "level": 2,
+              "description": "In env files / CI variables, rotated occasionally."
+            },
+            {
+              "level": 3,
+              "description": "In a vault, but apps still pull static long-lived credentials."
+            },
+            {
+              "level": 4,
+              "description": "Vault-backed, short-lived tokens for most workloads."
+            },
+            {
+              "level": 5,
+              "description": "Workload identity (OIDC) — zero static secrets; automatic rotation."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "Supply chain",
+          "question": "How do you find vulnerabilities in dependencies?",
+          "mapsTo": [
+            {
+              "name": "SLSA v1.0",
+              "url": "https://slsa.dev/spec/v1.0/"
+            },
+            {
+              "name": "NIST SSDF PW.4.4",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "EU CRA",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "We don't systematically; we patch after incidents."
+            },
+            {
+              "level": 2,
+              "description": "Periodic scans, results reviewed when someone has time."
+            },
+            {
+              "level": 3,
+              "description": "SCA runs in CI; high/critical break the build."
+            },
+            {
+              "level": 4,
+              "description": "SBOMs generated per artefact (CycloneDX/SPDX); CVE alerts piped to owning team."
+            },
+            {
+              "level": 5,
+              "description": "SBOM + signed provenance (SLSA L3+); supply-chain compromise detection in prod."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "App scanning",
+          "question": "How is application code scanned?",
+          "mapsTo": [
+            {
+              "name": "OWASP ASVS 4",
+              "url": "https://owasp.org/www-project-application-security-verification-standard/"
+            },
+            {
+              "name": "NIST SSDF PW.7-PW.8",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Annual pen-test; nothing in pipeline."
+            },
+            {
+              "level": 2,
+              "description": "SAST tool exists, but findings are ignored or muted."
+            },
+            {
+              "level": 3,
+              "description": "SAST + DAST in CI for main branches; criticals block merge."
+            },
+            {
+              "level": 4,
+              "description": "IDE-time security feedback + PR comments + auto-fix suggestions."
+            },
+            {
+              "level": 5,
+              "description": "Risk-tiered scanning; threat-modelled hot-paths; security-as-code policies enforced."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Ownership",
+          "question": "Who is accountable when production breaks security policy?",
+          "mapsTo": [
+            {
+              "name": "NIST SSDF PO.2",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "APRA CPS 234 ¶13-15",
+              "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Security team chases engineering after the fact."
+            },
+            {
+              "level": 2,
+              "description": "Engineering 'owns it' in theory; security still does most of the work."
+            },
+            {
+              "level": 3,
+              "description": "Service owners are accountable; security advises."
+            },
+            {
+              "level": 4,
+              "description": "Service teams self-attest with auto-evidence; security audits a sample."
+            },
+            {
+              "level": 5,
+              "description": "Policy-as-code (OPA/Kyverno) blocks the deploy before a human is involved."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Infra baselines",
+          "question": "How do you handle infrastructure security baselines?",
+          "mapsTo": [
+            {
+              "name": "CIS Benchmarks",
+              "url": "https://www.cisecurity.org/cis-benchmarks"
+            },
+            {
+              "name": "NIST SP 800-53 CM-6",
+              "url": "https://csrc.nist.gov/projects/risk-management/sp800-53-controls/release-search"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Manually configured by ops; drift is normal."
+            },
+            {
+              "level": 2,
+              "description": "Hardened AMIs/templates, but drift detection is best-effort."
+            },
+            {
+              "level": 3,
+              "description": "IaC with linting (tfsec / Checkov / Trivy); known violations tracked."
+            },
+            {
+              "level": 4,
+              "description": "Continuous compliance scanning; auto-remediation for common drift."
+            },
+            {
+              "level": 5,
+              "description": "Immutable infra, signed images, runtime-enforced baselines (eBPF / OPA / admission controllers)."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Identity",
+          "question": "What does identity look like for humans and workloads?",
+          "mapsTo": [
+            {
+              "name": "NIST SP 800-207 Zero Trust",
+              "url": "https://csrc.nist.gov/publications/detail/sp/800-207/final"
+            },
+            {
+              "name": "NIST SSDF PO.5",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "ACSC Essential Eight",
+              "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Shared accounts, long-lived passwords, MFA inconsistent."
+            },
+            {
+              "level": 2,
+              "description": "SSO for most apps; service accounts proliferate."
+            },
+            {
+              "level": 3,
+              "description": "SSO + phishing-resistant MFA enforced; workload identity for new services."
+            },
+            {
+              "level": 4,
+              "description": "JIT access for privileged ops; workload identity is default for new builds."
+            },
+            {
+              "level": 5,
+              "description": "Zero standing access; everything short-lived, identity-bound, fully audited."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Patching",
+          "question": "How fast do you ship a security patch?",
+          "mapsTo": [
+            {
+              "name": "CISA KEV catalogue",
+              "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+            },
+            {
+              "name": "NIST SSDF RV.1.3",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "PCI DSS 4.0 Req 6.3",
+              "url": "https://www.pcisecuritystandards.org/document_library/?category=pcidss"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Weeks — patching is its own project."
+            },
+            {
+              "level": 2,
+              "description": "Days, with planning and a change advisory board."
+            },
+            {
+              "level": 3,
+              "description": "Hours during business; days for low-severity."
+            },
+            {
+              "level": 4,
+              "description": "Patch-on-demand; MTTR < 24h for KEV-listed CVEs."
+            },
+            {
+              "level": 5,
+              "description": "Minutes — automated upgrades with canary + auto-rollback."
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "capability": "Observability",
+          "question": "What does observability for security look like?",
+          "mapsTo": [
+            {
+              "name": "MITRE ATT&CK",
+              "url": "https://attack.mitre.org/"
+            },
+            {
+              "name": "NIST CSF DE",
+              "url": "https://www.nist.gov/cyberframework"
+            },
+            {
+              "name": "APRA CPS 234 ¶25-26",
+              "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Logs exist somewhere; nobody queries them proactively."
+            },
+            {
+              "level": 2,
+              "description": "Centralised logs; manual hunts when something feels off."
+            },
+            {
+              "level": 3,
+              "description": "SIEM with curated detections; SOC reviews alerts in business hours."
+            },
+            {
+              "level": 4,
+              "description": "Detection-as-code, tested like software; 24×7 response."
+            },
+            {
+              "level": 5,
+              "description": "Threat models drive detections; purple-teamed continuously; signal:noise tracked as a KPI."
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "capability": "Product integration",
+          "question": "How does security show up in product planning?",
+          "mapsTo": [
+            {
+              "name": "NIST SSDF PO.4",
+              "url": "https://csrc.nist.gov/Projects/ssdf"
+            },
+            {
+              "name": "BSIMM",
+              "url": "https://www.bsimm.com/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Security is a gate at the end; often delays release."
+            },
+            {
+              "level": 2,
+              "description": "Security is a separate workstream with its own backlog."
+            },
+            {
+              "level": 3,
+              "description": "Security reps embedded with each squad; consulted early."
+            },
+            {
+              "level": 4,
+              "description": "Security stories are written by engineers; threat-models part of design review."
+            },
+            {
+              "level": 5,
+              "description": "Security is a property the platform guarantees by default; teams rarely think about it."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Reactive",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "You're fire-fighting. Security work is event-driven and depends on individual heroics. The fastest move that compounds: pick one capability (typically secrets or SCA) and make it pipeline-enforced — one team, one week, one win to copy across the org.",
+          "benchmark": "~14% of organisations land here per DORA Accelerate 2024 (lowest-performer cluster). Median MTTR for critical CVEs: 30+ days. Outside scope for most regulated procurement.",
+          "recommendations": [
+            {
+              "what": "Stop shared secrets this week — vault one service, end-to-end.",
+              "why": "Static secrets remain a leading root cause of breach in Verizon DBIR 2024. Vault one critical service properly; document the pattern; copy.",
+              "tools": "HashiCorp Vault · AWS Secrets Manager · GCP Secret Manager · OSS: Infisical / OpenBao",
+              "constraint": "Legacy apps often hard-code credentials in startup scripts — refactor before retrofit.",
+              "references": [
+                {
+                  "name": "NIST SSDF PS.1.1",
+                  "url": "https://csrc.nist.gov/Projects/ssdf"
+                },
+                {
+                  "name": "CIS Control 6.4",
+                  "url": "https://www.cisecurity.org/controls/access-control-management"
+                }
+              ]
+            },
+            {
+              "what": "Add SCA to one CI pipeline. Make criticals break the build.",
+              "why": "GitHub Advisory Database + a free SCA scanner finds the obvious. Start with one repo; ratchet enforcement.",
+              "tools": "Snyk · Sonatype · Dependabot · OSS: Aqua Trivy / Google OSV-Scanner",
+              "constraint": "First scan will surface hundreds of findings — pre-triage to KEV-listed CVEs only.",
+              "references": [
+                {
+                  "name": "CISA KEV",
+                  "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+                },
+                {
+                  "name": "NIST SSDF PW.4.4",
+                  "url": "https://csrc.nist.gov/Projects/ssdf"
+                }
+              ]
+            },
+            {
+              "what": "Name a Security Champion per engineering team. 20% time, not lip service.",
+              "why": "BSIMM's most-correlated practice with maturity gain. Champions translate security into developer language and reverse.",
+              "tools": "Internal — no tool buys this.",
+              "constraint": "Leadership has to defend the 20% when delivery pressure spikes.",
+              "references": [
+                {
+                  "name": "BSIMM SM2.2",
+                  "url": "https://www.bsimm.com/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Repeatable",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "You have practices, but they're inconsistent. The same control is rigorous on one team and theatre on another. The win at this level isn't new tools — it's making one team's good pattern the platform default.",
+          "benchmark": "~36% of organisations cluster here (DORA 2024 Medium-performer band). Median deploy cadence: weekly to monthly. Will not pass CISA Secure Software Attestation without remediation.",
+          "recommendations": [
+            {
+              "what": "Audit which teams enforce which controls. Pick the top three gaps in coverage.",
+              "why": "Inconsistent enforcement is what makes auditors and adversaries succeed. A real coverage matrix is the prerequisite for any honest improvement plan.",
+              "tools": "Backstage · Cortex · OpsLevel · Port",
+              "constraint": "Surfacing inconsistency politically requires top-down air cover.",
+              "references": [
+                {
+                  "name": "NIST SSDF PO.2",
+                  "url": "https://csrc.nist.gov/Projects/ssdf"
+                }
+              ]
+            },
+            {
+              "what": "Move one good practice into a paved-path template every new service inherits.",
+              "why": "If only one team gets it right, platform's job is to make that pattern the default. Team Topologies calls this the 'X-as-a-Service' interaction.",
+              "tools": "Backstage Software Templates · Cookiecutter · internal Helm/Terraform modules",
+              "constraint": "Existing services need a migration path, not just new-build templates.",
+              "references": [
+                {
+                  "name": "CNCF Platform Eng Maturity Model",
+                  "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+                }
+              ]
+            },
+            {
+              "what": "Publish an SLO for time-to-patch on KEV CVEs. Measure weekly.",
+              "why": "Federal agencies must patch actively-exploited CVEs within 21 days (CISA BOD 22-01). Use the same as your internal floor.",
+              "tools": "Internal dashboard · Tenable · Qualys · OSS: Trivy",
+              "constraint": "Legacy stacks (EOL libs) can't be patched — replacement plan needed.",
+              "references": [
+                {
+                  "name": "CISA BOD 22-01",
+                  "url": "https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Defined",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You have a real DevSecOps practice. Most controls are codified, enforced in CI, and owned by service teams. The next jump is from 'we have policies' to 'the platform enforces them' — policy-as-code, workload identity, signed artefacts.",
+          "benchmark": "~32% of organisations sit here. Comparable to DORA \"High\" tier. Will pass most procurement security questionnaires. Begins to satisfy NIST SSDF baseline (PO/PS/PW).",
+          "recommendations": [
+            {
+              "what": "Replace static credentials with workload identity (OIDC) on at least one critical pipeline.",
+              "why": "GitHub OIDC for AWS/GCP/Azure ships out-of-box. Eliminates the largest class of secret leaks.",
+              "tools": "GitHub Actions OIDC + AWS IAM Roles · GCP Workload Identity Federation · Azure Federated Credentials · SPIFFE/SPIRE",
+              "constraint": "Multi-account IAM model must support trust policies — often requires landing-zone refactor.",
+              "references": [
+                {
+                  "name": "NIST SP 800-207 Zero Trust",
+                  "url": "https://csrc.nist.gov/publications/detail/sp/800-207/final"
+                }
+              ]
+            },
+            {
+              "what": "Introduce policy-as-code (OPA / Kyverno / Conftest) for one class of deploy-blocking rule.",
+              "why": "Encoded policy survives team changes. Start narrow ('no public S3', 'images must be signed') and ratchet.",
+              "tools": "Open Policy Agent · Kyverno · Conftest · HashiCorp Sentinel",
+              "constraint": "Authors need to learn Rego (OPA) or Kyverno YAML — non-trivial skill investment.",
+              "references": [
+                {
+                  "name": "CNCF TAG Security",
+                  "url": "https://github.com/cncf/tag-security"
+                }
+              ]
+            },
+            {
+              "what": "Emit SBOMs per artefact in CycloneDX or SPDX. Close the CVE-to-owner loop.",
+              "why": "Required for US Federal procurement (CISA self-attestation) and increasingly EU CRA. Without owner-alert, SBOMs are shelfware.",
+              "tools": "CycloneDX · SPDX · Anchore Syft · GUAC · OWASP Dependency-Track",
+              "constraint": "SBOM quality varies by language ecosystem — Python and JS are noisiest.",
+              "references": [
+                {
+                  "name": "NTIA SBOM Minimum Elements",
+                  "url": "https://www.ntia.gov/page/software-bill-materials"
+                },
+                {
+                  "name": "EU CRA",
+                  "url": "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Managed",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "You're in the top quartile. Security is encoded, audited and instrumented; service teams own their posture; security advises and audits rather than gating. The remaining gap is usually supply-chain provenance and continuous validation.",
+          "benchmark": "~14% of organisations achieve this. Aligned to SLSA Build L3 on critical-path services. Audit-ready against CPS 234, PCI DSS 4.0 and most ISO 27001:2022 controls.",
+          "recommendations": [
+            {
+              "what": "Adopt SLSA Level 3+ for at least the high-blast-radius services. Verify on deploy.",
+              "why": "Post-XZ Utils, build-provenance verification is the next compliance floor. Sigstore + in-toto make this practical.",
+              "tools": "Sigstore Cosign · in-toto · GitHub Artifact Attestations · Google Cloud Build attestations",
+              "constraint": "Tamper-evident build hosts (SLSA L3 'isolated build') require platform investment beyond CI scripts.",
+              "references": [
+                {
+                  "name": "SLSA L3",
+                  "url": "https://slsa.dev/spec/v1.0/levels#build-l3"
+                }
+              ]
+            },
+            {
+              "what": "Move from periodic pen-tests to continuous purple-team exercises with detection-as-code.",
+              "why": "Annual pen-test misses 90% of attacker paths. Continuous adversary emulation (MITRE ATT&CK) finds them.",
+              "tools": "Atomic Red Team · MITRE Caldera · commercial: SafeBreach / AttackIQ",
+              "constraint": "Production-safe execution needs co-design with SRE — chaos engineering principles apply.",
+              "references": [
+                {
+                  "name": "MITRE ATT&CK",
+                  "url": "https://attack.mitre.org/"
+                }
+              ]
+            },
+            {
+              "what": "Publish a service-level posture score per team; make it visible on the developer portal.",
+              "why": "What gets measured and seen, improves. Backstage Scorecards put posture next to ops metrics where engineers already look.",
+              "tools": "Backstage Scorecards · Cortex · OpsLevel · Port",
+              "constraint": "Score must be hard to game — auto-derived from real signals (CVEs in image, MFA coverage, SLSA level).",
+              "references": [
+                {
+                  "name": "CNCF TAG App-Delivery",
+                  "url": "https://tag-app-delivery.cncf.io/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Optimising",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "You're at the top of the curve. Security is a platform property, not a workflow. The work now is regression discipline: protecting what you have as scale, AI workloads, and the next platform shift try to erode it.",
+          "benchmark": "~4% of organisations operate here (DORA \"Elite\"). Multi-deploy-per-day, MTTR < 1 hour, change-fail rate < 15%. SLSA L4 on critical paths. Reference customers for security-platform vendors.",
+          "recommendations": [
+            {
+              "what": "Bake an AI-workload security baseline into the platform before GenAI features ship.",
+              "why": "NIST AI RMF + OWASP LLM Top 10 define the new attack surface. Encode in templates; don't retrofit.",
+              "tools": "Internal — derive from NIST AI RMF + OWASP LLM Top 10",
+              "constraint": "Frameworks still evolving — expect quarterly baseline refreshes through 2026.",
+              "references": [
+                {
+                  "name": "NIST AI RMF",
+                  "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+                },
+                {
+                  "name": "OWASP LLM Top 10",
+                  "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+                }
+              ]
+            },
+            {
+              "what": "Run security chaos engineering — assume one control fails, prove the others catch it.",
+              "why": "Defence in depth is only real if you've tested it. Principles of Chaos applies to security as much as availability.",
+              "tools": "Chaos Monkey · Gremlin · LitmusChaos",
+              "constraint": "Requires cultural permission to fail in prod safely — only attempt with mature SRE.",
+              "references": [
+                {
+                  "name": "Verica Security Chaos Engineering",
+                  "url": "https://verica.io/blog/security-chaos-engineering/"
+                }
+              ]
+            },
+            {
+              "what": "Mentor a peer organisation. Externalising the model is what makes it survive your tenure.",
+              "why": "Teaching forces clarity. The model becomes documented, transferable, hire-able-for.",
+              "tools": "Industry working groups (OpenSSF, CNCF TAG Security, FS-ISAC)",
+              "constraint": "Legal and IP need to bless what you share externally.",
+              "references": [
+                {
+                  "name": "OpenSSF working groups",
+                  "url": "https://openssf.org/community/working-groups/"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "NIST SSDF (SP 800-218)",
+          "description": "Secure Software Development Framework — the spine for DevSecOps in regulated and federal contexts.",
+          "url": "https://csrc.nist.gov/Projects/ssdf"
+        },
+        {
+          "domain": "Framework",
+          "name": "SLSA v1.0",
+          "description": "Supply-chain Levels for Software Artefacts — escalating provenance assurance, L1 to L3+.",
+          "url": "https://slsa.dev/spec/v1.0/"
+        },
+        {
+          "domain": "Framework",
+          "name": "OWASP ASVS 4",
+          "description": "Application Security Verification Standard — the closest thing to a vendor-neutral app security baseline.",
+          "url": "https://owasp.org/www-project-application-security-verification-standard/"
+        },
+        {
+          "domain": "Framework",
+          "name": "MITRE ATT&CK",
+          "description": "Tactics-techniques-procedures knowledge base. The lingua franca of detection-as-code and adversary emulation.",
+          "url": "https://attack.mitre.org/"
+        },
+        {
+          "domain": "Framework",
+          "name": "NIST AI Risk Management Framework",
+          "description": "The default GenAI risk taxonomy. Pair with OWASP LLM Top 10 for AI workloads.",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        },
+        {
+          "domain": "Regulation",
+          "name": "APRA CPS 234",
+          "description": "Australian prudential standard for information security. Specifies testable controls, board accountability, breach reporting.",
+          "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
+        },
+        {
+          "domain": "Regulation",
+          "name": "EU DORA",
+          "description": "Effective Jan 2025 — ICT-risk and third-party-risk for EU financial entities.",
+          "url": "https://www.eiopa.europa.eu/digital-operational-resilience-act-dora_en"
+        },
+        {
+          "domain": "Regulation",
+          "name": "US EO 14028 / CISA Secure Software Attestation",
+          "description": "Federal procurement now requires SBOM + secure-development attestation.",
+          "url": "https://www.cisa.gov/secure-software-attestation-form"
+        },
+        {
+          "domain": "Regulation",
+          "name": "EU Cyber Resilience Act",
+          "description": "Product-liability for digital products with security defects. Affects every vendor selling into the EU.",
+          "url": "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act"
+        },
+        {
+          "domain": "Regulation",
+          "name": "PCI DSS 4.0",
+          "description": "Card-data security. v4 fully enforced from 31 Mar 2025.",
+          "url": "https://www.pcisecuritystandards.org/document_library/?category=pcidss"
+        },
+        {
+          "domain": "Threat data",
+          "name": "CISA Known-Exploited Vulnerabilities",
+          "description": "The authoritative list of CVEs being exploited in the wild. The minimum patching priority.",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+        },
+        {
+          "domain": "Threat data",
+          "name": "Verizon DBIR",
+          "description": "Annual analysis of >10,000 confirmed breaches. Anchor your threat model in actual incident data.",
+          "url": "https://www.verizon.com/business/resources/reports/dbir/"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "DORA Accelerate State of DevOps",
+          "description": "The reference dataset for delivery-performance benchmarking.",
+          "url": "https://dora.community/research/2024/"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "BSIMM",
+          "description": "Synopsys observation of >130 real software-security initiatives — what high-maturity programmes actually do.",
+          "url": "https://www.bsimm.com/"
+        },
+        {
+          "domain": "Australia",
+          "name": "ACSC Essential Eight",
+          "description": "Australia's baseline mitigation strategies. Often a procurement requirement.",
+          "url": "https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight"
+        }
+      ]
+    },
+    {
+      "id": "genai-readiness",
+      "title": "GenAI Readiness Diagnostic",
+      "url": "https://hellouchit.com/tools/genai-readiness.html",
+      "capabilityCount": 12,
+      "maxScore": 60,
+      "resultUrlFormat": "https://hellouchit.com/tools/genai-readiness.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For tech, GenAI is a feature-velocity race — but the floor is rising. ISO/IEC 42001 certification is becoming a customer-procurement requirement. SOC 2 auditors now ask about model evals and prompt injection. Model selection, evals and observability are your differentiators."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, model risk falls under SR 11-7 (US), APRA CPS 230, MAS, FCA. EU customer-facing GenAI in lending or insurance is high-risk under the AI Act — conformity assessment required. Governance, audit-readiness and evals are non-negotiable."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "Australian Gov: DTA Policy for Responsible Use of AI (eff. 1 Sep 2024) requires transparency statements + AI accountability officer. US: OMB M-24-10. Governance and audit-readiness are mandatory."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "For health, FDA SaMD + the FDA PCCP guidance govern ML in clinical decision-making. EU AI Act lists medical-device AI as high-risk. Watch evals, data foundations and governance hardest."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, GenAI in recommendations and personalisation is bounded by GDPR/CCPA on personal data and EU DSA on algorithmic transparency. Guardrails and data foundations are the constraints; cost & latency the differentiator at scale."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "In critical infrastructure, AI use in OT/control systems is being scrutinised. The SOCI Act RMP requires risk assessment of new tech. Guardrails, audit-readiness and cost-per-outcome all matter; recovery time is the constraint."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "Use-case clarity",
+          "question": "How well-defined is the business use-case for GenAI?",
+          "mapsTo": [
+            {
+              "name": "NIST AI RMF GOVERN-1.3",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "name": "AU AI Safety Std Guardrail 1",
+              "url": "https://www.industry.gov.au/publications/voluntary-ai-safety-standard"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "We're 'looking at AI' — no specific use-case agreed."
+            },
+            {
+              "level": 2,
+              "description": "A few ideas in a backlog; nobody owns them."
+            },
+            {
+              "level": 3,
+              "description": "One primary use-case named, with a sponsor."
+            },
+            {
+              "level": 4,
+              "description": "Use-case decomposed into measurable outcomes; baseline known."
+            },
+            {
+              "level": 5,
+              "description": "Use-case ranked against alternatives (rules, ML, humans); GenAI chosen on cost-vs-quality evidence."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Data foundations",
+          "question": "What's the state of the data the model needs?",
+          "mapsTo": [
+            {
+              "name": "NIST AI 600-1 §3.1",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+            },
+            {
+              "name": "EU AI Act Art.10",
+              "url": "https://artificialintelligenceact.eu/the-act/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Scattered across systems; quality unknown."
+            },
+            {
+              "level": 2,
+              "description": "Centralised somewhere, but no lineage or freshness contract."
+            },
+            {
+              "level": 3,
+              "description": "Catalogued with owners; quality and freshness measured."
+            },
+            {
+              "level": 4,
+              "description": "Versioned datasets with PII controls; access governed."
+            },
+            {
+              "level": 5,
+              "description": "Production-grade feature/data store with SLAs, lineage, retention and right-to-erasure built in."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "Model selection",
+          "question": "How do you decide which model to use?",
+          "mapsTo": [
+            {
+              "name": "NIST AI RMF MAP-3.4",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "name": "Stanford HELM",
+              "url": "https://crfm.stanford.edu/helm/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Whichever was in the demo."
+            },
+            {
+              "level": 2,
+              "description": "One model picked on vibes — never re-evaluated."
+            },
+            {
+              "level": 3,
+              "description": "A short-list with rough cost/latency notes."
+            },
+            {
+              "level": 4,
+              "description": "Routed by use-case; cheaper model used where quality matches."
+            },
+            {
+              "level": 5,
+              "description": "Gateway with model routing, fallbacks and per-use-case A/B; cost & quality tracked per call."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "RAG architecture",
+          "question": "If you're doing retrieval-augmented generation, what does it look like?",
+          "mapsTo": [
+            {
+              "name": "OWASP LLM01 (Prompt Injection)",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+            },
+            {
+              "name": "Anthropic Contextual Retrieval",
+              "url": "https://www.anthropic.com/news/contextual-retrieval"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No RAG — we stuff context into the prompt."
+            },
+            {
+              "level": 2,
+              "description": "Single vector store, basic chunking, no metadata filtering."
+            },
+            {
+              "level": 3,
+              "description": "Hybrid retrieval (semantic + keyword); metadata filters; eval set."
+            },
+            {
+              "level": 4,
+              "description": "Re-ranking, query rewriting, recursive retrieval; eval set covers edge cases."
+            },
+            {
+              "level": 5,
+              "description": "Multi-index, source-aware citations, freshness-aware, retrieval quality measured separately from generation."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Prompts as code",
+          "question": "How are prompts managed?",
+          "mapsTo": [
+            {
+              "name": "OWASP LLM01",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+            },
+            {
+              "name": "NIST AI RMF MEASURE-2.7",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Hard-coded strings; whoever last edited owns them."
+            },
+            {
+              "level": 2,
+              "description": "In a config file; changes are ad-hoc."
+            },
+            {
+              "level": 3,
+              "description": "Versioned in a prompt library; reviewed like code."
+            },
+            {
+              "level": 4,
+              "description": "Prompt registry with semver, owners and per-version evals."
+            },
+            {
+              "level": 5,
+              "description": "Prompts deployed and rolled back like code; regression evals on every change."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Evals",
+          "question": "How do you measure whether the model is doing the right thing?",
+          "mapsTo": [
+            {
+              "name": "NIST AI 600-1 §4",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+            },
+            {
+              "name": "OWASP LLM09 (Misinformation)",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+            },
+            {
+              "name": "OpenAI Evals",
+              "url": "https://github.com/openai/evals"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "We don't. We look at outputs and feel."
+            },
+            {
+              "level": 2,
+              "description": "Manual spot-checks before each release."
+            },
+            {
+              "level": 3,
+              "description": "An eval set exists and is run before changes."
+            },
+            {
+              "level": 4,
+              "description": "Curated eval suites per use-case + LLM-as-judge with calibration."
+            },
+            {
+              "level": 5,
+              "description": "Continuous evals in production, regression-gated deploys, human-in-the-loop for edge cases."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Guardrails",
+          "question": "What stops the model from producing unsafe / off-policy output?",
+          "mapsTo": [
+            {
+              "name": "OWASP LLM01/02/06",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+            },
+            {
+              "name": "MITRE ATLAS",
+              "url": "https://atlas.mitre.org/"
+            },
+            {
+              "name": "NVIDIA NeMo Guardrails",
+              "url": "https://github.com/NVIDIA/NeMo-Guardrails"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Nothing systematic."
+            },
+            {
+              "level": 2,
+              "description": "Light system-prompt instructions ('don't say X')."
+            },
+            {
+              "level": 3,
+              "description": "Input/output filters for obvious categories (PII, profanity)."
+            },
+            {
+              "level": 4,
+              "description": "Policy-tuned classifiers + content filters + jailbreak detection."
+            },
+            {
+              "level": 5,
+              "description": "Layered defence: input policy, model policy, output policy, escalation path; tested adversarially."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Observability",
+          "question": "Can you trace why the model said what it said?",
+          "mapsTo": [
+            {
+              "name": "OpenTelemetry GenAI semconv",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "name": "NIST AI RMF MEASURE-3.2",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — outputs disappear after the API call."
+            },
+            {
+              "level": 2,
+              "description": "We log prompts and outputs somewhere."
+            },
+            {
+              "level": 3,
+              "description": "Per-request tracing: prompt, retrieved context, model, latency, cost."
+            },
+            {
+              "level": 4,
+              "description": "End-to-end traces linked to user session; quality & cost dashboards per use-case."
+            },
+            {
+              "level": 5,
+              "description": "Replayable traces with version pinning; production evals tied to traces; cost-per-outcome tracked."
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "capability": "Cost & latency",
+          "question": "Do you know the cost-per-outcome of the feature?",
+          "mapsTo": [
+            {
+              "name": "FinOps for AI WG",
+              "url": "https://www.finops.org/wg/ai/"
+            },
+            {
+              "name": "AWS Bedrock cost allocation",
+              "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/cost-allocation.html"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No idea. The bill arrives monthly."
+            },
+            {
+              "level": 2,
+              "description": "Aggregate spend tracked; per-feature is a guess."
+            },
+            {
+              "level": 3,
+              "description": "Cost-per-request known; latency P50/P95 tracked."
+            },
+            {
+              "level": 4,
+              "description": "Cost-per-resolved-task known; budgets per use-case."
+            },
+            {
+              "level": 5,
+              "description": "Cost-per-outcome and quality-per-dollar tracked; routing decisions auto-tune for both."
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "capability": "Governance",
+          "question": "Who decides what the model is allowed to do — and who approves changes?",
+          "mapsTo": [
+            {
+              "name": "ISO/IEC 42001",
+              "url": "https://www.iso.org/standard/81230.html"
+            },
+            {
+              "name": "NIST AI RMF GOVERN-2",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "name": "EU AI Act Art.9",
+              "url": "https://artificialintelligenceact.eu/the-act/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Nobody formally. Engineering ships what works."
+            },
+            {
+              "level": 2,
+              "description": "Security/legal reviewed it once; haven't looked since."
+            },
+            {
+              "level": 3,
+              "description": "A standing AI committee reviews high-risk changes."
+            },
+            {
+              "level": 4,
+              "description": "Risk-tiered governance: low-risk self-service, high-risk reviewed; decisions logged."
+            },
+            {
+              "level": 5,
+              "description": "Governance is encoded — model cards, eval thresholds and policy checks block non-compliant deploys."
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "capability": "Audit-readiness",
+          "question": "If a regulator asked tomorrow to see how a decision was made, could you show them?",
+          "mapsTo": [
+            {
+              "name": "EU AI Act Art.12 (Logging)",
+              "url": "https://artificialintelligenceact.eu/the-act/"
+            },
+            {
+              "name": "NIST AI RMF MEASURE-3.3",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — we'd scramble."
+            },
+            {
+              "level": 2,
+              "description": "We could reconstruct from scattered logs given time."
+            },
+            {
+              "level": 3,
+              "description": "We can produce per-decision traces within hours."
+            },
+            {
+              "level": 4,
+              "description": "Per-decision evidence pack is one API call; retention is policy-controlled."
+            },
+            {
+              "level": 5,
+              "description": "Evidence is generated and signed at decision time; audit views are pre-built for known regulator questions."
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "capability": "Operating model",
+          "question": "Who owns GenAI features in production?",
+          "mapsTo": [
+            {
+              "name": "NIST AI RMF GOVERN-3",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "name": "CNCF Platform Eng Maturity",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "A central 'AI team' that other teams escalate to."
+            },
+            {
+              "level": 2,
+              "description": "One squad runs it; nobody else can touch it."
+            },
+            {
+              "level": 3,
+              "description": "Each owning product squad runs their model; central team advises."
+            },
+            {
+              "level": 4,
+              "description": "Platform team provides golden-path templates; squads run their own evals and rollouts."
+            },
+            {
+              "level": 5,
+              "description": "GenAI is a property the platform provides; squads consume safely without thinking about model ops."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Experimenting",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "You're prototyping. Output quality is hand-checked, governance is implicit, cost is invisible. That's fine — until the first real customer interaction. The single move that matters: pick one use-case and instrument it end-to-end (eval set, traces, cost) before adding a second.",
+          "benchmark": "Menlo Ventures State of GenAI 2024 finds ~60% of enterprises still in pilot/PoC. Median time-to-production: 9+ months. Not ready for EU AI Act high-risk obligations (Aug 2026).",
+          "recommendations": [
+            {
+              "what": "Name one production use-case and one sponsor. Kill the rest until that one ships honestly.",
+              "why": "Pilot proliferation is the #1 cause of GenAI programmes never reaching production.",
+              "tools": "Internal — sponsor + delivery lead alignment.",
+              "constraint": "Saying 'no' to a CFO-favourite PoC is politically expensive but cheaper than failing in production.",
+              "references": [
+                {
+                  "name": "NIST AI RMF GOVERN-1.3",
+                  "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+                }
+              ]
+            },
+            {
+              "what": "Build an eval set of 50+ cases with known-good answers. Run it weekly.",
+              "why": "Without evals, you cannot tell whether a prompt change made things better or worse. Promptfoo is free and good enough to start.",
+              "tools": "Promptfoo · DeepEval · LangSmith · Braintrust · Weights & Biases",
+              "constraint": "Getting subject-matter experts to label 50 cases is the bottleneck, not the tooling.",
+              "references": [
+                {
+                  "name": "NIST AI 600-1 §4",
+                  "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+                }
+              ]
+            },
+            {
+              "what": "Add per-request tracing (prompt + retrieved context + output + cost).",
+              "why": "You cannot debug what you cannot replay. OTel GenAI semconv is stabilising; use it now.",
+              "tools": "LangSmith · Langfuse · Arize Phoenix · Helicone · Honeycomb (with OTel)",
+              "constraint": "PII in prompts may need redaction at log time — design the policy before turning on logging.",
+              "references": [
+                {
+                  "name": "OTel GenAI conventions",
+                  "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Piloting",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "You have something in users' hands. The gap to a defensible production feature is usually three things: evals you trust, guardrails you've tested adversarially, and cost-per-outcome you can defend in a budget review.",
+          "benchmark": "~25% of enterprises (Menlo 2024). One or two use-cases in limited production; governance ad-hoc. Approaching threshold to need ISO/IEC 42001 if selling B2B.",
+          "recommendations": [
+            {
+              "what": "Move prompts into a versioned registry. Tag every production trace with the prompt version.",
+              "why": "Without versioning you cannot attribute regressions or roll back. A prompt is a configuration; treat it like code.",
+              "tools": "LangSmith Prompts · Langfuse Prompts · PromptHub · in-repo .prompt files",
+              "constraint": "Existing inline prompts need migration — start with new features, retrofit lazily.",
+              "references": [
+                {
+                  "name": "NIST AI RMF MEASURE-2.7",
+                  "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+                }
+              ]
+            },
+            {
+              "what": "Add input + output guardrails for the two failure modes you most fear. Test adversarially.",
+              "why": "OWASP LLM01 (prompt injection) and LLM06 (sensitive info disclosure) are the most common production incidents.",
+              "tools": "NVIDIA NeMo Guardrails · Guardrails AI · Lakera Guard · Azure AI Content Safety · AWS Bedrock Guardrails",
+              "constraint": "Guardrail latency adds 50-300ms — design for async where possible.",
+              "references": [
+                {
+                  "name": "OWASP LLM Top 10",
+                  "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+                },
+                {
+                  "name": "MITRE ATLAS",
+                  "url": "https://atlas.mitre.org/"
+                }
+              ]
+            },
+            {
+              "what": "Instrument cost-per-resolved-task. Set a budget. Alert on burn.",
+              "why": "GenAI feature costs scale super-linearly with adoption. Without per-outcome cost, you cannot pace adoption to budget.",
+              "tools": "Helicone · LangSmith · Langfuse · cloud-native (Bedrock cost allocation, OpenAI usage API)",
+              "constraint": "Attributing cost to product features requires tag discipline on every call.",
+              "references": [
+                {
+                  "name": "FinOps for AI WG",
+                  "url": "https://www.finops.org/wg/ai/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Operating",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You're running GenAI like a real service. Evals exist, traces exist, governance exists. The next jump is from 'we measure' to 'the platform enforces' — regression-gated deploys, risk-tiered governance, replayable traces.",
+          "benchmark": "~12% of enterprises operate GenAI as a real service (Menlo 2024). Multiple use-cases, gated evals, real observability. Will pass ISO 42001 readiness review.",
+          "recommendations": [
+            {
+              "what": "Gate deploys on eval regression. Block merges where any critical metric drops.",
+              "why": "Without an enforced gate, evals become a status report rather than a control.",
+              "tools": "GitHub Actions + Promptfoo/Braintrust · Vertex AI Eval · Bedrock Eval",
+              "constraint": "Defining 'critical' regression vs noise is a calibration exercise — expect 2-3 iterations.",
+              "references": [
+                {
+                  "name": "NIST AI RMF MEASURE-2.7",
+                  "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+                }
+              ]
+            },
+            {
+              "what": "Introduce model-routing with a fallback. Cheaper model where quality matches.",
+              "why": "GPT-4-class quality is not needed for all calls. Routing typically buys 30-60% cost reduction without quality loss.",
+              "tools": "OpenRouter · LiteLLM · AWS Bedrock Intelligent Prompt Routing · self-built",
+              "constraint": "Routing decisions need their own eval set — wrong route is worse than no route.",
+              "references": [
+                {
+                  "name": "Anyscale model-routing benchmark",
+                  "url": "https://www.anyscale.com/blog/llm-router-routing-to-the-best-llm-for-any-prompt"
+                }
+              ]
+            },
+            {
+              "what": "Define a risk-tiered governance model — self-service, reviewed, blocked.",
+              "why": "Blanket-review committees become bottlenecks and get routed around. Tiering preserves both speed and rigour.",
+              "tools": "Internal RACI + checklist · ISO 42001 control mapping",
+              "constraint": "Tiering criteria must be objective — 'I think it's high-risk' becomes a fight.",
+              "references": [
+                {
+                  "name": "ISO/IEC 42001",
+                  "url": "https://www.iso.org/standard/81230.html"
+                },
+                {
+                  "name": "AU Voluntary AI Safety Std",
+                  "url": "https://www.industry.gov.au/publications/voluntary-ai-safety-standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Industrialising",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "You're in the top quartile of GenAI delivery. The remaining work is supply-chain (model and prompt provenance), continuous evals in production, and regulator-grade audit evidence — the boring stuff that decides whether you can put the feature in front of an actual customer in a regulated domain.",
+          "benchmark": "~3% of enterprises (Menlo). Conforms to EU AI Act high-risk obligations. ISO 42001 certifiable. Ready for FSI/healthcare/government procurement.",
+          "recommendations": [
+            {
+              "what": "Sign and pin model versions per environment. Make rollback one command.",
+              "why": "Model deprecations and silent updates have caused production outages (Anthropic, OpenAI shipped breaking changes in 2024).",
+              "tools": "Provider version-pinning APIs · GitOps for prompt+model config",
+              "constraint": "Pinned versions reach end-of-life — automate the migration warning.",
+              "references": [
+                {
+                  "name": "OpenAI model deprecations",
+                  "url": "https://platform.openai.com/docs/deprecations"
+                },
+                {
+                  "name": "Anthropic model cards",
+                  "url": "https://docs.anthropic.com/en/docs/about-claude/models"
+                }
+              ]
+            },
+            {
+              "what": "Move evals into production (shadow evals on real traffic). Wire regression alerts into incident channels.",
+              "why": "Pre-deploy evals miss data-drift and adversarial drift. Production evals catch them.",
+              "tools": "Arize Phoenix · LangSmith Online Eval · custom on traces",
+              "constraint": "Shadow eval cost must be budgeted — typically 5-15% of prod traffic cost.",
+              "references": [
+                {
+                  "name": "NIST AI 600-1 §5 (drift)",
+                  "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+                }
+              ]
+            },
+            {
+              "what": "Pre-build the three audit views a regulator would ask for. Test with internal audit first.",
+              "why": "EU AI Act Art.12 requires automatic logging sufficient to reconstruct any output. Build the view once; reuse forever.",
+              "tools": "Internal — derived from traces + eval results + model cards.",
+              "constraint": "Legal owns the regulator-question list — partner early.",
+              "references": [
+                {
+                  "name": "EU AI Act Art.12",
+                  "url": "https://artificialintelligenceact.eu/the-act/"
+                },
+                {
+                  "name": "ISO/IEC 42001 A.6.2.4",
+                  "url": "https://www.iso.org/standard/81230.html"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Platforming",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "GenAI is a property of your platform, not a workstream. Squads consume safely; quality, cost and governance are encoded. The work now is regression discipline.",
+          "benchmark": "Sub-1% of enterprises. Platform-as-product for AI: squads consume safely without thinking about model ops. Reference customers for model providers.",
+          "recommendations": [
+            {
+              "what": "Run quarterly adversarial reviews. Assume one guardrail layer fails; prove the others catch it.",
+              "why": "MITRE ATLAS documents real attacker TTPs against AI systems. Rehearse them.",
+              "tools": "MITRE ATLAS Navigator · Atomic Red Team for AI · internal red team",
+              "constraint": "Production-safe adversarial testing needs the same chaos-engineering discipline as security chaos.",
+              "references": [
+                {
+                  "name": "MITRE ATLAS",
+                  "url": "https://atlas.mitre.org/"
+                }
+              ]
+            },
+            {
+              "what": "Track cost-per-outcome and quality-per-dollar as primary KPIs; let routing tune both.",
+              "why": "Routing decisions tuned for cost-per-outcome (not cost-per-token) align platform incentives with business value.",
+              "tools": "Internal model-routing layer + finance feed.",
+              "constraint": "Quality definition is per use-case — no global quality metric works.",
+              "references": [
+                {
+                  "name": "FinOps for AI",
+                  "url": "https://www.finops.org/wg/ai/"
+                }
+              ]
+            },
+            {
+              "what": "Publish your governance model externally (sanitised). It's how you recruit the next ten AI engineers who care.",
+              "why": "Top AI engineers in 2026 are choosing employers based on responsible-AI maturity, not just compensation.",
+              "tools": "Public model cards · responsible AI report · OpenSSF AI/ML WG contributions",
+              "constraint": "Legal review of every public artefact slows cadence — pre-approve a template.",
+              "references": [
+                {
+                  "name": "OpenSSF AI/ML Security WG",
+                  "url": "https://github.com/ossf/ai-ml-security"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "NIST AI Risk Management Framework 1.0",
+          "description": "The default AI risk taxonomy. GOVERN/MAP/MEASURE/MANAGE; the basis for everything serious.",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        },
+        {
+          "domain": "Framework",
+          "name": "NIST AI 600-1 (GenAI Profile)",
+          "description": "NIST's GenAI-specific companion to AI RMF. Maps risks unique to foundation models.",
+          "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+        },
+        {
+          "domain": "Framework",
+          "name": "ISO/IEC 42001",
+          "description": "International AI management system standard. The first certifiable AI standard.",
+          "url": "https://www.iso.org/standard/81230.html"
+        },
+        {
+          "domain": "Framework",
+          "name": "OWASP LLM Top 10",
+          "description": "Practitioner-grade catalogue of LLM-application vulnerabilities.",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+        },
+        {
+          "domain": "Framework",
+          "name": "MITRE ATLAS",
+          "description": "Adversarial threat-landscape for AI systems. ATT&CK for AI.",
+          "url": "https://atlas.mitre.org/"
+        },
+        {
+          "domain": "Regulation",
+          "name": "EU AI Act",
+          "description": "World's first horizontal AI regulation. High-risk obligations from 2 Aug 2026; general-purpose from Aug 2025.",
+          "url": "https://artificialintelligenceact.eu/the-act/"
+        },
+        {
+          "domain": "Regulation",
+          "name": "AU Voluntary AI Safety Standard",
+          "description": "DISR-published 10 guardrails. Mandatory standard signposted for 2025-26.",
+          "url": "https://www.industry.gov.au/publications/voluntary-ai-safety-standard"
+        },
+        {
+          "domain": "Regulation",
+          "name": "OMB M-24-10",
+          "description": "US federal AI use policy. Risk management, transparency, accountability for agency AI.",
+          "url": "https://www.whitehouse.gov/wp-content/uploads/2024/03/M-24-10-Advancing-Governance-Innovation-and-Risk-Management-for-Agency-Use-of-Artificial-Intelligence.pdf"
+        },
+        {
+          "domain": "Regulation",
+          "name": "DTA Policy for Responsible AI (AU Gov)",
+          "description": "Transparency statements + accountability officer required from 1 Sep 2024.",
+          "url": "https://www.digital.gov.au/policy/ai-in-government/policy-implementation"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "Menlo State of GenAI 2024",
+          "description": "Quantitative state-of-deployment across 600+ enterprises.",
+          "url": "https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "Stanford HELM",
+          "description": "Holistic Evaluation of Language Models — academic-grade benchmarking.",
+          "url": "https://crfm.stanford.edu/helm/"
+        },
+        {
+          "domain": "Observability",
+          "name": "OpenTelemetry GenAI semantic conventions",
+          "description": "Standard schema for AI observability. Adopt now to avoid migration later.",
+          "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+        },
+        {
+          "domain": "FinOps",
+          "name": "FinOps Foundation AI Working Group",
+          "description": "Reference body for cost discipline on GenAI workloads.",
+          "url": "https://www.finops.org/wg/ai/"
+        }
+      ]
+    },
+    {
+      "id": "sre-programme",
+      "title": "SRE Programme Diagnostic",
+      "url": "https://hellouchit.com/tools/sre-programme.html",
+      "capabilityCount": 10,
+      "maxScore": 50,
+      "resultUrlFormat": "https://hellouchit.com/tools/sre-programme.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For SaaS, SRE is the difference between SLA credits and customer retention. Customers see your status page; investors see your incident postmortems. SLOs, error budgets and postmortems are differentiators."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, APRA CPS 230 + EU DORA require operational-resilience evidence: documented runbooks, tested chaos, tracked MTTR. Blast radius, runbooks and chaos / game-days are auditable controls."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "For Aus gov, ISM PROTECT incident-response controls + agency BCP. Postmortems, capacity planning and golden signals all attract scrutiny."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "For health, outages affect patient care. Blast radius (clinical vs corporate isolation) and runbooks are clinically critical. Chaos engineering is bounded by patient safety."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, peak-event SRE is its own discipline (war rooms, game-days, capacity stress tests). Capacity planning and chaos are peak-event prerequisites."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "In critical infrastructure, resilience is regulator-tracked (SOCI Act RMP, NERC CIP). Blast radius, runbooks, chaos and postmortems are statutory."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "SLOs / SLIs",
+          "question": "Do your services have SLOs that match what users experience?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Workbook Ch.2",
+              "url": "https://sre.google/workbook/table-of-contents/"
+            },
+            {
+              "name": "NIST SP 800-160 V2 §3.2",
+              "url": "https://csrc.nist.gov/publications/detail/sp/800-160/vol-2-rev-1/final"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No SLOs — uptime is the proxy."
+            },
+            {
+              "level": 2,
+              "description": "SLOs on some services; measured from infra, not user journey."
+            },
+            {
+              "level": 3,
+              "description": "User-journey SLOs on critical services; reviewed quarterly."
+            },
+            {
+              "level": 4,
+              "description": "SLOs on every customer-facing service; alerted against, owned by squad."
+            },
+            {
+              "level": 5,
+              "description": "SLOs are the contract — used in trade-off decisions; SLIs measured from the user's perspective."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Error budgets",
+          "question": "What happens when a service burns its error budget?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Workbook Ch.3",
+              "url": "https://sre.google/workbook/table-of-contents/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Nothing — error budgets are an idea, not a practice."
+            },
+            {
+              "level": 2,
+              "description": "We discuss; rarely act."
+            },
+            {
+              "level": 3,
+              "description": "Engineering slows feature work until burn rate recovers."
+            },
+            {
+              "level": 4,
+              "description": "Budget burn auto-pauses risky changes; reliability work prioritised."
+            },
+            {
+              "level": 5,
+              "description": "Error budget is enforced by policy — feature freeze or change-velocity reduction is automatic."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "Blast radius",
+          "question": "When something fails, how contained is it?",
+          "mapsTo": [
+            {
+              "name": "AWS Cell-based architecture",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-fault-isolation/reducing-scope-of-impact-with-fault-isolation.html"
+            },
+            {
+              "name": "NIST SP 800-160 V2 §3.3",
+              "url": "https://csrc.nist.gov/publications/detail/sp/800-160/vol-2-rev-1/final"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "A failure in one place can take down the whole platform."
+            },
+            {
+              "level": 2,
+              "description": "Some isolation; not consistently applied."
+            },
+            {
+              "level": 3,
+              "description": "Most services isolated by region / cell / tenant."
+            },
+            {
+              "level": 4,
+              "description": "Cell-based architecture for critical paths; blast-radius known and rehearsed."
+            },
+            {
+              "level": 5,
+              "description": "Blast-radius is a first-class design constraint — every new service ships with a documented blast-radius and rehearsal."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "On-call hygiene",
+          "question": "What's on-call like to be on?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Book Ch.11",
+              "url": "https://sre.google/sre-book/table-of-contents/"
+            },
+            {
+              "name": "PagerDuty Ops Report",
+              "url": "https://www.pagerduty.com/state-of-digital-operations/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Brutal. People dread it. Burnout drives turnover."
+            },
+            {
+              "level": 2,
+              "description": "Survivable but noisy. Many alerts are noise."
+            },
+            {
+              "level": 3,
+              "description": "Manageable. Some good runbooks; mostly actionable alerts."
+            },
+            {
+              "level": 4,
+              "description": "Healthy. Pager load tracked; tuning happens; on-call comp pays for itself."
+            },
+            {
+              "level": 5,
+              "description": "Pager load is a tracked KPI. Anything above threshold triggers reliability work, not toughness."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Postmortems",
+          "question": "What happens after an incident?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Book Ch.15",
+              "url": "https://sre.google/sre-book/table-of-contents/"
+            },
+            {
+              "name": "Etsy Debriefing Facilitator's Guide",
+              "url": "https://extfiles.etsy.com/DebriefingFacilitationGuide.pdf"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Blame and finger-pointing; we move on."
+            },
+            {
+              "level": 2,
+              "description": "A doc gets written; rarely read."
+            },
+            {
+              "level": 3,
+              "description": "Blameless postmortems; action items tracked."
+            },
+            {
+              "level": 4,
+              "description": "Action items closed within SLA; trends reviewed quarterly."
+            },
+            {
+              "level": 5,
+              "description": "Postmortems drive platform changes; recurrence rate of past failure modes is a tracked KPI."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Runbooks",
+          "question": "When a new on-call gets paged at 3am, do they have what they need?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Workbook Ch.12",
+              "url": "https://sre.google/workbook/table-of-contents/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "A wiki link that doesn't work."
+            },
+            {
+              "level": 2,
+              "description": "An outdated runbook from someone who left."
+            },
+            {
+              "level": 3,
+              "description": "Runbooks exist; quality varies by service."
+            },
+            {
+              "level": 4,
+              "description": "Runbooks per service; tested in game-days; updated after each incident."
+            },
+            {
+              "level": 5,
+              "description": "Runbooks are living artefacts — linked from alerts, tested quarterly, deprecated when irrelevant."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Chaos / game-days",
+          "question": "Do you actively test resilience?",
+          "mapsTo": [
+            {
+              "name": "Principles of Chaos Engineering",
+              "url": "https://principlesofchaos.org/"
+            },
+            {
+              "name": "Netflix Chaos Monkey",
+              "url": "https://netflixtechblog.com/the-netflix-simian-army-16e57fbab116"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — we hope failure scenarios are rare."
+            },
+            {
+              "level": 2,
+              "description": "Occasional game-days when leadership pushes."
+            },
+            {
+              "level": 3,
+              "description": "Quarterly game-days for critical services."
+            },
+            {
+              "level": 4,
+              "description": "Continuous chaos engineering — failure injection in pre-prod, planned in prod."
+            },
+            {
+              "level": 5,
+              "description": "Chaos is integrated — every new service ships with a 'how does this fail?' test as part of CI."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Capacity planning",
+          "question": "How do you decide when to scale?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Book Ch.18",
+              "url": "https://sre.google/sre-book/table-of-contents/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "When something breaks."
+            },
+            {
+              "level": 2,
+              "description": "Reactively, when monitoring screams."
+            },
+            {
+              "level": 3,
+              "description": "Capacity reviewed quarterly; rough headroom targets."
+            },
+            {
+              "level": 4,
+              "description": "Capacity modelled per service; auto-scaling tuned; load tests inform."
+            },
+            {
+              "level": 5,
+              "description": "Capacity is a tracked SLO — headroom, growth, cost trade-off reviewed monthly with owners."
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "capability": "Toil tracking",
+          "question": "Do you know how much repetitive operational work the team does?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Book Ch.5",
+              "url": "https://sre.google/sre-book/table-of-contents/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — toil is invisible."
+            },
+            {
+              "level": 2,
+              "description": "Anecdotally; the team complains."
+            },
+            {
+              "level": 3,
+              "description": "Toil is named; some tracking; engineering allocates time to reduce it."
+            },
+            {
+              "level": 4,
+              "description": "Toil tracked per quarter; <50% target; investment in automation funded."
+            },
+            {
+              "level": 5,
+              "description": "Toil is a primary metric — reductions reported alongside features; team capacity model accounts for it."
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "capability": "Golden signals",
+          "question": "Do all your critical services expose the four golden signals (latency, traffic, errors, saturation)?",
+          "mapsTo": [
+            {
+              "name": "Google SRE Book Ch.6",
+              "url": "https://sre.google/sre-book/table-of-contents/"
+            },
+            {
+              "name": "OpenTelemetry",
+              "url": "https://opentelemetry.io/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Inconsistent — some services have rich telemetry; others have nothing."
+            },
+            {
+              "level": 2,
+              "description": "Most have some; quality varies."
+            },
+            {
+              "level": 3,
+              "description": "Golden signals on critical paths; dashboards exist."
+            },
+            {
+              "level": 4,
+              "description": "Inherited from the platform template; default dashboards per service."
+            },
+            {
+              "level": 5,
+              "description": "Golden signals are a platform contract — every service has them, every alert references them, every postmortem cites them."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Heroic",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "Reliability depends on individuals. Pager load is high; turnover follows; institutional knowledge walks. The first lever is reducing noise — make alerts mean something, and on-call rotations become survivable.",
+          "benchmark": "DORA 2024: bottom-cluster MTTR > 24h, change-fail rate > 45%. Pager-load typically 5-10× sustainable threshold (PagerDuty data).",
+          "recommendations": [
+            {
+              "what": "Audit the last month of alerts. Mute, delete or fix the noisy ones. Aim for >70% actionable.",
+              "why": "Alert fatigue is the leading cause of on-call burnout. PagerDuty data shows actionable rate is the strongest predictor of incident response.",
+              "tools": "Datadog / Grafana alert hygiene reports · PagerDuty Analytics · Squadcast",
+              "constraint": "Muting alerts requires confidence they won't matter — pair with on-call reviews.",
+              "references": [
+                {
+                  "name": "PagerDuty State of Digital Ops",
+                  "url": "https://www.pagerduty.com/state-of-digital-operations/"
+                }
+              ]
+            },
+            {
+              "what": "Pick one critical service. Define one SLO from the user's journey. Alert on burn rate, not infra.",
+              "why": "User-journey SLOs change behaviour; infra metrics rarely do. Google SRE: Alerting on SLOs is the canonical pattern.",
+              "tools": "Prometheus + Grafana · Datadog SLOs · Honeycomb · Nobl9 · Lightstep",
+              "constraint": "Defining the user journey requires product partnership.",
+              "references": [
+                {
+                  "name": "Google SRE Workbook Ch.5",
+                  "url": "https://sre.google/workbook/table-of-contents/"
+                }
+              ]
+            },
+            {
+              "what": "Run one blameless postmortem on the next incident. Don't ask 'who'; ask 'what about the system?'.",
+              "why": "Etsy's Debriefing Facilitator's Guide is the canonical instrument. Sets a cultural floor.",
+              "tools": "Internal postmortem template · facilitated by a third party first time",
+              "constraint": "Requires leadership commitment not to punish honest reporting.",
+              "references": [
+                {
+                  "name": "Google SRE Book Ch.15",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Operational",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "You have practices, but not yet discipline. The win is making error budgets real — a number that actually changes what the team does next.",
+          "benchmark": "DORA \"Medium\" cluster: MTTR hours to a day; change-fail 16-30%. Practices exist; rigour is inconsistent.",
+          "recommendations": [
+            {
+              "what": "Define error budgets for the top three services. Agree what 'budget exhausted' triggers.",
+              "why": "Google SRE: Error Budget Policy is the canonical template.",
+              "tools": "Nobl9 · Datadog SLOs · OpenSLO · internal policy doc",
+              "constraint": "Product partnership essential — freezing features without their buy-in fails.",
+              "references": [
+                {
+                  "name": "Error Budget Policy",
+                  "url": "https://sre.google/workbook/error-budget-policy/"
+                }
+              ]
+            },
+            {
+              "what": "Track toil. Aim for <50% of team time. Fund the automation that gets you there.",
+              "why": "Google SRE: Eliminating Toil — the canonical 50% bound.",
+              "tools": "Internal toil tracker · sprint-level categorisation · annual toil survey",
+              "constraint": "Toil definition is contested — agree the taxonomy first.",
+              "references": [
+                {
+                  "name": "Google SRE Book Ch.5",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                }
+              ]
+            },
+            {
+              "what": "Build runbooks for the top 10 alert types. Test one in a game-day this quarter.",
+              "why": "Tested runbooks beat written runbooks. Google SRE identifies runbook testing as a defining mature-team practice.",
+              "tools": "In-repo runbooks (Markdown) · Notion/Confluence · automated runbook execution (Fabric, Rundeck)",
+              "constraint": "Runbooks decay — assign ownership for refresh.",
+              "references": [
+                {
+                  "name": "Google SRE Workbook Ch.12",
+                  "url": "https://sre.google/workbook/table-of-contents/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Disciplined",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You have a real SRE programme. SLOs, postmortems, runbooks all exist; the jump is from 'practice' to 'platform' — golden signals inherited by default, blast-radius as a design constraint, chaos engineering as a habit.",
+          "benchmark": "DORA \"High\" cluster: MTTR < 1 day; change-fail < 16%; deploy weekly. SLOs and postmortems are routine.",
+          "recommendations": [
+            {
+              "what": "Make golden signals inherited by every new service. Stop relying on teams to remember.",
+              "why": "Inherited defaults dominate opted-in practice in adoption data.",
+              "tools": "OpenTelemetry default instrumentation · platform template wiring · Grafana dashboards from labels",
+              "constraint": "Legacy services need migration plan; start with new builds.",
+              "references": [
+                {
+                  "name": "Google SRE Book Ch.6",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                },
+                {
+                  "name": "OpenTelemetry",
+                  "url": "https://opentelemetry.io/"
+                }
+              ]
+            },
+            {
+              "what": "Adopt cell-based / region-isolated architecture for at least the top two services. Rehearse blast-radius.",
+              "why": "AWS guidance on cell-based architecture is the canonical pattern.",
+              "tools": "AWS cell-based architecture · multi-tenant cell routers · NIST SP 800-160 V2 patterns",
+              "constraint": "Cell isolation has cost overhead (1.4-1.8×) — design tier accordingly.",
+              "references": [
+                {
+                  "name": "AWS WAF Cell-based",
+                  "url": "https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-fault-isolation/reducing-scope-of-impact-with-fault-isolation.html"
+                }
+              ]
+            },
+            {
+              "what": "Run quarterly game-days. Make failure rehearsal as normal as code review.",
+              "why": "Principles of Chaos applies to availability the way pen-tests apply to security.",
+              "tools": "Gremlin · Chaos Mesh · LitmusChaos · AWS FIS · internal game-day cadence",
+              "constraint": "Production-safe chaos needs co-design with platform & security.",
+              "references": [
+                {
+                  "name": "Principles of Chaos",
+                  "url": "https://principlesofchaos.org/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Engineered",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "Reliability is engineered, not heroic. The remaining gap is usually toil and capacity discipline — keeping ops investment honest as scale grows.",
+          "benchmark": "DORA \"Elite\" cluster: deploy multi-daily; MTTR < 1 hour; change-fail < 5%. Top quartile globally.",
+          "recommendations": [
+            {
+              "what": "Set a quarterly toil-reduction target. Report it alongside feature delivery.",
+              "why": "Toil reduction reported as a feature is what protects platform-engineering investment.",
+              "tools": "Internal toil dashboard + platform roadmap",
+              "constraint": "Reduction requires investment; trade-off transparent with leadership.",
+              "references": [
+                {
+                  "name": "Google SRE Book Ch.5",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                }
+              ]
+            },
+            {
+              "what": "Make capacity planning data-driven — headroom, growth, cost — owned by service teams, reviewed monthly.",
+              "why": "Centralised capacity planning becomes a bottleneck; teams own the trade-off.",
+              "tools": "Internal capacity dashboards + cost feed · Auto-scaling policies as code",
+              "constraint": "Requires teams to predict growth — partner with product on forecasts.",
+              "references": [
+                {
+                  "name": "Google SRE Book Ch.18",
+                  "url": "https://sre.google/sre-book/table-of-contents/"
+                }
+              ]
+            },
+            {
+              "what": "Move chaos from quarterly to continuous in pre-prod, planned in prod.",
+              "why": "Quarterly chaos misses drift between cycles; continuous catches it.",
+              "tools": "AWS FIS · Gremlin · Chaos Mesh · LitmusChaos · internal failure injection in CI",
+              "constraint": "Continuous prod chaos requires mature on-call & blast-radius discipline.",
+              "references": [
+                {
+                  "name": "Principles of Chaos",
+                  "url": "https://principlesofchaos.org/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Property",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "Reliability is a property of how you build. Pager is calm; budgets are real; failure modes are rehearsed; toil is named and shrinking. The work now is regression discipline as AI workloads, regulatory shifts and platform changes try to erode it.",
+          "benchmark": "Sub-2% of orgs. Reliability is a platform property. Reference customers for SRE platforms. Published incident reports build trust.",
+          "recommendations": [
+            {
+              "what": "Add AI-workload SLOs (cost-per-outcome, latency, accuracy) before squads invent their own.",
+              "why": "AI workload reliability is not just availability — quality and cost are co-equal SLO axes.",
+              "tools": "Internal AI-SLO definitions · LangSmith / Arize Phoenix production metrics · OpenTelemetry GenAI semconv",
+              "constraint": "Frameworks for AI SLOs still maturing — expect quarterly refresh.",
+              "references": [
+                {
+                  "name": "OTel GenAI conventions",
+                  "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+                }
+              ]
+            },
+            {
+              "what": "Run quarterly resilience-debt reviews — what failure modes have we not yet rehearsed?",
+              "why": "Resilience debt accumulates silently; reviews surface it.",
+              "tools": "Internal review cadence + chaos catalog + ATT&CK-style failure-mode register",
+              "constraint": "Reviews need cross-functional sponsors to act on findings.",
+              "references": [
+                {
+                  "name": "NIST SP 800-160 V2",
+                  "url": "https://csrc.nist.gov/publications/detail/sp/800-160/vol-2-rev-1/final"
+                }
+              ]
+            },
+            {
+              "what": "Externalise your SRE operating model. Recruit the next ten SREs.",
+              "why": "SRE talent is scarce; published practice attracts.",
+              "tools": "Conference talks (SREcon) · public postmortems · open-sourced internal tooling",
+              "constraint": "Legal review of public artefacts slows cadence.",
+              "references": [
+                {
+                  "name": "SREcon",
+                  "url": "https://www.usenix.org/srecon"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "Google SRE Book (1st edition)",
+          "description": "The foundational SRE text. SLOs, error budgets, postmortems, capacity planning.",
+          "url": "https://sre.google/sre-book/table-of-contents/"
+        },
+        {
+          "domain": "Framework",
+          "name": "Google SRE Workbook (2nd)",
+          "description": "Practical companion: alerting, incident response, on-call.",
+          "url": "https://sre.google/workbook/table-of-contents/"
+        },
+        {
+          "domain": "Standard",
+          "name": "ISO/IEC 20000-1:2018",
+          "description": "International service-management standard. The audit-readable version of SRE for regulated industries.",
+          "url": "https://www.iso.org/standard/70636.html"
+        },
+        {
+          "domain": "Standard",
+          "name": "NIST SP 800-160 V2 Rev 1 (Systems Security & Resilience)",
+          "description": "NIST guidance on systems resilience engineering.",
+          "url": "https://csrc.nist.gov/publications/detail/sp/800-160/vol-2-rev-1/final"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "DORA Accelerate State of DevOps 2024",
+          "description": "Reference dataset for delivery + reliability benchmarking.",
+          "url": "https://dora.community/research/2024/"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "PagerDuty State of Digital Operations",
+          "description": "Annual operational-metrics data: pager-load, MTTR, response rates.",
+          "url": "https://www.pagerduty.com/state-of-digital-operations/"
+        },
+        {
+          "domain": "Practice",
+          "name": "Principles of Chaos Engineering",
+          "description": "The canonical short doc. Apply chaos with discipline.",
+          "url": "https://principlesofchaos.org/"
+        },
+        {
+          "domain": "Practice",
+          "name": "Etsy Debriefing Facilitator's Guide",
+          "description": "Practitioner-grade postmortem facilitation guide. Free, applied, tested.",
+          "url": "https://extfiles.etsy.com/DebriefingFacilitationGuide.pdf"
+        },
+        {
+          "domain": "Tooling",
+          "name": "OpenTelemetry",
+          "description": "CNCF graduated observability standard. The substrate for golden signals.",
+          "url": "https://opentelemetry.io/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "Nobl9 / OpenSLO",
+          "description": "SLO-as-code platforms. Vendor + OSS equivalents for managing SLOs.",
+          "url": "https://www.nobl9.com/"
+        },
+        {
+          "domain": "Community",
+          "name": "SREcon (USENIX)",
+          "description": "The reference community + conference for the practice.",
+          "url": "https://www.usenix.org/srecon"
+        }
+      ]
+    },
+    {
+      "id": "cloud-cost",
+      "title": "Cloud Cost Diagnostic",
+      "url": "https://hellouchit.com/tools/cloud-cost.html",
+      "capabilityCount": 8,
+      "maxScore": 40,
+      "resultUrlFormat": "https://hellouchit.com/tools/cloud-cost.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For SaaS, cloud is COGS — gross margin compresses linearly with poor cost discipline. Rule of 40 investors will mark you down. Watch rightsizing, commitments and cost observability hardest. FOCUS billing schema is the new portability baseline."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, cloud cost is a board-reported KPI. APRA CPS 230 names cost concentration as material operational risk. Ownership, governance and egress are scrutinised; long-term commitments may need credit-risk treatment."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "Government cloud spend is publicly visible (e.g. DTA Whole-of-Govt Cloud). Idle waste and tagging discipline are the easiest wins; political reputational risk on overspend is high."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "In healthcare, regulated workloads (PHI/EMR) carry data-residency premiums. Storage tiering on retention-bound clinical data is the largest savings lever; egress on imaging is the largest risk."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, peak-event cost (Black Friday, EOFY) dwarfs steady-state. Commitments sized to off-peak; on-demand or spot for surge. Egress on rich media is the silent cost."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "For critical infrastructure, resilience overrides cost — multi-region active-active drives cost up 1.8-2.2×. Ownership and governance are the controls; rightsizing is bounded by performance/resilience floors."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "Rightsizing",
+          "question": "How are compute and database sizes set?",
+          "mapsTo": [
+            {
+              "name": "AWS WAF COST05-BP02",
+              "url": "https://aws.amazon.com/architecture/well-architected/"
+            },
+            {
+              "name": "Azure Advisor",
+              "url": "https://learn.microsoft.com/en-us/azure/advisor/advisor-overview"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Whatever was provisioned originally — rarely changed."
+            },
+            {
+              "level": 2,
+              "description": "Manual reviews when someone complains about the bill."
+            },
+            {
+              "level": 3,
+              "description": "Periodic rightsizing recommendations reviewed quarterly."
+            },
+            {
+              "level": 4,
+              "description": "Automated rightsizing suggestions actioned monthly with owner sign-off."
+            },
+            {
+              "level": 5,
+              "description": "Workloads continuously rightsized; idle capacity scaled down automatically."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Commitments",
+          "question": "How well does commitment coverage match steady-state usage?",
+          "mapsTo": [
+            {
+              "name": "FinOps: Commitment Mgmt",
+              "url": "https://www.finops.org/framework/"
+            },
+            {
+              "name": "AWS Savings Plans",
+              "url": "https://aws.amazon.com/savingsplans/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No reservations / savings plans."
+            },
+            {
+              "level": 2,
+              "description": "Some commitments, set long ago, not reviewed."
+            },
+            {
+              "level": 3,
+              "description": "Coverage targets exist; reviewed annually."
+            },
+            {
+              "level": 4,
+              "description": "Coverage 70-90% of steady-state; reviewed quarterly."
+            },
+            {
+              "level": 5,
+              "description": "Commitment portfolio actively managed — laddered terms, family flexibility, monthly rebalancing."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "Storage tiering",
+          "question": "How is storage cost managed?",
+          "mapsTo": [
+            {
+              "name": "AWS S3 lifecycle",
+              "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html"
+            },
+            {
+              "name": "Azure Storage tiers",
+              "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Everything sits on default hot tier; nothing deleted."
+            },
+            {
+              "level": 2,
+              "description": "Some manual archival; retention rules are folklore."
+            },
+            {
+              "level": 3,
+              "description": "Lifecycle policies on the obvious buckets / datasets."
+            },
+            {
+              "level": 4,
+              "description": "Tiering driven by access patterns; retention policies enforced by IaC."
+            },
+            {
+              "level": 5,
+              "description": "Storage tiers, retention and deletion are policy-as-code; cost-per-byte tracked per data domain."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "Egress / networking",
+          "question": "Do you know what your network egress costs?",
+          "mapsTo": [
+            {
+              "name": "AWS WAF COST07-BP04",
+              "url": "https://aws.amazon.com/architecture/well-architected/"
+            },
+            {
+              "name": "Cloudflare Bandwidth Alliance",
+              "url": "https://www.cloudflare.com/bandwidth-alliance/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No idea. Egress is a mystery line item."
+            },
+            {
+              "level": 2,
+              "description": "Aggregate egress visible; not attributed."
+            },
+            {
+              "level": 3,
+              "description": "Egress attributed to services; top offenders known."
+            },
+            {
+              "level": 4,
+              "description": "Cross-AZ / region egress reviewed in design; caching used to cut it."
+            },
+            {
+              "level": 5,
+              "description": "Architecture-level egress targets per service; PR review flags egress-heavy patterns."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Idle waste",
+          "question": "How much idle / orphaned resource is in your account?",
+          "mapsTo": [
+            {
+              "name": "FinOps Waste Reduction",
+              "url": "https://www.finops.org/framework/"
+            },
+            {
+              "name": "AWS Trusted Advisor",
+              "url": "https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Unknown — and nobody owns finding out."
+            },
+            {
+              "level": 2,
+              "description": "Spot-checks find significant idle; no systematic sweep."
+            },
+            {
+              "level": 3,
+              "description": "Weekly scans for unattached disks, idle DBs, stale snapshots; flagged."
+            },
+            {
+              "level": 4,
+              "description": "Idle detected, auto-quarantined, deleted after grace period with owner approval."
+            },
+            {
+              "level": 5,
+              "description": "Ephemeral by default — long-lived resources are the exception and require justification."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Cost observability",
+          "question": "Can a service team see their own cost daily?",
+          "mapsTo": [
+            {
+              "name": "FOCUS billing schema",
+              "url": "https://focus.finops.org/"
+            },
+            {
+              "name": "OpenCost",
+              "url": "https://www.opencost.io/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — finance gets the bill monthly."
+            },
+            {
+              "level": 2,
+              "description": "Aggregate cost visible to engineering leadership only."
+            },
+            {
+              "level": 3,
+              "description": "Per-team cost dashboards exist; engineers don't look at them."
+            },
+            {
+              "level": 4,
+              "description": "Per-service cost shown in the developer portal next to ops metrics."
+            },
+            {
+              "level": 5,
+              "description": "Cost is a first-class metric — anomalies alert in the same channels as SLO breaches."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Ownership",
+          "question": "When a service's cost spikes 30%, who notices and acts?",
+          "mapsTo": [
+            {
+              "name": "FinOps Personas",
+              "url": "https://www.finops.org/framework/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Nobody until finance escalates."
+            },
+            {
+              "level": 2,
+              "description": "Finance opens a ticket; engineering investigates if free."
+            },
+            {
+              "level": 3,
+              "description": "Service owner is named and notified; expected to respond."
+            },
+            {
+              "level": 4,
+              "description": "Auto-alert to owner; postmortem if not resolved in 48h."
+            },
+            {
+              "level": 5,
+              "description": "Cost regression is treated like a reliability regression — owner-led, time-bound, documented."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Governance",
+          "question": "How are new spend-shape decisions made?",
+          "mapsTo": [
+            {
+              "name": "FinOps Policy & Governance",
+              "url": "https://www.finops.org/framework/"
+            },
+            {
+              "name": "ISO/IEC 38505-1",
+              "url": "https://www.iso.org/standard/56639.html"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Whoever provisions decides."
+            },
+            {
+              "level": 2,
+              "description": "Tags exist; nobody enforces them."
+            },
+            {
+              "level": 3,
+              "description": "Tagging policy + budgets per cost-centre; reviewed quarterly."
+            },
+            {
+              "level": 4,
+              "description": "Budget alerts wired to owners; over-budget blocks new provisioning."
+            },
+            {
+              "level": 5,
+              "description": "Spend shape is encoded — IaC modules embed cost guardrails; finance reviews trends, not transactions."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Unmanaged",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "Cost is happening to you. Bills arrive; finance worries; engineering hopes. The first win is visibility — the moment a service team can see its own cost, behaviour changes without any policy.",
+          "benchmark": "FinOps State of FinOps 2024: ~13% of orgs have no formal practice. Typical avoidable spend: 20-35% of total cloud bill.",
+          "recommendations": [
+            {
+              "what": "Tag everything by service and environment. Enforce in IaC, not in policy docs.",
+              "why": "Without tags you cannot attribute. Without attribution you cannot improve.",
+              "tools": "AWS Tag Policies · Azure Policy · GCP Org Policy · Terraform default_tags",
+              "constraint": "Retroactive tagging of long-lived resources can require recreation.",
+              "references": [
+                {
+                  "name": "AWS Tag Policies",
+                  "url": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html"
+                }
+              ]
+            },
+            {
+              "what": "Wire one per-service cost view into engineering's daily view (Slack, dev portal).",
+              "why": "FinOps research identifies visibility as the highest-leverage first move.",
+              "tools": "OpenCost · Kubecost · CloudHealth · Vantage · CloudZero",
+              "constraint": "Engineers ignore static dashboards — push notifications into their existing flow.",
+              "references": [
+                {
+                  "name": "FinOps Framework",
+                  "url": "https://www.finops.org/framework/"
+                }
+              ]
+            },
+            {
+              "what": "Sweep for obvious idle: unattached disks, orphaned snapshots, dev environments running 24×7.",
+              "why": "Typically 5-15% of cloud bill on day one.",
+              "tools": "AWS Trusted Advisor · Azure Advisor · GCP Recommender · Cloud Custodian · Komiser",
+              "constraint": "'Idle' is not 'unused' — confirm with owners before deletion.",
+              "references": [
+                {
+                  "name": "AWS Trusted Advisor",
+                  "url": "https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Aware",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "You see the bill; you don't yet control it. Coverage of commitments and lifecycle policies typically buy 15-30% before any architectural work.",
+          "benchmark": "~42% of orgs at this stage (FinOps 2024). Typical realised savings YoY: 5-12%.",
+          "recommendations": [
+            {
+              "what": "Put commitment coverage on a target (70%+ of steady-state). Review quarterly.",
+              "why": "Savings Plans / RIs are the single highest-leverage discount lever. Coverage > 70% typically buys 15-25% on covered usage.",
+              "tools": "AWS Savings Plans · Azure Reservations · GCP Committed Use Discounts · ProsperOps · Spot.io Eco",
+              "constraint": "3-year terms reduce flexibility — model headroom for divestiture and tech refresh.",
+              "references": [
+                {
+                  "name": "AWS Savings Plans",
+                  "url": "https://aws.amazon.com/savingsplans/"
+                }
+              ]
+            },
+            {
+              "what": "Set lifecycle policies on top three storage targets. Measure cost-per-GB before/after.",
+              "why": "Most enterprise storage spend sits on hot tier for objects accessed once a year.",
+              "tools": "AWS S3 Intelligent-Tiering · Azure Blob lifecycle · GCS Object Lifecycle Management",
+              "constraint": "Intelligent-tiering has monitoring cost — model breakeven at object count.",
+              "references": [
+                {
+                  "name": "S3 Storage Classes",
+                  "url": "https://aws.amazon.com/s3/storage-classes/"
+                }
+              ]
+            },
+            {
+              "what": "Name an owner for every service's spend. Cost regressions get a ticket, like incidents.",
+              "why": "Unowned cost is unimprovable cost.",
+              "tools": "Service catalogue (Backstage / Cortex) + Cost Explorer / Vantage feeds",
+              "constraint": "Some shared platform costs are genuinely unattributable — define an allocation key honestly.",
+              "references": [
+                {
+                  "name": "FinOps Personas & Roles",
+                  "url": "https://www.finops.org/framework/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Controlled",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You have FinOps in name and partly in practice. The remaining gap is usually idle waste and egress — both architectural. From here, move cost out of finance's report and into the engineer's PR review.",
+          "benchmark": "~30% of orgs (FinOps 2024). FinOps team funded; CFO visibility; trend lines.",
+          "recommendations": [
+            {
+              "what": "Audit egress by service; pick the worst and fix it with caching or co-location.",
+              "why": "Egress is the most-overlooked cost line. AZ/region/internet egress all charge differently.",
+              "tools": "Cloudflare R2 (egress-free) · AWS CloudFront · GCP Cloud CDN · Bandwidth Alliance partners",
+              "constraint": "Architectural changes to reduce egress can affect latency budgets.",
+              "references": [
+                {
+                  "name": "AWS Egress costs explained",
+                  "url": "https://aws.amazon.com/blogs/architecture/overview-of-data-transfer-costs-for-common-architectures/"
+                }
+              ]
+            },
+            {
+              "what": "Quarantine idle automatically (with owner notify + grace period).",
+              "why": "Eliminates the political debate. Owners reactivate within grace if needed.",
+              "tools": "Cloud Custodian · AWS Instance Scheduler · Azure Automation · GCP Cloud Scheduler + Functions",
+              "constraint": "Production needs stricter quarantine criteria than dev — separate policies.",
+              "references": [
+                {
+                  "name": "Cloud Custodian",
+                  "url": "https://cloudcustodian.io/"
+                }
+              ]
+            },
+            {
+              "what": "Add cost-impact estimation to design reviews. Make it as normal as a security review.",
+              "why": "Catching cost in design is 10-100× cheaper than catching it in prod.",
+              "tools": "Infracost · AWS Pricing Calculator · Azure / GCP Pricing Calculators",
+              "constraint": "Estimates are wrong by 20-40% for new workloads — flag as ranges, not numbers.",
+              "references": [
+                {
+                  "name": "Infracost",
+                  "url": "https://www.infracost.io/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Optimised",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "FinOps is operating well. The remaining work is platform-level: making the cheap choice the default through IaC modules and developer portal patterns.",
+          "benchmark": "~12% of orgs (FinOps \"Run\"). Realised savings 20-35% from baseline. Cost is a tracked product metric.",
+          "recommendations": [
+            {
+              "what": "Bake cost guardrails into the IaC modules engineers use. Make the cheap option the default.",
+              "why": "Defaults beat policies. If the Terraform module produces cost-optimal config without thinking, that's what teams ship.",
+              "tools": "Internal Terraform/Pulumi modules · OPA / Sentinel policies · Atmos · Backstage Scaffolder",
+              "constraint": "Module changes require a migration story for live services.",
+              "references": [
+                {
+                  "name": "AWS WAF Cost Pillar BP",
+                  "url": "https://aws.amazon.com/architecture/well-architected/"
+                }
+              ]
+            },
+            {
+              "what": "Push cost-per-outcome (per transaction, per user) into product metrics.",
+              "why": "Engineering dollar measures are abstract; product cost-per-outcome changes priorities.",
+              "tools": "Internal product analytics + cost-attribution feed",
+              "constraint": "Joining business metrics to cloud bills requires either FOCUS-compliant data or significant data work.",
+              "references": [
+                {
+                  "name": "FOCUS billing schema",
+                  "url": "https://focus.finops.org/"
+                }
+              ]
+            },
+            {
+              "what": "Run quarterly architecture reviews on top-5 services for spend efficiency.",
+              "why": "Architecture changes (caching, queueing, batch consolidation) buy 30-60% on individual services.",
+              "tools": "Internal cadence + external benchmark from FinOps State data",
+              "constraint": "Architecture work takes quarters, not sprints — sequence carefully.",
+              "references": [
+                {
+                  "name": "FinOps State of FinOps",
+                  "url": "https://data.finops.org/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Engineered",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "Cost is a property of your platform. The work now is regression discipline and second-order optimisation — AI workloads, data egress shifts, multi-cloud arbitrage.",
+          "benchmark": "~3% of orgs operate here. Cost is encoded in the platform. Realised savings 30-50%.",
+          "recommendations": [
+            {
+              "what": "Add a 'cost-per-outcome' SLO to your top revenue-generating services.",
+              "why": "Without an SLO, cost regression is invisible until it hits gross margin.",
+              "tools": "Internal product analytics + cost feed",
+              "constraint": "SLO target requires a baseline — measure for a quarter before setting one.",
+              "references": [
+                {
+                  "name": "FinOps Anomaly Mgmt",
+                  "url": "https://www.finops.org/framework/"
+                }
+              ]
+            },
+            {
+              "what": "Treat new workload classes (GenAI, vector DBs, GPU) as their own cost discipline.",
+              "why": "GenAI inference cost grew 5-10× in many enterprises through 2024-25. Default-routing assumptions break.",
+              "tools": "Bedrock Intelligent Prompt Routing · OpenRouter · self-built routing · GPU spot fleets · AWS Trainium / Inferentia",
+              "constraint": "Multi-provider routing complicates audit and incident response.",
+              "references": [
+                {
+                  "name": "FinOps for AI WG",
+                  "url": "https://www.finops.org/wg/ai/"
+                }
+              ]
+            },
+            {
+              "what": "Externalise your FinOps operating model. Recruit the next ten engineers who care.",
+              "why": "FinOps talent is scarce; published practice attracts.",
+              "tools": "FinOps Foundation case studies · external talks · open-sourced internal tooling",
+              "constraint": "Legal review of every public artefact slows cadence.",
+              "references": [
+                {
+                  "name": "FinOps case studies",
+                  "url": "https://www.finops.org/case-studies/"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "FinOps Foundation Framework v3",
+          "description": "Inform / Optimize / Operate phases plus 6 capability domains.",
+          "url": "https://www.finops.org/framework/"
+        },
+        {
+          "domain": "Framework",
+          "name": "AWS Well-Architected Cost Pillar",
+          "description": "AWS's prescriptive guidance with 60+ design questions.",
+          "url": "https://aws.amazon.com/architecture/well-architected/"
+        },
+        {
+          "domain": "Framework",
+          "name": "Azure WAF Cost Optimization",
+          "description": "Microsoft equivalent — pillar-based design guidance.",
+          "url": "https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/"
+        },
+        {
+          "domain": "Framework",
+          "name": "GCP Architecture Framework — Cost Optimization",
+          "description": "Google's design guidance for cost-aware architecture.",
+          "url": "https://cloud.google.com/architecture/framework/cost-optimization"
+        },
+        {
+          "domain": "Standard",
+          "name": "FOCUS billing schema",
+          "description": "FinOps Open Cost & Usage Specification — emerging vendor-neutral billing standard.",
+          "url": "https://focus.finops.org/"
+        },
+        {
+          "domain": "Standard",
+          "name": "ISO/IEC 38505-1",
+          "description": "IT cost & data governance for the board. Useful for regulated industries.",
+          "url": "https://www.iso.org/standard/56639.html"
+        },
+        {
+          "domain": "Benchmark",
+          "name": "FinOps State of FinOps",
+          "description": "Annual report — practice maturity, realised savings, team structure data.",
+          "url": "https://data.finops.org/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "OpenCost",
+          "description": "CNCF Kubernetes-native cost-allocation spec. The OSS baseline.",
+          "url": "https://www.opencost.io/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "Cloud Custodian",
+          "description": "OSS rules engine for cloud policy + remediation.",
+          "url": "https://cloudcustodian.io/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "Infracost",
+          "description": "IaC cost diffs in pull requests. Catches cost at design time.",
+          "url": "https://www.infracost.io/"
+        },
+        {
+          "domain": "Regulation",
+          "name": "APRA CPS 230",
+          "description": "Australian operational-risk standard. Names cost concentration as material risk.",
+          "url": "https://www.apra.gov.au/sites/default/files/cps_230_-_operational_risk_management_-_july_2023.pdf"
+        },
+        {
+          "domain": "Regulation",
+          "name": "EU CSRD",
+          "description": "Corporate Sustainability Reporting Directive. Cloud-attributable emissions are in-scope.",
+          "url": "https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en"
+        }
+      ]
+    },
+    {
+      "id": "platform-engineering",
+      "title": "Platform Engineering Readiness",
+      "url": "https://hellouchit.com/tools/platform-engineering.html",
+      "capabilityCount": 10,
+      "maxScore": 50,
+      "resultUrlFormat": "https://hellouchit.com/tools/platform-engineering.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For tech, platform engineering is your delivery-velocity moat. Top startups ship a v1 IDP in months (Thoughtworks Radar — Adopt). Paved paths, cognitive load and adoption signal are differentiators."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, platform must encode APRA CPS 230 + change-control. Self-service is bounded by separation-of-duties; observability defaults and governance become platform features."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "Australian Gov: DTA is pushing shared platforms. Paved paths easier (homogeneous workloads) but funding model harder (annual budget cycles vs platform-product investment)."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "Platform must enforce PHI handling defaults. Observability defaults and versioning are critical — mistakes affect patient care, not just availability."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, peak-event velocity is everything; off-peak platform investment pays off in Q4. Self-service and adoption signal are key."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "Critical-infra platforms must encode safety-rail defaults from IEC 62443. Versioning & change and governance are operational-risk controls."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "Paved paths",
+          "question": "How does a new service get from zero to production?",
+          "mapsTo": [
+            {
+              "name": "CNCF Maturity: Provisional",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            },
+            {
+              "name": "Thoughtworks: IDP",
+              "url": "https://www.thoughtworks.com/radar/techniques/internal-developer-platform"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Pick your own stack; write your own pipeline; figure it out."
+            },
+            {
+              "level": 2,
+              "description": "There's a wiki page from 2021 that mostly still works."
+            },
+            {
+              "level": 3,
+              "description": "A documented golden path covers the common case."
+            },
+            {
+              "level": 4,
+              "description": "Golden-path templates with CI, security, observability baked in."
+            },
+            {
+              "level": 5,
+              "description": "Paved-path generates a working service in minutes — including pipelines, dashboards, alerts, runbooks."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Self-service",
+          "question": "Can a developer provision what they need without filing a ticket?",
+          "mapsTo": [
+            {
+              "name": "CNCF Maturity: Operational",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            },
+            {
+              "name": "DORA: Self-service",
+              "url": "https://dora.community/research/2024/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Most things require a ticket and a wait."
+            },
+            {
+              "level": 2,
+              "description": "Some self-service for non-production; production needs approval."
+            },
+            {
+              "level": 3,
+              "description": "Self-service for most common needs, with audit trail."
+            },
+            {
+              "level": 4,
+              "description": "Self-service for everything except a small set of policy-gated actions."
+            },
+            {
+              "level": 5,
+              "description": "Self-service is the default; manual provisioning is the rare exception."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "IDP UX",
+          "question": "What's the developer portal like to use?",
+          "mapsTo": [
+            {
+              "name": "Backstage",
+              "url": "https://backstage.io/"
+            },
+            {
+              "name": "CNCF Platform Tooling Survey",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No portal — links live in Confluence."
+            },
+            {
+              "level": 2,
+              "description": "We have Backstage / similar, mostly empty."
+            },
+            {
+              "level": 3,
+              "description": "Service catalogue + a few useful pages; not loved."
+            },
+            {
+              "level": 4,
+              "description": "Catalogue + ownership + scorecards; teams use it daily."
+            },
+            {
+              "level": 5,
+              "description": "The portal is where developers spend their day — catalogue, docs, self-service, observability, all unified."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "Observability defaults",
+          "question": "When a new service hits production, what observability does it inherit?",
+          "mapsTo": [
+            {
+              "name": "OpenTelemetry",
+              "url": "https://opentelemetry.io/"
+            },
+            {
+              "name": "Google SRE Workbook",
+              "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Whatever the team remembers to add."
+            },
+            {
+              "level": 2,
+              "description": "Logs are captured; metrics are inconsistent."
+            },
+            {
+              "level": 3,
+              "description": "Logs, metrics, traces are wired by default from the template."
+            },
+            {
+              "level": 4,
+              "description": "Plus SLOs and dashboards generated; on-call rotations linked."
+            },
+            {
+              "level": 5,
+              "description": "Full observability + SLOs + alerts + cost views, all visible in the portal from day one."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Cognitive load",
+          "question": "How many things does a typical engineer need to hold in their head to ship?",
+          "mapsTo": [
+            {
+              "name": "Team Topologies: Cognitive Load",
+              "url": "https://teamtopologies.com/"
+            },
+            {
+              "name": "SPACE framework",
+              "url": "https://queue.acm.org/detail.cfm?id=3454124"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "A lot — and most of it isn't their service."
+            },
+            {
+              "level": 2,
+              "description": "Several adjacent systems they shouldn't need to learn."
+            },
+            {
+              "level": 3,
+              "description": "Their service + the platform abstractions; reasonable."
+            },
+            {
+              "level": 4,
+              "description": "Their service + a thin platform surface; documented well."
+            },
+            {
+              "level": 5,
+              "description": "Their service. The platform is a property they consume, not a system they reason about."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Team topology",
+          "question": "How is the platform team structured?",
+          "mapsTo": [
+            {
+              "name": "Team Topologies",
+              "url": "https://teamtopologies.com/"
+            },
+            {
+              "name": "CNCF Maturity: Scalable",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Ops team that 'does platform' on the side."
+            },
+            {
+              "level": 2,
+              "description": "Dedicated team, but reactive — fixes tickets, not products."
+            },
+            {
+              "level": 3,
+              "description": "Platform team with a roadmap; some product mindset."
+            },
+            {
+              "level": 4,
+              "description": "Platform team runs platform as a product — discovery, prioritisation, internal users."
+            },
+            {
+              "level": 5,
+              "description": "Platform org with stream-aligned, enabling and complicated-subsystem teams — funded for outcomes, not tickets."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Adoption signal",
+          "question": "Do you measure whether the platform is actually being used?",
+          "mapsTo": [
+            {
+              "name": "DevEx Index (DX)",
+              "url": "https://getdx.com/research/"
+            },
+            {
+              "name": "SPACE framework",
+              "url": "https://queue.acm.org/detail.cfm?id=3454124"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No — we ship it and hope."
+            },
+            {
+              "level": 2,
+              "description": "Anecdotes from teams that complain."
+            },
+            {
+              "level": 3,
+              "description": "Adoption metrics tracked per capability; reviewed quarterly."
+            },
+            {
+              "level": 4,
+              "description": "NPS / developer-satisfaction surveys; adoption tied to outcomes."
+            },
+            {
+              "level": 5,
+              "description": "Adoption + satisfaction + business outcome reported quarterly; under-used capabilities get sunset."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Versioning & change",
+          "question": "When the platform changes, what happens to consuming teams?",
+          "mapsTo": [
+            {
+              "name": "CNCF Maturity: Optimizing",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Surprise. They find out when something breaks."
+            },
+            {
+              "level": 2,
+              "description": "Email a week before; some teams ready, most aren't."
+            },
+            {
+              "level": 3,
+              "description": "Versioned APIs / templates; deprecation windows announced."
+            },
+            {
+              "level": 4,
+              "description": "Versioned platform with migration tooling and timelines."
+            },
+            {
+              "level": 5,
+              "description": "Breaking changes are rare events with auto-migration tooling; consuming teams informed via the portal."
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "capability": "Funding model",
+          "question": "How is the platform funded?",
+          "mapsTo": [
+            {
+              "name": "Team Topologies: Funding",
+              "url": "https://teamtopologies.com/"
+            },
+            {
+              "name": "DORA: Investment",
+              "url": "https://dora.community/research/2024/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Squeezed out of ops budget."
+            },
+            {
+              "level": 2,
+              "description": "Project-funded; lives die with the project."
+            },
+            {
+              "level": 3,
+              "description": "Funded as a cost-centre; renegotiated annually."
+            },
+            {
+              "level": 4,
+              "description": "Funded as a long-term capability with multi-year commitment."
+            },
+            {
+              "level": 5,
+              "description": "Funded as a product — investment tied to outcomes (delivery speed, change-fail rate, adoption)."
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "capability": "Product mindset",
+          "question": "How does the platform team decide what to build next?",
+          "mapsTo": [
+            {
+              "name": "Thoughtworks: Platform as Product",
+              "url": "https://www.thoughtworks.com/insights/blog/platforms/platform-as-product"
+            },
+            {
+              "name": "CNCF Maturity",
+              "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Loudest voice / closest stakeholder wins."
+            },
+            {
+              "level": 2,
+              "description": "Backlog ordered by squeaky-wheel."
+            },
+            {
+              "level": 3,
+              "description": "Roadmap exists; informed by ad-hoc feedback."
+            },
+            {
+              "level": 4,
+              "description": "Discovery, prototypes, internal-user interviews drive the roadmap."
+            },
+            {
+              "level": 5,
+              "description": "Platform-as-product — opportunity sizing, ICE/RICE scoring, sunset rituals for capabilities that don't earn their keep."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Tooling",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "You have tools, not a platform. Developers stitch things together. The single win that compounds: pick one common service-shape and pave that path end-to-end before adding a second.",
+          "benchmark": "CNCF Maturity Model: Provisional. DORA 2024 bottom quartile of delivery performance. Developer NPS typically below -20.",
+          "recommendations": [
+            {
+              "what": "Name one common service archetype. Build a golden path that takes it zero-to-staging in <30 min.",
+              "why": "Thoughtworks Radar consistently puts paved paths in Adopt. Start narrow, deliberate.",
+              "tools": "Backstage Templates · Cookiecutter · Internal Helm/Terraform modules · Port",
+              "constraint": "Picking the wrong archetype costs months. Start with the most-replicated, not the most-strategic.",
+              "references": [
+                {
+                  "name": "CNCF Maturity Model",
+                  "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+                }
+              ]
+            },
+            {
+              "what": "Make logs + metrics + traces inherited, not opted-in. Reduce the security tax to zero for that path.",
+              "why": "Inherited defaults dominate opted-in best practice in adoption data (DX research).",
+              "tools": "OpenTelemetry · Datadog Agent default configs · Grafana Alloy · platform-side OTel collector",
+              "constraint": "Existing services need a migration path, not just new-build defaults.",
+              "references": [
+                {
+                  "name": "OpenTelemetry",
+                  "url": "https://opentelemetry.io/"
+                }
+              ]
+            },
+            {
+              "what": "Stand up a thin portal with the service catalogue. Don't aim for perfect — aim for source-of-truth.",
+              "why": "A half-finished portal beats a missing portal. Catalogue first; everything else hangs off it.",
+              "tools": "Backstage · Cortex · Port · OpsLevel",
+              "constraint": "Catalogue ingestion will have gaps for legacy systems — flag them, don't fix all at once.",
+              "references": [
+                {
+                  "name": "Backstage adoption",
+                  "url": "https://backstage.io/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Emerging",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "The platform exists; it's not yet loved. Developers know about it; some use it; some route around it. Reduce cognitive load and measure adoption.",
+          "benchmark": "CNCF: Operational. Some self-service exists; cognitive load still high. Median DORA cluster.",
+          "recommendations": [
+            {
+              "what": "Survey 10 developers. Ask: 'what part of the platform do you route around?' Fix that first.",
+              "why": "Developer NPS correlates with delivery performance (DX Research). Routing-around is the signal.",
+              "tools": "DX surveys · SPACE framework instrument · 1:1 interviews",
+              "constraint": "Honest answers require leadership not to retaliate on critical feedback.",
+              "references": [
+                {
+                  "name": "DevEx (DX) research",
+                  "url": "https://getdx.com/research/"
+                },
+                {
+                  "name": "SPACE",
+                  "url": "https://queue.acm.org/detail.cfm?id=3454124"
+                }
+              ]
+            },
+            {
+              "what": "Add observability defaults to the golden path. Show ownership, SLOs, dashboards in one place.",
+              "why": "Unified inheritance is the difference between a tool stack and a platform.",
+              "tools": "Backstage Scorecards · Cortex · OpsLevel · OpenTelemetry defaults",
+              "constraint": "Adding SLOs to inherited dashboards needs SLI per archetype.",
+              "references": [
+                {
+                  "name": "Google SRE Workbook",
+                  "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+                }
+              ]
+            },
+            {
+              "what": "Move from ticket-driven to product-driven. Run a discovery cycle.",
+              "why": "Platform-as-product is the difference between paving paths and shoveling features.",
+              "tools": "Internal RICE/ICE scoring · quarterly platform demo · DX/SPACE instrument",
+              "constraint": "Product-thinking on internal customers may need coaching for eng managers.",
+              "references": [
+                {
+                  "name": "Platform as Product",
+                  "url": "https://www.thoughtworks.com/insights/blog/platforms/platform-as-product"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Established",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You have a working platform that teams use. The jump from here is from 'platform' to 'platform-as-a-product' — measured adoption, sunset rituals, funding for outcomes not tickets.",
+          "benchmark": "CNCF: Scalable. DORA \"High\" cluster. Self-service for most paths; portal used daily.",
+          "recommendations": [
+            {
+              "what": "Add developer NPS + per-capability adoption to your quarterly review. Sunset the bottom-quartile.",
+              "why": "Sunset rituals are what keep cognitive load from accumulating.",
+              "tools": "DX Index · internal survey + adoption telemetry from Backstage / Cortex",
+              "constraint": "Sunset decisions need executive air cover when one loud team relies on the deprecated capability.",
+              "references": [
+                {
+                  "name": "DX Index",
+                  "url": "https://getdx.com/research/"
+                }
+              ]
+            },
+            {
+              "what": "Move funding from 'cost-centre' to 'investment with outcomes' — speed, change-fail, adoption.",
+              "why": "DORA 2024 ties platform investment to delivery performance only when funded for outcomes.",
+              "tools": "Internal — partner with finance on outcome-based accounting",
+              "constraint": "Annual budget cycles in gov and FSI fight against multi-year capability funding.",
+              "references": [
+                {
+                  "name": "DORA Accelerate 2024",
+                  "url": "https://dora.community/research/2024/"
+                }
+              ]
+            },
+            {
+              "what": "Introduce stream-aligned vs enabling team distinction (Team Topologies). Stop being one big platform team.",
+              "why": "Team Topologies identifies cognitive-load-driven team boundaries as the determinant of platform adoption.",
+              "tools": "Internal org design + Topologies workshop",
+              "constraint": "Team rebalancing is politically expensive; sequence after a delivery quiet period.",
+              "references": [
+                {
+                  "name": "Team Topologies",
+                  "url": "https://teamtopologies.com/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Productised",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "You're running platform as a product. The remaining gap is usually cognitive-load discipline — keeping the surface small as the team that consumes it grows.",
+          "benchmark": "CNCF: Optimizing. DORA \"Elite\" cluster on delivery. Developer NPS > +20. Reference customers for platform vendors.",
+          "recommendations": [
+            {
+              "what": "Set a cognitive-load budget per service archetype. Hold to it when adding new platform capabilities.",
+              "why": "The instinct to add capability is the enemy of the instinct to subtract.",
+              "tools": "Internal architecture review + Topologies cognitive-load assessment",
+              "constraint": "Saying no to capability requests requires evidence — track which capabilities cause churn.",
+              "references": [
+                {
+                  "name": "Team Topologies",
+                  "url": "https://teamtopologies.com/"
+                }
+              ]
+            },
+            {
+              "what": "Auto-migration tooling for breaking platform changes. Stop making consuming teams do the work.",
+              "why": "CNCF Optimizing tier identifies auto-migration as a defining capability.",
+              "tools": "Codemods (jscodeshift, OpenRewrite, ast-grep) · golden-path module versioning · platform-side migration jobs",
+              "constraint": "Auto-migration is an investment that pays off over years — quarter-level ROI looks negative.",
+              "references": [
+                {
+                  "name": "CNCF Platform Eng Maturity",
+                  "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+                }
+              ]
+            },
+            {
+              "what": "Tie platform investment to 2-3 business outcomes; report quarterly.",
+              "why": "Outcome reporting is what protects platform funding through the next reorg.",
+              "tools": "Internal exec dashboard + DORA/SPACE metrics",
+              "constraint": "Outcome attribution is hard; partner with delivery on shared metrics.",
+              "references": [
+                {
+                  "name": "DORA 2024",
+                  "url": "https://dora.community/research/2024/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Property",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "The platform is a property of the org, not a workstream. Developers consume it without thinking; new joiners reach productive in days. The work is regression: keeping it that good as scale and AI workloads erode it.",
+          "benchmark": "Sub-5% of orgs. Cognitive load assumed, not measured. Platform invisible. Published case studies in Thoughtworks Radar.",
+          "recommendations": [
+            {
+              "what": "Add AI-workload patterns to the paved path before squads invent their own.",
+              "why": "GenAI defaults set early avoid 100 squads each rolling their own model-routing layer.",
+              "tools": "Internal AI-on-platform templates · MCP server defaults · LiteLLM/OpenRouter on-platform",
+              "constraint": "AI patterns are evolving fast — expect quarterly refresh.",
+              "references": [
+                {
+                  "name": "OpenSSF AI/ML Security WG",
+                  "url": "https://github.com/ossf/ai-ml-security"
+                }
+              ]
+            },
+            {
+              "what": "Externalise your platform model (sanitised). Recruit the next ten platform engineers.",
+              "why": "Top platform engineers in 2026 choose employers based on platform maturity.",
+              "tools": "Conference talks · open-sourced internal templates · PlatformCon case studies",
+              "constraint": "Legal review of externalised artefacts slows cadence.",
+              "references": [
+                {
+                  "name": "PlatformEngineering.org",
+                  "url": "https://platformengineering.org/"
+                }
+              ]
+            },
+            {
+              "what": "Run quarterly 'what should we sunset?' rituals. Subtract as ruthlessly as you added.",
+              "why": "Without sunset, every platform eventually becomes a tool stack again.",
+              "tools": "Internal capability-adoption telemetry + sunset RFC template",
+              "constraint": "Subtraction requires clear ownership of the sunset capability.",
+              "references": [
+                {
+                  "name": "CNCF Maturity: Continuous Improvement",
+                  "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "CNCF Platform Engineering Maturity Model",
+          "description": "5 levels (Provisional → Operational → Scalable → Optimizing → Continuous) across 5 aspects.",
+          "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+        },
+        {
+          "domain": "Framework",
+          "name": "Team Topologies",
+          "description": "Skelton & Pais. Stream-aligned, enabling, complicated-subsystem, platform team types.",
+          "url": "https://teamtopologies.com/"
+        },
+        {
+          "domain": "Framework",
+          "name": "DORA Accelerate State of DevOps 2024",
+          "description": "Reference dataset for delivery-performance benchmarking. Elite/High/Medium/Low clusters.",
+          "url": "https://dora.community/research/2024/"
+        },
+        {
+          "domain": "Framework",
+          "name": "SPACE framework",
+          "description": "GitHub + MSR instrument for developer productivity beyond throughput.",
+          "url": "https://queue.acm.org/detail.cfm?id=3454124"
+        },
+        {
+          "domain": "Framework",
+          "name": "DevEx (DX) framework",
+          "description": "GitHub + DX productivity framework — feedback loops, cognitive load, flow state.",
+          "url": "https://getdx.com/research/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "Backstage",
+          "description": "Spotify-originated, CNCF graduated. The de-facto developer portal substrate.",
+          "url": "https://backstage.io/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "Cortex / OpsLevel / Port",
+          "description": "Commercial alternatives to Backstage with managed catalogue + scorecards.",
+          "url": "https://www.cortex.io/"
+        },
+        {
+          "domain": "Industry",
+          "name": "Thoughtworks Technology Radar",
+          "description": "Bi-annual scan — IDP and paved paths sit in Adopt.",
+          "url": "https://www.thoughtworks.com/radar"
+        },
+        {
+          "domain": "Community",
+          "name": "PlatformEngineering.org / PlatformCon",
+          "description": "The reference community + annual conference for the practice.",
+          "url": "https://platformengineering.org/"
+        }
+      ]
+    },
+    {
+      "id": "ea-operating-model",
+      "title": "EA Operating Model Diagnostic",
+      "url": "https://hellouchit.com/tools/ea-operating-model.html",
+      "capabilityCount": 8,
+      "maxScore": 40,
+      "resultUrlFormat": "https://hellouchit.com/tools/ea-operating-model.html#a=<one digit 1-5 per capability>&s=<sector key>",
+      "sectors": [
+        {
+          "key": "tech",
+          "label": "Tech / SaaS",
+          "lens": "For tech, EA is increasingly outcome-led, lightweight, and embedded in product squads. Federation and business linkage matter; heavy TOGAF artefacts often don't. Watch for composable / API-first patterns."
+        },
+        {
+          "key": "fsi",
+          "label": "Financial services",
+          "lens": "In FSI, BIAN-aligned capability decomposition is the lingua franca for core modernisation. APRA CPS 230 requires explicit operational-risk linkage from architecture decisions. Decision capture and principle enforcement are audited."
+        },
+        {
+          "key": "government",
+          "label": "Government",
+          "lens": "Australian Gov: DTA Architecture & Design guidance. US: FEAF. EA is investment governance — capability model and business linkage are mandatory."
+        },
+        {
+          "key": "healthcare",
+          "label": "Healthcare",
+          "lens": "Healthcare EA must handle clinical-vs-corporate domain split + privacy. HL7 FHIR and HIMSS reference architectures drive integration. Federation and capability model are key."
+        },
+        {
+          "key": "retail",
+          "label": "Retail",
+          "lens": "For retail, composable commerce (MACH Alliance) replaced monolithic suites. Target-state cadence matters — retail tech moves quarterly."
+        },
+        {
+          "key": "critinfra",
+          "label": "Critical infra",
+          "lens": "In critical infrastructure, EA includes safety + resilience-design constraints (IEC 62443, NERC CIP in US energy). Principle enforcement is operational risk."
+        }
+      ],
+      "capabilities": [
+        {
+          "index": 1,
+          "capability": "Stance",
+          "question": "How does EA show up to a delivery team?",
+          "mapsTo": [
+            {
+              "name": "TOGAF Architecture Governance",
+              "url": "https://www.opengroup.org/togaf"
+            },
+            {
+              "name": "Gartner: EA Operating Model",
+              "url": "https://www.gartner.com/en/information-technology/insights/enterprise-architecture"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "As a gate at the end — engineers route around it."
+            },
+            {
+              "level": 2,
+              "description": "As a review function whose output is opinions, not decisions."
+            },
+            {
+              "level": 3,
+              "description": "As a consultancy — useful when invited; ignored when not."
+            },
+            {
+              "level": 4,
+              "description": "As an enabling team — paves the path teams choose to use."
+            },
+            {
+              "level": 5,
+              "description": "As a property of the platform — encoded in templates and policy; rarely felt directly."
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "capability": "Design authority",
+          "question": "Who decides architectural questions of scale?",
+          "mapsTo": [
+            {
+              "name": "TOGAF Architecture Board",
+              "url": "https://www.opengroup.org/togaf"
+            },
+            {
+              "name": "APRA CPS 230 ¶31",
+              "url": "https://www.apra.gov.au/sites/default/files/cps_230_-_operational_risk_management_-_july_2023.pdf"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Whoever is loudest in the meeting."
+            },
+            {
+              "level": 2,
+              "description": "A design-authority board that meets monthly and decides slowly."
+            },
+            {
+              "level": 3,
+              "description": "Standing forum with documented terms of reference; decisions logged."
+            },
+            {
+              "level": 4,
+              "description": "Tiered — local decisions stay local; cross-cutting go to a federated forum."
+            },
+            {
+              "level": 5,
+              "description": "Most decisions are encoded — only genuinely new patterns escalate; everything else is paved."
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "capability": "Capability model",
+          "question": "Do you have a shared map of what your organisation does?",
+          "mapsTo": [
+            {
+              "name": "BIZBOK Capability Mapping",
+              "url": "https://www.bizbok.org/"
+            },
+            {
+              "name": "BIAN Service Landscape",
+              "url": "https://bian.org/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "No business capability model."
+            },
+            {
+              "level": 2,
+              "description": "One exists; nobody uses it."
+            },
+            {
+              "level": 3,
+              "description": "Capability model exists; consulted in major investment decisions."
+            },
+            {
+              "level": 4,
+              "description": "Capability model drives the architecture roadmap and investment portfolio."
+            },
+            {
+              "level": 5,
+              "description": "Capability model is a living artefact — investment, ownership, maturity per capability, refreshed regularly."
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "capability": "Target-state cadence",
+          "question": "How current is your target-state architecture?",
+          "mapsTo": [
+            {
+              "name": "TOGAF ADM",
+              "url": "https://www.opengroup.org/togaf"
+            },
+            {
+              "name": "ArchiMate 3.2",
+              "url": "https://www.opengroup.org/archimate-forum/archimate-overview"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "A PowerPoint from a few years ago."
+            },
+            {
+              "level": 2,
+              "description": "Updated reactively when something major changes."
+            },
+            {
+              "level": 3,
+              "description": "Refreshed annually; mostly aligned to current direction."
+            },
+            {
+              "level": 4,
+              "description": "Quarterly refresh tied to portfolio reviews."
+            },
+            {
+              "level": 5,
+              "description": "Continuously evolving artefact — versioned, diffable, source-of-truth for major investment decisions."
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "capability": "Principle enforcement",
+          "question": "How are architecture principles enforced?",
+          "mapsTo": [
+            {
+              "name": "TOGAF Architecture Principles",
+              "url": "https://www.opengroup.org/togaf"
+            },
+            {
+              "name": "Open Policy Agent",
+              "url": "https://www.openpolicyagent.org/"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "They live in a PDF nobody reads."
+            },
+            {
+              "level": 2,
+              "description": "Mentioned in design reviews; selectively applied."
+            },
+            {
+              "level": 3,
+              "description": "Cited in design reviews; documented exceptions tracked."
+            },
+            {
+              "level": 4,
+              "description": "Most encoded as policy-as-code or platform defaults; exceptions need sign-off."
+            },
+            {
+              "level": 5,
+              "description": "Principles you don't enforce don't exist — what's left is encoded, the rest were retired."
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "capability": "Decision capture",
+          "question": "When an architectural decision is made, where does it live?",
+          "mapsTo": [
+            {
+              "name": "ADR specification",
+              "url": "https://adr.github.io/"
+            },
+            {
+              "name": "Michael Nygard (originator)",
+              "url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "In someone's head or an old email."
+            },
+            {
+              "level": 2,
+              "description": "In Confluence somewhere; hard to find later."
+            },
+            {
+              "level": 3,
+              "description": "ADRs (architecture decision records) per project, inconsistently used."
+            },
+            {
+              "level": 4,
+              "description": "ADRs are standard; searchable; reviewed in design forums."
+            },
+            {
+              "level": 5,
+              "description": "ADRs are first-class — required for changes above a threshold; consulted in postmortems and onboarding."
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "capability": "Federation",
+          "question": "How is EA organised vs delivery teams?",
+          "mapsTo": [
+            {
+              "name": "Team Topologies",
+              "url": "https://teamtopologies.com/"
+            },
+            {
+              "name": "Gartner: Federated EA",
+              "url": "https://www.gartner.com/en/information-technology/insights/enterprise-architecture"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Central tower — EA tells teams what to do."
+            },
+            {
+              "level": 2,
+              "description": "Central function that occasionally consults delivery."
+            },
+            {
+              "level": 3,
+              "description": "Central function + embedded architects in some streams."
+            },
+            {
+              "level": 4,
+              "description": "Federated — domain architects in streams, central EA on cross-cutting concerns."
+            },
+            {
+              "level": 5,
+              "description": "EA is mostly stream-aligned; the small central team owns cross-cutting standards, patterns and platform integration."
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "capability": "Business linkage",
+          "question": "Can you trace an architecture decision back to a business outcome?",
+          "mapsTo": [
+            {
+              "name": "BIZBOK Outcome Mgmt",
+              "url": "https://www.bizbok.org/"
+            },
+            {
+              "name": "TOGAF Business Architecture",
+              "url": "https://www.opengroup.org/togaf"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "description": "Architecture and business strategy are different documents."
+            },
+            {
+              "level": 2,
+              "description": "Loose alignment; reviewed annually at a strategy offsite."
+            },
+            {
+              "level": 3,
+              "description": "Architecture roadmap maps to business priorities at a portfolio level."
+            },
+            {
+              "level": 4,
+              "description": "Per-capability investment ties to outcome metrics; reviewed quarterly."
+            },
+            {
+              "level": 5,
+              "description": "Architecture is a lens on the business strategy — every major decision shows the outcome it serves."
+            }
+          ]
+        }
+      ],
+      "levels": [
+        {
+          "name": "Bureaucratic",
+          "scoreRange": {
+            "minPercent": 0,
+            "maxPercent": 0.2
+          },
+          "summary": "EA is a tax, not a service. Delivery teams route around you; decisions get made twice; trust is the bottleneck. The single move that changes everything: ship one paved path that a real team actually adopts.",
+          "benchmark": "Gartner: ~30% of EA functions are \"documentation factories\" with low business influence. Delivery teams route around them.",
+          "recommendations": [
+            {
+              "what": "Pick one common need (say, a new microservice in cloud X). Build the paved path. Get a team to use it.",
+              "why": "Adoption beats prescription. The paved path is your case study.",
+              "tools": "Backstage Software Templates · internal Terraform/Helm modules · Cookiecutter",
+              "constraint": "First paved path takes 6-12 weeks. Sequence after a delivery quiet period.",
+              "references": [
+                {
+                  "name": "CNCF Platform Eng Maturity",
+                  "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+                }
+              ]
+            },
+            {
+              "what": "Move from approval to enablement. Replace 'no' reviews with 'here's the template' clinics.",
+              "why": "Approval queues breed resentment; clinics breed adoption.",
+              "tools": "Internal architecture clinic cadence · Office hours · ADR template",
+              "constraint": "Senior architects need to be available; resource accordingly.",
+              "references": [
+                {
+                  "name": "TOGAF Architecture Governance",
+                  "url": "https://www.opengroup.org/togaf"
+                }
+              ]
+            },
+            {
+              "what": "Write three ADRs for decisions already made. Make ADRs the unit of work, not slide decks.",
+              "why": "ADRs survive leadership change; decks die in shared drives.",
+              "tools": "ADR specification · in-repo .md files · log4brains",
+              "constraint": "Retrospective ADRs feel artificial — write them anyway.",
+              "references": [
+                {
+                  "name": "Michael Nygard's original",
+                  "url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Consultative",
+          "scoreRange": {
+            "minPercent": 0.2001,
+            "maxPercent": 0.4
+          },
+          "summary": "EA is helpful when asked. The gap to influence is visibility — making the architecture story legible to people who aren't architects, and making the easy choice the architecture-aligned choice.",
+          "benchmark": "~40% of EA functions (Gartner). Helpful when invited; uneven across business units. Limited measurable outcome influence.",
+          "recommendations": [
+            {
+              "what": "Publish your top 10 architecture principles. Encode the top 3 as policy-as-code or template defaults.",
+              "why": "Encoded principles travel further than documented ones.",
+              "tools": "OPA · Kyverno · platform module defaults · ArchiMate principle modelling",
+              "constraint": "Picking the top 3 to encode is a political exercise; start with safety-critical.",
+              "references": [
+                {
+                  "name": "TOGAF Architecture Principles",
+                  "url": "https://www.opengroup.org/togaf"
+                }
+              ]
+            },
+            {
+              "what": "Federate. Place an architect in the two highest-value streams. Stop trying to scale from the centre.",
+              "why": "Team Topologies identifies federation as the determinant of scaled EA influence.",
+              "tools": "Internal org redesign + embedded-architect role definition",
+              "constraint": "Central EA team must let go of decisions made in streams; this is hard.",
+              "references": [
+                {
+                  "name": "Team Topologies",
+                  "url": "https://teamtopologies.com/"
+                }
+              ]
+            },
+            {
+              "what": "Build a one-page capability model. Use it in every investment conversation for the next quarter.",
+              "why": "BIZBOK-style capability maps cut investment debates from days to hours.",
+              "tools": "BIZBOK template · ArchiMate Business Layer · Bizzdesign · LeanIX · Ardoq",
+              "constraint": "Capability model granularity is a fight — start coarse, refine later.",
+              "references": [
+                {
+                  "name": "BIZBOK",
+                  "url": "https://www.bizbok.org/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Governed",
+          "scoreRange": {
+            "minPercent": 0.4001,
+            "maxPercent": 0.6
+          },
+          "summary": "You have a working EA function. Principles, ADRs, capability model — they all exist. The next jump is from 'governed' to 'enabling' — encoding standards in platforms, not policies.",
+          "benchmark": "~20% of EA functions (Gartner). Principles + ADRs + capability model exist and are used. Decision velocity improving.",
+          "recommendations": [
+            {
+              "what": "Move 3 more principles from 'policy doc' to 'enforced by platform'. Subtract the rest.",
+              "why": "What can't be encoded won't be enforced. Subtract what can't be enforced.",
+              "tools": "OPA · Kyverno · platform module enforcement · drift detection",
+              "constraint": "Encoding takes platform engineering effort — partner closely.",
+              "references": [
+                {
+                  "name": "OPA Patterns",
+                  "url": "https://www.openpolicyagent.org/docs/latest/policy-language/"
+                }
+              ]
+            },
+            {
+              "what": "Tie capability investment to business outcome metrics. Stop reporting on architecture; start reporting on outcomes.",
+              "why": "Outcome reporting protects EA funding through reorgs.",
+              "tools": "BIZBOK + internal portfolio dashboard · LeanIX · Ardoq",
+              "constraint": "Outcome metrics require partnership with finance and product.",
+              "references": [
+                {
+                  "name": "BIZBOK Outcome Management",
+                  "url": "https://www.bizbok.org/"
+                }
+              ]
+            },
+            {
+              "what": "Make ADRs the source of truth for design reviews. Refuse to discuss decisions that aren't written down.",
+              "why": "Written decisions force clarity; verbal decisions get re-litigated.",
+              "tools": "ADR templates · in-repo .md · log4brains · adr-tools",
+              "constraint": "Cultural change — review chairs must enforce.",
+              "references": [
+                {
+                  "name": "ADR specification",
+                  "url": "https://adr.github.io/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Enabling",
+          "scoreRange": {
+            "minPercent": 0.6001,
+            "maxPercent": 0.8
+          },
+          "summary": "EA enables delivery rather than gating it. Stream-aligned architects, encoded principles, tight business linkage. The remaining work is regression discipline — preventing the slow drift back to central gating.",
+          "benchmark": "~8% of EA functions (Gartner). Embedded stream-aligned architects; encoded principles; tight business linkage. Reference customers for EA tools.",
+          "recommendations": [
+            {
+              "what": "Run a 'decisions we don't need to make' audit. Reduce the central queue.",
+              "why": "Most central-EA decisions should be local. Auditing surfaces what shouldn't be there.",
+              "tools": "Internal decision-volume tracking · ADR analysis",
+              "constraint": "Reducing central role threatens roles — needs leadership endorsement.",
+              "references": [
+                {
+                  "name": "Team Topologies",
+                  "url": "https://teamtopologies.com/"
+                }
+              ]
+            },
+            {
+              "what": "Codify your operating model. Onboard one new architect against it. If it survives the first 90 days, it's real.",
+              "why": "Operating model survives leadership change only if documented and rehearsed.",
+              "tools": "Internal architecture playbook · onboarding programme · mentor cadence",
+              "constraint": "Documenting practice takes time; the people who do it best are the busiest.",
+              "references": [
+                {
+                  "name": "TOGAF ADM",
+                  "url": "https://www.opengroup.org/togaf"
+                }
+              ]
+            },
+            {
+              "what": "Tie a quarterly EA outcome to delivery metrics (lead time, change-fail, time-to-first-deploy).",
+              "why": "Reporting on artefacts is invisible; reporting on outcomes is unforgettable.",
+              "tools": "DORA metrics dashboard + capability outcome tracker",
+              "constraint": "Attribution is hard — partner with delivery on shared metrics.",
+              "references": [
+                {
+                  "name": "DORA Accelerate 2024",
+                  "url": "https://dora.community/research/2024/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Property",
+          "scoreRange": {
+            "minPercent": 0.8001,
+            "maxPercent": 1
+          },
+          "summary": "Architecture is a property of how you build, not a function you consult. The work now is staying out of the way as scale and AI workloads enter — and externalising the model so it survives leadership turnover.",
+          "benchmark": "Sub-3% of EA functions (Gartner). Architecture is invisible because it works. Published case studies and conference talks.",
+          "recommendations": [
+            {
+              "what": "Bake AI-workload patterns into the paved path before squads invent their own.",
+              "why": "GenAI defaults set at EA-level avoid 100 squads each rolling their own model-routing layer.",
+              "tools": "Internal AI architecture patterns · MCP server defaults · reference architecture",
+              "constraint": "AI patterns are evolving fast — expect quarterly refresh.",
+              "references": [
+                {
+                  "name": "NIST AI RMF",
+                  "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+                }
+              ]
+            },
+            {
+              "what": "Publish (sanitised) ADRs externally for the decisions you'd want competitors to copy.",
+              "why": "Externalising the practice recruits. The best architects in 2026 join orgs whose ADRs they've read.",
+              "tools": "Public ADR repo (GitHub) · conference talks · book chapters",
+              "constraint": "Legal review of every published ADR slows cadence.",
+              "references": [
+                {
+                  "name": "OSS ADR examples",
+                  "url": "https://github.com/joelparkerhenderson/architecture-decision-record"
+                }
+              ]
+            },
+            {
+              "what": "Set a sunset cadence — every quarter, retire one standard that no longer earns its keep.",
+              "why": "Standards accumulate; without sunset, architecture becomes the bureaucracy it set out to replace.",
+              "tools": "Internal sunset RFC + standards register · LeanIX/Ardoq lifecycle field",
+              "constraint": "Sunsetting standards requires identifying who relies on them.",
+              "references": [
+                {
+                  "name": "TOGAF Architecture Repository",
+                  "url": "https://www.opengroup.org/togaf"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "domain": "Framework",
+          "name": "TOGAF 10 (The Open Group)",
+          "description": "The most widely-adopted EA framework. ADM cycle, architecture repository, governance.",
+          "url": "https://www.opengroup.org/togaf"
+        },
+        {
+          "domain": "Framework",
+          "name": "BIAN Service Landscape",
+          "description": "Banking Industry Architecture Network. The lingua franca of banking capability decomposition.",
+          "url": "https://bian.org/"
+        },
+        {
+          "domain": "Framework",
+          "name": "ArchiMate 3.2",
+          "description": "The Open Group modelling language for enterprise architecture. Tool-portable.",
+          "url": "https://www.opengroup.org/archimate-forum/archimate-overview"
+        },
+        {
+          "domain": "Framework",
+          "name": "BIZBOK",
+          "description": "Business Architecture Body of Knowledge. The reference for capability-based planning.",
+          "url": "https://www.bizbok.org/"
+        },
+        {
+          "domain": "Practice",
+          "name": "ADR (Architecture Decision Records)",
+          "description": "Lightweight, durable, searchable decision capture. Originated by Michael Nygard.",
+          "url": "https://adr.github.io/"
+        },
+        {
+          "domain": "Industry",
+          "name": "Gartner Enterprise Architecture",
+          "description": "Long-running research on EA operating models and maturity.",
+          "url": "https://www.gartner.com/en/information-technology/insights/enterprise-architecture"
+        },
+        {
+          "domain": "Industry",
+          "name": "MACH Alliance",
+          "description": "Microservices · API-first · Cloud-native · Headless. The composable enterprise reference.",
+          "url": "https://mach-alliance.org/"
+        },
+        {
+          "domain": "Tooling",
+          "name": "LeanIX / Ardoq / Bizzdesign",
+          "description": "EA repository and capability-management tooling.",
+          "url": "https://www.leanix.net/"
+        },
+        {
+          "domain": "Regulation",
+          "name": "APRA CPS 230",
+          "description": "Names architecture and design as operational-risk concerns for Australian financial entities.",
+          "url": "https://www.apra.gov.au/sites/default/files/cps_230_-_operational_risk_management_-_july_2023.pdf"
+        }
+      ]
+    }
+  ]
+}

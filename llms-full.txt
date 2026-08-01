@@ -4251,6 +4251,8 @@ Reference · 15 named failure patterns
 
 Fifteen named anti-patterns I’ve watched recur across regulated- industry engagements — in enterprise architecture, platform engineering & DevSecOps, applied GenAI, data, and operating-model design. Each one: where it appears, why it’s bad, what to do instead. Forward to the colleague who can’t yet name what’s going wrong.
 
+Machine-readable anti-patterns.json License CC BY 4.0 Updated 2026-08-01 Source on GitHub
+
 Filter All (15) Enterprise Architecture Platform Engineering DevSecOps Applied GenAI Data Operating model
 
 01
@@ -4532,6 +4534,8 @@ Source: https://hellouchit.com/glossary/
 Reference · Glossary
 
 ## Practitioner glossary.
+
+Machine-readable glossary.json License CC BY 4.0 Updated 2026-08-01 Source on GitHub
 
 Definitions across enterprise architecture, platform engineering, DevSecOps, SRE, cloud and generative AI — written for the engineer being asked the question and the executive being asked to fund the answer.
 

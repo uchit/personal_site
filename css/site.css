@@ -1203,3 +1203,17 @@ img, video, iframe { max-width: 100%; height: auto; }
   .also-strip .also-links a { font-size: 12.5px; padding: 5px 10px; }
   .also-strip .also-links a + a { border-left: none; }
 }
+
+/* ---- Open-data strip -------------------------------------------------------
+   Sits under a page's hero to advertise its machine-readable export. The
+   dataset page had this pattern scoped to .ds-hero; it is shared now that the
+   diagnostics, decision trees, anti-patterns and glossary publish JSON too. */
+.data-strip {
+  margin-top: 20px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px; letter-spacing: .04em; color: var(--muted);
+  display: flex; gap: 14px 22px; flex-wrap: wrap; align-items: baseline;
+}
+.data-strip b { color: var(--accent); font-weight: 500; }
+.data-strip a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
+.data-strip a:hover { color: var(--accent); border-color: var(--accent); }

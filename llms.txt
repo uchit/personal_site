@@ -104,10 +104,21 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - Substack (Letters): https://uchitvyas.substack.com
 - US patent: https://patents.google.com/patent/US11334348B2/en
 
+## Machine-readable exports (CC BY 4.0)
+
+The interactive tooling is published as JSON as well as HTML, so it can be
+cited, forked and embedded without scraping. Attribution: Uchit Vyas —
+hellouchit.com.
+
+- [Diagnostics JSON](https://hellouchit.com/tools/diagnostics.json): 6 diagnostics — every capability, scored level, recommendation and framework citation
+- [Decision trees JSON](https://hellouchit.com/decisions/decisions.json): 7 trees, ADR-shaped — verdicts, trade-offs, watch-outs, when-not-to-pick
+- [Anti-patterns JSON](https://hellouchit.com/anti-patterns/anti-patterns.json): 15 named failure modes — where each appears, why it fails, what to do instead
+- [Glossary JSON](https://hellouchit.com/glossary/glossary.json): 59 practitioner terms with domain tags
+- [Dataset JSON](https://hellouchit.com/dataset/dataset.json): 56 controls × 28 regulations × 261 tools
+- [Dataset CSV](https://hellouchit.com/dataset/dataset.csv)
+
 ## Optional
 
 - [Sitemap (XML)](https://hellouchit.com/sitemap.xml)
 - [RSS feed](https://hellouchit.com/writing/feed.xml)
 - [Full content concatenated for ingestion](https://hellouchit.com/llms-full.txt)
-- [Dataset JSON](https://hellouchit.com/dataset/dataset.json)
-- [Dataset CSV](https://hellouchit.com/dataset/dataset.csv)
