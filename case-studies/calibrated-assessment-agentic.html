@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What building a 10,561-question exam taught me about agentic engineering &mdash; Case study &mdash; Uchit Vyas</title>
+<meta name="description" content="Writing a calibrated assessment over agentic engineering — 10,561 questions across five weighted domains — is a harder test of command than writing about it. What the weighting and the question-writing revealed about where the discipline actually sits in 2026." />
+<link rel="canonical" href="https://hellouchit.com/case-studies/calibrated-assessment-agentic.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="What building a 10,561-question exam taught me about agentic engineering" />
+<meta property="og:description" content="You cannot write a defensible exam question about something you only half understand. Five domains, weighted — and what the weighting says." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/case.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work" style="color:var(--ink)">Work</a><a href="/tools/">Explore</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="cs-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/case-studies/" style="color:var(--muted)">Case Studies</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Calibrated assessment</span></nav>
+      <div class="meta"><span><b>Case study</b></span><span>Applied AI &middot; Assessment design</span><span>10,561 questions</span></div>
+      <h1>You can&rsquo;t write an exam question about something you <em>half understand</em>.</h1>
+      <p class="dek">
+        Anyone can write an essay about agentic engineering. Writing
+        <b>10,561 defensible questions</b> across five weighted domains is a
+        different test &mdash; because every question needs a right answer,
+        three wrong answers that a competent practitioner would plausibly
+        choose, and an explanation of <em>why</em> each is wrong. Getting the
+        distractors right is where you find out whether you actually know the
+        subject.
+      </p>
+      <div class="cs-context">
+        <div class="item"><b>Sector</b>Applied AI · Professional assessment</div>
+        <div class="item"><b>Period</b>2026</div>
+        <div class="item"><b>My role</b>Solution Architect &mdash; blueprint, content pipeline, platform</div>
+        <div class="item"><b>Scale</b>10,561 questions · 486 scenario items · 5 weighted domains</div>
+        <div class="item"><b>Shape</b>60-question weighted mock · 120 min · 72% pass mark</div>
+      </div>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <h2>Why this is the claim, not the artefact.</h2>
+      <p>
+        A blog post about agent orchestration can be right in outline and vague
+        everywhere it matters. An assessment cannot. To set a question you must
+        commit to a single defensible answer, and then to <b>three wrong answers
+        that are wrong for interestingly different reasons</b> &mdash; the
+        plausible-but-outdated one, the one that works until production, the one
+        that confuses two adjacent concepts. If you cannot construct those, you
+        do not understand the topic well enough to teach it, and the gap becomes
+        obvious immediately rather than after publication.
+      </p>
+      <p>
+        Multiply that by ten thousand and it stops being a writing exercise. It
+        becomes a systematic audit of where your own knowledge is thin, and where
+        <b>the field&rsquo;s knowledge is genuinely contested</b> &mdash; because
+        there are topics where I could not write a fair question at all, since
+        competent practitioners still disagree about the answer.
+      </p>
+
+      <h2>The weighting is an argument.</h2>
+      <p>
+        The blueprint distributes weight across five domains. That distribution
+        is not a neutral description of a syllabus &mdash; it is a claim about
+        where the work now is:
+      </p>
+      <div class="cs-outcomes" style="grid-template-columns:1fr">
+        <div class="cs-outcome">
+          <b>Agentic architecture &amp; orchestration &mdash; 27%</b>
+          <span>Agent loops, stop-reason control, coordinator and sub-agent patterns, context passing, parallel versus sequential execution, multi-agent design. The single largest block, and five years ago it did not exist as a topic.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Tool design &amp; protocol integration &mdash; 18%</b>
+          <span>Tool schemas, tool-call and tool-result handling, protocol servers, clients and transports, robust tool design. The integration substrate — and where most production failures actually originate.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Prompt engineering &amp; structured output &mdash; 20%</b>
+          <span>Structuring, few-shot, chain-of-thought, prefill, structured output, anti-patterns. Still substantial — but note it is now a minority of the discipline, not the whole of it.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Context management &amp; reliability &mdash; 15%</b>
+          <span>Context windows, caching, token budgeting, compaction, retries and idempotency, evals, production reliability. The smallest weight and, in my experience, the largest source of production incidents.</span>
+        </div>
+      </div>
+      <p style="margin-top:22px">
+        <b>Agentic architecture plus tool design is 45% of the discipline.</b>
+        Prompt engineering &mdash; the thing most organisations still mean when
+        they say &ldquo;AI skills&rdquo; and still buy training for &mdash; is a
+        fifth. If your internal capability plan is mostly prompt courses, it is
+        calibrated to 2023.
+      </p>
+
+      <h2>The question distribution says something the weighting doesn&rsquo;t.</h2>
+      <p>
+        The bank is deliberately uneven relative to the exam weights, and the
+        unevenness is the interesting part:
+      </p>
+      <div class="cs-lesson">
+        <p>
+          <b>Context management: 15% of the exam, 4,745 questions.</b> The
+          highest question count against the lowest weight. That is not an
+          accident of authoring &mdash; it is because the topic has enormous
+          <em>surface area</em>: every combination of cache boundary, budget,
+          compaction strategy and retry semantics is a distinct failure mode with
+          a distinct right answer. Low weight, high blast radius. This is the
+          part practitioners consistently underestimate.
+        </p>
+        <p>
+          <b>Configuration and workflow: 20% of the exam, 97 questions.</b> The
+          inverse. High weight, tiny surface area, because the answers are
+          largely knowable and stable &mdash; you either know how the
+          configuration works or you look it up once. Weight reflects
+          <em>how often it matters</em>; question count reflects
+          <em>how many distinct ways there are to be wrong</em>. Conflating the
+          two is how training programmes end up teaching the wrong thing at
+          length.
+        </p>
+      </div>
+
+      <h2>What this is evidence of.</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <b>Command, not familiarity</b>
+          <span>Ten thousand defensible items with reasoned distractors is not something you can produce from a reading list. It is the difference between having opinions about agentic engineering and being able to examine someone on it.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>A calibrated map of the discipline</b>
+          <span>Weighted domains, scenario-shaped items, and a pass mark — a defensible view of what a competent practitioner in 2026 must actually know, rather than a list of topics.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Content engineering at scale</b>
+          <span>A generation and review pipeline that holds quality across ten thousand items — itself an applied-AI system, with the evaluation problem that implies.</span>
+        </div>
+      </div>
+
+      <h2>Two things I&rsquo;d say out loud.</h2>
+      <div class="cs-lesson">
+        <p>
+          <b>1 &middot; Certification is a lagging indicator, and that is what
+          makes the blueprint useful.</b> A syllabus is a consensus artefact: it
+          only contains what enough people agree is settled. So the shape of an
+          exam blueprint tells you which parts of a young discipline have
+          <em>stopped moving</em> &mdash; and by subtraction, which parts are
+          still argument. In 2026 the settled part is orchestration and tool
+          design. The unsettled part is evaluation: I could write questions about
+          how to run evals, and almost none about what a good score means.
+        </p>
+        <p>
+          <b>2 &middot; The teachable surface and the dangerous surface are not
+          the same.</b> The domains that are easy to examine are the ones with
+          crisp right answers. The ones that cause outages &mdash; context
+          budgets, compaction, retry semantics under partial failure &mdash; are
+          examinable only in fragments, because the real answer is
+          &ldquo;it depends on your system.&rdquo; Any capability programme built
+          purely from what is easy to assess will train people for the wrong
+          half of the job.
+        </p>
+      </div>
+
+      <div class="cs-origin">
+        <p>
+          <b>Why this is here.</b> Not as a product. It is on this site because
+          it is the most direct evidence I have of command over agentic
+          engineering as a discipline rather than as a set of opinions &mdash;
+          and because the two arguments above are ones I will defend in a room.
+          If you want the underlying position rather than the artefact, that is
+          what the <a href="/reference-architectures/agentic-systems-regulated.html">agentic reference architecture</a>
+          and the <a href="/dataset/">agent-controls dataset</a> are for.
+        </p>
+      </div>
+    </article>
+
+    <section class="wrap" style="padding-bottom:clamp(80px,10vw,120px)">
+      <div class="routes-section" style="margin-top:0">
+        <h3>The positions behind this</h3>
+        <p class="dek">Each one is evidenced, and each one is arguable.</p>
+        <div class="routes-grid">
+          <a class="route-card" href="/reference-architectures/agentic-systems-regulated.html">
+            <div class="kind">Reference architecture</div>
+            <div class="name">Agentic systems in regulated environments</div>
+            <div class="desc">Two clocks, one chokepoint, graded autonomy, evidence as a by-product — from systems built, not surveyed.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/dataset/">
+            <div class="kind">Dataset</div>
+            <div class="name">Agent controls, mapped to regulation</div>
+            <div class="desc">Ten agent-specific controls with the evidence an auditor accepts, inside 66 controls × 28 regulations. CC BY 4.0.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/press/">
+            <div class="kind">Speaking</div>
+            <div class="name">Talk topics and speaker kit</div>
+            <div class="desc">These arguments work better in a room than on a page. Bio, topics and past talks for organisers.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><a href="/case-studies/">&larr; All case studies</a></span>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What building a 10,561-question exam taught me about agentic engineering",
+    "description": "Writing a calibrated assessment over agentic engineering is a harder test of command than writing about it — and the domain weighting is an argument about where the discipline now sits.",
+    "author": { "@id": "https://hellouchit.com/#person" },
+    "publisher": { "@id": "https://hellouchit.com/#person" },
+    "datePublished": "2026-08-01",
+    "dateModified": "2026-08-01",
+    "url": "https://hellouchit.com/case-studies/calibrated-assessment-agentic.html",
+    "about": ["AI agent architecture", "Model Context Protocol", "LLM evaluation", "Assessment design", "Applied AI"]
+  }
+  </script>
+</body>
+</html>

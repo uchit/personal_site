@@ -87,6 +87,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 
 ## Case studies (Uchit's own work)
 
+- [What building a 10,561-question exam taught me about agentic engineering](https://hellouchit.com/case-studies/calibrated-assessment-agentic.html): A calibrated assessment across five weighted domains — agentic architecture plus tool design is 45% of the discipline, prompt engineering a fifth. The weighting is an argument about where the field now sits.
 - [Privacy-preserving AI-usage monitoring for families](https://hellouchit.com/case-studies/ai-companion-safety.html): Teenage AI-companion usage reported to parents with zero access to message content — privacy enforced by platform sandbox and extension manifest rather than policy. Built solo, end to end.
 - [Multi-region payment platform (3 months)](https://hellouchit.com/case-studies/payment-platform.html)
 - [EA governance at Asia's largest bank](https://hellouchit.com/case-studies/ea-governance.html)
