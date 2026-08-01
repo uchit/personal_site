@@ -33,6 +33,8 @@ Pronunciation OO-chit VEE-yass
 
 Based in Melbourne, Victoria, Australia
 
+Availability In a full-time role. Not available for consulting, contracting or freelance engagements. This site is a body of published work — writing, reference architectures, an open dataset and open-source tooling — not a services offering. Views published here are his own and not those of his employer.
+
 Focus Enterprise architecture · cloud · DevSecOps · applied GenAI for regulated industries
 
 Industry Enterprise technology consulting · cloud · DevSecOps · GenAI · platform engineering
@@ -41,7 +43,7 @@ Years of experience 15+ years across enterprise architecture, cloud, and platfor
 
 Specialties Enterprise architecture · cloud architecture (AWS, Azure, GCP) · DevSecOps · Site Reliability Engineering · Generative AI · platform engineering · FinOps · regulated-industry tech (financial services, government, healthcare, critical infrastructure)
 
-Ways of working Forward-deployed: embedded with the delivery team rather than advising from outside it. Typical shape — a regulated platform that has to reach production against a fixed external deadline, where the architecture, the pipeline and the audit evidence all have to land together. Leaves behind decision records, paved paths and policy-as-code rather than slide decks.
+Ways of working Works from inside the delivery team rather than advising from outside it. Typical shape — a regulated platform that has to reach production against a fixed external deadline, where the architecture, the pipeline and the audit evidence all have to land together. Leaves behind decision records, paved paths and policy-as-code rather than slide decks.
 
 Distinctions Named on the Top 50 DevSecOps Influencers globally; holder of US patent US11334348B2 for “Specs Monster — an intelligent design collaboration tool”; author of 5 books with Apress and Packt; 30+ public talks across ASEAN, Europe, and the United States; internal Bunsen Burner and Delivery Heroes awards.
 
@@ -49,7 +51,7 @@ Canonical URL hellouchit.com
 
 ### What he does.
 
-Uchit Vyas is a forward-deployed enterprise architect. He embeds with delivery teams inside regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators) and gets platforms into production against deadlines that do not move — where the architecture, the pipeline and the audit evidence all have to land together. His work spans the four disciplines he calls the 4-Discipline Stack:
+Uchit Vyas is an enterprise architect. He works from inside delivery teams at regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators) and gets platforms into production against deadlines that do not move — where the architecture, the pipeline and the audit evidence all have to land together. His work spans the four disciplines he calls the 4-Discipline Stack:
 
 - Enterprise architecture — SAFe, BIAN, multi-cloud reference models, capability modelling, decision capture (ADRs).
 

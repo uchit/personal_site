@@ -1267,3 +1267,10 @@ img, video, iframe { max-width: 100%; height: auto; }
 }
 .ex-more a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
 .ex-more a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Contact — the standing position on availability. Quiet, but unambiguous:
+   it prevents both a wasted enquiry and any appearance of moonlighting. */
+.ct-note {
+  margin: 18px auto 0; max-width: 52ch;
+  color: var(--faint); font-size: 13.5px; line-height: 1.65;
+}

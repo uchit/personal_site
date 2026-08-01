@@ -1,6 +1,6 @@
 # Uchit Vyas
 
-> Enterprise architect and forward-deployed platform engineer based in Melbourne, Australia. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering — embedded with delivery teams getting regulated platforms into production against fixed external deadlines. 5 books with Apress & Packt. US patent (Specs Monster, US11334348B2). Named on the Top 50 DevSecOps Influencers list. Site at https://hellouchit.com.
+> Enterprise architect based in Melbourne, Australia. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering, working from inside delivery teams to get regulated platforms into production against fixed external deadlines. In a full-time role and not available for consulting or freelance work; this site is a body of published work, not a services offering. 5 books with Apress & Packt. US patent (Specs Monster, US11334348B2). Named on the Top 50 DevSecOps Influencers list. Site at https://hellouchit.com.
 
 This file follows the [llms.txt convention](https://llmstxt.org/) — a structured manifest of the site's most important content, optimised for ingestion by AI systems (ChatGPT, Claude, Perplexity, Gemini, etc.).
 
@@ -72,7 +72,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 
 ## How I work
 
-- [How I work when I'm embedded](https://hellouchit.com/how-i-work/): Forward-deployed engagement shape — what's needed on day one, the first two weeks, explicit refusals, and the artefacts left behind
+- [How I work](https://hellouchit.com/how-i-work/): Working practice — what he needs to be useful, how the first two weeks go, explicit refusals, and the artefacts left behind
 
 ## Situations (problem-shaped entry points)
 
