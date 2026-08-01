@@ -1,0 +1,13 @@
+name = "hellouchit-benchmark"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Created with:  npx wrangler d1 create hellouchit-benchmark
+# then paste the returned database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "hellouchit-benchmark"
+database_id = "REPLACE_WITH_D1_ID"
+
+[observability]
+enabled = true

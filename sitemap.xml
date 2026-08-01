@@ -85,6 +85,7 @@
   <url><loc>https://hellouchit.com/reading/</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
   <!-- Reference dataset -->
+  <url><loc>https://hellouchit.com/benchmark/</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/dataset/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
 
   <!-- Architecture teardowns -->
