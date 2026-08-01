@@ -163,6 +163,27 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws iam get-credential-report --query Content --output text | base64 -d | awk -F, 'NR&gt;1 &amp;&amp; ($9=="true" || $14=="true") {print $1}'">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws iam get-credential-report --query Content --output text | base64 -d | awk -F, 'NR&gt;1 &amp;&amp; ($9=="true" || $14=="true") {print $1}'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. Any name printed is a human or service user still holding an active static access key.</p>
+            <p class="vfy-yield">Access-key inventory per IAM user</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws iam list-open-id-connect-providers --output table">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws iam list-open-id-connect-providers --output table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> At least one provider — this is the federation that replaces static keys.</p>
+            <p class="vfy-yield">OIDC trust configuration</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">GitHub Actions</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="gh api /repos/:owner/:repo/actions/secrets --jq '.secrets[].name'">Copy</button></div>
+            <pre class="vfy-cmd"><code>gh api /repos/:owner/:repo/actions/secrets --jq '.secrets[].name'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY. Federated workflows need neither.</p>
+            <p class="vfy-yield">CI secret inventory</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r002"
          data-regs="cps234 iso27001 sp80053"
@@ -199,6 +220,21 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws iam list-policies --scope Local --only-attached --query 'Policies[].Arn' --output text">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws iam list-policies --scope Local --only-attached --query 'Policies[].Arn' --output text</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> The attached customer-managed policies — the set to inspect for wildcards.</p>
+            <p class="vfy-yield">Attached policy inventory</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws accessanalyzer list-analyzers --query 'analyzers[].{Name:name,Status:status}' --output table">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws accessanalyzer list-analyzers --query 'analyzers[].{Name:name,Status:status}' --output table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> An active analyzer. Without one, nobody is watching for over-broad grants.</p>
+            <p class="vfy-yield">Access Analyzer status</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r003"
          data-regs="e8 iso27001 sp80053"
@@ -265,6 +301,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws iam get-credential-report --query Content --output text | base64 -d | awk -F, 'NR&gt;1 &amp;&amp; $4=="true" &amp;&amp; $8=="false" {print $1}'">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws iam get-credential-report --query Content --output text | base64 -d | awk -F, 'NR&gt;1 &amp;&amp; $4=="true" &amp;&amp; $8=="false" {print $1}'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. Any name printed has console access with MFA disabled.</p>
+            <p class="vfy-yield">Password-enabled-without-MFA exception list</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r005"
          data-regs="slsa ssdf cisa_ssa cps234"
@@ -301,6 +346,15 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Sigstore</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="cosign verify-attestation --type slsaprovenance --certificate-identity-regexp '.*' --certificate-oidc-issuer-regexp '.*' &lt;image&gt;">Copy</button></div>
+            <pre class="vfy-cmd"><code>cosign verify-attestation --type slsaprovenance --certificate-identity-regexp '.*' --certificate-oidc-issuer-regexp '.*' &lt;image&gt;</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Verification succeeds and the predicate shows the builder ID and source repo.</p>
+            <p class="vfy-yield">SLSA provenance attestation</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r006"
          data-regs="ssdf cisa_ssa cps234 dora nis2 soci"
@@ -337,6 +391,21 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Syft</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="syft &lt;image&gt; -o spdx-json=sbom.spdx.json">Copy</button></div>
+            <pre class="vfy-cmd"><code>syft &lt;image&gt; -o spdx-json=sbom.spdx.json</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> An SBOM that resolves the actual runtime image, not the source tree.</p>
+            <p class="vfy-yield">SPDX SBOM</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Grype</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="grype sbom:sbom.spdx.json --only-fixed -o table">Copy</button></div>
+            <pre class="vfy-cmd"><code>grype sbom:sbom.spdx.json --only-fixed -o table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> The fixable set — the only part an owner-alert loop can act on.</p>
+            <p class="vfy-yield">Vulnerability report scoped to actionable findings</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r007"
          data-regs="slsa ssdf"
@@ -373,6 +442,15 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Kubernetes</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="kubectl get clusterpolicy -o json | jq -r '.items[] | select(.spec.validationFailureAction=="Enforce") | .metadata.name'">Copy</button></div>
+            <pre class="vfy-cmd"><code>kubectl get clusterpolicy -o json | jq -r '.items[] | select(.spec.validationFailureAction=="Enforce") | .metadata.name'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> The signature policy listed. In Audit mode it reports and admits — which is not a control.</p>
+            <p class="vfy-yield">Admission policy enforcement mode</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r008"
          data-regs="ssdf"
@@ -439,6 +517,165 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">npm</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="jq -r '.dependencies, .devDependencies | select(.) | to_entries[] | select(.value | test("^[\\^~*]|x$")) | .key' package.json">Copy</button></div>
+            <pre class="vfy-cmd"><code>jq -r '.dependencies, .devDependencies | select(.) | to_entries[] | select(.value | test("^[\\^~*]|x$")) | .key' package.json</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. Anything listed floats and can change between builds.</p>
+            <p class="vfy-yield">Unpinned dependency list</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Containers</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="grep -rnE '^FROM .*:(latest|[0-9]+)$|^FROM [^@]*
+      </div>
+      <div class="ds-empty" id="ds-empty" hidden>No rows match the current filters.</div>
+    </div></section>
+  </main>
+
+  
+  <!-- ============ ALSO ON THIS SITE — discoverability strip ============ -->
+<!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
+  <nav class="step-nav" aria-label="Position in The Method">
+    <div class="wrap">
+      <a class="lab" href="/tools/">The Method</a>
+      <div class="row">
+        <a href="/tools/#s2">&larr; 02 Locate it</a>
+        <b>03 &middot; Check it</b>
+        <a href="/tools/#s4">04 Decide it &rarr;</a>
+      </div>
+    </div>
+  </nav>
+  <!-- STEP-NAV:END -->
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/how-i-work/">How I work</a>
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span>Dataset <b style="color:var(--accent)">CC BY 4.0</b> &middot; <a href="/dataset/dataset.json">JSON</a> &middot; <a href="/dataset/dataset.csv">CSV</a></span>
+  </div></footer>
+
+  <script src="/js/dataset.js" defer></script>
+
+  <!-- Per-page Article schema — author refs canonical Person on home page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Regulation \u00d7 Control \u00d7 Tooling Dataset",
+    "description": "A curated, browsable map of 66 regulatory controls across 28 regulations with the tools that implement them and the evidence shape that passes audit. Free, CC BY 4.0, no signup.",
+    "url": "https://hellouchit.com/dataset/",
+    "datePublished": "2026-05-15",
+    "dateModified": "2026-05-29",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://hellouchit.com/#website"
+    },
+    "author": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "mainEntityOfPage": "https://hellouchit.com/dataset/",
+    "image": "https://hellouchit.com/images/og-banner.jpg"
+  }
+  </script>
+</body>
+</html>
+ --include=Dockerfile .">Copy</button></div>
+            <pre class="vfy-cmd"><code>grep -rnE '^FROM .*:(latest|[0-9]+)$|^FROM [^@]*
+      </div>
+      <div class="ds-empty" id="ds-empty" hidden>No rows match the current filters.</div>
+    </div></section>
+  </main>
+
+  
+  <!-- ============ ALSO ON THIS SITE — discoverability strip ============ -->
+<!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
+  <nav class="step-nav" aria-label="Position in The Method">
+    <div class="wrap">
+      <a class="lab" href="/tools/">The Method</a>
+      <div class="row">
+        <a href="/tools/#s2">&larr; 02 Locate it</a>
+        <b>03 &middot; Check it</b>
+        <a href="/tools/#s4">04 Decide it &rarr;</a>
+      </div>
+    </div>
+  </nav>
+  <!-- STEP-NAV:END -->
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/how-i-work/">How I work</a>
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span>Dataset <b style="color:var(--accent)">CC BY 4.0</b> &middot; <a href="/dataset/dataset.json">JSON</a> &middot; <a href="/dataset/dataset.csv">CSV</a></span>
+  </div></footer>
+
+  <script src="/js/dataset.js" defer></script>
+
+  <!-- Per-page Article schema — author refs canonical Person on home page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Regulation \u00d7 Control \u00d7 Tooling Dataset",
+    "description": "A curated, browsable map of 66 regulatory controls across 28 regulations with the tools that implement them and the evidence shape that passes audit. Free, CC BY 4.0, no signup.",
+    "url": "https://hellouchit.com/dataset/",
+    "datePublished": "2026-05-15",
+    "dateModified": "2026-05-29",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://hellouchit.com/#website"
+    },
+    "author": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "mainEntityOfPage": "https://hellouchit.com/dataset/",
+    "image": "https://hellouchit.com/images/og-banner.jpg"
+  }
+  </script>
+</body>
+</html>
+ --include=Dockerfile .</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. A base image without a digest is not a locked version.</p>
+            <p class="vfy-yield">Unpinned base-image list</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r010"
          data-regs="bcbs239 gdpr privacy_au hipaa"
@@ -571,6 +808,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws s3api get-bucket-location --bucket &lt;bucket&gt; --output text">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws s3api get-bucket-location --bucket &lt;bucket&gt; --output text</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> The pinned region and nothing else.</p>
+            <p class="vfy-yield">Per-bucket residency evidence</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r014"
          data-regs="eu_ai_act iso42001 ai_rmf ai_safety_au"
@@ -1009,6 +1255,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws cloudtrail describe-trails --query 'trailList[].{Name:Name,MultiRegion:IsMultiRegionTrail,Validation:LogFileValidationEnabled}' --output table">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws cloudtrail describe-trails --query 'trailList[].{Name:Name,MultiRegion:IsMultiRegionTrail,Validation:LogFileValidationEnabled}' --output table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Validation true. Without log-file validation the trail is centralised but not tamper-evident.</p>
+            <p class="vfy-yield">Trail configuration incl. integrity validation</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r027"
          data-regs="pci hipaa iso27001"
@@ -1042,6 +1297,21 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">OpenSSL</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="openssl s_client -connect &lt;host&gt;:443 -tls1_1 &lt;/dev/null 2&gt;&amp;1 | grep -c 'no protocol'">Copy</button></div>
+            <pre class="vfy-cmd"><code>openssl s_client -connect &lt;host&gt;:443 -tls1_1 &lt;/dev/null 2&gt;&amp;1 | grep -c 'no protocol'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A non-zero count — the handshake must fail. Success here is the finding.</p>
+            <p class="vfy-yield">Deprecated-protocol negotiation attempt</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">OpenSSL</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="openssl s_client -connect &lt;host&gt;:443 -tls1_3 &lt;/dev/null 2&gt;&amp;1 | grep 'Protocol'">Copy</button></div>
+            <pre class="vfy-cmd"><code>openssl s_client -connect &lt;host&gt;:443 -tls1_3 &lt;/dev/null 2&gt;&amp;1 | grep 'Protocol'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> TLSv1.3 negotiated.</p>
+            <p class="vfy-yield">Negotiated protocol record</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r028"
          data-regs="pci hipaa iso27001"
@@ -1075,6 +1345,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws kms list-aliases --query 'Aliases[?starts_with(AliasName, `alias/aws/`)==`false`].AliasName' --output text">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws kms list-aliases --query 'Aliases[?starts_with(AliasName, `alias/aws/`)==`false`].AliasName' --output text</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Customer-managed aliases. An empty result means everything sits on AWS-managed keys.</p>
+            <p class="vfy-yield">Customer-managed key inventory</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r029"
          data-regs="iso27001 sp80053"
@@ -1108,6 +1387,21 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">GitHub</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="gh api /repos/:owner/:repo/secret-scanning/alerts --jq '.[] | select(.state=="open") | .secret_type'">Copy</button></div>
+            <pre class="vfy-cmd"><code>gh api /repos/:owner/:repo/secret-scanning/alerts --jq '.[] | select(.state=="open") | .secret_type'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. An open alert is a live credential.</p>
+            <p class="vfy-yield">Open secret-scanning alerts</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Git history</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="gitleaks detect --source . --redact --report-format json --report-path leaks.json">Copy</button></div>
+            <pre class="vfy-cmd"><code>gitleaks detect --source . --redact --report-format json --report-path leaks.json</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Zero findings across history — rotating without rewriting leaves the secret reachable.</p>
+            <p class="vfy-yield">History scan report</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r030"
          data-regs="cps230 iso27001 sp80053"
@@ -1141,6 +1435,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Argo Rollouts</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="kubectl get rollout -A -o json | jq -r '.items[] | select(.spec.strategy.canary==null and .spec.strategy.blueGreen==null) | .metadata.name'">Copy</button></div>
+            <pre class="vfy-cmd"><code>kubectl get rollout -A -o json | jq -r '.items[] | select(.spec.strategy.canary==null and .spec.strategy.blueGreen==null) | .metadata.name'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. Anything listed still ships all-at-once.</p>
+            <p class="vfy-yield">Rollout strategy inventory</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r031"
          data-regs="e8 sp80053 iso27001"
@@ -1306,6 +1609,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Istio</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="kubectl get peerauthentication -A -o json | jq -r '.items[] | select(.spec.mtls.mode!="STRICT") | "\(.metadata.namespace)/\(.metadata.name)"'">Copy</button></div>
+            <pre class="vfy-cmd"><code>kubectl get peerauthentication -A -o json | jq -r '.items[] | select(.spec.mtls.mode!="STRICT") | "\(.metadata.namespace)/\(.metadata.name)"'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. PERMISSIVE accepts plaintext, so mTLS is available rather than enforced.</p>
+            <p class="vfy-yield">Per-namespace mTLS mode</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r036"
          data-regs="sp80053 iso27001 pci"
@@ -1339,6 +1651,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Kubernetes</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="kubectl get pods -A -o json | jq -r '.items[] | select(any(.spec.containers[]; .securityContext.allowPrivilegeEscalation != false)) | "\(.metadata.namespace)/\(.metadata.name)"'">Copy</button></div>
+            <pre class="vfy-cmd"><code>kubectl get pods -A -o json | jq -r '.items[] | select(any(.spec.containers[]; .securityContext.allowPrivilegeEscalation != false)) | "\(.metadata.namespace)/\(.metadata.name)"'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> No output. Unset is not false — the default permits escalation.</p>
+            <p class="vfy-yield">Pod privilege-escalation posture</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r037"
          data-regs="iso27001 sp80053 cps234"
@@ -1504,6 +1825,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Conftest</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="terraform show -json plan.tfplan | conftest test --parser json -">Copy</button></div>
+            <pre class="vfy-cmd"><code>terraform show -json plan.tfplan | conftest test --parser json -</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> All policies pass against the plan, before apply rather than after.</p>
+            <p class="vfy-yield">Plan-time policy result</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r042"
          data-regs="sp80053 iso27001"
@@ -1537,6 +1867,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Terraform</span><span class="vfy-un" title="This CLI is not installed in the build environment, so the syntax could not be machine-checked">not checked here</span><button class="vfy-copy" type="button" data-cmd="terraform plan -detailed-exitcode -refresh-only">Copy</button></div>
+            <pre class="vfy-cmd"><code>terraform plan -detailed-exitcode -refresh-only</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Exit code 0. Exit 2 means live config has drifted from source of truth.</p>
+            <p class="vfy-yield">Drift detection exit status</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r043"
          data-regs="cps230"
@@ -1768,6 +2107,21 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws s3api get-object-lock-configuration --bucket &lt;bucket&gt;">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws s3api get-object-lock-configuration --bucket &lt;bucket&gt;</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> COMPLIANCE mode with a retention period. GOVERNANCE mode can be bypassed by a privileged caller.</p>
+            <p class="vfy-yield">Object-lock configuration</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws backup list-backup-vaults --query 'BackupVaultList[].{Vault:BackupVaultName,Locked:Locked}' --output table">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws backup list-backup-vaults --query 'BackupVaultList[].{Vault:BackupVaultName,Locked:Locked}' --output table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> Locked true on the vault holding the offline copy.</p>
+            <p class="vfy-yield">Vault lock status</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r050"
          data-regs="gdpr privacy_au"
@@ -1867,6 +2221,27 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">dig</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="dig +short CAA &lt;domain&gt;">Copy</button></div>
+            <pre class="vfy-cmd"><code>dig +short CAA &lt;domain&gt;</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> At least one issue record. Empty means any CA may issue for the domain.</p>
+            <p class="vfy-yield">CAA record set</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">dig</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="dig +dnssec +short DS &lt;domain&gt;">Copy</button></div>
+            <pre class="vfy-cmd"><code>dig +dnssec +short DS &lt;domain&gt;</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A DS record — the delegation signer proving the chain is live.</p>
+            <p class="vfy-yield">DNSSEC delegation record</p>
+          </div>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">dig</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="dig +short TXT _mta-sts.&lt;domain&gt;">Copy</button></div>
+            <pre class="vfy-cmd"><code>dig +short TXT _mta-sts.&lt;domain&gt;</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A v=STSv1 policy record.</p>
+            <p class="vfy-yield">MTA-STS policy record</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r053"
          data-regs="pci sp80053 iso27001"
@@ -1933,6 +2308,15 @@
           </div>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws ssm describe-patch-baselines --query 'BaselineIdentities[].{Name:BaselineName,Default:DefaultBaseline}' --output table">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws ssm describe-patch-baselines --query 'BaselineIdentities[].{Name:BaselineName,Default:DefaultBaseline}' --output table</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A default baseline exists and is the one you think it is.</p>
+            <p class="vfy-yield">Patch baseline inventory</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="r055"
          data-regs="pci sp80053"
@@ -2035,6 +2419,15 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">AWS</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="aws sts get-caller-identity --query Arn --output text">Copy</button></div>
+            <pre class="vfy-cmd"><code>aws sts get-caller-identity --query Arn --output text</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> An assumed-role ARN for the agent itself — not a human's, and not one shared with other agents.</p>
+            <p class="vfy-yield">Runtime caller identity</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="agent-tool-authz"
          data-regs="eu_ai_act iso42001 ai_rmf owasp_llm sp80053"
@@ -2179,6 +2572,15 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">OpenTelemetry</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="curl -s '&lt;otlp-query&gt;/api/traces?service=&lt;agent&gt;&amp;limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'">Copy</button></div>
+            <pre class="vfy-cmd"><code>curl -s '&lt;otlp-query&gt;/api/traces?service=&lt;agent&gt;&amp;limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A span per tool call. If the count is zero the trajectory is reconstructed from logs, not recorded.</p>
+            <p class="vfy-yield">Per-run trajectory span count</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="agent-blast-radius"
          data-regs="cps230 iso42001 sp80053 nis2 soci"
@@ -2215,6 +2617,15 @@
           <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#kpi-cargo-cult" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
+        <div class="vfy-wrap">
+          <h4>Verify it &mdash; read-only</h4>
+          <div class="vfy">
+            <div class="vfy-head"><span class="vfy-plat">Kubernetes</span><span class="vfy-ok" title="Syntax parsed by the CLI at build time">syntax checked</span><button class="vfy-copy" type="button" data-cmd="kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'">Copy</button></div>
+            <pre class="vfy-cmd"><code>kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'</code></pre>
+            <p class="vfy-exp"><b>Expect:</b> A quota on the agent's namespace. No quota means the ceiling is theoretical.</p>
+            <p class="vfy-yield">Enforced resource ceiling</p>
+          </div>
+        </div>
     </div>
     <div class="ds-row" data-id="agent-action-reversibility"
          data-regs="cps230 iso42001 eu_ai_act dora"

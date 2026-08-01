@@ -125,6 +125,36 @@
     render();
   });
 
+  /* Copy the verify command. Delegated because the rows are generated and the
+     detail panes exist before expansion — binding per button at load would
+     work, but delegation survives any future re-render. */
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".vfy-copy");
+    if (!btn) return;
+    e.stopPropagation();               // don't collapse the row underneath
+    const cmd = btn.dataset.cmd || "";
+    const done = () => {
+      const was = btn.textContent;
+      btn.textContent = "Copied";
+      btn.classList.add("done");
+      setTimeout(() => { btn.textContent = was; btn.classList.remove("done"); }, 1600);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(cmd).then(done, fallback);
+    } else fallback();
+
+    function fallback() {
+      const ta = document.createElement("textarea");
+      ta.value = cmd;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch { /* leave it visible to select by hand */ }
+      ta.remove();
+    }
+  });
+
   // Row click → toggle expand
   rows.forEach(row => {
     row.addEventListener("click", () => {

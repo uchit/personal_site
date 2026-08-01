@@ -300,3 +300,53 @@
 .cov-chip span { margin-left: 5px; color: var(--faint); }
 .cov-foot { margin-top: 22px; font-size: 13.5px; }
 .cov-foot b { color: var(--ink); font-weight: 500; }
+
+/* --------------------------------------------------------------- VERIFY
+   The command that produces the artefact. Presented as something to run, not
+   something to admire: monospace, copyable, and honest about whether the
+   syntax was actually machine-checked. */
+.vfy-wrap { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+.vfy-wrap h4 {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
+}
+.vfy + .vfy { margin-top: 14px; }
+.vfy-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.vfy-plat {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .06em; color: var(--ink);
+}
+.vfy-ok, .vfy-un {
+  font-family: "IBM Plex Mono", monospace; font-size: 9.5px;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 999px; cursor: help;
+}
+.vfy-ok { color: var(--signal, #7fb069); border: 1px solid currentColor; opacity: .8; }
+.vfy-un { color: var(--faint); border: 1px dashed var(--line-strong); }
+.vfy-copy {
+  margin-left: auto; padding: 3px 10px;
+  border: 1px solid var(--line); border-radius: 999px; background: transparent;
+  color: var(--muted); cursor: pointer;
+  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+  transition: color .2s, border-color .2s;
+}
+.vfy-copy:hover { color: var(--accent); border-color: var(--accent); }
+.vfy-copy.done { color: var(--signal, #7fb069); border-color: currentColor; }
+.vfy-cmd {
+  margin: 0; padding: 11px 13px;
+  background: rgba(0,0,0,.28); border: 1px solid var(--line); border-radius: 7px;
+  overflow-x: auto;
+}
+.vfy-cmd code {
+  font-family: "IBM Plex Mono", monospace; font-size: 12px;
+  line-height: 1.65; color: var(--ink); white-space: pre;
+}
+.vfy-exp { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.vfy-exp b { color: var(--accent); font-weight: 500; }
+.vfy-yield {
+  margin: 3px 0 0; color: var(--faint);
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .05em;
+}
+@media (max-width: 720px) { .vfy-cmd code { font-size: 11px; } }
