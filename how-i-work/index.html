@@ -4,19 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>How I work when I'm embedded — Uchit Vyas</title>
-<meta name="description" content="What a forward-deployed engagement actually looks like: what I need on day one, the first two weeks, what I refuse to do, and what I leave behind." />
+<meta name="description" content="What a forward-deployed engagement actually looks like: what I need on day one, the first two weeks, what I won't do, and what stays working after I leave." />
 <link rel="canonical" href="https://hellouchit.com/how-i-work/" />
 <meta name="theme-color" content="#0c0d10" />
 <link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
-
-<!-- DRAFT: not linked from navigation and excluded from the sitemap until the
-     bracketed prompts below are replaced with real content. Remove this meta
-     tag when publishing. -->
-<meta name="robots" content="noindex,nofollow" />
-
 <meta property="og:type" content="article" />
 <meta property="og:title" content="How I work when I'm embedded — Uchit Vyas" />
-<meta property="og:description" content="What a forward-deployed engagement actually looks like — day one, the first two weeks, what I refuse to do, and what I leave behind." />
+<meta property="og:description" content="Day one, the first two weeks, what I won't do, and what stays working after I leave." />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
 <meta property="og:url" content="https://hellouchit.com/how-i-work/" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -26,6 +20,7 @@
 <link rel="stylesheet" href="/css/site.css" />
 <link rel="stylesheet" href="/css/enhance.css" />
 <link rel="stylesheet" href="/css/diagnostic.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
 <style>
@@ -40,6 +35,7 @@
     margin-top:20px; color:var(--muted);
     font-size:clamp(16px,1.35vw,18.5px); line-height:1.7; max-width:62ch;
   }
+  .hw-hero .dek b { color:var(--ink); font-weight:500; }
 
   .hw-sect { padding: clamp(36px,4vw,52px) 0; border-top:1px solid var(--line); }
   .hw-sect h2 {
@@ -47,64 +43,57 @@
     font-size:clamp(24px,3vw,32px); line-height:1.15; margin-bottom:8px;
   }
   .hw-sect h2 em { font-style:italic; color:var(--accent); }
-  .hw-sect .lede { color:var(--muted); font-size:15.5px; line-height:1.7; max-width:66ch; margin-bottom:20px; }
+  .hw-sect .lede { color:var(--muted); font-size:15.5px; line-height:1.7; max-width:66ch; margin-bottom:22px; }
   .hw-sect p { color:var(--muted); font-size:15.5px; line-height:1.7; max-width:68ch; }
   .hw-sect p + p { margin-top:1em; }
   .hw-sect b { color:var(--ink); font-weight:500; }
 
   .hw-list { list-style:none; padding:0; margin:0; max-width:70ch; }
   .hw-list li {
-    position:relative; padding-left:28px; margin-bottom:12px;
+    position:relative; padding-left:28px; margin-bottom:14px;
     color:var(--muted); font-size:15.5px; line-height:1.65;
   }
   .hw-list li::before {
     content:""; position:absolute; left:4px; top:11px;
     width:13px; height:1px; background:var(--accent);
   }
+  .hw-list li b { color:var(--ink); font-weight:500; }
 
-  /* Week-by-week rail */
   .hw-weeks { max-width:72ch; }
   .hw-week {
-    display:grid; grid-template-columns:110px 1fr; gap:14px 24px;
-    padding:20px 0; border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:120px 1fr; gap:14px 24px;
+    padding:22px 0; border-bottom:1px solid var(--line);
   }
   .hw-week:last-child { border-bottom:0; }
   .hw-week .w {
     font-family:"IBM Plex Mono",monospace; font-size:12px;
     letter-spacing:.1em; color:var(--accent);
   }
-  .hw-week .w small { display:block; color:var(--faint); font-size:10.5px; margin-top:4px; }
+  .hw-week .w small { display:block; color:var(--faint); font-size:10.5px; margin-top:4px; letter-spacing:.12em; }
   .hw-week h3 {
-    font-family:"Fraunces",serif; font-weight:500; font-size:18px;
-    line-height:1.3; color:var(--ink); margin-bottom:6px;
+    font-family:"Fraunces",serif; font-weight:500; font-size:19px;
+    line-height:1.3; color:var(--ink); margin-bottom:8px;
   }
-  .hw-week p { font-size:14.5px; margin:0; }
-  @media (max-width:640px) { .hw-week { grid-template-columns:1fr; gap:4px; } }
+  .hw-week p { font-size:14.8px; margin:0; }
+  @media (max-width:640px) { .hw-week { grid-template-columns:1fr; gap:6px; } }
 
-  /* The refusal block — deliberately the loudest thing on the page. */
   .hw-refuse {
     border-left:2px solid var(--accent); background:var(--accent-soft);
-    border-radius:0 10px 10px 0; padding:24px 28px; max-width:70ch;
+    border-radius:0 10px 10px 0; padding:26px 30px; max-width:70ch;
   }
   .hw-refuse .lab {
     font-family:"IBM Plex Mono",monospace; font-size:11px;
     letter-spacing:.2em; color:var(--accent); text-transform:uppercase;
-    margin-bottom:12px;
+    margin-bottom:14px;
   }
-
-  /* Author prompts — visible only while drafting. Delete the rule and the
-     elements together when the page is ready to publish. */
-  .todo {
-    display:block; margin:10px 0; padding:14px 18px;
-    border:1px dashed #e5736b; border-radius:8px;
-    background:rgba(229,115,107,.06);
-    color:#e5a55e; font-family:"IBM Plex Mono",monospace;
-    font-size:13px; line-height:1.65;
-  }
-  .todo b { color:#e5736b; font-weight:500; }
-  .ph { color:#e5a55e; font-style:normal; }
-  .todo em { color:var(--muted); font-style:italic; }
 </style>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -124,156 +113,154 @@
       <span class="eyebrow">Forward deployed</span>
       <h1>How I work when I&rsquo;m <em>embedded</em>.</h1>
       <p class="dek">
-        Most of the useful work happens inside the delivery team, not alongside
-        it. This is what that actually looks like &mdash; what I need on day one,
-        how the first fortnight goes, what I won&rsquo;t do, and what stays behind
-        when I leave.
+        I don&rsquo;t advise from outside the team. I sit inside it, take a share
+        of the delivery risk, and leave behind artefacts that keep working
+        without me. <b>The engagements that go well are the ones where that is
+        clear on day one</b> &mdash; so here is the shape, including the parts
+        that are inconvenient.
       </p>
-      <div class="todo">
-        <b>TODO &mdash; the dek.</b> Above is a placeholder in your register.
-        Rewrite it in your own words if it isn&rsquo;t how you&rsquo;d say it.
-        <em>Everything on this page marked like this needs replacing before publishing.</em>
-      </div>
     </div></section>
 
-    <!-- ================= WHAT I NEED ON DAY ONE ================= -->
     <section class="hw-sect"><div class="wrap">
       <h2>What I need on <em>day one</em>.</h2>
       <p class="lede">
-        The things that, if they aren&rsquo;t in place, mean the first week gets
-        spent on access instead of architecture.
+        None of this is unusual. All of it missing means the first week goes on
+        access tickets instead of architecture &mdash; and on a fixed deadline
+        that week does not come back.
       </p>
-      <div class="todo">
-        <b>TODO &mdash; 4 to 6 bullets.</b> The concrete list you actually ask for.
-        Prompts to react to, not a template to fill:
-        <br />&middot; What access do you need before you can be useful? (repo, cloud read-only, the wiki, the ticket system, prod dashboards?)
-        <br />&middot; Which one person must you be able to interrupt without booking a meeting?
-        <br />&middot; What document or artefact do you ask to read first?
-        <br />&middot; What meeting do you need to be in from week one?
-        <br />&middot; What do you ask for that clients are usually surprised by?
-      </div>
       <ul class="hw-list">
-        <li><b><span class="ph">[Access]</span></b> &mdash; [what, and why it blocks you without it]</li>
-        <li><b><span class="ph">[One decision-maker on speed-dial]</span></b> &mdash; [why this matters more than a steering committee]</li>
-        <li><b><span class="ph">[The artefact you read first]</span></b> &mdash; [what it tells you that nobody says out loud]</li>
-        <li><b><span class="ph">[The meeting you must be in]</span></b> &mdash; [what you learn there]</li>
+        <li><b>Read access to the code and the cloud console.</b> Not admin, not write &mdash; read. I cannot form a view on a system I am only told about, and the gap between the architecture diagram and the repository is usually the whole problem.</li>
+        <li><b>One decision-maker I can interrupt without booking a meeting.</b> The highest-value item on this list. On a compressed timeline the bottleneck is never analysis; it is waiting three days for a decision that takes four minutes. I will use this sparingly, and I will need it.</li>
+        <li><b>The last six months of incidents, and the deploy pipeline.</b> Incidents tell you what actually breaks, as opposed to what the risk register says breaks. The pipeline tells you what the organisation genuinely believes about quality, as opposed to what the policy says.</li>
+        <li><b>A seat in the delivery team&rsquo;s standup from week one.</b> Not the steering committee &mdash; that matters later and less. If I am not in the room where the work gets described, I am reconstructing it second-hand and I will be confidently wrong.</li>
+        <li><b>An honest answer to &ldquo;what has already been tried?&rdquo;</b> Almost every engagement has a predecessor attempt. Knowing why it stalled saves me a month, and saves you watching me repeat it.</li>
       </ul>
     </div></section>
 
-    <!-- ================= THE FIRST TWO WEEKS ================= -->
     <section class="hw-sect"><div class="wrap">
       <h2>The first <em>two weeks</em>.</h2>
       <p class="lede">
-        Not a methodology. What actually happens, in the order it happens.
+        Not a methodology. This is what actually happens, in the order it
+        happens, and it looks much the same whether the estate is a payments
+        platform or a lending core.
       </p>
-      <div class="todo">
-        <b>TODO &mdash; fill the four blocks below.</b> The most useful thing you
-        can do here is be specific and slightly unflattering: name the thing that
-        always goes wrong in week one, and what you do about it. Generic
-        onboarding language will read like every consultancy&rsquo;s deck.
-      </div>
       <div class="hw-weeks">
         <div class="hw-week">
           <div class="w">Days 1&ndash;3<small>Orient</small></div>
           <div>
-            <h3><span class="ph">[What you do first]</span></h3>
-            <p>[e.g. read the last six months of incidents / sit with two engineers and watch them deploy / map who actually decides. What are you trying to learn, and what tells you you&rsquo;ve learned it?]</p>
+            <h3>Read the system, not the documentation.</h3>
+            <p>
+              Repository, pipeline, incident history, and one deploy watched end
+              to end with whoever normally does it. In parallel: who actually
+              decides things, which is rarely the org chart. By day three I want
+              to describe the system back to the team in their own language and
+              have them agree. If I can&rsquo;t, nothing after this is
+              trustworthy.
+            </p>
           </div>
         </div>
         <div class="hw-week">
           <div class="w">Days 4&ndash;7<small>Find the constraint</small></div>
           <div>
-            <h3><span class="ph">[The binding constraint]</span></h3>
-            <p><span class="ph">[How do you work out what is actually blocking delivery, as opposed to what people say is blocking it? What is the tell?]</span></p>
+            <h3>Separate what is blocking from what is merely annoying.</h3>
+            <p>
+              Everyone will tell you what is wrong, and the list is long and
+              mostly true. The useful question is which single thing, left
+              broken, stops the date being met. Usually it is not technology
+              &mdash; it is an undocumented dependency, an unowned decision, or a
+              team blocking another team without knowing it.
+              <b>The tell is where work queues, not where people complain.</b>
+            </p>
           </div>
         </div>
         <div class="hw-week">
           <div class="w">Week 2<small>First decision</small></div>
           <div>
-            <h3><span class="ph">[The first thing you decide and write down]</span></h3>
-            <p><span class="ph">[What is the first irreversible-ish decision you force, and why that one first? What form does it take &mdash; an ADR, a paved path, a policy check?]</span></p>
+            <h3>Force the four or five decisions that are expensive to reverse.</h3>
+            <p>
+              Tenancy, decomposition, how services talk, where state lives, what
+              the audit evidence is. Left alone these get made implicitly by
+              whoever writes code first, and then cost a re-platform to change. I
+              write them down as decision records &mdash; context, options,
+              decision, consequences &mdash; and explicitly defer everything else.
+              Deferring loudly is as much of the job as deciding.
+            </p>
           </div>
         </div>
         <div class="hw-week">
           <div class="w">End of week 2<small>Visible change</small></div>
           <div>
-            <h3><span class="ph">[What is demonstrably different]</span></h3>
-            <p><span class="ph">[What can the team point at after a fortnight? This is the part readers most want and least often get.]</span></p>
+            <h3>Something is measurably different, and it isn&rsquo;t a document.</h3>
+            <p>
+              A pipeline that gates on something it didn&rsquo;t, a paved path a
+              second team can use, a policy check that fails a build. Small, but
+              running. If two weeks produce only analysis, the engagement has
+              already started going wrong, and I would rather say so then than at
+              the end.
+            </p>
           </div>
         </div>
       </div>
     </div></section>
 
-    <!-- ================= WHAT I WON'T DO ================= -->
     <section class="hw-sect"><div class="wrap">
       <h2>What I <em>won&rsquo;t</em> do.</h2>
       <p class="lede">
-        The most useful section on this page, and the one most people leave out.
-        It is what makes the rest credible.
+        The section most people leave out, which is exactly why it is worth
+        reading. Each of these has cost me work, and I would make the same call
+        again.
       </p>
-      <div class="todo">
-        <b>TODO &mdash; 3 to 5 refusals, each with the reason.</b> Real ones, with
-        teeth. Prompts:
-        <br />&middot; What request do you turn down even when it&rsquo;s well paid?
-        <br />&middot; What do you refuse to produce? (A strategy deck with no owner? A target state nobody has to implement?)
-        <br />&middot; What working arrangement doesn&rsquo;t work &mdash; and you&rsquo;ve learned to say so up front?
-        <br />&middot; When do you tell a client the deadline is impossible, and what do you do next?
-        <br />&middot; What would make you leave an engagement?
-      </div>
       <div class="hw-refuse">
         <div class="lab">Not negotiable</div>
         <ul class="hw-list" style="margin:0">
-          <li><b><span class="ph">[Refusal one]</span></b> &mdash; [the reason, in one sentence. The reason is the part that earns trust.]</li>
-          <li><b><span class="ph">[Refusal two]</span></b> &mdash; [reason]</li>
-          <li><b><span class="ph">[Refusal three]</span></b> &mdash; [reason]</li>
+          <li><b>I won&rsquo;t produce a target state nobody has to implement.</b> A strategy deck with no owner, no sequencing and no budget makes everyone feel organised for a quarter and changes nothing. If the work isn&rsquo;t going to be encoded in platform defaults, policy checks or paved paths, I would rather say so than bill for the artefact.</li>
+          <li><b>I won&rsquo;t chair a review board.</b> Architecture as a gate produces resentment and two systems: the approved one and the one that ships. I will run an enablement clinic &mdash; bring a problem, leave with a template, an ADR, or the exception process and what it costs &mdash; but I won&rsquo;t be the queue teams learn to route around.</li>
+          <li><b>I won&rsquo;t take the shortcut that permanently changes your security posture.</b> There is almost always a way to save a day by introducing a credential that bypasses your access controls, or a permissive policy &ldquo;temporarily&rdquo;. Nobody ever removes it. I will build the slower thing and tell you what the day cost.</li>
+          <li><b>I won&rsquo;t tell you the date is fine when it isn&rsquo;t.</b> If the deadline cannot be met, the most valuable thing I can do is say so early, in writing, with the specific scope that would have to move to make it real. Late honesty about a date is worth nothing to anybody.</li>
+          <li><b>I won&rsquo;t leave without a named owner for everything I built.</b> An artefact with no owner is decay with a start date. If nobody will own it, that is a signal it shouldn&rsquo;t have been built &mdash; and I would rather discover that in week two than at handover.</li>
         </ul>
       </div>
     </div></section>
 
-    <!-- ================= WHAT I LEAVE BEHIND ================= -->
     <section class="hw-sect"><div class="wrap">
       <h2>What I <em>leave behind</em>.</h2>
       <p class="lede">
         The test of an embedded engagement is what still works six months after
-        the invoice stops.
+        the invoicing stops. Everything below is a real artefact, in your
+        repositories, owned by someone with a name.
       </p>
-      <div class="todo">
-        <b>TODO &mdash; the artefact list.</b> This one you can largely assemble
-        from the site, because you already publish the forms these take. Which of
-        these do you actually hand over &mdash; and what else?
-        <br />&middot; Decision records (you publish seven as <a href="/decisions/" style="color:var(--accent)">decision trees</a>)
-        <br />&middot; A paved path (you publish four <a href="/reference-architectures/" style="color:var(--accent)">reference architectures</a>)
-        <br />&middot; Policy-as-code (you publish <a href="/oss/" style="color:var(--accent)">opa-nist-ai-rmf</a>)
-        <br />&middot; Evidence pipelines / audit artefacts
-        <br />&middot; A named owner for each of the above &mdash; who?
-        <br />&middot; What do you deliberately NOT leave behind?
-      </div>
       <ul class="hw-list">
-        <li><b><span class="ph">[Artefact]</span></b> &mdash; [what it is, who owns it after you go]</li>
-        <li><b><span class="ph">[Artefact]</span></b> &mdash; [ditto]</li>
-        <li><b><span class="ph">[Artefact]</span></b> &mdash; [ditto]</li>
+        <li><b>Decision records</b> for the choices that were expensive to reverse &mdash; context, options taken and rejected, consequences. The form is public: the <a href="/decisions/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">seven decision trees</a> on this site are the same shape.</li>
+        <li><b>A paved path a second team can use without me.</b> One golden route to production that is genuinely the easiest route, not a mandated one. The <a href="/reference-architectures/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">reference architectures</a> are the shapes I start from.</li>
+        <li><b>Policy-as-code for the principles that matter.</b> The top three encoded as machine checks that break a build, and the rest subtracted. A principle nobody can violate without a warning is a principle; everything else is rhetoric. Working example: the <a href="/oss/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">OPA bundle</a> I publish.</li>
+        <li><b>An evidence pipeline, if you are regulated.</b> Audit artefacts produced as a by-product of running, rather than assembled in a panic before a review. That is the difference between passing an audit and surviving one.</li>
+        <li><b>A named owner per artefact</b>, agreed before I leave &mdash; plus the honest list of what I did <em>not</em> finish and what it would take.</li>
       </ul>
+      <p style="margin-top:22px">
+        What I deliberately don&rsquo;t leave is a dependency on me. If the
+        answer to &ldquo;what happens when he goes?&rdquo; is a retainer, the
+        engagement failed on its own terms.
+      </p>
     </div></section>
 
-    <!-- ================= SHAPE OF ENGAGEMENT ================= -->
     <section class="hw-sect"><div class="wrap">
       <h2>The shape that <em>works</em>.</h2>
-      <div class="todo">
-        <b>TODO &mdash; optional but high-value.</b> Readers self-qualify here, and
-        it filters out the enquiries you don&rsquo;t want:
-        <br />&middot; Typical duration? (weeks, a quarter, longer?)
-        <br />&middot; Full-time embedded, or days per week?
-        <br />&middot; Remote / on-site / hybrid &mdash; and what actually works for you given Melbourne?
-        <br />&middot; Solo, or alongside an existing team &mdash; and how big does the team need to be?
-        <br />&middot; What size and kind of organisation is this a bad fit for?
-        <br /><br />
-        <em>If you&rsquo;d rather not publish commercial terms, keep the shape and
-        omit the rates &mdash; the useful part for a reader is fit, not price.</em>
-      </div>
-      <p><span class="ph">[Duration, cadence, location, team shape &mdash; and who this is a bad fit for.]</span></p>
+      <p class="lede">So you can tell quickly whether this is a fit.</p>
+      <ul class="hw-list">
+        <li><b>Weeks to a quarter</b>, with a real date attached. Open-ended advisory is not what this is, and I am not especially good at it.</li>
+        <li><b>Embedded with the delivery team</b>, not reporting alongside it. Remote-first from Melbourne, with the timezone overlap agreed up front rather than discovered in week three.</li>
+        <li><b>There is an existing team.</b> I amplify a team; I am not a substitute for one. If there is nobody to hand the paved path to, the work has no landing.</li>
+        <li><b>The constraint is real</b> &mdash; a regulator, a board commitment, a customer date. The work is sharper when something outside engineering is immovable.</li>
+      </ul>
+      <p style="margin-top:22px">
+        <b>Where this is a bad fit:</b> a discovery phase with no delivery
+        attached; a target-state document for a transformation nobody has funded;
+        a standing review-board seat; or an organisation that wants the plan
+        without the encoding. Those are legitimate needs. They are somebody
+        else&rsquo;s engagement.
+      </p>
     </div></section>
 
-    <!-- ================= CTA ================= -->
     <section class="hw-sect" style="padding-bottom:clamp(80px,10vw,120px)"><div class="wrap">
       <div class="routes-section" style="margin-top:0;padding-top:0;border-top:0">
         <h3>If that sounds like your situation</h3>
@@ -288,7 +275,7 @@
           <a class="route-card" href="/#work">
             <div class="kind">Case studies</div>
             <div class="name">Seven engagements that shipped</div>
-            <div class="desc">What the work looks like when it lands &mdash; sector, period, role and the constraint that shaped it.</div>
+            <div class="desc">What the work looks like when it lands &mdash; sector, period, role, and the constraint that shaped it.</div>
             <span class="go">Open &rarr;</span>
           </a>
           <a class="route-card" href="/#contact">
@@ -306,6 +293,7 @@
     <div class="wrap">
       <span class="lab">Also on this site</span>
       <nav class="also-links">
+        <a href="/how-i-work/">How I work</a>
         <a href="/situations/">Situations</a>
         <a href="/talks/">Talks</a>
         <a href="/letters/">Letters</a>
@@ -323,5 +311,20 @@
     <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/">&larr; Home</a> &middot; <a href="/situations/">Situations</a></span>
   </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How I work when I'm embedded",
+    "description": "What a forward-deployed engagement looks like: day one requirements, the first two weeks, explicit refusals, and the artefacts left behind.",
+    "author": { "@id": "https://hellouchit.com/#person" },
+    "publisher": { "@id": "https://hellouchit.com/#person" },
+    "datePublished": "2026-08-01",
+    "dateModified": "2026-08-01",
+    "url": "https://hellouchit.com/how-i-work/",
+    "about": ["Forward Deployed Engineering", "Enterprise Architecture", "Platform Engineering"]
+  }
+  </script>
 </body>
 </html>

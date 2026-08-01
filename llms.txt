@@ -70,6 +70,10 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - [Maturity tiers](https://hellouchit.com/maturity/): Per-discipline tier deep-dives
 - [Reference architectures](https://hellouchit.com/reference-architectures/): 5 opinionated paved-paths, including agentic systems in regulated environments
 
+## How I work
+
+- [How I work when I'm embedded](https://hellouchit.com/how-i-work/): Forward-deployed engagement shape — what's needed on day one, the first two weeks, explicit refusals, and the artefacts left behind
+
 ## Situations (problem-shaped entry points)
 
 - [All situations](https://hellouchit.com/situations/): Named for the problem rather than the industry
