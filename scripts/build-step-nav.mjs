@@ -30,6 +30,7 @@ const RULES = [
   [/^tools\/calculators\//, 6],          // before the generic tools/ rule
   [/^tools\/compound\//, 2],
   [/^tools\/[a-z-]+\.html$/, 2],
+  [/^agents\//, 3],
   [/^dataset\//, 3],
   [/^glossary\//, 3],
   [/^reading\//, 3],

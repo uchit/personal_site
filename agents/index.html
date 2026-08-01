@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Running agents in regulated environments &mdash; ten controls &mdash; Uchit Vyas</title>
+<meta name="description" content="Ten controls that decide whether an agent deployment survives an audit: own workload identity, tool authorisation outside the model, declared autonomy per action class, replayable trajectories, bounded blast radius and a tested kill switch, action reversibility, indirect prompt-injection defence, cross-agent provenance, and cost per resolved task. With the evidence each one produces. CC BY 4.0." />
+<link rel="canonical" href="https://hellouchit.com/agents/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Running agents in regulated environments — ten controls" />
+<meta property="og:description" content="The tool registry is the security boundary; the system prompt is a suggestion. Ten controls, the evidence each produces, and the order to build them in." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/agents.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://hellouchit.com/agents/#article",
+  "headline": "Ten controls for running agents in a regulated environment",
+  "description": "The controls that decide whether an agent deployment survives contact with an auditor: own identity, tool authorisation outside the model, declared autonomy levels, replayable trajectories, bounded blast radius, action reversibility, indirect prompt-injection defence, cross-agent provenance and cost per resolved task.",
+  "author": {
+    "@id": "https://hellouchit.com/#person"
+  },
+  "publisher": {
+    "@id": "https://hellouchit.com/#person"
+  },
+  "isBasedOn": "https://hellouchit.com/dataset/dataset.json",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "dateModified": "2026-08-01",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Agent runs under its own workload identity, never a human's or a shared account"
+    },
+    {
+      "@type": "Thing",
+      "name": "Tool authorisation enforced outside the model — the tool registry is the security boundary"
+    },
+    {
+      "@type": "Thing",
+      "name": "Declared autonomy level per action class, enforced at execution and recorded per run"
+    },
+    {
+      "@type": "Thing",
+      "name": "Named human approval for consequential actions, with enough context to make review real"
+    },
+    {
+      "@type": "Thing",
+      "name": "Full replayable trajectory — every tool call, argument, result and the exact context the model saw"
+    },
+    {
+      "@type": "Thing",
+      "name": "Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch"
+    },
+    {
+      "@type": "Thing",
+      "name": "Irreversible actions staged, gated or delayed so a wrong action can be withdrawn"
+    },
+    {
+      "@type": "Thing",
+      "name": "Retrieved and tool-returned content treated as untrusted data, never as instructions"
+    },
+    {
+      "@type": "Thing",
+      "name": "Provenance across agents — every output traceable to the upstream runs that produced its inputs"
+    },
+    {
+      "@type": "Thing",
+      "name": "Cost measured per resolved task, not per token, with attribution to the consuming feature"
+    }
+  ]
+}</script>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ag-hero"><div class="wrap">
+      <nav class="crumb"><a href="/">Home</a><span>/</span><a href="/tools/">The Method</a><span>/</span><span class="cur">Agents</span></nav>
+      <span class="eyebrow">Agentic systems &middot; CC BY 4.0</span>
+      <h1>The tool registry is the security boundary. The system prompt is a <em>suggestion</em>.</h1>
+      <p class="dek">
+        Ten controls that decide whether an agent deployment survives contact
+        with an auditor &mdash; and, mostly, whether it survives contact with
+        production. Each one carries the evidence it has to produce, what it
+        needs built first, and how it fails when someone declares it instead of
+        enforcing it.
+      </p>
+      <div class="ag-facts">
+        <span>Controls <b>10</b></span>
+        <span>Waves <b>2</b></span>
+        <span>Machine-readable <b><a href="/dataset/dataset.json">JSON</a></b></span>
+        <span>Licence <b>CC BY 4.0</b></span>
+      </div>
+    </div></section>
+
+    <section class="ag-order"><div class="wrap">
+      <h2>Build them in this <em>order</em>.</h2>
+      <p>
+        Identity before what it may do, before how far it may go. This is
+        derived from prerequisites &mdash; an edge means doing one without the
+        other is incoherent, not that one matters more. <b>Nothing inside a wave
+        is ordered</b>; it can all start at once.
+      </p>
+      <ol class="ag-waves">
+          <li>
+            <b>Wave 1</b>
+            <span><a href="#agent-identity">Agent runs under its own workload identity</a> &middot; <a href="#agent-autonomy-level">Declared autonomy level per action class</a> &middot; <a href="#agent-trajectory-trace">Full replayable trajectory</a> &middot; <a href="#agent-prompt-injection">Retrieved and tool-returned content treated as untrusted data</a></span>
+          </li>
+          <li>
+            <b>Wave 2</b>
+            <span><a href="#agent-tool-authz">Tool authorisation enforced outside the model</a> &middot; <a href="#agent-human-oversight">Named human approval for consequential actions</a> &middot; <a href="#agent-blast-radius">Bounded blast radius</a> &middot; <a href="#agent-action-reversibility">Irreversible actions staged</a> &middot; <a href="#agent-multi-agent-provenance">Provenance across agents</a> &middot; <a href="#agent-cost-per-outcome">Cost measured per resolved task</a></span>
+          </li>
+      </ol>
+    </div></section>
+
+    <section class="ag-list"><div class="wrap">
+      <article class="ag" id="agent-identity">
+        <header class="ag-head">
+          <span class="ag-num">01</span>
+          <h2>Agent runs under its own workload identity, never a human's or a shared account</h2>
+          <span class="ag-surface">Agent runtime · IAM</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>IAM export showing a distinct principal per agent, with no human user credentials in any agent execution path. Trust policy showing federated identity rather than a static key. An access-revocation test: disable the agent principal and show its tool calls fail within one polling interval.</p>
+          </div>
+
+          <div class="ag-verify">
+            <span class="ix">Verify it &mdash; read-only</span>
+        <div class="ag-vfy">
+          <div class="ag-vhead"><span class="ag-plat">AWS</span><span class="ag-ok">syntax checked</span></div>
+          <pre class="ag-cmd"><code>aws sts get-caller-identity --query Arn --output text</code></pre>
+          <p class="ag-exp"><b>Expect:</b> An assumed-role ARN for the agent itself — not a human's, and not one shared with other agents.</p>
+        </div>
+          </div>
+          <div class="ag-meta">
+            <span><b>Needs first:</b> nothing &mdash; this can start today</span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#vault-theatre">vault theatre</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; ISO/IEC 42001 &middot; APRA CPS 234 &middot; NIST SP 800-53 &middot; ASD Essential 8</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-autonomy-level">
+        <header class="ag-head">
+          <span class="ag-num">02</span>
+          <h2>Declared autonomy level per action class, enforced at execution and recorded per run</h2>
+          <span class="ag-surface">Agent runtime · Governance</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review — a config diff with an approver, not a deploy.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> nothing &mdash; this can start today</span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#ai-coe-trap">ai coe trap</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; ISO/IEC 42001 &middot; NIST AI RMF &middot; AU AI Safety Std &middot; APRA CPS 230</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-trajectory-trace">
+        <header class="ag-head">
+          <span class="ag-num">03</span>
+          <h2>Full replayable trajectory — every tool call, argument, result and the exact context the model saw</h2>
+          <span class="ag-surface">Agent runtime · Observability</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>A single run exported end to end: assembled context, retrieved document IDs, each tool call with arguments and result, model and prompt version, tokens, cost and latency. A replay of that run from an intermediate step, demonstrating the trace is sufficient to reconstruct rather than merely describe.</p>
+          </div>
+
+          <div class="ag-verify">
+            <span class="ix">Verify it &mdash; read-only</span>
+        <div class="ag-vfy">
+          <div class="ag-vhead"><span class="ag-plat">OpenTelemetry</span><span class="ag-ok">syntax checked</span></div>
+          <pre class="ag-cmd"><code>curl -s '&lt;otlp-query&gt;/api/traces?service=&lt;agent&gt;&amp;limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'</code></pre>
+          <p class="ag-exp"><b>Expect:</b> A span per tool call. If the count is zero the trajectory is reconstructed from logs, not recorded.</p>
+        </div>
+          </div>
+          <div class="ag-meta">
+            <span><b>Needs first:</b> nothing &mdash; this can start today</span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#inline-prompt-pattern">inline prompt pattern</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; ISO/IEC 42001 &middot; NIST AI RMF &middot; APRA CPS 230 &middot; HIPAA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-prompt-injection">
+        <header class="ag-head">
+          <span class="ag-num">04</span>
+          <h2>Retrieved and tool-returned content treated as untrusted data, never as instructions</h2>
+          <span class="ag-surface">Agent runtime · Retrieval</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>Red-team results for indirect prompt injection through each retrieval and tool-result path, not only through direct user input. Evidence of structural separation between instruction and retrieved content. Records showing an injected instruction was not acted upon.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> nothing &mdash; this can start today</span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#inline-prompt-pattern">inline prompt pattern</a></span>
+            <span><b>Maps to:</b> OWASP LLM Top 10 &middot; MITRE ATLAS &middot; EU AI Act &middot; ISO/IEC 42001</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-tool-authz">
+        <header class="ag-head">
+          <span class="ag-num">05</span>
+          <h2>Tool authorisation enforced outside the model — the tool registry is the security boundary</h2>
+          <span class="ag-surface">Agent runtime · Policy engine</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>The tool manifest available to the agent per role, exported from config rather than described. Policy decision logs showing allow and deny with a reason for each tool invocation. A negative test: an agent asked to call a tool outside its scope, and the denial recorded.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-identity">Agent runs under its own workload identity</a></span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#pdf-principles">pdf principles</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; ISO/IEC 42001 &middot; NIST AI RMF &middot; OWASP LLM Top 10 &middot; NIST SP 800-53</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-human-oversight">
+        <header class="ag-head">
+          <span class="ag-num">06</span>
+          <h2>Named human approval for consequential actions, with enough context to make review real</h2>
+          <span class="ag-surface">Agent runtime · Review queue</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>Approval records naming the individual, the proposed action, the reasoning and evidence shown to them, and the decision. Approval-rate statistics over time. Rejection records, which are the proof that oversight is doing work.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-autonomy-level">Declared autonomy level per action class</a></span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#architect-as-reviewer">architect as reviewer</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; NIST AI RMF &middot; AU AI Safety Std &middot; FDA SaMD &middot; EU GDPR</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-blast-radius">
+        <header class="ag-head">
+          <span class="ag-num">07</span>
+          <h2>Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch</h2>
+          <span class="ag-surface">Agent runtime · Platform</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>Configured ceilings per agent for steps, spend and tool-call rate. An incident or game-day record showing the kill switch stopping an agent mid-run, with the time from decision to halt. Evidence that a halted run leaves consistent state.</p>
+          </div>
+
+          <div class="ag-verify">
+            <span class="ix">Verify it &mdash; read-only</span>
+        <div class="ag-vfy">
+          <div class="ag-vhead"><span class="ag-plat">Kubernetes</span><span class="ag-ok">syntax checked</span></div>
+          <pre class="ag-cmd"><code>kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'</code></pre>
+          <p class="ag-exp"><b>Expect:</b> A quota on the agent's namespace. No quota means the ceiling is theoretical.</p>
+        </div>
+          </div>
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-identity">Agent runs under its own workload identity</a></span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#kpi-cargo-cult">kpi cargo cult</a></span>
+            <span><b>Maps to:</b> APRA CPS 230 &middot; ISO/IEC 42001 &middot; NIST SP 800-53 &middot; EU NIS2 &middot; SOCI Act 2018+</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-action-reversibility">
+        <header class="ag-head">
+          <span class="ag-num">08</span>
+          <h2>Irreversible actions staged, gated or delayed so a wrong action can be withdrawn</h2>
+          <span class="ag-surface">Agent runtime · Integration layer</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>An inventory of agent-invokable actions classified reversible or not, with the mechanism named for each. For irreversible ones, either an approval gate or a documented acceptance. A test showing an action withdrawn inside the window.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-autonomy-level">Declared autonomy level per action class</a></span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#pdf-principles">pdf principles</a></span>
+            <span><b>Maps to:</b> APRA CPS 230 &middot; ISO/IEC 42001 &middot; EU AI Act &middot; EU DORA</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-multi-agent-provenance">
+        <header class="ag-head">
+          <span class="ag-num">09</span>
+          <h2>Provenance across agents — every output traceable to the upstream runs that produced its inputs</h2>
+          <span class="ag-surface">Agent orchestration</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>For a given final output, the full upstream chain of agent runs that contributed to it, retrieved sources included. A demonstration that a corrected upstream input marks downstream outputs stale.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-trajectory-trace">Full replayable trajectory</a></span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#capability-model-theatre">capability model theatre</a></span>
+            <span><b>Maps to:</b> EU AI Act &middot; ISO/IEC 42001 &middot; NIST AI RMF &middot; BCBS 239</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="ag" id="agent-cost-per-outcome">
+        <header class="ag-head">
+          <span class="ag-num">10</span>
+          <h2>Cost measured per resolved task, not per token, with attribution to the consuming feature</h2>
+          <span class="ag-surface">Agent runtime · FinOps</span>
+        </header>
+
+        <div class="ag-body">
+          <div class="ag-why">
+            <span class="ix">Why this one</span>
+            <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
+          </div>
+
+          <div class="ag-ev">
+            <span class="ix">What an assessor asks for</span>
+            <p>Cost per resolved task by agent and feature over time, alongside the failed-run cost. Evidence that spend is attributable to a product decision rather than to a shared pool.</p>
+          </div>
+
+          <div class="ag-meta">
+            <span><b>Needs first:</b> <a href="#agent-trajectory-trace">Full replayable trajectory</a>, <a href="/dataset/#reg=cps230">r043</a> (outside this set)</span>
+            <span><b>Fails as:</b> <a href="/anti-patterns/#kpi-cargo-cult">kpi cargo cult</a></span>
+            <span><b>Maps to:</b> APRA CPS 230 &middot; ISO/IEC 42001</span>
+          </div>
+        </div>
+      </article>
+    </div></section>
+
+    <section class="ag-foot"><div class="wrap">
+      <h2>Where this comes <em>from</em>.</h2>
+      <p>
+        These are ten rows of a larger control dataset &mdash; 66 controls
+        across 28 regulations, with the tooling that implements each and
+        the read-only command that produces its evidence. This page is generated
+        from that dataset, so the two cannot disagree.
+      </p>
+      <p>
+        <b>None of it is a compliance assessment.</b> It maps controls to
+        evidence so a team starts from something concrete rather than a blank
+        page. Take it, fork it, argue with it &mdash; it is CC BY 4.0.
+      </p>
+      <div class="ag-links">
+        <a class="ag-cta" href="/dataset/">Browse the full dataset &rarr;</a>
+        <a class="ag-cta ghost" href="/tools/agent-readiness.html">Score your own agent programme &rarr;</a>
+      </div>
+    </div></section>
+  </main>
+
+  <!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
+  <nav class="step-nav" aria-label="Position in The Method">
+    <div class="wrap">
+      <a class="lab" href="/tools/">The Method</a>
+      <div class="row">
+        <a href="/tools/#s2">&larr; 02 Locate it</a>
+        <b>03 &middot; Check it</b>
+        <a href="/tools/#s4">04 Decide it &rarr;</a>
+      </div>
+    </div>
+  </nav>
+  <!-- STEP-NAV:END -->
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><a href="/">&larr; Home</a> &middot; <a href="/glossary/">Glossary</a> &middot; <a href="/dataset/">Dataset</a> &middot; <a href="/tools/">The Method</a></span>
+  </div></footer>
+</body>
+</html>
