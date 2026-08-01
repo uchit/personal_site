@@ -1,12 +1,17 @@
-/* contact.js — submits the contact form without leaving the page.
+/* contact.js — client-side guards for the contact form.
  *
- * The form is a real <form> with a real action, so it still works with JS
- * disabled — the visitor just lands on the provider's confirmation page. This
- * upgrades that to an inline fetch so they stay put and get the confirmation
- * in context.
+ * The form submits natively (a real POST that navigates), not via fetch. That
+ * is deliberate, and was arrived at by testing rather than preference:
+ * Web3Forms returns no Access-Control-Allow-Origin header, so an in-page fetch
+ * fails CORS every time and the visitor sees a send failure on a form that is
+ * actually configured correctly. A native POST is a navigation, so CORS never
+ * applies — and it keeps working with JavaScript disabled.
  *
- * No endpoint is hard-coded here; it is read from the form's action attribute,
- * so switching provider is a one-line HTML change.
+ * Success lands on /thanks/ via the form's hidden redirect field.
+ *
+ * What is left for JS to do is small: refuse to submit while the access key is
+ * still a placeholder, and give the button a pending state so nobody double-
+ * submits on a slow connection.
  */
 (function () {
   "use strict";
@@ -23,53 +28,41 @@
     status.className = "ct-status" + (kind ? " " + kind : "");
   }
 
-  /* The placeholder is what ships until a real endpoint is configured. Failing
-     loudly here beats a form that silently swallows messages — the worst
-     possible outcome for a contact form. */
-  function endpointConfigured() {
-    var action = form.getAttribute("action") || "";
+  /* Until a real access key is in place, fail loudly. A form that silently
+     swallows messages is the worst outcome available here. */
+  function configured() {
     var key = form.querySelector('[name="access_key"]');
-    return action && key && key.value.indexOf("REPLACE_WITH_ACCESS_KEY") === -1;
+    return key && key.value && key.value.indexOf("REPLACE_WITH_ACCESS_KEY") === -1;
   }
 
   form.addEventListener("submit", function (e) {
-    if (!endpointConfigured()) {
+    if (!configured()) {
       e.preventDefault();
       setStatus("Form not configured yet — please email contact@hellouchit.com", "err");
       return;
     }
 
-    e.preventDefault();
+    /* Let the browser handle validation messaging, then let the POST proceed. */
+    if (!form.checkValidity()) return;
 
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    var original = button ? button.textContent : "";
-    if (button) { button.disabled = true; button.textContent = "Sending…"; }
+    if (button) {
+      button.disabled = true;
+      button.textContent = "Sending…";
+    }
     setStatus("");
+    if (window.gtag) gtag("event", "contact_form_submit");
 
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" },
-    })
-      .then(function (res) {
-        if (res.ok) {
-          form.reset();
-          setStatus("Thanks — that reached me. I'll reply personally.", "ok");
-          if (window.gtag) gtag("event", "contact_form_submit");
-        } else {
-          return res.json().then(function (d) {
-            throw new Error((d && d.error) || "Submission failed");
-          });
-        }
-      })
-      .catch(function () {
-        /* Never leave someone with a dead form and no route: give them the
-           address they can use instead. */
-        setStatus("Didn't send — please email contact@hellouchit.com", "err");
-      })
-      .then(function () {
-        if (button) { button.disabled = false; button.textContent = original; }
-      });
+    /* If the navigation is slow or the user comes back via bfcache, re-enable
+       the button rather than leaving it stuck on "Sending…". */
+    window.setTimeout(function () {
+      if (button) { button.disabled = false; button.textContent = "Send message"; }
+    }, 8000);
+  });
+
+  window.addEventListener("pageshow", function (ev) {
+    if (ev.persisted && button) {
+      button.disabled = false;
+      button.textContent = "Send message";
+    }
   });
 })();

@@ -610,6 +610,10 @@
           <input type="hidden" name="access_key" value="38c00b55-4dd5-405e-865a-16d00b8cb7ee" />
           <input type="hidden" name="subject" value="hellouchit.com — new message" />
           <input type="hidden" name="from_name" value="hellouchit.com contact form" />
+          <!-- Native POST navigates to this page on success. Web3Forms does
+               not send CORS headers, so an in-page fetch can never work —
+               a real form submission sidesteps CORS entirely. -->
+          <input type="hidden" name="redirect" value="https://hellouchit.com/thanks/" />
           <div class="ct-grid">
             <label class="ct-field">
               <span>Name</span>
