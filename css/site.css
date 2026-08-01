@@ -1221,3 +1221,53 @@ img, video, iframe { max-width: 100%; height: auto; }
 /* Situation pages: the diagnosis block is multi-paragraph prose. */
 .sit-diagnosis p + p { margin-top: 1em; }
 .sit-diagnosis b { color: var(--ink); font-weight: 500; }
+
+/* ---- Contact form ----------------------------------------------------------
+   Static host, so submission goes to a third-party endpoint. Progressive:
+   the plain <form> POST works with JS disabled; contact.js upgrades it to an
+   inline fetch so the visitor is never bounced to a provider's page. */
+.ct-form { max-width: 640px; margin: clamp(28px,4vw,40px) auto 0; }
+.ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .ct-grid { grid-template-columns: 1fr; } }
+
+.ct-field { display: block; margin-bottom: 16px; }
+.ct-field > span {
+  display: block; margin-bottom: 7px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.ct-field input, .ct-field textarea, .ct-field select {
+  width: 100%; padding: 12px 14px;
+  font: inherit; font-size: 15px; color: var(--ink);
+  background: var(--bg-2);
+  border: 1px solid var(--line); border-radius: 9px;
+  outline: none; transition: border-color .2s;
+}
+.ct-field textarea { resize: vertical; line-height: 1.6; }
+.ct-field input:focus, .ct-field textarea:focus, .ct-field select:focus {
+  border-color: var(--accent);
+}
+.ct-field input::placeholder, .ct-field textarea::placeholder { color: var(--faint); }
+.ct-field select { appearance: none; cursor: pointer; }
+
+/* Honeypot — off-screen rather than display:none, which some bots detect. */
+.ct-form input[name="_gotcha"] {
+  position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;
+}
+
+.ct-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 6px; }
+.ct-status {
+  font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+  letter-spacing: .04em; color: var(--muted);
+}
+.ct-status.ok  { color: var(--signal); }
+.ct-status.err { color: #e5736b; }
+
+.ct-fine {
+  margin-top: 18px; color: var(--faint); font-size: 13px; line-height: 1.65;
+}
+.ct-fine a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
+.ct-fine a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Keep the icon row as a secondary affordance below the form. */
+.contact .ct-ico-row { margin-top: clamp(32px,4vw,44px); }

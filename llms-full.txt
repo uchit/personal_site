@@ -1019,9 +1019,11 @@ A case study in leadership, alignment and execution under pressure. Production-r
 
 Sector Banking · Financial Services
 
+Period 2021
+
 Geography Multi-region, multi-timezone
 
-My role Delivery lead
+My role Delivery Lead & Solution Architect
 
 Engagement model Fully remote, cross-functional
 
@@ -1107,9 +1109,11 @@ Case study Banking · EA Governance 6-month transform
 
 Sector Banking · Tier-1, multi-country
 
+Period 2020
+
 Scale 1,000+ applications
 
-My role EA governance lead
+My role Enterprise Architect
 
 Engagement model Remote from Australia
 
@@ -1211,11 +1215,13 @@ Leading Asian bank. Loan approval and disbursement in under 5 minutes. Launched 
 
 Sector Banking · JAPAC
 
+Period 2021–2022
+
 Scale Millions of users at launch
 
 Team 200+ across PODs & squads
 
-My role Delivery & platform leadership
+My role Delivery Lead & Technical Architect
 
 Timeline 6 months to production
 
@@ -1335,9 +1341,11 @@ Global retail giant. Heavy custom code, no AI capability, engineering stuck on m
 
 Sector Global Retail · E-commerce
 
+Period 2022–2023
+
 Platform Custom-built: orders, warehousing, distribution, channels
 
-My role Platform / architecture & delivery leadership
+My role Enterprise Architect
 
 Horizon 5-year innovation roadmap
 
@@ -1419,9 +1427,11 @@ Tier-1 ANZ bank. 1,000+ legacy applications, multi-petabyte estate, strict regul
 
 Sector Banking · Tier-1 ANZ
 
+Period 2024
+
 Scale 1,000+ apps · multi-PB estate
 
-My role Platform architecture lead
+My role Solution Architect
 
 Engagement model Discovery + build + enablement
 
