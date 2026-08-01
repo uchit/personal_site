@@ -145,7 +145,8 @@
           <div class="meta">
             <span><b>Lang</b> Node (zero deps)</span>
             <span><b>License</b> MIT</span>
-            <span><b>v0.1.0</b> &middot; 10 controls</span>
+            <span><b>npm</b> @uchit/agentcheck</span>
+            <span><b>CI</b> Node 18&ndash;24 green</span>
           </div>
         </header>
 
@@ -166,6 +167,12 @@
           fails counts as neither.
         </p>
 
+        <p>
+          <b>19 tests</b> on <code>node:test</code>, zero dependencies, green on
+          Node 18/20/22/24 &mdash; plus end-to-end assertions on the exit codes,
+          because the exit codes are the contract and a CLI regression must not
+          ship green.
+        </p>
         <p><b>It exits non-zero when the pack isn&rsquo;t defensible:</b></p>
         <ul>
           <li>a control claimed <em>met</em> with no evidence recorded</li>
@@ -178,13 +185,13 @@
           starting state, and a tool that punishes it teaches people to guess.
         </p>
 
-        <pre class="oss-code"><code>curl -O https://hellouchit.com/oss/agentcheck/agentcheck.mjs
-node agentcheck.mjs init
-node agentcheck.mjs check --md evidence.md</code></pre>
+        <pre class="oss-code"><code>npx @uchit/agentcheck init
+npx @uchit/agentcheck check --md evidence.md</code></pre>
 
         <p style="margin-top:14px">
-          <a href="/oss/agentcheck/agentcheck.mjs">Download agentcheck.mjs</a> &middot;
-          <a href="/oss/agentcheck/README.md">README</a> &middot;
+          <a href="https://www.npmjs.com/package/@uchit/agentcheck">npm</a> &middot;
+          <a href="https://github.com/uchit/agentcheck">GitHub</a> &middot;
+          <a href="https://github.com/uchit/agentcheck/actions/workflows/ci.yml">CI</a> &middot;
           <a href="/agents/">The ten controls &rarr;</a>
         </p>
       </article>

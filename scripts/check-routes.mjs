@@ -23,8 +23,19 @@ const TABLE = win.DIAG_ROUTES;
 
 let errors = 0;
 let checked = 0;
+const external = [];
 
+/* Routes may now point off-site — the agentcheck tool lives on GitHub and npm
+   rather than being served from here, which is the whole point of it being
+   listed somewhere third-party.
+ *
+ * Those cannot be verified against the filesystem, and verifying them over the
+ * network would make an offline build fail for reasons that have nothing to do
+ * with the change being built. So they are collected and printed instead:
+ * never silently trusted, never silently failing. Same posture as the verify
+ * commands in the dataset — "not checked here" is a fact, not a pass. */
 function resolves(href) {
+  if (/^https?:\/\//i.test(href)) { external.push(href); return true; }
   const p = href.replace(/^\//, "").split(/[#?]/)[0];
   if (!p) return true;
   if (existsSync(join(ROOT, p))) return true;
@@ -83,6 +94,11 @@ for (const [slug, levels] of Object.entries(TABLE)) {
 }
 
 console.log(`\n  ${checked} routes checked across ${Object.keys(TABLE).length} diagnostics`);
+if (external.length) {
+  const uniq = [...new Set(external)];
+  console.log(`  ${uniq.length} off-site route target(s) not checked here:`);
+  for (const u of uniq) console.log(`    ${u}`);
+}
 if (errors) {
   console.error(`  ${errors} error(s)\n`);
   process.exit(1);

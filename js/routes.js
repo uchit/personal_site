@@ -27,7 +27,7 @@ window.DIAG_ROUTES = {
         href: "/anti-patterns/#vault-theatre" },
       { kind: "Tool", title: "agentcheck",
         body: "Produce an evidence pack for the agent you just scored. Read-only, zero dependencies, and it refuses to give you a number out of ten.",
-        href: "/oss/agentcheck/README.md" }
+        href: "https://github.com/uchit/agentcheck" }
     ],
     "Contained": [
       { kind: "Control set", title: "Tool authorisation outside the model",
@@ -57,7 +57,7 @@ window.DIAG_ROUTES = {
         href: "/agents/#agent-multi-agent-provenance" },
       { kind: "Tool", title: "agentcheck in CI",
         body: "Turn the review into a gate. Exits non-zero when a control is claimed met with no evidence, or rests on a prerequisite that is not.",
-        href: "/oss/agentcheck/README.md" },
+        href: "https://github.com/uchit/agentcheck" },
       { kind: "Dataset", title: "The full control map",
         body: "These ten sit inside 66 controls across 28 regulations, each with the read-only command that produces its evidence.",
         href: "/dataset/" }
