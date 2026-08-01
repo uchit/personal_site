@@ -1,6 +1,11 @@
 # OSS repo lives in its own GitHub repo, not in this Pages deploy
 oss-projects/
 
+# CVs / role-specific résumés — kept locally, never published.
+# Anything committed here is world-readable at hellouchit.com/<filename>.
+cv-*.html
+Uchit_Vyas_*.pdf
+
 # OS cruft
 .DS_Store
 Thumbs.db

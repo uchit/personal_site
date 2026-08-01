@@ -3,9 +3,10 @@
   <!-- Talks -->
   <url><loc>https://hellouchit.com/talks/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
-  <!-- AI entity page + manifest -->
+  <!-- AI entity page. The llms.txt / llms-full.txt manifests are advertised
+       via robots.txt, which is the channel crawlers actually read them from;
+       a sitemap is for indexable pages. -->
   <url><loc>https://hellouchit.com/ai/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://hellouchit.com/llms.txt</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
   <!-- Home + named framework -->
   <url><loc>https://hellouchit.com/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>

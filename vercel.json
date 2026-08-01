@@ -2,22 +2,45 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "_comment": [
+    "DEPLOYMENT NOTE: hellouchit.com serves from GitHub Pages behind Cloudflare,",
+    "so this file is INERT — none of these headers reach visitors today. It is",
+    "kept correct so a future move to Vercel is a no-op rather than an outage.",
+    "The headers that actually apply in production are Cloudflare Transform Rules;",
+    "docs/security-headers.md is the source of truth and mirrors the values here.",
+    "",
+    "CSP NOTE: 'unsafe-inline' is deliberate, not laziness. The site has 93 inline",
+    "<script> blocks (every diagnostic's Diag.run({...}) and every decision tree's",
+    "window.TREE = {...}), 7 inline event handlers and 828 inline style attributes.",
+    "A nonce-based policy requires per-request header generation, which no static",
+    "host can do. Tightening this means first moving that config into external .js",
+    "files — a worthwhile refactor, but a refactor, not a header change."
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=()" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https:;" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; upgrade-insecure-requests"
+        }
       ]
     },
     {
-      "source": "/(.*\\.(css|js|svg|jpg|jpeg|png|ico|woff2))",
+      "source": "/(.*\\.(css|js|svg|jpg|jpeg|png|webp|ico|woff2))",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(llms.txt|llms-full.txt|sitemap.xml|robots.txt|dataset/dataset.json|dataset/dataset.csv)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
   ]

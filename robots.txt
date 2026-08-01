@@ -91,5 +91,6 @@ Allow: /
 # ─────────────────────────────────────────────────────────────
 Sitemap: https://hellouchit.com/sitemap.xml
 
-# Pointer to the AI-readable manifest (llmstxt.org convention)
-# https://hellouchit.com/llms.txt
+# Pointers to the AI-readable manifests (llmstxt.org convention)
+# https://hellouchit.com/llms.txt       — structured manifest of the site
+# https://hellouchit.com/llms-full.txt  — full prose corpus, concatenated
