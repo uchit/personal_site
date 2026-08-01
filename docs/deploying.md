@@ -100,6 +100,21 @@ node scripts/check-routes.mjs         # diagnostic result → playbook routes
 node scripts/check-drafts.mjs         # no page publishes with placeholder text
 ```
 
-`build-situations.mjs` **overwrites** the generated pages, so sitewide edits (for
-example adding a link to every `also-strip`) must also be made in the generator —
-otherwise the next run silently reverts them. That has happened once.
+### Generators overwrite — put sitewide edits in the generator
+
+`build-situations.mjs` **rewrites its pages from scratch**. Any sitewide edit
+applied afterwards — a link added to every `also-strip`, a step marker stamped
+by `build-step-nav.mjs` — is silently reverted the next time it runs. This has
+now happened three times, twice unnoticed until a live check.
+
+The rule: if a sitewide change must survive, it goes **into the generator**, not
+just into the output. `build-situations.mjs` therefore emits the step marker and
+the full `also-strip` itself, and the two generators are safe to run in either
+order. To confirm that after touching either:
+
+```sh
+node scripts/build-step-nav.mjs   >/dev/null && node scripts/build-situations.mjs >/dev/null
+grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
+node scripts/build-situations.mjs >/dev/null && node scripts/build-step-nav.mjs  >/dev/null
+grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
+```
