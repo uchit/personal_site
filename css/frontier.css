@@ -1,0 +1,78 @@
+/* frontier.css — /frontier/
+   A log, not a feed. Each entry is a claim with a date and a direction. */
+
+.fr-list, .fr-rejected { padding: clamp(30px,4vw,48px) 0; border-top: 1px solid var(--line); }
+
+.fr { padding: 30px 0; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.fr:first-child { border-top: 0; padding-top: 0; }
+
+.fr-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.fr-head time {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--faint);
+}
+.fr-eff {
+  font-family: "IBM Plex Mono", monospace; font-size: 9.5px;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; cursor: help;
+}
+/* Validates is the quiet one on purpose — it is the least interesting outcome. */
+.fr-validates   { color: var(--faint); border: 1px solid var(--line-strong); }
+.fr-complicates { color: var(--accent); border: 1px solid currentColor; }
+.fr-invalidates { color: #d9705b; border: 1px solid currentColor; }
+.fr-ctrl {
+  margin-left: auto;
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .04em; color: var(--muted);
+  border-bottom: 1px dotted var(--line-strong); max-width: 46ch;
+}
+.fr-ctrl:hover { color: var(--accent); border-color: var(--accent); }
+
+.fr h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(21px,2.3vw,27px); line-height: 1.22;
+  color: var(--ink); max-width: 34ch; margin-bottom: 14px;
+}
+.fr-what p { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 72ch; }
+.fr-what b { color: var(--ink); font-weight: 500; }
+
+.fr-so {
+  margin-top: 18px; padding-left: 15px; border-left: 2px solid var(--accent);
+}
+.fr-so p { color: var(--ink); font-size: 15px; line-height: 1.75; max-width: 72ch; }
+.fr-so em { color: var(--muted); }
+
+.fr-caveat {
+  margin-top: 14px; color: var(--faint);
+  font-size: 13.5px; line-height: 1.65; max-width: 72ch;
+}
+.fr-caveat b { color: var(--muted); font-weight: 500; }
+
+.fr-src {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 13px; line-height: 1.9; color: var(--faint);
+}
+.fr-src a { color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+.fr-src a:hover { color: var(--accent); border-color: var(--accent); }
+.fr-src span { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .04em; }
+
+.fr-rejected h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(24px,3vw,32px); line-height: 1.15; margin-bottom: 14px;
+}
+.fr-rejected h2 em { font-style: italic; color: var(--accent); }
+.fr-rejected > .wrap > p { color: var(--muted); font-size: 15.5px; line-height: 1.72; max-width: 70ch; }
+.fr-rej { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 18px; counter-reset: rej; }
+.fr-rej li {
+  padding-left: 15px; border-left: 2px dashed var(--line-strong);
+}
+.fr-rej .rc {
+  color: var(--faint); font-size: 14.5px; line-height: 1.6;
+  text-decoration: line-through; text-decoration-color: rgba(217,151,87,.5);
+  max-width: 72ch;
+}
+.fr-rej .rw { margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 74ch; }
+
+@media (max-width: 640px) {
+  .fr-ctrl { margin-left: 0; width: 100%; }
+}

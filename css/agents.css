@@ -124,3 +124,26 @@
 .ag-cta:hover { background: var(--accent); color: var(--bg, #0c0d10); }
 .ag-cta.ghost { border-color: var(--line-strong); color: var(--muted); }
 .ag-cta.ghost:hover { background: transparent; border-color: var(--accent); color: var(--accent); }
+
+/* Ahead-of-standard section — the frontier claim, with its citations visible
+   rather than asserted. */
+.ag-ahead { padding: clamp(36px,4.2vw,54px) 0; border-top: 1px solid var(--line); }
+.ag-ahead h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(24px,3vw,32px); line-height: 1.15; margin-bottom: 14px;
+}
+.ag-ahead h2 em { font-style: italic; color: var(--accent); }
+.ag-ahead p { color: var(--muted); font-size: 15.5px; line-height: 1.72; max-width: 70ch; }
+.ag-ahead p + p { margin-top: 1em; }
+.ag-ahead b { color: var(--ink); font-weight: 500; }
+.ag-ahead a { color: var(--accent); border-bottom: 1px dotted currentColor; }
+.ag-cites {
+  margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line);
+  display: grid; gap: 3px; font-size: 13px; line-height: 1.7;
+}
+.ag-cites a { color: var(--muted); border-bottom: 1px solid var(--line-strong); justify-self: start; }
+.ag-cites a:hover { color: var(--accent); border-color: var(--accent); }
+.ag-cites span {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  letter-spacing: .05em; color: var(--faint); margin-bottom: 8px;
+}

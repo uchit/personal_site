@@ -313,6 +313,16 @@ Ten controls that decide whether an agent deployment survives contact with an au
 
 Controls 10 Waves 2 Machine-readable JSON Licence CC BY 4.0
 
+### Where this set is ahead of the standard.
+
+Every framework a procurement team will name at you — the EU AI Act, the NIST AI RMF, ISO/IEC 42001 — governs one system at a time. A 2026 analysis of accountability for autonomous agents puts the structural problem exactly: all three “presume that the governed object is a bounded system.”
+
+That is not a complaint about regulators; it is a scoping fact with consequences. Controls that live between agents rather than inside one — cross-agent provenance, cost per resolved task — have no real home in any of them. The EU AI Act’s serious-incident reporting guidelines, binding from August 2026, are drafted around “single-agent and single-occurrence failures.”
+
+So four of the ten below are ahead of every standard they map to. If you are waiting for a framework to require them, you will be waiting past the incident that needed them. What moves them, and what moves against them, is tracked in the frontier log.
+
+Butt, Iqbal & Iqbal — Governing What the EU AI Act Excludes arXiv:2605.01091 · 1 May 2026 Fern&aacute;ndez Ashman, Anwar & Bieńkiewicz — EU Regulations Are Not Ready for Multi-Agent AI Incidents Tech Policy Press · 13 Jan 2026
+
 ### Build them in this order.
 
 Identity before what it may do, before how far it may go. This is derived from prerequisites — an edge means doing one without the other is incoherent, not that one matters more. Nothing inside a wave is ordered; it can all start at once.
@@ -465,7 +475,99 @@ These are ten rows of a larger control dataset — 66 controls across 28 regulat
 
 None of it is a compliance assessment. It maps controls to evidence so a team starts from something concrete rather than a blank page. Take it, fork it, argue with it — it is CC BY 4.0.
 
-Browse the full dataset → Score your own agent programme →
+The frontier log → Browse the full dataset → Score your own agent programme →
+
+
+========================================================================
+SECTION: Frontier log
+========================================================================
+
+## Frontier log
+Source: https://hellouchit.com/frontier/
+
+Frontier log · 5 entries
+
+## Everything here names the control it moves.
+
+A reading list proves you read. This is the other thing: each entry takes a development and says which of the ten controls it touches, and whether it validates that control, complicates it, or invalidates it. Pairing the two is the part that needs a published control set to write at all.
+
+Every claim below was read at the primary source. Three that did not survive that are listed at the bottom, because a page like this is only worth reading if you know what it rejects.
+
+Jun 2026 Complicates Full replayable trajectory — every tool call, argument, result and the exact context the model saw
+
+### OpenTelemetry and W3C PROV-DM do not capture what an agent run is
+
+A survey of evidence tracing and execution provenance in LLM agents finds that the established traditions — W3C PROV-DM for provenance, OpenTelemetry for distributed traces — "add semantic and procedural objects that these traditions do not fully capture." The list of what falls through: retrieved passages, generated claims, tool-call rationales, memory items, natural-language observations, external state changes, and inter-agent messages.
+
+What it changes This complicates my own advice. I point people at the OpenTelemetry GenAI semantic conventions as the vendor-neutral shape to adopt early, and that is still the right first move — but it is a floor, not a ceiling. A team that implements the conventions and stops has a trace of the calls and not a record of the reasoning. Budget for the semantic layer on top rather than assuming the standard covers it.
+
+Wang et al. — From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents arXiv:2606.04990v4 · 28 Jun 2026
+
+May 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
+
+### The governance frameworks assume the thing they govern has edges
+
+A smart-city accountability paper puts the structural problem plainly: the EU AI Act, the NIST AI RMF and ISO/IEC 42001 "all presume that the governed object is a bounded system." They were built around individual-system compliance. An agent that calls another agent, which calls a third, produces consequences that emerge from coordination no single assessment captures — and a resident harmed by cascading effects across three systems "has no single authority to hold accountable."
+
+What it changes This is the clearest statement I have seen of why cross-agent provenance has no regulatory home. Every framework a procurement team will name at you governs one system at a time. If you wait for a standard to require provenance across agents, you will wait past the incident that needed it.
+
+Butt, Iqbal & Iqbal — Governing What the EU AI Act Excludes arXiv:2605.01091 · 1 May 2026
+
+May 2026 Validates Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch
+
+### Most organisations cannot stop an agent they have decided to stop
+
+Kiteworks' 2026 Data Security and Compliance Risk Forecast reports that 60% of organisations cannot quickly terminate a misbehaving AI agent, 63% cannot enforce purpose limitations on one, and 55% cannot isolate an AI system from sensitive networks. In the government sector the kill-switch number is worse.
+
+What it changes I wrote that the kill switch matters more than the ceiling and is almost never tested mid-run. This is the first population-level number I have seen attached to it, and it is worse than I would have guessed. Treat "we have a kill switch" as an untested claim until someone has run the game day, and record the time from decision to stop — that number is the control, not the switch.
+
+Read it with: Vendor-published survey. Read the direction, not the decimal — the sampling and the question wording are not public.
+
+Kiteworks — 2026 Data Security and Compliance Risk Forecast cited via agentmodeai.com · May 2026
+
+Jan 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
+
+### Article 73 incident reporting assumes one system caused it
+
+The EU AI Act's serious-incident reporting guidelines become binding this month. Analysis of the draft finds they focus on "single-agent and single-occurrence failures, and assume a simplistic one-on-one causality map for AI-related incidents" — while the incidents that actually matter are "emergent, stemming not from a failure in one system (and attributable to one actor), but from system-level interaction." The draft also provides no structured pathway for third-party or whistleblower reporting.
+
+What it changes The reporting obligation lands regardless. If your agents compose and you cannot produce the upstream chain for a specific output, you will be answering an incident report with a description of your architecture instead of a trace. Build the join before you need it, because the regulation is not going to ask you for it until it does.
+
+Fern&aacute;ndez Ashman, Anwar & Bieńkiewicz — EU Regulations Are Not Ready for Multi-Agent AI Incidents Tech Policy Press · 13 Jan 2026
+
+Jan 2026 Validates Cost measured per resolved task, not per token, with attribution to the consuming feature
+
+### Cost per solved task and cost per task differ by more than 10×
+
+Working from Aider's polyglot coding benchmark, per-task costs land around $0.028 for one model at a 72% pass rate and $0.129 for another at 88%. Normalised to solved tasks the range runs roughly $0.012 to $0.147 — an order of magnitude — and the cheapest per-task model is not the cheapest per solved task.
+
+What it changes This is the argument for the control in one table. Cost per token ranks models one way and cost per resolved task ranks them differently, because the failures you pay for and retry do not appear in the first number. Any agent FinOps conversation held in tokens is being held in the wrong unit.
+
+Read it with: A coding benchmark, not your workload. The ratio is the transferable part; the absolute numbers are not.
+
+Ganglani — AI Agent Cost Per Task 2026, from Aider's polyglot benchmark kunalganglani.com · 2026
+
+### What didn’t make it, and why.
+
+Each of these appeared in a search result, looked good, and failed on contact with the source. They are here because the useful signal from a page like this is not what it publishes — it is the ratio.
+
+"The NIST AI RMF, ISO/IEC 42001 and the EU AI Act contain no references to 'agent' or 'agentic'."
+
+Appeared in a search summary attributed to arXiv:2605.01091. The paper does not say it. Its actual claim is that the frameworks "presume that the governed object is a bounded system" — weaker, and defensible. The stronger version is the kind of thing a reader checks in ninety seconds.
+
+"A 5× retry multiplier pushes cost per successful task from $5.73 to $28.65."
+
+Attributed by a search summary to an article that does not contain those figures, or any retry-multiplier calculation. Unable to locate a primary source, so it is not on the page — the underlying point about retries is made from the benchmark spread instead.
+
+"CISA, the NSA and allied agencies issued joint agentic-AI guidance in April 2026."
+
+Surfaced in a search summary; not present in the source it was attributed to, and not verified elsewhere. Possibly true and still not citable by me.
+
+### How this stays honest.
+
+Entries are dated by their source, not by when I added them, so the lag between the two is visible. Nothing is removed when it ages badly — an entry that turned out wrong is more useful than one that was quietly deleted. And an entry that only ever validates what I already published would be marketing, which is why the effect label is on every one.
+
+The ten controls → Score your own programme →
 
 
 ========================================================================

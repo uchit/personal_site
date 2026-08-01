@@ -194,6 +194,37 @@ const html = `<!DOCTYPE html>
       </div>
     </div></section>
 
+    <section class="ag-ahead"><div class="wrap">
+      <h2>Where this set is <em>ahead</em> of the standard.</h2>
+      <p>
+        Every framework a procurement team will name at you &mdash; the EU AI
+        Act, the NIST AI RMF, ISO/IEC 42001 &mdash; governs one system at a
+        time. A 2026 analysis of accountability for autonomous agents puts the
+        structural problem exactly: all three
+        <b>&ldquo;presume that the governed object is a bounded system.&rdquo;</b>
+      </p>
+      <p>
+        That is not a complaint about regulators; it is a scoping fact with
+        consequences. Controls that live <em>between</em> agents rather than
+        inside one &mdash; cross-agent provenance, cost per resolved task &mdash;
+        have no real home in any of them. The EU AI Act&rsquo;s serious-incident
+        reporting guidelines, binding from August 2026, are drafted around
+        &ldquo;single-agent and single-occurrence failures.&rdquo;
+      </p>
+      <p>
+        <b>So four of the ten below are ahead of every standard they map to.</b>
+        If you are waiting for a framework to require them, you will be waiting
+        past the incident that needed them. What moves them, and what moves
+        against them, is tracked in the <a href="/frontier/">frontier log</a>.
+      </p>
+      <div class="ag-cites">
+        <a href="https://arxiv.org/html/2605.01091v1" target="_blank" rel="noopener">Butt, Iqbal &amp; Iqbal &mdash; Governing What the EU AI Act Excludes</a>
+        <span>arXiv:2605.01091 &middot; 1 May 2026</span>
+        <a href="https://www.techpolicy.press/eu-regulations-are-not-ready-for-multiagent-ai-incidents/" target="_blank" rel="noopener">Fern&aacute;ndez Ashman, Anwar &amp; Bie&#324;kiewicz &mdash; EU Regulations Are Not Ready for Multi-Agent AI Incidents</a>
+        <span>Tech Policy Press &middot; 13 Jan 2026</span>
+      </div>
+    </div></section>
+
     <section class="ag-order"><div class="wrap">
       <h2>Build them in this <em>order</em>.</h2>
       <p>
@@ -223,7 +254,8 @@ const html = `<!DOCTYPE html>
         page. Take it, fork it, argue with it &mdash; it is CC BY 4.0.
       </p>
       <div class="ag-links">
-        <a class="ag-cta" href="/dataset/">Browse the full dataset &rarr;</a>
+        <a class="ag-cta" href="/frontier/">The frontier log &rarr;</a>
+        <a class="ag-cta ghost" href="/dataset/">Browse the full dataset &rarr;</a>
         <a class="ag-cta ghost" href="/tools/agent-readiness.html">Score your own agent programme &rarr;</a>
       </div>
     </div></section>

@@ -26,6 +26,7 @@ const CORPUS = [
   ["Entity record", ["ai/index.html"]],
   ["The framework", ["4-discipline-stack/index.html"]],
   ["Agentic systems in regulated environments", ["agents/index.html"]],
+  ["Frontier log", ["frontier/index.html"]],
   ["Cornerstone essays", [
     "writing/encoded-enterprise-architect.html",
     "writing/genai-9-controls.html",

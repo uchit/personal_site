@@ -30,6 +30,7 @@ const STEPS = [
   ["build-coverage.mjs",        "count per-regulation depth"],
   ["build-dataset-views.mjs",   "render dataset CSV + rows + chips"],
   ["build-agents.mjs",          "generate /agents/ from the agent controls"],
+  ["build-frontier.mjs",        "generate /frontier/ from verified entries"],
   ["build-json-exports.mjs",    "emit the JSON exports"],
   ["build-situations.mjs",      "regenerate /situations/"],
   ["build-step-nav.mjs",        "stamp Method step markers"],

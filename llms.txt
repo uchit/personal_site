@@ -66,6 +66,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - [The practitioner benchmark](https://hellouchit.com/benchmark/): Opt-in aggregate distribution of self-scored capability maturity in regulated industries. Stored as counts, not per-submission records. Withheld below n=25. CC BY 4.0; raw aggregate at https://hellouchit.com/v1/stats
 - [Regulation × control × tooling dataset](https://hellouchit.com/dataset/): 66 controls × 28 regulations × 290 tools. CC BY 4.0. JSON + CSV downloads.
 - [Agentic systems in regulated environments](https://hellouchit.com/agents/): ten controls for running agents where an auditor will ask — identity, tool authorisation, autonomy levels, trajectories, blast radius, reversibility, injection defence, provenance, cost per outcome.
+- [Frontier log](https://hellouchit.com/frontier/): developments in agentic systems, each paired with the control it moves and whether it validates, complicates or invalidates it — plus the claims that failed source-checking.
 - [Practitioner glossary](https://hellouchit.com/glossary/): Named concepts and trade-offs, cross-linked
 - [Anti-patterns catalogue](https://hellouchit.com/anti-patterns/): 15 named failure modes
 - [Reading list](https://hellouchit.com/reading/): When-to-reach-for-this practitioner reading list
