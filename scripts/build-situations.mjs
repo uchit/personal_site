@@ -145,7 +145,7 @@ const SITUATIONS = [
 
 const NAV = `  <header class="nav" role="banner">
     <div class="wrap nav-inner">
-      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · Agents</span></span></a>
       <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
     </div>
