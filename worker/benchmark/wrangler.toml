@@ -3,11 +3,12 @@ main = "src/index.js"
 compatibility_date = "2026-01-01"
 
 # Created with:  npx wrangler d1 create hellouchit-benchmark
-# then paste the returned database_id below.
+# The binding stays DB — src/index.js reads env.DB — not the name wrangler
+# suggests on creation.
 [[d1_databases]]
 binding = "DB"
 database_name = "hellouchit-benchmark"
-database_id = "REPLACE_WITH_D1_ID"
+database_id = "dc170294-9788-45b4-82ac-cd5da52d25fd"
 
 [observability]
 enabled = true
