@@ -15,6 +15,66 @@
  * Every href here is checked by scripts/check-routes.mjs.
  */
 window.DIAG_ROUTES = {
+  /* -------------------------------------------------------- Agent readiness
+     Improvised → Contained → Supervised → Evidenced → Engineered */
+  "agent-readiness": {
+    "Improvised": [
+      { kind: "Control set", title: "The ten agent controls",
+        body: "Each control with the evidence it has to produce, what it needs built first, and the named way it fails. Start at wave 1.",
+        href: "/agents/" },
+      { kind: "Anti-pattern", title: "Vault theatre",
+        body: "Why a secrets manager in front of a static credential is not workload identity — the failure this level almost always contains.",
+        href: "/anti-patterns/#vault-theatre" },
+      { kind: "Tool", title: "agentcheck",
+        body: "Produce an evidence pack for the agent you just scored. Read-only, zero dependencies, and it refuses to give you a number out of ten.",
+        href: "/oss/agentcheck/README.md" }
+    ],
+    "Contained": [
+      { kind: "Control set", title: "Tool authorisation outside the model",
+        body: "The tool registry is the security boundary and the system prompt is a suggestion. What that looks like in practice.",
+        href: "/agents/#agent-tool-authz" },
+      { kind: "Anti-pattern", title: "The inline prompt pattern",
+        body: "Instructions doing security work — why guardrails written into the prompt fail against content that arrives after them.",
+        href: "/anti-patterns/#inline-prompt-pattern" },
+      { kind: "Reference architecture", title: "Regulated GenAI platform",
+        body: "The substrate these controls attach to, drawn out end to end.",
+        href: "/reference-architectures/regulated-genai-platform.html" }
+    ],
+    "Supervised": [
+      { kind: "Control set", title: "Oversight, reversibility, blast radius",
+        body: "The three that separate enforcement from evidence — including why a kill switch untested mid-run is not a kill switch.",
+        href: "/agents/#agent-human-oversight" },
+      { kind: "Anti-pattern", title: "Architect as reviewer",
+        body: "The approval queue nobody can realistically dissent in. Watch the approval rate.",
+        href: "/anti-patterns/#architect-as-reviewer" },
+      { kind: "Playbook", title: "EU AI Act in 12 weeks",
+        body: "A sequenced route to the Art. 12 and Art. 14 evidence an assessment will ask for.",
+        href: "/playbooks/eu-ai-act-12-weeks.html" }
+    ],
+    "Evidenced": [
+      { kind: "Control set", title: "Provenance and cost per outcome",
+        body: "What changes when one agent consumes another's output, and why cost per token is the wrong unit.",
+        href: "/agents/#agent-multi-agent-provenance" },
+      { kind: "Tool", title: "agentcheck in CI",
+        body: "Turn the review into a gate. Exits non-zero when a control is claimed met with no evidence, or rests on a prerequisite that is not.",
+        href: "/oss/agentcheck/README.md" },
+      { kind: "Dataset", title: "The full control map",
+        body: "These ten sit inside 66 controls across 28 regulations, each with the read-only command that produces its evidence.",
+        href: "/dataset/" }
+    ],
+    "Engineered": [
+      { kind: "Benchmark", title: "Where teams actually stand",
+        body: "Add your result to the open distribution. Counts, not records — and withheld until the sample is worth publishing.",
+        href: "/benchmark/" },
+      { kind: "Dataset", title: "The full control map",
+        body: "Fork it, argue with it, extend it. CC BY 4.0, JSON and CSV.",
+        href: "/dataset/" },
+      { kind: "Essay", title: "Platform engineering is the AI moat",
+        body: "Why the paved path — not the model — is what compounds.",
+        href: "/writing/platform-engineering-ai-moat.html" }
+    ]
+  },
+
 
   /* ---------------------------------------------------------------- DevSecOps
      Reactive → Repeatable → Defined → Managed → Optimising */

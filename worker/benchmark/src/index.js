@@ -36,6 +36,7 @@ const DIAGNOSTICS = {
   "cloud-cost": 8,
   "platform-engineering": 10,
   "ea-operating-model": 8,
+  "agent-readiness": 10,
 };
 
 const SECTORS = new Set([

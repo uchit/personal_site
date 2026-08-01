@@ -20,6 +20,11 @@
   <url><loc>https://hellouchit.com/tools/devsecops-maturity.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/tools/genai-readiness.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/tools/cloud-cost.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url>
+    <loc>https://hellouchit.com/tools/agent-readiness.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url><loc>https://hellouchit.com/tools/platform-engineering.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/tools/ea-operating-model.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/tools/sre-programme.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>

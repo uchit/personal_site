@@ -15,6 +15,7 @@
     "cloud-cost":         ["Cloud cost",         ["Unmanaged","Aware","Controlled","Optimised","Engineered"]],
     "platform-engineering":["Platform engineering",["Tooling","Emerging","Established","Productised","Property"]],
     "ea-operating-model": ["EA operating model", ["Bureaucratic","Consultative","Governed","Enabling","Property"]],
+    "agent-readiness":     ["Agent readiness",    ["Improvised","Contained","Supervised","Evidenced","Engineered"]],
   };
 
   var out = document.getElementById("bk-out");
