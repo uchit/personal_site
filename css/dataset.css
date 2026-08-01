@@ -350,3 +350,51 @@
   font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .05em;
 }
 @media (max-width: 720px) { .vfy-cmd code { font-size: 11px; } }
+
+/* ------------------------------------------------------------- SEQUENCE
+   Shown only when one regulation is selected. Waves, not a numbered list —
+   the numbering would imply an order the data deliberately does not contain. */
+#ds-seq:empty { display: none; }
+.sq {
+  margin: 0 0 4px; padding: 20px 22px;
+  border: 1px solid var(--line-strong); border-radius: 10px;
+  background: var(--surface);
+}
+.sq-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.sq-head b { font-family: "Fraunces", serif; font-size: 17px; font-weight: 500; color: var(--ink); }
+.sq-head span {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .05em; color: var(--faint);
+}
+.sq-waves { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.sq-wave { padding-left: 15px; border-left: 2px solid var(--accent); }
+.sq-wave:nth-child(n+2) { border-left-color: rgba(217,151,87,.4); }
+.sq-wave:nth-child(n+3) { border-left-color: var(--line-strong); }
+.sq-wn { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; margin-bottom: 7px; }
+.sq-wn b {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+}
+.sq-wn span { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint); }
+.sq-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.sq-items li { display: flex; align-items: baseline; gap: 8px; }
+.sq-jump {
+  padding: 0; border: 0; background: none; text-align: left;
+  color: var(--muted); font: inherit; font-size: 14px; line-height: 1.55;
+  cursor: pointer; border-bottom: 1px solid transparent;
+}
+.sq-jump:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.sq-items li.carried .sq-jump { color: var(--faint); }
+.sq-carry {
+  font-family: "IBM Plex Mono", monospace; font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--faint); border: 1px dashed var(--line-strong);
+  padding: 1px 6px; border-radius: 999px; cursor: help; white-space: nowrap;
+}
+.sq-foot {
+  margin: 16px 0 0; padding-top: 13px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 13px; line-height: 1.65; max-width: 76ch;
+}
+.sq-foot b { color: var(--ink); font-weight: 500; }
+.sq-foot i { font-style: normal; color: var(--faint); }
+@media (max-width: 620px) { .sq { padding: 16px 15px; } }

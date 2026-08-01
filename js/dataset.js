@@ -52,7 +52,20 @@
     });
     countEl.textContent = shown;
     empty.hidden = shown > 0;
+    showSequence();
     persist();
+  }
+
+  /* The order-of-work panel only means something once the reader has said
+     which obligation they are working to. With two regulations selected there
+     is no single answer to "which first", so it stays hidden rather than
+     picking one arbitrarily. */
+  const seqPanels = $$("#ds-seq .sq");
+  function showSequence() {
+    const only = state.reg.size === 1 && !state.cat.size && !state.sector.size && !state.q
+      ? [...state.reg][0]
+      : null;
+    seqPanels.forEach(p => { p.hidden = p.dataset.reg !== only; });
   }
 
   function persist() {
@@ -128,6 +141,23 @@
   /* Copy the verify command. Delegated because the rows are generated and the
      detail panes exist before expansion — binding per button at load would
      work, but delegation survives any future re-render. */
+  /* Jump from a sequence entry to the control it names, and open it. */
+  document.addEventListener("click", (e) => {
+    const jump = e.target.closest(".sq-jump");
+    if (!jump) return;
+    const row = rows.find(r => r.dataset.id === jump.dataset.id);
+    if (!row) return;
+    if (row.style.display === "none") {
+      /* A carried prerequisite is filtered out by the very filter that
+         revealed the sequence. Clear the filter so the row can be seen. */
+      state.reg.clear();
+      syncChips();
+      render();
+    }
+    if (!row.classList.contains("expanded")) row.click();
+    row.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".vfy-copy");
     if (!btn) return;

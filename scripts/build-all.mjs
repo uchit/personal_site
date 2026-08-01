@@ -24,6 +24,8 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const STEPS = [
   ["extend-dataset-verify.mjs", "attach verify commands to the controls that have one"],
   ["check-evidence.mjs",        "syntax-check every command, stamp the result"],
+  ["extend-dataset-deps.mjs",   "attach prerequisite edges"],
+  ["build-sequence.mjs",        "derive per-regulation order of work"],
   ["build-coverage.mjs",        "count per-regulation depth"],
   ["build-dataset-views.mjs",   "render dataset CSV + rows + chips"],
   ["build-json-exports.mjs",    "emit the JSON exports"],

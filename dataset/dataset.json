@@ -248,7 +248,11 @@
           "yields": "Access Analyzer status",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "r001"
+      ],
+      "depends_why": "Scoping a permission set presupposes the identity holding it."
     },
     {
       "reg": [
@@ -293,7 +297,11 @@
         "critical-infrastructure"
       ],
       "notes": "E8 ML2+ requires PAM, not 'we have admins with persistent access we trust.'",
-      "id": "r003"
+      "id": "r003",
+      "depends_on": [
+        "r004"
+      ],
+      "depends_why": "A breakglass account without MFA is the weakest credential in the estate."
     },
     {
       "reg": [
@@ -527,7 +535,11 @@
           "yields": "Admission policy enforcement mode",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "r005"
+      ],
+      "depends_why": "Admission cannot verify a signature that was never produced."
     },
     {
       "reg": [
@@ -564,7 +576,11 @@
         "critical-infrastructure"
       ],
       "notes": "Hard to reach for most teams; necessary for the most exposed federal / defence workloads (SLSA L4).",
-      "id": "r008"
+      "id": "r008",
+      "depends_on": [
+        "r009"
+      ],
+      "depends_why": "A build cannot be reproducible while its dependencies float."
     },
     {
       "reg": [
@@ -717,7 +733,11 @@
         "all"
       ],
       "notes": "Statutory windows: GDPR 30 days, AU Privacy Act 30 days (under reform), HIPAA 30 days for access requests. Untested DSAR pipelines fail at first regulator-driven test.",
-      "id": "r011"
+      "id": "r011",
+      "depends_on": [
+        "r012"
+      ],
+      "depends_why": "A deletion request cannot be fulfilled across stores whose contents are unclassified."
     },
     {
       "reg": [
@@ -808,7 +828,11 @@
           "yields": "Per-bucket residency evidence",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "r012"
+      ],
+      "depends_why": "Residency rules are applied per classification; unclassified data has no rule to apply."
     },
     {
       "reg": [
@@ -954,7 +978,11 @@
         "critical-infrastructure"
       ],
       "notes": "EU AI Act Art. 12 (logging) becomes operational evidence here. Without per-decision logs you cannot answer regulator's 'why did the model decide X for this customer'.",
-      "id": "r016"
+      "id": "r016",
+      "depends_on": [
+        "r026"
+      ],
+      "depends_why": "A per-decision evidence pack is written to, and retrieved from, the audit substrate."
     },
     {
       "reg": [
@@ -993,7 +1021,11 @@
         "healthcare"
       ],
       "notes": "Art. 14 (human oversight) is operational, not declarative. 'A human can override' isn't oversight; 'a human must approve high-risk decisions' is.",
-      "id": "r017"
+      "id": "r017",
+      "depends_on": [
+        "r045"
+      ],
+      "depends_why": "“High-risk” is an output of the risk classification, not an intuition."
     },
     {
       "reg": [
@@ -1033,7 +1065,11 @@
         "critical-infrastructure"
       ],
       "notes": "OWASP LLM01 (prompt injection) is the most common attack vector; defending requires both input-side and output-side controls.",
-      "id": "r018"
+      "id": "r018",
+      "depends_on": [
+        "r015"
+      ],
+      "depends_why": "Injection defence is a guardrail; it needs the guardrail layer to live in."
     },
     {
       "reg": [
@@ -1074,7 +1110,11 @@
         "critical-infrastructure"
       ],
       "notes": "EU AI Act technical documentation (Art. 11 / Annex IV) maps to model + data cards.",
-      "id": "r019"
+      "id": "r019",
+      "depends_on": [
+        "r045"
+      ],
+      "depends_why": "A model card records the risk classification, among other things."
     },
     {
       "reg": [
@@ -1121,7 +1161,11 @@
         "critical-infrastructure"
       ],
       "notes": "CPS 230 (live in AU FS) requires this for every 'critical operation'. DORA RTS expects testing artefacts the regulator can review.",
-      "id": "r020"
+      "id": "r020",
+      "depends_on": [
+        "r038"
+      ],
+      "depends_why": "Recovery targets are set per critical operation; the register defines what those are."
     },
     {
       "reg": [
@@ -1161,7 +1205,11 @@
         "critical-infrastructure"
       ],
       "notes": "DORA introduced critical ICT third-party designation (CTPP). APRA CPS 230 has equivalent material-service-provider rules. Both need real numbers, not 'we use AWS'.",
-      "id": "r021"
+      "id": "r021",
+      "depends_on": [
+        "r038"
+      ],
+      "depends_why": "Concentration risk is measured against the operations a vendor supports."
     },
     {
       "reg": [
@@ -1204,7 +1252,12 @@
         "critical-infrastructure"
       ],
       "notes": "DORA Art. 25 (threat-led penetration testing) implies dynamic resilience testing; chaos engineering is its operational analogue.",
-      "id": "r022"
+      "id": "r022",
+      "depends_on": [
+        "r020",
+        "r032"
+      ],
+      "depends_why": "Failure injection before recovery targets and observability produces an outage, not a test."
     },
     {
       "reg": [
@@ -1250,7 +1303,12 @@
         "critical-infrastructure"
       ],
       "notes": "US CIRCIA: 72h incident, 24h ransom payment. NIS2: 24h early-warning, 72h notification. SOCI 2018: critical infrastructure asset incidents 72h. The shape of the obligation is similar globally.",
-      "id": "r023"
+      "id": "r023",
+      "depends_on": [
+        "r026",
+        "r033"
+      ],
+      "depends_why": "A 72-hour reporting obligation needs the evidence trail and the detection that starts the clock."
     },
     {
       "reg": [
@@ -1334,7 +1392,11 @@
         "all"
       ],
       "notes": "CISA KEV is the actually-exploited subset; far better priority than CVSS-score alone.",
-      "id": "r025"
+      "id": "r025",
+      "depends_on": [
+        "r006"
+      ],
+      "depends_why": "A patching SLA needs the inventory that says which services contain the CVE."
     },
     {
       "reg": [
@@ -1615,7 +1677,11 @@
           "yields": "Rollout strategy inventory",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "r032"
+      ],
+      "depends_why": "Progressive rollout decides promote-or-roll-back on signals; without them it is a slower deploy."
     },
     {
       "reg": [
@@ -1740,7 +1806,11 @@
         "all"
       ],
       "notes": "Detection-as-code beats SIEM-managed-by-vendor. Treats security like the engineering practice it is.",
-      "id": "r033"
+      "id": "r033",
+      "depends_on": [
+        "r026"
+      ],
+      "depends_why": "Detection-as-code runs over centralised logs; without them there is nothing to detect on."
     },
     {
       "reg": [
@@ -1836,7 +1906,11 @@
           "yields": "Per-namespace mTLS mode",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "r001"
+      ],
+      "depends_why": "Mutual TLS authenticates workload identities; without them there is nothing to present."
     },
     {
       "reg": [
@@ -1928,7 +2002,11 @@
         "healthcare"
       ],
       "notes": "Manual UARs by spreadsheet collapse at scale. The control needs an attestation engine, not a Friday-afternoon Excel.",
-      "id": "r037"
+      "id": "r037",
+      "depends_on": [
+        "r002"
+      ],
+      "depends_why": "An access review reviews granted permissions; ungoverned wildcards make the review meaningless."
     },
     {
       "reg": [
@@ -2035,7 +2113,11 @@
         "healthcare"
       ],
       "notes": "FDA expects PMS for any clinical AI. Maps to ISO 14971 risk management.",
-      "id": "r040"
+      "id": "r040",
+      "depends_on": [
+        "r019"
+      ],
+      "depends_why": "Post-market surveillance tracks the claims the model card made."
     },
     {
       "reg": [
@@ -2138,7 +2220,11 @@
           "yields": "Drift detection exit status",
           "checked": false
         }
-      ]
+      ],
+      "depends_on": [
+        "r041"
+      ],
+      "depends_why": "Drift is measured against a source of truth; without IaC there is nothing to compare to."
     },
     {
       "reg": [
@@ -2218,7 +2304,12 @@
         "critical-infrastructure"
       ],
       "notes": "NIST finalised PQC standards Aug 2024 (FIPS 203/204/205). Regulators are starting to ask about transition plans.",
-      "id": "r044"
+      "id": "r044",
+      "depends_on": [
+        "r027",
+        "r028"
+      ],
+      "depends_why": "A PQC transition plan needs the inventory of what is currently negotiated and which keys are yours."
     },
     {
       "reg": [
@@ -2298,7 +2389,12 @@
         "critical-infrastructure"
       ],
       "notes": "Pickle files in shared model registries are an active attack surface. ML-supply-chain is the new software-supply-chain.",
-      "id": "r046"
+      "id": "r046",
+      "depends_on": [
+        "r005",
+        "r009"
+      ],
+      "depends_why": "Model supply-chain integrity reuses the provenance and pinning the software chain established."
     },
     {
       "reg": [
@@ -2334,7 +2430,11 @@
         "banks"
       ],
       "notes": "G-SIBs were given BCBS 239 in 2013, due 2016, mostly still failing 2024 (BCBS reviews are public). The substrate is the gap, not the regulation.",
-      "id": "r047"
+      "id": "r047",
+      "depends_on": [
+        "r010"
+      ],
+      "depends_why": "Risk-data traceability is column-level lineage under another name."
     },
     {
       "reg": [
@@ -2370,7 +2470,11 @@
         "government"
       ],
       "notes": "Up to PROTECTED on assessed regions; SECRET typically on sovereign-only platforms.",
-      "id": "r048"
+      "id": "r048",
+      "depends_on": [
+        "r013"
+      ],
+      "depends_why": "A sovereign region is the implementation of a residency decision already made."
     },
     {
       "reg": [
@@ -2465,7 +2569,11 @@
         "all"
       ],
       "notes": "Cookie banner alone doesn't satisfy. The control is propagation of revocation to every downstream consumer.",
-      "id": "r050"
+      "id": "r050",
+      "depends_on": [
+        "r012"
+      ],
+      "depends_why": "Consent is captured against a purpose, which is a property of the classification."
     },
     {
       "reg": [
@@ -2513,7 +2621,12 @@
         "all"
       ],
       "notes": "Always-on VPN is the legacy. ZTNA per-app, per-identity, per-posture is the bar.",
-      "id": "r051"
+      "id": "r051",
+      "depends_on": [
+        "r001",
+        "r004"
+      ],
+      "depends_why": "Zero-trust access decisions are made against a verified identity and a second factor."
     },
     {
       "reg": [
@@ -2748,7 +2861,11 @@
         "healthcare"
       ],
       "notes": "EU NIS2 explicit board accountability. APRA CPS 234 + CPS 230 board-level oversight. ISO 42001 top management responsibility.",
-      "id": "r056"
+      "id": "r056",
+      "depends_on": [
+        "r038"
+      ],
+      "depends_why": "Board reporting on technology risk reports against the critical-operation register."
     },
     {
       "id": "agent-identity",
@@ -2850,7 +2967,11 @@
         "healthcare",
         "critical-infrastructure"
       ],
-      "notes": "An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them."
+      "notes": "An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.",
+      "depends_on": [
+        "agent-identity"
+      ],
+      "depends_why": "The tool registry authorises an identity; without one there is nobody to authorise."
     },
     {
       "id": "agent-autonomy-level",
@@ -2927,7 +3048,11 @@
         "government",
         "healthcare"
       ],
-      "notes": "EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name."
+      "notes": "EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.",
+      "depends_on": [
+        "agent-autonomy-level"
+      ],
+      "depends_why": "Approval is required for action classes the declared autonomy level does not cover."
     },
     {
       "id": "agent-trajectory-trace",
@@ -3035,7 +3160,11 @@
           "yields": "Enforced resource ceiling",
           "checked": true
         }
-      ]
+      ],
+      "depends_on": [
+        "agent-identity"
+      ],
+      "depends_why": "Step, spend and rate ceilings attach to an identity to be enforceable."
     },
     {
       "id": "agent-action-reversibility",
@@ -3075,7 +3204,11 @@
       "sectors": [
         "all"
       ],
-      "notes": "Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved."
+      "notes": "Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.",
+      "depends_on": [
+        "agent-autonomy-level"
+      ],
+      "depends_why": "Which actions are staged or delayed is decided by their declared autonomy class."
     },
     {
       "id": "agent-prompt-injection",
@@ -3152,7 +3285,11 @@
         "government",
         "healthcare"
       ],
-      "notes": "As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures."
+      "notes": "As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.",
+      "depends_on": [
+        "agent-trajectory-trace"
+      ],
+      "depends_why": "Cross-agent provenance is the join across per-agent trajectories."
     },
     {
       "id": "agent-cost-per-outcome",
@@ -3190,7 +3327,12 @@
       "sectors": [
         "all"
       ],
-      "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one."
+      "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.",
+      "depends_on": [
+        "agent-trajectory-trace",
+        "r043"
+      ],
+      "depends_why": "Cost per resolved task needs the trajectory that bounds the task and the attribution that prices it."
     }
   ],
   "coverage": {
@@ -3337,5 +3479,1284 @@
     "syntax_checked": 24,
     "unchecked": 9,
     "note": "Unchecked means the CLI is not installed in the build environment, not that the command is wrong. Every command is read-only."
+  },
+  "sequence": {
+    "generated_by": "scripts/build-sequence.mjs",
+    "method": "Topological grouping of the prerequisite graph, restricted to the controls a regulation maps to plus any prerequisite those pull in.",
+    "note": "Within a wave there is no implied order — everything in it can start in parallel. Carried controls are prerequisites the regulation does not itself name.",
+    "by_regulation": {
+      "cps234": {
+        "controls": 8,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": false
+            },
+            {
+              "id": "r001",
+              "carried": false
+            },
+            {
+              "id": "r005",
+              "carried": false
+            },
+            {
+              "id": "r006",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r002",
+              "carried": false
+            },
+            {
+              "id": "r025",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r023",
+              "carried": false
+            },
+            {
+              "id": "r037",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "cps230": {
+        "controls": 12,
+        "carried": 1,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": false
+            },
+            {
+              "id": "agent-identity",
+              "carried": true
+            },
+            {
+              "id": "agent-trajectory-trace",
+              "carried": false
+            },
+            {
+              "id": "r032",
+              "carried": false
+            },
+            {
+              "id": "r038",
+              "carried": false
+            },
+            {
+              "id": "r043",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-action-reversibility",
+              "carried": false
+            },
+            {
+              "id": "agent-blast-radius",
+              "carried": false
+            },
+            {
+              "id": "agent-cost-per-outcome",
+              "carried": false
+            },
+            {
+              "id": "r020",
+              "carried": false
+            },
+            {
+              "id": "r021",
+              "carried": false
+            },
+            {
+              "id": "r030",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r022",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "soci": {
+        "controls": 6,
+        "carried": 3,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": true
+            },
+            {
+              "id": "r001",
+              "carried": false
+            },
+            {
+              "id": "r006",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": true
+            },
+            {
+              "id": "r038",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-blast-radius",
+              "carried": false
+            },
+            {
+              "id": "r020",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r023",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "ai_safety_au": {
+        "controls": 5,
+        "carried": 1,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": false
+            },
+            {
+              "id": "r014",
+              "carried": false
+            },
+            {
+              "id": "r015",
+              "carried": false
+            },
+            {
+              "id": "r045",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "agent-human-oversight",
+              "carried": false
+            },
+            {
+              "id": "r017",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "privacy_au": {
+        "controls": 6,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r004",
+              "carried": false
+            },
+            {
+              "id": "r010",
+              "carried": false
+            },
+            {
+              "id": "r012",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r011",
+              "carried": false
+            },
+            {
+              "id": "r013",
+              "carried": false
+            },
+            {
+              "id": "r050",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "e8": {
+        "controls": 11,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": false
+            },
+            {
+              "id": "r001",
+              "carried": false
+            },
+            {
+              "id": "r004",
+              "carried": true
+            },
+            {
+              "id": "r006",
+              "carried": true
+            },
+            {
+              "id": "r024",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": false
+            },
+            {
+              "id": "r031",
+              "carried": false
+            },
+            {
+              "id": "r041",
+              "carried": false
+            },
+            {
+              "id": "r049",
+              "carried": false
+            },
+            {
+              "id": "r054",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r003",
+              "carried": false
+            },
+            {
+              "id": "r025",
+              "carried": false
+            },
+            {
+              "id": "r051",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "irap": {
+        "controls": 1,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "r012",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r013",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r048",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "eu_ai_act": {
+        "controls": 15,
+        "carried": 3,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": false
+            },
+            {
+              "id": "agent-identity",
+              "carried": false
+            },
+            {
+              "id": "agent-prompt-injection",
+              "carried": false
+            },
+            {
+              "id": "agent-trajectory-trace",
+              "carried": false
+            },
+            {
+              "id": "r005",
+              "carried": true
+            },
+            {
+              "id": "r009",
+              "carried": true
+            },
+            {
+              "id": "r014",
+              "carried": false
+            },
+            {
+              "id": "r015",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": true
+            },
+            {
+              "id": "r045",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-action-reversibility",
+              "carried": false
+            },
+            {
+              "id": "agent-human-oversight",
+              "carried": false
+            },
+            {
+              "id": "agent-multi-agent-provenance",
+              "carried": false
+            },
+            {
+              "id": "agent-tool-authz",
+              "carried": false
+            },
+            {
+              "id": "r016",
+              "carried": false
+            },
+            {
+              "id": "r017",
+              "carried": false
+            },
+            {
+              "id": "r019",
+              "carried": false
+            },
+            {
+              "id": "r046",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "dora": {
+        "controls": 7,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": true
+            },
+            {
+              "id": "r006",
+              "carried": false
+            },
+            {
+              "id": "r032",
+              "carried": false
+            },
+            {
+              "id": "r038",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "agent-action-reversibility",
+              "carried": false
+            },
+            {
+              "id": "r020",
+              "carried": false
+            },
+            {
+              "id": "r021",
+              "carried": false
+            },
+            {
+              "id": "r025",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r022",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "nis2": {
+        "controls": 7,
+        "carried": 4,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": true
+            },
+            {
+              "id": "r006",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": true
+            },
+            {
+              "id": "r032",
+              "carried": false
+            },
+            {
+              "id": "r038",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "agent-blast-radius",
+              "carried": false
+            },
+            {
+              "id": "r020",
+              "carried": false
+            },
+            {
+              "id": "r021",
+              "carried": false
+            },
+            {
+              "id": "r025",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r023",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "gdpr": {
+        "controls": 7,
+        "carried": 1,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": true
+            },
+            {
+              "id": "r004",
+              "carried": false
+            },
+            {
+              "id": "r010",
+              "carried": false
+            },
+            {
+              "id": "r012",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-human-oversight",
+              "carried": false
+            },
+            {
+              "id": "r011",
+              "carried": false
+            },
+            {
+              "id": "r013",
+              "carried": false
+            },
+            {
+              "id": "r050",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "circia": {
+        "controls": 2,
+        "carried": 3,
+        "waves": [
+          [
+            {
+              "id": "r026",
+              "carried": true
+            },
+            {
+              "id": "r038",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r021",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r023",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "hipaa": {
+        "controls": 9,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "agent-trajectory-trace",
+              "carried": false
+            },
+            {
+              "id": "r004",
+              "carried": false
+            },
+            {
+              "id": "r010",
+              "carried": false
+            },
+            {
+              "id": "r012",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": false
+            },
+            {
+              "id": "r027",
+              "carried": false
+            },
+            {
+              "id": "r028",
+              "carried": false
+            },
+            {
+              "id": "r039",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r011",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "fda_samd": {
+        "controls": 2,
+        "carried": 3,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": true
+            },
+            {
+              "id": "r045",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "agent-human-oversight",
+              "carried": false
+            },
+            {
+              "id": "r019",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r040",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "cisa_ssa": {
+        "controls": 3,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r005",
+              "carried": false
+            },
+            {
+              "id": "r006",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r025",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "ssdf": {
+        "controls": 6,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r005",
+              "carried": false
+            },
+            {
+              "id": "r006",
+              "carried": false
+            },
+            {
+              "id": "r009",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r007",
+              "carried": false
+            },
+            {
+              "id": "r008",
+              "carried": false
+            },
+            {
+              "id": "r025",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "ai_rmf": {
+        "controls": 7,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": false
+            },
+            {
+              "id": "agent-identity",
+              "carried": true
+            },
+            {
+              "id": "agent-trajectory-trace",
+              "carried": false
+            },
+            {
+              "id": "r014",
+              "carried": false
+            },
+            {
+              "id": "r045",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "agent-human-oversight",
+              "carried": false
+            },
+            {
+              "id": "agent-multi-agent-provenance",
+              "carried": false
+            },
+            {
+              "id": "agent-tool-authz",
+              "carried": false
+            },
+            {
+              "id": "r019",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "sp80053": {
+        "controls": 21,
+        "carried": 4,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": false
+            },
+            {
+              "id": "r001",
+              "carried": true
+            },
+            {
+              "id": "r004",
+              "carried": true
+            },
+            {
+              "id": "r026",
+              "carried": false
+            },
+            {
+              "id": "r027",
+              "carried": true
+            },
+            {
+              "id": "r028",
+              "carried": true
+            },
+            {
+              "id": "r029",
+              "carried": false
+            },
+            {
+              "id": "r031",
+              "carried": false
+            },
+            {
+              "id": "r032",
+              "carried": false
+            },
+            {
+              "id": "r034",
+              "carried": false
+            },
+            {
+              "id": "r036",
+              "carried": false
+            },
+            {
+              "id": "r041",
+              "carried": false
+            },
+            {
+              "id": "r053",
+              "carried": false
+            },
+            {
+              "id": "r055",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-blast-radius",
+              "carried": false
+            },
+            {
+              "id": "agent-tool-authz",
+              "carried": false
+            },
+            {
+              "id": "r002",
+              "carried": false
+            },
+            {
+              "id": "r003",
+              "carried": false
+            },
+            {
+              "id": "r030",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": false
+            },
+            {
+              "id": "r035",
+              "carried": false
+            },
+            {
+              "id": "r042",
+              "carried": false
+            },
+            {
+              "id": "r044",
+              "carried": false
+            },
+            {
+              "id": "r051",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r037",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "iso42001": {
+        "controls": 15,
+        "carried": 5,
+        "waves": [
+          [
+            {
+              "id": "agent-autonomy-level",
+              "carried": false
+            },
+            {
+              "id": "agent-identity",
+              "carried": false
+            },
+            {
+              "id": "agent-prompt-injection",
+              "carried": false
+            },
+            {
+              "id": "agent-trajectory-trace",
+              "carried": false
+            },
+            {
+              "id": "r005",
+              "carried": true
+            },
+            {
+              "id": "r009",
+              "carried": true
+            },
+            {
+              "id": "r014",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": true
+            },
+            {
+              "id": "r038",
+              "carried": true
+            },
+            {
+              "id": "r043",
+              "carried": true
+            },
+            {
+              "id": "r045",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-action-reversibility",
+              "carried": false
+            },
+            {
+              "id": "agent-blast-radius",
+              "carried": false
+            },
+            {
+              "id": "agent-cost-per-outcome",
+              "carried": false
+            },
+            {
+              "id": "agent-multi-agent-provenance",
+              "carried": false
+            },
+            {
+              "id": "agent-tool-authz",
+              "carried": false
+            },
+            {
+              "id": "r016",
+              "carried": false
+            },
+            {
+              "id": "r019",
+              "carried": false
+            },
+            {
+              "id": "r046",
+              "carried": false
+            },
+            {
+              "id": "r056",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "iso27001": {
+        "controls": 26,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "r001",
+              "carried": false
+            },
+            {
+              "id": "r004",
+              "carried": false
+            },
+            {
+              "id": "r009",
+              "carried": false
+            },
+            {
+              "id": "r024",
+              "carried": false
+            },
+            {
+              "id": "r026",
+              "carried": false
+            },
+            {
+              "id": "r027",
+              "carried": false
+            },
+            {
+              "id": "r028",
+              "carried": false
+            },
+            {
+              "id": "r029",
+              "carried": false
+            },
+            {
+              "id": "r031",
+              "carried": false
+            },
+            {
+              "id": "r032",
+              "carried": true
+            },
+            {
+              "id": "r034",
+              "carried": false
+            },
+            {
+              "id": "r036",
+              "carried": false
+            },
+            {
+              "id": "r038",
+              "carried": true
+            },
+            {
+              "id": "r041",
+              "carried": false
+            },
+            {
+              "id": "r049",
+              "carried": false
+            },
+            {
+              "id": "r052",
+              "carried": false
+            },
+            {
+              "id": "r053",
+              "carried": false
+            },
+            {
+              "id": "r054",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r002",
+              "carried": false
+            },
+            {
+              "id": "r003",
+              "carried": false
+            },
+            {
+              "id": "r030",
+              "carried": false
+            },
+            {
+              "id": "r033",
+              "carried": false
+            },
+            {
+              "id": "r035",
+              "carried": false
+            },
+            {
+              "id": "r042",
+              "carried": false
+            },
+            {
+              "id": "r044",
+              "carried": false
+            },
+            {
+              "id": "r051",
+              "carried": false
+            },
+            {
+              "id": "r056",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r037",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "slsa": {
+        "controls": 2,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r005",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r007",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "owasp_llm": {
+        "controls": 4,
+        "carried": 1,
+        "waves": [
+          [
+            {
+              "id": "agent-identity",
+              "carried": true
+            },
+            {
+              "id": "agent-prompt-injection",
+              "carried": false
+            },
+            {
+              "id": "r015",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-tool-authz",
+              "carried": false
+            },
+            {
+              "id": "r018",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "atlas": {
+        "controls": 3,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "agent-prompt-injection",
+              "carried": false
+            },
+            {
+              "id": "r015",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "r018",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "bcbs239": {
+        "controls": 3,
+        "carried": 1,
+        "waves": [
+          [
+            {
+              "id": "agent-trajectory-trace",
+              "carried": true
+            },
+            {
+              "id": "r010",
+              "carried": false
+            }
+          ],
+          [
+            {
+              "id": "agent-multi-agent-provenance",
+              "carried": false
+            },
+            {
+              "id": "r047",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "pci": {
+        "controls": 6,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r027",
+              "carried": false
+            },
+            {
+              "id": "r028",
+              "carried": false
+            },
+            {
+              "id": "r036",
+              "carried": false
+            },
+            {
+              "id": "r053",
+              "carried": false
+            },
+            {
+              "id": "r054",
+              "carried": false
+            },
+            {
+              "id": "r055",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "iec62443": {
+        "controls": 1,
+        "carried": 0,
+        "waves": [
+          [
+            {
+              "id": "r034",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "iso13485": {
+        "controls": 1,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "r045",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r019",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r040",
+              "carried": false
+            }
+          ]
+        ]
+      },
+      "iec62304": {
+        "controls": 1,
+        "carried": 2,
+        "waves": [
+          [
+            {
+              "id": "r045",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r019",
+              "carried": true
+            }
+          ],
+          [
+            {
+              "id": "r040",
+              "carried": false
+            }
+          ]
+        ]
+      }
+    }
   }
 }
