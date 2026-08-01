@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy-preserving AI-usage monitoring for families &mdash; Case study &mdash; Uchit Vyas</title>
+<meta name="description" content="Case study: a consumer safety product that tells parents how much time a teenager spends in AI companion apps without ever reading a message — on-device aggregation, hostname-only signal, and a credential for the child being monitored." />
+<link rel="canonical" href="https://hellouchit.com/case-studies/ai-companion-safety.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Privacy-preserving AI-usage monitoring for families &mdash; Case study" />
+<meta property="og:description" content="Signal, not surveillance. How the constraint was made architectural rather than a policy promise." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/case.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work" style="color:var(--ink)">Work</a><a href="/tools/">Explore</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="cs-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/case-studies/" style="color:var(--muted)">Case Studies</a><span style="opacity:.5">/</span><span style="color:var(--accent)">AI-usage safety</span></nav>
+      <div class="meta"><span><b>Case study</b></span><span>Consumer &middot; Child safety &middot; AI</span><span>Shipped product</span></div>
+      <h1>Telling a parent what&rsquo;s happening &mdash; <em>without reading a word</em>.</h1>
+      <p class="dek">
+        Teenagers now spend hours inside AI companion apps, and parents have no
+        idea whether that is twenty minutes or four hours a night. The obvious
+        product is a surveillance tool. <b>The constraint I set was that the
+        system must never be able to read a single message</b> &mdash; and that
+        this be enforced by architecture, not promised in a privacy policy.
+      </p>
+      <div class="cs-context">
+        <div class="item"><b>Sector</b>Consumer · Child safety · Applied AI</div>
+        <div class="item"><b>Period</b>2026</div>
+        <div class="item"><b>My role</b>Solution Architect &mdash; designed and built end to end</div>
+        <div class="item"><b>Surfaces</b>iOS app + system extensions · browser extension · web dashboard</div>
+        <div class="item"><b>Platform</b>Next.js · Postgres (RLS) · Swift / DeviceActivity</div>
+        <div class="item"><b>Status</b>Shipped, with billing and subscriptions live</div>
+      </div>
+    </div></section>
+
+    <article class="e-body wrap">
+
+      <h2>The challenge.</h2>
+      <p>
+        AI companion apps &mdash; character chat, synthetic partners, roleplay
+        &mdash; are a genuinely new category of teenage screen time, and unlike
+        social media they are conversational, private and emotionally sticky. The
+        parents who worry about it want one question answered:
+        <b>how much, and is it getting worse?</b>
+      </p>
+      <p>
+        Every existing answer to that question is a monitoring product that reads
+        the conversations. That trade is bad on three counts: it is the most
+        invasive possible reading of a private exchange, it destroys the trust
+        between parent and teenager that makes any intervention work, and it
+        creates a store of intimate minor-related content that is a liability
+        the moment it exists.
+      </p>
+      <p>
+        So the design question was not &ldquo;how do we monitor safely&rdquo;. It
+        was: <b>how much can you learn from the shape of usage alone, and can you
+        make reading impossible rather than merely disallowed?</b>
+      </p>
+
+      <h2>The constraints.</h2>
+      <div class="cs-context" style="margin-top:22px">
+        <div class="item"><b>Never readable</b>No message content, ever &mdash; enforced structurally</div>
+        <div class="item"><b>Minor's data</b>Smallest viable data set; nothing retained that isn't used</div>
+        <div class="item"><b>The subject has agency</b>The teenager is a participant, not a target</div>
+        <div class="item"><b>Multi-surface</b>iOS, browser and web must agree on one model</div>
+        <div class="item"><b>Solo build</b>No team &mdash; complexity is the binding constraint</div>
+      </div>
+
+      <h2>The approach.</h2>
+      <p>
+        <b>Signal, not content.</b> The system collects one thing: which category
+        of platform was in use, for how long, on which day. Not who was talked to,
+        not what was said, not even the specific conversation. On the browser side
+        that meant the extension reads the <b>active tab&rsquo;s hostname and
+        nothing else</b>, maps it to a platform category, and discards the rest.
+        The extension requests no host permissions on any monitored site &mdash;
+        it holds permission for its own backend and nothing more. It is not that
+        it chooses not to read pages; it <b>cannot</b>, and any reviewer can
+        verify that from the manifest in ten seconds.
+      </p>
+      <p>
+        <b>On-device aggregation, by borrowing someone else&rsquo;s sandbox.</b>
+        On iOS the usage data comes from Apple&rsquo;s device-activity framework,
+        which runs the reporting extension in a sandbox with <b>no network
+        access</b>. That is normally described as a limitation. Here it was the
+        whole point: exact session boundaries are structurally unavailable to the
+        app and therefore to the backend, and what leaves the device is a
+        threshold crossing &mdash; a child identifier, a minute count, a timestamp.
+        The privacy property is enforced by the operating system, not by my code
+        behaving well.
+      </p>
+      <p>
+        <b>Deliberately coarse granularity.</b> Everything rolls up to
+        <em>(child, day, platform category)</em>. That is the finest resolution
+        the system can hold, which makes a whole class of future feature requests
+        &mdash; &ldquo;can we see the actual chats&rdquo; &mdash; not a policy
+        conversation but a rebuild. Constraints only survive when violating them
+        is expensive.
+      </p>
+      <p>
+        <b>A credential for the person being monitored.</b> The teenager gets
+        their own sign-in &mdash; a family code and PIN, distinct from the
+        parent&rsquo;s account &mdash; so they can see exactly what their parent
+        sees, and attach their own notes to a day. This is the piece most
+        parental-control products skip, and it is the difference between a tool a
+        family uses together and one a teenager routes around within a week.
+      </p>
+      <p>
+        <b>No RLS-bypassing key, anywhere.</b> The child credential could have
+        been implemented quickly using the database&rsquo;s admin API, which would
+        have meant introducing a service-role key that bypasses row-level
+        security. I built it instead with <code>SECURITY DEFINER</code> functions
+        with a pinned search path, so the codebase never holds a credential that
+        can read every family&rsquo;s data. The shortcut would have saved a day
+        and permanently changed the security posture of the system.
+      </p>
+      <p>
+        The honest caveat, written into the migration at the time: a code-and-PIN
+        pair is not cryptographic proof of identity. It is the same trust model as
+        a share link. It gives the child a real, separate credential; it does not
+        pretend to be more than that. Rate limiting &mdash; eight wrong attempts
+        locks that code for fifteen minutes, shared across every function that
+        accepts it &mdash; is what makes it survivable rather than the credential
+        itself.
+      </p>
+
+      <h2>Outcomes.</h2>
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <b>Zero message content</b>
+          <span>Not stored, not transmitted, not accessible. The strongest privacy claim a monitoring product can make, and it is verifiable from the extension manifest and Apple's sandbox rather than taken on trust.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Three surfaces, one model</b>
+          <span>iOS system extension, browser extension and web dashboard converge on the same (child, day, platform) rollup, with timezone handled per family so a "day" means the family's day.</span>
+        </div>
+        <div class="cs-outcome">
+          <b>Shipped, with billing</b>
+          <span>Not a prototype: subscriptions, thresholds and alerting, weekly digests, and a dashboard a non-technical parent can read in thirty seconds.</span>
+        </div>
+      </div>
+
+      <h2>Three lessons that travelled.</h2>
+      <div class="cs-lesson">
+        <p>
+          <b>1 &middot; The best privacy control is one you cannot revoke.</b>
+          &ldquo;We don&rsquo;t read messages&rdquo; is a promise; &ldquo;we hold
+          no permission that would let us&rdquo; is a property. Where a platform
+          sandbox already enforces the boundary you want, adopting that constraint
+          is worth more than any amount of policy documentation &mdash; and it
+          survives changes of ownership, pressure from a feature request, and your
+          own future bad judgement. This is the same argument as policy-as-code,
+          and it lands the same way.
+        </p>
+        <p>
+          <b>2 &middot; Design the data model around the answer, not the data
+          available.</b> Far more was technically collectable than was collected.
+          Starting from the single question a parent actually has &mdash;
+          how much, and is it trending &mdash; produced a schema whose finest
+          grain is a day. Starting from what the APIs could provide would have
+          produced session-level data, an obligation to secure it, and a product
+          nobody would let their teenager install.
+        </p>
+        <p>
+          <b>3 &middot; When the subject of a system has no standing, the system
+          gets routed around.</b> Giving the monitored teenager their own login
+          and the ability to annotate their own days changed the product from
+          surveillance to a shared instrument. It is the same lesson as an
+          architecture review board that engineers avoid, or a platform nobody
+          adopts: <b>a control that the person on the receiving end has no voice
+          in is a control with a short life</b>.
+        </p>
+      </div>
+
+      <div class="cs-origin">
+        <p>
+          <b>Why this one is here.</b> Most of my case studies are large regulated
+          programmes with teams around them. This one was built solo, end to end
+          &mdash; architecture, Swift, TypeScript, schema, billing, App Store
+          submission. It is on this site because the interesting part is not the
+          scale but the constraint: it is the clearest example I have of
+          <em>making the safe thing structurally enforced rather than
+          procedurally promised</em>, which is the argument the rest of this site
+          makes about regulated systems, tested somewhere the stakes are personal.
+        </p>
+      </div>
+    </article>
+
+    <section class="wrap" style="padding-bottom:clamp(80px,10vw,120px)">
+      <div class="routes-section" style="margin-top:0">
+        <h3>Related</h3>
+        <p class="dek">The same argument, in the enterprise register.</p>
+        <div class="routes-grid">
+          <a class="route-card" href="/reference-architectures/agentic-systems-regulated.html">
+            <div class="kind">Reference architecture</div>
+            <div class="name">Agentic systems in regulated environments</div>
+            <div class="desc">Structural enforcement at scale — one chokepoint, graded autonomy, evidence as a by-product.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/writing/encoded-enterprise-architect.html">
+            <div class="kind">Essay</div>
+            <div class="name">The encoded enterprise architect</div>
+            <div class="desc">Why a principle that isn't encoded in a platform default doesn't exist.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/case-studies/">
+            <div class="kind">Case studies</div>
+            <div class="name">All engagements</div>
+            <div class="desc">Payments, EA governance, digital lending, retail modernisation, data archival.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><a href="/case-studies/">&larr; All case studies</a></span>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Privacy-preserving AI-usage monitoring for families",
+    "description": "A consumer safety product that reports how much time a teenager spends in AI companion apps without ever reading a message — on-device aggregation, hostname-only signal, and a credential for the person being monitored.",
+    "author": { "@id": "https://hellouchit.com/#person" },
+    "publisher": { "@id": "https://hellouchit.com/#person" },
+    "datePublished": "2026-08-01",
+    "dateModified": "2026-08-01",
+    "url": "https://hellouchit.com/case-studies/ai-companion-safety.html",
+    "about": ["Privacy by design", "Applied AI", "Child safety", "Data minimisation"]
+  }
+  </script>
+</body>
+</html>

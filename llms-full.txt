@@ -107,7 +107,7 @@ US11334348B2 — “Utilizing machine learning to identify and correct differenc
 
 - Sector notes for banks, government, healthcare, critical infrastructure — /for/
 
-- 5 case studies from past work — /case-studies/
+- 6 case studies — /case-studies/
 
 - State of Enterprise Tech in Regulated Industries 2026 — annual report — /state-of-2026/
 
