@@ -170,6 +170,34 @@
   .recs-detail .why  { margin-top: 2pt !important; }
   .recs-detail .meta { font-size: 8pt !important; margin-top: 3pt !important; }
 
+  /* "Where to go next" is the most actionable block on a circulated printout,
+     so it keeps its emphasis — and its hrefs get expanded, since a paper
+     reader cannot click. */
+  .routes-section { break-inside: avoid; margin-bottom: 12pt !important; }
+  .routes-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6pt !important;
+  }
+  .route-card {
+    break-inside: avoid;
+    border: .75pt solid var(--accent) !important;
+    background: var(--accent-soft) !important;
+    padding: 6pt 8pt !important;
+  }
+  .route-card .name { font-size: 10.5pt !important; margin-bottom: 3pt !important; }
+  .route-card .desc { font-size: 8.5pt !important; }
+  .route-card .go { display: none !important; }
+  .route-card::after {
+    content: "hellouchit.com" attr(href);
+    display: block;
+    margin-top: 4pt;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7pt;
+    color: var(--faint);
+    word-break: break-all;
+  }
+
   /* The reference library is the last block, so it takes whatever space is
      left. Keeping it off a page of its own avoids a single orphaned card
      trailing onto a final near-empty sheet. */

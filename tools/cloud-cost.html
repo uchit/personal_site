@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/css/print.css" media="print" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
+<script src="/js/routes.js" defer></script>
 <script src="/js/diagnostic.js" defer></script>
 <script src="/js/print.js" defer></script>
 
@@ -104,6 +105,11 @@
         <div class="sector-lens" id="rsectorlens"></div>
         <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
         <div class="recs-detail"><h3>Recommendations &mdash; with tools, constraints and citations</h3><ol id="rdetail"></ol></div>
+        <div class="routes-section" id="routes-section" hidden>
+          <h3>Where to go next</h3>
+          <p class="dek">Scoped to the level you scored &mdash; the playbook, paved path or tier deep-dive that moves this forward.</p>
+          <div class="routes-grid" id="rroutes"></div>
+        </div>
         <div class="refs-section"><h3>References &amp; frameworks cited</h3><div class="refs-grid" id="refslib"></div></div>
         <div class="result-actions">
           <button class="btn btn-primary" onclick="location.hash='';location.reload()">Take it again</button>

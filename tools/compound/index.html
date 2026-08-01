@@ -338,6 +338,12 @@
           <ol id="rRecs"></ol>
         </section>
 
+        <div class="routes-section" id="routes-section" hidden>
+          <h3>Where to go next</h3>
+          <p class="dek">Scoped to your weakest substrate dimensions &mdash; the paved path or playbook that fixes the layer underneath, not the symptom above it.</p>
+          <div class="routes-grid" id="rroutes"></div>
+        </div>
+
         <div class="cp-share">
           <span>Shareable URL updated in your address bar.</span>
           <a href="#" id="rCopy">Copy shareable link</a>
@@ -586,6 +592,73 @@ function compound() {
     li.innerHTML = "<b>" + SUBSTRATE_NAMES[dim] + ":</b> " + fixes[dim];
     recs.appendChild(li);
   });
+
+  // Where to go next — routed by weakest substrate dimension rather than by
+  // level. The compound view's whole argument is that the binding constraint
+  // sits in the shared substrate, so the onward path has to address the layer
+  // underneath rather than whichever discipline happened to score lowest.
+  const SUBSTRATE_ROUTES = {
+    identity: [
+      { kind: "Playbook", title: "Vault theatre → workload identity",
+        body: "The migration off long-lived secrets, in the order that keeps services up.",
+        href: "/playbooks/vault-theatre-to-workload-identity.html" },
+      { kind: "Reference architecture", title: "The DevSecOps paved path",
+        body: "Where workload identity becomes the default every new service inherits.",
+        href: "/reference-architectures/devsecops-paved-path.html" }
+    ],
+    observability: [
+      { kind: "Reference", title: "Observability",
+        body: "OpenTelemetry as the universal instrumentation, and what per-decision audit evidence requires.",
+        href: "/observability/" },
+      { kind: "Reference architecture", title: "Platform engineering IDP",
+        body: "Instrumentation inherited from the paved path rather than added per team.",
+        href: "/reference-architectures/platform-engineering-idp.html" }
+    ],
+    policy: [
+      { kind: "Decision tree", title: "OPA vs Kyverno vs Cedar",
+        body: "Pick the enforcement engine deliberately before encoding principles into it.",
+        href: "/decisions/policy-engine.html" },
+      { kind: "Anti-pattern", title: "PDF principles",
+        body: "Why architecture principles that live in documents do not survive contact with delivery.",
+        href: "/anti-patterns/" }
+    ],
+    ownership: [
+      { kind: "Reference architecture", title: "Platform engineering IDP",
+        body: "Scorecards and named owners — routing cost, CVE and audit signals to people rather than inboxes.",
+        href: "/reference-architectures/platform-engineering-idp.html" },
+      { kind: "Diagnostic", title: "EA operating model",
+        body: "Ownership gaps are usually an operating-model problem before they are a tooling one.",
+        href: "/tools/ea-operating-model.html" }
+    ],
+    data: [
+      { kind: "Reference architecture", title: "Modern data platform",
+        body: "Catalogue, lineage and contracts — the layer AI consumes and most estates skip.",
+        href: "/reference-architectures/modern-data-platform.html" },
+      { kind: "Reference architecture", title: "Regulated GenAI platform",
+        body: "What sits on top once the data substrate is trustworthy.",
+        href: "/reference-architectures/regulated-genai-platform.html" }
+    ]
+  };
+
+  const routesEl = $("#rroutes");
+  routesEl.replaceChildren();
+  const seen = new Set();
+  weakest.forEach(([dim]) => {
+    (SUBSTRATE_ROUTES[dim] || []).forEach(r => {
+      if (seen.has(r.href)) return;   // two weak dims often share a fix
+      seen.add(r.href);
+      const card = document.createElement("a");
+      card.className = "route-card";
+      card.href = r.href;
+      const kind = document.createElement("div"); kind.className = "kind"; kind.textContent = r.kind;
+      const name = document.createElement("div"); name.className = "name"; name.textContent = r.title;
+      const desc = document.createElement("div"); desc.className = "desc"; desc.textContent = r.body;
+      const go = document.createElement("span"); go.className = "go"; go.textContent = "Open →";
+      card.append(kind, name, desc, go);
+      routesEl.appendChild(card);
+    });
+  });
+  $("#routes-section").toggleAttribute("hidden", routesEl.childElementCount === 0);
 
   // Show results
   $("#results").classList.add("show");

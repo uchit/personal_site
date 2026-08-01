@@ -9,7 +9,13 @@
    Level schema:
      { minPct, maxPct, name, body,
        benchmark: "Source-cited industry distribution string (HTML allowed)",
-       recs: [{ what:"...", why:"...", tools:"Vendor X · OSS Y", constraint:"What's hard", refs:[{name,url}] }] }
+       recs: [{ what:"...", why:"...", tools:"Vendor X · OSS Y", constraint:"What's hard", refs:[{name,url}] }],
+       routes: [{ kind:"Playbook", title:"...", body:"...", href:"/playbooks/..." }] }
+
+   routes is optional and answers "so what do I do on Monday?". A score with no
+   onward path is a dead end — the playbooks, reference architectures and tier
+   deep-dives that answer it already exist, they were simply never linked from
+   the result. Rendered below the recommendations, above the reference library.
 
    Sector schema (cfg.sectors):
      { fsi: {label:"Financial services", lens:"<p>HTML with cites…</p>"}, ... }
@@ -32,6 +38,21 @@
       const top = card.getBoundingClientRect().top + window.scrollY - navH - 16;
       window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     });
+  }
+
+  /* Routes live in js/routes.js keyed by diagnostic slug and level name, rather
+     than inline on each of the 30 level objects. One file to audit means the
+     mapping can be checked for dead links in a single pass, and a level's
+     onward path can be retuned without touching the diagnostic's content. A
+     level may still override inline via lvl.routes. */
+  function routesFor(levelName) {
+    const table = window.DIAG_ROUTES;
+    if (!table) return null;
+    const slug = location.pathname
+      .replace(/\/index\.html$/, "/")
+      .replace(/^.*\/([^/]+?)(?:\.html)?\/?$/, "$1");
+    const forTool = table[slug];
+    return forTool ? forTool[levelName] : null;
   }
 
   function fromHash(n) {
@@ -202,6 +223,29 @@
         if (meta.childElementCount) li.appendChild(meta);
         rd.appendChild(li);
       });
+
+      // Below fold — where to go next, scoped to the level scored
+      const routes = $("#rroutes");
+      if (routes) {
+        routes.replaceChildren();
+        const list = lvl.routes || routesFor(lvl.name) || [];
+        routes.closest(".routes-section")?.toggleAttribute("hidden", !list.length);
+        list.forEach(r => {
+          const card = document.createElement("a");
+          card.className = "route-card";
+          card.href = r.href;
+          const kind = document.createElement("div");
+          kind.className = "kind"; kind.textContent = r.kind;
+          const name = document.createElement("div");
+          name.className = "name"; name.textContent = r.title;
+          const desc = document.createElement("div");
+          desc.className = "desc"; desc.textContent = r.body;
+          const go = document.createElement("span");
+          go.className = "go"; go.textContent = "Open →";
+          card.append(kind, name, desc, go);
+          routes.appendChild(card);
+        });
+      }
 
       // Below fold — references library
       const refs = $("#refslib");
