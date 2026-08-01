@@ -49,7 +49,7 @@ Canonical URL hellouchit.com
 
 ### What he does.
 
-Uchit Vyas works on technology transformation for regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators). His work spans the four disciplines he calls the 4-Discipline Stack:
+Uchit Vyas is a forward-deployed enterprise architect. He embeds with delivery teams inside regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators) and gets platforms into production against deadlines that do not move — where the architecture, the pipeline and the audit evidence all have to land together. His work spans the four disciplines he calls the 4-Discipline Stack:
 
 - Enterprise architecture — SAFe, BIAN, multi-cloud reference models, capability modelling, decision capture (ADRs).
 
