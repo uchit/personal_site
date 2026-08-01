@@ -41,6 +41,10 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - [Cloud Cost Aware → Controlled in a quarter](https://hellouchit.com/playbooks/cloud-cost-aware-to-controlled.html)
 - [Vault Theatre → Workload Identity migration](https://hellouchit.com/playbooks/vault-theatre-to-workload-identity.html)
 
+## Reference architectures
+
+- [Agentic systems in regulated environments](https://hellouchit.com/reference-architectures/agentic-systems-regulated.html): Two clocks, a single policy chokepoint, graded autonomy, per-run evidence and replay — distilled from agentic systems built in production
+
 ## Four architecture teardowns (public signals only)
 
 - [Claude.ai — streaming-first AI product](https://hellouchit.com/teardowns/claude-ai.html)
@@ -64,7 +68,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - [Anti-patterns catalogue](https://hellouchit.com/anti-patterns/): 15 named failure modes
 - [Reading list](https://hellouchit.com/reading/): When-to-reach-for-this practitioner reading list
 - [Maturity tiers](https://hellouchit.com/maturity/): Per-discipline tier deep-dives
-- [Reference architectures](https://hellouchit.com/reference-architectures/): 4 opinionated paved-paths
+- [Reference architectures](https://hellouchit.com/reference-architectures/): 5 opinionated paved-paths, including agentic systems in regulated environments
 
 ## Situations (problem-shaped entry points)
 

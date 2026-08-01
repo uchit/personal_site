@@ -97,7 +97,7 @@ US11334348B2 — “Utilizing machine learning to identify and correct differenc
 
 - 4 architecture teardowns (Claude.ai, Linear, Notion, Vercel) — /teardowns/
 
-- 4 reference architectures — /reference-architectures/
+- 5 reference architectures — /reference-architectures/
 
 - 15 named anti-patterns — /anti-patterns/
 

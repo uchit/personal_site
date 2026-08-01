@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agentic Systems in Regulated Environments &mdash; Reference Architecture &mdash; Uchit Vyas</title>
+<meta name="description" content="Reference architecture for agentic systems under regulation: two clocks, a single policy chokepoint, autonomy levels, per-run evidence, replay, and a closed learning loop. Distilled from production systems." />
+<link rel="canonical" href="https://hellouchit.com/reference-architectures/agentic-systems-regulated.html" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Agentic Systems in Regulated Environments &mdash; Reference Architecture" />
+<meta property="og:description" content="Two clocks, one chokepoint, autonomy levels, per-run evidence, replay. The shape that survives an audit." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/ra.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a||!a.href)return;
+    var u;try{u=new URL(a.href,location.href);}catch(_){return;}
+    if(!u.hostname||u.hostname===location.hostname)return;
+    var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
+    if(/github\.com$/.test(h))dest='github_click';
+    gtag('event',dest,{link_url:a.href,link_domain:h,link_text:(a.innerText||'').slice(0,80)});
+  });
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; GenAI</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/" style="color:var(--ink)">Explore</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="ra-hero"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Explore</a><span style="opacity:.5">/</span><a href="/reference-architectures/" style="color:var(--muted)">Reference Architectures</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Agentic Systems</span></nav>
+      <span class="eyebrow">Reference Architecture &middot; Agentic Systems</span>
+      <h1>Agentic systems that <em>survive an audit</em>.</h1>
+      <p class="dek">
+        Most agent architectures published in 2026 describe a loop: model, tools,
+        memory, repeat. That shape is fine until someone asks
+        <b>&ldquo;why did it do that, and who allowed it?&rdquo;</b> &mdash; and then it
+        has no answer. This is the shape that does: two clocks, one chokepoint,
+        explicit autonomy levels, and evidence produced as a by-product of running
+        rather than reconstructed afterwards.
+      </p>
+      <p class="dek" style="margin-top:14px;font-size:15px;color:var(--faint)">
+        Distilled from agentic systems I have designed and built &mdash; a
+        long-running engagement orchestrator, an agent run-record and replay
+        system, and a research/ingestion pipeline. The patterns are generalised;
+        the scars are real.
+      </p>
+    </div></section>
+
+    <div class="wrap">
+      <div class="ra-diagram">
+        <svg class="ra-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reference architecture for agentic systems in regulated environments">
+          <defs>
+            <linearGradient id="ag1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d99757" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#d99757" stop-opacity=".04"/>
+            </linearGradient>
+            <linearGradient id="ag2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#43d39e" stop-opacity=".16"/>
+              <stop offset="100%" stop-color="#43d39e" stop-opacity=".03"/>
+            </linearGradient>
+            <marker id="aarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#d99757"/>
+            </marker>
+          </defs>
+
+          <!-- Triggers -->
+          <rect x="40" y="26" width="920" height="64" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="50" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">TRIGGERS</text>
+          <text x="56" y="76" fill="#ecedf0" font-family="Fraunces, serif" font-size="16" font-weight="500">Human action &middot; scheduled tick &middot; domain event (document arrived, milestone slipped, threshold crossed)</text>
+
+          <line x1="500" y1="90" x2="500" y2="110" stroke="#d99757" stroke-width="1.5" marker-end="url(#aarr)"/>
+
+          <!-- Tier 1 -->
+          <rect x="40" y="112" width="920" height="96" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="136" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">TIER 1 &mdash; DURABLE STATE &middot; MONTHS &middot; HOLDS ROWS, NOT PROCESSES</text>
+          <text x="56" y="162" fill="#ecedf0" font-family="Fraunces, serif" font-size="17" font-weight="500">Declarative graph &middot; node state &middot; append-only event log &middot; reconciler (desired vs actual)</text>
+          <text x="56" y="188" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5">Coverage is computed, not remembered. Knows what is done, ready, blocked, or gone stale.</text>
+
+          <line x1="500" y1="208" x2="500" y2="228" stroke="#d99757" stroke-width="1.5" marker-end="url(#aarr)"/>
+
+          <!-- Chokepoint -->
+          <rect x="40" y="230" width="920" height="150" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.75)" stroke-width="2"/>
+          <text x="56" y="254" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">THE CHOKEPOINT &mdash; EVERY RUN PASSES HERE. THERE IS NO SECOND PATH.</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#ecedf0">
+            <rect x="56"  y="268" width="100" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="70"  y="287">1 resolve</text>
+            <rect x="164" y="268" width="106" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="178" y="287">2 authorize</text>
+            <rect x="278" y="268" width="122" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="292" y="287">3 precondition</text>
+            <rect x="408" y="268" width="94"  height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="422" y="287">4 budget</text>
+            <rect x="510" y="268" width="150" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="524" y="287">5 assemble context</text>
+            <rect x="668" y="268" width="94"  height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="682" y="287">6 render</text>
+            <rect x="770" y="268" width="110" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="784" y="287">7 generate</text>
+            <rect x="56"  y="308" width="106" height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="70"  y="327">8 validate</text>
+            <rect x="170" y="308" width="98"  height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="184" y="327">9 persist</text>
+            <rect x="276" y="308" width="86"  height="30" rx="5" fill="rgba(67,211,158,.16)" stroke="rgba(67,211,158,.45)"/><text x="290" y="327">10 gate</text>
+            <rect x="370" y="308" width="86"  height="30" rx="5" fill="rgba(217,151,87,.14)" stroke="rgba(217,151,87,.35)"/><text x="384" y="327">11 emit</text>
+          </g>
+          <text x="56" y="366" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12.5">Tenancy &middot; confidentiality tier &middot; budget ceiling &middot; output schema &middot; groundedness &middot; autonomy level &mdash; all enforced in one place.</text>
+
+          <!-- Tier 2 + Knowledge -->
+          <rect x="40" y="400" width="450" height="86" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.4)"/>
+          <text x="56" y="424" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">TIER 2 &mdash; STEP EXECUTION &middot; SECONDS</text>
+          <text x="56" y="450" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Durable execution &middot; retries &middot; timeouts</text>
+          <text x="56" y="472" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Provider fallback &middot; fan-out &middot; idempotency key</text>
+
+          <rect x="510" y="400" width="450" height="86" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.4)"/>
+          <text x="526" y="424" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">KNOWLEDGE &mdash; TIER-FILTERED RETRIEVAL</text>
+          <text x="526" y="450" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">General &middot; client-confidential, separated</text>
+          <text x="526" y="472" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Promotion is an explicit, reviewed act</text>
+
+          <!-- Gate outcomes -->
+          <rect x="40" y="506" width="450" height="72" rx="8" fill="url(#ag2)" stroke="rgba(67,211,158,.45)"/>
+          <text x="56" y="530" fill="#43d39e" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">GATE &rarr; HUMAN REVIEW QUEUE</text>
+          <text x="56" y="556" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Irreversible &middot; commercial &middot; client-facing</text>
+
+          <rect x="510" y="506" width="450" height="72" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.4)"/>
+          <text x="526" y="530" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">GATE &rarr; AUTO-COMMIT</text>
+          <text x="526" y="556" fill="#ecedf0" font-family="Fraunces, serif" font-size="15" font-weight="500">Reversible &middot; internal &middot; within autonomy level</text>
+
+          <!-- Evidence -->
+          <rect x="40" y="596" width="920" height="76" rx="8" fill="url(#ag1)" stroke="rgba(217,151,87,.5)" stroke-width="1.5"/>
+          <text x="56" y="620" fill="#d99757" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="2">RUN RECORD &mdash; EVIDENCE AND LEARNING, FROM THE SAME ARTEFACT</text>
+          <text x="56" y="646" fill="#ecedf0" font-family="Fraunces, serif" font-size="15.5" font-weight="500">Assembled context &middot; retrieved IDs &middot; upstream runs &middot; policy decisions &middot; groundedness &middot; cost &middot; edit diffs &middot; outcome links</text>
+          <text x="56" y="666" fill="#9097a3" font-family="IBM Plex Sans, sans-serif" font-size="12">Replayable from any step. The audit pack and the training signal are the same rows.</text>
+        </svg>
+      </div>
+      <p class="ra-caption">
+        The two structural commitments are the top two boxes: state lives in rows
+        that outlive any process, and every execution passes one chokepoint.
+        Everything defensible about the system follows from those.
+      </p>
+    </div>
+
+    <article class="ra-body wrap">
+
+      <h2>What this architecture <em>commits to</em>.</h2>
+
+      <div class="ra-layer">
+        <h3>1 &middot; Two clocks, because one mechanism cannot serve both</h3>
+        <p>
+          The business process lives for months. An agent run lives for thirty
+          seconds. Trying to serve both with one mechanism is the most common
+          structural mistake in agentic systems, and it shows up as either a
+          workflow engine holding a process open for a quarter, or a state
+          machine that cannot retry an LLM call.
+        </p>
+        <p>
+          <b>Tier 1 holds rows, not processes.</b> A declarative graph of nodes
+          with dependencies, an append-only event log, and a reconciler that
+          compares desired state to actual state and enqueues work. Nothing is
+          &ldquo;in flight&rdquo; in memory; if the system restarts, the reconciler
+          simply reads the rows again. <b>Tier 2 owns retries, timeouts, fan-out
+          and provider fallback</b> for a single step, and nothing else.
+        </p>
+        <p>
+          The payoff is that coverage becomes <em>computed rather than
+          remembered</em>. The system can always answer what is done, what is
+          ready, what is blocked, and what has gone stale &mdash; which is the
+          first question any reviewer asks and the one most agent systems answer
+          with a shrug.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>2 &middot; One chokepoint, or the controls are decorative</h3>
+        <p>
+          Every agent execution passes through a single function, in a fixed
+          order: <b>resolve, authorize, precondition, budget, assemble context,
+          render, generate, validate, persist, gate, emit</b>. Tenancy,
+          confidentiality tier, spend ceiling, output schema, groundedness and
+          autonomy level are all enforced there.
+        </p>
+        <p>
+          The important property is not the list of checks &mdash; it is that
+          <b>there is no second path</b>. The moment a second code path can invoke
+          a model, every control becomes advisory and the audit story becomes
+          &ldquo;we believe it usually happens.&rdquo; This is the same argument as
+          a paved path in platform engineering, and it fails the same way when
+          bypass is possible.
+        </p>
+        <p>
+          Practically: one <code>runAgent()</code>. Direct provider SDK calls
+          outside it are a lint failure, not a code-review preference.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>3 &middot; Autonomy as a graded, recorded property</h3>
+        <p>
+          &ldquo;Is it autonomous?&rdquo; is the wrong granularity. Autonomy is a
+          level attached to each action type and enforced at the gate:
+          from <b>propose-only</b>, through <b>act-then-notify</b> and
+          <b>act-within-envelope</b>, to <b>act-freely</b> for genuinely
+          reversible internal operations. The level in force is written to the
+          run record, so &ldquo;what was it allowed to do at the time?&rdquo; is a
+          query rather than an archaeology exercise.
+        </p>
+        <p>
+          The gate then has exactly two outcomes. <b>Auto-commit</b> for actions
+          that are reversible, internal and within the level. <b>Review queue</b>
+          for anything irreversible, commercial or client-facing. In regulated
+          settings that split is not a preference &mdash; it is what lets you
+          point at a named human for a consequential decision, which is what
+          NIST AI RMF GOVERN-1.3 and EU AI Act Article 14 are actually asking for.
+        </p>
+        <p>
+          A deliberate non-goal worth stating out loud: <b>no autonomy over
+          external side effects</b> &mdash; sending, signing, submitting, paying
+          &mdash; until the reversibility work is done. That constraint has
+          survived every version of these systems I have built.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>4 &middot; The run record is the audit pack and the training signal</h3>
+        <p>
+          Most systems log the output. That is enough to debug a demo and
+          nothing else. The record that actually works carries: the
+          <b>exact assembled context</b> that went to the model, a hash of it,
+          the <b>retrieved knowledge IDs</b>, <b>upstream run IDs</b> so
+          provenance is traceable across the graph, <b>every policy decision with
+          its reason</b>, a <b>groundedness map</b> of claim to citation plus the
+          unsupported claims, the prompt version, model, provider, tokens, cost
+          and latency.
+        </p>
+        <p>
+          Two things fall out of that, and this is the part worth internalising:
+          <b>the evidence pack a regulator wants and the dataset your improvement
+          loop needs are the same rows.</b> Teams that build them separately
+          build both badly. Teams that treat the trace as the product get
+          conformity evidence for free.
+        </p>
+        <p>
+          It also makes <b>replay from any step</b> possible &mdash;
+          reconstructing precisely what the model saw at step N, following causal
+          links from a tool result back to the call that requested it, and
+          re-issuing that step with an edited context to see what changes. That
+          is the difference between debugging an agent and guessing about one.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>5 &middot; Prompts are configuration, so they live in the database</h3>
+        <p>
+          Prompts versioned in a table rather than baked into a deploy:
+          <b>draft, canary, active, retired</b>, with a canary percentage and an
+          output schema stored alongside. Code holds the seed and the fallback.
+          This is what makes rollback a row update rather than a release, lets a
+          regression be attributed to a specific version, and makes
+          &ldquo;which prompt produced this output&rdquo; answerable months later
+          when someone disputes a decision.
+        </p>
+        <p>
+          Every production trace carries its prompt version. Without that tag,
+          evaluation is anecdote.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>6 &middot; Confidentiality is a retrieval tier, not a filter bolted on</h3>
+        <p>
+          Where an agent serves multiple clients or business units, general
+          knowledge and confidential knowledge are <b>separate retrieval tiers</b>,
+          and the tier in force is resolved at the chokepoint from the caller's
+          context &mdash; never from the prompt. Moving something from
+          confidential to general is an <b>explicit, reviewed promotion</b>, not a
+          side effect of someone's query.
+        </p>
+        <p>
+          Underneath, row-level security from the first migration. Not added
+          later, and never a permissive policy &ldquo;temporarily&rdquo; &mdash;
+          because that is precisely the thing nobody removes.
+        </p>
+      </div>
+
+      <div class="ra-layer">
+        <h3>7 &middot; The loop closes in the schema, not in a slide</h3>
+        <p>
+          Two signals matter more than any offline benchmark. First,
+          <b>what a human changed</b>: field-level diffs between what the agent
+          produced and what was accepted. That is the highest-value correction
+          data available and most systems throw it away by storing only the final
+          state. Second, <b>prediction linked to outcome</b> &mdash; an explicit
+          link between what the system forecast and what actually happened.
+        </p>
+        <p>
+          Those two feed calibration and outcome-weighted retrieval: the things
+          that were right before get surfaced more, and systematically optimistic
+          predictions get corrected. Both write back into the chokepoint's
+          context-assembly step, which is what makes the loop real rather than
+          rhetorical.
+        </p>
+      </div>
+
+      <h2>Where this <em>fails</em>.</h2>
+      <div class="ra-layer">
+        <p>
+          <b>It is too much machinery for one use-case.</b> If you are shipping a
+          single assistant with read-only tools, the chokepoint and the two-tier
+          split are overhead you will resent. The architecture starts paying at
+          the point where a second agent appears, or the first write lands, or
+          someone asks for an audit trail.
+        </p>
+        <p>
+          <b>Review capacity is the real ceiling.</b> Gating consequential actions
+          behind human approval means throughput is bounded by reviewers. If the
+          approval rate sits above roughly 95%, oversight has quietly become
+          rubber-stamping, and the honest fix is to narrow what gets gated rather
+          than pretend the review is doing work.
+        </p>
+        <p>
+          <b>The learning loop needs volume.</b> Calibration on a few dozen
+          outcomes is noise. Below a few hundred linked prediction/outcome pairs,
+          build the schema and wait rather than shipping a model that is confident
+          about nothing.
+        </p>
+      </div>
+    </article>
+
+    <section class="wrap" style="padding-bottom:clamp(80px,10vw,120px)">
+      <div class="routes-section" style="margin-top:0">
+        <h3>Related</h3>
+        <p class="dek">The controls, the obligations and the running code.</p>
+        <div class="routes-grid">
+          <a class="route-card" href="/writing/genai-9-controls.html">
+            <div class="kind">Essay</div>
+            <div class="name">The nine controls that make GenAI defensible</div>
+            <div class="desc">The control set this architecture implements, mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/oss/">
+            <div class="kind">Open source</div>
+            <div class="name">Policy-as-code for AI workloads</div>
+            <div class="desc">An OPA bundle enforcing several of these controls at deploy time, and an MCP server exposing the compliance dataset to any AI client.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/playbooks/eu-ai-act-12-weeks.html">
+            <div class="kind">Playbook</div>
+            <div class="name">EU AI Act high-risk readiness in 12 weeks</div>
+            <div class="desc">Week-by-week with named gates. High-risk obligations bind from August 2026.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+          <a class="route-card" href="/tools/genai-readiness.html">
+            <div class="kind">Diagnostic</div>
+            <div class="name">GenAI readiness</div>
+            <div class="desc">Twelve capabilities scored. Tells you which layer of this you are missing.</div>
+            <span class="go">Open &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><a href="/reference-architectures/">&larr; All reference architectures</a></span>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Agentic systems in regulated environments — reference architecture",
+    "description": "Reference architecture for agentic systems under regulation: two clocks, a single policy chokepoint, graded autonomy, per-run evidence, replay, and a closed learning loop.",
+    "author": { "@id": "https://hellouchit.com/#person" },
+    "publisher": { "@id": "https://hellouchit.com/#person" },
+    "datePublished": "2026-08-01",
+    "dateModified": "2026-08-01",
+    "url": "https://hellouchit.com/reference-architectures/agentic-systems-regulated.html",
+    "mainEntityOfPage": "https://hellouchit.com/reference-architectures/agentic-systems-regulated.html",
+    "about": ["AI agent architecture", "AI governance", "EU AI Act", "NIST AI Risk Management Framework", "LLM evaluation", "Policy as Code"]
+  }
+  </script>
+</body>
+</html>
