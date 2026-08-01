@@ -1,5 +1,5 @@
 {
-  "version": "2026-05-30",
+  "version": "2026-08-01",
   "license": "CC BY 4.0",
   "source": "https://hellouchit.com/dataset/",
   "regulations": {
@@ -126,7 +126,7 @@
       ],
       "ctrl": "Workload identity (no static long-lived credentials)",
       "cat": "Identity & access",
-      "surface": "Cloud \u00b7 CI/CD \u00b7 K8s",
+      "surface": "Cloud · CI/CD · K8s",
       "tools": [
         [
           "AWS IAM Roles for Service Accounts / IRSA",
@@ -161,7 +161,7 @@
         "government",
         "critical-infrastructure"
       ],
-      "notes": "Often confused with credential rotation \u2014 rotation alone doesn't close the audit finding. The control requires federated identity (the workload proves who it is to the cloud), not just shorter-lived static creds. Foundation for SOCI 2022 SLACIP-amendment maturity.",
+      "notes": "Often confused with credential rotation — rotation alone doesn't close the audit finding. The control requires federated identity (the workload proves who it is to the cloud), not just shorter-lived static creds. Foundation for SOCI 2022 SLACIP-amendment maturity.",
       "id": "r001"
     },
     {
@@ -172,7 +172,7 @@
       ],
       "ctrl": "Least-privilege IAM (no wildcard policies)",
       "cat": "Identity & access",
-      "surface": "Cloud \u00b7 K8s",
+      "surface": "Cloud · K8s",
       "tools": [
         [
           "AWS IAM Access Analyzer",
@@ -219,7 +219,7 @@
       ],
       "ctrl": "Privileged access management (PAM) for breakglass",
       "cat": "Identity & access",
-      "surface": "Cloud \u00b7 On-prem",
+      "surface": "Cloud · On-prem",
       "tools": [
         [
           "HashiCorp Boundary",
@@ -362,7 +362,7 @@
       ],
       "ctrl": "SBOM emission + KEV-driven owner-alert loop",
       "cat": "Supply chain & provenance",
-      "surface": "CI/CD \u00b7 Runtime",
+      "surface": "CI/CD · Runtime",
       "tools": [
         [
           "Syft (SPDX/CycloneDX SBOM)",
@@ -403,7 +403,7 @@
         "healthcare",
         "critical-infrastructure"
       ],
-      "notes": "Emitting SBOMs is necessary but not sufficient. The audit-passing control is the *loop*: SBOM \u2192 vulnerability \u2192 owner-alert \u2192 patch within SLA. Pure SBOM-collection = shelfware.",
+      "notes": "Emitting SBOMs is necessary but not sufficient. The audit-passing control is the *loop*: SBOM → vulnerability → owner-alert → patch within SLA. Pure SBOM-collection = shelfware.",
       "id": "r006"
     },
     {
@@ -491,7 +491,7 @@
       ],
       "ctrl": "Locked dependency versions (no floating tags / ranges in prod)",
       "cat": "Supply chain & provenance",
-      "surface": "Source \u00b7 CI/CD",
+      "surface": "Source · CI/CD",
       "tools": [
         [
           "Renovate",
@@ -611,7 +611,7 @@
         [
           "Custom RPC + queue per data domain",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "Time-bounded DSAR pipeline. Tested quarterly. Per-data-domain owners with documented response SLAs. Audit log of every DSAR fulfilled.",
@@ -629,7 +629,7 @@
       ],
       "ctrl": "Data classification + handling rules encoded",
       "cat": "Data governance",
-      "surface": "Data platform \u00b7 All apps",
+      "surface": "Data platform · All apps",
       "tools": [
         [
           "Microsoft Purview Information Protection",
@@ -765,7 +765,7 @@
       ],
       "ctrl": "Layered guardrails (input + output) tested adversarially",
       "cat": "AI evals & guardrails",
-      "surface": "Runtime \u00b7 AI gateway",
+      "surface": "Runtime · AI gateway",
       "tools": [
         [
           "NVIDIA NeMo Guardrails",
@@ -816,7 +816,7 @@
       ],
       "ctrl": "Per-decision audit evidence pack (LLM)",
       "cat": "AI evals & guardrails",
-      "surface": "Runtime \u00b7 Storage",
+      "surface": "Runtime · Storage",
       "tools": [
         [
           "Langfuse (with retention policy)",
@@ -856,12 +856,12 @@
       ],
       "ctrl": "Human-in-loop for high-risk decisions",
       "cat": "AI evals & guardrails",
-      "surface": "Runtime \u00b7 UI",
+      "surface": "Runtime · UI",
       "tools": [
         [
           "Custom workflow engine + queue per domain",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Temporal (long-running approval)",
@@ -895,7 +895,7 @@
       ],
       "ctrl": "Prompt injection defence + red-team programme",
       "cat": "AI evals & guardrails",
-      "surface": "Runtime \u00b7 CI",
+      "surface": "Runtime · CI",
       "tools": [
         [
           "Garak (LLM red-team scanner)",
@@ -956,7 +956,7 @@
         [
           "Custom YAML schema in repo",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "Per model in production: model card (training data, eval results, intended use, limitations). Per dataset: data card (provenance, consent basis, refresh cadence). Both versioned with the model.",
@@ -1003,7 +1003,7 @@
         [
           "Tabletop runbooks + game-day cadence",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "Per critical service: RTO + RPO defined. Recovery tested at least annually with timed result. Gap-to-target tracked. Multi-region failover rehearsed.",
@@ -1025,7 +1025,7 @@
       ],
       "ctrl": "Third-party / critical-vendor concentration tracking",
       "cat": "Third-party risk",
-      "surface": "Operations \u00b7 Vendor mgmt",
+      "surface": "Operations · Vendor mgmt",
       "tools": [
         [
           "OneTrust Vendor Risk",
@@ -1045,7 +1045,7 @@
         [
           "Internal spreadsheet with quarterly review",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "Vendor catalogue with criticality classification. Concentration risk (% of critical operations on one vendor) measured. Exit-plan for top-N critical vendors documented.",
@@ -1106,7 +1106,7 @@
         "cps234",
         "soci"
       ],
-      "ctrl": "Fast incident reporting capability (\u226472h)",
+      "ctrl": "Fast incident reporting capability (≤72h)",
       "cat": "Incident response",
       "surface": "Security operations",
       "tools": [
@@ -1133,7 +1133,7 @@
         [
           "Custom Slack workflow + templates",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "Pre-templated regulator-notification drafts (per regulator). Drill quarterly: time from detection to draft sent. Audit trail of incident decisions.",
@@ -1191,7 +1191,7 @@
         "dora",
         "nis2"
       ],
-      "ctrl": "Patching SLA for KEV-listed CVEs (\u226414 days)",
+      "ctrl": "Patching SLA for KEV-listed CVEs (≤14 days)",
       "cat": "Vulnerability management",
       "surface": "Production",
       "tools": [
@@ -1311,7 +1311,7 @@
         [
           "Wireshark + Zeek for traffic verification",
           "oss",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "External scan (Qualys SSL Labs / testssl) showing A+ grade. Cipher allow-list documented. Audit log of any TLS-version-downgrade attempts.",
@@ -1368,7 +1368,7 @@
       ],
       "ctrl": "Secret scanning + auto-revocation in CI",
       "cat": "Cryptography & secrets",
-      "surface": "Source \u00b7 CI/CD",
+      "surface": "Source · CI/CD",
       "tools": [
         [
           "GitGuardian",
@@ -1444,7 +1444,7 @@
           "AWS"
         ]
       ],
-      "evidence": "Per service: deployment shape (canary % \u00b7 linear N-min \u00b7 blue-green). Auto-rollback metrics defined. Recent rollback events with timing.",
+      "evidence": "Per service: deployment shape (canary % · linear N-min · blue-green). Auto-rollback metrics defined. Recent rollback events with timing.",
       "sectors": [
         "all"
       ],
@@ -1459,7 +1459,7 @@
       ],
       "ctrl": "Application allowlisting (no unsigned code execution in prod)",
       "cat": "Change & release management",
-      "surface": "Endpoint \u00b7 Server",
+      "surface": "Endpoint · Server",
       "tools": [
         [
           "Microsoft AppLocker / WDAC",
@@ -1527,7 +1527,7 @@
           "New Relic"
         ]
       ],
-      "evidence": "Per service: 4 golden signals dashboard inherited from paved path. SLO + error-budget per critical service. Alert quality (actionable-rate) \u226570%.",
+      "evidence": "Per service: 4 golden signals dashboard inherited from paved path. SLO + error-budget per critical service. Alert quality (actionable-rate) ≥70%.",
       "sectors": [
         "all"
       ],
@@ -1604,7 +1604,7 @@
         [
           "Industrial DMZ + jump hosts",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Microsoft Defender for IoT",
@@ -1626,7 +1626,7 @@
       ],
       "ctrl": "Service mesh mTLS between microservices",
       "cat": "Workload isolation",
-      "surface": "K8s \u00b7 Network",
+      "surface": "K8s · Network",
       "tools": [
         [
           "Istio",
@@ -1671,7 +1671,7 @@
       ],
       "ctrl": "Production workload runs without privileged escalation",
       "cat": "Workload isolation",
-      "surface": "K8s \u00b7 Container",
+      "surface": "K8s · Container",
       "tools": [
         [
           "Kyverno (disallow-privileged)",
@@ -1763,7 +1763,7 @@
         [
           "Custom register in confluence / wiki",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Riskonnect",
@@ -1828,7 +1828,7 @@
       ],
       "ctrl": "Post-market surveillance (PMS) plan for SaMD",
       "cat": "AI evals & guardrails",
-      "surface": "Documentation \u00b7 Operations",
+      "surface": "Documentation · Operations",
       "tools": [
         [
           "Greenlight Guru QMS",
@@ -1843,7 +1843,7 @@
         [
           "Custom QMS in confluence + git",
           "managed",
-          "\u2014"
+          "—"
         ]
       ],
       "evidence": "PMS plan document. Adverse-event capture mechanism. Periodic safety update report (PSUR) cadence. Field-action procedure tested.",
@@ -1903,7 +1903,7 @@
       ],
       "ctrl": "Drift detection (cloud config matches IaC source-of-truth)",
       "cat": "Change & release management",
-      "surface": "Cloud \u00b7 Tooling",
+      "surface": "Cloud · Tooling",
       "tools": [
         [
           "AWS Config Rules",
@@ -1931,11 +1931,11 @@
           "HashiCorp"
         ]
       ],
-      "evidence": "Daily / hourly drift report. Out-of-IaC changes alerted to owner. Closed-loop: drift \u2192 patched in code + applied, not patched in cloud alone.",
+      "evidence": "Daily / hourly drift report. Out-of-IaC changes alerted to owner. Closed-loop: drift → patched in code + applied, not patched in cloud alone.",
       "sectors": [
         "all"
       ],
-      "notes": "Drift accumulates silently. Detection alone is necessary but not sufficient \u2014 the loop must close back to code.",
+      "notes": "Drift accumulates silently. Detection alone is necessary but not sufficient — the loop must close back to code.",
       "id": "r042"
     },
     {
@@ -1944,7 +1944,7 @@
       ],
       "ctrl": "Per-service / per-tenant cost attribution",
       "cat": "Operational risk",
-      "surface": "Cloud \u00b7 FinOps",
+      "surface": "Cloud · FinOps",
       "tools": [
         [
           "AWS Cost Categories + CUR",
@@ -2030,7 +2030,7 @@
         [
           "Custom risk-classification template",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Credo AI",
@@ -2127,7 +2127,7 @@
           "Collibra"
         ]
       ],
-      "evidence": "Risk report \u2192 upstream system traceable. Adjustments logged. Materiality of each manual override classified.",
+      "evidence": "Risk report → upstream system traceable. Adjustments logged. Materiality of each manual override classified.",
       "sectors": [
         "banks"
       ],
@@ -2219,7 +2219,7 @@
       ],
       "ctrl": "Granular consent capture + revocation propagation",
       "cat": "Data governance",
-      "surface": "Frontend \u00b7 backend",
+      "surface": "Frontend · backend",
       "tools": [
         [
           "OneTrust Cookie Consent",
@@ -2234,7 +2234,7 @@
         [
           "Custom consent management with audit log",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Transcend Consent Management",
@@ -2257,7 +2257,7 @@
       ],
       "ctrl": "Zero-trust network access (replace VPN)",
       "cat": "Identity & access",
-      "surface": "Network \u00b7 Identity",
+      "surface": "Network · Identity",
       "tools": [
         [
           "Cloudflare Zero Trust",
@@ -2303,7 +2303,7 @@
       ],
       "ctrl": "DNSSEC + CAA records + MTA-STS",
       "cat": "Cryptography & secrets",
-      "surface": "DNS \u00b7 Email",
+      "surface": "DNS · Email",
       "tools": [
         [
           "Cloudflare DNS (DNSSEC, CAA)",
@@ -2382,7 +2382,7 @@
         "iso27001",
         "pci"
       ],
-      "ctrl": "Automated OS patching (\u226430 days for high-severity)",
+      "ctrl": "Automated OS patching (≤30 days for high-severity)",
       "cat": "Vulnerability management",
       "surface": "Compute",
       "tools": [
@@ -2478,7 +2478,7 @@
         [
           "Custom board pack template",
           "managed",
-          "\u2014"
+          "—"
         ],
         [
           "Diligent Boards",
@@ -2499,6 +2499,421 @@
       ],
       "notes": "EU NIS2 explicit board accountability. APRA CPS 234 + CPS 230 board-level oversight. ISO 42001 top management responsibility.",
       "id": "r056"
+    },
+    {
+      "id": "agent-identity",
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "cps234",
+        "sp80053",
+        "e8"
+      ],
+      "ctrl": "Agent runs under its own workload identity, never a human's or a shared account",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · IAM",
+      "tools": [
+        [
+          "SPIFFE / SPIRE",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "AWS IAM Roles for Service Accounts / IRSA",
+          "managed",
+          "AWS"
+        ],
+        [
+          "GCP Workload Identity Federation",
+          "managed",
+          "GCP"
+        ],
+        [
+          "Azure Federated Credentials (OIDC)",
+          "managed",
+          "Azure"
+        ],
+        [
+          "HashiCorp Vault workload identity",
+          "managed",
+          "HashiCorp"
+        ]
+      ],
+      "evidence": "IAM export showing a distinct principal per agent, with no human user credentials in any agent execution path. Trust policy showing federated identity rather than a static key. An access-revocation test: disable the agent principal and show its tool calls fail within one polling interval.",
+      "anti_pattern": "vault-theatre",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done."
+    },
+    {
+      "id": "agent-tool-authz",
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf",
+        "owasp_llm",
+        "sp80053"
+      ],
+      "ctrl": "Tool authorisation enforced outside the model — the tool registry is the security boundary",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Policy engine",
+      "tools": [
+        [
+          "Open Policy Agent (OPA)",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Cedar",
+          "oss",
+          "AWS"
+        ],
+        [
+          "Kyverno",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "MCP server scoping / allow-lists",
+          "oss",
+          "Anthropic"
+        ]
+      ],
+      "evidence": "The tool manifest available to the agent per role, exported from config rather than described. Policy decision logs showing allow and deny with a reason for each tool invocation. A negative test: an agent asked to call a tool outside its scope, and the denial recorded.",
+      "anti_pattern": "pdf-principles",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them."
+    },
+    {
+      "id": "agent-autonomy-level",
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf",
+        "ai_safety_au",
+        "cps230"
+      ],
+      "ctrl": "Declared autonomy level per action class, enforced at execution and recorded per run",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Governance",
+      "tools": [
+        [
+          "In-house policy layer",
+          "build",
+          "—"
+        ],
+        [
+          "Open Policy Agent (OPA)",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Workflow engines with approval steps (Temporal, Inngest)",
+          "managed",
+          "various"
+        ]
+      ],
+      "evidence": "A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review — a config diff with an approver, not a deploy.",
+      "anti_pattern": "ai-coe-trap",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks."
+    },
+    {
+      "id": "agent-human-oversight",
+      "reg": [
+        "eu_ai_act",
+        "ai_rmf",
+        "ai_safety_au",
+        "fda_samd",
+        "gdpr"
+      ],
+      "ctrl": "Named human approval for consequential actions, with enough context to make review real",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Review queue",
+      "tools": [
+        [
+          "In-house approval queue",
+          "build",
+          "—"
+        ],
+        [
+          "Workflow engine approval steps",
+          "managed",
+          "Temporal / Inngest"
+        ],
+        [
+          "Case management (ServiceNow, Jira)",
+          "managed",
+          "various"
+        ]
+      ],
+      "evidence": "Approval records naming the individual, the proposed action, the reasoning and evidence shown to them, and the decision. Approval-rate statistics over time. Rejection records, which are the proof that oversight is doing work.",
+      "anti_pattern": "architect-as-reviewer",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare"
+      ],
+      "notes": "EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name."
+    },
+    {
+      "id": "agent-trajectory-trace",
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf",
+        "cps230",
+        "hipaa"
+      ],
+      "ctrl": "Full replayable trajectory — every tool call, argument, result and the exact context the model saw",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Observability",
+      "tools": [
+        [
+          "OpenTelemetry GenAI semantic conventions",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Langfuse",
+          "oss",
+          "Langfuse"
+        ],
+        [
+          "LangSmith",
+          "managed",
+          "LangChain"
+        ],
+        [
+          "Braintrust",
+          "managed",
+          "Braintrust"
+        ],
+        [
+          "Arize Phoenix",
+          "oss",
+          "Arize"
+        ]
+      ],
+      "evidence": "A single run exported end to end: assembled context, retrieved document IDs, each tool call with arguments and result, model and prompt version, tokens, cost and latency. A replay of that run from an intermediate step, demonstrating the trace is sufficient to reconstruct rather than merely describe.",
+      "anti_pattern": "inline-prompt-pattern",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare",
+        "critical-infrastructure"
+      ],
+      "notes": "Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set."
+    },
+    {
+      "id": "agent-blast-radius",
+      "reg": [
+        "cps230",
+        "iso42001",
+        "sp80053",
+        "nis2",
+        "soci"
+      ],
+      "ctrl": "Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Platform",
+      "tools": [
+        [
+          "API gateway rate limiting",
+          "managed",
+          "various"
+        ],
+        [
+          "LiteLLM budget controls",
+          "oss",
+          "BerriAI"
+        ],
+        [
+          "Feature flags (LaunchDarkly, Unleash)",
+          "managed",
+          "various"
+        ],
+        [
+          "Cloud budget alerts and hard caps",
+          "managed",
+          "AWS / GCP / Azure"
+        ]
+      ],
+      "evidence": "Configured ceilings per agent for steps, spend and tool-call rate. An incident or game-day record showing the kill switch stopping an agent mid-run, with the time from decision to halt. Evidence that a halted run leaves consistent state.",
+      "anti_pattern": "kpi-cargo-cult",
+      "sectors": [
+        "all"
+      ],
+      "notes": "A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters."
+    },
+    {
+      "id": "agent-action-reversibility",
+      "reg": [
+        "cps230",
+        "iso42001",
+        "eu_ai_act",
+        "dora"
+      ],
+      "ctrl": "Irreversible actions staged, gated or delayed so a wrong action can be withdrawn",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Integration layer",
+      "tools": [
+        [
+          "Outbox with cancellation window",
+          "build",
+          "—"
+        ],
+        [
+          "Plan/apply split (Terraform, Pulumi)",
+          "oss",
+          "HashiCorp / Pulumi"
+        ],
+        [
+          "Soft delete and versioned stores",
+          "build",
+          "—"
+        ],
+        [
+          "Pull-request gated change",
+          "managed",
+          "GitHub / GitLab"
+        ]
+      ],
+      "evidence": "An inventory of agent-invokable actions classified reversible or not, with the mechanism named for each. For irreversible ones, either an approval gate or a documented acceptance. A test showing an action withdrawn inside the window.",
+      "anti_pattern": "pdf-principles",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved."
+    },
+    {
+      "id": "agent-prompt-injection",
+      "reg": [
+        "owasp_llm",
+        "atlas",
+        "eu_ai_act",
+        "iso42001"
+      ],
+      "ctrl": "Retrieved and tool-returned content treated as untrusted data, never as instructions",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · Retrieval",
+      "tools": [
+        [
+          "Lakera Guard",
+          "managed",
+          "Lakera"
+        ],
+        [
+          "NVIDIA NeMo Guardrails",
+          "oss",
+          "NVIDIA"
+        ],
+        [
+          "Azure AI Content Safety prompt shields",
+          "managed",
+          "Microsoft"
+        ],
+        [
+          "Structural separation of instruction and data",
+          "build",
+          "—"
+        ]
+      ],
+      "evidence": "Red-team results for indirect prompt injection through each retrieval and tool-result path, not only through direct user input. Evidence of structural separation between instruction and retrieved content. Records showing an injected instruction was not acted upon.",
+      "anti_pattern": "inline-prompt-pattern",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source."
+    },
+    {
+      "id": "agent-multi-agent-provenance",
+      "reg": [
+        "eu_ai_act",
+        "iso42001",
+        "ai_rmf",
+        "bcbs239"
+      ],
+      "ctrl": "Provenance across agents — every output traceable to the upstream runs that produced its inputs",
+      "cat": "Agentic systems",
+      "surface": "Agent orchestration",
+      "tools": [
+        [
+          "OpenTelemetry trace context propagation",
+          "oss",
+          "CNCF"
+        ],
+        [
+          "Upstream run-ID references in the run record",
+          "build",
+          "—"
+        ],
+        [
+          "Workflow engine correlation IDs",
+          "managed",
+          "Temporal / Inngest"
+        ]
+      ],
+      "evidence": "For a given final output, the full upstream chain of agent runs that contributed to it, retrieved sources included. A demonstration that a corrected upstream input marks downstream outputs stale.",
+      "anti_pattern": "capability-model-theatre",
+      "sectors": [
+        "banks",
+        "government",
+        "healthcare"
+      ],
+      "notes": "As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures."
+    },
+    {
+      "id": "agent-cost-per-outcome",
+      "reg": [
+        "cps230",
+        "iso42001"
+      ],
+      "ctrl": "Cost measured per resolved task, not per token, with attribution to the consuming feature",
+      "cat": "Agentic systems",
+      "surface": "Agent runtime · FinOps",
+      "tools": [
+        [
+          "Helicone",
+          "oss",
+          "Helicone"
+        ],
+        [
+          "Langfuse cost tracking",
+          "oss",
+          "Langfuse"
+        ],
+        [
+          "LiteLLM spend logs",
+          "oss",
+          "BerriAI"
+        ],
+        [
+          "Cloud cost allocation tags",
+          "managed",
+          "AWS / GCP / Azure"
+        ]
+      ],
+      "evidence": "Cost per resolved task by agent and feature over time, alongside the failed-run cost. Evidence that spend is attributable to a product decision rather than to a shared pool.",
+      "anti_pattern": "kpi-cargo-cult",
+      "sectors": [
+        "all"
+      ],
+      "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one."
     }
   ]
 }

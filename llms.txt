@@ -63,7 +63,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 
 ## Reference
 
-- [Regulation × control × tooling dataset](https://hellouchit.com/dataset/): 56 controls × 28 regulations × 261 tools. CC BY 4.0. JSON + CSV downloads.
+- [Regulation × control × tooling dataset](https://hellouchit.com/dataset/): 66 controls × 28 regulations × 290 tools. CC BY 4.0. JSON + CSV downloads.
 - [Practitioner glossary](https://hellouchit.com/glossary/): Named concepts and trade-offs, cross-linked
 - [Anti-patterns catalogue](https://hellouchit.com/anti-patterns/): 15 named failure modes
 - [Reading list](https://hellouchit.com/reading/): When-to-reach-for-this practitioner reading list
@@ -129,7 +129,7 @@ hellouchit.com.
 - [Decision trees JSON](https://hellouchit.com/decisions/decisions.json): 7 trees, ADR-shaped — verdicts, trade-offs, watch-outs, when-not-to-pick
 - [Anti-patterns JSON](https://hellouchit.com/anti-patterns/anti-patterns.json): 15 named failure modes — where each appears, why it fails, what to do instead
 - [Glossary JSON](https://hellouchit.com/glossary/glossary.json): 59 practitioner terms with domain tags
-- [Dataset JSON](https://hellouchit.com/dataset/dataset.json): 56 controls × 28 regulations × 261 tools
+- [Dataset JSON](https://hellouchit.com/dataset/dataset.json): 66 controls × 28 regulations × 290 tools
 - [Dataset CSV](https://hellouchit.com/dataset/dataset.csv)
 
 ## Optional

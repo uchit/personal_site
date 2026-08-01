@@ -101,7 +101,7 @@ US11334348B2 — “Utilizing machine learning to identify and correct differenc
 
 - 15 named anti-patterns — /anti-patterns/
 
-- Regulation × control × tooling dataset — 56 controls × 28 regulations × 261 tools, CC BY 4.0 — /dataset/
+- Regulation × control × tooling dataset — 66 controls × 28 regulations × 290 tools, CC BY 4.0 — /dataset/
 
 - Maturity tiers per discipline — /maturity/
 

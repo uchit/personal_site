@@ -10,7 +10,7 @@
 <link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Regulation &times; Control &times; Tooling Dataset &mdash; Uchit Vyas" />
-<meta property="og:description" content="The browsable controls-and-tooling map for regulated industries. 56 controls × 28 regulations × 261+ tools." />
+<meta property="og:description" content="The browsable controls-and-tooling map for regulated industries. 66 controls × 28 regulations × 290 tools." />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,9 +57,9 @@
       <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">Explore</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Dataset</span></nav>
       <span class="eyebrow">Reference dataset</span>
       <h1>Regulation &times; control &times; <em>tooling</em>.</h1>
-      <p class="dek">A curated, browsable map: <b>56 concrete controls</b> across <b>28 regulations</b>, each with the tooling options that implement it and the evidence shape that passes audit. Designed so you can answer "<em>which tool actually closes APRA CPS 234's workload-identity control, and what evidence do I produce?</em>" in under a minute.</p>
+      <p class="dek">A curated, browsable map: <b>66 concrete controls</b> across <b>28 regulations</b>, each with the tooling options that implement it and the evidence shape that passes audit. Designed so you can answer "<em>which tool actually closes APRA CPS 234's workload-identity control, and what evidence do I produce?</em>" in under a minute.</p>
       <div class="meta">
-        <span>Updated <b>2026-05-30</b></span>
+        <span>Updated <b>2026-08-01</b></span>
         <span>License <b>CC BY 4.0</b></span>
         <span><a href="/dataset/dataset.json" target="_blank">JSON</a></span>
         <span><a href="/dataset/dataset.csv" target="_blank">CSV</a></span>
@@ -71,15 +71,15 @@
       <div class="wrap">
         <div class="ds-fgroup">
           <span class="glab">Regulation</span>
-          <button class="ds-chip" data-filter="reg" data-value="cps234">APRA CPS 234 <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="cps230">APRA CPS 230 <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="soci">SOCI Act 2018+ <span class="count">5</span></button><button class="ds-chip" data-filter="reg" data-value="ai_safety_au">AU AI Safety Std <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="privacy_au">AU Privacy Act <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="e8">ASD Essential 8 <span class="count">10</span></button><button class="ds-chip" data-filter="reg" data-value="irap">IRAP <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="eu_ai_act">EU AI Act <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="dora">EU DORA <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="nis2">EU NIS2 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="gdpr">EU GDPR <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="circia">US CIRCIA <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="hipaa">HIPAA <span class="count">8</span></button><button class="ds-chip" data-filter="reg" data-value="fda_samd">FDA SaMD <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="cisa_ssa">CISA SSA <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="ssdf">NIST SSDF (800-218) <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="ai_rmf">NIST AI RMF <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="sp80053">NIST SP 800-53 <span class="count">18</span></button><button class="ds-chip" data-filter="reg" data-value="iso42001">ISO/IEC 42001 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="iso27001">ISO/IEC 27001 <span class="count">26</span></button><button class="ds-chip" data-filter="reg" data-value="slsa">SLSA v1.0 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="owasp_llm">OWASP LLM Top 10 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="atlas">MITRE ATLAS <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="bcbs239">BCBS 239 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="pci">PCI DSS 4.0 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="iec62443">IEC 62443 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iso13485">ISO 13485 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iec62304">IEC 62304 <span class="count">1</span></button>
+          <!-- DATASET-CHIPS-REG:START --><button class="ds-chip" data-filter="reg" data-value="cps234">APRA CPS 234 <span class="count">8</span></button><button class="ds-chip" data-filter="reg" data-value="cps230">APRA CPS 230 <span class="count">12</span></button><button class="ds-chip" data-filter="reg" data-value="soci">SOCI Act 2018+ <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="ai_safety_au">AU AI Safety Std <span class="count">5</span></button><button class="ds-chip" data-filter="reg" data-value="privacy_au">AU Privacy Act <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="e8">ASD Essential 8 <span class="count">11</span></button><button class="ds-chip" data-filter="reg" data-value="irap">IRAP <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="eu_ai_act">EU AI Act <span class="count">15</span></button><button class="ds-chip" data-filter="reg" data-value="dora">EU DORA <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="nis2">EU NIS2 <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="gdpr">EU GDPR <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="circia">US CIRCIA <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="hipaa">HIPAA <span class="count">9</span></button><button class="ds-chip" data-filter="reg" data-value="fda_samd">FDA SaMD <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="cisa_ssa">CISA SSA <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="ssdf">NIST SSDF (800-218) <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="ai_rmf">NIST AI RMF <span class="count">7</span></button><button class="ds-chip" data-filter="reg" data-value="sp80053">NIST SP 800-53 <span class="count">21</span></button><button class="ds-chip" data-filter="reg" data-value="iso42001">ISO/IEC 42001 <span class="count">15</span></button><button class="ds-chip" data-filter="reg" data-value="iso27001">ISO/IEC 27001 <span class="count">26</span></button><button class="ds-chip" data-filter="reg" data-value="slsa">SLSA v1.0 <span class="count">2</span></button><button class="ds-chip" data-filter="reg" data-value="owasp_llm">OWASP LLM Top 10 <span class="count">4</span></button><button class="ds-chip" data-filter="reg" data-value="atlas">MITRE ATLAS <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="bcbs239">BCBS 239 <span class="count">3</span></button><button class="ds-chip" data-filter="reg" data-value="pci">PCI DSS 4.0 <span class="count">6</span></button><button class="ds-chip" data-filter="reg" data-value="iec62443">IEC 62443 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iso13485">ISO 13485 <span class="count">1</span></button><button class="ds-chip" data-filter="reg" data-value="iec62304">IEC 62304 <span class="count">1</span></button><!-- DATASET-CHIPS-REG:END -->
         </div>
         <div class="ds-fgroup">
           <span class="glab">Category</span>
-          <button class="ds-chip" data-filter="cat" data-value="Identity & access">Identity & access <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Supply chain & provenance">Supply chain & provenance <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Data governance">Data governance <span class="count">6</span></button><button class="ds-chip" data-filter="cat" data-value="Audit & logging">Audit & logging <span class="count">1</span></button><button class="ds-chip" data-filter="cat" data-value="AI evals & guardrails">AI evals & guardrails <span class="count">9</span></button><button class="ds-chip" data-filter="cat" data-value="Resilience & continuity">Resilience & continuity <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Change & release management">Change & release management <span class="count">4</span></button><button class="ds-chip" data-filter="cat" data-value="Vulnerability management">Vulnerability management <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Cryptography & secrets">Cryptography & secrets <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Access reviews">Access reviews <span class="count">1</span></button><button class="ds-chip" data-filter="cat" data-value="Incident response">Incident response <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Third-party risk">Third-party risk <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Operational risk">Operational risk <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Observability">Observability <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Workload isolation">Workload isolation <span class="count">6</span></button>
+          <!-- DATASET-CHIPS-CAT:START --><button class="ds-chip" data-filter="cat" data-value="Agentic systems">Agentic systems <span class="count">10</span></button><button class="ds-chip" data-filter="cat" data-value="AI evals &amp; guardrails">AI evals &amp; guardrails <span class="count">9</span></button><button class="ds-chip" data-filter="cat" data-value="Data governance">Data governance <span class="count">6</span></button><button class="ds-chip" data-filter="cat" data-value="Workload isolation">Workload isolation <span class="count">6</span></button><button class="ds-chip" data-filter="cat" data-value="Identity &amp; access">Identity &amp; access <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Supply chain &amp; provenance">Supply chain &amp; provenance <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Cryptography &amp; secrets">Cryptography &amp; secrets <span class="count">5</span></button><button class="ds-chip" data-filter="cat" data-value="Change &amp; release management">Change &amp; release management <span class="count">4</span></button><button class="ds-chip" data-filter="cat" data-value="Resilience &amp; continuity">Resilience &amp; continuity <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Operational risk">Operational risk <span class="count">3</span></button><button class="ds-chip" data-filter="cat" data-value="Third-party risk">Third-party risk <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Incident response">Incident response <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Vulnerability management">Vulnerability management <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Observability">Observability <span class="count">2</span></button><button class="ds-chip" data-filter="cat" data-value="Audit &amp; logging">Audit &amp; logging <span class="count">1</span></button><button class="ds-chip" data-filter="cat" data-value="Access reviews">Access reviews <span class="count">1</span></button><!-- DATASET-CHIPS-CAT:END -->
         </div>
         <div class="ds-fgroup">
           <span class="glab">Sector</span>
-          <button class="ds-chip" data-filter="sector" data-value="banks">banks <span class="count">29</span></button><button class="ds-chip" data-filter="sector" data-value="government">government <span class="count">26</span></button><button class="ds-chip" data-filter="sector" data-value="healthcare">healthcare <span class="count">22</span></button><button class="ds-chip" data-filter="sector" data-value="critical-infrastructure">critical infrastructure <span class="count">25</span></button>
+          <!-- DATASET-CHIPS-SECTOR:START --><button class="ds-chip" data-filter="sector" data-value="banks">banks <span class="count">35</span></button><button class="ds-chip" data-filter="sector" data-value="government">government <span class="count">32</span></button><button class="ds-chip" data-filter="sector" data-value="critical-infrastructure">critical infrastructure <span class="count">29</span></button><button class="ds-chip" data-filter="sector" data-value="healthcare">healthcare <span class="count">28</span></button><!-- DATASET-CHIPS-SECTOR:END -->
         </div>
         <div class="ds-fgroup">
           <input type="search" class="ds-search" placeholder="Search controls, tools, surfaces…" aria-label="Search dataset" />
@@ -92,17 +92,18 @@
     <section class="ds-table"><div class="wrap">
       <div class="ds-rows" id="ds-rows">
 
+<!-- DATASET-ROWS:START — generated by scripts/build-dataset-views.mjs -->
     <div class="ds-row" data-id="r001"
          data-regs="cps234 e8 iso27001 soci"
-         data-cat="Identity & access"
+         data-cat="Identity &amp; access"
          data-sectors="banks government critical-infrastructure"
-         data-text="workload identity (no static long-lived credentials) cloud · ci/cd · k8s identity & access">
+         data-text="workload identity (no static long-lived credentials) cloud · ci/cd · k8s identity &amp; access">
       <div class="reg">APRA CPS 234<span class="reg-jur">AU +3</span></div>
       <div>
         <div class="ctrl">Workload identity (no static long-lived credentials)</div>
         <span class="ctrl-sub">Cloud · CI/CD · K8s</span>
       </div>
-      <div class="cat">Identity & access</div>
+      <div class="cat">Identity &amp; access</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -128,18 +129,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r002"
          data-regs="cps234 iso27001 sp80053"
-         data-cat="Identity & access"
+         data-cat="Identity &amp; access"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="least-privilege iam (no wildcard policies) cloud · k8s identity & access">
+         data-text="least-privilege iam (no wildcard policies) cloud · k8s identity &amp; access">
       <div class="reg">APRA CPS 234<span class="reg-jur">AU +2</span></div>
       <div>
         <div class="ctrl">Least-privilege IAM (no wildcard policies)</div>
         <span class="ctrl-sub">Cloud · K8s</span>
       </div>
-      <div class="cat">Identity & access</div>
+      <div class="cat">Identity &amp; access</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -165,18 +165,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r003"
          data-regs="e8 iso27001 sp80053"
-         data-cat="Identity & access"
+         data-cat="Identity &amp; access"
          data-sectors="banks government critical-infrastructure"
-         data-text="privileged access management (pam) for breakglass cloud · on-prem identity & access">
+         data-text="privileged access management (pam) for breakglass cloud · on-prem identity &amp; access">
       <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
       <div>
         <div class="ctrl">Privileged access management (PAM) for breakglass</div>
         <span class="ctrl-sub">Cloud · On-prem</span>
       </div>
-      <div class="cat">Identity & access</div>
+      <div class="cat">Identity &amp; access</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -197,23 +196,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r004"
          data-regs="hipaa gdpr privacy_au iso27001"
-         data-cat="Identity & access"
+         data-cat="Identity &amp; access"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="mfa enforced for all human access (no exceptions) identity provider identity & access">
+         data-text="mfa enforced for all human access (no exceptions) identity provider identity &amp; access">
       <div class="reg">HIPAA<span class="reg-jur">US +3</span></div>
       <div>
         <div class="ctrl">MFA enforced for all human access (no exceptions)</div>
         <span class="ctrl-sub">Identity provider</span>
       </div>
-      <div class="cat">Identity & access</div>
+      <div class="cat">Identity &amp; access</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -234,23 +229,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r005"
          data-regs="slsa ssdf cisa_ssa cps234"
-         data-cat="Supply chain & provenance"
+         data-cat="Supply chain &amp; provenance"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="signed build provenance (slsa l2+) ci/cd supply chain & provenance">
+         data-text="signed build provenance (slsa l2+) ci/cd supply chain &amp; provenance">
       <div class="reg">SLSA v1.0<span class="reg-jur">INTL +3</span></div>
       <div>
         <div class="ctrl">Signed build provenance (SLSA L2+)</div>
         <span class="ctrl-sub">CI/CD</span>
       </div>
-      <div class="cat">Supply chain & provenance</div>
+      <div class="cat">Supply chain &amp; provenance</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -276,18 +267,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r006"
          data-regs="ssdf cisa_ssa cps234 dora nis2 soci"
-         data-cat="Supply chain & provenance"
+         data-cat="Supply chain &amp; provenance"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="sbom emission + kev-driven owner-alert loop ci/cd · runtime supply chain & provenance">
+         data-text="sbom emission + kev-driven owner-alert loop ci/cd · runtime supply chain &amp; provenance">
       <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL +5</span></div>
       <div>
         <div class="ctrl">SBOM emission + KEV-driven owner-alert loop</div>
         <span class="ctrl-sub">CI/CD · Runtime</span>
       </div>
-      <div class="cat">Supply chain & provenance</div>
+      <div class="cat">Supply chain &amp; provenance</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -313,18 +303,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r007"
          data-regs="slsa ssdf"
-         data-cat="Supply chain & provenance"
+         data-cat="Supply chain &amp; provenance"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="verified image signatures at admission k8s admission supply chain & provenance">
+         data-text="verified image signatures at admission k8s admission supply chain &amp; provenance">
       <div class="reg">SLSA v1.0<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Verified image signatures at admission</div>
         <span class="ctrl-sub">K8s admission</span>
       </div>
-      <div class="cat">Supply chain & provenance</div>
+      <div class="cat">Supply chain &amp; provenance</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -350,18 +339,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r008"
          data-regs="ssdf"
-         data-cat="Supply chain & provenance"
+         data-cat="Supply chain &amp; provenance"
          data-sectors="government critical-infrastructure"
-         data-text="hermetic / reproducible builds ci/cd supply chain & provenance">
+         data-text="hermetic / reproducible builds ci/cd supply chain &amp; provenance">
       <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL</span></div>
       <div>
         <div class="ctrl">Hermetic / reproducible builds</div>
         <span class="ctrl-sub">CI/CD</span>
       </div>
-      <div class="cat">Supply chain & provenance</div>
+      <div class="cat">Supply chain &amp; provenance</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -382,23 +370,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r009"
          data-regs="ssdf iso27001"
-         data-cat="Supply chain & provenance"
+         data-cat="Supply chain &amp; provenance"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="locked dependency versions (no floating tags / ranges in prod) source · ci/cd supply chain & provenance">
+         data-text="locked dependency versions (no floating tags / ranges in prod) source · ci/cd supply chain &amp; provenance">
       <div class="reg">NIST SSDF (800-218)<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Locked dependency versions (no floating tags / ranges in prod)</div>
         <span class="ctrl-sub">Source · CI/CD</span>
       </div>
-      <div class="cat">Supply chain & provenance</div>
+      <div class="cat">Supply chain &amp; provenance</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -419,12 +403,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r010"
          data-regs="bcbs239 gdpr privacy_au hipaa"
          data-cat="Data governance"
@@ -456,12 +436,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r011"
          data-regs="gdpr privacy_au hipaa"
          data-cat="Data governance"
@@ -493,12 +469,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r012"
          data-regs="gdpr privacy_au hipaa"
          data-cat="Data governance"
@@ -530,12 +502,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r013"
          data-regs="gdpr privacy_au"
          data-cat="Data governance"
@@ -567,23 +535,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r014"
          data-regs="eu_ai_act iso42001 ai_rmf ai_safety_au"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="eval-set gating in ci for ai applications ci/cd ai evals & guardrails">
+         data-text="eval-set gating in ci for ai applications ci/cd ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +3</span></div>
       <div>
         <div class="ctrl">Eval-set gating in CI for AI applications</div>
         <span class="ctrl-sub">CI/CD</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -609,18 +573,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r015"
          data-regs="eu_ai_act ai_safety_au owasp_llm atlas"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="layered guardrails (input + output) tested adversarially runtime · ai gateway ai evals & guardrails">
+         data-text="layered guardrails (input + output) tested adversarially runtime · ai gateway ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +3</span></div>
       <div>
         <div class="ctrl">Layered guardrails (input + output) tested adversarially</div>
         <span class="ctrl-sub">Runtime · AI gateway</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -635,7 +598,7 @@
         </div>
         <div>
           <h4>Notes</h4>
-          <p>Guardrails encoded in the system prompt = no guardrail. The control is a distinct layer that intercepts before & after the model.</p>
+          <p>Guardrails encoded in the system prompt = no guardrail. The control is a distinct layer that intercepts before &amp; after the model.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU AI Safety Std, OWASP LLM Top 10, MITRE ATLAS</span>
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
@@ -646,18 +609,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r016"
          data-regs="eu_ai_act iso42001"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="per-decision audit evidence pack (llm) runtime · storage ai evals & guardrails">
+         data-text="per-decision audit evidence pack (llm) runtime · storage ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
       <div>
         <div class="ctrl">Per-decision audit evidence pack (LLM)</div>
         <span class="ctrl-sub">Runtime · Storage</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -678,23 +640,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r017"
          data-regs="eu_ai_act ai_safety_au"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare"
-         data-text="human-in-loop for high-risk decisions runtime · ui ai evals & guardrails">
+         data-text="human-in-loop for high-risk decisions runtime · ui ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
       <div>
         <div class="ctrl">Human-in-loop for high-risk decisions</div>
         <span class="ctrl-sub">Runtime · UI</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -715,23 +673,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r018"
          data-regs="owasp_llm atlas"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="prompt injection defence + red-team programme runtime · ci ai evals & guardrails">
+         data-text="prompt injection defence + red-team programme runtime · ci ai evals &amp; guardrails">
       <div class="reg">OWASP LLM Top 10<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Prompt injection defence + red-team programme</div>
         <span class="ctrl-sub">Runtime · CI</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -752,23 +706,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r019"
          data-regs="eu_ai_act iso42001 ai_rmf"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="model card + data card for production model documentation ai evals & guardrails">
+         data-text="model card + data card for production model documentation ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +2</span></div>
       <div>
         <div class="ctrl">Model card + data card for production model</div>
         <span class="ctrl-sub">Documentation</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -789,23 +739,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r020"
          data-regs="cps230 dora nis2 soci"
-         data-cat="Resilience & continuity"
+         data-cat="Resilience &amp; continuity"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="documented + tested service-level recovery (rto/rpo) operations resilience & continuity">
+         data-text="documented + tested service-level recovery (rto/rpo) operations resilience &amp; continuity">
       <div class="reg">APRA CPS 230<span class="reg-jur">AU +3</span></div>
       <div>
         <div class="ctrl">Documented + tested service-level recovery (RTO/RPO)</div>
         <span class="ctrl-sub">Operations</span>
       </div>
-      <div class="cat">Resilience & continuity</div>
+      <div class="cat">Resilience &amp; continuity</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -826,12 +772,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r021"
          data-regs="cps230 dora nis2 circia"
          data-cat="Third-party risk"
@@ -863,23 +805,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r022"
          data-regs="cps230 dora"
-         data-cat="Resilience & continuity"
+         data-cat="Resilience &amp; continuity"
          data-sectors="banks critical-infrastructure"
-         data-text="chaos engineering / failure injection in production production resilience & continuity">
+         data-text="chaos engineering / failure injection in production production resilience &amp; continuity">
       <div class="reg">APRA CPS 230<span class="reg-jur">AU +1</span></div>
       <div>
         <div class="ctrl">Chaos engineering / failure injection in production</div>
         <span class="ctrl-sub">Production</span>
       </div>
-      <div class="cat">Resilience & continuity</div>
+      <div class="cat">Resilience &amp; continuity</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -900,12 +838,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r023"
          data-regs="nis2 circia cps234 soci"
          data-cat="Incident response"
@@ -937,12 +871,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r024"
          data-regs="e8 iso27001"
          data-cat="Incident response"
@@ -974,12 +904,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r025"
          data-regs="e8 ssdf cisa_ssa cps234 dora nis2"
          data-cat="Vulnerability management"
@@ -1016,18 +942,17 @@
         </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r026"
          data-regs="e8 hipaa iso27001 sp80053"
-         data-cat="Audit & logging"
+         data-cat="Audit &amp; logging"
          data-sectors="all"
-         data-text="tamper-evident, centralised, queryable audit logs all services audit & logging">
+         data-text="tamper-evident, centralised, queryable audit logs all services audit &amp; logging">
       <div class="reg">ASD Essential 8<span class="reg-jur">AU +3</span></div>
       <div>
         <div class="ctrl">Tamper-evident, centralised, queryable audit logs</div>
         <span class="ctrl-sub">All services</span>
       </div>
-      <div class="cat">Audit & logging</div>
+      <div class="cat">Audit &amp; logging</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -1048,23 +973,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r027"
          data-regs="pci hipaa iso27001"
-         data-cat="Cryptography & secrets"
+         data-cat="Cryptography &amp; secrets"
          data-sectors="all"
-         data-text="tls 1.3 everywhere (no fallback to tls 1.0/1.1) network cryptography & secrets">
+         data-text="tls 1.3 everywhere (no fallback to tls 1.0/1.1) network cryptography &amp; secrets">
       <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +2</span></div>
       <div>
         <div class="ctrl">TLS 1.3 everywhere (no fallback to TLS 1.0/1.1)</div>
         <span class="ctrl-sub">Network</span>
       </div>
-      <div class="cat">Cryptography & secrets</div>
+      <div class="cat">Cryptography &amp; secrets</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -1085,23 +1006,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r028"
          data-regs="pci hipaa iso27001"
-         data-cat="Cryptography & secrets"
+         data-cat="Cryptography &amp; secrets"
          data-sectors="banks healthcare government"
-         data-text="per-customer / per-tenant kms keys (byok or cmk) data plane cryptography & secrets">
+         data-text="per-customer / per-tenant kms keys (byok or cmk) data plane cryptography &amp; secrets">
       <div class="reg">PCI DSS 4.0<span class="reg-jur">INTL +2</span></div>
       <div>
         <div class="ctrl">Per-customer / per-tenant KMS keys (BYOK or CMK)</div>
         <span class="ctrl-sub">Data plane</span>
       </div>
-      <div class="cat">Cryptography & secrets</div>
+      <div class="cat">Cryptography &amp; secrets</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -1122,23 +1039,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r029"
          data-regs="iso27001 sp80053"
-         data-cat="Cryptography & secrets"
+         data-cat="Cryptography &amp; secrets"
          data-sectors="all"
-         data-text="secret scanning + auto-revocation in ci source · ci/cd cryptography & secrets">
+         data-text="secret scanning + auto-revocation in ci source · ci/cd cryptography &amp; secrets">
       <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Secret scanning + auto-revocation in CI</div>
         <span class="ctrl-sub">Source · CI/CD</span>
       </div>
-      <div class="cat">Cryptography & secrets</div>
+      <div class="cat">Cryptography &amp; secrets</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -1159,23 +1072,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r030"
          data-regs="cps230 iso27001 sp80053"
-         data-cat="Change & release management"
+         data-cat="Change &amp; release management"
          data-sectors="all"
-         data-text="progressive deployment / blast-radius reduction release pipeline change & release management">
+         data-text="progressive deployment / blast-radius reduction release pipeline change &amp; release management">
       <div class="reg">APRA CPS 230<span class="reg-jur">AU +2</span></div>
       <div>
         <div class="ctrl">Progressive deployment / blast-radius reduction</div>
         <span class="ctrl-sub">Release pipeline</span>
       </div>
-      <div class="cat">Change & release management</div>
+      <div class="cat">Change &amp; release management</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -1196,23 +1105,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r031"
          data-regs="e8 sp80053 iso27001"
-         data-cat="Change & release management"
+         data-cat="Change &amp; release management"
          data-sectors="government critical-infrastructure"
-         data-text="application allowlisting (no unsigned code execution in prod) endpoint · server change & release management">
+         data-text="application allowlisting (no unsigned code execution in prod) endpoint · server change &amp; release management">
       <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
       <div>
         <div class="ctrl">Application allowlisting (no unsigned code execution in prod)</div>
         <span class="ctrl-sub">Endpoint · Server</span>
       </div>
-      <div class="cat">Change & release management</div>
+      <div class="cat">Change &amp; release management</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -1233,12 +1138,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r032"
          data-regs="cps230 dora nis2 sp80053"
          data-cat="Observability"
@@ -1270,12 +1171,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r033"
          data-regs="iso27001 sp80053"
          data-cat="Observability"
@@ -1307,12 +1204,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r034"
          data-regs="sp80053 iso27001 iec62443"
          data-cat="Workload isolation"
@@ -1344,12 +1237,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r035"
          data-regs="sp80053 iso27001"
          data-cat="Workload isolation"
@@ -1381,12 +1270,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r036"
          data-regs="sp80053 iso27001 pci"
          data-cat="Workload isolation"
@@ -1418,12 +1303,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r037"
          data-regs="iso27001 sp80053 cps234"
          data-cat="Access reviews"
@@ -1455,12 +1336,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r038"
          data-regs="cps230 soci"
          data-cat="Operational risk"
@@ -1492,12 +1369,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r039"
          data-regs="hipaa"
          data-cat="Third-party risk"
@@ -1529,23 +1402,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r040"
          data-regs="fda_samd iso13485 iec62304"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="healthcare"
-         data-text="post-market surveillance (pms) plan for samd documentation · operations ai evals & guardrails">
+         data-text="post-market surveillance (pms) plan for samd documentation · operations ai evals &amp; guardrails">
       <div class="reg">FDA SaMD<span class="reg-jur">US +2</span></div>
       <div>
         <div class="ctrl">Post-market surveillance (PMS) plan for SaMD</div>
         <span class="ctrl-sub">Documentation · Operations</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">3 tools</div>
     </div>
     <div class="ds-detail">
@@ -1566,23 +1435,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r041"
          data-regs="e8 iso27001 sp80053"
-         data-cat="Change & release management"
+         data-cat="Change &amp; release management"
          data-sectors="all"
-         data-text="infrastructure-as-code with plan-time policy check ci/cd change & release management">
+         data-text="infrastructure-as-code with plan-time policy check ci/cd change &amp; release management">
       <div class="reg">ASD Essential 8<span class="reg-jur">AU +2</span></div>
       <div>
         <div class="ctrl">Infrastructure-as-code with plan-time policy check</div>
         <span class="ctrl-sub">CI/CD</span>
       </div>
-      <div class="cat">Change & release management</div>
+      <div class="cat">Change &amp; release management</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -1603,23 +1468,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r042"
          data-regs="sp80053 iso27001"
-         data-cat="Change & release management"
+         data-cat="Change &amp; release management"
          data-sectors="all"
-         data-text="drift detection (cloud config matches iac source-of-truth) cloud · tooling change & release management">
+         data-text="drift detection (cloud config matches iac source-of-truth) cloud · tooling change &amp; release management">
       <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Drift detection (cloud config matches IaC source-of-truth)</div>
         <span class="ctrl-sub">Cloud · Tooling</span>
       </div>
-      <div class="cat">Change & release management</div>
+      <div class="cat">Change &amp; release management</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -1640,12 +1501,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r043"
          data-regs="cps230"
          data-cat="Operational risk"
@@ -1667,7 +1524,7 @@
         </div>
         <div>
           <h4>Evidence shape</h4>
-          <p>Per service / per tenant cost trend monthly. Cost spike (>30%) triggers owner alert. Cost-per-resolved-task / cost-per-transaction trending.</p>
+          <p>Per service / per tenant cost trend monthly. Cost spike (&gt;30%) triggers owner alert. Cost-per-resolved-task / cost-per-transaction trending.</p>
         </div>
         <div>
           <h4>Notes</h4>
@@ -1677,23 +1534,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r044"
          data-regs="iso27001 sp80053"
-         data-cat="Cryptography & secrets"
+         data-cat="Cryptography &amp; secrets"
          data-sectors="banks government critical-infrastructure"
-         data-text="crypto-agility plan (pqc transition readiness) engineering cryptography & secrets">
+         data-text="crypto-agility plan (pqc transition readiness) engineering cryptography &amp; secrets">
       <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL +1</span></div>
       <div>
         <div class="ctrl">Crypto-agility plan (PQC transition readiness)</div>
         <span class="ctrl-sub">Engineering</span>
       </div>
-      <div class="cat">Cryptography & secrets</div>
+      <div class="cat">Cryptography &amp; secrets</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -1714,23 +1567,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r045"
          data-regs="eu_ai_act iso42001"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="ai risk classification + impact assessment governance ai evals & guardrails">
+         data-text="ai risk classification + impact assessment governance ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
       <div>
         <div class="ctrl">AI risk classification + impact assessment</div>
         <span class="ctrl-sub">Governance</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -1751,23 +1600,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r046"
          data-regs="eu_ai_act iso42001"
-         data-cat="AI evals & guardrails"
+         data-cat="AI evals &amp; guardrails"
          data-sectors="banks government healthcare critical-infrastructure"
-         data-text="data poisoning + model-supply-chain controls ml pipeline ai evals & guardrails">
+         data-text="data poisoning + model-supply-chain controls ml pipeline ai evals &amp; guardrails">
       <div class="reg">EU AI Act<span class="reg-jur">EU +1</span></div>
       <div>
         <div class="ctrl">Data poisoning + model-supply-chain controls</div>
         <span class="ctrl-sub">ML pipeline</span>
       </div>
-      <div class="cat">AI evals & guardrails</div>
+      <div class="cat">AI evals &amp; guardrails</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -1788,12 +1633,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r047"
          data-regs="bcbs239"
          data-cat="Data governance"
@@ -1825,12 +1666,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r048"
          data-regs="irap"
          data-cat="Workload isolation"
@@ -1862,23 +1699,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r049"
          data-regs="e8 iso27001"
-         data-cat="Resilience & continuity"
+         data-cat="Resilience &amp; continuity"
          data-sectors="all"
-         data-text="immutable backups with offline / air-gapped copy backup infrastructure resilience & continuity">
+         data-text="immutable backups with offline / air-gapped copy backup infrastructure resilience &amp; continuity">
       <div class="reg">ASD Essential 8<span class="reg-jur">AU +1</span></div>
       <div>
         <div class="ctrl">Immutable backups with offline / air-gapped copy</div>
         <span class="ctrl-sub">Backup infrastructure</span>
       </div>
-      <div class="cat">Resilience & continuity</div>
+      <div class="cat">Resilience &amp; continuity</div>
       <div class="tcount">5 tools</div>
     </div>
     <div class="ds-detail">
@@ -1889,7 +1722,7 @@
         </div>
         <div>
           <h4>Evidence shape</h4>
-          <p>Backup inventory + retention. Restore test quarterly. Immutability window > regulator-defined retention. Air-gap proven via network path test.</p>
+          <p>Backup inventory + retention. Restore test quarterly. Immutability window &gt; regulator-defined retention. Air-gap proven via network path test.</p>
         </div>
         <div>
           <h4>Notes</h4>
@@ -1899,12 +1732,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r050"
          data-regs="gdpr privacy_au"
          data-cat="Data governance"
@@ -1936,23 +1765,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r051"
          data-regs="sp80053 iso27001 e8"
-         data-cat="Identity & access"
+         data-cat="Identity &amp; access"
          data-sectors="all"
-         data-text="zero-trust network access (replace vpn) network · identity identity & access">
+         data-text="zero-trust network access (replace vpn) network · identity identity &amp; access">
       <div class="reg">NIST SP 800-53<span class="reg-jur">INTL +2</span></div>
       <div>
         <div class="ctrl">Zero-trust network access (replace VPN)</div>
         <span class="ctrl-sub">Network · Identity</span>
       </div>
-      <div class="cat">Identity & access</div>
+      <div class="cat">Identity &amp; access</div>
       <div class="tcount">6 tools</div>
     </div>
     <div class="ds-detail">
@@ -1973,23 +1798,19 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r052"
          data-regs="iso27001"
-         data-cat="Cryptography & secrets"
+         data-cat="Cryptography &amp; secrets"
          data-sectors="all"
-         data-text="dnssec + caa records + mta-sts dns · email cryptography & secrets">
+         data-text="dnssec + caa records + mta-sts dns · email cryptography &amp; secrets">
       <div class="reg">ISO/IEC 27001<span class="reg-jur">INTL</span></div>
       <div>
         <div class="ctrl">DNSSEC + CAA records + MTA-STS</div>
         <span class="ctrl-sub">DNS · Email</span>
       </div>
-      <div class="cat">Cryptography & secrets</div>
+      <div class="cat">Cryptography &amp; secrets</div>
       <div class="tcount">4 tools</div>
     </div>
     <div class="ds-detail">
@@ -2010,12 +1831,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r053"
          data-regs="pci sp80053 iso27001"
          data-cat="Workload isolation"
@@ -2047,12 +1864,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r054"
          data-regs="e8 iso27001 pci"
          data-cat="Vulnerability management"
@@ -2084,12 +1897,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r055"
          data-regs="pci sp80053"
          data-cat="Workload isolation"
@@ -2121,12 +1930,8 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
-        <div>
-          
-        </div>
       </div>
     </div>
-
     <div class="ds-row" data-id="r056"
          data-regs="iso27001 iso42001"
          data-cat="Operational risk"
@@ -2158,11 +1963,369 @@
             <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span><span class="sector">healthcare</span></span>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-identity"
+         data-regs="eu_ai_act iso42001 cps234 sp80053 e8"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="agent runs under its own workload identity, never a human's or a shared account agent runtime · iam agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +4</span></div>
+      <div>
+        <div class="ctrl">Agent runs under its own workload identity, never a human's or a shared account</div>
+        <span class="ctrl-sub">Agent runtime · IAM</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
         <div>
-          
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">SPIFFE / SPIRE<span class="ttype">oss</span></span><span class="tool managed">AWS IAM Roles for Service Accounts / IRSA<span class="ttype">managed</span></span><span class="tool managed">GCP Workload Identity Federation<span class="ttype">managed</span></span><span class="tool managed">Azure Federated Credentials (OIDC)<span class="ttype">managed</span></span><span class="tool managed">HashiCorp Vault workload identity<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>IAM export showing a distinct principal per agent, with no human user credentials in any agent execution path. Trust policy showing federated identity rather than a static key. An access-revocation test: disable the agent principal and show its tool calls fail within one polling interval.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
+    <div class="ds-row" data-id="agent-tool-authz"
+         data-regs="eu_ai_act iso42001 ai_rmf owasp_llm sp80053"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="tool authorisation enforced outside the model — the tool registry is the security boundary agent runtime · policy engine agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +4</span></div>
+      <div>
+        <div class="ctrl">Tool authorisation enforced outside the model — the tool registry is the security boundary</div>
+        <span class="ctrl-sub">Agent runtime · Policy engine</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Open Policy Agent (OPA)<span class="ttype">oss</span></span><span class="tool oss">Cedar<span class="ttype">oss</span></span><span class="tool oss">Kyverno<span class="ttype">oss</span></span><span class="tool oss">MCP server scoping / allow-lists<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>The tool manifest available to the agent per role, exported from config rather than described. Policy decision logs showing allow and deny with a reason for each tool invocation. A negative test: an agent asked to call a tool outside its scope, and the denial recorded.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-autonomy-level"
+         data-regs="eu_ai_act iso42001 ai_rmf ai_safety_au cps230"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="declared autonomy level per action class, enforced at execution and recorded per run agent runtime · governance agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +4</span></div>
+      <div>
+        <div class="ctrl">Declared autonomy level per action class, enforced at execution and recorded per run</div>
+        <span class="ctrl-sub">Agent runtime · Governance</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool build">In-house policy layer<span class="ttype">build</span></span><span class="tool oss">Open Policy Agent (OPA)<span class="ttype">oss</span></span><span class="tool managed">Workflow engines with approval steps (Temporal, Inngest)<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review — a config diff with an approver, not a deploy.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#ai-coe-trap" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-human-oversight"
+         data-regs="eu_ai_act ai_rmf ai_safety_au fda_samd gdpr"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare"
+         data-text="named human approval for consequential actions, with enough context to make review real agent runtime · review queue agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +4</span></div>
+      <div>
+        <div class="ctrl">Named human approval for consequential actions, with enough context to make review real</div>
+        <span class="ctrl-sub">Agent runtime · Review queue</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool build">In-house approval queue<span class="ttype">build</span></span><span class="tool managed">Workflow engine approval steps<span class="ttype">managed</span></span><span class="tool managed">Case management (ServiceNow, Jira)<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Approval records naming the individual, the proposed action, the reasoning and evidence shown to them, and the decision. Approval-rate statistics over time. Rejection records, which are the proof that oversight is doing work.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#architect-as-reviewer" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-trajectory-trace"
+         data-regs="eu_ai_act iso42001 ai_rmf cps230 hipaa"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare critical-infrastructure"
+         data-text="full replayable trajectory — every tool call, argument, result and the exact context the model saw agent runtime · observability agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +4</span></div>
+      <div>
+        <div class="ctrl">Full replayable trajectory — every tool call, argument, result and the exact context the model saw</div>
+        <span class="ctrl-sub">Agent runtime · Observability</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">5 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">OpenTelemetry GenAI semantic conventions<span class="ttype">oss</span></span><span class="tool oss">Langfuse<span class="ttype">oss</span></span><span class="tool managed">LangSmith<span class="ttype">managed</span></span><span class="tool managed">Braintrust<span class="ttype">managed</span></span><span class="tool oss">Arize Phoenix<span class="ttype">oss</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>A single run exported end to end: assembled context, retrieved document IDs, each tool call with arguments and result, model and prompt version, tokens, cost and latency. A replay of that run from an intermediate step, demonstrating the trace is sufficient to reconstruct rather than merely describe.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-blast-radius"
+         data-regs="cps230 iso42001 sp80053 nis2 soci"
+         data-cat="Agentic systems"
+         data-sectors="all"
+         data-text="bounded blast radius — step, spend and rate ceilings, plus a tested kill switch agent runtime · platform agentic systems">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +4</span></div>
+      <div>
+        <div class="ctrl">Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch</div>
+        <span class="ctrl-sub">Agent runtime · Platform</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">API gateway rate limiting<span class="ttype">managed</span></span><span class="tool oss">LiteLLM budget controls<span class="ttype">oss</span></span><span class="tool managed">Feature flags (LaunchDarkly, Unleash)<span class="ttype">managed</span></span><span class="tool managed">Cloud budget alerts and hard caps<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Configured ceilings per agent for steps, spend and tool-call rate. An incident or game-day record showing the kill switch stopping an agent mid-run, with the time from decision to halt. Evidence that a halted run leaves consistent state.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#kpi-cargo-cult" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-action-reversibility"
+         data-regs="cps230 iso42001 eu_ai_act dora"
+         data-cat="Agentic systems"
+         data-sectors="all"
+         data-text="irreversible actions staged, gated or delayed so a wrong action can be withdrawn agent runtime · integration layer agentic systems">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +3</span></div>
+      <div>
+        <div class="ctrl">Irreversible actions staged, gated or delayed so a wrong action can be withdrawn</div>
+        <span class="ctrl-sub">Agent runtime · Integration layer</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool build">Outbox with cancellation window<span class="ttype">build</span></span><span class="tool oss">Plan/apply split (Terraform, Pulumi)<span class="ttype">oss</span></span><span class="tool build">Soft delete and versioned stores<span class="ttype">build</span></span><span class="tool managed">Pull-request gated change<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>An inventory of agent-invokable actions classified reversible or not, with the mechanism named for each. For irreversible ones, either an approval gate or a documented acceptance. A test showing an action withdrawn inside the window.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, EU AI Act, EU DORA</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-prompt-injection"
+         data-regs="owasp_llm atlas eu_ai_act iso42001"
+         data-cat="Agentic systems"
+         data-sectors="all"
+         data-text="retrieved and tool-returned content treated as untrusted data, never as instructions agent runtime · retrieval agentic systems">
+      <div class="reg">OWASP LLM Top 10<span class="reg-jur">INTL +3</span></div>
+      <div>
+        <div class="ctrl">Retrieved and tool-returned content treated as untrusted data, never as instructions</div>
+        <span class="ctrl-sub">Agent runtime · Retrieval</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool managed">Lakera Guard<span class="ttype">managed</span></span><span class="tool oss">NVIDIA NeMo Guardrails<span class="ttype">oss</span></span><span class="tool managed">Azure AI Content Safety prompt shields<span class="ttype">managed</span></span><span class="tool build">Structural separation of instruction and data<span class="ttype">build</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Red-team results for indirect prompt injection through each retrieval and tool-result path, not only through direct user input. Evidence of structural separation between instruction and retrieved content. Records showing an injected instruction was not acted upon.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> MITRE ATLAS, EU AI Act, ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-multi-agent-provenance"
+         data-regs="eu_ai_act iso42001 ai_rmf bcbs239"
+         data-cat="Agentic systems"
+         data-sectors="banks government healthcare"
+         data-text="provenance across agents — every output traceable to the upstream runs that produced its inputs agent orchestration agentic systems">
+      <div class="reg">EU AI Act<span class="reg-jur">EU +3</span></div>
+      <div>
+        <div class="ctrl">Provenance across agents — every output traceable to the upstream runs that produced its inputs</div>
+        <span class="ctrl-sub">Agent orchestration</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">3 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">OpenTelemetry trace context propagation<span class="ttype">oss</span></span><span class="tool build">Upstream run-ID references in the run record<span class="ttype">build</span></span><span class="tool managed">Workflow engine correlation IDs<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>For a given final output, the full upstream chain of agent runs that contributed to it, retrieved sources included. A demonstration that a corrected upstream input marks downstream outputs stale.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, BCBS 239</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#capability-model-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="ds-row" data-id="agent-cost-per-outcome"
+         data-regs="cps230 iso42001"
+         data-cat="Agentic systems"
+         data-sectors="all"
+         data-text="cost measured per resolved task, not per token, with attribution to the consuming feature agent runtime · finops agentic systems">
+      <div class="reg">APRA CPS 230<span class="reg-jur">AU +1</span></div>
+      <div>
+        <div class="ctrl">Cost measured per resolved task, not per token, with attribution to the consuming feature</div>
+        <span class="ctrl-sub">Agent runtime · FinOps</span>
+      </div>
+      <div class="cat">Agentic systems</div>
+      <div class="tcount">4 tools</div>
+    </div>
+    <div class="ds-detail">
+      <div class="grid">
+        <div>
+          <h4>Tooling options</h4>
+          <div class="tools"><span class="tool oss">Helicone<span class="ttype">oss</span></span><span class="tool oss">Langfuse cost tracking<span class="ttype">oss</span></span><span class="tool oss">LiteLLM spend logs<span class="ttype">oss</span></span><span class="tool managed">Cloud cost allocation tags<span class="ttype">managed</span></span></div>
+        </div>
+        <div>
+          <h4>Evidence shape</h4>
+          <p>Cost per resolved task by agent and feature over time, alongside the failed-run cost. Evidence that spend is attributable to a product decision rather than to a shared pool.</p>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
+          <div class="meta-line">
+            <span><b>Other regs:</b> ISO/IEC 42001</span>
+            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+          </div>
+        </div>
+        <div>
+          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#kpi-cargo-cult" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- DATASET-ROWS:END -->
       </div>
       <div class="ds-empty" id="ds-empty" hidden>No rows match the current filters.</div>
     </div></section>
