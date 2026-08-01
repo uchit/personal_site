@@ -141,6 +141,56 @@
 
       <article class="repo">
         <header>
+          <div class="name">uchit / <span>agentcheck</span></div>
+          <div class="meta">
+            <span><b>Lang</b> Node (zero deps)</span>
+            <span><b>License</b> MIT</span>
+            <span><b>v0.1.0</b> &middot; 10 controls</span>
+          </div>
+        </header>
+
+        <h3>An evidence pack for an agent deployment &mdash; that refuses to give you a score.</h3>
+
+        <p>
+          Agent-governance tooling loves a number out of ten. That number is
+          worse than nothing, because almost every control worth having can only
+          be attested by a human, and a tool that quietly converts an
+          attestation into a measurement <b>launders an opinion into
+          evidence</b>.
+        </p>
+        <p>
+          So this separates two things and never merges them. <b>DECLARED</b> is
+          a human assertion with a name attached. <b>VERIFIED</b> is a read-only
+          command that ran, with its output in the report. Both counts are
+          printed; <b>they are never added together</b>. A command that runs and
+          fails counts as neither.
+        </p>
+
+        <p><b>It exits non-zero when the pack isn&rsquo;t defensible:</b></p>
+        <ul>
+          <li>a control claimed <em>met</em> with no evidence recorded</li>
+          <li>a control claimed <em>met</em> while a prerequisite is not &mdash; tool
+            authorisation cannot be met if the agent has no identity of its own
+            to authorise <small style="color:var(--faint)">(the most common way one of these packs is quietly wrong)</small></li>
+        </ul>
+        <p>
+          An honest <em>unknown</em> does not fail. Unknown is the correct
+          starting state, and a tool that punishes it teaches people to guess.
+        </p>
+
+        <pre class="oss-code"><code>curl -O https://hellouchit.com/oss/agentcheck/agentcheck.mjs
+node agentcheck.mjs init
+node agentcheck.mjs check --md evidence.md</code></pre>
+
+        <p style="margin-top:14px">
+          <a href="/oss/agentcheck/agentcheck.mjs">Download agentcheck.mjs</a> &middot;
+          <a href="/oss/agentcheck/README.md">README</a> &middot;
+          <a href="/agents/">The ten controls &rarr;</a>
+        </p>
+      </article>
+
+      <article class="repo">
+        <header>
           <div class="name">uchit / <span>opa-nist-ai-rmf</span></div>
           <div class="meta">
             <span><b>Lang</b> Rego (OPA)</span>
