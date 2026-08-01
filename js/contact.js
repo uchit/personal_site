@@ -28,7 +28,8 @@
      possible outcome for a contact form. */
   function endpointConfigured() {
     var action = form.getAttribute("action") || "";
-    return action && action.indexOf("REPLACE_WITH_FORM_ID") === -1;
+    var key = form.querySelector('[name="access_key"]');
+    return action && key && key.value.indexOf("REPLACE_WITH_ACCESS_KEY") === -1;
   }
 
   form.addEventListener("submit", function (e) {

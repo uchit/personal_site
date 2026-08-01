@@ -604,7 +604,12 @@
         </div>
 
         <form class="ct-form reveal" id="contact-form"
-              action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+              action="https://api.web3forms.com/submit" method="POST">
+          <!-- Get a key at web3forms.com — it is a public submission key, not a
+               secret: it only permits posting to this form's configured inbox. -->
+          <input type="hidden" name="access_key" value="REPLACE_WITH_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="hellouchit.com — new message" />
+          <input type="hidden" name="from_name" value="hellouchit.com contact form" />
           <div class="ct-grid">
             <label class="ct-field">
               <span>Name</span>
@@ -629,8 +634,9 @@
             <textarea name="message" rows="5" required
                       placeholder="If it&rsquo;s a problem you&rsquo;re stuck on, the useful detail is the constraint &mdash; the deadline, the regulation, the thing that can&rsquo;t change."></textarea>
           </label>
-          <!-- Honeypot: bots fill hidden fields, people don't. -->
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <!-- Honeypot: bots fill hidden fields, people don't. "botcheck" is
+               Web3Forms' own convention, so their spam filter engages as well. -->
+          <input type="checkbox" name="botcheck" class="ct-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="ct-actions">
             <button type="submit" class="btn btn-primary">Send message</button>
             <span class="ct-status" id="ct-status" role="status" aria-live="polite"></span>

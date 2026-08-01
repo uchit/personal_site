@@ -1251,7 +1251,7 @@ img, video, iframe { max-width: 100%; height: auto; }
 .ct-field select { appearance: none; cursor: pointer; }
 
 /* Honeypot — off-screen rather than display:none, which some bots detect. */
-.ct-form input[name="_gotcha"] {
+.ct-form .ct-botcheck {
   position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0;
 }
 
