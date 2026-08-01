@@ -131,9 +131,9 @@
       <h1>Tools <em>worth pulling</em>, not pitches.</h1>
       <p class="dek">
         Small, runnable, opinionated. Each project is the encoded version
-        of an essay or reference architecture on this site &mdash; the
-        receipts of doing the work, not just talking about it. MIT-licensed,
-        documented, tested. Use, fork, ship.
+        of an essay, dataset or reference architecture on this site &mdash; the
+        receipts of doing the work, not just talking about it. Permissively
+        licensed, documented, tested. Use, fork, ship.
       </p>
     </div></section>
 
@@ -206,6 +206,66 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
         </div>
       </article>
 
+      <article class="repo">
+        <header>
+          <div class="name">uchit / <span>mcp-regulated-ai-compliance</span></div>
+          <div class="meta">
+            <span><b>Lang</b> TypeScript</span>
+            <span><b>License</b> Apache 2.0 · data CC BY 4.0</span>
+            <span><b>v0.2.3</b> · 6 tools · 53 resources · 5 prompts</span>
+          </div>
+        </header>
+
+        <h3>An MCP server that puts this site&rsquo;s compliance dataset inside your AI client.</h3>
+
+        <p>
+          The regulation &times; control &times; tooling dataset, the anti-patterns
+          catalogue and the playbooks are useful when you are reading this site.
+          They are far more useful <b>at the moment you are actually designing
+          something</b> &mdash; which is increasingly inside Claude, Cursor, Zed
+          or Continue rather than in a browser tab.
+        </p>
+        <p>
+          This is a <b>Model Context Protocol</b> server exposing that knowledge
+          as callable tools. Ask your assistant which control closes APRA
+          CPS&nbsp;234&rsquo;s workload-identity obligation, or whether a lending
+          use-case is high-risk under the EU AI Act, and it answers from a
+          cited dataset rather than from recall.
+        </p>
+
+        <p><b>What it exposes:</b></p>
+        <ul>
+          <li>Control lookup across <b>28 regulations</b> &mdash; EU AI Act, APRA CPS 230/234, NIST AI RMF, ISO/IEC 42001, AU AI Safety Standard</li>
+          <li>EU AI Act risk-tier classification for a described use-case <small style="color:var(--faint)">(Annex III reasoning, not a guess)</small></li>
+          <li>The 15 named anti-patterns, queryable by symptom</li>
+          <li>90-day playbooks and their named gates</li>
+          <li>Tooling options per control, with the evidence shape that passes audit</li>
+        </ul>
+
+        <pre><span class="c"># Claude Desktop / Cursor / Zed / Continue — claude_desktop_config.json</span>
+{
+  <span class="a">"mcpServers"</span>: {
+    <span class="a">"regulated-ai-compliance"</span>: {
+      <span class="a">"command"</span>: <span class="a">"npx"</span>,
+      <span class="a">"args"</span>: [<span class="a">"-y"</span>, <span class="a">"@hellouchit/mcp-regulated-ai-compliance"</span>]
+    }
+  }
+}</pre>
+
+        <p style="margin-top:14px"><b>Published with provenance.</b> npm package signed via sigstore,
+        listed on the MCP Registry, and runnable on Node or at the edge
+        (Cloudflare Workers, Deno Deploy, Vercel). Same source data as the
+        <a href="/dataset/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">public dataset</a>
+        and the <a href="/anti-patterns/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">anti-patterns catalogue</a>,
+        so the browser and the agent see the same facts.</p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/uchit/mcp-regulated-ai-compliance" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://www.npmjs.com/package/@hellouchit/mcp-regulated-ai-compliance" target="_blank" rel="noopener">npm package</a>
+          <a class="btn btn-ghost" href="https://github.com/uchit/mcp-regulated-ai-compliance/blob/main/README.md" target="_blank" rel="noopener">Read the README</a>
+        </div>
+      </article>
+
       <div class="more">
         <b>Coming next.</b> One small, runnable thing per quarter:
         a Terraform reusable workflow for SLSA L3+ paved paths;
@@ -223,11 +283,13 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
     <div class="wrap">
       <span class="lab">Also on this site</span>
       <nav class="also-links">
+        <a href="/situations/">Situations</a>
         <a href="/talks/">Talks</a>
         <a href="/letters/">Letters</a>
         <a href="/4-discipline-stack/">4-Discipline Stack</a>
         <a href="/reading/">Reading list</a>
         <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
         <a href="/press/">Press kit</a>
         <a href="/ai/">AI entity</a>
       </nav>

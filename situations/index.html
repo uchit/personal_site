@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Situations — start from the problem — Uchit Vyas</title>
+<meta name="description" content="Entry points by problem rather than by sector: a hard deadline with no architecture, an AI pilot stuck at risk review, a platform nobody uses, a cloud bill growing faster than the business." />
+<link rel="canonical" href="https://hellouchit.com/situations/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Situations — start from the problem — Uchit Vyas" />
+<meta property="og:description" content="Entry points by problem rather than by sector: a hard deadline with no architecture, an AI pilot stuck at risk review, a platform nobody uses, a cloud bill growing faster than the business." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<meta property="og:url" content="https://hellouchit.com/situations/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/diagnostic.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(!a||!a.href)return;
+    var u;try{u=new URL(a.href,location.href);}catch(_){return;}
+    if(!u.hostname||u.hostname===location.hostname)return;
+    var dest='outbound_click',h=u.hostname.replace(/^www\./,'');
+    if(/substack\.com$/.test(h))dest='substack_click';
+    else if(/linkedin\.com$/.test(h))dest='linkedin_click';
+    else if(/github\.com$/.test(h))dest='github_click';
+    gtag('event',dest,{link_url:a.href,link_domain:h,link_text:(a.innerText||'').slice(0,80)});
+  });
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · GenAI</span></span></a>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/tools/">Explore</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section style="padding:clamp(120px,14vw,176px) 0 clamp(36px,4vw,56px)"><div class="wrap">
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Situations</span></nav>
+      <span class="eyebrow">Start from the problem</span>
+      <h1 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.02em;margin-top:14px;max-width:20ch">
+        Named for what&rsquo;s <em style="font-style:italic;color:var(--accent)">actually going wrong</em>.
+      </h1>
+      <p style="margin-top:20px;color:var(--muted);font-size:clamp(16px,1.3vw,18px);line-height:1.7;max-width:62ch">
+        <a href="/for/" style="color:var(--ink);border-bottom:1px dotted var(--accent)">The sector views</a>
+        are for readers who already know they are a bank. These are for the ones
+        who arrive with a problem instead &mdash; the four that recur most across
+        engagements. Each names the symptoms, says what is usually actually
+        wrong, and routes to the diagnostic, playbook or paved path that moves it.
+      </p>
+    </div></section>
+
+    <section style="padding:clamp(40px,5vw,64px) 0 clamp(80px,10vw,128px);border-top:1px solid var(--line)"><div class="wrap">
+      <div class="writing-grid">
+        <a class="essay" href="/situations/deadline-no-architecture/">
+          <span class="essay-meta">Regulatory date &middot; fixed scope &middot; no target state</span>
+          <h3>There&rsquo;s a <em>hard deadline</em> and no architecture.</h3>
+          <p>A date committed externally, and the design underneath it does not exist yet. What to decide up front, and what to defer on purpose.</p>
+          <span class="essay-cta">Start here &rarr;</span>
+        </a>
+        <a class="essay" href="/situations/ai-pilot-stuck/">
+          <span class="essay-meta">Demo works &middot; legal blocked &middot; no path to production</span>
+          <h3>The AI pilot works. <em>Risk won&rsquo;t sign it off.</em></h3>
+          <p>The model works and the demo lands. It has been in front of risk for a quarter because nobody translated the obligation into engineering work.</p>
+          <span class="essay-cta">Start here &rarr;</span>
+        </a>
+        <a class="essay" href="/situations/platform-nobody-uses/">
+          <span class="essay-meta">Golden cage &middot; low adoption &middot; shadow tooling</span>
+          <h3>You built a platform. <em>Teams route around it.</em></h3>
+          <p>Funded, built, and quietly bypassed. Adoption gets reported as a communications problem. It is not a communications problem.</p>
+          <span class="essay-cta">Start here &rarr;</span>
+        </a>
+        <a class="essay" href="/situations/cloud-bill-out-of-control/">
+          <span class="essay-meta">No owner &middot; no unit economics &middot; finance asking</span>
+          <h3>The cloud bill is growing <em>faster than the business</em>.</h3>
+          <p>Finance is asking questions engineering cannot answer, and the last cost-cutting sprint bought three months before spend regrew.</p>
+          <span class="essay-cta">Start here &rarr;</span>
+        </a>
+      </div>
+      <p style="margin-top:48px;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:66ch">
+        These are entry points, not new material &mdash; every route points at
+        something already on the site. If your situation is not here, the
+        <a href="/tools/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">diagnostics</a>
+        are the fastest way to find out which one you are actually in.
+      </p>
+    </div></section>
+  </main>
+
+  <section class="also-strip" aria-label="More on this site">
+    <div class="wrap">
+      <span class="lab">Also on this site</span>
+      <nav class="also-links">
+        <a href="/situations/">Situations</a>
+        <a href="/talks/">Talks</a>
+        <a href="/letters/">Letters</a>
+        <a href="/4-discipline-stack/">4-Discipline Stack</a>
+        <a href="/reading/">Reading list</a>
+        <a href="/state-of-2026/">State of 2026</a>
+        <a href="/oss/">Open source</a>
+        <a href="/press/">Press kit</a>
+        <a href="/ai/">AI entity</a>
+      </nav>
+    </div>
+  </section>
+  <footer class="foot"><div class="wrap foot-inner">
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><a href="/">&larr; Home</a> &middot; <a href="/situations/">All situations</a></span>
+  </div></footer>
+</body>
+</html>

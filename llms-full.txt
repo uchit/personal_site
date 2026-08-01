@@ -41,6 +41,8 @@ Years of experience 15+ years across enterprise architecture, cloud, and platfor
 
 Specialties Enterprise architecture · cloud architecture (AWS, Azure, GCP) · DevSecOps · Site Reliability Engineering · Generative AI · platform engineering · FinOps · regulated-industry tech (financial services, government, healthcare, critical infrastructure)
 
+Ways of working Forward-deployed: embedded with the delivery team rather than advising from outside it. Typical shape — a regulated platform that has to reach production against a fixed external deadline, where the architecture, the pipeline and the audit evidence all have to land together. Leaves behind decision records, paved paths and policy-as-code rather than slide decks.
+
 Distinctions Named on the Top 50 DevSecOps Influencers globally; holder of US patent US11334348B2 for “Specs Monster — an intelligent design collaboration tool”; author of 5 books with Apress and Packt; 30+ public talks across ASEAN, Europe, and the United States; internal Bunsen Burner and Delivery Heroes awards.
 
 Canonical URL hellouchit.com
@@ -4949,13 +4951,13 @@ SECTION: Annual report
 ## State of Enterprise Tech in Regulated Industries 2026
 Source: https://hellouchit.com/state-of-2026/
 
-Annual report · 2026 · v1.0
+Living document · 2026 · v1.1
 
 ## State of Enterprise Tech in Regulated Industries.
 
 What’s actually shipping (and what isn’t) inside banks, government, healthcare and critical infrastructure this year. Practitioner read, cited sources, no vendor framing.
 
-By Uchit Vyas · first edition · Melbourne, AU
+By Uchit Vyas · Melbourne, AU · living document — last revised 1 Aug 2026
 
 Ten findings
 
@@ -5116,4 +5118,22 @@ That’s also the practitioner thesis behind The 4-Discipline Stack: enterprise 
 #### Run the diagnostics this report draws on
 
 DevSecOps Maturity → GenAI Readiness → Cloud Cost → Platform Engineering → EA Operating Model → SRE Programme →
+
+How this document is maintained
+
+### A living document, not a frozen annual.
+
+A dated annual report is stale by March and misleading by August — regulatory dates move, enforcement slips, and the numbers underneath the findings get revised. This one is revised in place when the evidence changes, and every revision is listed below so you can see what moved and when. If a finding here is load-bearing for a decision you are making, check the date on it.
+
+Corrections welcome. If a cited source has been superseded or a number is wrong, email me and it gets fixed with the revision noted.
+
+v1.1 1 Aug 2026
+
+Reframed from a fixed annual edition to a living document with this revision history. No findings changed.
+
+v1.0 15 May 2026
+
+First publication. Ten findings across GenAI, EU AI Act, supply-chain security, platform engineering, DORA, FinOps for AI, and regulated-industry delivery.
+
+Next scheduled review: January 2027 — or sooner if EU AI Act enforcement, APRA CPS 230 or the AU AI Safety Standard shifts materially.
 

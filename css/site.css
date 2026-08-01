@@ -1217,3 +1217,7 @@ img, video, iframe { max-width: 100%; height: auto; }
 .data-strip b { color: var(--accent); font-weight: 500; }
 .data-strip a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
 .data-strip a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Situation pages: the diagnosis block is multi-paragraph prose. */
+.sit-diagnosis p + p { margin-top: 1em; }
+.sit-diagnosis b { color: var(--ink); font-weight: 500; }
