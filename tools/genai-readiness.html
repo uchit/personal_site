@@ -17,9 +17,11 @@
 <link rel="stylesheet" href="/css/site.css" />
 <link rel="stylesheet" href="/css/enhance.css" />
 <link rel="stylesheet" href="/css/diagnostic.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
 <script src="/js/diagnostic.js" defer></script>
+<script src="/js/print.js" defer></script>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
@@ -162,7 +164,7 @@ window.addEventListener("DOMContentLoaded", function () {
         o:["Scattered across systems; quality unknown.","Centralised somewhere, but no lineage or freshness contract.","Catalogued with owners; quality and freshness measured.","Versioned datasets with PII controls; access governed.","Production-grade feature/data store with SLAs, lineage, retention and right-to-erasure built in."] },
       { cap:"Model selection", t:"How do you decide which model to use?",
         refs:[{name:"NIST AI RMF MAP-3.4",url:RMF},{name:"Stanford HELM",url:"https://crfm.stanford.edu/helm/"}],
-        o:["Whichever was in the demo.","One model picked on vibes — never re-evaluated.","A short-list with rough cost/latency notes.","Routed by use-case; cheaper model used where quality matches.","Gateway with model routing, fallbacks and per-use-case A/B; cost &amp; quality tracked per call."] },
+        o:["Whichever was in the demo.","One model picked on vibes — never re-evaluated.","A short-list with rough cost/latency notes.","Routed by use-case; cheaper model used where quality matches.","Gateway with model routing, fallbacks and per-use-case A/B; cost & quality tracked per call."] },
       { cap:"RAG architecture", t:"If you're doing retrieval-augmented generation, what does it look like?",
         refs:[{name:"OWASP LLM01 (Prompt Injection)",url:LLM10},{name:"Anthropic Contextual Retrieval",url:"https://www.anthropic.com/news/contextual-retrieval"}],
         o:["No RAG — we stuff context into the prompt.","Single vector store, basic chunking, no metadata filtering.","Hybrid retrieval (semantic + keyword); metadata filters; eval set.","Re-ranking, query rewriting, recursive retrieval; eval set covers edge cases.","Multi-index, source-aware citations, freshness-aware, retrieval quality measured separately from generation."] },
@@ -177,8 +179,8 @@ window.addEventListener("DOMContentLoaded", function () {
         o:["Nothing systematic.","Light system-prompt instructions ('don't say X').","Input/output filters for obvious categories (PII, profanity).","Policy-tuned classifiers + content filters + jailbreak detection.","Layered defence: input policy, model policy, output policy, escalation path; tested adversarially."] },
       { cap:"Observability", t:"Can you trace why the model said what it said?",
         refs:[{name:"OpenTelemetry GenAI semconv",url:"https://opentelemetry.io/docs/specs/semconv/gen-ai/"},{name:"NIST AI RMF MEASURE-3.2",url:RMF}],
-        o:["No — outputs disappear after the API call.","We log prompts and outputs somewhere.","Per-request tracing: prompt, retrieved context, model, latency, cost.","End-to-end traces linked to user session; quality &amp; cost dashboards per use-case.","Replayable traces with version pinning; production evals tied to traces; cost-per-outcome tracked."] },
-      { cap:"Cost &amp; latency", t:"Do you know the cost-per-outcome of the feature?",
+        o:["No — outputs disappear after the API call.","We log prompts and outputs somewhere.","Per-request tracing: prompt, retrieved context, model, latency, cost.","End-to-end traces linked to user session; quality & cost dashboards per use-case.","Replayable traces with version pinning; production evals tied to traces; cost-per-outcome tracked."] },
+      { cap:"Cost & latency", t:"Do you know the cost-per-outcome of the feature?",
         refs:[{name:"FinOps for AI WG",url:"https://www.finops.org/wg/ai/"},{name:"AWS Bedrock cost allocation",url:"https://docs.aws.amazon.com/bedrock/latest/userguide/cost-allocation.html"}],
         o:["No idea. The bill arrives monthly.","Aggregate spend tracked; per-feature is a guess.","Cost-per-request known; latency P50/P95 tracked.","Cost-per-resolved-task known; budgets per use-case.","Cost-per-outcome and quality-per-dollar tracked; routing decisions auto-tune for both."] },
       { cap:"Governance", t:"Who decides what the model is allowed to do — and who approves changes?",

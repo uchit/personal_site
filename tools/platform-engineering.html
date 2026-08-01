@@ -17,9 +17,11 @@
 <link rel="stylesheet" href="/css/site.css" />
 <link rel="stylesheet" href="/css/enhance.css" />
 <link rel="stylesheet" href="/css/diagnostic.css" />
+<link rel="stylesheet" href="/css/print.css" media="print" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
 <script src="/js/diagnostic.js" defer></script>
+<script src="/js/print.js" defer></script>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
@@ -166,11 +168,11 @@ window.addEventListener("DOMContentLoaded", function () {
         o:["A lot — and most of it isn't their service.","Several adjacent systems they shouldn't need to learn.","Their service + the platform abstractions; reasonable.","Their service + a thin platform surface; documented well.","Their service. The platform is a property they consume, not a system they reason about."] },
       { cap:"Team topology", t:"How is the platform team structured?",
         refs:[{name:"Team Topologies",url:TT},{name:"CNCF Maturity: Scalable",url:CNCF}],
-        o:["Ops team that 'does platform' on the side.","Dedicated team, but reactive — fixes tickets, not products.","Platform team with a roadmap; some product mindset.","Platform team runs platform as a product — discovery, prioritisation, internal users.","Platform org with stream-aligned, enabling and complicated-subsystem teams &mdash; funded for outcomes, not tickets."] },
+        o:["Ops team that 'does platform' on the side.","Dedicated team, but reactive — fixes tickets, not products.","Platform team with a roadmap; some product mindset.","Platform team runs platform as a product — discovery, prioritisation, internal users.","Platform org with stream-aligned, enabling and complicated-subsystem teams — funded for outcomes, not tickets."] },
       { cap:"Adoption signal", t:"Do you measure whether the platform is actually being used?",
         refs:[{name:"DevEx Index (DX)",url:"https://getdx.com/research/"},{name:"SPACE framework",url:SPACE}],
         o:["No — we ship it and hope.","Anecdotes from teams that complain.","Adoption metrics tracked per capability; reviewed quarterly.","NPS / developer-satisfaction surveys; adoption tied to outcomes.","Adoption + satisfaction + business outcome reported quarterly; under-used capabilities get sunset."] },
-      { cap:"Versioning &amp; change", t:"When the platform changes, what happens to consuming teams?",
+      { cap:"Versioning & change", t:"When the platform changes, what happens to consuming teams?",
         refs:[{name:"CNCF Maturity: Optimizing",url:CNCF}],
         o:["Surprise. They find out when something breaks.","Email a week before; some teams ready, most aren't.","Versioned APIs / templates; deprecation windows announced.","Versioned platform with migration tooling and timelines.","Breaking changes are rare events with auto-migration tooling; consuming teams informed via the portal."] },
       { cap:"Funding model", t:"How is the platform funded?",
@@ -231,7 +233,7 @@ window.addEventListener("DOMContentLoaded", function () {
             tools:"DX Index · internal survey + adoption telemetry from Backstage / Cortex",
             constraint:"Sunset decisions need executive air cover when one loud team relies on the deprecated capability.",
             refs:[{name:"DX Index",url:"https://getdx.com/research/"}] },
-          { what:"Move funding from 'cost-centre' to 'investment with outcomes' &mdash; speed, change-fail, adoption.",
+          { what:"Move funding from 'cost-centre' to 'investment with outcomes' — speed, change-fail, adoption.",
             why:"<a href='https://dora.community/research/2024/' target='_blank' rel='noopener'>DORA 2024</a> ties platform investment to delivery performance only when funded for outcomes.",
             tools:"Internal — partner with finance on outcome-based accounting",
             constraint:"Annual budget cycles in gov and FSI fight against multi-year capability funding.",

@@ -1,0 +1,254 @@
+/* print.css — turns a completed diagnostic, decision tree or calculator into a
+   circulable artefact.
+
+   The premise: someone runs a diagnostic, gets a score, and needs to bring it
+   into a steering committee on Monday. On screen the site is dark, decorative
+   and interactive; on paper it has to be light, dense and self-contained —
+   including the URL that reproduces the result, so the PDF round-trips back to
+   the live page.
+
+   Loaded with media="print", so none of this touches screen rendering. */
+
+@page {
+  size: A4;
+  margin: 16mm 14mm 18mm;
+}
+
+@media print {
+
+  /* ---- Palette inversion -------------------------------------------------
+     The screen theme is near-black. Printing it wastes toner and reads badly,
+     so the custom properties are re-pointed at a paper palette and the rest of
+     the cascade follows automatically. */
+  :root {
+    --bg:          #ffffff;
+    --bg-2:        #ffffff;
+    --surface:     #ffffff;
+    --surface-2:   #f7f7f8;
+    --ink:         #14161a;
+    --muted:       #43474e;
+    --faint:       #6b7078;
+    --line:        rgba(0,0,0,.16);
+    --line-strong: rgba(0,0,0,.28);
+    --accent:      #8a5520;
+    --accent-deep: #6f4318;
+    --accent-soft: rgba(138,85,32,.07);
+    --signal:      #1c6f52;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: var(--ink) !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  /* ---- Strip the furniture ---------------------------------------------- */
+  .bg-fx, .grid-fx, .grain,
+  header.nav, .menu-btn, .skip-link,
+  .also-strip, footer.foot,
+  .crumb, .fw-strip,
+  .sector-sel, .q-card, .q-progress, .q-nav,
+  .d-path, .d-noscript,
+  .result-actions, .btn,
+  .d-leaf .actions, .d-leaf .shared,
+  .cmdk-trigger, .cmdk, .cmdk-panel,
+  .tool-meta {
+    display: none !important;
+  }
+
+  /* Reveal-on-scroll leaves content at opacity:0 for anything the reader never
+     scrolled past. In print that silently blanks whole sections. */
+  .reveal, [class*="reveal"] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  main, .wrap, section {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Document header --------------------------------------------------
+     The on-screen hero carries the diagnostic's name; keep it as the title
+     block but strip the oversized display sizing. */
+  .tool-hero, .calc-hero, .d-hero {
+    padding: 0 0 8pt !important;
+    border-bottom: 1.5pt solid var(--accent);
+    margin-bottom: 12pt !important;
+    break-after: avoid;
+  }
+  .tool-hero h1, .calc-hero h1, .d-hero h1 {
+    font-size: 20pt !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+  .tool-hero .dek, .calc-hero .dek, .d-hero .dek {
+    font-size: 9.5pt !important;
+    margin-top: 4pt !important;
+    max-width: none !important;
+  }
+
+  /* ---- Score block ------------------------------------------------------ */
+  .result { display: block !important; }
+
+  .result-hero {
+    display: grid !important;
+    grid-template-columns: 34% 1fr !important;
+    gap: 14pt !important;
+    padding: 10pt 12pt !important;
+    border: 1pt solid var(--line-strong);
+    border-radius: 4pt;
+    background: var(--surface-2) !important;
+    break-inside: avoid;
+    margin-bottom: 12pt !important;
+  }
+  .result-score  { font-size: 30pt !important; line-height: 1 !important; }
+  .result-level  { font-size: 12pt !important; margin-top: 3pt !important; }
+  .result-eyebrow{ font-size: 7.5pt !important; letter-spacing: .14em !important; }
+  .result-bench  { font-size: 8pt !important; margin-top: 6pt !important; }
+  .result-body   { font-size: 9.5pt !important; }
+
+  .result-bar { height: 5pt !important; border: .5pt solid var(--line-strong); }
+  .result-bar .fill { background: var(--accent) !important; }
+
+  /* ---- Capability breakdown ---------------------------------------------
+     The bars are the part people actually photograph and paste into a deck, so
+     they must survive the colour inversion legibly. */
+  .cap-breakdown { break-inside: avoid; margin-bottom: 12pt !important; }
+  .cap-row {
+    break-inside: avoid;
+    padding: 2.5pt 0 !important;
+    gap: 8pt !important;
+  }
+  .cap-name  { font-size: 9pt !important; }
+  .cap-score { font-size: 8.5pt !important; }
+  .cap-bar {
+    height: 6pt !important;
+    background: #e9eaec !important;
+    border: .5pt solid var(--line-strong);
+    border-radius: 2pt;
+  }
+  .cap-bar .cf { background: var(--accent) !important; }
+
+  /* ---- Recommendations, sector lens, references ------------------------- */
+  .sector-lens {
+    break-inside: avoid;
+    border-left: 2pt solid var(--accent);
+    background: var(--accent-soft) !important;
+    padding: 7pt 10pt !important;
+    margin-bottom: 12pt !important;
+    font-size: 9pt !important;
+  }
+
+  .recs-detail li, .refs-section .ref-card, .result-recs-mini li {
+    break-inside: avoid;
+    font-size: 9pt !important;
+  }
+  /* The counter is absolutely positioned into a 50px gutter by diagnostic.css,
+     so the left padding has to survive the print reset or the number lands on
+     top of the text. */
+  .recs-detail li {
+    padding: 6pt 0 7pt 26pt !important;
+    border-bottom: .5pt solid var(--line);
+  }
+  .recs-detail li::before { top: 6pt !important; font-size: 8.5pt !important; }
+  .recs-detail .what { font-size: 10pt !important; font-weight: 600; }
+  .recs-detail .why  { margin-top: 2pt !important; }
+  .recs-detail .meta { font-size: 8pt !important; margin-top: 3pt !important; }
+
+  /* The reference library is the last block, so it takes whatever space is
+     left. Keeping it off a page of its own avoids a single orphaned card
+     trailing onto a final near-empty sheet. */
+  .refs-section { break-before: avoid; }
+  .refs-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6pt !important;
+    orphans: 2;
+    widows: 2;
+  }
+  .ref-card {
+    border: .5pt solid var(--line) !important;
+    padding: 5pt 7pt !important;
+    background: none !important;
+  }
+  .ref-card .read { display: none !important; }
+
+  h2, h3 { break-after: avoid; }
+  h3 { font-size: 11pt !important; margin-bottom: 5pt !important; }
+
+  /* ---- Decision trees ----------------------------------------------------
+     Only the arrived-at leaf is meaningful on paper; the question cards are
+     navigation. .d-path is hidden above, so the chosen route is restated by
+     the leaf itself. */
+  .d-leaf {
+    break-inside: auto;
+    border: 1pt solid var(--line-strong) !important;
+    padding: 10pt 12pt !important;
+    background: none !important;
+  }
+  .d-q, .d-opts, .d-opt { display: none !important; }
+  .dx-grid { grid-template-columns: 1fr 1fr !important; gap: 6pt !important; }
+  .dx-card { break-inside: avoid; border: .5pt solid var(--line) !important; }
+
+  /* ---- Calculators ------------------------------------------------------ */
+  .calc { display: block !important; }
+  .panel, .verdict, .v-block, .v-insight {
+    break-inside: avoid;
+    border: .5pt solid var(--line) !important;
+    background: none !important;
+  }
+  .ctrl input, .ctrl select, .seg { border: .5pt solid var(--line-strong) !important; }
+  .v-num  { font-size: 18pt !important; }
+  .v-bar  { border: .5pt solid var(--line-strong); }
+
+  /* ---- Links -------------------------------------------------------------
+     Citations are the point of these pages — a printed reference with no URL
+     is not a citation. Expand external hrefs inline; leave in-page anchors and
+     mailto alone, where the expansion is noise. */
+  a { color: var(--ink) !important; text-decoration: none !important; }
+  .recs-detail a[href^="http"]::after,
+  .ref-card[href^="http"]::after,
+  .q-refs a[href^="http"]::after,
+  .sector-lens a[href^="http"]::after,
+  .d-leaf a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 7.5pt;
+    color: var(--faint);
+    word-break: break-all;
+  }
+
+  /* ---- Reproducibility footer -------------------------------------------
+     Injected by print.js: the shareable URL that regenerates this exact
+     result, so the PDF is a pointer back to the live tool rather than a
+     dead end. */
+  .print-stamp {
+    display: block !important;
+    margin-top: 14pt;
+    padding-top: 6pt;
+    border-top: .5pt solid var(--line-strong);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7.5pt;
+    line-height: 1.5;
+    color: var(--faint);
+  }
+  .print-stamp b { color: var(--ink); font-weight: 600; }
+  .print-stamp .u { word-break: break-all; }
+}
+
+/* Hidden on screen; only the print context reveals it. */
+.print-stamp { display: none; }
