@@ -1223,3 +1223,15 @@ img, video, iframe { max-width: 100%; height: auto; }
 .sit-diagnosis b { color: var(--ink); font-weight: 500; }
 
 .contact .ct-ico-row { margin-top: clamp(32px,4vw,44px); }
+
+/* The Method — arc map in the hero. Seven steps, always visible, so the
+   sequence is legible before any scrolling happens. */
+.ex-arc { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.ex-arc a {
+  display:inline-flex; align-items:baseline; gap:7px;
+  padding:8px 13px; border:1px solid var(--line-strong); border-radius:999px;
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.06em;
+  color:var(--muted); transition:border-color .2s,color .2s,background .2s;
+}
+.ex-arc a b { color:var(--accent); font-weight:500; }
+.ex-arc a:hover { border-color:var(--accent); color:var(--ink); background:var(--accent-soft); }

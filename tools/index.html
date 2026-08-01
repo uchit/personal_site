@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Explore — Uchit Vyas</title>
+<title>The Method — Uchit Vyas</title>
 <meta name="description" content="Everything on hellouchit.com, grouped by what you came for. Diagnose where you stand · make architecture decisions · ship the substrate · learn from public architectures · find the regulation × tool map." />
 <link rel="canonical" href="https://hellouchit.com/tools/" />
 <meta name="theme-color" content="#0c0d10" />
@@ -165,7 +165,7 @@
       <nav class="links" aria-label="Primary">
         <a href="/#about">About</a>
         <a href="/#work">Work</a>
-        <a href="/tools/" style="color:var(--ink)">Explore</a>
+        <a href="/tools/" style="color:var(--ink)">The Method</a>
         <a href="/writing/">Writing</a>
         <a href="/#contact" class="nav-cta">Get in touch</a>
       </nav>
@@ -176,10 +176,19 @@
   <main id="main" tabindex="-1">
 
     <section class="ex-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Explore</span></nav>
-      <span class="eyebrow">Explore</span>
-      <h1>Everything here, <em>grouped by what you came for</em>.</h1>
-      <p class="dek">Diagnose where you stand &middot; make an architecture decision &middot; ship the substrate &middot; look up which tool closes which regulation &middot; learn from public architectures. Pick a question below, or jump to a section.</p>
+      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">The Method</span></nav>
+      <span class="eyebrow">The Method</span>
+      <h1>The method, <em>in order</em>.</h1>
+      <p class="dek">Seven steps, and everything on this site sits at exactly one of them. Name the problem, find out where you stand, check it against evidence, decide the forks, design and sequence the build, then prove it worked. <b>Each step says what it hands to the next</b> &mdash; nothing here is meant to be a destination.</p>
+      <div class="ex-arc" aria-label="The seven steps">
+        <a href="#s1"><b>01</b> Name it</a>
+        <a href="#s2"><b>02</b> Locate it</a>
+        <a href="#s3"><b>03</b> Check it</a>
+        <a href="#s4"><b>04</b> Decide it</a>
+        <a href="#s5"><b>05</b> Design &amp; sequence</a>
+        <a href="#s6"><b>06</b> Prove it</a>
+        <a href="#s7"><b>07</b> Go deeper</a>
+      </div>
       <div class="data-strip">
         <span>Machine-readable <a href="/tools/diagnostics.json" target="_blank">diagnostics.json</a></span>
         <span>License <b>CC BY 4.0</b></span>
@@ -212,12 +221,28 @@
     </div></section>
 
     <!-- BAND 1 — Diagnose -->
-    <section class="ex-band"><div class="wrap">
+    <section class="ex-band" id="s1"><div class="wrap">
       <div class="head">
         <div>
-          <span class="num">01 &middot; Diagnose</span>
+          <span class="num">01 &middot; Name it</span>
+          <h2>What&rsquo;s <em>actually</em> going wrong?</h2>
+          <p class="sub">Everything after this depends on naming the problem correctly. Most engagements that go badly were mis-named in week one.</p>
+        </div>
+      </div>
+
+      <div class="ex-cards">
+        <a class="ex-card" href="/situations/"><span class="tg">Four recurring situations</span><h3>Start from the problem</h3><p>A hard deadline with no architecture &middot; an AI pilot stuck at risk review &middot; a platform nobody uses &middot; a cloud bill outgrowing the business.</p><span class="arr">Find yours &rarr;</span></a>
+        <a class="ex-card" href="/for/"><span class="tg">Four sector bundles</span><h3>Or start from your regulatory floor</h3><p>Banks &amp; FS &middot; government &middot; healthcare &middot; critical infrastructure. Which obligations bind and which controls stop being optional.</p><span class="arr">Open a sector &rarr;</span></a>
+        <a class="ex-card" href="/how-i-work/"><span class="tg">Forward deployed</span><h3>How I work when I&rsquo;m embedded</h3><p>If you&rsquo;d rather someone walked the whole arc below with your team: day one, the first two weeks, and what I won&rsquo;t do.</p><span class="arr">Read &rarr;</span></a>
+      </div>
+        <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Named it? &rarr; Step 02 tells you how far from good you actually are.</p>
+    </div></section>
+    <section class="ex-band" id="s2"><div class="wrap">
+      <div class="head">
+        <div>
+          <span class="num">02 &middot; Locate it</span>
           <h2>Where do you <em>actually stand</em>?</h2>
-          <p class="sub">Six practitioner diagnostics + three live calculators. All run in your browser; nothing stored; results shareable via URL hash.</p>
+          <p class="sub">Six practitioner diagnostics, then the compound view that synthesises them. All run in your browser; nothing stored; results shareable via URL.</p>
         </div>
       </div>
 
@@ -229,56 +254,17 @@
         <a class="ex-card" href="/tools/ea-operating-model.html"><span class="tg">Diagnostic &middot; 8 capabilities</span><h3>EA Operating Model</h3><p>Stance, design authority, capability model, principle enforcement, decision capture.</p><span class="arr">Run &rarr;</span></a>
         <a class="ex-card" href="/tools/sre-programme.html"><span class="tg">Diagnostic &middot; 10 capabilities</span><h3>SRE Programme</h3><p>SLOs, error budgets, blast radius, on-call, postmortems, runbooks, chaos, toil.</p><span class="arr">Run &rarr;</span></a>
 
-        <a class="ex-card" href="/tools/calculators/genai-cost.html"><span class="tg">Live calculator</span><h3>GenAI Cost-Per-Outcome</h3><p>Tune model + tokens + cache rate. See cost-per-resolved-task live.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/tools/calculators/error-budget.html"><span class="tg">Live calculator</span><h3>Error Budget</h3><p>SLO, window, deploy cadence, change-fail. Burn rate + time-to-exhaustion.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/tools/calculators/commitment-optimiser.html"><span class="tg">Live calculator</span><h3>Cloud Commitment Optimiser</h3><p>Provider, steady-state %, 1y/3y mix. Savings + lock-in + breakeven.</p><span class="arr">Open &rarr;</span></a>
-
         <a class="ex-card" href="/tools/compound/"><span class="tg">Synthesizer &middot; combines diagnostic results</span><h3>Compound diagnostic</h3><p>Paste shareable URLs from your runs. See the substrate gap (identity, observability, policy, ownership) recurring across disciplines.</p><span class="arr">Open &rarr;</span></a>
         <a class="ex-card" href="/maturity/"><span class="tg">Per-discipline tier deep-dives</span><h3>Maturity tiers</h3><p>What each tier looks like in real orgs, why teams get stuck, the 3 substrate moves to the next tier.</p><span class="arr">Browse &rarr;</span></a>
       </div>
-    </div></section>
+            <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Know where you stand? &rarr; Step 03 checks it against evidence rather than instinct.</p>
+</div></section>
 
     <!-- BAND 2 — Decide -->
-    <section class="ex-band"><div class="wrap">
+    <section class="ex-band" id="s3"><div class="wrap">
       <div class="head">
         <div>
-          <span class="num">02 &middot; Decide</span>
-          <h2>Walk the <em>architectural choice</em>.</h2>
-          <p class="sub">Seven interactive flowcharts for the decisions that recur. Each ends in a recommendation with trade-offs, watch-outs, and cross-links to diagnostic / RA / essay.</p>
-        </div>
-      </div>
-
-      <div class="ex-cards">
-        <a class="ex-card" href="/decisions/"><span class="tg">All decision trees</span><h3>The seven trees</h3><p>AI gateway · RAG vs fine-tune · OPA vs Kyverno · tenancy · K8s vs PaaS · sync vs async · monolith vs microservices.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/decisions/ai-gateway.html"><span class="tg">GenAI &middot; 4 questions &middot; 6 leaves</span><h3>Build or <em>buy</em> an AI gateway</h3><p>Use-case count × regulatory posture × platform-team funding × sovereignty.</p><span class="arr">Walk &rarr;</span></a>
-        <a class="ex-card" href="/decisions/llm-integration-pattern.html"><span class="tg">GenAI &middot; 4 questions &middot; 7 leaves</span><h3>RAG, fine-tune, prompt, or hybrid</h3><p>Knowledge-vs-behaviour fork. Change cadence. Example count. Strict vs loose.</p><span class="arr">Walk &rarr;</span></a>
-        <a class="ex-card" href="/decisions/tenancy-model.html"><span class="tg">SaaS &middot; 4 questions &middot; 6 leaves</span><h3>Shared, cell-based, or single-tenant</h3><p>Load uniformity × isolation requirements × head-tenant count.</p><span class="arr">Walk &rarr;</span></a>
-      </div>
-    </div></section>
-
-    <!-- BAND 3 — Ship -->
-    <section class="ex-band"><div class="wrap">
-      <div class="head">
-        <div>
-          <span class="num">03 &middot; Ship</span>
-          <h2>Get to the <em>substrate</em>.</h2>
-          <p class="sub">Dated 90-day playbooks with named gates, plus reference architectures for the platform shape that holds the controls. Both lean opinionated.</p>
-        </div>
-      </div>
-
-      <div class="ex-cards">
-        <a class="ex-card" href="/playbooks/"><span class="tg">All 90-day playbooks</span><h3>The four playbooks</h3><p>EU AI Act 12 weeks · CISA SSA 90 days · Cloud Cost Aware → Controlled · Vault Theatre → Workload Identity.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/playbooks/eu-ai-act-12-weeks.html"><span class="tg">GenAI &middot; high-risk</span><h3>EU AI Act <em>in 12 weeks</em></h3><p>From Piloting to Art. 9-15 ready by 2 Aug 2026. Three phases, twelve named gates.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/reference-architectures/"><span class="tg">All reference architectures</span><h3>The four RAs</h3><p>Regulated GenAI Platform · DevSecOps SLSA L3+ Paved Path · Modern Data Platform · Platform Engineering IDP.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/4-discipline-stack/"><span class="tg">Framework</span><h3>The 4-Discipline Stack</h3><p>Named framework that anchors the rest. Substrate beats discipline-specific theatre.</p><span class="arr">Read &rarr;</span></a>
-      </div>
-    </div></section>
-
-    <!-- BAND 4 — Reference -->
-    <section class="ex-band"><div class="wrap">
-      <div class="head">
-        <div>
-          <span class="num">04 &middot; Look up</span>
+          <span class="num">03 &middot; Check it</span>
           <h2>Which tool, <em>which regulation</em>, what evidence?</h2>
           <p class="sub">The reference dataset, the glossary, the reading list. Free, public, CC BY 4.0 where applicable.</p>
         </div>
@@ -290,13 +276,68 @@
         <a class="ex-card" href="/reading/"><span class="tg">When to reach for what</span><h3>Reading list</h3><p>Organised by use-case, not alphabetically. Eight clusters; books · standards · podcasts · conferences.</p><span class="arr">Open &rarr;</span></a>
         <a class="ex-card" href="/anti-patterns/"><span class="tg">15 named failure modes</span><h3>Anti-patterns</h3><p>The recurring shapes that go wrong. Each linked from the diagnostic / playbook that closes it.</p><span class="arr">Browse &rarr;</span></a>
       </div>
-    </div></section>
+            <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Facts straight? &rarr; Step 04 is the forks you now have to take.</p>
+</div></section>
 
     <!-- BAND 5 — Learn -->
-    <section class="ex-band"><div class="wrap">
+    <section class="ex-band" id="s4"><div class="wrap">
       <div class="head">
         <div>
-          <span class="num">05 &middot; Learn from others</span>
+          <span class="num">04 &middot; Decide it</span>
+          <h2>Walk the <em>architectural choice</em>.</h2>
+          <p class="sub">Seven interactive flowcharts for the decisions that recur. Each ends in a recommendation with trade-offs, watch-outs, and cross-links to diagnostic / RA / essay.</p>
+        </div>
+      </div>
+
+      <div class="ex-cards">
+        <a class="ex-card" href="/decisions/"><span class="tg">All decision trees</span><h3>The seven trees</h3><p>AI gateway · RAG vs fine-tune · OPA vs Kyverno · tenancy · K8s vs PaaS · sync vs async · monolith vs microservices.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/decisions/ai-gateway.html"><span class="tg">GenAI &middot; 4 questions &middot; 6 leaves</span><h3>Build or <em>buy</em> an AI gateway</h3><p>Use-case count × regulatory posture × platform-team funding × sovereignty.</p><span class="arr">Walk &rarr;</span></a>
+        <a class="ex-card" href="/decisions/llm-integration-pattern.html"><span class="tg">GenAI &middot; 4 questions &middot; 7 leaves</span><h3>RAG, fine-tune, prompt, or hybrid</h3><p>Knowledge-vs-behaviour fork. Change cadence. Example count. Strict vs loose.</p><span class="arr">Walk &rarr;</span></a>
+        <a class="ex-card" href="/decisions/tenancy-model.html"><span class="tg">SaaS &middot; 4 questions &middot; 6 leaves</span><h3>Shared, cell-based, or single-tenant</h3><p>Load uniformity × isolation requirements × head-tenant count.</p><span class="arr">Walk &rarr;</span></a>
+      </div>
+            <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Decided? &rarr; Step 05 is the shape you build, and the order you build it in.</p>
+</div></section>
+
+    <!-- BAND 3 — Ship -->
+    <section class="ex-band" id="s5"><div class="wrap">
+      <div class="head">
+        <div>
+          <span class="num">05 &middot; Design &amp; sequence it</span>
+          <h2>Get to the <em>substrate</em>.</h2>
+          <p class="sub">Dated 90-day playbooks with named gates, plus reference architectures for the platform shape that holds the controls. Both lean opinionated.</p>
+        </div>
+      </div>
+
+      <div class="ex-cards">
+        <a class="ex-card" href="/playbooks/"><span class="tg">All 90-day playbooks</span><h3>The four playbooks</h3><p>EU AI Act 12 weeks · CISA SSA 90 days · Cloud Cost Aware → Controlled · Vault Theatre → Workload Identity.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/playbooks/eu-ai-act-12-weeks.html"><span class="tg">GenAI &middot; high-risk</span><h3>EU AI Act <em>in 12 weeks</em></h3><p>From Piloting to Art. 9-15 ready by 2 Aug 2026. Three phases, twelve named gates.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/reference-architectures/"><span class="tg">All reference architectures</span><h3>The four RAs</h3><p>Regulated GenAI Platform · DevSecOps SLSA L3+ Paved Path · Modern Data Platform · Platform Engineering IDP.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/4-discipline-stack/"><span class="tg">Framework</span><h3>The 4-Discipline Stack</h3><p>Named framework that anchors the rest. Substrate beats discipline-specific theatre.</p><span class="arr">Read &rarr;</span></a>
+      </div>
+            <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Building it? &rarr; Step 06 is how you show it worked.</p>
+</div></section>
+
+    <!-- BAND 4 — Reference -->
+    <section class="ex-band" id="s6"><div class="wrap">
+      <div class="head">
+        <div>
+          <span class="num">06 &middot; Prove it</span>
+          <h2>How do you know it <em>worked</em>?</h2>
+          <p class="sub">Instruments for the numbers a steering committee asks for. Everything runs in your browser; nothing stored; results shareable via URL.</p>
+        </div>
+      </div>
+
+      <div class="ex-cards">
+        <a class="ex-card" href="/tools/calculators/genai-cost.html"><span class="tg">Live calculator</span><h3>GenAI Cost-Per-Outcome</h3><p>Tune model + tokens + cache rate. See cost-per-resolved-task live.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/tools/calculators/error-budget.html"><span class="tg">Live calculator</span><h3>Error Budget</h3><p>SLO, window, deploy cadence, change-fail. Burn rate + time-to-exhaustion.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/tools/calculators/commitment-optimiser.html"><span class="tg">Live calculator</span><h3>Cloud Commitment Optimiser</h3><p>Provider, steady-state %, 1y/3y mix. Savings + lock-in + breakeven.</p><span class="arr">Open &rarr;</span></a>
+      </div>
+        <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">End of the loop &mdash; and the start of the next one. Step 07 is where the arguments live.</p>
+    </div></section>
+    <section class="ex-band" id="s7"><div class="wrap">
+      <div class="head">
+        <div>
+          <span class="num">07 &middot; Go deeper</span>
           <h2>Public architectures, <em>decoded</em>.</h2>
           <p class="sub">Teardowns of public products from public signals only (engineering blogs · talks · job ads · live behaviour). Plus my own case studies.</p>
         </div>
@@ -308,31 +349,14 @@
         <a class="ex-card" href="/case-studies/"><span class="tg">My own work</span><h3>Case studies</h3><p>Multi-region payment platform, EA at Asia's largest bank, lending platform, retail modernisation, $50M+ data-archival.</p><span class="arr">Browse &rarr;</span></a>
         <a class="ex-card" href="/state-of-2026/"><span class="tg">Annual report</span><h3>State of Enterprise Tech 2026</h3><p>Board-ready 12-page briefing on regulated-industries tech.</p><span class="arr">Read &rarr;</span></a>
       </div>
-    </div></section>
+            <p style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint)">Or return to <a href="/situations/" style="color:var(--accent)">step 01</a> with a sharper question.</p>
+</div></section>
 
     <!-- BAND 6 — Sectors -->
-    <section class="ex-band"><div class="wrap">
+    <section class="ex-band" id="s8"><div class="wrap">
       <div class="head">
         <div>
-          <span class="num">06 &middot; For your sector</span>
-          <h2>Sized for the <em>regulatory floor</em>.</h2>
-          <p class="sub">Sector-keyed bundles: the diagnostics, RAs, playbooks, anti-patterns, and dataset rows most relevant to each.</p>
-        </div>
-      </div>
-
-      <div class="ex-cards">
-        <a class="ex-card" href="/for/banks/"><span class="tg">APRA CPS 230/234 &middot; EU DORA &middot; EU AI Act</span><h3>For Banks &amp; FS</h3><p>Core modernisation, GenAI in customer journeys, supply-chain attestation, operational resilience.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/for/government/"><span class="tg">ASD E8 &middot; IRAP &middot; AU AI Safety &middot; NIST 800-53</span><h3>For Government</h3><p>E8 ML2/ML3, IRAP-ready architecture, AU AI Safety guardrails translated into engineering work.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/for/healthcare/"><span class="tg">HIPAA &middot; AU Privacy &middot; FDA SaMD &middot; EU AI Act</span><h3>For Healthcare</h3><p>Clinical decision support, patient-data lineage, post-market surveillance.</p><span class="arr">Open &rarr;</span></a>
-        <a class="ex-card" href="/for/critical-infrastructure/"><span class="tg">SOCI &middot; EU NIS2 &middot; US CIRCIA &middot; IEC 62443</span><h3>For Critical Infrastructure</h3><p>IT-OT convergence, supply-chain attestation, resilience testing.</p><span class="arr">Open &rarr;</span></a>
-      </div>
-    </div></section>
-
-    <!-- BAND 7 — Writing & ongoing -->
-    <section class="ex-band"><div class="wrap">
-      <div class="head">
-        <div>
-          <span class="num">07 &middot; Writing &amp; ongoing</span>
+          <span class="num">&nbsp;</span>
           <h2>Read more, <em>subscribe</em>.</h2>
           <p class="sub">Six cornerstone essays, the monthly Letters, the open-source repo, the press kit.</p>
         </div>
