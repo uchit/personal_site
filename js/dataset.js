@@ -11,7 +11,10 @@
     q: "",
   };
 
-  const chips = $$(".ds-chip");
+  /* The coverage panel repeats the regulation chips grouped by how deeply each
+     one is actually mapped. They are the same filter by another route, so they
+     bind here too — otherwise they look clickable and do nothing. */
+  const chips = $$(".ds-chip, .cov-chip");
   const search = $(".ds-search");
   const clear = $(".ds-clear");
   const rows = $$(".ds-row");
@@ -73,10 +76,17 @@
       else if (k === "sector") v.split(",").forEach(x => state.sector.add(x));
       else if (k === "q") { state.q = decodeURIComponent(v); search.value = state.q; }
     });
+    syncChips();
+  }
+
+  /* A regulation now has two chips — one in the filter bar, one in the
+     coverage panel. Drive both off state rather than toggling the clicked
+     element, or they disagree the moment either is used. */
+  function syncChips() {
     chips.forEach(c => {
       const f = c.dataset.filter;
       const v = c.dataset.value;
-      if (state[f] && state[f].has(v)) c.classList.add("active");
+      c.classList.toggle("active", !!(state[f] && state[f].has(v)));
     });
   }
 
@@ -85,9 +95,18 @@
     chip.addEventListener("click", () => {
       const f = chip.dataset.filter;
       const v = chip.dataset.value;
-      if (state[f].has(v)) { state[f].delete(v); chip.classList.remove("active"); }
-      else { state[f].add(v); chip.classList.add("active"); }
+      if (state[f].has(v)) state[f].delete(v);
+      else state[f].add(v);
+      syncChips();
       render();
+      /* Coverage chips sit above the results inside a collapsed panel. Without
+         this the filter applies somewhere the reader can't see. */
+      if (chip.classList.contains("cov-chip")) {
+        const panel = chip.closest("details.cov");
+        if (panel) panel.open = false;
+        const rowsTop = document.querySelector(".ds-row");
+        if (rowsTop) rowsTop.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
   });
 
@@ -101,7 +120,7 @@
   // Clear all
   clear.addEventListener("click", () => {
     state.reg.clear(); state.cat.clear(); state.sector.clear(); state.q = "";
-    chips.forEach(c => c.classList.remove("active"));
+    syncChips();
     search.value = "";
     render();
   });

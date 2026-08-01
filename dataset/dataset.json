@@ -2915,5 +2915,142 @@
       ],
       "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one."
     }
-  ]
+  ],
+  "coverage": {
+    "generated_by": "scripts/build-coverage.mjs",
+    "tiers": [
+      {
+        "id": "mapped",
+        "min_controls": 8,
+        "label": "Mapped",
+        "note": "Enough controls to work from as a starting position."
+      },
+      {
+        "id": "partial",
+        "min_controls": 4,
+        "label": "Partial",
+        "note": "The main themes are covered; treat gaps as expected."
+      },
+      {
+        "id": "indicative",
+        "min_controls": 1,
+        "label": "Indicative",
+        "note": "Illustrative only — not a basis for an assessment."
+      }
+    ],
+    "by_regulation": {
+      "iso27001": {
+        "controls": 26,
+        "tier": "mapped"
+      },
+      "sp80053": {
+        "controls": 21,
+        "tier": "mapped"
+      },
+      "eu_ai_act": {
+        "controls": 15,
+        "tier": "mapped"
+      },
+      "iso42001": {
+        "controls": 15,
+        "tier": "mapped"
+      },
+      "cps230": {
+        "controls": 12,
+        "tier": "mapped"
+      },
+      "e8": {
+        "controls": 11,
+        "tier": "mapped"
+      },
+      "hipaa": {
+        "controls": 9,
+        "tier": "mapped"
+      },
+      "cps234": {
+        "controls": 8,
+        "tier": "mapped"
+      },
+      "gdpr": {
+        "controls": 7,
+        "tier": "partial"
+      },
+      "dora": {
+        "controls": 7,
+        "tier": "partial"
+      },
+      "nis2": {
+        "controls": 7,
+        "tier": "partial"
+      },
+      "ai_rmf": {
+        "controls": 7,
+        "tier": "partial"
+      },
+      "soci": {
+        "controls": 6,
+        "tier": "partial"
+      },
+      "privacy_au": {
+        "controls": 6,
+        "tier": "partial"
+      },
+      "ssdf": {
+        "controls": 6,
+        "tier": "partial"
+      },
+      "pci": {
+        "controls": 6,
+        "tier": "partial"
+      },
+      "ai_safety_au": {
+        "controls": 5,
+        "tier": "partial"
+      },
+      "owasp_llm": {
+        "controls": 4,
+        "tier": "partial"
+      },
+      "cisa_ssa": {
+        "controls": 3,
+        "tier": "indicative"
+      },
+      "bcbs239": {
+        "controls": 3,
+        "tier": "indicative"
+      },
+      "atlas": {
+        "controls": 3,
+        "tier": "indicative"
+      },
+      "slsa": {
+        "controls": 2,
+        "tier": "indicative"
+      },
+      "circia": {
+        "controls": 2,
+        "tier": "indicative"
+      },
+      "fda_samd": {
+        "controls": 2,
+        "tier": "indicative"
+      },
+      "iec62443": {
+        "controls": 1,
+        "tier": "indicative"
+      },
+      "iso13485": {
+        "controls": 1,
+        "tier": "indicative"
+      },
+      "iec62304": {
+        "controls": 1,
+        "tier": "indicative"
+      },
+      "irap": {
+        "controls": 1,
+        "tier": "indicative"
+      }
+    }
+  }
 }
