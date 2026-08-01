@@ -21,18 +21,19 @@ the stale one.
 
 ```sh
 # Lies to you — different URL, so it bypasses the edge cache
-curl -s https://hellouchit.com/js/contact.js?cb=$RANDOM | grep something
+curl -s https://hellouchit.com/css/site.css?cb=$RANDOM | grep something
 
 # Tells the truth
-curl -sI https://hellouchit.com/js/contact.js | grep -i 'cf-cache-status\|age'
+curl -sI https://hellouchit.com/css/site.css | grep -i 'cf-cache-status\|age'
 #   cf-cache-status: HIT
 #   age: 445            ← being served from cache, 445s old
 ```
 
-This cost real debugging time once already: a rewritten `contact.js` was live on
-the origin and confirmed by `curl`, while the browser kept executing the previous
+This cost real debugging time once already. A rewritten JS file was live on the
+origin and confirmed by `curl`, while the browser kept executing the previous
 version and throwing errors that could only come from code that no longer
-existed.
+existed. (That file has since been removed, but the trap is general — it applies
+to every JS and CSS change.)
 
 ### After any deploy that changes JS or CSS
 
@@ -40,10 +41,10 @@ Cloudflare dashboard → **Caching → Configuration → Custom Purge → URL**,
 the changed files plus the pages that reference them:
 
 ```
-https://hellouchit.com/js/contact.js
 https://hellouchit.com/
 https://hellouchit.com/index.html
 https://hellouchit.com/css/site.css
+https://hellouchit.com/js/enhance.js
 ```
 
 Purge Everything works too and is harmless on a site this size — it just
@@ -69,22 +70,23 @@ curl -sI https://hellouchit.com/path | grep -i 'cf-cache-status\|age\|last-modif
 support. The live headers come from a Cloudflare Transform Rule. See
 [security-headers.md](./security-headers.md). Change both together or they drift.
 
-## Contact form
+## Contact
 
-Web3Forms, free tier. Two things worth knowing before debugging it:
+Email only — `contact@hellouchit.com`, plus the LinkedIn and profile-PDF icons in
+the contact section. There is deliberately no form.
 
-- **It sends no CORS headers.** An in-page `fetch()` fails every time regardless
-  of whether the key is valid. The form therefore submits natively (a real POST
-  that navigates), which sidesteps CORS entirely and works with JS disabled.
-  Success redirects to `/thanks/` via a hidden field.
-- **It refuses server-side submissions** on the free plan, and sits behind
-  Cloudflare bot protection. So the endpoint cannot be smoke-tested with `curl`
-  or from an automated browser — both a valid and an invalid key return the same
-  refusal, and scripted submissions hit a bot challenge. The only real test is a
-  human clicking Send.
+A Web3Forms form was built and then removed. If it is ever reconsidered, the
+constraints that made it awkward are worth knowing up front:
 
-The `access_key` in `index.html` is a public submission key, not a secret: it only
-permits posting to the inbox configured on the Web3Forms side.
+- **No CORS headers.** An in-page `fetch()` fails every time regardless of key
+  validity, so submission has to be a native POST that navigates away.
+- **Server-side submissions are refused** on the free plan and the endpoint sits
+  behind bot protection, so it cannot be smoke-tested with `curl` or an
+  automated browser. The only real test is a human clicking Send.
+- **Their honeypot is fragile.** An off-screen (`left:-9999px`) `botcheck`
+  checkbox is a real, fillable control and password managers tick it, which
+  fails their honeypot check on a legitimate submission. It needs inline
+  `display:none`.
 
 ## Build scripts
 

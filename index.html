@@ -47,7 +47,6 @@
 <!-- JS — small, deferred -->
 <script src="js/site.js" defer></script>
 <script src="js/enhance.js" defer></script>
-<script src="js/contact.js" defer></script>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
@@ -600,56 +599,9 @@
           <p class="ct-dek">
             Questions on the writing, the dataset or the diagnostics &mdash;
             or just to compare notes on regulated-industry engineering.
+            Email is the best way to reach me.
           </p>
         </div>
-
-        <form class="ct-form reveal" id="contact-form"
-              action="https://api.web3forms.com/submit" method="POST">
-          <!-- Get a key at web3forms.com — it is a public submission key, not a
-               secret: it only permits posting to this form's configured inbox. -->
-          <input type="hidden" name="access_key" value="38c00b55-4dd5-405e-865a-16d00b8cb7ee" />
-          <input type="hidden" name="subject" value="hellouchit.com — new message" />
-          <input type="hidden" name="from_name" value="hellouchit.com contact form" />
-          <!-- Native POST navigates to this page on success. Web3Forms does
-               not send CORS headers, so an in-page fetch can never work —
-               a real form submission sidesteps CORS entirely. -->
-          <input type="hidden" name="redirect" value="https://hellouchit.com/thanks/" />
-          <div class="ct-grid">
-            <label class="ct-field">
-              <span>Name</span>
-              <input type="text" name="name" required autocomplete="name" />
-            </label>
-            <label class="ct-field">
-              <span>Email</span>
-              <input type="email" name="email" required autocomplete="email" />
-            </label>
-          </div>
-          <label class="ct-field">
-            <span>What&rsquo;s this about?</span>
-            <select name="topic">
-              <option>The writing, dataset or diagnostics</option>
-              <option>Speaking or a podcast</option>
-              <option>A problem I&rsquo;m stuck on</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label class="ct-field">
-            <span>Message</span>
-            <textarea name="message" rows="5" required
-                      placeholder="If it&rsquo;s a problem you&rsquo;re stuck on, the useful detail is the constraint &mdash; the deadline, the regulation, the thing that can&rsquo;t change."></textarea>
-          </label>
-          <!-- Honeypot: bots fill hidden fields, people don't. "botcheck" is
-               Web3Forms' own convention, so their spam filter engages as well. -->
-          <input type="checkbox" name="botcheck" class="ct-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <div class="ct-actions">
-            <button type="submit" class="btn btn-primary">Send message</button>
-            <span class="ct-status" id="ct-status" role="status" aria-live="polite"></span>
-          </div>
-          <p class="ct-fine">
-            Goes to my inbox, nowhere else &mdash; no list, no CRM, no newsletter signup.
-            Prefer plain email? <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>.
-          </p>
-        </form>
 
         <div class="ct-ico-row reveal" role="group" aria-label="Other ways to reach me">
           <a class="ct-ico" href="mailto:contact@hellouchit.com" aria-label="Email contact@hellouchit.com">
