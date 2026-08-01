@@ -30,7 +30,10 @@ for (const f of files) {
   } else if (has) {
     console.log(`  draft                       ${f} — ${todos} prompt(s), ${phs} placeholder(s)`);
     drafts++;
-  } else if (noindex) {
+  } else if (noindex && !/noindex: intentional/.test(s)) {
+    /* Some pages are noindex on purpose and forever (confirmation pages,
+       thank-you pages). They opt out with a "noindex: intentional" comment so
+       this check does not nag about publishing them. */
     console.warn(`  ready                       ${f} — no placeholders left; remove noindex, add to sitemap, link it`);
   }
 }
