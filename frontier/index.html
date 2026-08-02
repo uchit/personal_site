@@ -49,6 +49,17 @@
     },
     {
       "@type": "BlogPosting",
+      "headline": "Autonomy as a per-action property that has to be earned",
+      "datePublished": "2026-06-04",
+      "author": {
+        "@id": "https://hellouchit.com/#person"
+      },
+      "citation": [
+        "https://arxiv.org/pdf/2606.04321"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "The governance frameworks assume the thing they govern has edges",
       "datePublished": "2026-05-01",
       "author": {
@@ -71,6 +82,28 @@
     },
     {
       "@type": "BlogPosting",
+      "headline": "Nearly a third of organisations let agents run as a human user",
+      "datePublished": "2026-03-24",
+      "author": {
+        "@id": "https://hellouchit.com/#person"
+      },
+      "citation": [
+        "https://cloudsecurityalliance.org/press-releases/2026/03/24/more-than-two-thirds-of-organizations-cannot-clearly-distinguish-ai-agent-from-human-actions"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The tool registry is the boundary  and the registry is an attack surface",
+      "datePublished": "2026-03-18",
+      "author": {
+        "@id": "https://hellouchit.com/#person"
+      },
+      "citation": [
+        "https://arxiv.org/abs/2603.18063"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Article 73 incident reporting assumes one system caused it",
       "datePublished": "2026-01-13",
       "author": {
@@ -89,6 +122,28 @@
       },
       "citation": [
         "https://www.kunalganglani.com/blog/ai-agent-cost-per-task-2026"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Article 14 mandates awareness of automation bias, not freedom from it",
+      "datePublished": "2025-06-20",
+      "author": {
+        "@id": "https://hellouchit.com/#person"
+      },
+      "citation": [
+        "https://arxiv.org/abs/2502.10036"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Injection detection that needs no model change, with numbers",
+      "datePublished": "2025-06-10",
+      "author": {
+        "@id": "https://hellouchit.com/#person"
+      },
+      "citation": [
+        "https://arxiv.org/abs/2502.05174"
       ]
     }
   ]
@@ -113,7 +168,7 @@
   <main id="main" tabindex="-1">
     <section class="ag-hero"><div class="wrap">
       <nav class="crumb"><a href="/">Home</a><span>/</span><a href="/agents/">Agents</a><span>/</span><span class="cur">Frontier</span></nav>
-      <span class="eyebrow">Frontier log &middot; 5 entries</span>
+      <span class="eyebrow">Frontier log &middot; 10 entries</span>
       <h1>Everything here names the control it <em>moves</em>.</h1>
       <p class="dek">
         A reading list proves you read. This is the other thing: each entry
@@ -145,6 +200,35 @@
         
         <div class="fr-src">
           <a href="https://arxiv.org/html/2606.04990v4" target="_blank" rel="noopener">Wang et al. — From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents</a> <span>arXiv:2606.04990v4 &middot; 28 Jun 2026</span>
+        </div>
+      </article>
+
+      <article class="fr" id="per-action-autonomy-earned">
+        <header class="fr-head">
+          <time datetime="2026-06-04">Jun 2026</time>
+          <span class="fr-eff fr-validates" title="supports a control already on the site">Validates</span>
+          <a class="fr-ctrl" href="/agents/#agent-autonomy-level">Declared autonomy level per action class, enforced at execution and recorded per run</a>
+        </header>
+        <h2>Autonomy as a per-action property that has to be earned</h2>
+        <div class="fr-what"><p>A framework for human-directed agentic development treats autonomy as
+      contextual and task-specific rather than a system-wide setting, with
+      different levels across different actions in the same system. Promotion
+      between tiers is not a configuration change: it requires demonstrated
+      performance at the lower level, human validation, and evidence of reliable
+      decision-making before escalation.</p></div>
+        <div class="fr-so">
+          <span class="ix">What it changes</span>
+          <p>Independent arrival at the same shape as this control, which is
+      worth more than agreement from someone quoting me. The part I had not
+      made explicit is <em>promotion</em>: I say declare a level per action class
+      and enforce it, but not how a class earns a higher one. Requiring recorded
+      evidence of competence before promotion turns the autonomy register from a
+      static document into something with a history &mdash; and that history is
+      exactly what an assessor asks for.</p>
+        </div>
+        <p class="fr-caveat"><b>Read it with:</b> Read from a compressed PDF — the framing above is described rather than quoted.</p>
+        <div class="fr-src">
+          <a href="https://arxiv.org/pdf/2606.04321" target="_blank" rel="noopener">Weber &amp; Taneja &mdash; The Digital Apprentice: A Framework for Human-Directed Agentic AI Development</a> <span>arXiv:2606.04321 &middot; 4 Jun 2026</span>
         </div>
       </article>
 
@@ -184,6 +268,65 @@
         </div>
       </article>
 
+      <article class="fr" id="csa-identity-gap-2026">
+        <header class="fr-head">
+          <time datetime="2026-03-24">Mar 2026</time>
+          <span class="fr-eff fr-validates" title="supports a control already on the site">Validates</span>
+          <a class="fr-ctrl" href="/agents/#agent-identity">Agent runs under its own workload identity, never a human's or a shared account</a>
+        </header>
+        <h2>Nearly a third of organisations let agents run as a human user</h2>
+        <div class="fr-what"><p>A Cloud Security Alliance survey of 228 IT and security professionals,
+      run in January 2026, found that <b>31% allow agents to operate under human
+      user identities</b> and <b>43% rely on shared service accounts</b>. Only
+      52% use workload identities. A further 52% say agents inherit access
+      originally intended for humans or other systems at least sometimes, and
+      68% cannot clearly distinguish human from agent activity.</p></div>
+        <div class="fr-so">
+          <span class="ix">What it changes</span>
+          <p>I called an agent running as the engineer who deployed it "the most
+      common finding in a first agent review." That was an impression from the
+      room; this is the first population number I have seen attached to it, and
+      it lands about where the impression did. The 68% who cannot tell human and
+      agent activity apart is the more damaging figure &mdash; it means the
+      attribution problem is already live for most people reading this, not a
+      future risk.</p>
+        </div>
+        <p class="fr-caveat"><b>Read it with:</b> n=228 self-selected practitioners. Directionally useful, not a census.</p>
+        <div class="fr-src">
+          <a href="https://cloudsecurityalliance.org/press-releases/2026/03/24/more-than-two-thirds-of-organizations-cannot-clearly-distinguish-ai-agent-from-human-actions" target="_blank" rel="noopener">Cloud Security Alliance &mdash; The Identity and Access Gaps in the Age of Autonomous AI</a> <span>CSA, n=228, surveyed Jan 2026 &middot; 24 Mar 2026</span>
+        </div>
+      </article>
+
+      <article class="fr" id="mcp-tool-description-poisoning">
+        <header class="fr-head">
+          <time datetime="2026-03-18">Mar 2026</time>
+          <span class="fr-eff fr-complicates" title="makes existing advice partly wrong">Complicates</span>
+          <a class="fr-ctrl" href="/agents/#agent-tool-authz">Tool authorisation enforced outside the model — the tool registry is the security boundary</a>
+        </header>
+        <h2>The tool registry is the boundary &mdash; and the registry is an attack surface</h2>
+        <div class="fr-what"><p>A threat taxonomy for the Model Context Protocol enumerates 38 threat
+      categories mapped against STRIDE and the OWASP Top 10 for LLM and Agentic
+      applications. It singles out <b>tool description poisoning</b> as a
+      critical semantic attack surface that prior frameworks do not address,
+      alongside parasitic tool chaining and dynamic trust violations &mdash;
+      attacks that live in a tool's <em>metadata</em> rather than its behaviour.</p></div>
+        <div class="fr-so">
+          <span class="ix">What it changes</span>
+          <p>I say the tool registry is the security boundary and the system
+      prompt is a suggestion. That still holds, and it is incomplete: if the
+      model reads tool descriptions to decide what to call, those descriptions
+      are model-facing input, and a boundary made of attacker-influenced text is
+      not a boundary. The control needs a second half &mdash; the registry's own
+      integrity. Pin tool definitions, review them on change, and treat a
+      third-party MCP server's metadata with the same suspicion as a retrieved
+      document.</p>
+        </div>
+        
+        <div class="fr-src">
+          <a href="https://arxiv.org/abs/2603.18063" target="_blank" rel="noopener">Shen, Toyoda &amp; Leung &mdash; MCP-38: A Comprehensive Threat Taxonomy for Model Context Protocol Systems</a> <span>arXiv:2603.18063 &middot; 18 Mar 2026</span>
+        </div>
+      </article>
+
       <article class="fr" id="article-73-single-causality">
         <header class="fr-head">
           <time datetime="2026-01-13">Jan 2026</time>
@@ -219,6 +362,67 @@
           <a href="https://www.kunalganglani.com/blog/ai-agent-cost-per-task-2026" target="_blank" rel="noopener">Ganglani — AI Agent Cost Per Task 2026, from Aider's polyglot benchmark</a> <span>kunalganglani.com &middot; 2026</span>
         </div>
       </article>
+
+      <article class="fr" id="automation-bias-article-14">
+        <header class="fr-head">
+          <time datetime="2025-06-20">Jun 2025</time>
+          <span class="fr-eff fr-validates" title="supports a control already on the site">Validates</span>
+          <a class="fr-ctrl" href="/agents/#agent-human-oversight">Named human approval for consequential actions, with enough context to make review real</a>
+        </header>
+        <h2>Article 14 mandates awareness of automation bias, not freedom from it</h2>
+        <div class="fr-what"><p>A legal analysis of the AI Act argues its treatment of automation bias
+      is insufficient: the Act obliges providers to help overseers stay
+      <em>aware</em> of their tendency to over-rely on AI output, which is not
+      the same as regulating the risk. The authors argue the provider-centred
+      framing does not address design and context as causes of automation bias,
+      leaving deployers insufficiently accountable, and that the Act should
+      regulate the risk directly rather than mandate awareness of it.</p></div>
+        <div class="fr-so">
+          <span class="ix">What it changes</span>
+          <p>This is the sharpest version of why I put approval-rate monitoring
+      in this control. Compliance with Art. 14 and effective oversight are
+      different achievements, and the gap between them is exactly where a
+      rubber-stamped approval queue lives. If your evidence for oversight is
+      that reviewers were told about automation bias, you have met the
+      obligation and not the control. The number that distinguishes them is the
+      rate at which reviewers actually reject.</p>
+        </div>
+        
+        <div class="fr-src">
+          <a href="https://arxiv.org/abs/2502.10036" target="_blank" rel="noopener">Laux &amp; Ruschemeier &mdash; Automation Bias in the AI Act: On the Legal Implications of Attempting to De-Bias Human Oversight of AI</a> <span>arXiv:2502.10036 &middot; rev. 20 Jun 2025</span>
+        </div>
+      </article>
+
+      <article class="fr" id="melon-detection-wrapper">
+        <header class="fr-head">
+          <time datetime="2025-06-10">Jun 2025</time>
+          <span class="fr-eff fr-complicates" title="makes existing advice partly wrong">Complicates</span>
+          <a class="fr-ctrl" href="/agents/#agent-prompt-injection">Retrieved and tool-returned content treated as untrusted data, never as instructions</a>
+        </header>
+        <h2>Injection detection that needs no model change, with numbers</h2>
+        <div class="fr-what"><p>MELON (ICML 2025) detects indirect injection by re-running the agent's
+      trajectory against a masked user prompt: if the actions come out similar
+      either way, the agent is following the injected content rather than the
+      user. It is a wrapper around execution &mdash; no retraining, no model
+      access. On AgentDojo with GPT-4o the reported attack success rate falls
+      from <b>16.06% undefended to 0.24%</b>, while task utility moves only from
+      69.08% to 68.72%. Delimiting (13.39%) and repeating the prompt (9.18%)
+      barely move the number by comparison.</p></div>
+        <div class="fr-so">
+          <span class="ix">What it changes</span>
+          <p>This complicates my advice rather than confirming it. I describe
+      this control as red-teaming your retrieval and tool-result paths, which
+      treats injection as something you test for. That is necessary and it is
+      no longer sufficient: there are now deployable runtime defences with
+      published numbers on a public benchmark, and "we red-team it" is a weaker
+      answer than "we red-team it and this runs in front of it." The utility
+      cost being inside a percentage point removes the usual objection.</p>
+        </div>
+        <p class="fr-caveat"><b>Read it with:</b> AgentDojo is one benchmark and the numbers are the authors' own. Treat the ratio as the finding, not the decimal.</p>
+        <div class="fr-src">
+          <a href="https://arxiv.org/abs/2502.05174" target="_blank" rel="noopener">Zhu, Yang, Wang, Guo &amp; Wang &mdash; MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents</a> <span>arXiv:2502.05174 &middot; ICML 2025 &middot; rev. 10 Jun 2025</span>
+        </div>
+      </article>
     </div></section>
 
     <section class="fr-rejected" id="rejected"><div class="wrap">
@@ -241,7 +445,35 @@
           <p class="rc">"CISA, the NSA and allied agencies issued joint agentic-AI guidance in April 2026."</p>
           <p class="rw">Surfaced in a search summary; not present in the source it was attributed to, and not verified elsewhere. Possibly true and still not citable by me.</p>
         </li>
+        <li>
+          <p class="rc">"Only 28% of organisations can trace an agent's actions back to a human sponsor."</p>
+          <p class="rw">Attributed to the CSA identity survey. Not in the published release, which reports different figures — 31% running agents under human identities, 43% on shared service accounts. The real numbers are used above; this one is not.</p>
+        </li>
       </ol>
+
+      <h3 class="fr-unread-h">And what I couldn&rsquo;t read at all.</h3>
+      <p>
+        Different admission, kept separate on purpose. &ldquo;I checked and it
+        was wrong&rdquo; and &ldquo;I could not check&rdquo; are not the same
+        thing, and collapsing them would flatter the page.
+      </p>
+      <ol class="fr-rej fr-unread">
+        <li>
+          <p class="rc" style="text-decoration:none">IMF Note 2026/004, "How Agentic AI Will Reshape Payments" (22 Apr 2026)</p>
+          <p class="rw">Directly relevant to action reversibility in a regulated context, and
+      the metadata is consistent across several IMF URLs. Every route to the
+      text returned 403 to me. Search summaries describe a decision layer /
+      deterministic execution layer split and recommendations on dispute
+      resolution and liability for AI-initiated transactions, which sounds
+      exactly right — and I have not read a word of it, so it is not an entry.</p>
+        </li>
+      </ol>
+      <p class="fr-gapnote">
+        Which leaves <b>1 of the ten controls with no entry</b>:
+        <a href="/agents/#agent-action-reversibility">Irreversible actions staged</a>.
+        Not because nothing is happening there &mdash; because nothing I found
+        survived being read at the source.
+      </p>
     </div></section>
 
     <section class="ag-foot"><div class="wrap">

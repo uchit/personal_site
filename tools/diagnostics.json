@@ -1,7 +1,7 @@
 {
   "name": "Practitioner diagnostics",
   "description": "Six capability-scored diagnostics for regulated-industry engineering. Each capability maps to named public frameworks (NIST, ISO, OWASP, EU AI Act, APRA and others).",
-  "version": "2026-08-01",
+  "version": "2026-08-02",
   "license": "CC BY 4.0",
   "attribution": "Uchit Vyas — hellouchit.com",
   "source": "https://hellouchit.com",

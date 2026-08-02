@@ -76,3 +76,20 @@
 @media (max-width: 640px) {
   .fr-ctrl { margin-left: 0; width: 100%; }
 }
+
+/* "Couldn't read" is a different admission from "checked and it was wrong" —
+   styled apart so the distinction survives skimming. */
+.fr-unread-h {
+  margin-top: 34px;
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(18px,2vw,22px); color: var(--ink);
+}
+.fr-unread-h + p { margin-top: 8px; }
+.fr-unread li { border-left-style: dotted; }
+.fr-gapnote {
+  margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 74ch;
+}
+.fr-gapnote b { color: var(--ink); font-weight: 500; }
+.fr-gapnote a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
+.fr-gapnote a:hover { color: var(--accent); border-color: var(--accent); }

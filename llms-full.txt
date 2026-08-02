@@ -1,6 +1,6 @@
 # Uchit Vyas — full text corpus
 
-> Concatenated prose from hellouchit.com, generated 2026-08-01 for AI ingestion.
+> Concatenated prose from hellouchit.com, generated 2026-08-02 for AI ingestion.
 > Companion to https://hellouchit.com/llms.txt (the structured manifest).
 > Licence: essays and prose © Uchit Vyas. The regulation × control × tooling
 > dataset is CC BY 4.0. Cite as: Uchit Vyas, hellouchit.com.
@@ -485,7 +485,7 @@ SECTION: Frontier log
 ## Frontier log
 Source: https://hellouchit.com/frontier/
 
-Frontier log · 5 entries
+Frontier log · 10 entries
 
 ## Everything here names the control it moves.
 
@@ -502,6 +502,18 @@ A survey of evidence tracing and execution provenance in LLM agents finds that t
 What it changes This complicates my own advice. I point people at the OpenTelemetry GenAI semantic conventions as the vendor-neutral shape to adopt early, and that is still the right first move — but it is a floor, not a ceiling. A team that implements the conventions and stops has a trace of the calls and not a record of the reasoning. Budget for the semantic layer on top rather than assuming the standard covers it.
 
 Wang et al. — From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents arXiv:2606.04990v4 · 28 Jun 2026
+
+Jun 2026 Validates Declared autonomy level per action class, enforced at execution and recorded per run
+
+### Autonomy as a per-action property that has to be earned
+
+A framework for human-directed agentic development treats autonomy as contextual and task-specific rather than a system-wide setting, with different levels across different actions in the same system. Promotion between tiers is not a configuration change: it requires demonstrated performance at the lower level, human validation, and evidence of reliable decision-making before escalation.
+
+What it changes Independent arrival at the same shape as this control, which is worth more than agreement from someone quoting me. The part I had not made explicit is promotion: I say declare a level per action class and enforce it, but not how a class earns a higher one. Requiring recorded evidence of competence before promotion turns the autonomy register from a static document into something with a history — and that history is exactly what an assessor asks for.
+
+Read it with: Read from a compressed PDF — the framing above is described rather than quoted.
+
+Weber & Taneja — The Digital Apprentice: A Framework for Human-Directed Agentic AI Development arXiv:2606.04321 · 4 Jun 2026
 
 May 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
 
@@ -525,6 +537,28 @@ Read it with: Vendor-published survey. Read the direction, not the decimal — t
 
 Kiteworks — 2026 Data Security and Compliance Risk Forecast cited via agentmodeai.com · May 2026
 
+Mar 2026 Validates Agent runs under its own workload identity, never a human's or a shared account
+
+### Nearly a third of organisations let agents run as a human user
+
+A Cloud Security Alliance survey of 228 IT and security professionals, run in January 2026, found that 31% allow agents to operate under human user identities and 43% rely on shared service accounts. Only 52% use workload identities. A further 52% say agents inherit access originally intended for humans or other systems at least sometimes, and 68% cannot clearly distinguish human from agent activity.
+
+What it changes I called an agent running as the engineer who deployed it "the most common finding in a first agent review." That was an impression from the room; this is the first population number I have seen attached to it, and it lands about where the impression did. The 68% who cannot tell human and agent activity apart is the more damaging figure — it means the attribution problem is already live for most people reading this, not a future risk.
+
+Read it with: n=228 self-selected practitioners. Directionally useful, not a census.
+
+Cloud Security Alliance — The Identity and Access Gaps in the Age of Autonomous AI CSA, n=228, surveyed Jan 2026 · 24 Mar 2026
+
+Mar 2026 Complicates Tool authorisation enforced outside the model — the tool registry is the security boundary
+
+### The tool registry is the boundary — and the registry is an attack surface
+
+A threat taxonomy for the Model Context Protocol enumerates 38 threat categories mapped against STRIDE and the OWASP Top 10 for LLM and Agentic applications. It singles out tool description poisoning as a critical semantic attack surface that prior frameworks do not address, alongside parasitic tool chaining and dynamic trust violations — attacks that live in a tool's metadata rather than its behaviour.
+
+What it changes I say the tool registry is the security boundary and the system prompt is a suggestion. That still holds, and it is incomplete: if the model reads tool descriptions to decide what to call, those descriptions are model-facing input, and a boundary made of attacker-influenced text is not a boundary. The control needs a second half — the registry's own integrity. Pin tool definitions, review them on change, and treat a third-party MCP server's metadata with the same suspicion as a retrieved document.
+
+Shen, Toyoda & Leung — MCP-38: A Comprehensive Threat Taxonomy for Model Context Protocol Systems arXiv:2603.18063 · 18 Mar 2026
+
 Jan 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
 
 ### Article 73 incident reporting assumes one system caused it
@@ -547,6 +581,28 @@ Read it with: A coding benchmark, not your workload. The ratio is the transferab
 
 Ganglani — AI Agent Cost Per Task 2026, from Aider's polyglot benchmark kunalganglani.com · 2026
 
+Jun 2025 Validates Named human approval for consequential actions, with enough context to make review real
+
+### Article 14 mandates awareness of automation bias, not freedom from it
+
+A legal analysis of the AI Act argues its treatment of automation bias is insufficient: the Act obliges providers to help overseers stay aware of their tendency to over-rely on AI output, which is not the same as regulating the risk. The authors argue the provider-centred framing does not address design and context as causes of automation bias, leaving deployers insufficiently accountable, and that the Act should regulate the risk directly rather than mandate awareness of it.
+
+What it changes This is the sharpest version of why I put approval-rate monitoring in this control. Compliance with Art. 14 and effective oversight are different achievements, and the gap between them is exactly where a rubber-stamped approval queue lives. If your evidence for oversight is that reviewers were told about automation bias, you have met the obligation and not the control. The number that distinguishes them is the rate at which reviewers actually reject.
+
+Laux & Ruschemeier — Automation Bias in the AI Act: On the Legal Implications of Attempting to De-Bias Human Oversight of AI arXiv:2502.10036 · rev. 20 Jun 2025
+
+Jun 2025 Complicates Retrieved and tool-returned content treated as untrusted data, never as instructions
+
+### Injection detection that needs no model change, with numbers
+
+MELON (ICML 2025) detects indirect injection by re-running the agent's trajectory against a masked user prompt: if the actions come out similar either way, the agent is following the injected content rather than the user. It is a wrapper around execution — no retraining, no model access. On AgentDojo with GPT-4o the reported attack success rate falls from 16.06% undefended to 0.24%, while task utility moves only from 69.08% to 68.72%. Delimiting (13.39%) and repeating the prompt (9.18%) barely move the number by comparison.
+
+What it changes This complicates my advice rather than confirming it. I describe this control as red-teaming your retrieval and tool-result paths, which treats injection as something you test for. That is necessary and it is no longer sufficient: there are now deployable runtime defences with published numbers on a public benchmark, and "we red-team it" is a weaker answer than "we red-team it and this runs in front of it." The utility cost being inside a percentage point removes the usual objection.
+
+Read it with: AgentDojo is one benchmark and the numbers are the authors' own. Treat the ratio as the finding, not the decimal.
+
+Zhu, Yang, Wang, Guo & Wang — MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents arXiv:2502.05174 · ICML 2025 · rev. 10 Jun 2025
+
 ### What didn’t make it, and why.
 
 Each of these appeared in a search result, looked good, and failed on contact with the source. They are here because the useful signal from a page like this is not what it publishes — it is the ratio.
@@ -562,6 +618,20 @@ Attributed by a search summary to an article that does not contain those figures
 "CISA, the NSA and allied agencies issued joint agentic-AI guidance in April 2026."
 
 Surfaced in a search summary; not present in the source it was attributed to, and not verified elsewhere. Possibly true and still not citable by me.
+
+"Only 28% of organisations can trace an agent's actions back to a human sponsor."
+
+Attributed to the CSA identity survey. Not in the published release, which reports different figures — 31% running agents under human identities, 43% on shared service accounts. The real numbers are used above; this one is not.
+
+#### And what I couldn’t read at all.
+
+Different admission, kept separate on purpose. “I checked and it was wrong” and “I could not check” are not the same thing, and collapsing them would flatter the page.
+
+IMF Note 2026/004, "How Agentic AI Will Reshape Payments" (22 Apr 2026)
+
+Directly relevant to action reversibility in a regulated context, and the metadata is consistent across several IMF URLs. Every route to the text returned 403 to me. Search summaries describe a decision layer / deterministic execution layer split and recommendations on dispute resolution and liability for AI-initiated transactions, which sounds exactly right — and I have not read a word of it, so it is not an entry.
+
+Which leaves 1 of the ten controls with no entry: Irreversible actions staged. Not because nothing is happening there — because nothing I found survived being read at the source.
 
 ### How this stays honest.
 

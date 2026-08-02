@@ -1,7 +1,7 @@
 {
   "name": "Anti-patterns catalogue",
   "description": "Named failure modes in enterprise architecture, platform engineering, DevSecOps and applied GenAI — where each appears, why it fails, and what to do instead.",
-  "version": "2026-08-01",
+  "version": "2026-08-02",
   "license": "CC BY 4.0",
   "attribution": "Uchit Vyas — hellouchit.com",
   "source": "https://hellouchit.com",
