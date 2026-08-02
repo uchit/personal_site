@@ -406,6 +406,17 @@ const html = `<!DOCTYPE html>
       </p>
     </div></section>
 
+    <section class="fr-index"><div class="wrap">
+      <h2>At a <em>glance</em>.</h2>
+      <ol class="fx">${sorted.map(e => `
+        <li>
+          <a href="#${esc(e.id)}">${e.title}</a>
+          <span class="fx-eff fr-${esc(e.effect)}">${esc(EFFECT[e.effect].label)}</span>
+          <span class="fx-c">${esc(agents.get(e.control).split(/[\u2014,(]/)[0].trim())}</span>
+        </li>`).join("")}
+      </ol>
+    </div></section>
+
     <section class="fr-list"><div class="wrap">${sorted.map(entryHtml).join("\n")}
     </div></section>
 

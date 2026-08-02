@@ -313,6 +313,14 @@ Ten controls that decide whether an agent deployment survives contact with an au
 
 Controls 10 Waves 2 Machine-readable JSON Licence CC BY 4.0
 
+### Build them in this order.
+
+Identity before what it may do, before how far it may go. This is derived from prerequisites — an edge means doing one without the other is incoherent, not that one matters more. Nothing inside a wave is ordered; it can all start at once.
+
+Wave 1 Agent runs under its own workload identity · Declared autonomy level per action class · Full replayable trajectory · Retrieved and tool-returned content treated as untrusted data
+
+Wave 2 Tool authorisation enforced outside the model · Named human approval for consequential actions · Bounded blast radius · Irreversible actions staged · Provenance across agents · Cost measured per resolved task
+
 ### Where this set is ahead of the standard.
 
 Every framework a procurement team will name at you — the EU AI Act, the NIST AI RMF, ISO/IEC 42001 — governs one system at a time. A 2026 analysis of accountability for autonomous agents puts the structural problem exactly: all three “presume that the governed object is a bounded system.”
@@ -322,14 +330,6 @@ That is not a complaint about regulators; it is a scoping fact with consequences
 So four of the ten below are ahead of every standard they map to. If you are waiting for a framework to require them, you will be waiting past the incident that needed them. What moves them, and what moves against them, is tracked in the frontier log.
 
 Butt, Iqbal & Iqbal — Governing What the EU AI Act Excludes arXiv:2605.01091 · 1 May 2026 Fern&aacute;ndez Ashman, Anwar & Bieńkiewicz — EU Regulations Are Not Ready for Multi-Agent AI Incidents Tech Policy Press · 13 Jan 2026
-
-### Build them in this order.
-
-Identity before what it may do, before how far it may go. This is derived from prerequisites — an edge means doing one without the other is incoherent, not that one matters more. Nothing inside a wave is ordered; it can all start at once.
-
-Wave 1 Agent runs under its own workload identity · Declared autonomy level per action class · Full replayable trajectory · Retrieved and tool-returned content treated as untrusted data
-
-Wave 2 Tool authorisation enforced outside the model · Named human approval for consequential actions · Bounded blast radius · Irreversible actions staged · Provenance across agents · Cost measured per resolved task
 
 01
 
@@ -492,6 +492,28 @@ Frontier log · 10 entries
 A reading list proves you read. This is the other thing: each entry takes a development and says which of the ten controls it touches, and whether it validates that control, complicates it, or invalidates it. Pairing the two is the part that needs a published control set to write at all.
 
 Every claim below was read at the primary source. Three that did not survive that are listed at the bottom, because a page like this is only worth reading if you know what it rejects.
+
+### At a glance.
+
+OpenTelemetry and W3C PROV-DM do not capture what an agent run is Complicates Full replayable trajectory
+
+Autonomy as a per-action property that has to be earned Validates Declared autonomy level per action class
+
+The governance frameworks assume the thing they govern has edges Validates Provenance across agents
+
+Most organisations cannot stop an agent they have decided to stop Validates Bounded blast radius
+
+Nearly a third of organisations let agents run as a human user Validates Agent runs under its own workload identity
+
+The tool registry is the boundary — and the registry is an attack surface Complicates Tool authorisation enforced outside the model
+
+Article 73 incident reporting assumes one system caused it Validates Provenance across agents
+
+Cost per solved task and cost per task differ by more than 10× Validates Cost measured per resolved task
+
+Article 14 mandates awareness of automation bias, not freedom from it Validates Named human approval for consequential actions
+
+Injection detection that needs no model change, with numbers Complicates Retrieved and tool-returned content treated as untrusted data
 
 Jun 2026 Complicates Full replayable trajectory — every tool call, argument, result and the exact context the model saw
 

@@ -194,6 +194,18 @@ const html = `<!DOCTYPE html>
       </div>
     </div></section>
 
+    <section class="ag-order"><div class="wrap">
+      <h2>Build them in this <em>order</em>.</h2>
+      <p>
+        Identity before what it may do, before how far it may go. This is
+        derived from prerequisites &mdash; an edge means doing one without the
+        other is incoherent, not that one matters more. <b>Nothing inside a wave
+        is ordered</b>; it can all start at once.
+      </p>
+      <ol class="ag-waves">${waveList}
+      </ol>
+    </div></section>
+
     <section class="ag-ahead"><div class="wrap">
       <h2>Where this set is <em>ahead</em> of the standard.</h2>
       <p>
@@ -223,18 +235,6 @@ const html = `<!DOCTYPE html>
         <a href="https://www.techpolicy.press/eu-regulations-are-not-ready-for-multiagent-ai-incidents/" target="_blank" rel="noopener">Fern&aacute;ndez Ashman, Anwar &amp; Bie&#324;kiewicz &mdash; EU Regulations Are Not Ready for Multi-Agent AI Incidents</a>
         <span>Tech Policy Press &middot; 13 Jan 2026</span>
       </div>
-    </div></section>
-
-    <section class="ag-order"><div class="wrap">
-      <h2>Build them in this <em>order</em>.</h2>
-      <p>
-        Identity before what it may do, before how far it may go. This is
-        derived from prerequisites &mdash; an edge means doing one without the
-        other is incoherent, not that one matters more. <b>Nothing inside a wave
-        is ordered</b>; it can all start at once.
-      </p>
-      <ol class="ag-waves">${waveList}
-      </ol>
     </div></section>
 
     <section class="ag-list"><div class="wrap">${order.map(control).join("\n")}

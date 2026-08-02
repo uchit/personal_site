@@ -2,7 +2,7 @@
    The ten agentic controls. Reads as a body of work, not a filtered table:
    one column, generous measure, each control a self-contained argument. */
 
-.ag-hero { padding: clamp(120px,14vw,176px) 0 clamp(30px,4vw,46px); }
+.ag-hero { padding: clamp(120px, 14vw, 176px) 0 clamp(28px, 4vw, 44px); }
 .crumb {
   display: flex; gap: 8px; margin-bottom: 20px;
   font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
@@ -15,13 +15,13 @@
 
 .ag-hero h1 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(34px,4.6vw,56px); line-height: 1.06;
-  letter-spacing: -.02em; margin-top: 14px; max-width: 21ch;
+  font-size: clamp(40px, 6vw, 72px); line-height: 1.02;
+  letter-spacing: -.02em; margin-top: 14px; max-width: 22ch;
 }
 .ag-hero h1 em { font-style: italic; color: var(--accent); }
 .ag-hero .dek {
-  margin-top: 20px; color: var(--muted);
-  font-size: clamp(16px,1.35vw,18.5px); line-height: 1.72; max-width: 66ch;
+  margin-top: 22px; color: var(--muted);
+  font-size: clamp(16px, 1.3vw, 18px); line-height: 1.7; max-width: 62ch;
 }
 .ag-facts {
   margin-top: 26px; display: flex; gap: 12px 24px; flex-wrap: wrap;
@@ -34,7 +34,8 @@
 .ag-order, .ag-list, .ag-foot { padding: clamp(36px,4.2vw,54px) 0; border-top: 1px solid var(--line); }
 .ag-order h2, .ag-foot h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(24px,3vw,32px); line-height: 1.15; margin-bottom: 14px;
+  font-size: clamp(30px, 4.4vw, 48px); line-height: 1.08;
+  letter-spacing: -.015em; margin-bottom: 16px;
 }
 .ag-order h2 em, .ag-foot h2 em { font-style: italic; color: var(--accent); }
 .ag-order p, .ag-foot p { color: var(--muted); font-size: 15.5px; line-height: 1.72; max-width: 70ch; }
@@ -54,17 +55,17 @@
 .ag-waves a:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ------------------------------------------------------------- controls */
-.ag { padding: 30px 0; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.ag { padding: clamp(36px, 5vw, 56px) 0; border-top: 1px solid var(--line); scroll-margin-top: 180px; }
 .ag:first-child { border-top: 0; padding-top: 0; }
 .ag-head { display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; align-items: baseline; }
 .ag-num {
-  font-family: "IBM Plex Mono", monospace; font-size: 12px;
-  letter-spacing: .1em; color: var(--accent); grid-row: span 2;
+  font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+  letter-spacing: .14em; color: var(--faint); grid-row: span 2;
 }
 .ag-head h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(20px,2.2vw,26px); line-height: 1.22; color: var(--ink);
-  max-width: 32ch;
+  font-size: clamp(26px, 3.2vw, 36px); line-height: 1.1;
+  letter-spacing: -.015em; color: var(--ink); max-width: 30ch;
 }
 .ag-surface {
   grid-column: 2;
@@ -76,7 +77,7 @@
 
 .ix {
   display: block; margin-bottom: 6px;
-  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
   letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
 }
 .ag-why p, .ag-ev p { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 72ch; }
@@ -130,7 +131,8 @@
 .ag-ahead { padding: clamp(36px,4.2vw,54px) 0; border-top: 1px solid var(--line); }
 .ag-ahead h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(24px,3vw,32px); line-height: 1.15; margin-bottom: 14px;
+  font-size: clamp(30px, 4.4vw, 48px); line-height: 1.08;
+  letter-spacing: -.015em; margin-bottom: 16px;
 }
 .ag-ahead h2 em { font-style: italic; color: var(--accent); }
 .ag-ahead p { color: var(--muted); font-size: 15.5px; line-height: 1.72; max-width: 70ch; }

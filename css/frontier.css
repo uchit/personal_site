@@ -3,7 +3,7 @@
 
 .fr-list, .fr-rejected { padding: clamp(30px,4vw,48px) 0; border-top: 1px solid var(--line); }
 
-.fr { padding: 30px 0; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.fr { padding: clamp(36px, 5vw, 56px) 0; border-top: 1px solid var(--line); scroll-margin-top: 180px; }
 .fr:first-child { border-top: 0; padding-top: 0; }
 
 .fr-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
@@ -30,8 +30,8 @@
 
 .fr h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(21px,2.3vw,27px); line-height: 1.22;
-  color: var(--ink); max-width: 34ch; margin-bottom: 14px;
+  font-size: clamp(26px, 3.2vw, 36px); line-height: 1.1;
+  letter-spacing: -.015em; color: var(--ink); max-width: 30ch; margin-bottom: 16px;
 }
 .fr-what p { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 72ch; }
 .fr-what b { color: var(--ink); font-weight: 500; }
@@ -58,7 +58,8 @@
 
 .fr-rejected h2 {
   font-family: "Fraunces", serif; font-weight: 500;
-  font-size: clamp(24px,3vw,32px); line-height: 1.15; margin-bottom: 14px;
+  font-size: clamp(30px, 4.4vw, 48px); line-height: 1.08;
+  letter-spacing: -.015em; margin-bottom: 16px;
 }
 .fr-rejected h2 em { font-style: italic; color: var(--accent); }
 .fr-rejected > .wrap > p { color: var(--muted); font-size: 15.5px; line-height: 1.72; max-width: 70ch; }
@@ -93,3 +94,37 @@
 .fr-gapnote b { color: var(--ink); font-weight: 500; }
 .fr-gapnote a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
 .fr-gapnote a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* At-a-glance index. Ten dense entries with no way to scan them is the
+   difference between a reference and a wall. Effect label sits in the index so
+   a reader can jump straight to the ones that change something. */
+.fr-index { padding: clamp(30px,4vw,44px) 0; border-top: 1px solid var(--line); }
+.fr-index h2 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(30px, 4.4vw, 48px); line-height: 1.08;
+  letter-spacing: -.015em; margin-bottom: 18px;
+}
+.fr-index h2 em { font-style: italic; color: var(--accent); }
+.fx { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: fx; }
+.fx li {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 14px;
+  align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line);
+}
+.fx li > a {
+  color: var(--ink); font-size: 15.5px; line-height: 1.5;
+  border-bottom: 1px solid transparent;
+}
+.fx li > a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.fx-eff {
+  font-family: "IBM Plex Mono", monospace; font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+}
+.fx-c {
+  font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+  color: var(--faint); text-align: right; max-width: 30ch;
+}
+@media (max-width: 720px) {
+  .fx li { grid-template-columns: 1fr auto; }
+  .fx-c { display: none; }
+}
