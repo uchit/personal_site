@@ -37,6 +37,7 @@ const STEPS = [
   ["build-llms-full.mjs",       "rebuild the corpus"],
   ["check-routes.mjs",          "validate diagnostic routes"],
   ["check-drafts.mjs",          "fail on indexable drafts"],
+  ["check-structure.mjs",       "fail on duplicated page skeletons"],
 ];
 
 let failed = null;

@@ -1303,3 +1303,10 @@ img, video, iframe { max-width: 100%; height: auto; }
   font-family: "IBM Plex Mono", monospace; font-size: 12px;
   line-height: 1.7; color: var(--ink); white-space: pre;
 }
+
+/* Two-group site map. The strip listed Press kit and AI entity while Agents,
+   Dataset and Anti-patterns — the things anyone actually returns for — were
+   absent. Grouping adds coverage without adding the wall of links that made
+   the page feel heavy. */
+.also-grp + .also-grp { margin-top: 22px; }
+.also-grp .lab { margin-bottom: 12px; }

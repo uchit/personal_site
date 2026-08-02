@@ -97,7 +97,7 @@ for (const f of files) {
   const nav = block(step);
 
   if (html.includes(START)) {
-    html = html.replace(new RegExp(`${START}[\\s\\S]*?${END}`), nav);
+    html = html.replace(new RegExp(`${START}[\\s\\S]*?${END}`), () => nav);
   } else {
     /* Sits immediately above the also-strip, or the footer if there isn't one. */
     const anchor = html.includes('<section class="also-strip"')
