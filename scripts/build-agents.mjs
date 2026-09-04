@@ -160,10 +160,7 @@ const html = `<!DOCTYPE html>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script>
-  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
-  </script>
+  <script src="/js/analytics.js" defer></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -306,7 +303,7 @@ const html = `<!DOCTYPE html>
   <!-- STEP-NAV:END -->
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/">&larr; Home</a> &middot; <a href="/glossary/">Glossary</a> &middot; <a href="/dataset/">Dataset</a> &middot; <a href="/tools/">The Method</a></span>
   </div></footer>
 </body>

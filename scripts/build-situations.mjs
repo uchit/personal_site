@@ -153,22 +153,7 @@ const NAV = `  <header class="nav" role="banner">
 
 const GA = `  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script>
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());
-  gtag('config','G-XKE8WPKMMX',{anonymize_ip:true});
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a');if(!a||!a.href)return;
-    var u;try{u=new URL(a.href,location.href);}catch(_){return;}
-    if(!u.hostname||u.hostname===location.hostname)return;
-    var dest='outbound_click',h=u.hostname.replace(/^www\\./,'');
-    if(/substack\\.com$/.test(h))dest='substack_click';
-    else if(/linkedin\\.com$/.test(h))dest='linkedin_click';
-    else if(/github\\.com$/.test(h))dest='github_click';
-    gtag('event',dest,{link_url:a.href,link_domain:h,link_text:(a.innerText||'').slice(0,80)});
-  });
-  </script>`;
+  <script src="/js/analytics.js" defer></script>`;
 
 /* Step marker for The Method. Emitted here rather than only by
    build-step-nav.mjs because this generator overwrites its pages — a stamp
@@ -219,7 +204,7 @@ const ALSO = `  <section class="also-strip" aria-label="More on this site">
   </section>`;
 
 const FOOT = `  <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/">&larr; Home</a> &middot; <a href="/situations/">All situations</a></span>
   </div></footer>`;
 
@@ -250,7 +235,7 @@ const head = (title, desc, canonical) => `<!DOCTYPE html>
 ${GA}
 </head>`;
 
-const crumb = last => `      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/situations/" style="color:var(--muted)">Situations</a><span style="opacity:.5">/</span><span style="color:var(--accent)">${last}</span></nav>`;
+const crumb = last => `      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/situations/">Situations</a><span class="u-op-50">/</span><span class="u-accent">${last}</span></nav>`;
 
 function situationPage(s) {
   const plainTitle = s.title.replace(/<[^>]+>/g, "").replace(/&rsquo;/g, "’").replace(/&mdash;/g, "—");
@@ -266,7 +251,7 @@ ${NAV}
     <section style="padding:clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px)"><div class="wrap">
 ${crumb(s.nav)}
       <span class="eyebrow">Situation</span>
-      <h1 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,5.4vw,64px);line-height:1.04;letter-spacing:-.02em;margin-top:14px;max-width:20ch">${s.title.replace(/<em>/g, '<em style="font-style:italic;color:var(--accent)">')}</h1>
+      <h1 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,5.4vw,64px);line-height:1.04;letter-spacing:-.02em;margin-top:14px;max-width:20ch">${s.title.replace(/<em>/g, '<em class="u-italic-accent">')}</h1>
       <p style="margin-top:20px;color:var(--muted);font-size:clamp(16px,1.35vw,18.5px);line-height:1.7;max-width:62ch">${s.dek}</p>
       <div style="margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:var(--faint)">${s.meta}</div>
     </div></section>
@@ -274,12 +259,12 @@ ${crumb(s.nav)}
     <section style="padding:clamp(36px,4vw,52px) 0;border-top:1px solid var(--line)"><div class="wrap">
       <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.15;margin-bottom:20px">You&rsquo;ll recognise this if&hellip;</h2>
       <ul style="list-style:none;padding:0;margin:0;max-width:70ch">
-${s.symptoms.map(x => `        <li style="position:relative;padding-left:28px;margin-bottom:12px;color:var(--muted);font-size:15.5px;line-height:1.65"><span style="position:absolute;left:4px;top:11px;width:13px;height:1px;background:var(--accent)"></span>${x}</li>`).join("\n")}
+${s.symptoms.map(x => `        <li class="u-bullet-item"><span class="u-bullet-dash"></span>${x}</li>`).join("\n")}
       </ul>
     </div></section>
 
     <section style="padding:clamp(36px,4vw,52px) 0;border-top:1px solid var(--line)"><div class="wrap">
-      <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.15;margin-bottom:18px">What&rsquo;s usually <em style="font-style:italic;color:var(--accent)">actually</em> wrong.</h2>
+      <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.15;margin-bottom:18px">What&rsquo;s usually <em class="u-italic-accent">actually</em> wrong.</h2>
       <div class="sit-diagnosis" style="max-width:68ch;color:var(--muted);font-size:16px;line-height:1.75">
 ${s.diagnosis.split("\n").map(l => "        " + l.trim()).join("\n")}
       </div>
@@ -306,8 +291,8 @@ ${s.routes.map(r => `          <a class="route-card" href="${r.href}">
         <p style="color:var(--muted);font-size:15px;line-height:1.7;margin:0">${s.caveat}</p>
       </div>
       <p style="margin-top:36px;color:var(--muted);font-size:14.5px;line-height:1.7">
-        Different problem? <a href="/situations/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">See all situations</a>,
-        or browse by <a href="/for/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">sector</a>.
+        Different problem? <a class="u-link-dotted-accent" href="/situations/">See all situations</a>,
+        or browse by <a class="u-link-dotted-accent" href="/for/">sector</a>.
       </p>
     </div></section>
   </main>
@@ -333,10 +318,10 @@ ${NAV}
 
   <main id="main" tabindex="-1">
     <section style="padding:clamp(120px,14vw,176px) 0 clamp(36px,4vw,56px)"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Situations</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><span class="u-accent">Situations</span></nav>
       <span class="eyebrow">Start from the problem</span>
       <h1 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.02em;margin-top:14px;max-width:20ch">
-        Named for what&rsquo;s <em style="font-style:italic;color:var(--accent)">actually going wrong</em>.
+        Named for what&rsquo;s <em class="u-italic-accent">actually going wrong</em>.
       </h1>
       <p style="margin-top:20px;color:var(--muted);font-size:clamp(16px,1.3vw,18px);line-height:1.7;max-width:62ch">
         <a href="/for/" style="color:var(--ink);border-bottom:1px dotted var(--accent)">The sector views</a>
@@ -359,7 +344,7 @@ ${SITUATIONS.map(s => `        <a class="essay" href="/situations/${s.slug}/">
       <p style="margin-top:48px;color:var(--muted);font-size:14.5px;line-height:1.7;max-width:66ch">
         These are entry points, not new material &mdash; every route points at
         something already on the site. If your situation is not here, the
-        <a href="/tools/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">diagnostics</a>
+        <a class="u-link-dotted-accent" href="/tools/">diagnostics</a>
         are the fastest way to find out which one you are actually in.
       </p>
     </div></section>

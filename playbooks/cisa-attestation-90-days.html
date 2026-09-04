@@ -30,25 +30,25 @@
   <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
   <header class="nav" role="banner"><div class="wrap nav-inner">
     <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; Agents</span></span></a>
-    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/" style="color:var(--ink)">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
     <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
   </div></header>
 
   <main id="main" tabindex="-1">
     <section class="pb-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/playbooks/" style="color:var(--muted)">Playbooks</a><span style="opacity:.5">/</span><span style="color:var(--accent)">CISA SSA 90 days</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/playbooks/">Playbooks</a><span class="u-op-50">/</span><span class="u-accent">CISA SSA 90 days</span></nav>
       <span class="eyebrow">90-day playbook</span>
       <h1>CISA Secure Software Attestation <em>in 90 days</em>.</h1>
-      <p class="dek">If you sell software to US federal agencies, you sign the <a href="https://www.cisa.gov/secure-software-attestation-form" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">CISA Secure Software Attestation form</a>. The form is short. The substrate behind it &mdash; <a href="https://csrc.nist.gov/Projects/ssdf" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">NIST SSDF (SP 800-218)</a>, <a href="https://slsa.dev/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">SLSA v1.0</a>, signed provenance, SBOM owner-loop &mdash; takes a quarter to land right. This playbook gets you there.</p>
+      <p class="dek">If you sell software to US federal agencies, you sign the <a class="u-link-dotted-accent" href="https://www.cisa.gov/secure-software-attestation-form" target="_blank" rel="noopener">CISA Secure Software Attestation form</a>. The form is short. The substrate behind it &mdash; <a class="u-link-dotted-accent" href="https://csrc.nist.gov/Projects/ssdf" target="_blank" rel="noopener">NIST SSDF (SP 800-218)</a>, <a class="u-link-dotted-accent" href="https://slsa.dev/" target="_blank" rel="noopener">SLSA v1.0</a>, signed provenance, SBOM owner-loop &mdash; takes a quarter to land right. This playbook gets you there.</p>
       <div class="meta">
         <div class="meta-row">
           <span><b>Audience</b> Engineering lead + security lead at a software company selling to (or wanting to sell to) US federal agencies</span>
           <span><b>Pre-req</b> CI/CD pipeline exists. Container images shipped to production. DevSecOps Maturity diagnostic run to baseline.</span>
         </div>
-        <div class="meta-row" style="margin-top:8px">
+        <div class="meta-row u-mt-8">
           <span><b>End state</b> SLSA L2+ build provenance · signed images verified at deploy · SBOM emitted per artefact + KEV-driven owner-alert loop · workload identity (no static creds) · attestation form defensible against audit.</span>
         </div>
-        <div class="meta-row" style="margin-top:8px">
+        <div class="meta-row u-mt-8">
           <span><b>Re-run diagnostic at week 13</b> <a href="/tools/devsecops-maturity.html" style="color:var(--muted);border-bottom:1px dotted var(--line-strong)">DevSecOps Maturity diagnostic</a></span>
         </div>
       </div>
@@ -281,7 +281,7 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/playbooks/">&larr; All playbooks</a></span>
   </div></footer>
 

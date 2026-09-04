@@ -34,14 +34,14 @@
   <header class="nav" role="banner">
     <div class="wrap nav-inner">
       <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · Agents</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/" style="color:var(--ink)">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
     <section class="calc-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">The Method</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Commitment Optimiser</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/tools/">The Method</a><span class="u-op-50">/</span><span class="u-accent">Commitment Optimiser</span></nav>
       <span class="eyebrow">Calculator &middot; Cloud / FinOps</span>
       <h1>Cloud Commitment <em>Optimiser</em>.</h1>
       <p class="dek">
@@ -49,9 +49,9 @@
         3&#8209;year, No&#8209;Upfront vs All&#8209;Upfront</b> mix. See savings, lock-in
         risk, and breakeven utilisation update live. Discount rates reflect
         published Savings Plans / Reservations / CUDs as of 2026-05
-        (<a href="https://aws.amazon.com/savingsplans/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">AWS</a>,
-        <a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Azure</a>,
-        <a href="https://cloud.google.com/docs/cuds" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">GCP</a>).
+        (<a class="u-link-dotted-accent" href="https://aws.amazon.com/savingsplans/" target="_blank" rel="noopener">AWS</a>,
+        <a class="u-link-dotted-accent" href="https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/" target="_blank" rel="noopener">Azure</a>,
+        <a class="u-link-dotted-accent" href="https://cloud.google.com/docs/cuds" target="_blank" rel="noopener">GCP</a>).
       </p>
     </div></section>
 
@@ -147,7 +147,7 @@
         Committed spend = monthly &times; steady-state% &times; coverage%. Effective discount is a weighted blend of 1y vs 3y and No-Upfront vs All-Upfront discount rates per provider (compute-class). On-demand portion is billed at full price; commitment portion at on-demand &times; (1&minus;blended discount).
       </p>
       <p style="color:var(--muted);font-size:15.5px;line-height:1.7;margin-bottom:14px">
-        <b style="color:var(--ink)">Lock-in risk</b> rises with coverage and 3-year share. Breakeven utilisation = (commitment hourly cost) / (on-demand hourly cost) &mdash; below this, commitment loses money. Growth pulls coverage % down over time; the optimiser flags when re-rebalancing is overdue.
+        <b class="u-ink">Lock-in risk</b> rises with coverage and 3-year share. Breakeven utilisation = (commitment hourly cost) / (on-demand hourly cost) &mdash; below this, commitment loses money. Growth pulls coverage % down over time; the optimiser flags when re-rebalancing is overdue.
       </p>
       <p style="color:var(--muted);font-size:15.5px;line-height:1.7">
         Discount rates are illustrative class averages from published 2026-05 documentation. Real-world rates vary by region, instance family, and account size. Use for shape and trade-off comparison, not for procurement commitment sizing &mdash; use your provider&rsquo;s recommendations API for that.
@@ -201,7 +201,7 @@
     </div>
   </section>
 
-  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a> &middot; <a href="/tools/cloud-cost.html">Cloud Cost diagnostic &rarr;</a></span></div></footer>
+  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a> &middot; <a href="/tools/cloud-cost.html">Cloud Cost diagnostic &rarr;</a></span></div></footer>
 
 <script src="/js/pages/tools-calculators-commitment-optimiser.js" defer></script>
 </body>

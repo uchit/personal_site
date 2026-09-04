@@ -83,7 +83,7 @@ function rowHtml(r) {
 
   const anti = r.anti_pattern
     ? `        <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#${esc(r.anti_pattern)}" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#${esc(r.anti_pattern)}">See anti-pattern catalogue &rarr;</a></p>
         </div>\n`
     : "";
 
@@ -134,7 +134,7 @@ ${r.verify.map(v => `          <div class="vfy">
           <p>${esc(r.notes ?? "")}</p>
           <div class="meta-line">
             ${otherRegs}
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> ${sectors}</span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> ${sectors}</span>
           </div>
         </div>
 ${anti}      </div>

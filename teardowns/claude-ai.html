@@ -30,13 +30,13 @@
   <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
   <header class="nav" role="banner"><div class="wrap nav-inner">
     <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; Agents</span></span></a>
-    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/" style="color:var(--ink)">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
     <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
   </div></header>
 
   <main id="main" tabindex="-1">
     <section class="td-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/teardowns/" style="color:var(--muted)">Teardowns</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Claude.ai</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/teardowns/">Teardowns</a><span class="u-op-50">/</span><span class="u-accent">Claude.ai</span></nav>
       <span class="eyebrow">Architecture teardown</span>
       <h1>Claude.ai &mdash; the <em>streaming-first</em> AI product.</h1>
       <p class="dek">Anthropic builds Claude.ai with the same engineering culture that publishes research papers. That culture leaks into the architectural shape via blog posts, the MCP spec, job ads, and the product itself. <b>Enough signal to draw a defensible map.</b></p>
@@ -210,11 +210,11 @@
       <div class="td-cols">
         <div class="td-col steal">
           <h3>Steal &mdash; the patterns that compound</h3>
-          <ul><li><b>Plane separation</b> &mdash; if you have 2+ GenAI use-cases, model routing + tooling + evals live in a separate tier. Adding a use-case becomes config, not architecture.</li><li><b>Async safety + inline refusal</b> &mdash; don't put a 500ms classifier in your streaming hot path. Refusal categories + PII scrub inline; deep classification offline.</li><li><b>Context assembler beats &ldquo;everything is RAG&rdquo;</b> &mdash; if your context fits in 100K tokens, stuff it. Reach for RAG only on overflow. (<a href="/decisions/llm-integration-pattern.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Pattern decision tree</a>.)</li><li><b>MCP / tool runtime as a service tier</b> &mdash; not hard-coded plugins. The agent landscape converges on this in 2026.</li><li><b>Per-decision audit by default</b> &mdash; not an upsell; it's the substrate.</li></ul>
+          <ul><li><b>Plane separation</b> &mdash; if you have 2+ GenAI use-cases, model routing + tooling + evals live in a separate tier. Adding a use-case becomes config, not architecture.</li><li><b>Async safety + inline refusal</b> &mdash; don't put a 500ms classifier in your streaming hot path. Refusal categories + PII scrub inline; deep classification offline.</li><li><b>Context assembler beats &ldquo;everything is RAG&rdquo;</b> &mdash; if your context fits in 100K tokens, stuff it. Reach for RAG only on overflow. (<a class="u-link-dotted-accent" href="/decisions/llm-integration-pattern.html">Pattern decision tree</a>.)</li><li><b>MCP / tool runtime as a service tier</b> &mdash; not hard-coded plugins. The agent landscape converges on this in 2026.</li><li><b>Per-decision audit by default</b> &mdash; not an upsell; it's the substrate.</li></ul>
         </div>
         <div class="td-col avoid">
           <h3>Avoid copying &mdash; unless you're them</h3>
-          <ul><li><b>Building your own model</b> &mdash; the point of plane separation is using someone else's. Sovereign-fine-tuned-everything is the most common waste of GenAI investment.</li><li><b>Sandboxed code execution as a first feature</b> &mdash; Anthropic has the team to operate WebContainer-class sandboxes. Most teams shouldn't accept the operational risk.</li><li><b>Per-conversation T&amp;S classification pipeline</b> &mdash; built for frontier-lab safety research. Most enterprise GenAI needs the <a href="/writing/genai-9-controls.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">nine-controls discipline</a>, not a parallel classification stack.</li><li><b>Custom AI gateway</b> &mdash; build only if you're a frontier-lab. Otherwise <a href="/decisions/ai-gateway.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">buy</a>.</li></ul>
+          <ul><li><b>Building your own model</b> &mdash; the point of plane separation is using someone else's. Sovereign-fine-tuned-everything is the most common waste of GenAI investment.</li><li><b>Sandboxed code execution as a first feature</b> &mdash; Anthropic has the team to operate WebContainer-class sandboxes. Most teams shouldn't accept the operational risk.</li><li><b>Per-conversation T&amp;S classification pipeline</b> &mdash; built for frontier-lab safety research. Most enterprise GenAI needs the <a class="u-link-dotted-accent" href="/writing/genai-9-controls.html">nine-controls discipline</a>, not a parallel classification stack.</li><li><b>Custom AI gateway</b> &mdash; build only if you're a frontier-lab. Otherwise <a class="u-link-dotted-accent" href="/decisions/ai-gateway.html">buy</a>.</li></ul>
         </div>
       </div>
     </div></section>
@@ -231,7 +231,7 @@
 
     <section class="td-method"><div class="wrap" style="max-width:760px">
       <h3>Methodology &amp; sources</h3>
-      <p><b style="color:var(--accent)">Public signals only.</b> Company engineering blog posts, conference talks, job ads, public GitHub, podcasts, product behaviour from the outside. No NDA-covered information; no private conversations. The architecture inferred is my analysis &mdash; not endorsed by or affiliated with Claude.ai (Anthropic).</p>
+      <p><b class="u-accent">Public signals only.</b> Company engineering blog posts, conference talks, job ads, public GitHub, podcasts, product behaviour from the outside. No NDA-covered information; no private conversations. The architecture inferred is my analysis &mdash; not endorsed by or affiliated with Claude.ai (Anthropic).</p>
       <p>Primary sources:</p>
       <ul>
         <li>Anthropic engineering blog &middot; <a href="https://www.anthropic.com/news" target="_blank" rel="noopener">anthropic.com/news</a></li><li>Anthropic API + Claude.ai documentation &middot; <a href="https://docs.anthropic.com/" target="_blank" rel="noopener">docs.anthropic.com</a></li><li>Model Context Protocol specification &middot; <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">modelcontextprotocol.io</a></li><li>Anthropic public job listings (infra · trust &amp; safety · platform)</li><li>Direct observation of streaming behaviour, regional latency, artifact rendering, connector lifecycle.</li><li>Conference talks: AWS re:Invent · Lex Fridman podcast appearances by Anthropic team.</li>
@@ -296,7 +296,7 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
     <span><a href="/teardowns/">&larr; All teardowns</a></span>
   </div></footer>
 

@@ -30,13 +30,13 @@
   <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
   <header class="nav" role="banner"><div class="wrap nav-inner">
     <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; Agents</span></span></a>
-    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/" style="color:var(--ink)">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
     <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
   </div></header>
 
   <main id="main" tabindex="-1">
     <section class="ds-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><a href="/tools/" style="color:var(--muted)">The Method</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Dataset</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/tools/">The Method</a><span class="u-op-50">/</span><span class="u-accent">Dataset</span></nav>
       <span class="eyebrow">Reference dataset</span>
       <h1>The control, the command, the <em>order</em>.</h1>
       <p class="dek">A browsable map: <b>66 concrete controls</b> across <b>28 regulations</b>, with the tooling that implements each one, the evidence shape that passes audit, and &mdash; where one exists &mdash; <b>the read-only command that produces that evidence</b>. Pick a single regulation and it also derives <b>the order to do them in</b>, from prerequisites rather than opinion. Coverage depth is stated per regulation, because 28 is not 28 evenly.</p>
@@ -855,11 +855,11 @@
           <p>Often confused with credential rotation — rotation alone doesn't close the audit finding. The control requires federated identity (the workload proves who it is to the cloud), not just shorter-lived static creds. Foundation for SOCI 2022 SLACIP-amendment maturity.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ASD Essential 8, ISO/IEC 27001, SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#vault-theatre">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -912,11 +912,11 @@
           <p>Wildcards in production IAM are the most common audit finding. The control is *demonstrated* least-privilege (Access Analyzer says so), not *intended* least-privilege.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#vault-theatre">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -963,7 +963,7 @@
           <p>E8 ML2+ requires PAM, not 'we have admins with persistent access we trust.'</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -996,7 +996,7 @@
           <p>SMS-OTP no longer counts as strong MFA per NIST SP 800-63B Revision 4 draft. Passkeys / hardware tokens are the target.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU GDPR, AU Privacy Act, ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1038,11 +1038,11 @@
           <p>SLSA L2 = signed provenance; L3 = hardened builder (isolated, ephemeral). L3 needed for US-federal procurement under CISA SSA in many cases.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SSDF (800-218), CISA SSA, APRA CPS 234</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#sbom-shelfware">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -1083,11 +1083,11 @@
           <p>Emitting SBOMs is necessary but not sufficient. The audit-passing control is the *loop*: SBOM → vulnerability → owner-alert → patch within SLA. Pure SBOM-collection = shelfware.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> CISA SSA, APRA CPS 234, EU DORA, EU NIS2, SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#sbom-shelfware">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -1134,11 +1134,11 @@
           <p>Verifying signatures at deploy-time, not at scan-time. Catches the malicious-rebuild and tampered-mirror attack class.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SSDF (800-218)</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#pdf-principles">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -1179,7 +1179,7 @@
           <p>Hard to reach for most teams; necessary for the most exposed federal / defence workloads (SLSA L4).</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1212,7 +1212,7 @@
           <p>Floating tags (:latest, ^1.x) make supply chain unsafe at any speed. Lockfile + freshness SLA is the control.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1260,11 +1260,11 @@
           <p>BCBS 239 has been live since 2016 and is still failed by most G-SIBs at audit. Lineage at column level (not table level) is the bar.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU GDPR, AU Privacy Act, HIPAA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#lakehouse-as-swamp" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#lakehouse-as-swamp">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -1296,7 +1296,7 @@
           <p>Statutory windows: GDPR 30 days, AU Privacy Act 30 days (under reform), HIPAA 30 days for access requests. Untested DSAR pipelines fail at first regulator-driven test.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU Privacy Act, HIPAA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -1329,11 +1329,11 @@
           <p>The control is not 'we have a data classification standard'. It's 'every dataset wears its classification and the platform enforces handling rules.'</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU Privacy Act, HIPAA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#data-mesh-no-substrate" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#data-mesh-no-substrate">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -1365,7 +1365,7 @@
           <p>Soft-residency (claim) vs hard-residency (architecturally enforceable). Auditors increasingly want the latter.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU Privacy Act</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -1407,11 +1407,11 @@
           <p>EU AI Act Art. 15 (accuracy / robustness) is enforceable only with eval-set discipline. NIST AI RMF MEASURE function depends on it.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, AU AI Safety Std</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#eval-set-never-runs" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#eval-set-never-runs">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -1443,11 +1443,11 @@
           <p>Guardrails encoded in the system prompt = no guardrail. The control is a distinct layer that intercepts before &amp; after the model.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU AI Safety Std, OWASP LLM Top 10, MITRE ATLAS</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#inline-prompt-pattern">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -1479,7 +1479,7 @@
           <p>EU AI Act Art. 12 (logging) becomes operational evidence here. Without per-decision logs you cannot answer regulator's 'why did the model decide X for this customer'.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1512,7 +1512,7 @@
           <p>Art. 14 (human oversight) is operational, not declarative. 'A human can override' isn't oversight; 'a human must approve high-risk decisions' is.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU AI Safety Std</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -1545,7 +1545,7 @@
           <p>OWASP LLM01 (prompt injection) is the most common attack vector; defending requires both input-side and output-side controls.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> MITRE ATLAS</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1578,7 +1578,7 @@
           <p>EU AI Act technical documentation (Art. 11 / Annex IV) maps to model + data cards.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1611,7 +1611,7 @@
           <p>CPS 230 (live in AU FS) requires this for every 'critical operation'. DORA RTS expects testing artefacts the regulator can review.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU DORA, EU NIS2, SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1644,7 +1644,7 @@
           <p>DORA introduced critical ICT third-party designation (CTPP). APRA CPS 230 has equivalent material-service-provider rules. Both need real numbers, not 'we use AWS'.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU DORA, EU NIS2, US CIRCIA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1677,7 +1677,7 @@
           <p>DORA Art. 25 (threat-led penetration testing) implies dynamic resilience testing; chaos engineering is its operational analogue.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU DORA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1710,7 +1710,7 @@
           <p>US CIRCIA: 72h incident, 24h ransom payment. NIS2: 24h early-warning, 72h notification. SOCI 2018: critical infrastructure asset incidents 72h. The shape of the obligation is similar globally.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> US CIRCIA, APRA CPS 234, SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -1743,7 +1743,7 @@
           <p>Action items that don't close = postmortems that don't compound. Google SRE Workbook Chapter 10 is the canonical reference.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -1776,11 +1776,11 @@
           <p>CISA KEV is the actually-exploited subset; far better priority than CVSS-score alone.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SSDF (800-218), CISA SSA, APRA CPS 234, EU DORA, EU NIS2</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#sbom-shelfware" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#sbom-shelfware">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -1812,7 +1812,7 @@
           <p>Local log files don't pass audit. Centralised + tamper-evident is the baseline.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> HIPAA, ISO/IEC 27001, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -1854,7 +1854,7 @@
           <p>PCI DSS 4.0 explicitly requires TLS 1.2+ (not 1.0/1.1) since 30 March 2025.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> HIPAA, ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -1902,7 +1902,7 @@
           <p>BYOK only meaningful if you can demonstrate the key is exclusive to one tenant and rotated independently.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> HIPAA, ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
           </div>
         </div>
       </div>
@@ -1944,7 +1944,7 @@
           <p>A leaked secret rotated in 30 days is a breach. Auto-revocation pipeline matters more than detection.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -1992,7 +1992,7 @@
           <p>Big-bang prod deploys are a CPS 230 finding-in-waiting. Progressive deployment with auto-rollback is the operational standard.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2034,7 +2034,7 @@
           <p>E8 ML2+ requires application control. Hard to retrofit; bake into golden image / paved path.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53, ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -2067,7 +2067,7 @@
           <p>Inherited (paved path) beats per-team-set-up-their-own. The control is consistency across the fleet.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> EU DORA, EU NIS2, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2100,7 +2100,7 @@
           <p>Detection-as-code beats SIEM-managed-by-vendor. Treats security like the engineering practice it is.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2133,7 +2133,7 @@
           <p>IEC 62443 zone-and-conduit model is now the de-facto bar for OT/ICS environments. SOCI 2022 SLACIP-amendment audits ask after this.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, IEC 62443</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -2166,7 +2166,7 @@
           <p>Service mesh is real platform investment. Adopt if 20+ services and a platform team; defer otherwise.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">healthcare</span><span class="sector">government</span></span>
           </div>
         </div>
       </div>
@@ -2208,7 +2208,7 @@
           <p>Default-deny privileged execution; allow only with explicit exception. This is the bar Kubernetes Pod Security Standards 'restricted' enforces.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, PCI DSS 4.0</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2250,7 +2250,7 @@
           <p>Manual UARs by spreadsheet collapse at scale. The control needs an attestation engine, not a Friday-afternoon Excel.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53, APRA CPS 234</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -2283,7 +2283,7 @@
           <p>CPS 230 explicitly requires this. The 'tolerance for disruption' is the regulator's pet metric.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -2316,7 +2316,7 @@
           <p>Major cloud providers offer pre-signed BAAs; smaller vendors often forgotten and become the audit finding.</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -2349,7 +2349,7 @@
           <p>FDA expects PMS for any clinical AI. Maps to ISO 14971 risk management.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO 13485, IEC 62304</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -2382,11 +2382,11 @@
           <p>ClickOps in production = audit finding. IaC + plan-time policy is the bar.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#paved-path-no-adoption" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#paved-path-no-adoption">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -2427,7 +2427,7 @@
           <p>Drift accumulates silently. Detection alone is necessary but not sufficient — the loop must close back to code.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2469,7 +2469,7 @@
           <p>CPS 230 doesn't name cost explicitly, but financial sustainability of critical operations is in scope. FinOps Foundation Framework is the operational substrate.</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2502,7 +2502,7 @@
           <p>NIST finalised PQC standards Aug 2024 (FIPS 203/204/205). Regulators are starting to ask about transition plans.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
       </div>
@@ -2535,11 +2535,11 @@
           <p>EU AI Act Art. 9 (risk management system). NIST AI RMF MAP function. ISO 42001 Annex A.6.1.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#ai-workshop-tourism" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#ai-workshop-tourism">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -2571,11 +2571,11 @@
           <p>Pickle files in shared model registries are an active attack surface. ML-supply-chain is the new software-supply-chain.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#model-as-latest" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#model-as-latest">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -2607,7 +2607,7 @@
           <p>G-SIBs were given BCBS 239 in 2013, due 2016, mostly still failing 2024 (BCBS reviews are public). The substrate is the gap, not the regulation.</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span></span>
           </div>
         </div>
       </div>
@@ -2640,7 +2640,7 @@
           <p>Up to PROTECTED on assessed regions; SECRET typically on sovereign-only platforms.</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">government</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">government</span></span>
           </div>
         </div>
       </div>
@@ -2673,7 +2673,7 @@
           <p>E8 ML2+ requires immutable + tested backups. Ransomware resilience is the underlying threat.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2721,7 +2721,7 @@
           <p>Cookie banner alone doesn't satisfy. The control is propagation of revocation to every downstream consumer.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> AU Privacy Act</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2754,7 +2754,7 @@
           <p>Always-on VPN is the legacy. ZTNA per-app, per-identity, per-posture is the bar.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, ASD Essential 8</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2787,7 +2787,7 @@
           <p>Often skipped because 'we have HTTPS'; the DNS + email-auth controls close a different attack class.</p>
           <div class="meta-line">
             
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2841,7 +2841,7 @@
           <p>OWASP API Security Top 10 (BOLA, BOPLA, broken auth) maps to deficiencies here. API gateway + auth-per-endpoint is the structural control.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53, ISO/IEC 27001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2874,7 +2874,7 @@
           <p>E8 ML2 requires 48-hour patching for working exploits, 1-month for known vulns. The structural fix is immutable / auto-updating base images.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 27001, PCI DSS 4.0</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2916,7 +2916,7 @@
           <p>WAF in 'monitor' mode never moved to 'block' is the most common shelfware control.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
       </div>
@@ -2949,7 +2949,7 @@
           <p>EU NIS2 explicit board accountability. APRA CPS 234 + CPS 230 board-level oversight. ISO 42001 top management responsibility.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">critical-infrastructure</span><span class="sector">healthcare</span></span>
           </div>
         </div>
       </div>
@@ -2982,11 +2982,11 @@
           <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#vault-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#vault-theatre">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -3027,11 +3027,11 @@
           <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#pdf-principles">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3063,11 +3063,11 @@
           <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#ai-coe-trap" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#ai-coe-trap">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3099,11 +3099,11 @@
           <p>EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#architect-as-reviewer" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#architect-as-reviewer">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3135,11 +3135,11 @@
           <p>Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span><span class="sector">critical-infrastructure</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#inline-prompt-pattern">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -3180,11 +3180,11 @@
           <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#kpi-cargo-cult" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#kpi-cargo-cult">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
         <div class="vfy-wrap">
@@ -3225,11 +3225,11 @@
           <p>Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, EU AI Act, EU DORA</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#pdf-principles" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#pdf-principles">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3261,11 +3261,11 @@
           <p>Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> MITRE ATLAS, EU AI Act, ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#inline-prompt-pattern" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#inline-prompt-pattern">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3297,11 +3297,11 @@
           <p>As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001, NIST AI RMF, BCBS 239</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">banks</span><span class="sector">government</span><span class="sector">healthcare</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#capability-model-theatre" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#capability-model-theatre">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3333,11 +3333,11 @@
           <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
           <div class="meta-line">
             <span><b>Other regs:</b> ISO/IEC 42001</span>
-            <span class="sectors"><b style="color:var(--accent);font-weight:500">Sectors:</b> <span class="sector">all</span></span>
+            <span class="sectors"><b class="u-accent-med">Sectors:</b> <span class="sector">all</span></span>
           </div>
         </div>
         <div>
-          <h4>Anti-pattern to avoid</h4><p><a href="/anti-patterns/#kpi-cargo-cult" style="color:var(--accent);border-bottom:1px solid var(--accent)">See anti-pattern catalogue &rarr;</a></p>
+          <h4>Anti-pattern to avoid</h4><p><a class="u-link-solid-accent" href="/anti-patterns/#kpi-cargo-cult">See anti-pattern catalogue &rarr;</a></p>
         </div>
       </div>
     </div>
@@ -3394,8 +3394,8 @@
   </section>
 
   <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
-    <span>Dataset <b style="color:var(--accent)">CC BY 4.0</b> &middot; <a href="/dataset/dataset.json">JSON</a> &middot; <a href="/dataset/dataset.csv">CSV</a></span>
+    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
+    <span>Dataset <b class="u-accent">CC BY 4.0</b> &middot; <a href="/dataset/dataset.json">JSON</a> &middot; <a href="/dataset/dataset.csv">CSV</a></span>
   </div></footer>
 
   <script src="/js/dataset.js" defer></script>

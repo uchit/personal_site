@@ -1310,3 +1310,36 @@ img, video, iframe { max-width: 100%; height: auto; }
    the page feel heavy. */
 .also-grp + .also-grp { margin-top: 22px; }
 .also-grp .lab { margin-bottom: 12px; }
+
+/* ---------- Utilities ----------
+   Replace the site's most-repeated inline style="..." values so style-src can
+   drop 'unsafe-inline'. Only values that occurred site-wide are here — a
+   one-off decorative tweak stays as a scoped rule near its component instead
+   of bloating this list. See scripts/migrate-inline-styles.mjs. */
+.u-op-50 { opacity: .5; }
+.u-op-60 { opacity: .6; }
+.u-muted { color: var(--muted); }
+.u-accent { color: var(--accent); }
+.u-accent-med { color: var(--accent); font-weight: 500; }
+.u-ink { color: var(--ink); }
+.u-faint { color: var(--faint); }
+.u-eyebrow {
+  display: flex; gap: 8px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .12em; color: var(--faint); margin-bottom: 20px;
+}
+.u-link-dotted-accent { color: var(--accent); border-bottom: 1px dotted var(--accent); }
+.u-link-solid-accent { color: var(--accent); border-bottom: 1px solid var(--accent); }
+.u-link-ink-accent { color: var(--ink); border-bottom: 1px solid var(--accent); }
+.u-italic-accent { font-style: italic; color: var(--accent); }
+.u-bullet-item {
+  position: relative; padding-left: 28px; margin-bottom: 12px;
+  color: var(--muted); font-size: 15.5px; line-height: 1.65;
+}
+.u-bullet-dash {
+  position: absolute; left: 4px; top: 11px;
+  width: 13px; height: 1px; background: var(--accent);
+}
+.u-mt-8 { margin-top: 8px; }
+.u-flex-wrap-10 { display: flex; flex-wrap: wrap; gap: 10px; }
+.u-flex-wrap-14-22 { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }

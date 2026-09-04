@@ -108,7 +108,7 @@
 
   <main id="main" tabindex="-1">
     <section class="o-hero"><div class="wrap">
-      <nav class="crumb" style="display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;color:var(--faint);margin-bottom:20px"><a href="/" style="color:var(--muted)">Home</a><span style="opacity:.5">/</span><span style="color:var(--accent)">Open Source</span></nav>
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><span class="u-accent">Open Source</span></nav>
       <span class="eyebrow">Open Source</span>
       <h1>Tools <em>worth pulling</em>, not pitches.</h1>
       <p class="dek">
@@ -160,7 +160,7 @@
           <li>a control claimed <em>met</em> with no evidence recorded</li>
           <li>a control claimed <em>met</em> while a prerequisite is not &mdash; tool
             authorisation cannot be met if the agent has no identity of its own
-            to authorise <small style="color:var(--faint)">(the most common way one of these packs is quietly wrong)</small></li>
+            to authorise <small class="u-faint">(the most common way one of these packs is quietly wrong)</small></li>
         </ul>
         <p>
           An honest <em>unknown</em> does not fail. Unknown is the correct
@@ -207,18 +207,18 @@ npx @uchit/agentcheck check --md evidence.md</code></pre>
 
         <p><b>What it enforces (12 rules, each citing a primary source):</b></p>
         <ul>
-          <li>Accountability officer declared <small style="color:var(--faint)">(NIST GOVERN-1.3 · EU AI Act Art.9)</small></li>
-          <li>Risk tier declared with rationale <small style="color:var(--faint)">(NIST GOVERN-2)</small></li>
-          <li>Data lineage attached <small style="color:var(--faint)">(NIST MAP-2 · EU AI Act Art.10)</small></li>
-          <li>Eval set referenced on medium/high-risk <small style="color:var(--faint)">(NIST MEASURE-2.7)</small></li>
-          <li>Prompts in a versioned registry — no inline strings <small style="color:var(--faint)">(OWASP LLM01)</small></li>
-          <li>Model version pinned — no floating tags <small style="color:var(--faint)">(NIST MAP-3.4)</small></li>
-          <li>Input + output guardrails declared <small style="color:var(--faint)">(MITRE ATLAS)</small></li>
-          <li>Audit-evidence sink + retention <small style="color:var(--faint)">(EU AI Act Art.12)</small></li>
-          <li>Human-oversight pattern declared for high-risk <small style="color:var(--faint)">(EU AI Act Art.14)</small></li>
+          <li>Accountability officer declared <small class="u-faint">(NIST GOVERN-1.3 · EU AI Act Art.9)</small></li>
+          <li>Risk tier declared with rationale <small class="u-faint">(NIST GOVERN-2)</small></li>
+          <li>Data lineage attached <small class="u-faint">(NIST MAP-2 · EU AI Act Art.10)</small></li>
+          <li>Eval set referenced on medium/high-risk <small class="u-faint">(NIST MEASURE-2.7)</small></li>
+          <li>Prompts in a versioned registry — no inline strings <small class="u-faint">(OWASP LLM01)</small></li>
+          <li>Model version pinned — no floating tags <small class="u-faint">(NIST MAP-3.4)</small></li>
+          <li>Input + output guardrails declared <small class="u-faint">(MITRE ATLAS)</small></li>
+          <li>Audit-evidence sink + retention <small class="u-faint">(EU AI Act Art.12)</small></li>
+          <li>Human-oversight pattern declared for high-risk <small class="u-faint">(EU AI Act Art.14)</small></li>
           <li>Cost-attribution tag for FinOps for AI</li>
-          <li>EU high-risk conformity assessment reference <small style="color:var(--faint)">(EU AI Act Annex III)</small></li>
-          <li>Model provider + region pinned <small style="color:var(--faint)">(data-residency, supply chain)</small></li>
+          <li>EU high-risk conformity assessment reference <small class="u-faint">(EU AI Act Annex III)</small></li>
+          <li>Model provider + region pinned <small class="u-faint">(data-residency, supply chain)</small></li>
         </ul>
 
         <pre><span class="c"># Try it in 60 seconds</span>
@@ -235,8 +235,8 @@ opa eval -d policy/ -i examples/missing-evals.yaml <span class="a">'data.ai.rmf.
 opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
 
         <p style="margin-top:14px"><b>Wire it into:</b> Kubernetes (Gatekeeper), CI (Conftest, Sentinel), Terraform (Sentinel or OPA pre-apply). Reference implementation for the
-        <a href="/reference-architectures/regulated-genai-platform.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">Regulated GenAI Platform reference architecture</a>
-        and the <a href="/writing/genai-9-controls.html" style="color:var(--accent);border-bottom:1px dotted var(--accent)">9 controls essay</a>.</p>
+        <a class="u-link-dotted-accent" href="/reference-architectures/regulated-genai-platform.html">Regulated GenAI Platform reference architecture</a>
+        and the <a class="u-link-dotted-accent" href="/writing/genai-9-controls.html">9 controls essay</a>.</p>
 
         <div class="actions">
           <a class="btn btn-primary" href="https://github.com/uchit/opa-nist-ai-rmf" target="_blank" rel="noopener">View on GitHub &rarr;</a>
@@ -275,7 +275,7 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
         <p><b>What it exposes:</b></p>
         <ul>
           <li>Control lookup across <b>28 regulations</b> &mdash; EU AI Act, APRA CPS 230/234, NIST AI RMF, ISO/IEC 42001, AU AI Safety Standard</li>
-          <li>EU AI Act risk-tier classification for a described use-case <small style="color:var(--faint)">(Annex III reasoning, not a guess)</small></li>
+          <li>EU AI Act risk-tier classification for a described use-case <small class="u-faint">(Annex III reasoning, not a guess)</small></li>
           <li>The 15 named anti-patterns, queryable by symptom</li>
           <li>90-day playbooks and their named gates</li>
           <li>Tooling options per control, with the evidence shape that passes audit</li>
@@ -294,8 +294,8 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
         <p style="margin-top:14px"><b>Published with provenance.</b> npm package signed via sigstore,
         listed on the MCP Registry, and runnable on Node or at the edge
         (Cloudflare Workers, Deno Deploy, Vercel). Same source data as the
-        <a href="/dataset/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">public dataset</a>
-        and the <a href="/anti-patterns/" style="color:var(--accent);border-bottom:1px dotted var(--accent)">anti-patterns catalogue</a>,
+        <a class="u-link-dotted-accent" href="/dataset/">public dataset</a>
+        and the <a class="u-link-dotted-accent" href="/anti-patterns/">anti-patterns catalogue</a>,
         so the browser and the agent see the same facts.</p>
 
         <div class="actions">
@@ -310,7 +310,7 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
         a Terraform reusable workflow for SLSA L3+ paved paths;
         a CLI that takes JSON output from the six diagnostics and prints
         a compound-maturity report; an OPA bundle for ISO/IEC 42001
-        controls. Star <a href="https://github.com/uchit/opa-nist-ai-rmf" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px dotted var(--accent)">opa-nist-ai-rmf</a>
+        controls. Star <a class="u-link-dotted-accent" href="https://github.com/uchit/opa-nist-ai-rmf" target="_blank" rel="noopener">opa-nist-ai-rmf</a>
         to be notified.
       </div>
     </div></section>
@@ -364,7 +364,7 @@ opa test policy/ tests/    <span class="c"># 24 tests</span></pre>
 
   <footer class="foot" role="contentinfo">
     <div class="wrap foot-inner">
-      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc" style="opacity:.6">personal site, views my own, not my employer&rsquo;s</span></span>
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
       <span><a href="/">&larr; Home</a> &middot; <a href="/4-discipline-stack/">Framework</a> &middot; <a href="/tools/">The Method</a> &middot; <a href="/writing/">Writing</a></span>
     </div>
   </footer>
