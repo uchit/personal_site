@@ -49,7 +49,18 @@ function levelsOf(slug) {
   const candidates = [`tools/${slug}.html`, `tools/${slug}/index.html`];
   const file = candidates.find(f => existsSync(join(ROOT, f)));
   if (!file) return null;
-  const src = readFileSync(join(ROOT, file), "utf8");
+  let src = readFileSync(join(ROOT, file), "utf8");
+
+  /* The diagnostic's config (levels included) may live in an external script
+     rather than inline in the HTML — see js/pages/*.js. Pull in any local
+     <script src> the page references so the regex below still finds it. */
+  for (const m of src.matchAll(/<script[^>]+src="([^"]+)"/g)) {
+    const s = m[1];
+    if (/^https?:\/\//i.test(s)) continue;
+    const p = s.replace(/^\//, "");
+    if (existsSync(join(ROOT, p))) src += "\n" + readFileSync(join(ROOT, p), "utf8");
+  }
+
   return new Set(
     [...src.matchAll(/minPct:\s*[\d.]+\s*,\s*maxPct:\s*[\d.]+\s*,\s*name:\s*"([^"]+)"/g)]
       .map(m => m[1])
