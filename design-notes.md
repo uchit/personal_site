@@ -63,6 +63,6 @@ Apple HIG, adapted. One idea per sentence. Verbs over adjectives. No "leveraging
 - **Phase 1** — shell + hero + nav + atmosphere.
 - **Phase 2** — about + expertise.
 - **Phase 3** — case studies + books + talks.
-- **Phase 4** — writing teaser + contact + JSON-LD + headers cleanup.
+- **Phase 4** — writing teaser + contact + JSON-LD + headers cleanup. ✅
 
-Old `index.html` preserved at `index.legacy.html` until phase 4 ships and is reviewed.
+All phases shipped; `index.legacy.html` has been removed.
