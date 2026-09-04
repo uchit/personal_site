@@ -98,6 +98,7 @@ node scripts/build-json-exports.mjs   # diagnostics/decisions/anti-patterns/glos
 node scripts/build-situations.mjs     # regenerate /situations/ (also link-checks routes)
 node scripts/check-routes.mjs         # diagnostic result → playbook routes
 node scripts/check-drafts.mjs         # no page publishes with placeholder text
+node scripts/check-links.mjs          # every internal href/src resolves
 ```
 
 ### Generators overwrite — put sitewide edits in the generator
@@ -118,3 +119,24 @@ grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
 node scripts/build-situations.mjs >/dev/null && node scripts/build-step-nav.mjs  >/dev/null
 grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
 ```
+
+## Search (Pagefind)
+
+`/search/` is a static full-text search UI over every page, built by
+[Pagefind](https://pagefind.app/). Unlike the generators above, this needs one
+real npm dependency — `npm install` first (installs into `node_modules/`,
+gitignored, never deployed).
+
+```sh
+npm install
+npm run search:build     # scans **/*.html, writes the index into pagefind/
+```
+
+**`pagefind/` is committed and deployed** — it's the actual search index the
+browser fetches at `/pagefind/*`, not build output to gitignore. It has no
+content of its own to go stale in a way a generator output page can (it's
+regenerated wholesale each run), but it **does** go stale relative to the site
+content it indexes: run `npm run search:build` again after any page-content
+change (new page, edited copy, deleted page) and commit the result, or the
+search results silently drift from what's actually live. There's no
+CI/pre-push hook enforcing this yet — it relies on remembering.

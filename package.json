@@ -1,0 +1,12 @@
+{
+  "name": "hellouchit-site-tools",
+  "private": true,
+  "type": "module",
+  "description": "Local-only tooling for hellouchit.com. The site itself stays plain static HTML/CSS/JS served by GitHub Pages; this does not run as part of the deploy.",
+  "scripts": {
+    "search:build": "pagefind --site . --output-path pagefind --exclude-selectors \"nav.crumb, .foot, .also, [aria-hidden='true']\""
+  },
+  "devDependencies": {
+    "pagefind": "^1.3.0"
+  }
+}
