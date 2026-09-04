@@ -9,12 +9,22 @@
     "The headers that actually apply in production are Cloudflare Transform Rules;",
     "docs/security-headers.md is the source of truth and mirrors the values here.",
     "",
-    "CSP NOTE: 'unsafe-inline' is deliberate, not laziness. The site has 93 inline",
-    "<script> blocks (every diagnostic's Diag.run({...}) and every decision tree's",
-    "window.TREE = {...}), 7 inline event handlers and 828 inline style attributes.",
-    "A nonce-based policy requires per-request header generation, which no static",
-    "host can do. Tightening this means first moving that config into external .js",
-    "files — a worthwhile refactor, but a refactor, not a header change."
+    "CSP NOTE: script-src dropped 'unsafe-inline'. Every diagnostic's",
+    "Diag.run({...}), every decision tree's window.TREE = {...}, the GA snippet",
+    "and every onclick/onerror handler now live in external .js (js/pages/,",
+    "js/analytics.js) or are wired via addEventListener — see git history for",
+    "the migration scripts (scripts/migrate-inline-*.mjs).",
+    "",
+    "style-src still carries 'unsafe-inline'. ~30 pages keep page-scoped CSS in",
+    "a <style> block (normal practice, but still inline for CSP purposes), plus",
+    "~280 one-off style=\"...\" attributes that weren't common enough to justify",
+    "a utility class (see css/site.css's Utilities section for the ones that",
+    "were). A nonce-based policy requires per-request header generation, which",
+    "no static host can do; a hash-based one needs a distinct header per page,",
+    "which the single sitewide Cloudflare Transform Rule can't produce either.",
+    "Closing this fully means moving every page's <style> block to an external",
+    "stylesheet and finishing the attribute-to-utility-class pass — real work,",
+    "not done here."
   ],
   "headers": [
     {
@@ -26,7 +36,7 @@
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com https://cloudflareinsights.com; upgrade-insecure-requests"
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com https://cloudflareinsights.com; upgrade-insecure-requests"
         }
       ]
     },
