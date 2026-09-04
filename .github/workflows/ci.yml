@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    name: Site checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-drafts.mjs
+      - run: node scripts/check-routes.mjs
+      - run: node scripts/check-structure.mjs
+      - run: node scripts/check-links.mjs
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    needs: checks
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Serve the site
+        run: npx --yes http-server . -p 8080 --silent &
+      - name: Wait for server
+        run: npx --yes wait-on http://localhost:8080
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          # Representative pages, not all 88: the homepage (heaviest hero/JS),
+          # a diagnostic (interactive JS-driven), and the dataset page (largest
+          # DOM on the site). Widen this list if a category regresses somewhere
+          # else and needs a permanent watch.
+          urls: |
+            http://localhost:8080/
+            http://localhost:8080/tools/genai-readiness.html
+            http://localhost:8080/dataset/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          # Informational only for now — no assertions.json / minimum-score gate
+          # yet. Add one once a few runs establish what "normal" looks like for
+          # this site; failing PRs against thresholds nobody has seen hit yet
+          # just trains people to ignore red CI.
