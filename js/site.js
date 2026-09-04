@@ -3,6 +3,14 @@ document.documentElement.classList.add('js');
 (function () {
   'use strict';
 
+  // Portrait fallback — swap to initials if the cutout fails to load
+  const portraitImg = document.getElementById('portrait-img');
+  if (portraitImg) {
+    portraitImg.addEventListener('error', () => {
+      portraitImg.closest('.portrait')?.classList.add('fallback');
+    });
+  }
+
   // Scroll-reveal — hero shows immediately, below-fold reveals on entry
   const revealNow = el => el.classList.add('in');
   document.querySelectorAll('.hero .reveal').forEach(revealNow);

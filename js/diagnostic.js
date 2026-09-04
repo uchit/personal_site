@@ -62,6 +62,13 @@
     return { answers: m[1].split("").map(Number), sector: m[2] || null };
   }
 
+  document.addEventListener("click", (e) => {
+    if (e.target.closest('[data-action="restart"]')) {
+      location.hash = "";
+      location.reload();
+    }
+  });
+
   const Diag = {
     state: { answers: [], i: 0, sector: "tech" },
     cfg: null,
