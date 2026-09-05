@@ -45,13 +45,16 @@
      mapping can be checked for dead links in a single pass, and a level's
      onward path can be retuned without touching the diagnostic's content. A
      level may still override inline via lvl.routes. */
+  function slugOf() {
+    return location.pathname
+      .replace(/\/index\.html$/, "/")
+      .replace(/^.*\/([^/]+?)(?:\.html)?\/?$/, "$1");
+  }
+
   function routesFor(levelName) {
     const table = window.DIAG_ROUTES;
     if (!table) return null;
-    const slug = location.pathname
-      .replace(/\/index\.html$/, "/")
-      .replace(/^.*\/([^/]+?)(?:\.html)?\/?$/, "$1");
-    const forTool = table[slug];
+    const forTool = table[slugOf()];
     return forTool ? forTool[levelName] : null;
   }
 
@@ -165,6 +168,15 @@
       const max = cfg.questions.length * 5;
       const pct = score / max;
       const lvl = cfg.levels.find(L => pct >= L.minPct && pct <= L.maxPct) || cfg.levels[0];
+
+      if (window.DiagStorage) {
+        DiagStorage.save(slugOf(), {
+          score, max, pct,
+          levelName: lvl.name,
+          sector: this.state.sector,
+          hash: "a=" + this.state.answers.map(v => String(v || 1)).join("") + "&s=" + this.state.sector,
+        });
+      }
 
       $("#rscore").textContent = String(score);
       $("#rmax").textContent = "/ " + max;

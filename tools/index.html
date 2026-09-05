@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="/css/enhance.css" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
+<script src="/js/diag-storage.js" defer></script>
+<script src="/js/pages/tools-progress.js" defer></script>
 <style>
   /* Intent-based explore page */
   .ex-hero { padding: clamp(120px,14vw,176px) 0 clamp(20px,3vw,32px); }
@@ -126,6 +128,39 @@
     font-size: 10.5px; color: var(--accent);
     letter-spacing: .06em;
   }
+
+  /* Saved-progress scorecard — only rendered once something's been run. */
+  .diag-progress { margin-bottom: 24px; }
+  .dp-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+    letter-spacing: .06em; color: var(--faint);
+  }
+  .dp-clear {
+    background: none; border: none; padding: 0; color: var(--faint);
+    font: inherit; cursor: pointer; text-decoration: underline;
+    text-decoration-style: dotted; text-underline-offset: 3px;
+    transition: color .2s;
+  }
+  .dp-clear:hover { color: var(--accent); }
+  .dp-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dp-pill {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--line); text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .dp-pill:hover { border-color: var(--accent); background: rgba(217,151,87,.04); }
+  .dp-pill .dp-name {
+    font-size: 12.5px; color: var(--muted);
+  }
+  .dp-pill.is-done .dp-name { color: var(--ink); }
+  .dp-pill.is-done { border-color: rgba(217,151,87,.35); }
+  .dp-pill .dp-level {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: .04em; color: var(--accent);
+  }
 </style>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
@@ -224,9 +259,11 @@
         <div>
           <span class="num">02 &middot; Locate it</span>
           <h2>Where do you <em>actually stand</em>?</h2>
-          <p class="sub">Score yourself against the two that bind most often, then the compound view that synthesises across all six. Everything runs in your browser; nothing stored; results shareable via URL.</p>
+          <p class="sub">Score yourself against the two that bind most often, then the compound view that synthesises across all six. Everything runs in your browser and never leaves it &mdash; each result is shareable via URL, and saved on this device so the scorecard below remembers what you've run.</p>
         </div>
       </div>
+
+      <div id="diag-progress"></div>
 
       <div class="ex-cards">
         <a class="ex-card" href="/tools/agent-readiness.html"><span class="tg">Diagnostic &middot; 10 capabilities</span><h3>Agent Readiness</h3><p>Identity, tool authorisation, autonomy levels, trajectories, blast radius, reversibility, injection defence, provenance, cost per outcome.</p><span class="arr">Run &rarr;</span></a>

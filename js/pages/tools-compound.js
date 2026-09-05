@@ -313,6 +313,34 @@ function fromHash() {
   }
 }
 
+/* If the visitor has run diagnostics before and let this browser remember
+   them (DiagStorage, opt-out via "Clear saved results" on /tools/), prefill
+   any input fromHash() didn't already set — a hash in the URL is an explicit
+   share link and wins. */
+const STORAGE_SLUG = {
+  devsecops: "devsecops-maturity",
+  genai: "genai-readiness",
+  cloud: "cloud-cost",
+  platform: "platform-engineering",
+  ea: "ea-operating-model",
+  sre: "sre-programme",
+};
+function fromStorage() {
+  if (!window.DiagStorage) return;
+  const saved = DiagStorage.all();
+  let any = false;
+  Object.entries(DIAG).forEach(([k, d]) => {
+    const input = $("#i-" + k);
+    if (input.value) return; // already set, e.g. by fromHash()
+    const r = saved[STORAGE_SLUG[k]];
+    if (r && r.hash) {
+      input.value = "https://hellouchit.com" + d.url + "#" + r.hash;
+      any = true;
+    }
+  });
+  if (any) { validateInputs(); compound(); }
+}
+
 document.querySelectorAll('input[type="text"]').forEach(el => el.addEventListener("input", validateInputs));
 $("#run").addEventListener("click", compound);
 $("#clear").addEventListener("click", () => {
@@ -331,4 +359,5 @@ $("#rCopy").addEventListener("click", e => {
 });
 
 fromHash();
+fromStorage();
 validateInputs();
