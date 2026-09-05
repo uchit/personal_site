@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Control Dependency Graph — Uchit Vyas</title>
+<meta name="description" content="Which controls unlock which. A visual map of the 66-control prerequisite network from the regulation × control × tooling dataset — filterable by regulation and sector." />
+<link rel="canonical" href="https://hellouchit.com/dataset/graph/" />
+<meta name="theme-color" content="#0c0d10" />
+<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Control Dependency Graph — Uchit Vyas" />
+<meta property="og:description" content="Which controls unlock which — the 66-control prerequisite network, visually." />
+<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/enhance.css" />
+<link rel="stylesheet" href="/css/dataset.css" />
+<link rel="stylesheet" href="/css/graph.css" />
+<script src="/js/site.js" defer></script>
+<script src="/js/enhance.js" defer></script>
+<script src="/js/pages/dataset-graph.js" defer></script>
+
+  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+  <script src="/js/analytics.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" role="banner"><div class="wrap nav-inner">
+    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture &middot; Cloud &middot; Agents</span></span></a>
+    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/search/">Search</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
+  </div></header>
+
+  <main id="main" tabindex="-1">
+    <section class="gr-hero"><div class="wrap">
+      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/dataset/">Dataset</a><span class="u-op-50">/</span><span class="u-accent">Dependency graph</span></nav>
+      <span class="eyebrow">Which controls unlock which</span>
+      <h1>Order isn&rsquo;t opinion. It&rsquo;s a <em>graph</em>.</h1>
+      <p class="dek">A bigger dot has more controls waiting on it. Get that one wrong or late, and everything downstream stalls.</p>
+    </div></section>
+
+    <section class="gr-body"><div class="wrap">
+      <div class="gr-filters">
+        <div class="gr-filter-row" id="graph-sector-chips" aria-label="Filter by sector"></div>
+        <details class="gr-reg-toggle">
+          <summary>Filter by regulation</summary>
+          <div class="gr-filter-row" id="graph-reg-chips" aria-label="Filter by regulation"></div>
+        </details>
+        <button type="button" class="gr-clear" id="graph-clear">Clear filters</button>
+      </div>
+
+      <div class="gr-stage">
+        <svg id="graph-svg" class="gr-svg" role="img" aria-label="Control prerequisite graph"></svg>
+        <div id="graph-tooltip" class="gr-tooltip" hidden>
+          <div class="t-name"></div>
+          <div class="t-cat u-muted"></div>
+        </div>
+      </div>
+      <p class="gr-hint">Hover a control to trace what it requires and unlocks</p>
+
+      <p id="graph-empty" class="u-muted" hidden></p>
+
+      <aside id="graph-detail" class="gr-detail" hidden></aside>
+
+      <details class="gr-list-toggle">
+        <summary>View the same prerequisites as a list</summary>
+        <ul id="graph-list" class="gr-list"></ul>
+      </details>
+    </div></section>
+  </main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap foot-inner">
+      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
+      <span><a href="/">&larr; Home</a> &middot; <a href="/dataset/">Dataset</a></span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Control Dependency Graph",
+    "description": "Which controls unlock which. A visual map of the 66-control prerequisite network from the regulation × control × tooling dataset — filterable by regulation and sector.",
+    "url": "https://hellouchit.com/dataset/graph/",
+    "datePublished": "2026-09-05",
+    "dateModified": "2026-09-05",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@id": "https://hellouchit.com/#website"
+    },
+    "author": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hellouchit.com/#person"
+    },
+    "mainEntityOfPage": "https://hellouchit.com/dataset/graph/",
+    "image": "https://hellouchit.com/images/og-banner.jpg"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hellouchit.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dataset",
+        "item": "https://hellouchit.com/dataset/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Dependency graph",
+        "item": "https://hellouchit.com/dataset/graph/"
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

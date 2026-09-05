@@ -133,10 +133,20 @@ npm run search:build     # scans **/*.html, writes the index into pagefind/
 ```
 
 **`pagefind/` is committed and deployed** — it's the actual search index the
-browser fetches at `/pagefind/*`, not build output to gitignore. It has no
-content of its own to go stale in a way a generator output page can (it's
-regenerated wholesale each run), but it **does** go stale relative to the site
-content it indexes: run `npm run search:build` again after any page-content
-change (new page, edited copy, deleted page) and commit the result, or the
+browser fetches at `/pagefind/*`, not build output to gitignore.
+
+**Pagefind does not clean its own output directory.** Its index files are
+content-hashed, so a second run without clearing the folder first leaves the
+previous run's now-unreferenced chunks sitting alongside the new ones —
+confirmed by rebuilding once more and watching the file count drop (92
+fragments/24 index files → 90/8 after `rm -rf pagefind` first). `search:build`
+now does that `rm -rf` itself, so this only bites if you ever invoke the
+`pagefind` CLI directly instead of through the npm script.
+
+It has no content of its own to go stale in the way a generator output page
+can (it's regenerated wholesale each run), but it **does** go stale relative
+to the site content it indexes: run `npm run search:build` again after any
+page-content change (new page, edited copy, deleted page) and commit the
+result, or the
 search results silently drift from what's actually live. There's no
 CI/pre-push hook enforcing this yet — it relies on remembering.
