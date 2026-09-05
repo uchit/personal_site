@@ -190,6 +190,12 @@
 .result-bench cite a { color: var(--muted); border-bottom: 1px dotted var(--line-strong); }
 .result-bench cite a:hover { color: var(--accent); }
 
+.result-rank {
+  margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line);
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .04em; color: var(--accent); line-height: 1.6;
+}
+
 .result-body { color: var(--muted); font-size: 15.5px; line-height: 1.7; }
 .result-body b { color: var(--ink); font-weight: 500; }
 .result-body em { color: var(--accent); font-style: italic; }

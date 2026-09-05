@@ -18,6 +18,15 @@
     "agent-readiness":     ["Agent readiness",    ["Improvised","Contained","Supervised","Evidenced","Engineered"]],
   };
 
+  var SECTOR_LABELS = {
+    tech: "Tech / SaaS",
+    fsi: "Financial services",
+    government: "Government",
+    healthcare: "Healthcare",
+    retail: "Retail",
+    critinfra: "Critical infrastructure",
+  };
+
   var out = document.getElementById("bk-out");
   var meta = document.getElementById("bk-meta");
   if (!out) return;
@@ -41,6 +50,19 @@
         "</div>";
     }
     return html + "</div>";
+  }
+
+  function sectorBreakdown(sectorCounts, runs) {
+    var entries = Object.keys(sectorCounts)
+      .map(function (k) { return [k, sectorCounts[k]]; })
+      .sort(function (a, b) { return b[1] - a[1]; });
+    if (!entries.length) return "";
+    var rows = entries.map(function (e) {
+      var pct = runs ? Math.round((e[1] / runs) * 100) : 0;
+      var label = SECTOR_LABELS[e[0]] || e[0];
+      return '<div class="bk-sector-row"><span>' + esc(label) + "</span><b>" + pct + "%</b></div>";
+    }).join("");
+    return '<details class="bk-sector"><summary>By sector</summary>' + rows + "</details>";
   }
 
   fetch("/v1/stats", { headers: { Accept: "application/json" } })
@@ -73,6 +95,7 @@
             '<div class="h">' + esc(label[0]) + "</div>" +
             '<div class="n">n = ' + d.runs + "</div>" +
             bars(d.band || {}, label[1], d.runs) +
+            sectorBreakdown(d.sector || {}, d.runs) +
             "</div>";
         });
         out.innerHTML = html + "</div>";
