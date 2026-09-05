@@ -1,0 +1,59 @@
+/* Composite architecture view — /decisions/architecture/.
+   A vertical stack, not a diagram engine: seven decisions have a natural
+   bottom-up order, so plain HTML flow does the layout, no coordinates to
+   hand-place or a force simulation to run. */
+
+.arch-hero { padding: clamp(120px,14vw,176px) 0 clamp(28px,4vw,44px); }
+.arch-hero .eyebrow {
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
+}
+.arch-hero h1 {
+  font-family: "Fraunces", serif; font-weight: 500;
+  font-size: clamp(38px,5.4vw,60px); line-height: 1.05; letter-spacing: -.02em;
+  margin-top: 16px; max-width: 20ch;
+}
+.arch-hero h1 em { font-style: italic; color: var(--accent); }
+.arch-hero .dek {
+  margin-top: 22px; color: var(--muted); font-size: clamp(16px,1.3vw,18px);
+  line-height: 1.7; max-width: 60ch;
+}
+
+.arch-body { padding: 0 0 clamp(100px,12vw,140px); }
+
+.arch-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 32px;
+  font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
+  letter-spacing: .06em; color: var(--faint);
+}
+.arch-clear {
+  background: none; border: none; padding: 0; color: var(--faint);
+  font: inherit; cursor: pointer; text-decoration: underline;
+  text-decoration-style: dotted; text-underline-offset: 3px;
+  transition: color .2s;
+}
+.arch-clear:hover { color: var(--accent); }
+
+.arch-stack { max-width: 620px; margin: 0 auto; }
+.arch-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 22px 26px;
+  border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface);
+  text-decoration: none;
+  transition: border-color .2s, background .2s, transform .2s var(--ease);
+}
+.arch-card:hover { border-color: var(--accent); background: rgba(217,151,87,.04); transform: translateY(-2px); }
+.arch-card .arch-name {
+  font-family: "IBM Plex Mono", monospace; font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
+}
+.arch-card .arch-pick { font-size: 15.5px; color: var(--muted); line-height: 1.5; }
+.arch-card.is-decided { border-color: rgba(217,151,87,.35); }
+.arch-card.is-decided .arch-pick { color: var(--ink); }
+
+.arch-connector {
+  width: 1px; height: 24px; margin: 0 auto;
+  background: var(--line);
+}

@@ -117,8 +117,22 @@
     mount.replaceChildren(card);
   }
 
+  function stripHtml(s) {
+    const d = document.createElement("div");
+    d.innerHTML = s || "";
+    return (d.textContent || "").trim();
+  }
+
   // ----- Render leaf -----
   function renderLeaf(leaf) {
+    if (window.DecisionStorage) {
+      DecisionStorage.save(T.id, {
+        title: stripHtml(leaf.title),
+        tag: leaf.tag || "Recommendation",
+        hash: path.map(i => i.toString(36)).join(""),
+      });
+    }
+
     const wrap = el("div", { class: "d-leaf" });
     wrap.appendChild(el("span", { class: "ltag" }, leaf.tag || "Recommendation"));
     const h = el("h2"); h.innerHTML = leaf.title;
