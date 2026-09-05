@@ -62,9 +62,12 @@
 
 .ra-layer {
   border: 1px solid var(--line); border-radius: 10px;
-  padding: 18px 22px; margin: 14px 0;
+  padding: clamp(20px, 2.6vw, 28px) clamp(20px, 3vw, 30px);
+  margin: clamp(24px, 3.2vw, 36px) 0;
   background: rgba(255,255,255,.012);
 }
+.ra-layer:first-child { margin-top: 0; }
+.ra-layer:last-child { margin-bottom: 0; }
 .ra-layer .ix {
   font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
   letter-spacing: .2em; color: var(--accent); text-transform: uppercase;

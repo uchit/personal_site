@@ -146,7 +146,7 @@ const SITUATIONS = [
 const NAV = `  <header class="nav" role="banner">
     <div class="wrap nav-inner">
       <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · Agents</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/search/">Search</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
     </div>
   </header>`;
@@ -256,21 +256,21 @@ ${crumb(s.nav)}
       <div style="margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:var(--faint)">${s.meta}</div>
     </div></section>
 
-    <section style="padding:clamp(36px,4vw,52px) 0;border-top:1px solid var(--line)"><div class="wrap">
+    <section style="padding:clamp(48px,5.5vw,72px) 0;border-top:1px solid var(--line)"><div class="wrap">
       <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.15;margin-bottom:20px">You&rsquo;ll recognise this if&hellip;</h2>
       <ul style="list-style:none;padding:0;margin:0;max-width:70ch">
 ${s.symptoms.map(x => `        <li class="u-bullet-item"><span class="u-bullet-dash"></span>${x}</li>`).join("\n")}
       </ul>
     </div></section>
 
-    <section style="padding:clamp(36px,4vw,52px) 0;border-top:1px solid var(--line)"><div class="wrap">
+    <section style="padding:clamp(48px,5.5vw,72px) 0;border-top:1px solid var(--line)"><div class="wrap">
       <h2 style="font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.15;margin-bottom:18px">What&rsquo;s usually <em class="u-italic-accent">actually</em> wrong.</h2>
       <div class="sit-diagnosis" style="max-width:68ch;color:var(--muted);font-size:16px;line-height:1.75">
 ${s.diagnosis.split("\n").map(l => "        " + l.trim()).join("\n")}
       </div>
     </div></section>
 
-    <section style="padding:clamp(36px,4vw,52px) 0 clamp(20px,3vw,28px);border-top:1px solid var(--line)"><div class="wrap">
+    <section style="padding:clamp(48px,5.5vw,72px) 0 clamp(24px,3.2vw,32px);border-top:1px solid var(--line)"><div class="wrap">
       <div class="routes-section" style="margin-top:0;padding-top:0;border-top:0">
         <h3>Start here</h3>
         <p class="dek">In order. The first is the single next thing to do; the rest are supporting depth.</p>

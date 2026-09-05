@@ -52,6 +52,26 @@
   color: var(--faint);
   font-size: 10.5px;
 }
+
+/* Chip-disclosure — the reg/category lists run long; show the 5 most
+   relevant and tuck the rest behind one click rather than walling the
+   filter bar with two dozen buttons. */
+.ds-fgroup details.ds-chip-more { flex: 0 0 auto; }
+.ds-fgroup details.ds-chip-more[open] { flex-basis: 100%; }
+.ds-chip-more > summary {
+  display: inline-flex; align-items: center;
+  padding: 6px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 999px;
+  color: var(--faint);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px; letter-spacing: .04em;
+  cursor: pointer; list-style: none;
+}
+.ds-chip-more > summary::-webkit-details-marker { display: none; }
+.ds-chip-more > summary:hover { color: var(--accent); border-color: var(--accent); }
+.ds-chip-more[open] > summary { color: var(--accent); border-color: var(--accent); margin-bottom: 10px; }
+.ds-chip-more-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .ds-search {
   flex: 1; min-width: 200px;
   padding: 8px 14px;

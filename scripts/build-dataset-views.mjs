@@ -173,10 +173,23 @@ if (html.includes(START)) {
    The filter chips carry per-facet counts. Hand-maintained they go stale the
    moment a row is added — and a chip whose count is wrong is worse than no
    chip, because it looks authoritative. */
-function chips(kind, entries) {
-  return entries.map(([value, label, count, tier]) =>
-    `<button class="ds-chip${tier ? ` t-${tier}` : ""}" data-filter="${kind}" data-value="${esc(value)}"${tier ? ` data-tier="${tier}"` : ""}>${esc(label)} <span class="count">${count}</span></button>`
-  ).join("");
+function chips(kind, entries, opts = {}) {
+  const render = ([value, label, count, tier]) =>
+    `<button class="ds-chip${tier ? ` t-${tier}` : ""}" data-filter="${kind}" data-value="${esc(value)}"${tier ? ` data-tier="${tier}"` : ""}>${esc(label)} <span class="count">${count}</span></button>`;
+
+  /* A filter row with every value visible at once is the "chip pileup"
+     pattern flagged as clutter (dataset had 28 regulation chips, 16 category
+     chips, all exposed by default). Past collapseAfter, the rest sit behind a
+     <details> disclosure — same pattern used on /dataset/graph/. Nothing is
+     removed, just not all shown by default. */
+  if (!opts.collapseAfter || entries.length <= opts.collapseAfter) {
+    return entries.map(render).join("");
+  }
+  const visible = entries.slice(0, opts.collapseAfter);
+  const hidden = entries.slice(opts.collapseAfter);
+  return visible.map(render).join("") +
+    `<details class="ds-chip-more"><summary>+${hidden.length} more ${opts.moreLabel}</summary>` +
+    `<div class="ds-chip-more-row">${hidden.map(render).join("")}</div></details>`;
 }
 const countBy = (fn) => {
   const m = new Map();
@@ -192,9 +205,12 @@ const SECTOR_LABEL = { "critical-infrastructure": "critical infrastructure" };
 const chipBlocks = {
   "DATASET-CHIPS-REG": chips("reg",
     Object.keys(REG).filter(k => regCounts.has(k))
-      .map(k => [k, REG[k].label, regCounts.get(k), COV.by_regulation?.[k]?.tier])),
+      .map(k => [k, REG[k].label, regCounts.get(k), COV.by_regulation?.[k]?.tier])
+      .sort((a, b) => b[2] - a[2]),
+    { collapseAfter: 5, moreLabel: "regulations" }),
   "DATASET-CHIPS-CAT": chips("cat",
-    [...catCounts.entries()].sort((a, b) => b[1] - a[1]).map(([c, n]) => [c, c, n])),
+    [...catCounts.entries()].sort((a, b) => b[1] - a[1]).map(([c, n]) => [c, c, n]),
+    { collapseAfter: 5, moreLabel: "categories" }),
   "DATASET-CHIPS-SECTOR": chips("sector",
     [...secCounts.entries()].filter(([s]) => s !== "all").sort((a, b) => b[1] - a[1])
       .map(([s, n]) => [s, SECTOR_LABEL[s] ?? s, n])),

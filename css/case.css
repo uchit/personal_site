@@ -21,9 +21,9 @@
 
 .cs-context {
   margin-top: clamp(32px, 4vw, 48px);
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px 22px;
-  padding: 22px 26px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px 28px;
+  padding: 26px 30px;
   border: 1px solid var(--line); border-radius: var(--r);
   background: rgba(255,255,255,.012);
 }

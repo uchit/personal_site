@@ -1,6 +1,6 @@
 /* decision.css — shared styles for interactive decision trees */
 
-.d-hero { padding: clamp(120px,14vw,176px) 0 clamp(20px,3vw,32px); }
+.d-hero { padding: clamp(120px,14vw,176px) 0 clamp(32px,4vw,48px); }
 .d-hero .crumb { display:flex; gap:8px; font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.12em; color:var(--faint); margin-bottom:20px; }
 .d-hero .crumb a { color:var(--muted); }
 .d-hero .crumb .here { color:var(--accent); }

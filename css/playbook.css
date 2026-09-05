@@ -55,10 +55,10 @@
 
 .pb-weeks { display: grid; grid-template-columns: 180px 1fr; gap: 0 28px; }
 .pb-week {
-  padding: 20px 0;
-  border-top: 1px dashed var(--line);
+  padding: clamp(30px,4vw,44px) 0;
+  border-top: 1px solid var(--line);
 }
-.pb-week:first-child { border-top: none; }
+.pb-week:first-child { border-top: none; padding-top: 0; }
 .pb-week .wnum {
   font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
@@ -96,8 +96,8 @@
   color: var(--ink);
 }
 .pb-week .gate {
-  margin-top: 10px;
-  padding: 12px 16px;
+  margin-top: 18px;
+  padding: 14px 18px;
   border-left: 2px solid var(--accent);
   background: rgba(217,151,87,.04);
   border-radius: 0 6px 6px 0;
@@ -106,7 +106,7 @@
 .pb-week .gate p { margin-top: 6px; color: var(--ink); font-weight: 300; font-size: 14px; }
 
 .pb-week .anti {
-  margin-top: 10px;
+  margin-top: 14px;
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
   color: var(--muted);
@@ -118,7 +118,8 @@
 @media (max-width: 720px) {
   .pb-phase .head { grid-template-columns: 1fr; gap: 8px; }
   .pb-weeks { grid-template-columns: 1fr; gap: 0; }
-  .pb-week { padding: 18px 0; }
+  .pb-week { padding: clamp(26px,7vw,34px) 0; }
+  .pb-week:first-child { padding-top: 0; }
   .pb-week .wnum { padding-top: 0; margin-bottom: 4px; }
 }
 
