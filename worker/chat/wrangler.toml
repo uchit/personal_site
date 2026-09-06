@@ -13,7 +13,7 @@ binding = "AI"
 # is the point: it's the abuse backstop, not a metering system.
 [[kv_namespaces]]
 binding = "RATE_LIMIT"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "5bd1cc78f35d46a497b6f19d7e21cbc9"
 
 [observability]
 enabled = true
