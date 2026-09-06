@@ -17,7 +17,7 @@
 
 const ALLOWED_ORIGIN = "https://hellouchit.com";
 const CORPUS_URL = "https://hellouchit.com/llms-full.txt";
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+const MODEL = "@cf/meta/llama-3.2-1b-instruct";
 
 const RATE_LIMIT_PER_DAY = 20;
 const MAX_MESSAGES = 8;
@@ -81,7 +81,8 @@ export default {
         max_tokens: 512,
       });
       answer = result.response || "";
-    } catch {
+    } catch (e) {
+      console.error("AI.run failed:", e && e.message, e && e.stack);
       return json({ error: "model_failed" }, 500);
     }
 
@@ -225,6 +226,17 @@ function retrieve(query, chunks, k) {
       if (!f) continue;
       score += idf * (f * (K1 + 1)) / (f + K1 * (1 - B + B * dl / avgdl));
     }
+    /* Title-match bonus: a flat +4 per query term also in the chunk's own
+       title. Needed because BM25's IDF alone fails exactly for "what is X"
+       queries about a named, widely-cross-referenced concept — the term
+       appears in ~half the corpus (a 21-of-41 document frequency for "the
+       4-Discipline Stack", the site's own framework name), so IDF crushes it
+       to near-zero everywhere, including on the one chunk that's actually
+       about it. A title hit is a much stronger relevance signal than body
+       frequency and isn't subject to that same corpus-wide dilution. */
+    const titleTerms = terms(c.title);
+    const titleMatches = qTerms.filter(t => titleTerms.includes(t)).length;
+    score += titleMatches * 4;
     return { ...c, score };
   });
 
