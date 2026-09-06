@@ -933,6 +933,25 @@ footer.foot {
     pointer-events: auto;
   }
   body.menu-open { overflow: hidden; }
+  /* The header itself (logo + hamburger row) sits at z-index 50 — below the
+     backdrop's 1000 — so opening the menu dimmed the whole header along with
+     the page behind it instead of keeping it crisp like the panel. Only the
+     hamburger button was ever bumped above the backdrop; the bar around it
+     wasn't. That's the "transparent, weird-looking" header reported on
+     mobile: not literal transparency, the 55%-black backdrop compositing
+     over an already-transparent (unscrolled) header. */
+  /* Solid background ONLY — no backdrop-filter here. backdrop-filter (like
+     transform/filter/perspective) makes an element a new containing block
+     for fixed-position descendants. nav.links is `position:fixed` and
+     nested inside header.nav; adding backdrop-filter here made header.nav
+     that containing block instead of the viewport, which collapsed the
+     slide-out panel to the header's own ~120px height. Confirmed via the
+     panel's computed getBoundingClientRect() before landing on this fix —
+     don't reintroduce backdrop-filter on this rule without re-checking that. */
+  body.menu-open header.nav {
+    z-index: 1002;
+    background: #0c0d10;
+  }
   /* Make sure the hamburger is always tappable above the backdrop */
   .menu-btn { z-index: 1002; position: relative; touch-action: manipulation; cursor: pointer; }
   .hero { padding-top: 120px; }
@@ -1103,8 +1122,12 @@ img, video, iframe { max-width: 100%; height: auto; }
   button, .essay-cta, .nav-cta, .secbadge, .cmdk-item,
   .d-opt, .reset, .nc, .dx-card, .s-card, .nc { min-height: 44px; }
 
-  /* Hero h1 must fit without forcing scroll */
-  h1 { word-break: break-word; hyphens: auto; }
+  /* Hero h1 must fit without forcing scroll. hyphens:auto was removed —
+     it was visibly splitting ordinary words ("pro-duction") whenever a
+     hero line ran long, which reads as broken, not considered. Wrapping
+     the whole word to the next line (word-break's actual fallback once
+     hyphens isn't forcing a break point) is the boring, correct behavior. */
+  h1 { overflow-wrap: break-word; }
 
   /* Pros/cons grid in decision leaves: stack */
   .d-leaf .pros-cons { grid-template-columns: 1fr !important; gap: 14px; }
@@ -1203,6 +1226,16 @@ img, video, iframe { max-width: 100%; height: auto; }
   .also-strip .also-links a { font-size: 12.5px; padding: 5px 10px; }
   .also-strip .also-links a + a { border-left: none; }
 }
+.also-more > summary {
+  cursor: pointer; list-style: none;
+  transition: color .2s;
+}
+.also-more > summary::-webkit-details-marker { display: none; }
+.also-more > summary::after {
+  content: " +"; color: var(--faint); font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+.also-more[open] > summary::after { content: " \2212"; }
+.also-more > summary:hover { color: var(--accent); }
 
 /* ---- Open-data strip -------------------------------------------------------
    Sits under a page's hero to advertise its machine-readable export. The

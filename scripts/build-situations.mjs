@@ -146,7 +146,7 @@ const SITUATIONS = [
 const NAV = `  <header class="nav" role="banner">
     <div class="wrap nav-inner">
       <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Architecture · Cloud · Agents</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/search/">Search</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
+      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/search/">Search</a><a href="/ask/">Ask</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
     </div>
   </header>`;
@@ -186,8 +186,8 @@ const ALSO = `  <section class="also-strip" aria-label="More on this site">
           <a href="/reading/">Reading list</a>
         </nav>
       </div>
-      <div class="also-grp">
-        <span class="lab">More on this site</span>
+      <details class="also-grp also-more">
+        <summary class="lab">More on this site</summary>
         <nav class="also-links">
           <a href="/how-i-work/">How I work</a>
           <a href="/situations/">Situations</a>
@@ -199,7 +199,7 @@ const ALSO = `  <section class="also-strip" aria-label="More on this site">
           <a href="/press/">Press kit</a>
           <a href="/ai/">AI entity</a>
         </nav>
-      </div>
+      </details>
     </div>
   </section>`;
 

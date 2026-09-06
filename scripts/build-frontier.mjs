@@ -483,8 +483,8 @@ ${UNREAD.map(u => `        <li>
           <a href="/reading/">Reading list</a>
         </nav>
       </div>
-      <div class="also-grp">
-        <span class="lab">More on this site</span>
+      <details class="also-grp also-more">
+        <summary class="lab">More on this site</summary>
         <nav class="also-links">
           <a href="/how-i-work/">How I work</a>
           <a href="/situations/">Situations</a>
@@ -496,7 +496,7 @@ ${UNREAD.map(u => `        <li>
           <a href="/press/">Press kit</a>
           <a href="/ai/">AI entity</a>
         </nav>
-      </div>
+      </details>
     </div>
   </section>
 
