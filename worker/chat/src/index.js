@@ -17,13 +17,13 @@
 
 const ALLOWED_ORIGIN = "https://hellouchit.com";
 const CORPUS_URL = "https://hellouchit.com/llms-full.txt";
-const MODEL = "@cf/meta/llama-3.2-1b-instruct";
+const MODEL = "@cf/meta/llama-3.1-8b-instruct-fast";
 
 const RATE_LIMIT_PER_DAY = 20;
 const MAX_MESSAGES = 8;
 const MAX_MESSAGE_LEN = 1500;
 const TOP_K = 3;
-const CHUNK_CHAR_CAP = 1800;
+const CHUNK_CHAR_CAP = 4000;
 
 const cors = {
   "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
@@ -264,7 +264,8 @@ function buildSystemPrompt(context) {
   return "You are a Q&A assistant for hellouchit.com, Uchit Vyas's personal site. " +
     "Answer ONLY using the excerpts below — do not use outside knowledge, and do not " +
     "invent claims, numbers or dates not present in them. If the excerpts don't answer " +
-    "the question, say so plainly rather than guessing. When you use an excerpt, cite it " +
-    "by its title and mention the visitor can read more at its URL. Keep answers short — " +
-    "a few sentences, not an essay.\n\n" + excerpts;
+    "the question, say so plainly rather than guessing. Write the answer in plain prose, " +
+    "not a copy of the excerpt formatting. The sources are shown to the reader separately " +
+    "below your answer, so don't repeat titles or URLs in your own text — just answer the " +
+    "question. Keep it short: a few sentences, not an essay.\n\n" + excerpts;
 }

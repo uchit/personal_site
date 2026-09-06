@@ -25,7 +25,7 @@ npx wrangler deploy --route 'hellouchit.com/v2/*'
 ```
 
 Workers AI needs no separate provisioning — it's available on every Cloudflare
-account, free tier included (10,000 neurons/day; Llama 3.2 1B runs roughly
+account, free tier included (10,000 neurons/day; Llama 3.1 8B runs roughly
 50-300 neurons per request depending on length).
 
 ## Endpoint
