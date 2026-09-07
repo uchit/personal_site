@@ -15,8 +15,6 @@
 <link rel="stylesheet" href="/css/enhance.css" />
 <script src="/js/site.js" defer></script>
 <script src="/js/enhance.js" defer></script>
-<script src="/js/diag-storage.js" defer></script>
-<script src="/js/pages/tools-progress.js" defer></script>
 <style>
   /* Intent-based explore page */
   .ex-hero { padding: clamp(120px,14vw,176px) 0 clamp(20px,3vw,32px); }
@@ -129,38 +127,6 @@
     letter-spacing: .06em;
   }
 
-  /* Saved-progress scorecard — only rendered once something's been run. */
-  .diag-progress { margin-bottom: 24px; }
-  .dp-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px;
-    letter-spacing: .06em; color: var(--faint);
-  }
-  .dp-clear {
-    background: none; border: none; padding: 0; color: var(--faint);
-    font: inherit; cursor: pointer; text-decoration: underline;
-    text-decoration-style: dotted; text-underline-offset: 3px;
-    transition: color .2s;
-  }
-  .dp-clear:hover { color: var(--accent); }
-  .dp-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .dp-pill {
-    display: flex; flex-direction: column; gap: 2px;
-    padding: 8px 14px; border-radius: 999px;
-    border: 1px solid var(--line); text-decoration: none;
-    transition: border-color .2s, background .2s;
-  }
-  .dp-pill:hover { border-color: var(--accent); background: rgba(217,151,87,.04); }
-  .dp-pill .dp-name {
-    font-size: 12.5px; color: var(--muted);
-  }
-  .dp-pill.is-done .dp-name { color: var(--ink); }
-  .dp-pill.is-done { border-color: rgba(217,151,87,.35); }
-  .dp-pill .dp-level {
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
-    letter-spacing: .04em; color: var(--accent);
-  }
 </style>
 
   <!-- Google Analytics 4 — G-XKE8WPKMMX -->
@@ -183,7 +149,7 @@
         <a href="/#about">About</a>
         <a href="/#work">Work</a>
         <a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a>
-        <a href="/writing/">Writing</a><a href="/search/">Search</a><a href="/ask/">Ask</a>
+        <a href="/writing/">Writing</a><a href="/ask/">Ask</a>
         <a href="/#contact" class="nav-cta">Get in touch</a>
       </nav>
       <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
@@ -259,17 +225,15 @@
         <div>
           <span class="num">02 &middot; Locate it</span>
           <h2>Where do you <em>actually stand</em>?</h2>
-          <p class="sub">Score yourself against the two that bind most often, then the compound view that synthesises across all six. Everything runs in your browser and never leaves it &mdash; each result is shareable via URL, and saved on this device so the scorecard below remembers what you've run.</p>
+          <p class="sub">Score yourself against the two that bind most often. Everything runs in your browser and never leaves it &mdash; each result is shareable via URL, and saved on this device so <a href="/dashboard/">your dashboard</a> remembers what you've run.</p>
         </div>
       </div>
-
-      <div id="diag-progress"></div>
 
       <div class="ex-cards">
         <a class="ex-card" href="/tools/agent-readiness.html"><span class="tg">Diagnostic &middot; 10 capabilities</span><h3>Agent Readiness</h3><p>Identity, tool authorisation, autonomy levels, trajectories, blast radius, reversibility, injection defence, provenance, cost per outcome.</p><span class="arr">Run &rarr;</span></a>
         <a class="ex-card" href="/tools/genai-readiness.html"><span class="tg">Diagnostic &middot; 12 capabilities</span><h3>GenAI Readiness</h3><p>Data, model selection, RAG, prompts, evals, guardrails, observability, cost, governance, audit.</p><span class="arr">Run &rarr;</span></a>
         <a class="ex-card" href="/tools/devsecops-maturity.html"><span class="tg">Diagnostic &middot; 10 capabilities</span><h3>DevSecOps Maturity</h3><p>Pipeline, secrets, supply chain, scanning, ownership, identity, patching, observability.</p><span class="arr">Run &rarr;</span></a>
-        <a class="ex-card" href="/tools/compound/"><span class="tg">Synthesizer &middot; combines diagnostic results</span><h3>Compound diagnostic</h3><p>Paste shareable URLs from your runs. See the substrate gap (identity, observability, policy, ownership) recurring across disciplines.</p><span class="arr">Open &rarr;</span></a>
+        <a class="ex-card" href="/dashboard/"><span class="tg">One dashboard &middot; scorecard + substrate gap + architecture</span><h3>Your dashboard</h3><p>Everything you've run and decided, in one place — including the substrate gap (identity, observability, policy, ownership) recurring across disciplines.</p><span class="arr">Open &rarr;</span></a>
         <a class="ex-card" href="/maturity/"><span class="tg">Per-discipline tier deep-dives</span><h3>Maturity tiers</h3><p>What each tier looks like in real orgs, why teams get stuck, the 3 substrate moves to the next tier.</p><span class="arr">Browse &rarr;</span></a>
       </div>
         <p class="ex-more">Also scored the same way, when the discipline you need is a different one: <a href="/tools/cloud-cost.html">Cloud Cost</a> &middot; <a href="/tools/platform-engineering.html">Platform Engineering</a> &middot; <a href="/tools/ea-operating-model.html">EA Operating Model</a> &middot; <a href="/tools/sre-programme.html">SRE Programme</a>.</p>

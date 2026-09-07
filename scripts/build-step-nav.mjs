@@ -28,7 +28,6 @@ const RULES = [
   [/^for\//, 1],
   [/^how-i-work\//, 1],
   [/^tools\/calculators\//, 6],          // before the generic tools/ rule
-  [/^tools\/compound\//, 2],
   [/^tools\/[a-z-]+\.html$/, 2],
   [/^frontier\//, 7],
   [/^agents\//, 3],

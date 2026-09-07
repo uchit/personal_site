@@ -120,33 +120,14 @@ node scripts/build-situations.mjs >/dev/null && node scripts/build-step-nav.mjs 
 grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
 ```
 
-## Search (Pagefind)
+## No search — Ask instead
 
-`/search/` is a static full-text search UI over every page, built by
-[Pagefind](https://pagefind.app/). Unlike the generators above, this needs one
-real npm dependency — `npm install` first (installs into `node_modules/`,
-gitignored, never deployed).
-
-```sh
-npm install
-npm run search:build     # scans **/*.html, writes the index into pagefind/
-```
-
-**`pagefind/` is committed and deployed** — it's the actual search index the
-browser fetches at `/pagefind/*`, not build output to gitignore.
-
-**Pagefind does not clean its own output directory.** Its index files are
-content-hashed, so a second run without clearing the folder first leaves the
-previous run's now-unreferenced chunks sitting alongside the new ones —
-confirmed by rebuilding once more and watching the file count drop (92
-fragments/24 index files → 90/8 after `rm -rf pagefind` first). `search:build`
-now does that `rm -rf` itself, so this only bites if you ever invoke the
-`pagefind` CLI directly instead of through the npm script.
-
-It has no content of its own to go stale in the way a generator output page
-can (it's regenerated wholesale each run), but it **does** go stale relative
-to the site content it indexes: run `npm run search:build` again after any
-page-content change (new page, edited copy, deleted page) and commit the
-result, or the
-search results silently drift from what's actually live. There's no
-CI/pre-push hook enforcing this yet — it relies on remembering.
+The site briefly had a Pagefind full-text search UI at `/search/`. Removed:
+it solved the same "find something on the site" problem `/ask/` does, just
+with keyword matching instead of an actual answer, and running both was
+redundant surface area — a second index to keep in sync, a second npm
+dependency, a second thing to explain in the nav. `/search/` is now a one-line `<meta http-equiv="refresh">` stub pointing to
+`/ask/` for anyone with an old bookmark — GitHub Pages can't do a real
+server-side redirect, so this is the static-hosting equivalent.
+This repo has no npm dependencies again as a result — everything is plain
+HTML/CSS/JS, same as it was before Pagefind.

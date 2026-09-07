@@ -174,6 +174,7 @@
           score, max, pct,
           levelName: lvl.name,
           sector: this.state.sector,
+          answers: this.state.answers.slice(),
           hash: "a=" + this.state.answers.map(v => String(v || 1)).join("") + "&s=" + this.state.sector,
         });
       }

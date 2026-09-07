@@ -11,6 +11,3 @@ Uchit_Vyas_*.pdf
 Thumbs.db
 **/.DS_Store
 **/Thumbs.db
-
-# Local tooling only — never part of the deployed site
-node_modules/
