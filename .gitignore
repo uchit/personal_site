@@ -11,3 +11,10 @@ Uchit_Vyas_*.pdf
 Thumbs.db
 **/.DS_Store
 **/Thumbs.db
+
+# wrangler's local CLI cache — was previously committed under
+# worker/benchmark/.wrangler/ and exposed a Cloudflare account id + email.
+# Not a secret token, but still shouldn't be in a public repo. Removed along
+# with the rest of that directory in the worker consolidation; this stops it
+# from happening again in worker/site/ or any future worker/ directory.
+**/.wrangler/

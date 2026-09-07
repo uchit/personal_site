@@ -1,0 +1,40 @@
+name = "hellouchit-site"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# One worker for the two things this site's backend does: the benchmark
+# (D1 tallies) and the chat (Workers AI + a KV rate-limit counter). These
+# used to be two separately-deployed Workers, each with their own auth,
+# monitoring and route mapping, for one person's personal site. Consolidated
+# after "isn't the site bloated?" — two live services was infra for its own
+# sake, not for the traffic this site actually gets.
+#
+# Both binding ids below are carried over unchanged from the two Workers this
+# replaces — hellouchit-benchmark and hellouchit-chat — so the existing D1
+# data and KV counters keep working exactly as they did split across two
+# deployments.
+
+# Created with: npx wrangler d1 create hellouchit-benchmark
+# The binding stays DB — src/index.js reads env.DB — not the name wrangler
+# suggests on creation.
+[[d1_databases]]
+binding = "DB"
+database_name = "hellouchit-benchmark"
+database_id = "dc170294-9788-45b4-82ac-cd5da52d25fd"
+
+# Workers AI — free tier: 10,000 neurons/day. Llama 3.1 8B costs roughly
+# ~50-300 neurons per request depending on prompt/response length, so this
+# comfortably covers real personal-site traffic before any billing kicks in.
+[ai]
+binding = "AI"
+
+# Per-IP daily rate limit counters for the chat endpoint. Free tier: 100k
+# reads + 1k writes per day — this feature will hit the write cap long
+# before it costs anything, which is the point: it's the abuse backstop,
+# not a metering system.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "5bd1cc78f35d46a497b6f19d7e21cbc9"
+
+[observability]
+enabled = true
