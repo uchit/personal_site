@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: node scripts/check-drafts.mjs
       - run: node scripts/check-routes.mjs
       - run: node scripts/check-structure.mjs
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - name: Serve the site
         run: npx --yes http-server . -p 8080 --silent &
       - name: Wait for server
