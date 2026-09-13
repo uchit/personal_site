@@ -43,15 +43,21 @@ jobs:
             http://localhost:8080/
             http://localhost:8080/tools/genai-readiness.html
             http://localhost:8080/dataset/
+          numberOfRuns: 3
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: ./.github/lighthouserc.json
           # Real gate, not informational — see .github/lighthouserc.json.
-          # Thresholds are set below the floor of the first real run (perf
-          # 82-94, a11y 91-96, best-practices/seo 100 across all three URLs),
-          # not at it: CI runners are shared/throttled and Performance in
-          # particular swings run to run. One data point isn't much, so these
-          # are deliberately loose — tighten once a few more runs confirm
-          # what "normal" looks like. `pwa` is excluded on purpose: this site
-          # has no manifest or service worker and isn't becoming a PWA, so a
-          # 38 there is expected, not a regression.
+          #
+          # First run (single sample): perf 82-94, a11y 91-96, best-
+          # practices/seo 100. Second run, same code: perf 62-77 — a ~20-point
+          # swing from nothing but CI-runner noise. A single Lighthouse
+          # Performance run on a shared/throttled runner is not trustworthy;
+          # numberOfRuns:3 takes the median across three runs per URL instead,
+          # which is the standard mitigation. Performance is still gated low
+          # (0.55) below even the noisy floor already observed, since three
+          # runs narrows variance but doesn't erase runner contention.
+          # Accessibility was stable across both runs (91-96), so it keeps a
+          # real margin at 0.85. `pwa` is excluded on purpose: this site has
+          # no manifest or service worker and isn't becoming a PWA, so a 38
+          # there is expected, not a regression.
