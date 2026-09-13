@@ -45,7 +45,13 @@ jobs:
             http://localhost:8080/dataset/
           uploadArtifacts: true
           temporaryPublicStorage: true
-          # Informational only for now — no assertions.json / minimum-score gate
-          # yet. Add one once a few runs establish what "normal" looks like for
-          # this site; failing PRs against thresholds nobody has seen hit yet
-          # just trains people to ignore red CI.
+          configPath: ./.github/lighthouserc.json
+          # Real gate, not informational — see .github/lighthouserc.json.
+          # Thresholds are set below the floor of the first real run (perf
+          # 82-94, a11y 91-96, best-practices/seo 100 across all three URLs),
+          # not at it: CI runners are shared/throttled and Performance in
+          # particular swings run to run. One data point isn't much, so these
+          # are deliberately loose — tighten once a few more runs confirm
+          # what "normal" looks like. `pwa` is excluded on purpose: this site
+          # has no manifest or service worker and isn't becoming a PWA, so a
+          # 38 there is expected, not a regression.
