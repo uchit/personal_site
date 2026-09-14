@@ -223,8 +223,7 @@ const html = `<!DOCTYPE html>
       <p>
         <b>So four of the ten below are ahead of every standard they map to.</b>
         If you are waiting for a framework to require them, you will be waiting
-        past the incident that needed them. What moves them, and what moves
-        against them, is tracked in the <a href="/frontier/">frontier log</a>.
+        past the incident that needed them.
       </p>
       <div class="ag-cites">
         <a href="https://arxiv.org/html/2605.01091v1" target="_blank" rel="noopener">Butt, Iqbal &amp; Iqbal &mdash; Governing What the EU AI Act Excludes</a>
@@ -251,8 +250,7 @@ const html = `<!DOCTYPE html>
         page. Take it, fork it, argue with it &mdash; it is CC BY 4.0.
       </p>
       <div class="ag-links">
-        <a class="ag-cta" href="/frontier/">The frontier log &rarr;</a>
-        <a class="ag-cta ghost" href="/dataset/">Browse the full dataset &rarr;</a>
+        <a class="ag-cta" href="/dataset/">Browse the full dataset &rarr;</a>
         <a class="ag-cta ghost" href="/tools/agent-readiness.html">Score your own agent programme &rarr;</a>
       </div>
     </div></section>
@@ -267,7 +265,7 @@ const html = `<!DOCTYPE html>
           <a href="/dataset/">Dataset</a>
           <a href="/anti-patterns/">Anti-patterns</a>
           <a href="/benchmark/">Benchmark</a>
-          <a href="/frontier/">Frontier log</a>
+          <a href="/for/">Sector views</a>
           <a href="/glossary/">Glossary</a>
           <a href="/reading/">Reading list</a>
         </nav>
@@ -278,7 +276,7 @@ const html = `<!DOCTYPE html>
           <a href="/how-i-work/">How I work</a>
           <a href="/situations/">Situations</a>
           <a href="/talks/">Talks</a>
-          <a href="/letters/">Letters</a>
+
           <a href="/4-discipline-stack/">4-Discipline Stack</a>
           <a href="/state-of-2026/">State of 2026</a>
           <a href="/oss/">Open source</a>

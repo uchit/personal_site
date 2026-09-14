@@ -52,9 +52,8 @@
   <!-- Glossary -->
   <url><loc>https://hellouchit.com/glossary/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
-  <!-- New: Press, Letters, OSS -->
+  <!-- New: Press, OSS -->
   <url><loc>https://hellouchit.com/press/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://hellouchit.com/letters/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://hellouchit.com/oss/</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Case studies (in-house) -->
@@ -98,14 +97,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://hellouchit.com/frontier/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <!-- Architecture teardowns -->
-  <url><loc>https://hellouchit.com/teardowns/</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
   <url><loc>https://hellouchit.com/teardowns/claude-ai.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
   <url><loc>https://hellouchit.com/teardowns/linear.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hellouchit.com/teardowns/notion.html</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>

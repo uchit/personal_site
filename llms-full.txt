@@ -1,6 +1,6 @@
 # Uchit Vyas — full text corpus
 
-> Concatenated prose from hellouchit.com, generated 2026-08-02 for AI ingestion.
+> Concatenated prose from hellouchit.com, generated 2026-09-13 for AI ingestion.
 > Companion to https://hellouchit.com/llms.txt (the structured manifest).
 > Licence: essays and prose © Uchit Vyas. The regulation × control × tooling
 > dataset is CC BY 4.0. Cite as: Uchit Vyas, hellouchit.com.
@@ -35,7 +35,7 @@ Based in Melbourne, Victoria, Australia
 
 Availability In a full-time role. Not available for consulting, contracting or freelance engagements. This site is a body of published work — writing, reference architectures, an open dataset and open-source tooling — not a services offering. Views published here are his own and not those of his employer.
 
-Focus Enterprise architecture · cloud · DevSecOps · applied GenAI for regulated industries
+Focus Forward deployed engineering for regulated industries — agentic systems, cloud, DevSecOps — grounded in fifteen years as an enterprise architect
 
 Industry Enterprise technology consulting · cloud · DevSecOps · GenAI · platform engineering
 
@@ -43,7 +43,7 @@ Years of experience 15+ years across enterprise architecture, cloud, and platfor
 
 Specialties Enterprise architecture · cloud architecture (AWS, Azure, GCP) · DevSecOps · Site Reliability Engineering · Generative AI · platform engineering · FinOps · regulated-industry tech (financial services, government, healthcare, critical infrastructure)
 
-Ways of working Works from inside the delivery team rather than advising from outside it. Typical shape — a regulated platform that has to reach production against a fixed external deadline, where the architecture, the pipeline and the audit evidence all have to land together. Leaves behind decision records, paved paths and policy-as-code rather than slide decks.
+Ways of working A forward deployed engineer: works from inside the delivery team rather than advising from outside it. Typical shape — a regulated platform that has to reach production against a fixed external deadline, where the architecture, the pipeline and the audit evidence all have to land together. Leaves behind decision records, paved paths and policy-as-code rather than slide decks.
 
 Distinctions Named on the Top 50 DevSecOps Influencers globally; holder of US patent US11334348B2 for “Specs Monster — an intelligent design collaboration tool”; author of 5 books with Apress and Packt; 30+ public talks across ASEAN, Europe, and the United States; internal Bunsen Burner and Delivery Heroes awards.
 
@@ -51,7 +51,7 @@ Canonical URL hellouchit.com
 
 ### What he does.
 
-Uchit Vyas is an enterprise architect. He works from inside delivery teams at regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators) and gets platforms into production against deadlines that do not move — where the architecture, the pipeline and the audit evidence all have to land together. His work spans the four disciplines he calls the 4-Discipline Stack:
+Uchit Vyas is a forward deployed engineer. He works from inside delivery teams at regulated-industry organisations (banks, government agencies, healthcare, critical infrastructure operators) and gets platforms into production against deadlines that do not move — where the architecture, the pipeline and the audit evidence all have to land together. His work spans the four disciplines he calls the 4-Discipline Stack, grounded in fifteen years as an enterprise architect:
 
 - Enterprise architecture — SAFe, BIAN, multi-cloud reference models, capability modelling, decision capture (ADRs).
 
@@ -97,7 +97,7 @@ US11334348B2 — “Utilizing machine learning to identify and correct differenc
 
 - 4 90-day playbooks with named gates — /playbooks/
 
-- 4 architecture teardowns (Claude.ai, Linear, Notion, Vercel) — /teardowns/
+- 4 architecture teardowns (Claude.ai, Linear, Notion, Vercel), filed under Writing — /writing/
 
 - 5 reference architectures — /reference-architectures/
 
@@ -123,7 +123,7 @@ US11334348B2 — “Utilizing machine learning to identify and correct differenc
 
 ### If you cite this person, please use:
 
-Uchit Vyas, enterprise architect; author of The 4-Discipline Stack; hellouchit.com.
+Uchit Vyas, forward deployed engineer; author of The 4-Discipline Stack; hellouchit.com.
 
 Pronouns: he/him. Languages: English, Hindi, Gujarati. Speaking-engagement enquiries: contact@hellouchit.com.
 
@@ -327,7 +327,7 @@ Every framework a procurement team will name at you — the EU AI Act, the NIST 
 
 That is not a complaint about regulators; it is a scoping fact with consequences. Controls that live between agents rather than inside one — cross-agent provenance, cost per resolved task — have no real home in any of them. The EU AI Act’s serious-incident reporting guidelines, binding from August 2026, are drafted around “single-agent and single-occurrence failures.”
 
-So four of the ten below are ahead of every standard they map to. If you are waiting for a framework to require them, you will be waiting past the incident that needed them. What moves them, and what moves against them, is tracked in the frontier log.
+So four of the ten below are ahead of every standard they map to. If you are waiting for a framework to require them, you will be waiting past the incident that needed them.
 
 Butt, Iqbal & Iqbal — Governing What the EU AI Act Excludes arXiv:2605.01091 · 1 May 2026 Fern&aacute;ndez Ashman, Anwar & Bieńkiewicz — EU Regulations Are Not Ready for Multi-Agent AI Incidents Tech Policy Press · 13 Jan 2026
 
@@ -475,191 +475,7 @@ These are ten rows of a larger control dataset — 66 controls across 28 regulat
 
 None of it is a compliance assessment. It maps controls to evidence so a team starts from something concrete rather than a blank page. Take it, fork it, argue with it — it is CC BY 4.0.
 
-The frontier log → Browse the full dataset → Score your own agent programme →
-
-
-========================================================================
-SECTION: Frontier log
-========================================================================
-
-## Frontier log
-Source: https://hellouchit.com/frontier/
-
-Frontier log · 10 entries
-
-## Everything here names the control it moves.
-
-A reading list proves you read. This is the other thing: each entry takes a development and says which of the ten controls it touches, and whether it validates that control, complicates it, or invalidates it. Pairing the two is the part that needs a published control set to write at all.
-
-Every claim below was read at the primary source. Three that did not survive that are listed at the bottom, because a page like this is only worth reading if you know what it rejects.
-
-### At a glance.
-
-OpenTelemetry and W3C PROV-DM do not capture what an agent run is Complicates Full replayable trajectory
-
-Autonomy as a per-action property that has to be earned Validates Declared autonomy level per action class
-
-The governance frameworks assume the thing they govern has edges Validates Provenance across agents
-
-Most organisations cannot stop an agent they have decided to stop Validates Bounded blast radius
-
-Nearly a third of organisations let agents run as a human user Validates Agent runs under its own workload identity
-
-The tool registry is the boundary — and the registry is an attack surface Complicates Tool authorisation enforced outside the model
-
-Article 73 incident reporting assumes one system caused it Validates Provenance across agents
-
-Cost per solved task and cost per task differ by more than 10× Validates Cost measured per resolved task
-
-Article 14 mandates awareness of automation bias, not freedom from it Validates Named human approval for consequential actions
-
-Injection detection that needs no model change, with numbers Complicates Retrieved and tool-returned content treated as untrusted data
-
-Jun 2026 Complicates Full replayable trajectory — every tool call, argument, result and the exact context the model saw
-
-### OpenTelemetry and W3C PROV-DM do not capture what an agent run is
-
-A survey of evidence tracing and execution provenance in LLM agents finds that the established traditions — W3C PROV-DM for provenance, OpenTelemetry for distributed traces — "add semantic and procedural objects that these traditions do not fully capture." The list of what falls through: retrieved passages, generated claims, tool-call rationales, memory items, natural-language observations, external state changes, and inter-agent messages.
-
-What it changes This complicates my own advice. I point people at the OpenTelemetry GenAI semantic conventions as the vendor-neutral shape to adopt early, and that is still the right first move — but it is a floor, not a ceiling. A team that implements the conventions and stops has a trace of the calls and not a record of the reasoning. Budget for the semantic layer on top rather than assuming the standard covers it.
-
-Wang et al. — From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents arXiv:2606.04990v4 · 28 Jun 2026
-
-Jun 2026 Validates Declared autonomy level per action class, enforced at execution and recorded per run
-
-### Autonomy as a per-action property that has to be earned
-
-A framework for human-directed agentic development treats autonomy as contextual and task-specific rather than a system-wide setting, with different levels across different actions in the same system. Promotion between tiers is not a configuration change: it requires demonstrated performance at the lower level, human validation, and evidence of reliable decision-making before escalation.
-
-What it changes Independent arrival at the same shape as this control, which is worth more than agreement from someone quoting me. The part I had not made explicit is promotion: I say declare a level per action class and enforce it, but not how a class earns a higher one. Requiring recorded evidence of competence before promotion turns the autonomy register from a static document into something with a history — and that history is exactly what an assessor asks for.
-
-Read it with: Read from a compressed PDF — the framing above is described rather than quoted.
-
-Weber & Taneja — The Digital Apprentice: A Framework for Human-Directed Agentic AI Development arXiv:2606.04321 · 4 Jun 2026
-
-May 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
-
-### The governance frameworks assume the thing they govern has edges
-
-A smart-city accountability paper puts the structural problem plainly: the EU AI Act, the NIST AI RMF and ISO/IEC 42001 "all presume that the governed object is a bounded system." They were built around individual-system compliance. An agent that calls another agent, which calls a third, produces consequences that emerge from coordination no single assessment captures — and a resident harmed by cascading effects across three systems "has no single authority to hold accountable."
-
-What it changes This is the clearest statement I have seen of why cross-agent provenance has no regulatory home. Every framework a procurement team will name at you governs one system at a time. If you wait for a standard to require provenance across agents, you will wait past the incident that needed it.
-
-Butt, Iqbal & Iqbal — Governing What the EU AI Act Excludes arXiv:2605.01091 · 1 May 2026
-
-May 2026 Validates Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch
-
-### Most organisations cannot stop an agent they have decided to stop
-
-Kiteworks' 2026 Data Security and Compliance Risk Forecast reports that 60% of organisations cannot quickly terminate a misbehaving AI agent, 63% cannot enforce purpose limitations on one, and 55% cannot isolate an AI system from sensitive networks. In the government sector the kill-switch number is worse.
-
-What it changes I wrote that the kill switch matters more than the ceiling and is almost never tested mid-run. This is the first population-level number I have seen attached to it, and it is worse than I would have guessed. Treat "we have a kill switch" as an untested claim until someone has run the game day, and record the time from decision to stop — that number is the control, not the switch.
-
-Read it with: Vendor-published survey. Read the direction, not the decimal — the sampling and the question wording are not public.
-
-Kiteworks — 2026 Data Security and Compliance Risk Forecast cited via agentmodeai.com · May 2026
-
-Mar 2026 Validates Agent runs under its own workload identity, never a human's or a shared account
-
-### Nearly a third of organisations let agents run as a human user
-
-A Cloud Security Alliance survey of 228 IT and security professionals, run in January 2026, found that 31% allow agents to operate under human user identities and 43% rely on shared service accounts. Only 52% use workload identities. A further 52% say agents inherit access originally intended for humans or other systems at least sometimes, and 68% cannot clearly distinguish human from agent activity.
-
-What it changes I called an agent running as the engineer who deployed it "the most common finding in a first agent review." That was an impression from the room; this is the first population number I have seen attached to it, and it lands about where the impression did. The 68% who cannot tell human and agent activity apart is the more damaging figure — it means the attribution problem is already live for most people reading this, not a future risk.
-
-Read it with: n=228 self-selected practitioners. Directionally useful, not a census.
-
-Cloud Security Alliance — The Identity and Access Gaps in the Age of Autonomous AI CSA, n=228, surveyed Jan 2026 · 24 Mar 2026
-
-Mar 2026 Complicates Tool authorisation enforced outside the model — the tool registry is the security boundary
-
-### The tool registry is the boundary — and the registry is an attack surface
-
-A threat taxonomy for the Model Context Protocol enumerates 38 threat categories mapped against STRIDE and the OWASP Top 10 for LLM and Agentic applications. It singles out tool description poisoning as a critical semantic attack surface that prior frameworks do not address, alongside parasitic tool chaining and dynamic trust violations — attacks that live in a tool's metadata rather than its behaviour.
-
-What it changes I say the tool registry is the security boundary and the system prompt is a suggestion. That still holds, and it is incomplete: if the model reads tool descriptions to decide what to call, those descriptions are model-facing input, and a boundary made of attacker-influenced text is not a boundary. The control needs a second half — the registry's own integrity. Pin tool definitions, review them on change, and treat a third-party MCP server's metadata with the same suspicion as a retrieved document.
-
-Shen, Toyoda & Leung — MCP-38: A Comprehensive Threat Taxonomy for Model Context Protocol Systems arXiv:2603.18063 · 18 Mar 2026
-
-Jan 2026 Validates Provenance across agents — every output traceable to the upstream runs that produced its inputs
-
-### Article 73 incident reporting assumes one system caused it
-
-The EU AI Act's serious-incident reporting guidelines become binding this month. Analysis of the draft finds they focus on "single-agent and single-occurrence failures, and assume a simplistic one-on-one causality map for AI-related incidents" — while the incidents that actually matter are "emergent, stemming not from a failure in one system (and attributable to one actor), but from system-level interaction." The draft also provides no structured pathway for third-party or whistleblower reporting.
-
-What it changes The reporting obligation lands regardless. If your agents compose and you cannot produce the upstream chain for a specific output, you will be answering an incident report with a description of your architecture instead of a trace. Build the join before you need it, because the regulation is not going to ask you for it until it does.
-
-Fern&aacute;ndez Ashman, Anwar & Bieńkiewicz — EU Regulations Are Not Ready for Multi-Agent AI Incidents Tech Policy Press · 13 Jan 2026
-
-Jan 2026 Validates Cost measured per resolved task, not per token, with attribution to the consuming feature
-
-### Cost per solved task and cost per task differ by more than 10×
-
-Working from Aider's polyglot coding benchmark, per-task costs land around $0.028 for one model at a 72% pass rate and $0.129 for another at 88%. Normalised to solved tasks the range runs roughly $0.012 to $0.147 — an order of magnitude — and the cheapest per-task model is not the cheapest per solved task.
-
-What it changes This is the argument for the control in one table. Cost per token ranks models one way and cost per resolved task ranks them differently, because the failures you pay for and retry do not appear in the first number. Any agent FinOps conversation held in tokens is being held in the wrong unit.
-
-Read it with: A coding benchmark, not your workload. The ratio is the transferable part; the absolute numbers are not.
-
-Ganglani — AI Agent Cost Per Task 2026, from Aider's polyglot benchmark kunalganglani.com · 2026
-
-Jun 2025 Validates Named human approval for consequential actions, with enough context to make review real
-
-### Article 14 mandates awareness of automation bias, not freedom from it
-
-A legal analysis of the AI Act argues its treatment of automation bias is insufficient: the Act obliges providers to help overseers stay aware of their tendency to over-rely on AI output, which is not the same as regulating the risk. The authors argue the provider-centred framing does not address design and context as causes of automation bias, leaving deployers insufficiently accountable, and that the Act should regulate the risk directly rather than mandate awareness of it.
-
-What it changes This is the sharpest version of why I put approval-rate monitoring in this control. Compliance with Art. 14 and effective oversight are different achievements, and the gap between them is exactly where a rubber-stamped approval queue lives. If your evidence for oversight is that reviewers were told about automation bias, you have met the obligation and not the control. The number that distinguishes them is the rate at which reviewers actually reject.
-
-Laux & Ruschemeier — Automation Bias in the AI Act: On the Legal Implications of Attempting to De-Bias Human Oversight of AI arXiv:2502.10036 · rev. 20 Jun 2025
-
-Jun 2025 Complicates Retrieved and tool-returned content treated as untrusted data, never as instructions
-
-### Injection detection that needs no model change, with numbers
-
-MELON (ICML 2025) detects indirect injection by re-running the agent's trajectory against a masked user prompt: if the actions come out similar either way, the agent is following the injected content rather than the user. It is a wrapper around execution — no retraining, no model access. On AgentDojo with GPT-4o the reported attack success rate falls from 16.06% undefended to 0.24%, while task utility moves only from 69.08% to 68.72%. Delimiting (13.39%) and repeating the prompt (9.18%) barely move the number by comparison.
-
-What it changes This complicates my advice rather than confirming it. I describe this control as red-teaming your retrieval and tool-result paths, which treats injection as something you test for. That is necessary and it is no longer sufficient: there are now deployable runtime defences with published numbers on a public benchmark, and "we red-team it" is a weaker answer than "we red-team it and this runs in front of it." The utility cost being inside a percentage point removes the usual objection.
-
-Read it with: AgentDojo is one benchmark and the numbers are the authors' own. Treat the ratio as the finding, not the decimal.
-
-Zhu, Yang, Wang, Guo & Wang — MELON: Provable Defense Against Indirect Prompt Injection Attacks in AI Agents arXiv:2502.05174 · ICML 2025 · rev. 10 Jun 2025
-
-### What didn’t make it, and why.
-
-Each of these appeared in a search result, looked good, and failed on contact with the source. They are here because the useful signal from a page like this is not what it publishes — it is the ratio.
-
-"The NIST AI RMF, ISO/IEC 42001 and the EU AI Act contain no references to 'agent' or 'agentic'."
-
-Appeared in a search summary attributed to arXiv:2605.01091. The paper does not say it. Its actual claim is that the frameworks "presume that the governed object is a bounded system" — weaker, and defensible. The stronger version is the kind of thing a reader checks in ninety seconds.
-
-"A 5× retry multiplier pushes cost per successful task from $5.73 to $28.65."
-
-Attributed by a search summary to an article that does not contain those figures, or any retry-multiplier calculation. Unable to locate a primary source, so it is not on the page — the underlying point about retries is made from the benchmark spread instead.
-
-"CISA, the NSA and allied agencies issued joint agentic-AI guidance in April 2026."
-
-Surfaced in a search summary; not present in the source it was attributed to, and not verified elsewhere. Possibly true and still not citable by me.
-
-"Only 28% of organisations can trace an agent's actions back to a human sponsor."
-
-Attributed to the CSA identity survey. Not in the published release, which reports different figures — 31% running agents under human identities, 43% on shared service accounts. The real numbers are used above; this one is not.
-
-#### And what I couldn’t read at all.
-
-Different admission, kept separate on purpose. “I checked and it was wrong” and “I could not check” are not the same thing, and collapsing them would flatter the page.
-
-IMF Note 2026/004, "How Agentic AI Will Reshape Payments" (22 Apr 2026)
-
-Directly relevant to action reversibility in a regulated context, and the metadata is consistent across several IMF URLs. Every route to the text returned 403 to me. Search summaries describe a decision layer / deterministic execution layer split and recommendations on dispute resolution and liability for AI-initiated transactions, which sounds exactly right — and I have not read a word of it, so it is not an entry.
-
-Which leaves 1 of the ten controls with no entry: Irreversible actions staged. Not because nothing is happening there — because nothing I found survived being read at the source.
-
-### How this stays honest.
-
-Entries are dated by their source, not by when I added them, so the lag between the two is visible. Nothing is removed when it ages badly — an entry that turned out wrong is more useful than one that was quietly deleted. And an entry that only ever validates what I already published would be marketing, which is why the effect label is on every one.
-
-The ten controls → Score your own programme →
+Browse the full dataset → Score your own agent programme →
 
 
 ========================================================================
@@ -1465,7 +1281,7 @@ Restored confidence
 
 Across client + delivery stakeholders
 
-Production-ready merchant payments, multi-region operation, and reliability/security in place from launch. The harder outcome — harder to measure but the one that mattered most — was the restored stakeholder confidence across client and delivery teams that the next ambitious thing could also ship.
+Reliability and security were in place from launch, not bolted on after. The harder outcome — harder to measure but the one that mattered most — was the restored stakeholder confidence across client and delivery teams that the next ambitious thing could also ship.
 
 Closing insight
 
@@ -1479,7 +1295,7 @@ Closing insight
 
 - Leadership presence matters — especially remote. Including physical travel where trust-building demanded it.
 
-- Alignment drives success over individual effort. Particularly true in high-pressure programmes.
+- Alignment drives success over individual effort — especially under pressure.
 
 #### Related
 
@@ -1703,7 +1519,7 @@ Regulated AWS environments
 
 At production go-live
 
-Predictable delivery velocity despite the team scale. Parallel delivery across multiple squads without blocking dependencies. Stable operations across the 50+ regulated AWS environments. Strong stakeholder trust established through local PMO engagement and clear communication across language barriers.
+Predictable delivery velocity despite the team scale, with parallel delivery across multiple squads and no blocking dependencies. Stable operations across the 50+ regulated AWS environments. Strong stakeholder trust established through local PMO engagement and clear communication across language barriers.
 
 Closing insight
 
@@ -1711,15 +1527,15 @@ Large-scale digital transformation succeeds not by adding more people, but by ad
 
 ### Five lessons from the programme.
 
-- Speed and regulation are compatible. Regulated environments can move fast with appropriate architecture, automation and governance.
+- Speed and regulation are compatible, given the right architecture, automation and governance.
 
 - Structure enables scale. POD- and squad-based models prevent chaos when delivery teams exceed 150–200 people.
 
 - DevOps is the foundation, not the optimisation. Automation, containerisation and CI/CD were essential for managing 50+ environments without slowing delivery.
 
-- Local engagement multiplies trust. Language and cultural alignment via local PMO structures significantly improved decision-making and stakeholder trust.
+- Local engagement multiplies trust. Language and cultural alignment via local PMO structures significantly improved decision-making.
 
-- Skill-based beats role-based at scale. Task timelines aligned to individual capability delivered far more predictable outcomes than traditional role-based assignment.
+- Skill-based beats role-based at scale. Task timelines aligned to individual capability delivered far more predictable outcomes.
 
 #### Related
 
@@ -1793,7 +1609,7 @@ Reactive → intentional
 
 Shift from KTLO to platform evolution
 
-Early visibility into platform strengths and weaknesses. Architectural bottlenecks and cost drivers surfaced and prioritised. Clear mapping of platform usage vs engineering capacity. Improved onshore / offshore delivery balance. AI and data-driven capability opportunities identified and slotted into the roadmap.
+Early visibility into platform strengths, weaknesses, architectural bottlenecks and cost drivers — all surfaced and prioritised. Clear mapping of platform usage vs engineering capacity, an improved onshore / offshore delivery balance, and AI and data-driven capability opportunities identified and slotted into the roadmap.
 
 The deepest outcome wasn’t any single architecture decision — it was the shift from reactive delivery (whoever shouts loudest gets the next feature) to intentional platform evolution (the next investment is the one that compounds against the 5-year vision).
 
@@ -1917,11 +1733,7 @@ Legacy decom'd
 
 Retention satisfied; systems retired
 
-Financial: >$50M USD in annual cost savings; reduced infrastructure overhead across the estate.
-
-Operational: Legacy applications became decommissionable; operational complexity dropped meaningfully.
-
-Strategic: Enterprise-grade, cloud-native platform under full bank ownership with minimal ongoing maintenance. AI-enabled foundation for continuous archival. Accelerated the wider legacy-modernisation programme. Regulatory and security alignment achieved at platform level, not at application level.
+Infrastructure overhead across the estate dropped, and so did operational complexity once legacy systems could actually be retired. Strategically: an enterprise-grade, cloud-native platform under full bank ownership with minimal ongoing maintenance, an AI-enabled foundation for continuous archival, and regulatory and security alignment achieved at platform level rather than application level — which accelerated the wider legacy-modernisation programme.
 
 Closing insight
 
@@ -1973,7 +1785,7 @@ Phase 1 Weeks 1–4
 
 ### Triage & classify.
 
-You can't comply with what you haven't named. Phase 1 catalogues every AI use-case, classifies each per the EU AI Act risk tiers, and surfaces the ones that need the substrate work in phases 2–3.
+You can't comply with what you haven't named. This phase catalogues every AI use-case, classifies each per the EU AI Act risk tiers, and surfaces the ones that need substrate work next.
 
 Week 1
 
@@ -2103,7 +1915,7 @@ Phase 3 Weeks 9–12
 
 ### Documentation, oversight, conformity.
 
-Phase 3 is the documentation, governance, and pre-conformity work that turns a working substrate into a regulator-defensible system. Less code; more artefacts.
+The documentation, governance, and pre-conformity work that turns a working substrate into a regulator-defensible system. Less code; more artefacts.
 
 Week 9
 
@@ -2321,7 +2133,7 @@ Phase 3 Weeks 9–12
 
 ### Hardened builds, attestation defence.
 
-Phase 3 turns SLSA L2 into SLSA L3 where it matters, builds the attestation defensibility, and rolls the pattern beyond the first pipeline.
+Turns SLSA L2 into SLSA L3 where it matters, builds attestation defensibility, and rolls the pattern beyond the first pipeline.
 
 Week 9
 
@@ -2409,7 +2221,7 @@ Phase 1 Weeks 1–4
 
 ### Tag, attribute, name.
 
-Phase 1 makes cost visible at the point of decision — to the engineers making the architecture choices, not just the CFO. Without this, optimisation later is local-and-temporary.
+Makes cost visible at the point of decision — to the engineers making the architecture choices, not just the CFO. Without this, optimisation later is local-and-temporary.
 
 Week 1
 
@@ -2469,7 +2281,7 @@ Phase 2 Weeks 5–8
 
 ### Quick wins & idle hunt.
 
-Phase 2 captures the 5–15% bill reduction that's pure idle waste and over-provisioning. No architectural change required.
+Captures the 5–15% bill reduction that's pure idle waste and over-provisioning. No architectural change required.
 
 Week 5
 
@@ -2529,7 +2341,7 @@ Phase 3 Weeks 9–12
 
 ### Commitments, governance, quarterly cadence.
 
-Phase 3 builds the structural levers: commitment portfolio, cost-aware architecture decisions, and the governance cadence that keeps you at Controlled rather than slipping back to Aware.
+Builds the structural levers: commitment portfolio, cost-aware architecture decisions, and the governance cadence that keeps you at Controlled rather than slipping back to Aware.
 
 Week 9
 
@@ -2611,7 +2423,7 @@ Phase 1 Weeks 1–4
 
 ### Inventory, classify, pick the wedge.
 
-Phase 1 builds the credential map. Most teams discover they have 10× more static credentials than they thought, in places nobody's looked since the system was first set up.
+This phase builds the credential map. Most teams discover they have 10× more static credentials than they thought, in places nobody's looked since the system was first set up.
 
 Week 1
 
@@ -2675,7 +2487,7 @@ Phase 2 Weeks 5–8
 
 ### Migrate the wedge & document the pattern.
 
-Phase 2 lands workload identity on the wedge pipeline end-to-end, then converts the experience into a repeatable paved-path template.
+Lands workload identity on the wedge pipeline end-to-end, then converts the experience into a repeatable paved-path template.
 
 Week 5
 
@@ -2735,7 +2547,7 @@ Phase 3 Weeks 9–12
 
 ### Roll across, retire vault usage.
 
-Phase 3 propagates the pattern across the estate and retires the static-credential paths systematically. The vault stays — for things that genuinely need a secret store — but its role shrinks.
+Propagates the pattern across the estate and retires static-credential paths systematically. The vault stays — for things that genuinely need a secret store — but its role shrinks.
 
 Week 9
 
@@ -3316,11 +3128,11 @@ Primary sources:
 - Direct observation of streaming behaviour, regional latency, artifact rendering, connector lifecycle.
 - Conference talks: AWS re:Invent · Lex Fridman podcast appearances by Anthropic team.
 
-#### Found this useful? More coming.
+#### Found this useful?
 
-One teardown per quarter. Tell me which architecture you'd want analysed next.
+More reading in Writing, or suggest the next teardown below.
 
-All teardowns → Subscribe to Letters Suggest the next teardown
+More writing → Suggest the next teardown
 
 
 ## Linear
@@ -3447,11 +3259,11 @@ Primary sources:
 - Linear public job listings (sync engine · Rust/Go infra)
 - Direct observation of offline behaviour, WebSocket traffic, IndexedDB persistence.
 
-#### Found this useful? More coming.
+#### Found this useful?
 
-One teardown per quarter. Tell me which architecture you'd want analysed next.
+More reading in Writing, or suggest the next teardown below.
 
-All teardowns → Subscribe to Letters Suggest the next teardown
+More writing → Suggest the next teardown
 
 
 ## Notion
@@ -3581,11 +3393,11 @@ Primary sources:
 - Notion public API · developers.notion.com
 - Observation of block-tree via public API, page-load behaviour, AI feature behaviour.
 
-#### Found this useful? More coming.
+#### Found this useful?
 
-One teardown per quarter. Tell me which architecture you'd want analysed next.
+More reading in Writing, or suggest the next teardown below.
 
-All teardowns → Subscribe to Letters Suggest the next teardown
+More writing → Suggest the next teardown
 
 
 ## Vercel
@@ -3707,11 +3519,11 @@ Primary sources:
 - Vercel public job listings (platform · infrastructure)
 - Direct observation of build duration, cold-start, atomic rollback timing.
 
-#### Found this useful? More coming.
+#### Found this useful?
 
-One teardown per quarter. Tell me which architecture you'd want analysed next.
+More reading in Writing, or suggest the next teardown below.
 
-All teardowns → Subscribe to Letters Suggest the next teardown
+More writing → Suggest the next teardown
 
 
 ========================================================================
@@ -3789,11 +3601,11 @@ This is the Governed tier. ~20% of EA functions reach it. The jump from Governed
 
 To find out whether your team scores at this tier or another, run EA Operating Model. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-EA Operating Model Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+EA Operating Model Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -3897,11 +3709,11 @@ And critically: you cross the threshold where regulators take you seriously. APR
 
 To find out whether your team scores at this tier or another, run DevSecOps Maturity. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-DevSecOps Maturity Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+DevSecOps Maturity Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -4001,11 +3813,11 @@ This is the Operating tier. ~12% of enterprises are here. The gap from Operating
 
 To find out whether your team scores at this tier or another, run GenAI Readiness. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-GenAI Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+GenAI Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -4083,11 +3895,11 @@ This is the Established tier (CNCF Scalable). The next jump — to Productised (
 
 To find out whether your team scores at this tier or another, run Platform Engineering Readiness. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-Platform Engineering Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+Platform Engineering Readiness Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -4165,11 +3977,11 @@ This is the Disciplined tier. DORA “High” cluster. The jump from Disciplined
 
 To find out whether your team scores at this tier or another, run SRE Programme. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-SRE Programme Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+SRE Programme Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -4249,11 +4061,11 @@ The Cloud Commitment Optimiser calculator is the tool for tuning the second move
 
 To find out whether your team scores at this tier or another, run Cloud Cost. It takes 2–4 minutes and surfaces both your overall tier and the capability breakdown that shows you where the move starts.
 
-For the bigger picture: the compound diagnostic takes results from all six diagnostics and shows you the substrate gap that bounds your overall delivery, not the per-discipline symptom.
+For the bigger picture: your dashboard synthesises the substrate gap that bounds your overall delivery, not the per-discipline symptom, once you've run more than one diagnostic.
 
 #### Related
 
-Cloud Cost Diagnostic → The 4-Discipline Stack → Anti-patterns → Compound diagnostic →
+Cloud Cost Diagnostic → The 4-Discipline Stack → Anti-patterns → Your dashboard →
 
 The Method
 
@@ -4971,7 +4783,7 @@ Related Modern Data Platform RA
 
 #lakehouse-as-swamp
 
-Spotted an anti-pattern that should be here? Reply to Letters or get in touch. The list grows quarterly with the patterns that recur most often in engagement.
+Spotted an anti-pattern that should be here? Get in touch. The list grows with the patterns that recur most often in engagement.
 
 
 ## Glossary
@@ -4981,9 +4793,9 @@ Reference · Glossary
 
 ## Practitioner glossary.
 
-Machine-readable glossary.json License CC BY 4.0 Updated 2026-08-01 Source on GitHub
-
 Definitions across enterprise architecture, platform engineering, DevSecOps, SRE, cloud and generative AI — written for the engineer being asked the question and the executive being asked to fund the answer.
+
+Machine-readable glossary.json License CC BY 4.0 Updated 2026-08-01 Source on GitHub
 
 0 terms
 
@@ -5374,14 +5186,6 @@ Conference
 CNCF · biannual (NA, EU)
 
 The ecosystem barometer for platform / cloud-native / supply-chain projects. Read the end-user case-study track first.
-
-Letter
-
-#### Letters — monthly
-
-Uchit Vyas · monthly via Substack
-
-My own — one synthesis-letter a month from the work, the readings, and the field. Free, ad-free, no growth-hacks.
 
 Updated on the working list. If you’d add or argue with a recommendation, write back — the next revision benefits.
 
