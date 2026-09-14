@@ -1,6 +1,6 @@
 # Uchit Vyas — full text corpus
 
-> Concatenated prose from hellouchit.com, generated 2026-09-13 for AI ingestion.
+> Concatenated prose from hellouchit.com, generated 2026-09-14 for AI ingestion.
 > Companion to https://hellouchit.com/llms.txt (the structured manifest).
 > Licence: essays and prose © Uchit Vyas. The regulation × control × tooling
 > dataset is CC BY 4.0. Cite as: Uchit Vyas, hellouchit.com.
@@ -1208,6 +1208,63 @@ The nine GenAI controls → GenAI Readiness Diagnostic → The 4-Discipline Stac
 The Method
 
 ← 06 Prove it 07 · Go deeper back to 01 Name it →
+
+
+## Forward deployed engineering, applied to regulated industries
+Source: https://hellouchit.com/writing/forward-deployed-engineering-regulated
+
+Practice 6 min read 2026
+
+## Forward deployed engineering, applied to regulated industries.
+
+Embedding with a team to ship the fix yourself is not a new idea. What changes when the team sits inside a bank, a hospital or a government agency is what you're required to leave behind — and that requirement is the whole job.
+
+Forward deployed engineer started as a Palantir title and became, over the last two years, the term the AI industry reaches for when it needs to describe an engineer who doesn't advise from outside a customer's systems — who sits inside the team, writes the integration, and is judged on whether the thing works in production, not on whether the deck was persuasive. Every lab shipping agents into enterprises now has some version of the role, because agentic systems don't get adopted from a slide; they get adopted when someone embeds long enough to make the specific, ugly integration work against someone else's identity provider, someone else's data model, someone else's change window.
+
+None of that is specific to regulated industries. What's specific is this: in a bank, a hospital, a critical-infrastructure operator or a government department, shipping fast and iterating in production — the default FDE playbook — is not available as a strategy. A credit decision, a clinical workflow, or a payment rail that misbehaves doesn't get a hotfix and an apology. It gets an incident report, a regulator's letter, and in the worse cases a parliamentary question. The engineering has to move at FDE speed and still produce something an auditor can point at afterwards.
+
+### The playbook doesn't transfer as-is.
+
+The standard FDE playbook optimises for velocity: get access, get embedded, ship something real in week one, iterate against live feedback. Applied unmodified inside a regulated environment, it produces a familiar failure — a fast, real, working system that nobody can explain to a regulator six months later, because nothing about how it was built generates evidence as a side effect.
+
+The fix isn't slowing down. It's changing what "done" means for each unit of work. A paved path isn't done when it works; it's done when it works and the decisions behind it are captured as something more durable than the engineer's memory. A GenAI feature isn't done when the demo lands; it's done when it has an eval set, a versioned prompt, and per-decision audit evidence — the same nine controls this site documents in detail on the agentic systems page. The speed comes from the embedding, not from skipping the evidence.
+
+### What the embedding actually buys you.
+
+The reason embedding beats advising isn't culture, it's information. An outside advisor sees the architecture diagram and the steering committee's version of the problem. Someone embedded in the delivery team for two weeks sees the gap between the diagram and the repository, which incident actually paged someone at 2am last month, and which decision has been silently deferred three sprints running because nobody with authority was in the room to make it. How I work goes through this in detail — what has to be true in the first fortnight for any of this to be real, rather than another advisory engagement wearing an FDE label.
+
+That's also why "forward deployed" and "not available for consulting" aren't in tension on this site, even though they can sound like they should be. An FDE is embedded as staff — inside one organisation's delivery team, carrying a share of that team's outcome — not selling hours across a portfolio of clients. The constraint that makes the role work (one team, real skin in the delivery, full context) is the same constraint that rules out a consulting shopfront. Full-time and forward-deployed describe the same shape from two angles.
+
+### The three things that don't change.
+
+Whatever the industry, three things stay true about doing this work well:
+
+- The deadline is usually real and usually external — a
+regulatory date, a board commitment, a customer contract — and the
+job is to hit it without pretending the architecture underneath it
+doesn't matter. A
+multi-region payment platform in three months is what that
+looks like when it works.
+
+- The evidence has to be a byproduct of the work, not a
+separate project. An audit trail assembled in a panic the week
+before a review is worse than useless — it tells the regulator you
+don't actually know how the system runs. An evidence pipeline that
+generates the same artefact automatically, every time, is the
+difference between passing an audit and surviving one.
+
+- Someone has to still be able to run it after you leave.
+The test of the engagement isn't the demo at handover; it's whether
+the paved path, the policy check, or the decision record is still
+load-bearing six months later, owned by someone with a name.
+
+### Why now.
+
+Two things are converging in 2026 to make this a live question rather than a naming exercise. First, agentic systems are the clearest case yet for embedding over advising — nobody ships a production agent into a regulated workflow from a strategy deck, because the failure modes (a tool call with too much blast radius, a trajectory nobody reviewed) only show up once real data and real integrations are in the loop. Second, the regulatory floor is rising fast enough that "we'll add the controls later" has a closing window: the EU AI Act's high-risk obligations bind from 2 August 2026, and APRA CPS 230 has been live in Australian financial services since 1 July 2025. An engineer who can embed, ship, and generate the evidence at the same time is worth materially more this year than the same engineer was three years ago — not because the title changed, but because the cost of getting the sequencing wrong went up.
+
+#### Related
+
+How I work → Ten controls for agents → The 4-Discipline Stack → A payment platform in three months →
 
 
 ========================================================================

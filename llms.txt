@@ -60,6 +60,7 @@ This file follows the [llms.txt convention](https://llmstxt.org/) — a structur
 - [Platform engineering is the AI moat](https://hellouchit.com/writing/platform-engineering-ai-moat.html)
 - [The 4-Discipline Stack](https://hellouchit.com/writing/4-discipline-stack-essay.html)
 - [AU AI Safety Standard decoded](https://hellouchit.com/writing/au-ai-safety-decoded.html)
+- [Forward deployed engineering, applied to regulated industries](https://hellouchit.com/writing/forward-deployed-engineering-regulated.html)
 
 ## Reference
 

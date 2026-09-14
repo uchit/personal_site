@@ -33,6 +33,7 @@ const CORPUS = [
     "writing/platform-engineering-ai-moat.html",
     "writing/4-discipline-stack-essay.html",
     "writing/au-ai-safety-decoded.html",
+    "writing/forward-deployed-engineering-regulated.html",
   ]],
   ["Case studies", [
     "case-studies/payment-platform.html",
