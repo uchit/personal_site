@@ -131,3 +131,27 @@ dependency, a second thing to explain in the nav. `/search/` is now a one-line `
 server-side redirect, so this is the static-hosting equivalent.
 This repo has no npm dependencies again as a result — everything is plain
 HTML/CSS/JS, same as it was before Pagefind.
+
+## No Letters, no Frontier log — a broken cadence promise is worse than none
+
+Both were removed after an audit found their forward-looking claims weren't
+being kept: Letters promised "Monthly" and sent one issue (Jun 2026) in over
+three months; the Frontier log's most recent entry was 2.5 months stale.
+A visible, unfulfilled cadence promise reads as abandoned, not "not yet
+updated" — worse than never having made the promise. Both routes are now
+one-line redirect stubs to `/writing/`, same pattern as `/search/` above.
+`scripts/build-frontier.mjs` (the dead generator) is deleted, along with its
+call site in `build-all.mjs`, its corpus entry in `build-llms-full.mjs`, and
+its routing rule in `build-step-nav.mjs`.
+
+`/teardowns/` kept a lighter version of the same problem — its index
+promised "one per quarter" and none had shipped since the May 2026 launch
+batch. The four essays underneath it were genuinely substantive, so only
+the index and the cadence-promise line (which also appeared inside each
+essay's own footer) are gone; the essays stay live at their original URLs,
+now surfaced from a new "Architecture teardowns" section on `/writing/`
+instead of their own index.
+
+If either feature is picked back up, do it by actually sending on cadence
+first and only then re-adding the on-page promise — not the other way
+around.
