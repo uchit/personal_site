@@ -152,5 +152,5 @@ deleted.
 Each page's preview image lives in `images/og/` and is set with `"ogImage"` in
 the page header. They are rendered from `scripts/og-template.html` at
 1200x630 (open it with `?t=title&f=figure&s=superscript&u=unit&c=caption`, or
-`&p=/images/photo.jpg`; parameters are rendered as text only,
+`&p=about` or `&p=portrait`; parameters are rendered as text only,
 and screenshot the viewport). Re-render when a page's headline or number changes.
