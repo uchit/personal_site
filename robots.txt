@@ -4,7 +4,6 @@
 # The content here is meant to be found, cited, and quoted.
 
 User-agent: *
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # ─────────────────────────────────────────────────────────────
@@ -105,8 +104,9 @@ Allow: /
 # ─────────────────────────────────────────────────────────────
 Sitemap: https://hellouchit.com/sitemap.xml
 
-# Content-Signal (contentsignals.org): explicitly allow search, use as AI
-# input (answers and grounding) and AI training. Non-binding preference.
+# Content preference (contentsignals.org vocabulary), stated here as a
+# comment because the directive is not yet valid robots.txt syntax and
+# validators reject it: search=yes, ai-input=yes, ai-train=yes.
 #
 # Pointers to the AI-readable manifests (llmstxt.org convention)
 # https://hellouchit.com/llms.txt       — structured manifest of the site

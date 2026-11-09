@@ -242,7 +242,7 @@ figure.tile { margin: 0; }
 /* Who it's for */
 .for3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .for3 > div { background: var(--tile); border-radius: 24px; padding: 32px 30px; }
-.for3 h3 { font-size: 1.3125rem; letter-spacing: -0.02em; line-height: 1.2; }
+.for3 h3, .for3 .for-h { font-size: 1.3125rem; letter-spacing: -0.02em; line-height: 1.2; }
 .for3 p { margin: 10px 0 0; color: var(--ink-2); font-size: 1rem; }
 .for3 a { display: inline-block; margin-top: 16px; font-size: 1rem; }
 @media (max-width: 860px) { .for3 { grid-template-columns: 1fr; } }

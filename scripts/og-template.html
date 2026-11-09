@@ -35,16 +35,24 @@
   <div class="foot"><span><b>Uchit Vyas</b>, lead forward deployed engineer</span><span>hellouchit.com</span></div>
 </div>
 <script>
-  /* Filled from the query string: ?t=title&f=figure-html&c=caption&p=photo */
+  /* Filled from the query string, as text only:
+     ?t=title&f=figure&s=superscript&u=unit&c=caption, or &p=/images/photo.jpg
+     Nothing from the URL is ever parsed as HTML, and p must be a site image. */
   var q = new URLSearchParams(location.search);
   document.getElementById("t").textContent = q.get("t") || "";
   var f = document.getElementById("f");
-  if (q.get("p")) {
+  var photo = q.get("p") || "";
+  if (/^\/images\/[A-Za-z0-9._-]+\.(jpg|jpeg|png|webp)$/.test(photo)) {
     f.className = "photo";
-    var img = document.createElement("img"); img.src = q.get("p"); img.alt = ""; f.appendChild(img);
+    var img = document.createElement("img");
+    img.setAttribute("src", photo); img.alt = ""; f.appendChild(img);
   } else {
-    var b = document.createElement("b"); b.innerHTML = q.get("f") || ""; f.appendChild(b);
-    var s = document.createElement("span"); s.textContent = q.get("c") || ""; f.appendChild(s);
+    var b = document.createElement("b");
+    b.appendChild(document.createTextNode(q.get("f") || ""));
+    if (q.get("s")) { var sup = document.createElement("sup"); sup.textContent = q.get("s"); b.appendChild(sup); }
+    if (q.get("u")) { var sm = document.createElement("small"); sm.textContent = q.get("u"); b.appendChild(sm); }
+    f.appendChild(b);
+    var cap = document.createElement("span"); cap.textContent = q.get("c") || ""; f.appendChild(cap);
   }
 </script>
 </body>
