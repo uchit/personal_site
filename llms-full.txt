@@ -14,58 +14,68 @@ Uchit Vyas Lead forward deployed engineer, Melbourne
 
 ## Most enterprise AI never leaves the pilot. I get it into production.
 
-I work inside the client’s team, on the AI and on the data and core platforms it depends on, until it’s live and a regulator would sign it off. Fifteen years of shipping, and I still write the code.
+Inside the client’s team until it’s live and a regulator would sign it off. I still write the code.
 
 See the proof
 Score your AI in two minutes
 
-## Your AI pilot works. Production keeps slipping.
+Years shipping
 
-Three programmes in regulated companies that went live, with the numbers.
+15
 
-See the work
+Talks, three continents
 
-## Risk has to sign off an AI agent.
+30+
 
-The ten controls to check, and the evidence to ask for.
+Books on cloud
 
-The ten controls
+5
 
-## Your event needs a speaker on AI in production.
+US patent in ML
 
-More than 30 talks, five books and an AI patent.
+1
 
-Talks
+- Pilot worksScore it in two minutes
+
+- Risk signs offThe ten controls
+
+- Live in productionThree that shipped
 
 ## Work that went live.
 
 $50M+
 
-Saved every year after one archival platform replaced the separate setups of 1,000+ applications at a tier-1 bank in Australia and New Zealand.
+Saved every year. Tier-1 bank, Australia and New Zealand.
+
+1,000+ app setups1 platform
 
 Read the case study
 
 <5min
 
-From loan application to money paid out on a lending platform for a leading Asian bank. Live in six months with 200+ engineers.
+Loan application to payout. A leading Asian bank.
+
+6 months to live200+ engineers
 
 Read the case study
 
 0
 
-Messages read by a parental safety app I designed and built alone. The phone’s sandbox makes reading them impossible.
+Messages read. A parental safety app, by design.
+
+Built by 1 personSchema to App Store review
 
 Read the case study
 
 ## Early, three times.
 
-Why trust my read on AI? I was early to cloud and to DevSecOps too, and the dates are on the record.
+The dates are on the record.
 
 2013
 
 ## Cloud
 
-Five books on AWS, DynamoDB, OpenStack and integration, written while most banks were still deciding whether cloud was allowed.
+Five books, while banks still debated cloud.
 
 HashiConf
 TopConf
@@ -77,7 +87,7 @@ DevSecOps Summit
 
 ## DevSecOps
 
-On stage at HashiConf, then DevSecOps at Cloud Expo Asia in 2017, then years building security into bank delivery pipelines.
+On stage at HashiConf, then into bank pipelines.
 
 - 1Agent runs under its own identity
 
@@ -93,13 +103,13 @@ On stage at HashiConf, then DevSecOps at Cloud Expo Asia in 2017, then years bui
 
 ## AI agents
 
-Published ten controls for running AI agents in regulated companies, before most regulators had written rules for agents.
+Ten controls, before regulators wrote rules.
 
 ## Every claim here has a record behind it.
 
 ## AI in production, signed off by risk.
 
-Each agent gets its own identity, limits on what it can do, a human approval step for anything that matters, and a record of every action like this one.
+Own identity, hard limits, a named approver, a record of every action.
 
 run 7f3a…c21
 agent claims-triage own identity
@@ -114,7 +124,7 @@ Example record.
 
 ## A US patent in machine learning.
 
-US 11,334,348 B2: using machine learning to find and fix differences between API specifications across systems.
+US 11,334,348 B2. Finding API specification drift with machine learning.
 
 <5 min
 
@@ -128,7 +138,7 @@ Phil JacklinCEO, Thankyou Payroll. Client, 2025.
 
 ## Score your AI agents in two minutes.
 
-Ten questions, one per control. You get a score, the three things to fix first, and how your answers map to the EU AI Act, NIST and APRA. Nothing leaves your browser.
+Ten questions. A score, three fixes, mapped to the EU AI Act, NIST and APRA.
 
 Take the check
 Read the ten controls
@@ -145,8 +155,6 @@ Mule ESB CookbookPackt, 2013
 
 ## More than 30 talks on three continents.
 
-Now speaking on getting AI into production in regulated companies.
-
 - Scaling under pressureHashiConf, PortlandWatch
 
 - Let’s democratise deploymentsTopConf, TallinnWatch
@@ -159,7 +167,7 @@ All recorded talks
 
 ## Let’s talk.
 
-About AI in the enterprise, platform work, or speaking at your event.
+AI in the enterprise, platforms, or your event.
 
 contact@hellouchit.com
 
