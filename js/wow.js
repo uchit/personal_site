@@ -250,4 +250,13 @@
       });
     });
   });
+
+  /* A link to a collapsed row (e.g. #agent-identity) opens that row. */
+  function openTarget() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var el = id && document.getElementById(id);
+    if (el && el.tagName === "DETAILS") el.open = true;
+  }
+  window.addEventListener("hashchange", openTarget);
+  openTarget();
 })();

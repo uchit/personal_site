@@ -14,58 +14,68 @@ Uchit Vyas Lead forward deployed engineer, Melbourne
 
 ## Most enterprise AI never leaves the pilot. I get it into production.
 
-I work inside the client’s team, on the AI and on the data and core platforms it depends on, until it’s live and a regulator would sign it off. Fifteen years of shipping, and I still write the code.
+Inside the client’s team until it’s live and a regulator would sign it off. I still write the code.
 
 See the proof
 Score your AI in two minutes
 
-## Your AI pilot works. Production keeps slipping.
+Years shipping
 
-Three programmes in regulated companies that went live, with the numbers.
+15
 
-See the work
+Talks, three continents
 
-## Risk has to sign off an AI agent.
+30+
 
-The ten controls to check, and the evidence to ask for.
+Books on cloud
 
-The ten controls
+5
 
-## Your event needs a speaker on AI in production.
+US patent in ML
 
-More than 30 talks, five books and an AI patent.
+1
 
-Talks
+- Pilot worksScore it in two minutes
+
+- Risk signs offThe ten controls
+
+- Live in productionThree that shipped
 
 ## Work that went live.
 
 $50M+
 
-Saved every year after one archival platform replaced the separate setups of 1,000+ applications at a tier-1 bank in Australia and New Zealand.
+Saved every year. Tier-1 bank, Australia and New Zealand.
+
+1,000+ app setups1 platform
 
 Read the case study
 
 <5min
 
-From loan application to money paid out on a lending platform for a leading Asian bank. Live in six months with 200+ engineers.
+Loan application to payout. A leading Asian bank.
+
+6 months to live200+ engineers
 
 Read the case study
 
 0
 
-Messages read by a parental safety app I designed and built alone. The phone’s sandbox makes reading them impossible.
+Messages read. A parental safety app, by design.
+
+Built by 1 personSchema to App Store review
 
 Read the case study
 
 ## Early, three times.
 
-Why trust my read on AI? I was early to cloud and to DevSecOps too, and the dates are on the record.
+The dates are on the record.
 
 2013
 
 ## Cloud
 
-Five books on AWS, DynamoDB, OpenStack and integration, written while most banks were still deciding whether cloud was allowed.
+Five books, while banks still debated cloud.
 
 HashiConf
 TopConf
@@ -77,7 +87,7 @@ DevSecOps Summit
 
 ## DevSecOps
 
-On stage at HashiConf, then DevSecOps at Cloud Expo Asia in 2017, then years building security into bank delivery pipelines.
+On stage at HashiConf, then into bank pipelines.
 
 - 1Agent runs under its own identity
 
@@ -93,13 +103,13 @@ On stage at HashiConf, then DevSecOps at Cloud Expo Asia in 2017, then years bui
 
 ## AI agents
 
-Published ten controls for running AI agents in regulated companies, before most regulators had written rules for agents.
+Ten controls, before regulators wrote rules.
 
 ## Every claim here has a record behind it.
 
 ## AI in production, signed off by risk.
 
-Each agent gets its own identity, limits on what it can do, a human approval step for anything that matters, and a record of every action like this one.
+Own identity, hard limits, a named approver, a record of every action.
 
 run 7f3a…c21
 agent claims-triage own identity
@@ -114,7 +124,7 @@ Example record.
 
 ## A US patent in machine learning.
 
-US 11,334,348 B2: using machine learning to find and fix differences between API specifications across systems.
+US 11,334,348 B2. Finding API specification drift with machine learning.
 
 <5 min
 
@@ -128,7 +138,7 @@ Phil JacklinCEO, Thankyou Payroll. Client, 2025.
 
 ## Score your AI agents in two minutes.
 
-Ten questions, one per control. You get a score, the three things to fix first, and how your answers map to the EU AI Act, NIST and APRA. Nothing leaves your browser.
+Ten questions. A score, three fixes, mapped to the EU AI Act, NIST and APRA.
 
 Take the check
 Read the ten controls
@@ -145,8 +155,6 @@ Mule ESB CookbookPackt, 2013
 
 ## More than 30 talks on three continents.
 
-Now speaking on getting AI into production in regulated companies.
-
 - Scaling under pressureHashiConf, PortlandWatch
 
 - Let’s democratise deploymentsTopConf, TallinnWatch
@@ -159,7 +167,7 @@ All recorded talks
 
 ## Let’s talk.
 
-About AI in the enterprise, platform work, or speaking at your event.
+AI in the enterprise, platforms, or your event.
 
 contact@hellouchit.com
 
@@ -178,13 +186,25 @@ Uchit Vyas: lead forward deployed engineer in Melbourne. Career from 2011, five 
 
 ## About.
 
-I’m a lead forward deployed engineer in Melbourne, focused on AI-led enterprise transformation. I work inside the delivery team and build the thing myself, usually against a date that can’t move.
+Lead forward deployed engineer in Melbourne. I build AI into large enterprises, inside the delivery team, against dates that can’t move.
 
-I started in 2011 writing Java and running Linux servers in Ahmedabad. Cloud was new, so I wrote about it: five books for Apress and Packt between 2013 and 2016, mostly about AWS. Then came DevOps and SRE work for banks in Singapore and Thailand, enterprise architecture at KPMG Singapore, and platform and modernisation work across Australia and New Zealand.
+Shipping since
 
-Now I spend most of my time on AI in large enterprises: getting agents and AI services into production, and fixing the data and core platforms they depend on. That means giving an agent its own identity, limiting what it can do, keeping a record a regulator will accept, and still shipping on time.
+2011
 
-I still build things myself, from prototypes with new AI tools to a product I run on my own. It keeps my advice honest. Outside work I lift weights and write about training after 35. I speak Gujarati, Hindi and English, and a little Spanish.
+Books
+
+5
+
+Talks
+
+30+
+
+US patent
+
+1
+
+Gujarati, Hindi, English and a little Spanish. Outside work, weights.
 
 ## Five cities, fifteen years.
 
@@ -198,7 +218,7 @@ I still build things myself, from prototypes with new AI tools to a product I ru
 
 - Melbourne2022Bank platforms, modernisation and AI agents across Australia and New Zealand.
 
-## From Linux servers to lead engineer on AI.
+Every role, 2011 to now
 
 - 2022 to nowGlobal consultancy, Australia and New ZealandCore modernisation, platform engineering and AI lead
 
@@ -226,11 +246,9 @@ Mule ESB CookbookPackt, 2013
 
 US 11,334,348 B2
 
-Using machine learning to identify and correct differences between API specifications across systems. Granted 2022. Read the patent
+Machine learning that finds and fixes API specification drift. Granted 2022. Read the patent
 
 ## More than 30 talks. Eight were recorded.
-
-In Asia, Europe and the US. These have recordings or slides.
 
 - Apr 2021API design collaborationAPIDays, SingaporeWatch
 
@@ -252,19 +270,19 @@ Organising an event? Email contact@hellouchit.com.
 
 ## In clients’ and managers’ own words.
 
-From public LinkedIn recommendations. Read all 15.
+All 15 on LinkedIn
 
-“What do you do when you have a project that doesn’t have any requirements, has a business owner that has too much to do and not enough time to focus, wants to use technology that has never been used at the company before, has an unrealistic deadline, not enough money, but a vision that is so grand and unifying that you feel compelled to deliver as best you can? Call Uchit! … If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
+“If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
 
-Phil JacklinCEO, Thankyou Payroll. Client, August 2025.
+Phil JacklinCEO, Thankyou Payroll. Client, 2025.
 
-“When I think of Uchit, I think of a techno-business man. Few technical people understand the meaning of words like ‘delivering value’ and ‘business growth’. Uchit is one of those rare people who can balance technology with a business goal.”
+“Uchit is one of those rare people who can balance technology with a business goal.”
 
-Sanju BurkuleManaged Uchit directly. February 2021.
+Sanju BurkuleManaged Uchit directly, 2021.
 
-“Uchit brought a lot of Cloud, and specifically DevOps, DevSecOps and Agile knowledge with him to the table … I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.”
+“I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.”
 
-Subhasish GhoshSenior technical program manager, Azure OpenAI Service, Microsoft. February 2021.
+Subhasish GhoshSenior technical program manager, Microsoft, 2021.
 
 ---
 
@@ -276,14 +294,12 @@ Ten controls to build before an AI agent goes live in a regulated company, with 
 
 ## Ten things a regulator will ask to see before your AI agent goes live.
 
-Build them in this order. Each one opens to the evidence an auditor wants and a read-only command to check it.
+In build order, with the evidence for each.
 
 Score your agents in two minutes
 Download as JSON
 
 ## Identity first. Everything else attaches to it.
-
-The four on the left can start today. The six on the right need what they point to.
 
 ## Start with these
 
@@ -301,17 +317,15 @@ The four on the left can start today. The six on the right need what they point 
 9Provenance across agentsNeeds 3 first
 10Cost measured per resolved taskNeeds 3 first
 
-1
+## Each control, mapped to six frameworks.
 
-## Agent runs under its own workload identity
+EU AI ActISO 42001NIST AI RMFAPRA CPS 230NIST 800-53OWASP LLM
 
-The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action.
-
-Evidence, checks and mappings
+1Agent runs under its own workload identity. Maps to EU AI Act, ISO 42001, NIST 800-53.
 
 Agent runs under its own workload identity, never a human’s or a shared account.
 
-This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.
+The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.
 
 What an auditor will ask for
 
@@ -331,17 +345,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8
 
-2
-
-## Declared autonomy level per action class
-
-Autonomy is not a property of the agent; it is a property of each action it can take.
-
-Evidence, checks and mappings
+2Declared autonomy level per action class. Maps to EU AI Act, ISO 42001, NIST AI RMF, APRA CPS 230.
 
 Declared autonomy level per action class, enforced at execution and recorded per run.
 
-Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.
+Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.
 
 What an auditor will ask for
 
@@ -355,17 +363,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230
 
-3
-
-## Full replayable trajectory
-
-Logging the final output is enough to debug a demo and nothing else.
-
-Evidence, checks and mappings
+3Full replayable trajectory. Maps to EU AI Act, ISO 42001, NIST AI RMF, APRA CPS 230.
 
 Full replayable trajectory: every tool call, argument, result and the exact context the model saw.
 
-The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.
+Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.
 
 What an auditor will ask for
 
@@ -385,17 +387,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA
 
-4
-
-## Retrieved and tool-returned content treated as untrusted data
-
-Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail.
-
-Evidence, checks and mappings
+4Retrieved and tool-returned content treated as untrusted data. Maps to EU AI Act, ISO 42001, OWASP LLM.
 
 Retrieved and tool-returned content treated as untrusted data, never as instructions.
 
-Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.
+Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.
 
 What an auditor will ask for
 
@@ -409,17 +405,11 @@ Maps to
 
 OWASP LLM Top 10, MITRE ATLAS, EU AI Act, ISO/IEC 42001
 
-5
-
-## Tool authorisation enforced outside the model
-
-An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion.
-
-Evidence, checks and mappings
+5Tool authorisation enforced outside the model. Maps to EU AI Act, ISO 42001, NIST AI RMF, NIST 800-53, OWASP LLM.
 
 Tool authorisation enforced outside the model, by the tool registry.
 
-Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.
+An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.
 
 What an auditor will ask for
 
@@ -433,17 +423,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53
 
-6
-
-## Bounded blast radius
-
-A loop without a ceiling is a billing incident with a countdown.
-
-Evidence, checks and mappings
+6Bounded blast radius. Maps to ISO 42001, APRA CPS 230, NIST 800-53.
 
 Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch.
 
-The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.
+A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.
 
 What an auditor will ask for
 
@@ -463,17 +447,11 @@ Maps to
 
 APRA CPS 230, ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+
 
-7
-
-## Named human approval for consequential actions
-
-EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it.
-
-Evidence, checks and mappings
+7Named human approval for consequential actions. Maps to EU AI Act, NIST AI RMF.
 
 Named human approval for consequential actions, with enough context to make review real.
 
-Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.
+EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.
 
 What an auditor will ask for
 
@@ -487,17 +465,11 @@ Maps to
 
 EU AI Act, NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR
 
-8
-
-## Irreversible actions staged
-
-Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one.
-
-Evidence, checks and mappings
+8Irreversible actions staged. Maps to EU AI Act, ISO 42001, APRA CPS 230.
 
 Irreversible actions staged, gated or delayed so a wrong action can be withdrawn.
 
-Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.
+Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.
 
 What an auditor will ask for
 
@@ -511,17 +483,11 @@ Maps to
 
 APRA CPS 230, ISO/IEC 42001, EU AI Act, EU DORA
 
-9
-
-## Provenance across agents
-
-As soon as one agent consumes another’s output, a single-run trace stops being sufficient.
-
-Evidence, checks and mappings
+9Provenance across agents. Maps to EU AI Act, ISO 42001, NIST AI RMF.
 
 Provenance across agents: every output traceable to the upstream runs that produced its inputs.
 
-The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.
+As soon as one agent consumes another’s output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.
 
 What an auditor will ask for
 
@@ -535,17 +501,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, BCBS 239
 
-10
-
-## Cost measured per resolved task
-
-Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate.
-
-Evidence, checks and mappings
+10Cost measured per resolved task. Maps to ISO 42001, APRA CPS 230.
 
 Cost measured per resolved task, not per token, with attribution to the consuming feature.
 
-Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.
+Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.
 
 What an auditor will ask for
 
@@ -559,6 +519,8 @@ Maps to
 
 APRA CPS 230, ISO/IEC 42001
 
+Tap a control for the evidence an auditor asks for and a read-only check.
+
 Free to reuse under CC BY 4.0. These are my own views, not my employer’s, and they are not legal advice. Spotted something wrong? Email contact@hellouchit.com.
 
 ---
@@ -571,7 +533,7 @@ Selected work by Uchit Vyas: bank archival, digital lending, payments, enterpris
 
 ## Three programmes that went live.
 
-If your programme is stuck between pilot and production, start here. Each one shows how a hard programme in a regulated company got over the line: the numbers, the architecture and what was hard. Client names are left out.
+Regulated companies, real numbers. Client names left out.
 
 $50M+
 
@@ -580,8 +542,6 @@ saved every year by switching off old systems
 Tier-1 bank in Australia and New Zealand, 2024
 
 ## One archival platform for 1,000+ applications
-
-Data that had to be kept for years was keeping old systems alive. One AWS platform took it over, and the old systems could be switched off.
 
 Read the case study
 
@@ -592,8 +552,6 @@ from application to payout
 Leading Asian bank, 2021 to 2022
 
 ## Loans paid out in under five minutes
-
-A new lending platform, live in six months with 200+ engineers across 50+ regulated AWS environments, and no critical incidents at launch.
 
 Read the case study
 
@@ -609,35 +567,33 @@ My own product, 2026
 
 ## A safety app that can’t read messages
 
-Tells parents how long their teenager spends in AI companion apps. Privacy is enforced by the phone’s sandbox and the extension’s permissions, not by a policy. Built solo.
-
 Read the case study
 
 ## Four more, in brief.
 
-2021
+3months
 
-## Multi-region payments in three months
+## Multi-region payments on Google Cloud
 
-A bank’s merchant payment platform on Google Cloud, launched across regions in three months by a fully remote team, on top of an undocumented legacy system. I was delivery lead and solution architect.
+A bank’s merchant platform, fully remote team, 2021.
 
-2020
+3040%
 
-## Architecture governance at a tier-1 Asian bank
+## Fewer duplicated initiatives
 
-A bank with 1,000+ applications and no architecture forum. In six months we set up a governance council, standard CI/CD and coding templates, and a single view of every project. Duplicated initiatives fell by 30 to 40%.
+Architecture governance at a tier-1 Asian bank, 2020.
 
-2022 to 2023
+5years
 
-## A five-year plan for a global retailer’s platform
+## Roadmap for a global retailer’s platform
 
-A custom-built order, warehouse and sales-channel platform where most engineering time went on maintenance. I assessed it, compared building against buying, and wrote a five-year roadmap.
+Build against buy, then the plan, 2022 to 2023.
 
-2026
+10,561
 
-## 10,561 exam questions on agentic AI
+## Exam questions on agentic AI
 
-The blueprint, content pipeline and platform for a professional assessment on building AI agents, across five weighted domains. Every question needs one right answer and three wrong answers a competent engineer might pick.
+Blueprint, content pipeline and platform, 2026.
 
 ---
 
@@ -651,7 +607,7 @@ Work
 
 ## A safety app that can’t read messages.
 
-Parents want to know how long their teenager spends in AI companion apps. Every existing product answers that by reading the chats. I built one that can’t.
+Screen time for AI companion apps, without reading a single chat.
 
 Type
 
@@ -671,15 +627,15 @@ iOS, browser extension, web
 
 0
 
-Messages stored, sent or readable. Anyone can check this in the extension’s permissions.
+Messages stored, sent or readable
 
 1day
 
-The finest detail it keeps: which kind of app, for how long, on which day.
+The finest detail kept
 
 1person
 
-Built it, from schema to subscriptions to App Store review.
+Built it, schema to App Store
 
 This is what happens on the phone.
 
@@ -699,6 +655,46 @@ category AI companion
 minutes 47
 
 Example data. No message text, no app name, no session times. The finest detail kept is one day.
+
+## The problem
+
+Every monitoring app reads the chats.
+
+## The move
+
+Make reading impossible, and let the platform enforce it.
+
+## The result
+
+Parents see minutes per day. Nothing else leaves the phone.
+
+- 1The browser extension sees only the address
+
+- 2Apple’s sandbox enforces it on iPhone
+
+- 3Daily totals only, so it can’t get more detailed later
+
+- 4The teenager sees exactly what the parent sees
+
+## Swift, Next.js and Postgres.
+
+iPhone
+
+Swift, Screen Time (DeviceActivity)
+
+Browser
+
+Chrome extension
+
+Web
+
+Next.js
+
+Database
+
+Postgres with row-level security
+
+The full story
 
 ## Every monitoring app reads the chats.
 
@@ -722,24 +718,6 @@ The teenager’s login could have been built in a day with the database’s admi
 
 I used locked-down database functions instead, so no such key exists anywhere in the code. The trade-off is written down too: a family code and PIN is not strong proof of identity. Eight wrong attempts lock the code for fifteen minutes, which is what makes it safe enough.
 
-## Swift, Next.js and Postgres.
-
-iPhone
-
-Swift, Screen Time (DeviceActivity)
-
-Browser
-
-Chrome extension
-
-Web
-
-Next.js
-
-Database
-
-Postgres with row-level security
-
 Next case study
 One archival platform for 1,000+ applications
 
@@ -755,7 +733,7 @@ Work
 
 ## One archival platform for 1,000+ applications.
 
-A tier-1 bank in Australia and New Zealand kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.
+One place to keep a bank’s records, so its old systems could be switched off.
 
 Client
 
@@ -779,37 +757,37 @@ AWS, built in-house
 
 $50M+
 
-Saved each year in infrastructure and running costs.
+Saved each year
 
 1,000+
 
-Applications assessed and moved onto one platform.
+Applications onto one platform
 
 15TB
 
-Of structured and unstructured data under one set of retention rules.
+Of data, one set of retention rules
 
-## Old systems stayed on just to hold their data.
+## The problem
 
-The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.
+Old systems stayed on only to hold their data.
 
-Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.
+## The move
 
-## 1,000+ applications and every kind of data.
+One AWS platform for every data type, run by the bank.
 
-- Scale. More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.
+## The result
 
-- Mixed data. Database tables, files, documents and logs all needed the same retention, privacy and audit controls.
+Teams switch old systems off and keep the records.
 
-- Adoption. Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn’t.
+- 3 monthsDiscovery of all 1,000+ apps
 
-## One AWS platform, rolled out by data type.
+- StructuredPhase 1
 
-We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.
+- Semi-structuredPhase 2
 
-We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.
+- UnstructuredPhase 3
 
-The bank’s own team runs it. We handed over full design documents, runbooks and review processes.
+Rolled out by type of data, easiest first, so the team learned on the simpler phase.
 
 Sources
 
@@ -849,16 +827,6 @@ Business and audit users
 
 How data moves from source systems into the archive and back out to the teams who need it. Everything is built with Terraform and deployed through CI/CD.
 
-## Four decisions that made it work.
-
-- Three months of discovery before any design. We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.
-
-- One platform for every data type. A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.
-
-- Roll out by data type. Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.
-
-- Ship the operating model, not just the platform. Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.
-
 ## Built on AWS.
 
 Processing
@@ -893,6 +861,40 @@ Classification
 
 Automated metadata analysis
 
+The full story
+
+## Old systems stayed on just to hold their data.
+
+The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.
+
+Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.
+
+## 1,000+ applications and every kind of data.
+
+- Scale. More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.
+
+- Mixed data. Database tables, files, documents and logs all needed the same retention, privacy and audit controls.
+
+- Adoption. Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn’t.
+
+## One AWS platform, rolled out by data type.
+
+We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.
+
+We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.
+
+The bank’s own team runs it. We handed over full design documents, runbooks and review processes.
+
+## Four decisions that made it work.
+
+- Three months of discovery before any design. We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.
+
+- One platform for every data type. A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.
+
+- Roll out by data type. Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.
+
+- Ship the operating model, not just the platform. Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.
+
 Next case study
 Loans paid out in under five minutes
 
@@ -908,7 +910,7 @@ Work
 
 ## Loans paid out in under five minutes.
 
-A leading Asian bank wanted a new lending platform that could approve a loan and pay it out within five minutes, for millions of customers, launched in six months.
+A new lending platform for a leading Asian bank, live in six months.
 
 Client
 
@@ -932,17 +934,23 @@ From application to money paid out.
 
 6months
 
-To production, on the date agreed at the start.
+To production, on the agreed date
 
 0
 
-Critical incidents at go-live, across 50+ regulated AWS environments.
+Critical incidents at go-live
 
-## Five minutes, six months, one regulated bank.
+## The problem
 
-The bank’s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.
+Six months is too short to plan, build and test one after another.
 
-Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.
+## The move
+
+Squads around the platform, all building in parallel.
+
+## The result
+
+Live on the agreed date, loans paid out in minutes.
 
 ## Five minutes, start to finish.
 
@@ -960,25 +968,19 @@ Six months is not enough time to run discovery, design, build and test one after
 
 Paid out inside the limit.
 
-## 200 people, 50 environments, two languages.
+People
 
-- Team size. We had to hire and organise more than 200 people across several skill areas, fast.
+200+
 
-- Environments. More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.
+Squads
 
-- Language. Many of the bank’s stakeholders worked in their own language. Misunderstandings were a real delivery risk.
+50+
 
-- New patterns. Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.
+Environments
 
-## Squads built around the platform.
+50+
 
-Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.
-
-Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task’s timeline by the skills of the person doing it.
-
-The bank’s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders’ own language.
-
-Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.
+Each squad owned one part of the platform.
 
 Channels
 
@@ -1008,18 +1010,6 @@ AWS, 50+ regulated environments, containers and CI/CD throughout
 
 How an application moves from the customer’s phone to a payout.
 
-## What I’d tell the next team.
-
-- Regulation doesn’t have to mean slow. With the right architecture, automation and governance, a regulated bank moved at startup speed.
-
-- Past about 150 people, structure is what keeps it working. Leadership groups and squads stopped the programme turning into chaos.
-
-- DevOps has to come first. Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.
-
-- Plan by skill, not by job title. Setting each task’s timeline by the person doing it made delivery far more predictable.
-
-- Talk in the client’s language. Local PMO teams made decisions faster and built trust.
-
 ## Pega, Go and FIS on AWS.
 
 Workflow and decisions
@@ -1045,6 +1035,46 @@ AWS, 50+ environments
 Delivery
 
 Containers and CI/CD
+
+The full story
+
+## Five minutes, six months, one regulated bank.
+
+The bank’s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.
+
+Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.
+
+## 200 people, 50 environments, two languages.
+
+- Team size. We had to hire and organise more than 200 people across several skill areas, fast.
+
+- Environments. More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.
+
+- Language. Many of the bank’s stakeholders worked in their own language. Misunderstandings were a real delivery risk.
+
+- New patterns. Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.
+
+## Squads built around the platform.
+
+Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.
+
+Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task’s timeline by the skills of the person doing it.
+
+The bank’s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders’ own language.
+
+Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.
+
+## What I’d tell the next team.
+
+- Regulation doesn’t have to mean slow. With the right architecture, automation and governance, a regulated bank moved at startup speed.
+
+- Past about 150 people, structure is what keeps it working. Leadership groups and squads stopped the programme turning into chaos.
+
+- DevOps has to come first. Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.
+
+- Plan by skill, not by job title. Setting each task’s timeline by the person doing it made delivery far more predictable.
+
+- Talk in the client’s language. Local PMO teams made decisions faster and built trust.
 
 Next case study
 A safety app that can’t read messages
