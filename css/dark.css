@@ -420,3 +420,45 @@ figure.tile { margin: 0; }
 .x-contact .wrap { border-top: 0; position: relative; }
 .x-contact .wrap::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid var(--rule); }
 .theme-dark .flow .node.accent { background: #0071e3; border-color: #0071e3; }
+
+/* ---------- Readiness check: all questions, readable without JavaScript ---------- */
+.all-questions { margin-top: 28px; }
+.all-questions summary { cursor: pointer; color: var(--link); list-style: none; display: inline-flex; gap: 8px; align-items: center; }
+.all-questions summary::-webkit-details-marker { display: none; }
+.all-questions summary::after { content: "+"; font-size: 1.25rem; line-height: 1; transition: transform .2s; }
+.all-questions[open] summary::after { transform: rotate(45deg); }
+.all-questions > ol { margin: 20px 0 0; padding-left: 1.4em; color: var(--ink); }
+.all-questions > ol > li { margin-bottom: 18px; }
+.all-questions > ol > li > p { margin: 0 0 6px; }
+.all-questions .opts-static { margin: 0; padding-left: 1.4em; color: var(--ink-2); font-size: .9375rem; }
+.quiz.done .all-questions { display: none; }
+
+/* ---------- Page transitions: native cross-document view transitions ---------- */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+.site-head { view-transition-name: site-head; }
+
+/* ---------- Print: a clean, light, paper version of every page ---------- */
+@media print {
+  @page { margin: 16mm; }
+  .theme-dark, .theme-dark body, .theme-dark .section, .theme-dark .x-sec, .theme-dark .x-hero,
+  .theme-dark .tile, .theme-dark .era, .theme-dark .feature, .theme-dark .flow, .theme-dark .clock,
+  .theme-dark .ctl-detail, .theme-dark .q-card, .theme-dark .result-hero, .theme-dark .x-contact {
+    background: #fff !important; color: #000 !important; box-shadow: none !important;
+  }
+  .theme-dark * { color: #000 !important; -webkit-text-fill-color: #000 !important; text-shadow: none !important; }
+  .site-head, .site-foot nav, .nav-toggle, .skip, .actions, .product, .stage-dots, .silos canvas,
+  .redact-chat, .q-nav, .x-hero picture, .x-hero::after, .phone, .laptop, .play { display: none !important; }
+  .stage.is-live, .silos.is-live, .redact.is-live { height: auto !important; }
+  .stage-pin, .silo-pin, .redact-pin { position: static !important; height: auto !important; }
+  .stage .slide { opacity: 1 !important; transform: none !important; position: static !important; margin-bottom: 18px; }
+  .x-hero { min-height: 0 !important; display: block !important; }
+  .x-name, .h1 { font-size: 28pt !important; }
+  .h2, .x-head .h2 { font-size: 18pt !important; }
+  .mega, .fig, .k { font-size: 30pt !important; }
+  details { display: block; } details > * { display: block !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; word-break: break-all; }
+  .tile, .era, .feature, .ctl, .cs-block, figure { break-inside: avoid; border: 1px solid #ccc !important; }
+  img { max-width: 60% !important; }
+}

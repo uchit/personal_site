@@ -167,10 +167,9 @@
 
     finish() {
       const cfg = this.cfg;
-      const score = this.state.answers.reduce((s, v) => s + (v || 0), 0);
-      const max = cfg.questions.length * 5;
-      const pct = score / max;
-      const lvl = cfg.levels.find(L => pct >= L.minPct && pct <= L.maxPct) || cfg.levels[0];
+      // One scoring function, shared with the MCP endpoint (js/readiness-score.js).
+      const r = window.ReadinessScore.score(cfg.levels, this.state.answers, cfg.questions.length);
+      const score = r.score, max = r.max, pct = r.pct, lvl = r.level;
 
       if (window.DiagStorage) {
         DiagStorage.save(slugOf(), {

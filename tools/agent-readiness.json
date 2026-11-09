@@ -1,0 +1,632 @@
+{
+ "name": "Agent readiness check",
+ "url": "https://hellouchit.com/tools/agent-readiness.html",
+ "author": "Uchit Vyas",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "instructions": "Answer each question with the option number (1 to 5) that describes what is actually enforced today, not what is planned. The score is the sum of the ten answers, out of 50; the level comes from the score as a fraction of 50.",
+ "questions": [
+  {
+   "number": 1,
+   "capability": "Identity",
+   "question": "What identity does the agent act under?",
+   "options": [
+    {
+     "value": 1,
+     "text": "A human’s credentials, usually whoever deployed it."
+    },
+    {
+     "value": 2,
+     "text": "A shared service account used by several agents or jobs."
+    },
+    {
+     "value": 3,
+     "text": "Its own service account, but with a long-lived static key."
+    },
+    {
+     "value": 4,
+     "text": "Its own federated workload identity; no static credentials in the execution path."
+    },
+    {
+     "value": 5,
+     "text": "Own federated identity, and a revocation test on record showing tool calls fail within one polling interval."
+    }
+   ],
+   "references": [
+    {
+     "name": "NIST AI RMF GOVERN",
+     "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+     "name": "Control 1",
+     "url": "https://hellouchit.com/agents/"
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "capability": "Autonomy level",
+   "question": "Is autonomy declared per action class, or per agent?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Not declared. The agent does what it can do."
+    },
+    {
+     "value": 2,
+     "text": "Described in a design doc; nothing enforces it."
+    },
+    {
+     "value": 3,
+     "text": "A register of action classes exists with levels assigned and an approver named."
+    },
+    {
+     "value": 4,
+     "text": "Levels are enforced at execution, not just documented."
+    },
+    {
+     "value": 5,
+     "text": "Enforced at execution and the level in force is recorded per run, so you can answer what it was allowed to do then."
+    }
+   ],
+   "references": [
+    {
+     "name": "EU AI Act Art. 14",
+     "url": "https://artificialintelligenceact.eu/the-act/"
+    },
+    {
+     "name": "ISO/IEC 42001",
+     "url": "https://www.iso.org/standard/81230.html"
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "capability": "Trajectory",
+   "question": "Can you replay a specific run from step N?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Final output is logged. Nothing else."
+    },
+    {
+     "value": 2,
+     "text": "Prompts and responses logged; tool calls are not."
+    },
+    {
+     "value": 3,
+     "text": "Tool calls logged with arguments and results."
+    },
+    {
+     "value": 4,
+     "text": "Full run exported: assembled context, retrieved document IDs, every call, model and prompt version, tokens, cost, latency."
+    },
+    {
+     "value": 5,
+     "text": "All of that, and replay from an arbitrary step is a tested capability rather than a claim."
+    }
+   ],
+   "references": [
+    {
+     "name": "EU AI Act Art. 12 (record-keeping)",
+     "url": "https://artificialintelligenceact.eu/the-act/"
+    },
+    {
+     "name": "OTel GenAI semconv",
+     "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "capability": "Injection defence",
+   "question": "Is retrieved and tool-returned content treated as data or as instructions?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Not considered. Retrieved text goes straight into the prompt."
+    },
+    {
+     "value": 2,
+     "text": "Direct user input is filtered; retrieved and tool-returned content is not."
+    },
+    {
+     "value": 3,
+     "text": "Some structural separation between instructions and data."
+    },
+    {
+     "value": 4,
+     "text": "Indirect injection red-teamed through retrieval paths as well as direct input."
+    },
+    {
+     "value": 5,
+     "text": "Every retrieval and tool-result path red-teamed on a schedule, with structural separation enforced and regression tests for known payloads."
+    }
+   ],
+   "references": [
+    {
+     "name": "OWASP LLM01",
+     "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    },
+    {
+     "name": "MITRE ATLAS",
+     "url": "https://atlas.mitre.org/"
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "capability": "Tool authorisation",
+   "question": "Where is the boundary on what the agent may do?",
+   "options": [
+    {
+     "value": 1,
+     "text": "The system prompt tells it what not to do."
+    },
+    {
+     "value": 2,
+     "text": "A tool list exists, the same for every context and role."
+    },
+    {
+     "value": 3,
+     "text": "Tools scoped per role, defined in configuration."
+    },
+    {
+     "value": 4,
+     "text": "A policy engine outside the model authorises each invocation."
+    },
+    {
+     "value": 5,
+     "text": "Policy engine authorises each call and decision logs show allow and deny with a reason, exportable per role."
+    }
+   ],
+   "references": [
+    {
+     "name": "OWASP LLM06 Excessive Agency",
+     "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    },
+    {
+     "name": "Control 5",
+     "url": "https://hellouchit.com/agents/"
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "capability": "Human oversight",
+   "question": "What does approval of a consequential action actually involve?",
+   "options": [
+    {
+     "value": 1,
+     "text": "No approval step."
+    },
+    {
+     "value": 2,
+     "text": "An approve/reject button with the proposed action and nothing else."
+    },
+    {
+     "value": 3,
+     "text": "Approval shows the reasoning and the evidence the agent used."
+    },
+    {
+     "value": 4,
+     "text": "As above, and approvals are recorded with the named individual and their decision."
+    },
+    {
+     "value": 5,
+     "text": "All of that, plus the approval rate is monitored. Sustained near 100% is treated as a finding, not a success."
+    }
+   ],
+   "references": [
+    {
+     "name": "EU AI Act Art. 14",
+     "url": "https://artificialintelligenceact.eu/the-act/"
+    },
+    {
+     "name": "NIST AI RMF GOVERN-1.3",
+     "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+    }
+   ]
+  },
+  {
+   "number": 7,
+   "capability": "Blast radius",
+   "question": "What stops a loop, and has it been tested mid-run?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Nothing. A loop runs until someone notices the bill."
+    },
+    {
+     "value": 2,
+     "text": "A step limit in code; no spend or rate ceiling."
+    },
+    {
+     "value": 3,
+     "text": "Step, spend and rate ceilings configured per agent."
+    },
+    {
+     "value": 4,
+     "text": "Ceilings configured and a kill switch exists."
+    },
+    {
+     "value": 5,
+     "text": "Kill switch tested stopping an agent mid-run, with the time from decision to stop recorded."
+    }
+   ],
+   "references": [
+    {
+     "name": "APRA CPS 230",
+     "url": "https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management"
+    },
+    {
+     "name": "Control 6",
+     "url": "https://hellouchit.com/agents/"
+    }
+   ]
+  },
+  {
+   "number": 8,
+   "capability": "Reversibility",
+   "question": "How are irreversible actions handled?",
+   "options": [
+    {
+     "value": 1,
+     "text": "The agent calls whatever the tool does. Reversibility was never assessed."
+    },
+    {
+     "value": 2,
+     "text": "Known-dangerous actions are excluded from the tool list."
+    },
+    {
+     "value": 3,
+     "text": "Agent-invokable actions inventoried and classified reversible or not."
+    },
+    {
+     "value": 4,
+     "text": "Irreversible ones carry an approval gate or a delay window."
+    },
+    {
+     "value": 5,
+     "text": "Classified, gated, and the reversal mechanism is named and exercised for each: versioned store, compensating transaction or delay."
+    }
+   ],
+   "references": [
+    {
+     "name": "APRA CPS 230",
+     "url": "https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management"
+    },
+    {
+     "name": "ISO/IEC 42001",
+     "url": "https://www.iso.org/standard/81230.html"
+    }
+   ]
+  },
+  {
+   "number": 9,
+   "capability": "Provenance",
+   "question": "When one agent consumes another’s output, can you trace the chain?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Single agent only, or chains are not traced."
+    },
+    {
+     "value": 2,
+     "text": "Each agent logs its own run; the join across them is manual."
+    },
+    {
+     "value": 3,
+     "text": "Outputs carry the upstream run ID that produced them."
+    },
+    {
+     "value": 4,
+     "text": "For a given output, the full upstream chain including retrieved sources is retrievable."
+    },
+    {
+     "value": 5,
+     "text": "Full chain retrievable, and a corrected upstream input marks the downstream outputs that depended on it."
+    }
+   ],
+   "references": [
+    {
+     "name": "EU AI Act Art. 12",
+     "url": "https://artificialintelligenceact.eu/the-act/"
+    },
+    {
+     "name": "Control 9",
+     "url": "https://hellouchit.com/agents/"
+    }
+   ]
+  },
+  {
+   "number": 10,
+   "capability": "Cost per outcome",
+   "question": "What unit is agent cost measured in?",
+   "options": [
+    {
+     "value": 1,
+     "text": "Not measured separately from the platform bill."
+    },
+    {
+     "value": 2,
+     "text": "Total tokens or total spend, unattributed."
+    },
+    {
+     "value": 3,
+     "text": "Cost per run, attributed to an agent."
+    },
+    {
+     "value": 4,
+     "text": "Cost per resolved task, attributed to the consuming feature."
+    },
+    {
+     "value": 5,
+     "text": "Cost per resolved task with failed-run cost tracked alongside it, so retries and fan-out are visible rather than absorbed."
+    }
+   ],
+   "references": [
+    {
+     "name": "Control 10",
+     "url": "https://hellouchit.com/agents/"
+    },
+    {
+     "name": "APRA CPS 230",
+     "url": "https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management"
+    }
+   ]
+  }
+ ],
+ "levels": [
+  {
+   "name": "Improvised",
+   "minPct": 0,
+   "maxPct": 0.2,
+   "summary": "The agent works and nothing constrains it. The gap is not sophistication; it is that no boundary has been drawn yet. Identity is the first move because almost everything else attaches to it: ceilings, authorisation and attribution all need something to attach to.",
+   "context": "Typical of a first agent shipped by a capable team under time pressure. Nothing here is unusual. It is what happens when a demo becomes production without a boundary being drawn.",
+   "recommendations": [
+    {
+     "what": "Give the agent its own workload identity. Stop it acting as the engineer who deployed it.",
+     "why": "Attribution is impossible and revocation becomes a personnel action while an agent runs as a human. This is not a new control. It is workload identity applied to a new kind of workload, and if you solved it for services you have most of the work done.",
+     "tools": "AWS IAM Roles for Service Accounts · GCP Workload Identity Federation · Azure Federated Credentials · SPIFFE/SPIRE",
+     "constraint": "Federation needs an identity provider the runtime can reach; air-gapped runtimes need a different answer.",
+     "references": [
+      {
+       "name": "NIST AI RMF",
+       "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+      }
+     ]
+    },
+    {
+     "what": "Put a step, spend and rate ceiling on the agent today, even if the numbers are guesses.",
+     "why": "A loop without a ceiling is a billing incident with a countdown. A wrong ceiling is recoverable; no ceiling is not.",
+     "tools": "Kubernetes ResourceQuota · provider spend alerts · framework-level max-iteration settings",
+     "constraint": "Ceilings set too low look like flakiness to users. Instrument before you tighten.",
+     "references": [
+      {
+       "name": "Control 6",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    },
+    {
+     "what": "Record the full trajectory of every run, not the final output.",
+     "why": "Logging the output is enough to debug a demo and nothing else. Everything downstream (provenance, cost per outcome, incident review) is a join over trajectories you did not keep.",
+     "tools": "OpenTelemetry GenAI semantic conventions · Langfuse · LangSmith · Phoenix",
+     "constraint": "Trajectories contain whatever the model saw, so the store inherits the data classification of the context.",
+     "references": [
+      {
+       "name": "OTel GenAI semconv",
+       "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Contained",
+   "minPct": 0.2001,
+   "maxPct": 0.4,
+   "summary": "Boundaries exist, and the model is still trusted more than it should be. The characteristic gap here is the system prompt doing security work. Instructions telling a model what it must not do are a suggestion; the tool registry is the boundary.",
+   "context": "The agent has an identity and some limits. This is where most first-year deployments sit once someone has asked a hard question about them.",
+   "recommendations": [
+    {
+     "what": "Move tool authorisation out of the prompt and into a policy engine outside the model.",
+     "why": "An agent can only do what its tools permit, so the tool list is the control. A prompt instruction is a probabilistic request; a deny in a policy engine is not.",
+     "tools": "OPA / Rego · Cedar · a tool-registry service scoped per role",
+     "constraint": "Per-invocation authorisation adds latency to every tool call. Budget for it.",
+     "references": [
+      {
+       "name": "OWASP LLM06",
+       "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+      }
+     ]
+    },
+    {
+     "what": "Declare an autonomy level per action class, not per agent.",
+     "why": "Autonomy is a property of each action, not of the agent. Propose-only for one class and act-freely for another is the normal shape, and a single agent-level setting cannot express it.",
+     "tools": "An action-class register in config, enforced at the execution boundary",
+     "constraint": "The register goes stale the moment a tool is added. Tie it to the tool registry.",
+     "references": [
+      {
+       "name": "ISO/IEC 42001",
+       "url": "https://www.iso.org/standard/81230.html"
+      }
+     ]
+    },
+    {
+     "what": "Red-team indirect prompt injection through your retrieval and tool-result paths.",
+     "why": "Direct injection is widely tested. Indirect injection, through a retrieved document, a web page or a tool result, is where agents actually get compromised, because the payload arrives after the guardrail has run.",
+     "tools": "Garak · PyRIT · promptfoo · a corpus of known indirect payloads in CI",
+     "constraint": "A one-off exercise ages badly; this needs to be a regression suite, not an engagement.",
+     "references": [
+      {
+       "name": "MITRE ATLAS",
+       "url": "https://atlas.mitre.org/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Supervised",
+   "minPct": 0.4001,
+   "maxPct": 0.6,
+   "summary": "The controls are real; the evidence is thin. What separates this from the next level is almost entirely whether you can produce an artefact rather than describe a practice. Oversight in particular: an approve/reject button with no reasoning attached does not meet Art. 14, and an approval rate stuck near 100% means the gate is decorative.",
+   "context": "Enforcement exists and a human is in the loop. This is roughly the bar the EU AI Act sets for a high-risk system, and the bar most organisations discover they are below during their first assessment.",
+   "recommendations": [
+    {
+     "what": "Make approval records show what the reviewer was shown, and monitor the approval rate.",
+     "why": "Meaningful oversight is a testable claim. Sustained near-100% approval is evidence the reviewer cannot realistically dissent. That is a finding, not a success.",
+     "tools": "Review queue with the reasoning and evidence attached · approval-rate dashboard",
+     "constraint": "Showing full reasoning slows review; scope it to consequential action classes.",
+     "references": [
+      {
+       "name": "EU AI Act Art. 14",
+       "url": "https://artificialintelligenceact.eu/the-act/"
+      }
+     ]
+    },
+    {
+     "what": "Inventory agent-invokable actions and classify each reversible or not, naming the mechanism.",
+     "why": "Reversibility is a property of the system, not the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with a delay window.",
+     "tools": "Versioned stores · outbox with delay · compensating transactions · staged writes",
+     "constraint": "A delay window is a product decision as much as a control. It changes the user experience.",
+     "references": [
+      {
+       "name": "Control 8",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    },
+    {
+     "what": "Test the kill switch mid-run, not between runs.",
+     "why": "Stopping an agent between steps is easy. Stopping one mid-tool-call is the case that matters and is almost never exercised. Record the time from decision to stop.",
+     "tools": "Game day · a documented stop procedure with a named owner",
+     "constraint": "Mid-run termination can leave partial state. The test should surface that; that is the point.",
+     "references": [
+      {
+       "name": "APRA CPS 230",
+       "url": "https://www.apra.gov.au/news-and-publications/apra-publishes-cps-230-operational-risk-management"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Evidenced",
+   "minPct": 0.6001,
+   "maxPct": 0.8,
+   "summary": "Controls are enforced and you can prove it. The remaining work is compositional: what happens when one agent consumes another’s output, and whether anyone can see what the fleet actually costs per unit of work delivered.",
+   "context": "You could survive an assessment on this today. Beyond here the work stops being about a single agent and starts being about the fleet.",
+   "recommendations": [
+    {
+     "what": "Make provenance work across agents, not just within one.",
+     "why": "As soon as one agent consumes another’s output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations start applying to model outputs.",
+     "tools": "Run IDs propagated through outputs · a lineage store over trajectories",
+     "constraint": "Chains fan out quickly; storage and query cost grow faster than run count.",
+     "references": [
+      {
+       "name": "Control 9",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    },
+    {
+     "what": "Measure cost per resolved task, and track the cost of failed runs alongside it.",
+     "why": "Agent cost is nonlinear in a way single-call GenAI is not. Retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit; the runs that fail and get retried are the ones that hurt.",
+     "tools": "Trajectory-derived cost attribution · per-feature tagging",
+     "constraint": "Defining 'resolved' is the hard part and it is a product decision, not a platform one.",
+     "references": [
+      {
+       "name": "Control 10",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    },
+    {
+     "what": "Turn the control set into a pipeline gate rather than a review.",
+     "why": "A review that happens once is a snapshot. A gate that runs on every deploy is a property.",
+     "tools": "agentcheck in CI · OPA policy over the agent manifest",
+     "constraint": "Gates need an exception path with an expiry or they get disabled.",
+     "references": [
+      {
+       "name": "Control 5",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Engineered",
+   "minPct": 0.8001,
+   "maxPct": 1,
+   "summary": "The controls are the substrate, not the checklist. A new agent gets identity, ceilings, authorisation and trajectory recording by being deployed on the platform. The work now is second-order: what the fleet does that no single agent does, and staying ahead of a threat model that is still moving.",
+   "context": "Rare. At this level the controls are properties of the platform, so a new agent inherits them rather than implementing them.",
+   "recommendations": [
+    {
+     "what": "Make the paved path the only path, so a new agent inherits the ten controls by default.",
+     "why": "Defaults beat policies. If the scaffold produces a compliant agent without anyone thinking about it, that is what ships.",
+     "tools": "Internal agent scaffold · admission policy on the runtime · platform-issued identity",
+     "constraint": "Teams route around a paved path that is slower than the alternative. Measure time-to-first-run.",
+     "references": [
+      {
+       "name": "ISO/IEC 42001",
+       "url": "https://www.iso.org/standard/81230.html"
+      }
+     ]
+    },
+    {
+     "what": "Treat the indirect-injection corpus as a living regression suite, refreshed against current research.",
+     "why": "This is the one control where the threat model moves faster than the standard. A suite written a year ago tests last year’s payloads.",
+     "tools": "Scheduled refresh against ATLAS and OWASP updates · internal red-team findings fed back",
+     "constraint": "Requires someone whose job includes reading the research. Budget the time explicitly.",
+     "references": [
+      {
+       "name": "MITRE ATLAS",
+       "url": "https://atlas.mitre.org/"
+      }
+     ]
+    },
+    {
+     "what": "Publish what you learned. The control set is public; your failure modes are not.",
+     "why": "Almost nobody has operated agents in a regulated environment for long enough to have real failure data. The organisations that publish theirs set the bar the rest are assessed against.",
+     "tools": "Post-incident writeups · contributions back to the public control set",
+     "constraint": "Legal review of anything public is slow. Start the conversation before you have something to publish.",
+     "references": [
+      {
+       "name": "The ten controls",
+       "url": "https://hellouchit.com/agents/"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "sectors": {
+  "tech": {
+   "label": "Tech / SaaS",
+   "lens": "For SaaS, the agent is usually customer-facing before it is governed. Tool authorisation and blast radius are the two that bite first. An agent with a write-capable tool and no ceiling is a support incident with your logo on it. OWASP LLM06 Excessive Agency is the failure mode to read."
+  },
+  "fsi": {
+   "label": "Financial services",
+   "lens": "In FSI the agent is a change to an operational process, which makes it APRA CPS 230’s problem. Expect to be asked which critical operation it touches, what the substitutability plan is, and to produce a replayable trajectory for a specific customer decision. Human oversight that is real, not a rubber stamp, is the scrutinised control."
+  },
+  "government": {
+   "label": "Government",
+   "lens": "Public-sector deployments carry a transparency obligation the private sector does not. Trajectory and provenance matter most: an FOI request or an ombudsman review will ask how a specific decision was reached, and 'the model decided' is not an answer. Australia’s Voluntary AI Safety Standard is the current baseline."
+  },
+  "healthcare": {
+   "label": "Healthcare",
+   "lens": "Clinical or clinical-adjacent agents inherit the whole medical-device conversation. Human oversight and action reversibility are not negotiable, and the approval record must show what evidence the clinician was shown, not merely that they clicked approve. Anything touching PHI needs the trajectory store treated as a PHI store."
+  },
+  "retail": {
+   "label": "Retail",
+   "lens": "Retail agents act on orders, refunds and pricing: overwhelmingly irreversible actions against live systems. Action reversibility and cost per outcome are the two that decide whether this is a margin win or a slow leak. A refund agent with no delay window is a fraud surface."
+  },
+  "critinfra": {
+   "label": "Critical infra",
+   "lens": "For critical infrastructure the question is not whether the agent is useful but whether it can be stopped. Blast radius with a kill switch tested mid-run, and hard segmentation between the agent’s identity and any OT-adjacent control path. Autonomy levels should start at 'propose only' and earn their way up."
+  }
+ }
+}

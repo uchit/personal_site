@@ -4,6 +4,7 @@
 # The content here is meant to be found, cited, and quoted.
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # ─────────────────────────────────────────────────────────────
@@ -104,6 +105,10 @@ Allow: /
 # ─────────────────────────────────────────────────────────────
 Sitemap: https://hellouchit.com/sitemap.xml
 
+# Content-Signal (contentsignals.org): explicitly allow search, use as AI
+# input (answers and grounding) and AI training. Non-binding preference.
+#
 # Pointers to the AI-readable manifests (llmstxt.org convention)
 # https://hellouchit.com/llms.txt       — structured manifest of the site
 # https://hellouchit.com/llms-full.txt  — full text of every page, regenerated on each build
+# https://hellouchit.com/v1/mcp         — read-only MCP server (controls and readiness scoring)
