@@ -57,3 +57,31 @@
 .ctl-detail .ctl-label { margin: 18px 0 6px; color: var(--ink); }
 .ctl-detail .ctl-full { color: var(--ink); font-weight: 600; margin-bottom: 4px; }
 .ctl-detail .ctl-verify { margin-top: 18px; background: #000; }
+
+/* Control matrix: controls x frameworks, each row opens to its detail */
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.matrix { --cols: repeat(6, 92px); border-top: 1px solid var(--rule); }
+.mhead, .mrow > summary { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 16px; }
+.mdots { display: grid; grid-template-columns: var(--cols); justify-items: center; }
+.mhead { padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.mhead b { font-size: .8125rem; font-weight: 500; color: var(--ink-2); text-align: center; line-height: 1.25; }
+.mrow { border-bottom: 1px solid var(--rule); }
+.mrow > summary { list-style: none; cursor: pointer; padding: 18px 0; }
+.mrow > summary::-webkit-details-marker { display: none; }
+.mn { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.04em; color: #8e8e93; font-variant-numeric: tabular-nums; }
+.mname { font-size: clamp(1.0625rem, 1.6vw, 1.25rem); font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
+.mrow > summary:hover .mname, .mrow[open] .mname { color: var(--link); }
+.mdots i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1px #3a3a3c; }
+.mdots i.on { background: var(--link); box-shadow: none; }
+.mrow .ctl-detail { margin: 0 0 24px 72px; }
+.mnote { margin-top: 20px; }
+@media (max-width: 760px) {
+  .matrix { --cols: repeat(6, 18px); }
+  .mhead, .mrow > summary { grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; }
+  .mhead { align-items: end; }
+  .mhead b { writing-mode: vertical-rl; transform: rotate(180deg); font-size: .6875rem; text-align: left; white-space: nowrap; }
+  .mn { font-size: 1.25rem; }
+  .mname { font-size: 1rem; line-height: 1.25; }
+  .mdots i { width: 10px; height: 10px; }
+  .mrow .ctl-detail { margin: 0 0 20px; padding: 20px; }
+}

@@ -50,42 +50,40 @@ for (const w of waves.slice(1).flat()) if (!right.includes(w)) right.push(w);
 const order = [...waves[0], ...right];
 const NUM = new Map(order.map((id, i) => [id, i + 1]));
 
+/* The matrix columns: the frameworks the ten controls map to most often.
+   Every mapping, including the rest, is listed inside each row. */
+const COLS = [
+  ["eu_ai_act", "EU AI Act"], ["iso42001", "ISO 42001"], ["ai_rmf", "NIST AI RMF"],
+  ["cps230", "APRA CPS 230"], ["sp80053", "NIST 800-53"], ["owasp_llm", "OWASP LLM"],
+];
+
 function control(id) {
   const r = byId.get(id);
   const needs = (r.depends_on ?? []).map(p => byId.has(p)
     ? `<a href="#${esc(p)}">${NUM.get(p)}. ${esc(short(byId.get(p)))}</a>`
     : esc(external.get(p)?.ctrl ?? p));
-  // One visible line per control: the first sentence of why it matters.
-  // Everything an auditor or engineer needs sits behind the disclosure.
-  const why = r.notes.split(/(?<=\.)\s+/)[0];
-  const rest = r.notes.slice(why.length).trim();
   const verify = (r.verify ?? []).map(v => `
             <div class="ctl-verify">
               <p class="ctl-label">Check it yourself (read-only, ${esc(v.platform)})</p>
               <pre><code>${esc(v.run)}</code></pre>
               <p class="small">You should see: ${esc(v.expect)}</p>
             </div>`).join("");
+  const maps = COLS.filter(([k]) => r.reg.includes(k)).map(([, l]) => l);
+  const dots = COLS.map(([k, l]) => `<i class="${r.reg.includes(k) ? "on" : ""}" title="${esc(l)}"></i>`).join("");
   return `
-    <article class="ctl" id="${esc(r.id)}">
-      <div class="ctl-num">${NUM.get(r.id)}</div>
-      <div class="ctl-body">
-        <h2>${esc(short(r))}</h2>
-        <p class="ctl-why">${esc(why)}</p>
-        <details class="ctl-more">
-          <summary>Evidence, checks and mappings</summary>
-          <div class="ctl-detail">
-            <p class="ctl-full">${esc(r.ctrl)}.</p>
-${rest ? `            <p>${esc(rest)}</p>
-` : ""}            <p class="ctl-label">What an auditor will ask for</p>
-            <p>${esc(r.evidence)}</p>${verify}
-            <dl class="ctl-meta">
-              <div><dt>Build first</dt><dd>${needs.length ? needs.join(", ") : "Nothing. You can start today."}</dd></div>
-              <div><dt>Maps to</dt><dd>${r.reg.map(k => esc(REG[k]?.label ?? k)).join(", ")}</dd></div>
-            </dl>
-          </div>
-        </details>
-      </div>
-    </article>`;
+      <details class="mrow" id="${esc(r.id)}">
+        <summary><span class="mn">${NUM.get(r.id)}</span><span class="mname">${esc(short(r))}</span><span class="mdots" aria-hidden="true">${dots}</span><span class="vh">. Maps to ${esc(maps.join(", ") || "other frameworks")}.</span></summary>
+        <div class="ctl-detail">
+          <p class="ctl-full">${esc(r.ctrl)}.</p>
+          <p>${esc(r.notes)}</p>
+          <p class="ctl-label">What an auditor will ask for</p>
+          <p>${esc(r.evidence)}</p>${verify}
+          <dl class="ctl-meta">
+            <div><dt>Build first</dt><dd>${needs.length ? needs.join(", ") : "Nothing. You can start today."}</dd></div>
+            <div><dt>Maps to</dt><dd>${r.reg.map(k => esc(REG[k]?.label ?? k)).join(", ")}</dd></div>
+          </dl>
+        </div>
+      </details>`;
 }
 
 /* Dependency graph: first wave on the left, the rest on the right, each
@@ -126,7 +124,7 @@ const page = `<!--page {"out": "agents/index.html", "title": "Ten controls for A
 <section class="page-head">
   <div class="wrap">
     <h1 class="h1">Ten things a regulator will ask to see before your AI agent goes live.</h1>
-    <p class="lede">Build them in this order. Each one opens to the evidence an auditor wants and a read-only command to check it.</p>
+    <p class="lede">In build order, with the evidence for each.</p>
     <div class="actions">
       <a class="btn" href="/tools/agent-readiness.html">Score your agents in two minutes</a>
       <a class="link-strong" href="/dataset/dataset.json">Download as JSON</a>
@@ -138,14 +136,20 @@ const page = `<!--page {"out": "agents/index.html", "title": "Ten controls for A
   <div class="wrap">
     <div class="section-head">
       <h2 class="h2" id="order-h">Identity first. Everything else attaches to it.</h2>
-      <p class="lede">The four on the left can start today. The six on the right need what they point to.</p>
     </div>
 ${graphHtml}
   </div>
 </section>
 
-<section class="section" aria-label="The controls">
-  <div class="wrap">${order.map(control).join("\n")}
+<section class="section" aria-labelledby="map-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="map-h">Each control, mapped to six frameworks.</h2>
+    </div>
+    <div class="matrix">
+      <div class="mhead" aria-hidden="true"><span></span><span></span><span class="mdots">${COLS.map(([, l]) => `<b>${esc(l)}</b>`).join("")}</span></div>${order.map(control).join("")}
+    </div>
+    <p class="small mnote">Tap a control for the evidence an auditor asks for and a read-only check.</p>
   </div>
 </section>
 

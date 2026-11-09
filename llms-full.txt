@@ -284,14 +284,12 @@ Ten controls to build before an AI agent goes live in a regulated company, with 
 
 ## Ten things a regulator will ask to see before your AI agent goes live.
 
-Build them in this order. Each one opens to the evidence an auditor wants and a read-only command to check it.
+In build order, with the evidence for each.
 
 Score your agents in two minutes
 Download as JSON
 
 ## Identity first. Everything else attaches to it.
-
-The four on the left can start today. The six on the right need what they point to.
 
 ## Start with these
 
@@ -309,17 +307,15 @@ The four on the left can start today. The six on the right need what they point 
 9Provenance across agentsNeeds 3 first
 10Cost measured per resolved taskNeeds 3 first
 
-1
+## Each control, mapped to six frameworks.
 
-## Agent runs under its own workload identity
+EU AI ActISO 42001NIST AI RMFAPRA CPS 230NIST 800-53OWASP LLM
 
-The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action.
-
-Evidence, checks and mappings
+1Agent runs under its own workload identity. Maps to EU AI Act, ISO 42001, NIST 800-53.
 
 Agent runs under its own workload identity, never a human’s or a shared account.
 
-This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.
+The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.
 
 What an auditor will ask for
 
@@ -339,17 +335,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8
 
-2
-
-## Declared autonomy level per action class
-
-Autonomy is not a property of the agent; it is a property of each action it can take.
-
-Evidence, checks and mappings
+2Declared autonomy level per action class. Maps to EU AI Act, ISO 42001, NIST AI RMF, APRA CPS 230.
 
 Declared autonomy level per action class, enforced at execution and recorded per run.
 
-Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.
+Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.
 
 What an auditor will ask for
 
@@ -363,17 +353,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230
 
-3
-
-## Full replayable trajectory
-
-Logging the final output is enough to debug a demo and nothing else.
-
-Evidence, checks and mappings
+3Full replayable trajectory. Maps to EU AI Act, ISO 42001, NIST AI RMF, APRA CPS 230.
 
 Full replayable trajectory: every tool call, argument, result and the exact context the model saw.
 
-The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.
+Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.
 
 What an auditor will ask for
 
@@ -393,17 +377,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA
 
-4
-
-## Retrieved and tool-returned content treated as untrusted data
-
-Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail.
-
-Evidence, checks and mappings
+4Retrieved and tool-returned content treated as untrusted data. Maps to EU AI Act, ISO 42001, OWASP LLM.
 
 Retrieved and tool-returned content treated as untrusted data, never as instructions.
 
-Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.
+Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.
 
 What an auditor will ask for
 
@@ -417,17 +395,11 @@ Maps to
 
 OWASP LLM Top 10, MITRE ATLAS, EU AI Act, ISO/IEC 42001
 
-5
-
-## Tool authorisation enforced outside the model
-
-An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion.
-
-Evidence, checks and mappings
+5Tool authorisation enforced outside the model. Maps to EU AI Act, ISO 42001, NIST AI RMF, NIST 800-53, OWASP LLM.
 
 Tool authorisation enforced outside the model, by the tool registry.
 
-Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.
+An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.
 
 What an auditor will ask for
 
@@ -441,17 +413,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53
 
-6
-
-## Bounded blast radius
-
-A loop without a ceiling is a billing incident with a countdown.
-
-Evidence, checks and mappings
+6Bounded blast radius. Maps to ISO 42001, APRA CPS 230, NIST 800-53.
 
 Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch.
 
-The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.
+A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.
 
 What an auditor will ask for
 
@@ -471,17 +437,11 @@ Maps to
 
 APRA CPS 230, ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+
 
-7
-
-## Named human approval for consequential actions
-
-EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it.
-
-Evidence, checks and mappings
+7Named human approval for consequential actions. Maps to EU AI Act, NIST AI RMF.
 
 Named human approval for consequential actions, with enough context to make review real.
 
-Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.
+EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.
 
 What an auditor will ask for
 
@@ -495,17 +455,11 @@ Maps to
 
 EU AI Act, NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR
 
-8
-
-## Irreversible actions staged
-
-Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one.
-
-Evidence, checks and mappings
+8Irreversible actions staged. Maps to EU AI Act, ISO 42001, APRA CPS 230.
 
 Irreversible actions staged, gated or delayed so a wrong action can be withdrawn.
 
-Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.
+Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.
 
 What an auditor will ask for
 
@@ -519,17 +473,11 @@ Maps to
 
 APRA CPS 230, ISO/IEC 42001, EU AI Act, EU DORA
 
-9
-
-## Provenance across agents
-
-As soon as one agent consumes another’s output, a single-run trace stops being sufficient.
-
-Evidence, checks and mappings
+9Provenance across agents. Maps to EU AI Act, ISO 42001, NIST AI RMF.
 
 Provenance across agents: every output traceable to the upstream runs that produced its inputs.
 
-The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.
+As soon as one agent consumes another’s output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.
 
 What an auditor will ask for
 
@@ -543,17 +491,11 @@ Maps to
 
 EU AI Act, ISO/IEC 42001, NIST AI RMF, BCBS 239
 
-10
-
-## Cost measured per resolved task
-
-Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate.
-
-Evidence, checks and mappings
+10Cost measured per resolved task. Maps to ISO 42001, APRA CPS 230.
 
 Cost measured per resolved task, not per token, with attribution to the consuming feature.
 
-Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.
+Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.
 
 What an auditor will ask for
 
@@ -566,6 +508,8 @@ Build first
 Maps to
 
 APRA CPS 230, ISO/IEC 42001
+
+Tap a control for the evidence an auditor asks for and a read-only check.
 
 Free to reuse under CC BY 4.0. These are my own views, not my employer’s, and they are not legal advice. Spotted something wrong? Email contact@hellouchit.com.
 
