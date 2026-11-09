@@ -14,6 +14,8 @@
 - [Ten controls for AI agents](https://hellouchit.com/agents/): what to build, in order, before an AI agent goes live, with the evidence an auditor will ask for and read-only checks. Mapped to the EU AI Act, NIST AI RMF, ISO/IEC 42001 and APRA CPS 230/234.
 - [Agent readiness check](https://hellouchit.com/tools/agent-readiness.html): ten-question self-assessment that runs in the browser.
 - [Controls as JSON](https://hellouchit.com/dataset/dataset.json) and [CSV](https://hellouchit.com/dataset/dataset.csv): machine-readable, CC BY 4.0.
+- [Readiness check as JSON](https://hellouchit.com/tools/agent-readiness.json): the ten questions, options, levels and recommendations, CC BY 4.0.
+- MCP server: `https://hellouchit.com/v1/mcp` (Streamable HTTP, stateless, read-only, no auth). Tools: `list_agent_controls`, `get_agent_control`, `get_readiness_questions`, `score_agent_readiness`. Scores exactly like the web page.
 
 ## About
 

@@ -16,9 +16,11 @@ jobs:
           node-version: 22
       - name: Built pages match their sources
         run: |
+          node scripts/build-mcp-data.mjs
           node scripts/build-agents.mjs
           node scripts/build-site.mjs
-          git diff --exit-code || (echo "Run node scripts/build-agents.mjs && node scripts/build-site.mjs and commit the output" && exit 1)
+          git diff --exit-code || (echo "Run node scripts/build-mcp-data.mjs && node scripts/build-agents.mjs && node scripts/build-site.mjs and commit the output" && exit 1)
+      - run: node scripts/check-mcp.mjs
       - run: node scripts/check-drafts.mjs
       - run: node scripts/check-structure.mjs
       - run: node scripts/check-links.mjs

@@ -1067,6 +1067,140 @@ Ten questions, one for each control. Answer for what is actually enforced today,
 
 Back
 
+See all ten questions
+
+- 
+Identity. What identity does the agent act under?
+
+- A human’s credentials, usually whoever deployed it.
+
+- A shared service account used by several agents or jobs.
+
+- Its own service account, but with a long-lived static key.
+
+- Its own federated workload identity; no static credentials in the execution path.
+
+- Own federated identity, and a revocation test on record showing tool calls fail within one polling interval.
+
+- 
+Autonomy level. Is autonomy declared per action class, or per agent?
+
+- Not declared. The agent does what it can do.
+
+- Described in a design doc; nothing enforces it.
+
+- A register of action classes exists with levels assigned and an approver named.
+
+- Levels are enforced at execution, not just documented.
+
+- Enforced at execution and the level in force is recorded per run, so you can answer what it was allowed to do then.
+
+- 
+Trajectory. Can you replay a specific run from step N?
+
+- Final output is logged. Nothing else.
+
+- Prompts and responses logged; tool calls are not.
+
+- Tool calls logged with arguments and results.
+
+- Full run exported: assembled context, retrieved document IDs, every call, model and prompt version, tokens, cost, latency.
+
+- All of that, and replay from an arbitrary step is a tested capability rather than a claim.
+
+- 
+Injection defence. Is retrieved and tool-returned content treated as data or as instructions?
+
+- Not considered. Retrieved text goes straight into the prompt.
+
+- Direct user input is filtered; retrieved and tool-returned content is not.
+
+- Some structural separation between instructions and data.
+
+- Indirect injection red-teamed through retrieval paths as well as direct input.
+
+- Every retrieval and tool-result path red-teamed on a schedule, with structural separation enforced and regression tests for known payloads.
+
+- 
+Tool authorisation. Where is the boundary on what the agent may do?
+
+- The system prompt tells it what not to do.
+
+- A tool list exists, the same for every context and role.
+
+- Tools scoped per role, defined in configuration.
+
+- A policy engine outside the model authorises each invocation.
+
+- Policy engine authorises each call and decision logs show allow and deny with a reason, exportable per role.
+
+- 
+Human oversight. What does approval of a consequential action actually involve?
+
+- No approval step.
+
+- An approve/reject button with the proposed action and nothing else.
+
+- Approval shows the reasoning and the evidence the agent used.
+
+- As above, and approvals are recorded with the named individual and their decision.
+
+- All of that, plus the approval rate is monitored. Sustained near 100% is treated as a finding, not a success.
+
+- 
+Blast radius. What stops a loop, and has it been tested mid-run?
+
+- Nothing. A loop runs until someone notices the bill.
+
+- A step limit in code; no spend or rate ceiling.
+
+- Step, spend and rate ceilings configured per agent.
+
+- Ceilings configured and a kill switch exists.
+
+- Kill switch tested stopping an agent mid-run, with the time from decision to stop recorded.
+
+- 
+Reversibility. How are irreversible actions handled?
+
+- The agent calls whatever the tool does. Reversibility was never assessed.
+
+- Known-dangerous actions are excluded from the tool list.
+
+- Agent-invokable actions inventoried and classified reversible or not.
+
+- Irreversible ones carry an approval gate or a delay window.
+
+- Classified, gated, and the reversal mechanism is named and exercised for each: versioned store, compensating transaction or delay.
+
+- 
+Provenance. When one agent consumes another’s output, can you trace the chain?
+
+- Single agent only, or chains are not traced.
+
+- Each agent logs its own run; the join across them is manual.
+
+- Outputs carry the upstream run ID that produced them.
+
+- For a given output, the full upstream chain including retrieved sources is retrievable.
+
+- Full chain retrievable, and a corrected upstream input marks the downstream outputs that depended on it.
+
+- 
+Cost per outcome. What unit is agent cost measured in?
+
+- Not measured separately from the platform bill.
+
+- Total tokens or total spend, unattributed.
+
+- Cost per run, attributed to an agent.
+
+- Cost per resolved task, attributed to the consuming feature.
+
+- Cost per resolved task with failed-run cost tracked alongside it, so retries and fan-out are visible rather than absorbed.
+
+Also available as JSON.
+
 Your score
 
 0

@@ -19,3 +19,15 @@ document.addEventListener('click', function (e) {
   else if (/claude\.ai$/.test(h) || /anthropic\.com$/.test(h)) dest = 'claude_click';
   gtag('event', dest, { link_url: a.href, link_domain: h, link_text: (a.innerText || '').slice(0, 80) });
 });
+
+/* Visits that arrive from AI assistants. Referrers are often stripped by the
+   apps, so this undercounts; it is still the only first-party signal. Fires
+   once per landing, never with anything beyond the assistant's domain. */
+(function () {
+  var AI = /(^|\.)(chatgpt\.com|chat\.openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com|meta\.ai|you\.com|phind\.com|duckduckgo\.com\/aichat)$/;
+  var host = "";
+  try { host = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (_) {}
+  var utm = (new URLSearchParams(location.search).get("utm_source") || "").toLowerCase();
+  var source = AI.test(host) ? host : (/chatgpt|perplexity|claude|gemini|copilot/.test(utm) ? utm : "");
+  if (source) gtag("event", "ai_referral", { ai_source: source, landing_page: location.pathname });
+})();

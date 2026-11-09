@@ -93,6 +93,8 @@ constraints that made it awkward are worth knowing up front:
 Run from the repo root. No npm dependencies; Node 22+.
 
 ```sh
+node scripts/build-mcp-data.mjs    # readiness JSON, MCP data, static question list (run first)
+node scripts/check-mcp.mjs         # exercises the Worker's /v1/mcp handler locally
 node scripts/build-agents.mjs      # /agents/ body from dataset/dataset.json -> src/pages/agents/
 node scripts/build-site.mjs        # wraps every src/pages/**/*.html in the shared shell, writes sitemap.xml
 node scripts/build-redirects.mjs   # redirect pages for retired URLs (only when RETIRED changes)
@@ -125,3 +127,30 @@ is retired. Each retired URL is a small redirect page made by
 `scripts/build-redirects.mjs`, because GitHub Pages can't send a real 301.
 The full content of every retired page is in git history on `main` before the
 rebuild. The design rules are in `design-notes.md`.
+
+## The Worker (hellouchit.com/v1/*)
+
+`worker/site/` deploys separately from the static site. GitHub Pages does not
+deploy it; a merge to `main` changes nothing in Cloudflare until you run:
+
+```sh
+cd worker/site
+npx wrangler deploy            # existing route hellouchit.com/v1/* stays attached
+```
+
+It serves `/v1/submit` and `/v1/stats` (benchmark tallies) and `/v1/mcp`, a
+read-only MCP server for AI assistants. Rebuild its data with
+`node scripts/build-mcp-data.mjs` first, then `node scripts/check-mcp.mjs`.
+
+Recommended once in the Cloudflare dashboard: a rate-limiting rule on
+`/v1/mcp` (for example 60 requests per minute per IP). The old chat lived on
+`hellouchit.com/v2/*`; that route and the `RATE_LIMIT` KV namespace can be
+deleted.
+
+## Social images
+
+Each page's preview image lives in `images/og/` and is set with `"ogImage"` in
+the page header. They are rendered from `scripts/og-template.html` at
+1200x630 (open it with `?t=title&f=figure&s=superscript&u=unit&c=caption`, or
+`&p=about` or `&p=portrait`; parameters are rendered as text only,
+and screenshot the viewport). Re-render when a page's headline or number changes.

@@ -117,6 +117,7 @@ const BOOKS = [
 }));
 
 function graph(meta, url, crumbs) {
+  const OG_IMAGE = ogImage(meta);
   const ref = { "@id": `${SITE}/#person` };
   const pageId = `${url}#webpage`;
   const base = {
@@ -180,6 +181,11 @@ function graph(meta, url, crumbs) {
   return { "@context": "https://schema.org", "@graph": nodes };
 }
 
+/* Per-page social image (images/og/*.jpg, rendered from scripts/og-template.html),
+   falling back to the homepage banner. */
+const ogImage = meta => meta.ogImage ? SITE + meta.ogImage : OG_IMAGE;
+const ogAlt = meta => meta.ogImage ? `${plain(meta.title)}. Uchit Vyas, lead forward deployed engineer.` : OG_ALT;
+
 /* ---------- Page shell ---------- */
 
 function shell(meta, body) {
@@ -216,10 +222,10 @@ function shell(meta, body) {
     `<meta property="og:title" content="${esc(meta.title === NAME ? title : meta.title)}" />`,
     `<meta property="og:description" content="${esc(meta.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta property="og:image" content="${ogImage(meta)}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
-    `<meta property="og:image:alt" content="${esc(OG_ALT)}" />`,
+    `<meta property="og:image:alt" content="${esc(ogAlt(meta))}" />`,
     ...(article && meta.published ? [
       `<meta property="article:published_time" content="${meta.published}" />`,
       `<meta property="article:modified_time" content="${meta.updated ?? meta.published}" />`,
@@ -232,8 +238,8 @@ function shell(meta, body) {
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${esc(meta.title === NAME ? title : meta.title)}" />`,
     `<meta name="twitter:description" content="${esc(meta.description)}" />`,
-    `<meta name="twitter:image" content="${OG_IMAGE}" />`,
-    `<meta name="twitter:image:alt" content="${esc(OG_ALT)}" />`,
+    `<meta name="twitter:image" content="${ogImage(meta)}" />`,
+    `<meta name="twitter:image:alt" content="${esc(ogAlt(meta))}" />`,
   ].join("\n");
 
   return `<!DOCTYPE html>
