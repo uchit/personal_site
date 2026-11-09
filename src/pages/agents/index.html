@@ -4,8 +4,8 @@
 
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Ten controls for AI agents.</h1>
-    <p class="lede">About to put an AI agent in front of customers or a regulator? These are the ten things you&rsquo;ll be asked to show, in the order to build them, with the evidence an auditor will want to see.</p>
+    <h1 class="h1">Ten things a regulator will ask to see before your AI agent goes live.</h1>
+    <p class="lede">Build them in this order. Each one opens to the evidence an auditor wants and a read-only command to check it.</p>
     <div class="actions">
       <a class="btn" href="/tools/agent-readiness.html">Score your agents in two minutes</a>
       <a class="link-strong" href="/dataset/dataset.json">Download as JSON</a>
@@ -16,8 +16,8 @@
 <section class="section mist tight" aria-labelledby="order-h">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="h2" id="order-h">The order.</h2>
-      <p class="lede">Identity first, then what the agent may do, then how far it may go. Everything on the left can start today. Hover a control to see what it depends on.</p>
+      <h2 class="h2" id="order-h">Identity first. Everything else attaches to it.</h2>
+      <p class="lede">The four on the left can start today. The six on the right need what they point to.</p>
     </div>
 
     <div class="graph" data-wow="graph">
@@ -47,241 +47,231 @@
     <article class="ctl" id="agent-identity">
       <div class="ctl-num">1</div>
       <div class="ctl-body">
-        <h2>Agent runs under its own workload identity, never a human’s or a shared account</h2>
-        <p class="ctl-where">Agent runtime, IAM</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
-          </div>
-          <div>
+        <h2>Agent runs under its own workload identity</h2>
+        <p class="ctl-why">The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Agent runs under its own workload identity, never a human’s or a shared account.</p>
+            <p>This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>IAM export showing a distinct principal per agent, with no human user credentials in any agent execution path. Trust policy showing federated identity rather than a static key. An access-revocation test: disable the agent principal and show its tool calls fail within one polling interval.</p>
+            <div class="ctl-verify">
+              <p class="ctl-label">Check it yourself (read-only, AWS)</p>
+              <pre><code>aws sts get-caller-identity --query Arn --output text</code></pre>
+              <p class="small">You should see: An assumed-role ARN for the agent itself: not a human’s, and not one shared with other agents.</p>
+            </div>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8</dd></div>
+            </dl>
           </div>
-        </div>
-          <div class="ctl-verify">
-            <p class="ctl-label">Check it yourself (read-only, AWS)</p>
-            <pre><code>aws sts get-caller-identity --query Arn --output text</code></pre>
-            <p class="small">You should see: An assumed-role ARN for the agent itself: not a human’s, and not one shared with other agents.</p>
-          </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-autonomy-level">
       <div class="ctl-num">2</div>
       <div class="ctl-body">
-        <h2>Declared autonomy level per action class, enforced at execution and recorded per run</h2>
-        <p class="ctl-where">Agent runtime, Governance</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.</p>
-          </div>
-          <div>
+        <h2>Declared autonomy level per action class</h2>
+        <p class="ctl-why">Autonomy is not a property of the agent; it is a property of each action it can take.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Declared autonomy level per action class, enforced at execution and recorded per run.</p>
+            <p>Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review: a config diff with an approver, not a deploy.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-trajectory-trace">
       <div class="ctl-num">3</div>
       <div class="ctl-body">
-        <h2>Full replayable trajectory: every tool call, argument, result and the exact context the model saw</h2>
-        <p class="ctl-where">Agent runtime, Observability</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>Logging the final output is enough to debug a demo and nothing else. The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.</p>
-          </div>
-          <div>
+        <h2>Full replayable trajectory</h2>
+        <p class="ctl-why">Logging the final output is enough to debug a demo and nothing else.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Full replayable trajectory: every tool call, argument, result and the exact context the model saw.</p>
+            <p>The test of a trajectory record is whether you can replay from step N; if you cannot, you have a description of what happened rather than evidence of it. The same rows serve the audit pack and the eval set.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>A single run exported end to end: assembled context, retrieved document IDs, each tool call with arguments and result, model and prompt version, tokens, cost and latency. A replay of that run from an intermediate step, demonstrating the trace is sufficient to reconstruct rather than merely describe.</p>
+            <div class="ctl-verify">
+              <p class="ctl-label">Check it yourself (read-only, OpenTelemetry)</p>
+              <pre><code>curl -s '&lt;otlp-query&gt;/api/traces?service=&lt;agent&gt;&amp;limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'</code></pre>
+              <p class="small">You should see: A span per tool call. If the count is zero the trajectory is reconstructed from logs, not recorded.</p>
+            </div>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA</dd></div>
+            </dl>
           </div>
-        </div>
-          <div class="ctl-verify">
-            <p class="ctl-label">Check it yourself (read-only, OpenTelemetry)</p>
-            <pre><code>curl -s '&lt;otlp-query&gt;/api/traces?service=&lt;agent&gt;&amp;limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'</code></pre>
-            <p class="small">You should see: A span per tool call. If the count is zero the trajectory is reconstructed from logs, not recorded.</p>
-          </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-prompt-injection">
       <div class="ctl-num">4</div>
       <div class="ctl-body">
-        <h2>Retrieved and tool-returned content treated as untrusted data, never as instructions</h2>
-        <p class="ctl-where">Agent runtime, Retrieval</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail. Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.</p>
-          </div>
-          <div>
+        <h2>Retrieved and tool-returned content treated as untrusted data</h2>
+        <p class="ctl-why">Direct prompt injection is widely tested; indirect injection through a retrieved document, a web page or a tool result is where agents actually get compromised, because the payload arrives after the guardrail.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Retrieved and tool-returned content treated as untrusted data, never as instructions.</p>
+            <p>Any content an agent retrieves is attacker-influenceable if an attacker can influence the source.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>Red-team results for indirect prompt injection through each retrieval and tool-result path, not only through direct user input. Evidence of structural separation between instruction and retrieved content. Records showing an injected instruction was not acted upon.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
+              <div><dt>Maps to</dt><dd>OWASP LLM Top 10, MITRE ATLAS, EU AI Act, ISO/IEC 42001</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
-          <div><dt>Maps to</dt><dd>OWASP LLM Top 10, MITRE ATLAS, EU AI Act, ISO/IEC 42001</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-tool-authz">
       <div class="ctl-num">5</div>
       <div class="ctl-body">
-        <h2>Tool authorisation enforced outside the model, by the tool registry</h2>
-        <p class="ctl-where">Agent runtime, Policy engine</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.</p>
-          </div>
-          <div>
+        <h2>Tool authorisation enforced outside the model</h2>
+        <p class="ctl-why">An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Tool authorisation enforced outside the model, by the tool registry.</p>
+            <p>Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>The tool manifest available to the agent per role, exported from config rather than described. Policy decision logs showing allow and deny with a reason for each tool invocation. A negative test: an agent asked to call a tool outside its scope, and the denial recorded.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-identity">1. Agent runs under its own workload identity</a></dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-identity">1. Agent runs under its own workload identity</a></dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-blast-radius">
       <div class="ctl-num">6</div>
       <div class="ctl-body">
-        <h2>Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch</h2>
-        <p class="ctl-where">Agent runtime, Platform</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.</p>
-          </div>
-          <div>
+        <h2>Bounded blast radius</h2>
+        <p class="ctl-why">A loop without a ceiling is a billing incident with a countdown.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch.</p>
+            <p>The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>Configured ceilings per agent for steps, spend and tool-call rate. An incident or game-day record showing the kill switch stopping an agent mid-run, with the time from decision to halt. Evidence that a halted run leaves consistent state.</p>
+            <div class="ctl-verify">
+              <p class="ctl-label">Check it yourself (read-only, Kubernetes)</p>
+              <pre><code>kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'</code></pre>
+              <p class="small">You should see: A quota on the agent’s namespace. No quota means the ceiling is theoretical.</p>
+            </div>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-identity">1. Agent runs under its own workload identity</a></dd></div>
+              <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+</dd></div>
+            </dl>
           </div>
-        </div>
-          <div class="ctl-verify">
-            <p class="ctl-label">Check it yourself (read-only, Kubernetes)</p>
-            <pre><code>kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'</code></pre>
-            <p class="small">You should see: A quota on the agent’s namespace. No quota means the ceiling is theoretical.</p>
-          </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-identity">1. Agent runs under its own workload identity</a></dd></div>
-          <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-human-oversight">
       <div class="ctl-num">7</div>
       <div class="ctl-body">
-        <h2>Named human approval for consequential actions, with enough context to make review real</h2>
-        <p class="ctl-where">Agent runtime, Review queue</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it. Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.</p>
-          </div>
-          <div>
+        <h2>Named human approval for consequential actions</h2>
+        <p class="ctl-why">EU AI Act Art.14 and NIST AI RMF GOVERN-1.3 both require meaningful human oversight, and an approve/reject button with no reasoning attached does not meet it.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Named human approval for consequential actions, with enough context to make review real.</p>
+            <p>Watch the approval rate: sustained above roughly 95% and you have automation with a liability sponge attached, which an auditor will name.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>Approval records naming the individual, the proposed action, the reasoning and evidence shown to them, and the decision. Approval-rate statistics over time. Rejection records, which are the proof that oversight is doing work.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-autonomy-level">2. Declared autonomy level per action class</a></dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-autonomy-level">2. Declared autonomy level per action class</a></dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-action-reversibility">
       <div class="ctl-num">8</div>
       <div class="ctl-body">
-        <h2>Irreversible actions staged, gated or delayed so a wrong action can be withdrawn</h2>
-        <p class="ctl-where">Agent runtime, Integration layer</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.</p>
-          </div>
-          <div>
+        <h2>Irreversible actions staged</h2>
+        <p class="ctl-why">Reversibility is a property of the system, not of the agent: the same delete is reversible against a versioned store and not against a live one.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Irreversible actions staged, gated or delayed so a wrong action can be withdrawn.</p>
+            <p>Most irreversible actions can be made reversible with an outbox, a soft delete or a plan/apply split, and that work is worth doing whether or not an agent is ever involved.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>An inventory of agent-invokable actions classified reversible or not, with the mechanism named for each. For irreversible ones, either an approval gate or a documented acceptance. A test showing an action withdrawn inside the window.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-autonomy-level">2. Declared autonomy level per action class</a></dd></div>
+              <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001, EU AI Act, EU DORA</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-autonomy-level">2. Declared autonomy level per action class</a></dd></div>
-          <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001, EU AI Act, EU DORA</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-multi-agent-provenance">
       <div class="ctl-num">9</div>
       <div class="ctl-body">
-        <h2>Provenance across agents: every output traceable to the upstream runs that produced its inputs</h2>
-        <p class="ctl-where">Agent orchestration</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>As soon as one agent consumes another’s output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
-          </div>
-          <div>
+        <h2>Provenance across agents</h2>
+        <p class="ctl-why">As soon as one agent consumes another’s output, a single-run trace stops being sufficient.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Provenance across agents: every output traceable to the upstream runs that produced its inputs.</p>
+            <p>The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>For a given final output, the full upstream chain of agent runs that contributed to it, retrieved sources included. A demonstration that a corrected upstream input marks downstream outputs stale.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-trajectory-trace">3. Full replayable trajectory</a></dd></div>
+              <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, BCBS 239</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-trajectory-trace">3. Full replayable trajectory</a></dd></div>
-          <div><dt>Maps to</dt><dd>EU AI Act, ISO/IEC 42001, NIST AI RMF, BCBS 239</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
 
     <article class="ctl" id="agent-cost-per-outcome">
       <div class="ctl-num">10</div>
       <div class="ctl-body">
-        <h2>Cost measured per resolved task, not per token, with attribution to the consuming feature</h2>
-        <p class="ctl-where">Agent runtime, FinOps</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
-          </div>
-          <div>
+        <h2>Cost measured per resolved task</h2>
+        <p class="ctl-why">Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate.</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">Cost measured per resolved task, not per token, with attribution to the consuming feature.</p>
+            <p>Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
             <p class="ctl-label">What an auditor will ask for</p>
             <p>Cost per resolved task by agent and feature over time, alongside the failed-run cost. Evidence that spend is attributable to a product decision rather than to a shared pool.</p>
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd><a href="#agent-trajectory-trace">3. Full replayable trajectory</a>, Per-service / per-tenant cost attribution</dd></div>
+              <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd><a href="#agent-trajectory-trace">3. Full replayable trajectory</a>, Per-service / per-tenant cost attribution</dd></div>
-          <div><dt>Maps to</dt><dd>APRA CPS 230, ISO/IEC 42001</dd></div>
-        </dl>
+        </details>
       </div>
     </article>
   </div>
 </section>
 
-<section class="section mist tight">
+<section class="section tight" style="padding-top:0">
   <div class="wrap">
     <p class="small" style="max-width:44em">Free to reuse under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. These are my own views, not my employer&rsquo;s, and they are not legal advice. Spotted something wrong? Email <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>.</p>
   </div>
