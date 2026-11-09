@@ -952,6 +952,30 @@ Squads around the platform, all building in parallel.
 
 Live on the agreed date, loans paid out in minutes.
 
+StartMonth 6Live
+
+One after another: past the deadline
+
+Discovery
+
+Design
+
+Build
+
+Test
+
+What we did: in parallel
+
+Discovery
+
+Design
+
+Build
+
+Test
+
+Illustration of the approach; stage lengths are not to scale. Live on the agreed date.
+
 ## Five minutes, start to finish.
 
 5:00
