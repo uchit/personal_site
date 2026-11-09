@@ -38,7 +38,7 @@ and indexable; nothing is waiting on a placeholder.
 - [ ] **Safety app screenshots.** The screenshot slot was removed so the page
   is complete. If you have screenshots, or the product has a public name or
   App Store link, they can go back in.
-- [x] **Employer name.** Removed from the site; the career list says "Global consultancy". The career profile PDF is no longer linked from the site, though `Profile_linkedin.pdf` is still in the repo and served at its URL.
+- [x] **Employer name.** Removed from the site; the career list says "Global consultancy". The career profile PDF has been removed from the site and the repo; its old URL now shows the 404 page.
 - [ ] **Favicon PNG/ICO.** `favicon.svg` is new; `favicon.ico` and
   `favicon-192/512.png` still carry the old copper design.
 - [ ] **Talks:** the Config Management Camp 2016 slides link points to a deck
