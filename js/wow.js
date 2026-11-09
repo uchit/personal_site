@@ -95,7 +95,7 @@
         var tx = bx + (k % COLS) * cell, ty = by + Math.floor(k / COLS) * cell;
         var x = sx + (tx - sx) * t, y = sy + (ty - sy) * t;
         var sz = s0 + (cell - s0) * t;
-        ctx.fillStyle = t > .98 ? "#0b6b50" : pt.c;
+        ctx.fillStyle = t > .98 ? "#2997ff" : pt.c;
         ctx.globalAlpha = .55 + .45 * t;
         ctx.fillRect(x, y, Math.max(1, sz - (t > .98 ? 0 : 1)), Math.max(1, sz - (t > .98 ? 0 : 1)));
       }

@@ -535,7 +535,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; color: inherit; }
 .journey-line::after { content: ""; position: absolute; inset: 0; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 2.2s cubic-bezier(.22,.61,.36,1); }
 .journey.drawn .journey-line::after { transform: scaleX(1); }
 .journey ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
-.journey li { position: relative; padding-top: 32px; opacity: .25; transform: translateY(10px); transition: opacity .5s, transform .5s; }
+.journey li { position: relative; padding-top: 32px; transform: translateY(10px); transition: transform .5s; }
 .journey li::before { content: ""; position: absolute; top: -6px; left: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 3px var(--green); }
 .journey.drawn li { opacity: 1; transform: none; }
 .journey.drawn li:nth-child(2) { transition-delay: .35s; } .journey.drawn li:nth-child(3) { transition-delay: .7s; }

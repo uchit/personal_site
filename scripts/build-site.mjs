@@ -56,7 +56,7 @@ function shell(meta, body) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(meta.description)}" />
-${draft ? '<meta name="robots" content="noindex" />\n' : ""}<meta name="theme-color" content="${meta.theme === "dark" ? "#000000" : "#ffffff"}" />
+${draft ? '<meta name="robots" content="noindex" />\n' : ""}<meta name="theme-color" content="#000000" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="${meta.ogType ?? "website"}" />
 <meta property="og:title" content="${esc(meta.title)}" />
@@ -67,10 +67,8 @@ ${draft ? '<meta name="robots" content="noindex" />\n' : ""}<meta name="theme-co
 <link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml" />
 <link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/images/favicon-192.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap" />
 <link rel="stylesheet" href="${v("/css/main.css")}" />
+<link rel="stylesheet" href="${v("/css/dark.css")}" />
 ${css}
 <script src="${v("/js/main.js")}" defer></script>
 <script src="${v("/js/wow.js")}" defer></script>
@@ -79,7 +77,7 @@ ${js}
 <script src="${v("/js/analytics.js")}" defer></script>
 ${ld}
 </head>
-<body${meta.theme ? ` class="theme-${meta.theme}"` : ""}>
+<body class="theme-${meta.theme ?? "dark"}">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
   <div class="wrap">
