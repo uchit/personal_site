@@ -56,7 +56,7 @@ function shell(meta, body) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(meta.description)}" />
-${draft ? '<meta name="robots" content="noindex" />\n' : ""}<meta name="theme-color" content="#ffffff" />
+${draft ? '<meta name="robots" content="noindex" />\n' : ""}<meta name="theme-color" content="${meta.theme === "dark" ? "#000000" : "#ffffff"}" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="${meta.ogType ?? "website"}" />
 <meta property="og:title" content="${esc(meta.title)}" />
@@ -79,7 +79,7 @@ ${js}
 <script src="${v("/js/analytics.js")}" defer></script>
 ${ld}
 </head>
-<body>
+<body${meta.theme ? ` class="theme-${meta.theme}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
   <div class="wrap">
