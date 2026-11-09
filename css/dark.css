@@ -394,7 +394,7 @@ figure.tile { margin: 0; }
 .era-art.venues span:nth-child(5) { color: #86868b; }
 
 /* About portrait: no rounded card on black, soft fade at the edges */
-.theme-dark .about-grid .portrait.wide { border-radius: 0; -webkit-mask-image: radial-gradient(120% 95% at 50% 35%, #000 62%, transparent 100%); mask-image: radial-gradient(120% 95% at 50% 35%, #000 62%, transparent 100%); }
+.theme-dark .about-grid .portrait.wide { border-radius: 0; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%), linear-gradient(to bottom, #000 70%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%), linear-gradient(to bottom, #000 70%, transparent 100%); mask-composite: intersect; }
 
 /* Contact band runs edge to edge in pure black so no strip sits above it */
 .x-contact { background: #000; border-top: 1px solid var(--rule); }
