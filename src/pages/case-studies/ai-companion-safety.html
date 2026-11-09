@@ -54,7 +54,7 @@
 <section class="section">
   <div class="wrap">
     <div class="cs-block">
-      <h2>The problem</h2>
+      <h2>Every monitoring app reads the chats.</h2>
       <div class="prose">
         <p>AI companion apps (character chat, roleplay, synthetic partners) are a new kind of screen time for teenagers. They are private, conversational and hard to put down.</p>
         <p>Parents mostly want to know two things: how much, and is it going up. Monitoring products answer by reading the conversations. That breaks trust between parent and child, and it creates a store of a minor&rsquo;s private messages that is a liability from the moment it exists.</p>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="cs-block">
-      <h2>What I built</h2>
+      <h2>Four choices that make reading impossible.</h2>
       <div class="prose">
         <p><strong>The browser extension only sees the website&rsquo;s address.</strong> It maps the address to a category of app and throws the rest away. It has no permission to read pages on any monitored site, and anyone can confirm that from its manifest in a few seconds.</p>
         <p><strong>On iPhone, Apple&rsquo;s sandbox does the enforcing.</strong> Usage data comes from Apple&rsquo;s Screen Time framework, which runs in a sandbox with no network access. The app never sees exact sessions. What leaves the phone is only &ldquo;this child crossed this many minutes at this time&rdquo;.</p>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="cs-block">
-      <h2>A shortcut I didn&rsquo;t take</h2>
+      <h2>A shortcut I didn&rsquo;t take.</h2>
       <div class="prose">
         <p>The teenager&rsquo;s login could have been built in a day with the database&rsquo;s admin key. That key bypasses every row-level security rule, so the codebase would hold one credential able to read every family&rsquo;s data.</p>
         <p>I used locked-down database functions instead, so no such key exists anywhere in the code. The trade-off is written down too: a family code and PIN is not strong proof of identity. Eight wrong attempts lock the code for fifteen minutes, which is what makes it safe enough.</p>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="cs-block">
-      <h2>Stack</h2>
+      <h2>Swift, Next.js and Postgres.</h2>
       <dl class="stack">
         <div><dt>iPhone</dt><dd>Swift, Screen Time (DeviceActivity)</dd></div>
         <div><dt>Browser</dt><dd>Chrome extension</dd></div>

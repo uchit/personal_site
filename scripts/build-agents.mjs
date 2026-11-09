@@ -55,32 +55,35 @@ function control(id) {
   const needs = (r.depends_on ?? []).map(p => byId.has(p)
     ? `<a href="#${esc(p)}">${NUM.get(p)}. ${esc(short(byId.get(p)))}</a>`
     : esc(external.get(p)?.ctrl ?? p));
+  // One visible line per control: the first sentence of why it matters.
+  // Everything an auditor or engineer needs sits behind the disclosure.
+  const why = r.notes.split(/(?<=\.)\s+/)[0];
+  const rest = r.notes.slice(why.length).trim();
   const verify = (r.verify ?? []).map(v => `
-          <div class="ctl-verify">
-            <p class="ctl-label">Check it yourself (read-only, ${esc(v.platform)})</p>
-            <pre><code>${esc(v.run)}</code></pre>
-            <p class="small">You should see: ${esc(v.expect)}</p>
-          </div>`).join("");
+            <div class="ctl-verify">
+              <p class="ctl-label">Check it yourself (read-only, ${esc(v.platform)})</p>
+              <pre><code>${esc(v.run)}</code></pre>
+              <p class="small">You should see: ${esc(v.expect)}</p>
+            </div>`).join("");
   return `
     <article class="ctl" id="${esc(r.id)}">
       <div class="ctl-num">${NUM.get(r.id)}</div>
       <div class="ctl-body">
-        <h2>${esc(r.ctrl)}</h2>
-        <p class="ctl-where">${esc(r.surface.replace(/ · /g, ", "))}</p>
-        <div class="ctl-cols">
-          <div>
-            <p class="ctl-label">Why it matters</p>
-            <p>${esc(r.notes)}</p>
+        <h2>${esc(short(r))}</h2>
+        <p class="ctl-why">${esc(why)}</p>
+        <details class="ctl-more">
+          <summary>Evidence, checks and mappings</summary>
+          <div class="ctl-detail">
+            <p class="ctl-full">${esc(r.ctrl)}.</p>
+${rest ? `            <p>${esc(rest)}</p>
+` : ""}            <p class="ctl-label">What an auditor will ask for</p>
+            <p>${esc(r.evidence)}</p>${verify}
+            <dl class="ctl-meta">
+              <div><dt>Build first</dt><dd>${needs.length ? needs.join(", ") : "Nothing. You can start today."}</dd></div>
+              <div><dt>Maps to</dt><dd>${r.reg.map(k => esc(REG[k]?.label ?? k)).join(", ")}</dd></div>
+            </dl>
           </div>
-          <div>
-            <p class="ctl-label">What an auditor will ask for</p>
-            <p>${esc(r.evidence)}</p>
-          </div>
-        </div>${verify}
-        <dl class="ctl-meta">
-          <div><dt>Build first</dt><dd>${needs.length ? needs.join(", ") : "Nothing. You can start today."}</dd></div>
-          <div><dt>Maps to</dt><dd>${r.reg.map(k => esc(REG[k]?.label ?? k)).join(", ")}</dd></div>
-        </dl>
+        </details>
       </div>
     </article>`;
 }
@@ -120,8 +123,8 @@ const page = `<!--page {"out": "agents/index.html", "title": "Ten controls for A
 
 <section class="page-head">
   <div class="wrap">
-    <h1 class="h1">Ten controls for AI agents.</h1>
-    <p class="lede">About to put an AI agent in front of customers or a regulator? These are the ten things you&rsquo;ll be asked to show, in the order to build them, with the evidence an auditor will want to see.</p>
+    <h1 class="h1">Ten things a regulator will ask to see before your AI agent goes live.</h1>
+    <p class="lede">Build them in this order. Each one opens to the evidence an auditor wants and a read-only command to check it.</p>
     <div class="actions">
       <a class="btn" href="/tools/agent-readiness.html">Score your agents in two minutes</a>
       <a class="link-strong" href="/dataset/dataset.json">Download as JSON</a>
@@ -132,8 +135,8 @@ const page = `<!--page {"out": "agents/index.html", "title": "Ten controls for A
 <section class="section mist tight" aria-labelledby="order-h">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="h2" id="order-h">The order.</h2>
-      <p class="lede">Identity first, then what the agent may do, then how far it may go. Everything on the left can start today. Hover a control to see what it depends on.</p>
+      <h2 class="h2" id="order-h">Identity first. Everything else attaches to it.</h2>
+      <p class="lede">The four on the left can start today. The six on the right need what they point to.</p>
     </div>
 ${graphHtml}
   </div>
@@ -144,7 +147,7 @@ ${graphHtml}
   </div>
 </section>
 
-<section class="section mist tight">
+<section class="section tight" style="padding-top:0">
   <div class="wrap">
     <p class="small" style="max-width:44em">Free to reuse under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. These are my own views, not my employer&rsquo;s, and they are not legal advice. Spotted something wrong? Email <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>.</p>
   </div>
