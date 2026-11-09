@@ -6,14 +6,16 @@ back there.
 
 ## The look
 
-- White page. One black band per page for the thing that matters most.
-  A light grey (`--mist`) for alternate sections.
-- One typeface: Schibsted Grotesk, 400 to 800. Headlines are big, tight and
-  heavy; body text is 18px.
-- One accent, green `#0b6b50` (`#5fd3a8` on black), used only for links and
-  buttons.
-- Real things carry the page: real numbers, the real photo, real book covers,
-  real diagrams. Nothing decorative.
+- Black page, Apple dark-mode greys for tiles (`#161617`), white type.
+- One accent: Apple blue (`#0071e3` buttons, `#2997ff` links and highlights).
+  No other colour except what is in the photographs and book covers.
+- Big numbers use one silver fill.
+- System font (SF Pro on Apple devices), semibold for display type.
+- Nav: full-width bar, transparent over the hero, frosted glass once
+  scrolled, hides on scroll down.
+- Every section answers "why should the reader care" before it shows
+  anything, and shows a real thing: the portrait, book covers, the patent's
+  front page, the talk recording, the tools inside device frames.
 
 ## Never
 
@@ -24,6 +26,7 @@ back there.
 - Arrows appended to link text.
 - Count-up stats on page load, or fade-in on every section.
 - Em-dashes in copy, "not X, it's Y" sentences, slogans.
+- Extra accent colours, glows or gradient washes.
 
 ## The set pieces
 
