@@ -51,10 +51,11 @@ const v = href => href.startsWith("/")
   : href;
 
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
-const plain = s => String(s)
-  .replace(/&rsquo;|&lsquo;/g, "’").replace(/&ldquo;|&rdquo;/g, '"').replace(/&amp;/g, "&")
-  .replace(/&lt;/g, "<").replace(/&hellip;/g, "…").replace(/&nbsp;/g, " ").replace(/&times;/g, "×")
-  .replace(/&[a-z]+;/g, "");
+/* Decode the handful of entities the page sources use, in one pass so an
+   already-decoded "&" is never decoded twice. Unknown entities are dropped. */
+const ENTITIES = { "&rsquo;": "\u2019", "&lsquo;": "\u2018", "&ldquo;": "\u201c", "&rdquo;": "\u201d",
+  "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&hellip;": "\u2026", "&nbsp;": " ", "&times;": "\u00d7" };
+const plain = s => String(s).replace(/&[a-z]+;/gi, e => ENTITIES[e.toLowerCase()] ?? "");
 
 /* ---------- Structured data ---------- */
 
@@ -283,14 +284,30 @@ ${body.trim()}
 `;
 }
 
-/* Readable text of a page body, for llms-full.txt. */
+/* Readable text of a page body, for llms-full.txt. A small scanner rather
+   than regexes, so tags are always removed completely and script/style
+   content never leaks into the text. Inputs are this repo's own sources. */
+const BLOCK = new Set(["p", "div", "dt", "dd", "figcaption", "pre", "section", "article", "ul", "ol", "br", "blockquote", "figure"]);
 function toText(body) {
-  return plain(body
-    .replace(/<script[\s\S]*?<\/script>/g, "")
-    .replace(/<(h[1-3])[^>]*>/g, "\n\n## ").replace(/<\/h[1-3]>/g, "\n")
-    .replace(/<li[^>]*>/g, "\n- ").replace(/<(p|div|dt|dd|figcaption|pre|section)[^>]*>/g, "\n")
-    .replace(/<br\s*\/?>/g, "\n").replace(/<[^>]+>/g, ""))
-    .replace(/[ \t]+/g, " ").replace(/\n /g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+  let out = "", i = 0;
+  const lower = body.toLowerCase();
+  while (i < body.length) {
+    if (body[i] !== "<") { out += body[i++]; continue; }
+    const end = body.indexOf(">", i);
+    if (end === -1) break;
+    const tag = lower.slice(i + 1, end).trim();
+    const name = tag.replace(/^\//, "").split(/[\s/]/)[0];
+    if (!tag.startsWith("/") && (name === "script" || name === "style")) {
+      const close = lower.indexOf("</" + name, end);
+      i = close === -1 ? body.length : lower.indexOf(">", close) + 1 || body.length;
+      continue;
+    }
+    if (/^h[1-3]$/.test(name)) out += tag.startsWith("/") ? "\n" : "\n\n## ";
+    else if (name === "li" && !tag.startsWith("/")) out += "\n- ";
+    else if (BLOCK.has(name)) out += "\n";
+    i = end + 1;
+  }
+  return plain(out).replace(/[ \t]+/g, " ").replace(/\n /g, "\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
 const sources = globSync("src/pages/**/*.html", { cwd: ROOT }).sort();

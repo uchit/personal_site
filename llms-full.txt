@@ -22,16 +22,19 @@ Score your AI in two minutes
 ## Your AI pilot works. Production keeps slipping.
 
 Three programmes in regulated companies that went live, with the numbers.
+
 See the work
 
 ## Risk has to sign off an AI agent.
 
 The ten controls to check, and the evidence to ask for.
+
 The ten controls
 
 ## Your event needs a speaker on AI in production.
 
 More than 30 talks, five books and an AI patent.
+
 Talks
 
 ## Work that went live.
@@ -39,16 +42,19 @@ Talks
 $50M+
 
 Saved every year after one archival platform replaced the separate setups of 1,000+ applications at a tier-1 bank in Australia and New Zealand.
+
 Read the case study
 
 <5min
 
 From loan application to money paid out on a lending platform for a leading Asian bank. Live in six months with 200+ engineers.
+
 Read the case study
 
 0
 
 Messages read by a parental safety app I designed and built alone. The phone’s sandbox makes reading them impossible.
+
 Read the case study
 
 ## Early, three times.
@@ -116,7 +122,7 @@ US 11,334,348 B2: using machine learning to find and fix differences between API
 
 The lending platform
 
-"If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way."
+“If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
 
 Phil JacklinCEO, Thankyou Payroll. Client, 2025.
 
@@ -154,6 +160,7 @@ All recorded talks
 ## Let’s talk.
 
 About AI in the enterprise, platform work, or speaking at your event.
+
 contact@hellouchit.com
 
 LinkedIn
@@ -248,15 +255,15 @@ Organising an event? Email contact@hellouchit.com.
 
 From public LinkedIn recommendations. Read all 15.
 
-"What do you do when you have a project that doesn’t have any requirements, has a business owner that has too much to do and not enough time to focus, wants to use technology that has never been used at the company before, has an unrealistic deadline, not enough money, but a vision that is so grand and unifying that you feel compelled to deliver as best you can? Call Uchit! … If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way."
+“What do you do when you have a project that doesn’t have any requirements, has a business owner that has too much to do and not enough time to focus, wants to use technology that has never been used at the company before, has an unrealistic deadline, not enough money, but a vision that is so grand and unifying that you feel compelled to deliver as best you can? Call Uchit! … If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
 
 Phil JacklinCEO, Thankyou Payroll. Client, August 2025.
 
-"When I think of Uchit, I think of a techno-business man. Few technical people understand the meaning of words like ’delivering value’ and ’business growth’. Uchit is one of those rare people who can balance technology with a business goal."
+“When I think of Uchit, I think of a techno-business man. Few technical people understand the meaning of words like ‘delivering value’ and ‘business growth’. Uchit is one of those rare people who can balance technology with a business goal.”
 
 Sanju BurkuleManaged Uchit directly. February 2021.
 
-"Uchit brought a lot of Cloud, and specifically DevOps, DevSecOps and Agile knowledge with him to the table … I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations."
+“Uchit brought a lot of Cloud, and specifically DevOps, DevSecOps and Agile knowledge with him to the table … I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.”
 
 Subhasish GhoshSenior technical program manager, Azure OpenAI Service, Microsoft. February 2021.
 
@@ -318,9 +325,11 @@ aws sts get-caller-identity --query Arn --output text
 You should see: An assumed-role ARN for the agent itself: not a human’s, and not one shared with other agents.
 
 Build first
+
 Nothing. You can start today.
 
 Maps to
+
 EU AI Act, ISO/IEC 42001, APRA CPS 234, NIST SP 800-53, ASD Essential 8
 
 2
@@ -340,9 +349,11 @@ What an auditor will ask for
 A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review: a config diff with an approver, not a deploy.
 
 Build first
+
 Nothing. You can start today.
 
 Maps to
+
 EU AI Act, ISO/IEC 42001, NIST AI RMF, AU AI Safety Std, APRA CPS 230
 
 3
@@ -363,14 +374,16 @@ A single run exported end to end: assembled context, retrieved document IDs, eac
 
 Check it yourself (read-only, OpenTelemetry)
 
-curl -s '<otlp-query/api/traces?service=<agent&limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'
+curl -s '<otlp-query>/api/traces?service=<agent>&limit=1' | jq '[.data[0].spans[] | select(.operationName|test("tool"))] | length'
 
 You should see: A span per tool call. If the count is zero the trajectory is reconstructed from logs, not recorded.
 
 Build first
+
 Nothing. You can start today.
 
 Maps to
+
 EU AI Act, ISO/IEC 42001, NIST AI RMF, APRA CPS 230, HIPAA
 
 4
@@ -390,9 +403,11 @@ What an auditor will ask for
 Red-team results for indirect prompt injection through each retrieval and tool-result path, not only through direct user input. Evidence of structural separation between instruction and retrieved content. Records showing an injected instruction was not acted upon.
 
 Build first
+
 Nothing. You can start today.
 
 Maps to
+
 OWASP LLM Top 10, MITRE ATLAS, EU AI Act, ISO/IEC 42001
 
 5
@@ -412,9 +427,11 @@ What an auditor will ask for
 The tool manifest available to the agent per role, exported from config rather than described. Policy decision logs showing allow and deny with a reason for each tool invocation. A negative test: an agent asked to call a tool outside its scope, and the denial recorded.
 
 Build first
+
 1. Agent runs under its own workload identity
 
 Maps to
+
 EU AI Act, ISO/IEC 42001, NIST AI RMF, OWASP LLM Top 10, NIST SP 800-53
 
 6
@@ -440,9 +457,11 @@ kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace)
 You should see: A quota on the agent’s namespace. No quota means the ceiling is theoretical.
 
 Build first
+
 1. Agent runs under its own workload identity
 
 Maps to
+
 APRA CPS 230, ISO/IEC 42001, NIST SP 800-53, EU NIS2, SOCI Act 2018+
 
 7
@@ -462,9 +481,11 @@ What an auditor will ask for
 Approval records naming the individual, the proposed action, the reasoning and evidence shown to them, and the decision. Approval-rate statistics over time. Rejection records, which are the proof that oversight is doing work.
 
 Build first
+
 2. Declared autonomy level per action class
 
 Maps to
+
 EU AI Act, NIST AI RMF, AU AI Safety Std, FDA SaMD, EU GDPR
 
 8
@@ -484,9 +505,11 @@ What an auditor will ask for
 An inventory of agent-invokable actions classified reversible or not, with the mechanism named for each. For irreversible ones, either an approval gate or a documented acceptance. A test showing an action withdrawn inside the window.
 
 Build first
+
 2. Declared autonomy level per action class
 
 Maps to
+
 APRA CPS 230, ISO/IEC 42001, EU AI Act, EU DORA
 
 9
@@ -506,9 +529,11 @@ What an auditor will ask for
 For a given final output, the full upstream chain of agent runs that contributed to it, retrieved sources included. A demonstration that a corrected upstream input marks downstream outputs stale.
 
 Build first
+
 3. Full replayable trajectory
 
 Maps to
+
 EU AI Act, ISO/IEC 42001, NIST AI RMF, BCBS 239
 
 10
@@ -528,9 +553,11 @@ What an auditor will ask for
 Cost per resolved task by agent and feature over time, alongside the failed-run cost. Evidence that spend is attributable to a product decision rather than to a shared pool.
 
 Build first
+
 3. Full replayable trajectory, Per-service / per-tenant cost attribution
 
 Maps to
+
 APRA CPS 230, ISO/IEC 42001
 
 Free to reuse under CC BY 4.0. These are my own views, not my employer’s, and they are not legal advice. Spotted something wrong? Email contact@hellouchit.com.
@@ -556,6 +583,7 @@ Tier-1 bank in Australia and New Zealand, 2024
 ## One archival platform for 1,000+ applications
 
 Data that had to be kept for years was keeping old systems alive. One AWS platform took it over, and the old systems could be switched off.
+
 Read the case study
 
 <5 min
@@ -567,6 +595,7 @@ Leading Asian bank, 2021 to 2022
 ## Loans paid out in under five minutes
 
 A new lending platform, live in six months with 200+ engineers across 50+ regulated AWS environments, and no critical incidents at launch.
+
 Read the case study
 
 0
@@ -582,6 +611,7 @@ My own product, 2026
 ## A safety app that can’t read messages
 
 Tells parents how long their teenager spends in AI companion apps. Privacy is enforced by the phone’s sandbox and the extension’s permissions, not by a policy. Built solo.
+
 Read the case study
 
 ## Four more, in brief.
@@ -625,24 +655,31 @@ Work
 Parents want to know how long their teenager spends in AI companion apps. Every existing product answers that by reading the chats. I built one that can’t.
 
 Type
+
 My own product
 
 Year
+
 2026
 
 My role
+
 Everything: design, code, billing, App Store
 
 Runs on
+
 iOS, browser extension, web
 
 0
+
 Messages stored, sent or readable. Anyone can check this in the extension’s permissions.
 
 1day
+
 The finest detail it keeps: which kind of app, for how long, on which day.
 
 1person
+
 Built it, from schema to subscriptions to App Store review.
 
 This is what happens on the phone.
@@ -674,9 +711,9 @@ Parents mostly want to know two things: how much, and is it going up. Monitoring
 
 The browser extension only sees the website’s address. It maps the address to a category of app and throws the rest away. It has no permission to read pages on any monitored site, and anyone can confirm that from its manifest in a few seconds.
 
-On iPhone, Apple’s sandbox does the enforcing. Usage data comes from Apple’s Screen Time framework, which runs in a sandbox with no network access. The app never sees exact sessions. What leaves the phone is only "this child crossed this many minutes at this time".
+On iPhone, Apple’s sandbox does the enforcing. Usage data comes from Apple’s Screen Time framework, which runs in a sandbox with no network access. The app never sees exact sessions. What leaves the phone is only “this child crossed this many minutes at this time”.
 
-The data can’t get more detailed later. Everything is stored per child, per day, per kind of app. A future request to "show the actual chats" would need a rebuild, not a settings change.
+The data can’t get more detailed later. Everything is stored per child, per day, per kind of app. A future request to “show the actual chats” would need a rebuild, not a settings change.
 
 The teenager gets their own login. They see exactly what their parent sees and can add notes to a day. Products that skip this get worked around within a week.
 
@@ -689,15 +726,19 @@ I used locked-down database functions instead, so no such key exists anywhere in
 ## Swift, Next.js and Postgres.
 
 iPhone
+
 Swift, Screen Time (DeviceActivity)
 
 Browser
+
 Chrome extension
 
 Web
+
 Next.js
 
 Database
+
 Postgres with row-level security
 
 Next case study
@@ -718,15 +759,19 @@ Work
 A tier-1 bank in Australia and New Zealand kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.
 
 Client
+
 Tier-1 bank in Australia and New Zealand
 
 Year
+
 2024
 
 My role
+
 Solution architect
 
 Platform
+
 AWS, built in-house
 
 1,000+ applications. One archive.
@@ -734,12 +779,15 @@ AWS, built in-house
 1,000 separate archives
 
 $50M+
+
 Saved each year in infrastructure and running costs.
 
 1,000+
+
 Applications assessed and moved onto one platform.
 
 15TB
+
 Of structured and unstructured data under one set of retention rules.
 
 ## Old systems stayed on just to hold their data.
@@ -815,27 +863,35 @@ How data moves from source systems into the archive and back out to the teams wh
 ## Built on AWS.
 
 Processing
+
 AWS Lambda
 
 Orchestration
+
 AWS Step Functions
 
 Data movement
+
 AWS DataSync
 
 Storage
+
 Amazon S3
 
 Metadata and search
+
 MongoDB Atlas
 
 Data lineage
+
 Alation
 
 Infrastructure
+
 Terraform
 
 Classification
+
 Automated metadata analysis
 
 Next case study
@@ -856,24 +912,31 @@ Work
 A leading Asian bank wanted a new lending platform that could approve a loan and pay it out within five minutes, for millions of customers, launched in six months.
 
 Client
+
 Leading Asian bank
 
 Years
+
 2021 to 2022
 
 My role
+
 Delivery lead and technical architect
 
 Team
+
 200+ people in 50+ squads
 
 <5min
+
 From application to money paid out.
 
 6months
+
 To production, on the date agreed at the start.
 
 0
+
 Critical incidents at go-live, across 50+ regulated AWS environments.
 
 ## Five minutes, six months, one regulated bank.
@@ -961,21 +1024,27 @@ How an application moves from the customer’s phone to a payout.
 ## Pega, Go and FIS on AWS.
 
 Workflow and decisions
+
 Pega
 
 Services
+
 Go microservices
 
 Risk
+
 FIS risk engine
 
 Channels
+
 Mobile and web
 
 Cloud
+
 AWS, 50+ environments
 
 Delivery
+
 Containers and CI/CD
 
 Next case study
