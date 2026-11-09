@@ -1,13 +1,13 @@
 <!--page {"out": "case-studies/data-archival.html", "title": "One archival platform for 1,000+ applications", "nav": "work", "ogType": "article",
- "description": "Case study: a single AWS archival platform for a tier-1 Australian bank. 1,000+ applications, a multi-petabyte estate, and more than $50M a year saved."} -->
+ "description": "Case study: a single AWS archival platform for a tier-1 bank in Australia and New Zealand. 1,000+ applications, 15 TB of structured and unstructured data, and more than $50M a year saved."} -->
 
 <section class="page-head">
   <div class="wrap">
     <p class="crumbs"><a href="/case-studies/">Work</a></p>
     <h1 class="h1">One archival platform for 1,000+ applications.</h1>
-    <p class="lede">A tier-1 Australian bank kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.</p>
+    <p class="lede">A tier-1 bank in Australia and New Zealand kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.</p>
     <dl class="facts">
-      <div><dt>Client</dt><dd>Tier-1 Australian bank</dd></div>
+      <div><dt>Client</dt><dd>Tier-1 bank in Australia and New Zealand</dd></div>
       <div><dt>Year</dt><dd>2024</dd></div>
       <div><dt>My role</dt><dd>Solution architect</dd></div>
       <div><dt>Platform</dt><dd>AWS, built in-house</dd></div>
@@ -30,7 +30,7 @@
     <div class="results">
       <div class="result"><div class="fig">$50M<small>+</small></div><p><strong>Saved each year</strong> in infrastructure and running costs.</p></div>
       <div class="result"><div class="fig">1,000<small>+</small></div><p><strong>Applications</strong> assessed and moved onto one platform.</p></div>
-      <div class="result"><div class="fig"><span class="ph">N</span><small>PB</small></div><p><strong>Of data</strong> under one set of retention rules. <span class="ph">Exact size to confirm.</span></p></div>
+      <div class="result"><div class="fig">15<small>TB</small></div><p><strong>Of structured and unstructured data</strong> under one set of retention rules.</p></div>
     </div>
   </div>
 </section>
@@ -49,7 +49,7 @@
       <h2>What made it hard</h2>
       <div class="prose">
         <ul>
-          <li><strong>Scale.</strong> More than 1,000 applications and several petabytes, spread across on-premises systems and several cloud regions.</li>
+          <li><strong>Scale.</strong> More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.</li>
           <li><strong>Mixed data.</strong> Database tables, files, documents and logs all needed the same retention, privacy and audit controls.</li>
           <li><strong>Adoption.</strong> Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn&rsquo;t.</li>
         </ul>
@@ -66,14 +66,49 @@
     </div>
 
     <figure class="figure-wide">
-      <div class="ph-block">Architecture diagram goes here.<br />A photo of a whiteboard sketch is fine; it will be redrawn to match the site.</div>
-      <figcaption>How data moves from source systems into the archive and back out to the teams who need it.</figcaption>
+      <div class="flow" role="img" aria-label="Architecture: source systems on-premises and in other clouds send data through AWS DataSync and Lambda, orchestrated by Step Functions, into Amazon S3 with metadata in MongoDB Atlas and lineage in Alation. Teams retrieve data through a self-service dashboard controlled by Active Directory groups.">
+        <div class="flow-col">
+          <p class="flow-h">Sources</p>
+          <div class="node">On-premises systems</div>
+          <div class="node">Other clouds and regions</div>
+          <div class="node muted">1,000+ applications</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Move and process</p>
+          <div class="node">AWS DataSync</div>
+          <div class="node">AWS Lambda</div>
+          <div class="node accent">Step Functions orchestration</div>
+          <div class="node muted">Automated classification</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Archive</p>
+          <div class="node accent">Amazon S3</div>
+          <div class="node">MongoDB Atlas metadata</div>
+          <div class="node">Alation lineage</div>
+          <div class="node muted">Retention, expiry, purge</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Get it back</p>
+          <div class="node">Self-service retrieval dashboard</div>
+          <div class="node">Access by AD group</div>
+          <div class="node muted">Business and audit users</div>
+        </div>
+      </div>
+      <figcaption>How data moves from source systems into the archive and back out to the teams who need it. Everything is built with Terraform and deployed through CI/CD.</figcaption>
     </figure>
 
     <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
-      <h2>What went wrong</h2>
+      <h2>Decisions that mattered</h2>
       <div class="prose">
-        <p class="ph">One honest paragraph: something that didn&rsquo;t work the first time, and what you changed.</p>
+        <ul>
+          <li><strong>Three months of discovery before any design.</strong> We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.</li>
+          <li><strong>One platform for every data type.</strong> A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.</li>
+          <li><strong>Roll out by data type.</strong> Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.</li>
+          <li><strong>Ship the operating model, not just the platform.</strong> Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.</li>
+        </ul>
       </div>
     </div>
 

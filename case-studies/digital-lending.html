@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Loans paid out in under five minutes | Uchit Vyas</title>
 <meta name="description" content="Case study: a digital lending platform for a leading Asian bank. Approval and payout in under five minutes, live in six months, 200+ engineers, no critical incidents at launch." />
-<meta name="robots" content="noindex" />
 <meta name="theme-color" content="#ffffff" />
 <link rel="canonical" href="https://hellouchit.com/case-studies/digital-lending.html" />
 <meta property="og:type" content="article" />
@@ -20,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap" />
-<link rel="stylesheet" href="/css/main.css?v=f701d424" />
+<link rel="stylesheet" href="/css/main.css?v=6c9b6046" />
 
 <script src="/js/main.js?v=97760709" defer></script>
 <script src="/js/wow.js?v=861369dc" defer></script>
@@ -82,11 +81,11 @@
       <h2 class="h2">Five minutes, start to finish.</h2>
       <div class="clock-track"><div class="clock-fill"></div><span class="clock-limit">5:00</span></div>
       <ol class="clock-steps">
-        <li class="clock-step" data-at=".04">Customer applies in the app</li>
-        <li class="clock-step" data-at=".22">Identity and credit checks</li>
-        <li class="clock-step" data-at=".45">Risk engine decides</li>
+        <li class="clock-step" data-at=".04">Customer applies on mobile or web</li>
+        <li class="clock-step" data-at=".22">Pega runs the workflow</li>
+        <li class="clock-step" data-at=".45">FIS risk engine scores the credit</li>
         <li class="clock-step" data-at=".66">Loan approved</li>
-        <li class="clock-step" data-at=".86">Money in the account</li>
+        <li class="clock-step" data-at=".86">Money paid out</li>
       </ol>
       <p class="clock-result">Paid out inside the limit.</p>
     </div>
@@ -114,14 +113,45 @@
     </div>
 
     <figure class="figure-wide">
-      <div class="ph-block">Platform diagram goes here: channels, Pega, Go services, FIS risk engine, AWS.<br />A rough sketch is fine.</div>
+      <div class="flow" role="img" aria-label="Architecture: mobile and web channels use front-end microservices, which call Pega for workflow and decisions, Go microservices for backend services, and the FIS risk engine for credit and risk, all on AWS across 50 or more regulated environments.">
+        <div class="flow-col">
+          <p class="flow-h">Channels</p>
+          <div class="node">Mobile app</div>
+          <div class="node">Web</div>
+          <div class="node muted">Millions of customers</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Front end</p>
+          <div class="node">Front-end microservices</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Decide</p>
+          <div class="node accent">Pega workflow and decisions</div>
+          <div class="node">FIS risk engine</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Serve</p>
+          <div class="node">Go microservices</div>
+          <div class="node muted">Disbursement</div>
+        </div>
+        <p class="flow-base">AWS, 50+ regulated environments, containers and CI/CD throughout</p>
+      </div>
       <figcaption>How an application moves from the customer&rsquo;s phone to a payout.</figcaption>
     </figure>
 
     <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
-      <h2>What went wrong</h2>
+      <h2>What I learned</h2>
       <div class="prose">
-        <p class="ph">One honest paragraph: what nearly slipped, and what you did about it.</p>
+        <ul>
+          <li><strong>Regulation doesn&rsquo;t have to mean slow.</strong> With the right architecture, automation and governance, a regulated bank moved at startup speed.</li>
+          <li><strong>Past about 150 people, structure is what keeps it working.</strong> Leadership groups and squads stopped the programme turning into chaos.</li>
+          <li><strong>DevOps has to come first.</strong> Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.</li>
+          <li><strong>Plan by skill, not by job title.</strong> Setting each task&rsquo;s timeline by the person doing it made delivery far more predictable.</li>
+          <li><strong>Talk in the client&rsquo;s language.</strong> Local PMO teams made decisions faster and built trust.</li>
+        </ul>
       </div>
     </div>
 

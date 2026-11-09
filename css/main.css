@@ -178,12 +178,14 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; color: inherit; }
 .hero-copy .lede { margin-top: clamp(24px, 3vw, 36px); }
 .portrait {
   margin: 0;
-  background: linear-gradient(180deg, #e9ebee 0%, #dfe2e6 100%);
+  background: #000;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 1000 / 930;
+  aspect-ratio: 1 / 1;
 }
-.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; }
+.portrait.wide { aspect-ratio: 4 / 3; }
+.portrait.wide img { object-position: 60% 40%; }
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
   .portrait { max-width: 520px; }
@@ -572,3 +574,24 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; color: inherit; }
 .stage-pin > .wrap, .silo-pin > .wrap, .redact-pin > .wrap { width: 100%; }
 /* Links inside running text are underlined so they don't rely on colour. */
 p a:not(.btn), .prose a:not(.btn), dd a { text-decoration: underline; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+
+/* Architecture flow diagrams on case studies */
+.flow {
+  display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr);
+  gap: 0 8px; align-items: start;
+  background: var(--night); color: #fff; border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 52px);
+}
+.flow-col { display: grid; gap: 10px; align-content: start; }
+.flow-h { margin: 0 0 4px; font-size: .875rem; font-weight: 700; color: var(--night-2); }
+.flow .node { background: #1a1c1f; border: 1px solid #2c2f34; border-radius: 12px; padding: 12px 14px; font-weight: 600; font-size: .9375rem; line-height: 1.3; }
+.flow .node.accent { background: var(--green); border-color: var(--green); }
+.flow .node.muted { background: transparent; border-style: dashed; color: var(--night-2); font-weight: 500; }
+.flow-arrow { height: 2px; background: #3a3d42; position: relative; margin-top: 56px; }
+.flow-arrow::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left-color: #3a3d42; border-right: 0; }
+.flow-base { grid-column: 1 / -1; margin: 24px 0 0; padding-top: 18px; border-top: 1px solid #2c2f34; color: var(--night-2); font-size: .9375rem; }
+@media (max-width: 860px) {
+  .flow { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .flow-arrow { width: 2px; height: 28px; margin: 8px auto; }
+  .flow-arrow::after { right: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top-color: #3a3d42; border-bottom: 0; }
+}

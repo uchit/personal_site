@@ -1,63 +1,65 @@
-# What I need from you
+# Status and what's left
 
-The new site is built on the `redesign/showcase` branch. These are the gaps
-only you can fill. Pages with a gap show it highlighted in yellow and are
-hidden from search engines until it's filled (that happens automatically).
+The new site is on the `redesign/showcase` branch. All eight pages are complete
+and indexable; nothing is waiting on a placeholder.
 
-Send the answers in any form (a message, a voice note transcript, photos of a
-whiteboard) and they'll be put in the right place.
+## Filled in from your sources (please skim)
 
-## Must have before launch
+- **Photos:** `~/Downloads/Uchit1.jpeg` (homepage) and `Uchit2.jpeg` (About),
+  from the same studio shoot as the old cut-out. `Uchit.jpeg`, the grey
+  headshot with glasses, was not used; say if it's a recent photo of you.
+- **Archival case study:** 15 TB of structured and unstructured data, as you
+  said. Note that your Medium article still says "multi-petabyte data estate"
+  in its first lines; worth correcting there so the two match. The
+  "Decisions that mattered" section and the architecture diagram come from
+  the Medium article's phases and stack.
+- **Lending case study:** "What I learned" is your Medium "Key Learnings",
+  rewritten plainly. The diagram is drawn from the stack the article lists;
+  the arrows (channels, front end, Pega and FIS, Go services) are my reading of
+  how they connect. Correct it if the real flow differs, and the same for the
+  five steps in the five-minute animation.
+- **Medium images not used:** both case study images on Medium are
+  AI-generated illustrations (one has a robot hand). Using them would bring
+  back the "AI-made" look, so the site has drawn diagrams instead. The real
+  ingestion diagrams in `~/Downloads` (`Data_Ingestion_*.jpg`,
+  `Structured_Data + Alation.jpg`) look like internal client documents, so
+  they were not used either.
+- **About text:** written from your LinkedIn and CV: languages, lifting and
+  writing about training after 35, building your own products. Change any
+  line that doesn't sound like you.
+- **Positioning:** "Lead forward deployed engineer for AI-led enterprise
+  transformation". The hero, About, "What I do", meta descriptions and
+  `llms.txt` all now say this, not banking only.
+- **Bank wording:** "tier-1 bank in Australia and New Zealand", matching your
+  Medium article's "Biggest Tier-1 Bank in ANZ" without naming the bank.
 
-### 1. A new photo
-The current portrait is a cut-out with rough edges around the hair, which
-shows on phones. The photo carries an Apple-style site more than anything
-else. Best: a proper photo on a plain light-grey background, shoulders up, at
-least 2000px wide. A second photo of you on stage or at a whiteboard would make
-the About page.
+## Still open (none block launch)
 
-### 2. Data archival case study (`/case-studies/data-archival.html`)
-- [ ] **Total data size in petabytes.** The third big number currently shows "N PB".
-- [ ] **Architecture diagram.** A whiteboard photo is fine; it will be redrawn.
-- [ ] **What went wrong.** One honest paragraph: something that didn't work the first time, and what you changed.
-- [ ] Confirm $50M+ a year saved and 1,000+ applications can be stated publicly.
-
-### 3. Digital lending case study (`/case-studies/digital-lending.html`)
-- [ ] **Platform diagram:** channels, Pega, Go services, FIS risk engine, AWS.
-- [ ] **What went wrong.** What nearly slipped, and what you did.
-- [ ] **Check the five steps** in the five-minute animation. They're my reading of the old write-up: customer applies, identity and credit checks, risk engine decides, approved, money in the account. Correct them if the real flow differs.
-- [ ] Confirm "under 5 minutes", "6 months", "200+ people", "50+ AWS environments" and "zero critical incidents" can be stated publicly.
-
-### 4. Safety app case study (`/case-studies/ai-companion-safety.html`)
-- [ ] **Two screenshots:** the parent's dashboard and the teenager's view.
-- [ ] Is the product public? If it has a name or App Store link, it should be on the page. Right now it's anonymous.
-- [ ] The chat in the animation is invented example text, labelled as such. Swap it if you'd prefer different wording.
-
-### 5. About page (`/about/`)
-- [ ] **Two or three sentences in your own words:** what you enjoy about the work, or something about you outside work. This is the single most important line for not sounding generated. Please write it yourself.
-- [ ] **Naming Accenture.** Both the About career list and the homepage "Where I've worked" strip name Accenture as your current employer (it's already in the public LinkedIn PDF). Remove it from both if you'd rather not.
-- [ ] **The five-city line** (Ahmedabad, Bangalore, Pune, Singapore, Melbourne) leaves out Thailand and Indonesia. Say if you want them in.
-
-## Please check
-
-- [ ] **Social preview and icons.** `images/og-banner.jpg` (the card LinkedIn and Slack show) has been regenerated from the new homepage, and `images/favicon.svg` is a new plain black "UV". The older `favicon.ico` and `favicon-192/512.png` still carry the old copper design; replace them with exports of the new SVG. Re-do the preview image once you have the new photo.
-- [ ] **"Australian" vs "ANZ".** The archival case study says "tier-1 Australian bank". The old site said "Tier-1 ANZ bank", meaning Australia and New Zealand, but it could be read as the bank called ANZ. Confirm which wording is safe.
-- [ ] **Homepage claim:** "Building agents for banks now" (in the "Early, three times" section). True as written?
-- [ ] **Homepage hero:** "Now I build AI agents that pass a bank's audit, and I still write the code." This is the positioning line. Change any word that isn't how you'd say it.
-- [ ] **Talks:** the Config Management Camp 2016 slides link points to a deck called "scaling-under-pressure". It was like that on the old site. Correct if wrong.
-- [ ] **Top 50 DevSecOps listing:** deliberately left off the new site. The research found these lists are mostly vendor marketing. Add it back to About if you know who compiled it and it's credible.
-- [ ] **Ten controls text** lives in `dataset/dataset.json` (the "notes" and "evidence" fields). It's good material, but it still has some of the old voice (em-dashes, a few slogans). Worth a pass in your own words when you have time.
-- [ ] **Readiness check questions** in `js/pages/tools-agent-readiness.js` have the same issue.
+- [ ] **Safety app screenshots.** The screenshot slot was removed so the page
+  is complete. If you have screenshots, or the product has a public name or
+  App Store link, they can go back in.
+- [ ] **Naming Accenture.** The homepage "Where I've worked" strip and the
+  About career list both name Accenture as your current employer. Remove it
+  from both if you'd rather not.
+- [ ] **Favicon PNG/ICO.** `favicon.svg` is new; `favicon.ico` and
+  `favicon-192/512.png` still carry the old copper design.
+- [ ] **Talks:** the Config Management Camp 2016 slides link points to a deck
+  named "scaling-under-pressure" (it was like that on the old site).
+- [ ] **Top 50 DevSecOps listing:** deliberately left off. Add it back to About
+  if you know who compiled it and it's credible.
+- [ ] **Ten controls text** in `dataset/dataset.json` and the readiness check
+  questions in `js/pages/tools-agent-readiness.js` still carry some of the old
+  voice (em-dashes, a few slogans). Worth a pass in your own words.
+- [ ] **RSS:** `/writing/feed.xml` is gone; feed readers can't follow a page
+  redirect, so anyone subscribed will see it stop.
 
 ## What was removed
 
 About 80 pages: six diagnostics, three calculators, seven decision trees,
 playbooks, maturity tiers, reference architectures, teardowns, sector pages,
 the dataset views, the glossary, the benchmark, "State of 2026", Ask, search,
-and all eight essays. Every old URL redirects to the nearest live page, so no
-link breaks. The one exception is the RSS feed (`/writing/feed.xml`): feed
-readers can't follow a page redirect, so anyone subscribed will see it stop. Everything is still in git history on `main`, so any essay you
-wrote yourself can come back as a single page.
+and all eight essays. Every old URL redirects to the nearest live page.
+Everything is still in git history on `main`.
 
 ## How to preview
 
