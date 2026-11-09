@@ -533,7 +533,7 @@ Selected work by Uchit Vyas: bank archival, digital lending, payments, enterpris
 
 ## Three programmes that went live.
 
-If your programme is stuck between pilot and production, start here. Each one shows how a hard programme in a regulated company got over the line: the numbers, the architecture and what was hard. Client names are left out.
+Regulated companies, real numbers. Client names left out.
 
 $50M+
 
@@ -542,8 +542,6 @@ saved every year by switching off old systems
 Tier-1 bank in Australia and New Zealand, 2024
 
 ## One archival platform for 1,000+ applications
-
-Data that had to be kept for years was keeping old systems alive. One AWS platform took it over, and the old systems could be switched off.
 
 Read the case study
 
@@ -554,8 +552,6 @@ from application to payout
 Leading Asian bank, 2021 to 2022
 
 ## Loans paid out in under five minutes
-
-A new lending platform, live in six months with 200+ engineers across 50+ regulated AWS environments, and no critical incidents at launch.
 
 Read the case study
 
@@ -571,35 +567,33 @@ My own product, 2026
 
 ## A safety app that can’t read messages
 
-Tells parents how long their teenager spends in AI companion apps. Privacy is enforced by the phone’s sandbox and the extension’s permissions, not by a policy. Built solo.
-
 Read the case study
 
 ## Four more, in brief.
 
-2021
+3months
 
-## Multi-region payments in three months
+## Multi-region payments on Google Cloud
 
-A bank’s merchant payment platform on Google Cloud, launched across regions in three months by a fully remote team, on top of an undocumented legacy system. I was delivery lead and solution architect.
+A bank’s merchant platform, fully remote team, 2021.
 
-2020
+3040%
 
-## Architecture governance at a tier-1 Asian bank
+## Fewer duplicated initiatives
 
-A bank with 1,000+ applications and no architecture forum. In six months we set up a governance council, standard CI/CD and coding templates, and a single view of every project. Duplicated initiatives fell by 30 to 40%.
+Architecture governance at a tier-1 Asian bank, 2020.
 
-2022 to 2023
+5years
 
-## A five-year plan for a global retailer’s platform
+## Roadmap for a global retailer’s platform
 
-A custom-built order, warehouse and sales-channel platform where most engineering time went on maintenance. I assessed it, compared building against buying, and wrote a five-year roadmap.
+Build against buy, then the plan, 2022 to 2023.
 
-2026
+10,561
 
-## 10,561 exam questions on agentic AI
+## Exam questions on agentic AI
 
-The blueprint, content pipeline and platform for a professional assessment on building AI agents, across five weighted domains. Every question needs one right answer and three wrong answers a competent engineer might pick.
+Blueprint, content pipeline and platform, 2026.
 
 ---
 
@@ -613,7 +607,7 @@ Work
 
 ## A safety app that can’t read messages.
 
-Parents want to know how long their teenager spends in AI companion apps. Every existing product answers that by reading the chats. I built one that can’t.
+Screen time for AI companion apps, without reading a single chat.
 
 Type
 
@@ -633,15 +627,15 @@ iOS, browser extension, web
 
 0
 
-Messages stored, sent or readable. Anyone can check this in the extension’s permissions.
+Messages stored, sent or readable
 
 1day
 
-The finest detail it keeps: which kind of app, for how long, on which day.
+The finest detail kept
 
 1person
 
-Built it, from schema to subscriptions to App Store review.
+Built it, schema to App Store
 
 This is what happens on the phone.
 
@@ -661,6 +655,46 @@ category AI companion
 minutes 47
 
 Example data. No message text, no app name, no session times. The finest detail kept is one day.
+
+## The problem
+
+Every monitoring app reads the chats.
+
+## The move
+
+Make reading impossible, and let the platform enforce it.
+
+## The result
+
+Parents see minutes per day. Nothing else leaves the phone.
+
+- 1The browser extension sees only the address
+
+- 2Apple’s sandbox enforces it on iPhone
+
+- 3Daily totals only, so it can’t get more detailed later
+
+- 4The teenager sees exactly what the parent sees
+
+## Swift, Next.js and Postgres.
+
+iPhone
+
+Swift, Screen Time (DeviceActivity)
+
+Browser
+
+Chrome extension
+
+Web
+
+Next.js
+
+Database
+
+Postgres with row-level security
+
+The full story
 
 ## Every monitoring app reads the chats.
 
@@ -684,24 +718,6 @@ The teenager’s login could have been built in a day with the database’s admi
 
 I used locked-down database functions instead, so no such key exists anywhere in the code. The trade-off is written down too: a family code and PIN is not strong proof of identity. Eight wrong attempts lock the code for fifteen minutes, which is what makes it safe enough.
 
-## Swift, Next.js and Postgres.
-
-iPhone
-
-Swift, Screen Time (DeviceActivity)
-
-Browser
-
-Chrome extension
-
-Web
-
-Next.js
-
-Database
-
-Postgres with row-level security
-
 Next case study
 One archival platform for 1,000+ applications
 
@@ -717,7 +733,7 @@ Work
 
 ## One archival platform for 1,000+ applications.
 
-A tier-1 bank in Australia and New Zealand kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.
+One place to keep a bank’s records, so its old systems could be switched off.
 
 Client
 
@@ -741,37 +757,37 @@ AWS, built in-house
 
 $50M+
 
-Saved each year in infrastructure and running costs.
+Saved each year
 
 1,000+
 
-Applications assessed and moved onto one platform.
+Applications onto one platform
 
 15TB
 
-Of structured and unstructured data under one set of retention rules.
+Of data, one set of retention rules
 
-## Old systems stayed on just to hold their data.
+## The problem
 
-The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.
+Old systems stayed on only to hold their data.
 
-Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.
+## The move
 
-## 1,000+ applications and every kind of data.
+One AWS platform for every data type, run by the bank.
 
-- Scale. More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.
+## The result
 
-- Mixed data. Database tables, files, documents and logs all needed the same retention, privacy and audit controls.
+Teams switch old systems off and keep the records.
 
-- Adoption. Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn’t.
+- 3 monthsDiscovery of all 1,000+ apps
 
-## One AWS platform, rolled out by data type.
+- StructuredPhase 1
 
-We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.
+- Semi-structuredPhase 2
 
-We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.
+- UnstructuredPhase 3
 
-The bank’s own team runs it. We handed over full design documents, runbooks and review processes.
+Rolled out by type of data, easiest first, so the team learned on the simpler phase.
 
 Sources
 
@@ -811,16 +827,6 @@ Business and audit users
 
 How data moves from source systems into the archive and back out to the teams who need it. Everything is built with Terraform and deployed through CI/CD.
 
-## Four decisions that made it work.
-
-- Three months of discovery before any design. We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.
-
-- One platform for every data type. A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.
-
-- Roll out by data type. Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.
-
-- Ship the operating model, not just the platform. Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.
-
 ## Built on AWS.
 
 Processing
@@ -855,6 +861,40 @@ Classification
 
 Automated metadata analysis
 
+The full story
+
+## Old systems stayed on just to hold their data.
+
+The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.
+
+Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.
+
+## 1,000+ applications and every kind of data.
+
+- Scale. More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.
+
+- Mixed data. Database tables, files, documents and logs all needed the same retention, privacy and audit controls.
+
+- Adoption. Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn’t.
+
+## One AWS platform, rolled out by data type.
+
+We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.
+
+We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.
+
+The bank’s own team runs it. We handed over full design documents, runbooks and review processes.
+
+## Four decisions that made it work.
+
+- Three months of discovery before any design. We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.
+
+- One platform for every data type. A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.
+
+- Roll out by data type. Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.
+
+- Ship the operating model, not just the platform. Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.
+
 Next case study
 Loans paid out in under five minutes
 
@@ -870,7 +910,7 @@ Work
 
 ## Loans paid out in under five minutes.
 
-A leading Asian bank wanted a new lending platform that could approve a loan and pay it out within five minutes, for millions of customers, launched in six months.
+A new lending platform for a leading Asian bank, live in six months.
 
 Client
 
@@ -894,17 +934,23 @@ From application to money paid out.
 
 6months
 
-To production, on the date agreed at the start.
+To production, on the agreed date
 
 0
 
-Critical incidents at go-live, across 50+ regulated AWS environments.
+Critical incidents at go-live
 
-## Five minutes, six months, one regulated bank.
+## The problem
 
-The bank’s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.
+Six months is too short to plan, build and test one after another.
 
-Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.
+## The move
+
+Squads around the platform, all building in parallel.
+
+## The result
+
+Live on the agreed date, loans paid out in minutes.
 
 ## Five minutes, start to finish.
 
@@ -922,25 +968,19 @@ Six months is not enough time to run discovery, design, build and test one after
 
 Paid out inside the limit.
 
-## 200 people, 50 environments, two languages.
+People
 
-- Team size. We had to hire and organise more than 200 people across several skill areas, fast.
+200+
 
-- Environments. More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.
+Squads
 
-- Language. Many of the bank’s stakeholders worked in their own language. Misunderstandings were a real delivery risk.
+50+
 
-- New patterns. Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.
+Environments
 
-## Squads built around the platform.
+50+
 
-Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.
-
-Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task’s timeline by the skills of the person doing it.
-
-The bank’s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders’ own language.
-
-Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.
+Each squad owned one part of the platform.
 
 Channels
 
@@ -970,18 +1010,6 @@ AWS, 50+ regulated environments, containers and CI/CD throughout
 
 How an application moves from the customer’s phone to a payout.
 
-## What I’d tell the next team.
-
-- Regulation doesn’t have to mean slow. With the right architecture, automation and governance, a regulated bank moved at startup speed.
-
-- Past about 150 people, structure is what keeps it working. Leadership groups and squads stopped the programme turning into chaos.
-
-- DevOps has to come first. Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.
-
-- Plan by skill, not by job title. Setting each task’s timeline by the person doing it made delivery far more predictable.
-
-- Talk in the client’s language. Local PMO teams made decisions faster and built trust.
-
 ## Pega, Go and FIS on AWS.
 
 Workflow and decisions
@@ -1007,6 +1035,46 @@ AWS, 50+ environments
 Delivery
 
 Containers and CI/CD
+
+The full story
+
+## Five minutes, six months, one regulated bank.
+
+The bank’s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.
+
+Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.
+
+## 200 people, 50 environments, two languages.
+
+- Team size. We had to hire and organise more than 200 people across several skill areas, fast.
+
+- Environments. More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.
+
+- Language. Many of the bank’s stakeholders worked in their own language. Misunderstandings were a real delivery risk.
+
+- New patterns. Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.
+
+## Squads built around the platform.
+
+Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.
+
+Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task’s timeline by the skills of the person doing it.
+
+The bank’s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders’ own language.
+
+Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.
+
+## What I’d tell the next team.
+
+- Regulation doesn’t have to mean slow. With the right architecture, automation and governance, a regulated bank moved at startup speed.
+
+- Past about 150 people, structure is what keeps it working. Leadership groups and squads stopped the programme turning into chaos.
+
+- DevOps has to come first. Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.
+
+- Plan by skill, not by job title. Setting each task’s timeline by the person doing it made delivery far more predictable.
+
+- Talk in the client’s language. Local PMO teams made decisions faster and built trust.
 
 Next case study
 A safety app that can’t read messages

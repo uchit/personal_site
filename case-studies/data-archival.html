@@ -32,7 +32,7 @@
 <link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/images/favicon-192.png" />
 <link rel="stylesheet" href="/css/main.css?v=66c00a96" />
-<link rel="stylesheet" href="/css/dark.css?v=e99dfb62" />
+<link rel="stylesheet" href="/css/dark.css?v=d42dd48a" />
 
 <script src="/js/main.js?v=0a07f5ed" defer></script>
 <script src="/js/wow.js?v=d187f209" defer></script>
@@ -209,7 +209,7 @@
   <div class="wrap">
     <p class="crumbs"><a href="/case-studies/">Work</a></p>
     <h1 class="h1">One archival platform for 1,000+ applications.</h1>
-    <p class="lede">A tier-1 bank in Australia and New Zealand kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.</p>
+    <p class="lede">One place to keep a bank&rsquo;s records, so its old systems could be switched off.</p>
     <dl class="facts">
       <div><dt>Client</dt><dd>Tier-1 bank in Australia and New Zealand</dd></div>
       <div><dt>Year</dt><dd>2024</dd></div>
@@ -232,42 +232,30 @@
 <section class="section night tight" aria-label="Results">
   <div class="wrap">
     <div class="results">
-      <div class="result"><div class="fig">$50M<sup>+</sup></div><p><strong>Saved each year</strong> in infrastructure and running costs.</p></div>
-      <div class="result"><div class="fig">1,000<sup>+</sup></div><p><strong>Applications</strong> assessed and moved onto one platform.</p></div>
-      <div class="result"><div class="fig">15<small>TB</small></div><p><strong>Of structured and unstructured data</strong> under one set of retention rules.</p></div>
+      <div class="result"><div class="fig">$50M<sup>+</sup></div><p><strong>Saved each year</strong></p></div>
+      <div class="result"><div class="fig">1,000<sup>+</sup></div><p><strong>Applications</strong> onto one platform</p></div>
+      <div class="result"><div class="fig">15<small>TB</small></div><p><strong>Of data</strong>, one set of retention rules</p></div>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="cs-block">
-      <h2>Old systems stayed on just to hold their data.</h2>
-      <div class="prose">
-        <p>The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.</p>
-        <p>Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.</p>
-      </div>
+    <div class="tri">
+      <div><h2>The problem</h2><p>Old systems stayed on only to hold their data.</p></div>
+      <div><h2>The move</h2><p>One AWS platform for every data type, run by the bank.</p></div>
+      <div><h2>The result</h2><p>Teams switch old systems off and keep the records.</p></div>
     </div>
 
-    <div class="cs-block">
-      <h2>1,000+ applications and every kind of data.</h2>
-      <div class="prose">
-        <ul>
-          <li><strong>Scale.</strong> More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.</li>
-          <li><strong>Mixed data.</strong> Database tables, files, documents and logs all needed the same retention, privacy and audit controls.</li>
-          <li><strong>Adoption.</strong> Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn&rsquo;t.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="cs-block">
-      <h2>One AWS platform, rolled out by data type.</h2>
-      <div class="prose">
-        <p>We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.</p>
-        <p>We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.</p>
-        <p>The bank&rsquo;s own team runs it. We handed over full design documents, runbooks and review processes.</p>
-      </div>
-    </div>
+    <figure class="phases" aria-label="Rollout: three months of discovery, then structured, semi-structured and unstructured data">
+      <ol>
+        <li class="lead"><b>3 months</b><span>Discovery of all 1,000+ apps</span></li>
+        <li><b>Structured</b><span>Phase 1</span></li>
+        <li><b>Semi-structured</b><span>Phase 2</span></li>
+        <li><b>Unstructured</b><span>Phase 3</span></li>
+      </ol>
+      <figcaption>Rolled out by type of data, easiest first, so the team learned on the simpler phase.</figcaption>
+    </figure>
 
     <figure class="figure-wide">
       <div class="flow" role="img" aria-label="Architecture: source systems on-premises and in other clouds send data through AWS DataSync and Lambda, orchestrated by Step Functions, into Amazon S3 with metadata in MongoDB Atlas and lineage in Alation. Teams retrieve data through a self-service dashboard controlled by Active Directory groups.">
@@ -304,18 +292,6 @@
       <figcaption>How data moves from source systems into the archive and back out to the teams who need it. Everything is built with Terraform and deployed through CI/CD.</figcaption>
     </figure>
 
-    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
-      <h2>Four decisions that made it work.</h2>
-      <div class="prose">
-        <ul>
-          <li><strong>Three months of discovery before any design.</strong> We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.</li>
-          <li><strong>One platform for every data type.</strong> A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.</li>
-          <li><strong>Roll out by data type.</strong> Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.</li>
-          <li><strong>Ship the operating model, not just the platform.</strong> Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.</li>
-        </ul>
-      </div>
-    </div>
-
     <div class="cs-block">
       <h2>Built on AWS.</h2>
       <dl class="stack">
@@ -329,6 +305,50 @@
         <div><dt>Classification</dt><dd>Automated metadata analysis</dd></div>
       </dl>
     </div>
+
+    <details class="story">
+      <summary>The full story</summary>
+    <div class="cs-block">
+      <h2>Old systems stayed on just to hold their data.</h2>
+      <div class="prose">
+        <p>The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.</p>
+        <p>Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.</p>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>1,000+ applications and every kind of data.</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Scale.</strong> More than 1,000 applications and 15 TB of data, spread across on-premises systems, other clouds and other regions.</li>
+          <li><strong>Mixed data.</strong> Database tables, files, documents and logs all needed the same retention, privacy and audit controls.</li>
+          <li><strong>Adoption.</strong> Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn&rsquo;t.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>One AWS platform, rolled out by data type.</h2>
+      <div class="prose">
+        <p>We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.</p>
+        <p>We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.</p>
+        <p>The bank&rsquo;s own team runs it. We handed over full design documents, runbooks and review processes.</p>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>Four decisions that made it work.</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Three months of discovery before any design.</strong> We looked at data volumes, formats, retention rules and regulatory limits for every application, then built decision trees to choose between cloud services, an enterprise product and a custom build.</li>
+          <li><strong>One platform for every data type.</strong> A single application often holds tables, files and documents. Handling all of them in one place meant an application could be switched off in one go.</li>
+          <li><strong>Roll out by data type.</strong> Structured data first, then semi-structured and unstructured. Each phase was harder than the last, and the team learned on the easier one.</li>
+          <li><strong>Ship the operating model, not just the platform.</strong> Onboarding guides, runbooks, security documentation and review processes, so new applications could join without us.</li>
+        </ul>
+      </div>
+    </div>
+
+    </details>
   </div>
 </section>
 

@@ -19,7 +19,7 @@
   <div class="wrap">
     <p class="crumbs"><a href="/case-studies/">Work</a></p>
     <h1 class="h1">A safety app that can&rsquo;t read messages.</h1>
-    <p class="lede">Parents want to know how long their teenager spends in AI companion apps. Every existing product answers that by reading the chats. I built one that can&rsquo;t.</p>
+    <p class="lede">Screen time for AI companion apps, without reading a single chat.</p>
     <dl class="facts">
       <div><dt>Type</dt><dd>My own product</dd></div>
       <div><dt>Year</dt><dd>2026</dd></div>
@@ -32,9 +32,9 @@
 <section class="section night tight" aria-label="Results">
   <div class="wrap">
     <div class="results">
-      <div class="result"><div class="fig">0</div><p><strong>Messages stored, sent or readable.</strong> Anyone can check this in the extension&rsquo;s permissions.</p></div>
-      <div class="result"><div class="fig">1<small>day</small></div><p><strong>The finest detail it keeps:</strong> which kind of app, for how long, on which day.</p></div>
-      <div class="result"><div class="fig">1<small>person</small></div><p><strong>Built it</strong>, from schema to subscriptions to App Store review.</p></div>
+      <div class="result"><div class="fig">0</div><p><strong>Messages stored, sent or readable</strong></p></div>
+      <div class="result"><div class="fig">1<small>day</small></div><p><strong>The finest detail kept</strong></p></div>
+      <div class="result"><div class="fig">1<small>person</small></div><p><strong>Built it</strong>, schema to App Store</p></div>
     </div>
   </div>
 </section>
@@ -67,6 +67,31 @@
 
 <section class="section">
   <div class="wrap">
+    <div class="tri">
+      <div><h2>The problem</h2><p>Every monitoring app reads the chats.</p></div>
+      <div><h2>The move</h2><p>Make reading impossible, and let the platform enforce it.</p></div>
+      <div><h2>The result</h2><p>Parents see minutes per day. Nothing else leaves the phone.</p></div>
+    </div>
+
+    <ol class="locks" aria-label="Four choices that make reading impossible">
+      <li><b>1</b><span>The browser extension sees only the address</span></li>
+      <li><b>2</b><span>Apple&rsquo;s sandbox enforces it on iPhone</span></li>
+      <li><b>3</b><span>Daily totals only, so it can&rsquo;t get more detailed later</span></li>
+      <li><b>4</b><span>The teenager sees exactly what the parent sees</span></li>
+    </ol>
+
+    <div class="cs-block">
+      <h2>Swift, Next.js and Postgres.</h2>
+      <dl class="stack">
+        <div><dt>iPhone</dt><dd>Swift, Screen Time (DeviceActivity)</dd></div>
+        <div><dt>Browser</dt><dd>Chrome extension</dd></div>
+        <div><dt>Web</dt><dd>Next.js</dd></div>
+        <div><dt>Database</dt><dd>Postgres with row-level security</dd></div>
+      </dl>
+    </div>
+
+    <details class="story">
+      <summary>The full story</summary>
     <div class="cs-block">
       <h2>Every monitoring app reads the chats.</h2>
       <div class="prose">
@@ -93,15 +118,7 @@
       </div>
     </div>
 
-    <div class="cs-block">
-      <h2>Swift, Next.js and Postgres.</h2>
-      <dl class="stack">
-        <div><dt>iPhone</dt><dd>Swift, Screen Time (DeviceActivity)</dd></div>
-        <div><dt>Browser</dt><dd>Chrome extension</dd></div>
-        <div><dt>Web</dt><dd>Next.js</dd></div>
-        <div><dt>Database</dt><dd>Postgres with row-level security</dd></div>
-      </dl>
-    </div>
+    </details>
   </div>
 </section>
 
