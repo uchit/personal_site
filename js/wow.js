@@ -68,10 +68,12 @@
     var ctx = canvas.getContext("2d");
     var before = stage.querySelector(".silo-before");
     var after = stage.querySelector(".silo-after");
+    var count = stage.querySelector(".silo-count b");
+    var countLabel = stage.querySelector(".silo-count span");
     var N = 1000, COLS = 50, ROWS = 20;
     var seed = 7;
     var rand = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
-    var tints = ["#5d6168", "#7a7f87", "#9aa0a8", "#4b4f55", "#b3b8bf", "#686d74"];
+    var tints = ["#8e8e93"];
     var pts = [];
     for (var k = 0; k < N; k++) pts.push({ x: rand(), y: rand(), c: tints[Math.floor(rand() * tints.length)], d: rand() * .35 });
     var W = 0, H = 0, dpr = 1;
@@ -102,6 +104,11 @@
       ctx.globalAlpha = 1;
       before.style.opacity = String(1 - clamp((p - .25) / .2, 0, 1));
       after.style.opacity = String(clamp((p - .58) / .15, 0, 1));
+      if (count) {
+        var n = Math.max(1, Math.round(1000 - 999 * ease(clamp((p - .12) / .7, 0, 1))));
+        count.textContent = n.toLocaleString("en-AU");
+        countLabel.textContent = n === 1 ? " archive" : " separate archives";
+      }
     }
     if (reduce) { stage.classList.add("is-static"); size(); draw(1); return; }
     stage.classList.add("is-live");

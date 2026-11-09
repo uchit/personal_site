@@ -22,3 +22,6 @@ Thumbs.db
 # Research notes and reports from planning sessions; not part of the site
 research_notes/
 reports/
+
+# Local design-review screenshots
+.review/

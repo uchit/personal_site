@@ -17,10 +17,10 @@
 <link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/images/favicon-192.png" />
 <link rel="stylesheet" href="/css/main.css?v=66c00a96" />
-<link rel="stylesheet" href="/css/dark.css?v=341a1e3f" />
+<link rel="stylesheet" href="/css/dark.css?v=e6622cee" />
 <link rel="stylesheet" href="/css/agents.css?v=99af59b9" />
 <script src="/js/main.js?v=0a07f5ed" defer></script>
-<script src="/js/wow.js?v=a68b0fa7" defer></script>
+<script src="/js/wow.js?v=f2a3b9e0" defer></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
 <script src="/js/analytics.js?v=597a9efb" defer></script>
@@ -88,12 +88,12 @@
     <article class="ctl" id="agent-identity">
       <div class="ctl-num">1</div>
       <div class="ctl-body">
-        <h2>Agent runs under its own workload identity, never a human's or a shared account</h2>
+        <h2>Agent runs under its own workload identity, never a human’s or a shared account</h2>
         <p class="ctl-where">Agent runtime, IAM</p>
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
+            <p>The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>
@@ -103,7 +103,7 @@
           <div class="ctl-verify">
             <p class="ctl-label">Check it yourself (read-only, AWS)</p>
             <pre><code>aws sts get-caller-identity --query Arn --output text</code></pre>
-            <p class="small">You should see: An assumed-role ARN for the agent itself — not a human's, and not one shared with other agents.</p>
+            <p class="small">You should see: An assumed-role ARN for the agent itself: not a human’s, and not one shared with other agents.</p>
           </div>
         <dl class="ctl-meta">
           <div><dt>Build first</dt><dd>Nothing. You can start today.</dd></div>
@@ -120,11 +120,11 @@
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks.</p>
+            <p>Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>
-            <p>A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review — a config diff with an approver, not a deploy.</p>
+            <p>A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review: a config diff with an approver, not a deploy.</p>
           </div>
         </div>
         <dl class="ctl-meta">
@@ -137,7 +137,7 @@
     <article class="ctl" id="agent-trajectory-trace">
       <div class="ctl-num">3</div>
       <div class="ctl-body">
-        <h2>Full replayable trajectory — every tool call, argument, result and the exact context the model saw</h2>
+        <h2>Full replayable trajectory: every tool call, argument, result and the exact context the model saw</h2>
         <p class="ctl-where">Agent runtime, Observability</p>
         <div class="ctl-cols">
           <div>
@@ -186,12 +186,12 @@
     <article class="ctl" id="agent-tool-authz">
       <div class="ctl-num">5</div>
       <div class="ctl-body">
-        <h2>Tool authorisation enforced outside the model — the tool registry is the security boundary</h2>
+        <h2>Tool authorisation enforced outside the model, by the tool registry</h2>
         <p class="ctl-where">Agent runtime, Policy engine</p>
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.</p>
+            <p>An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>
@@ -208,12 +208,12 @@
     <article class="ctl" id="agent-blast-radius">
       <div class="ctl-num">6</div>
       <div class="ctl-body">
-        <h2>Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch</h2>
+        <h2>Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch</h2>
         <p class="ctl-where">Agent runtime, Platform</p>
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters.</p>
+            <p>A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>
@@ -223,7 +223,7 @@
           <div class="ctl-verify">
             <p class="ctl-label">Check it yourself (read-only, Kubernetes)</p>
             <pre><code>kubectl get resourcequota -A -o json | jq -r '.items[] | "\(.metadata.namespace) \(.spec.hard)"'</code></pre>
-            <p class="small">You should see: A quota on the agent's namespace. No quota means the ceiling is theoretical.</p>
+            <p class="small">You should see: A quota on the agent’s namespace. No quota means the ceiling is theoretical.</p>
           </div>
         <dl class="ctl-meta">
           <div><dt>Build first</dt><dd><a href="#agent-identity">1. Agent runs under its own workload identity</a></dd></div>
@@ -279,12 +279,12 @@
     <article class="ctl" id="agent-multi-agent-provenance">
       <div class="ctl-num">9</div>
       <div class="ctl-body">
-        <h2>Provenance across agents — every output traceable to the upstream runs that produced its inputs</h2>
+        <h2>Provenance across agents: every output traceable to the upstream runs that produced its inputs</h2>
         <p class="ctl-where">Agent orchestration</p>
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
+            <p>As soon as one agent consumes another’s output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>
@@ -306,7 +306,7 @@
         <div class="ctl-cols">
           <div>
             <p class="ctl-label">Why it matters</p>
-            <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
+            <p>Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.</p>
           </div>
           <div>
             <p class="ctl-label">What an auditor will ask for</p>

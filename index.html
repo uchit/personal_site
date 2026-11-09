@@ -17,10 +17,10 @@
 <link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/images/favicon-192.png" />
 <link rel="stylesheet" href="/css/main.css?v=66c00a96" />
-<link rel="stylesheet" href="/css/dark.css?v=341a1e3f" />
+<link rel="stylesheet" href="/css/dark.css?v=e6622cee" />
 
 <script src="/js/main.js?v=0a07f5ed" defer></script>
-<script src="/js/wow.js?v=a68b0fa7" defer></script>
+<script src="/js/wow.js?v=f2a3b9e0" defer></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
 <script src="/js/analytics.js?v=597a9efb" defer></script>
@@ -110,7 +110,7 @@
       <h2 class="h2 stage-title" id="results-h">Work that went live.</h2>
       <div class="stage-slides">
         <article class="slide is-on">
-          <div class="mega"><span class="fill-silver">$50M<small>+</small></span></div>
+          <div class="mega"><span class="fill-silver">$50M<sup>+</sup></span></div>
           <p><strong>Saved every year</strong> after one archival platform replaced the separate setups of 1,000+ applications at a tier-1 bank in Australia and New Zealand.</p>
           <a href="/case-studies/data-archival.html">Read the case study</a>
         </article>
@@ -150,11 +150,13 @@
         </div>
       </article>
       <article class="era rise-in">
-        <a class="era-art video" href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" rel="noopener">
-          <img src="/images/talk-hashiconf.jpg" alt="" width="1280" height="720" loading="lazy" />
-          <span class="play" aria-hidden="true"></span>
-          <span class="tag">Watch: HashiConf 2015, Portland</span>
-        </a>
+        <div class="era-art venues" aria-hidden="true">
+          <span>HashiConf</span>
+          <span>TopConf</span>
+          <span>Cloud Expo Asia</span>
+          <span>APIDays</span>
+          <span>DevSecOps Summit</span>
+        </div>
         <div class="era-txt">
           <div class="yr"><span class="fill-silver">2015</span></div>
           <h3>DevSecOps</h3>
@@ -162,13 +164,19 @@
         </div>
       </article>
       <article class="era rise-in">
-        <div class="era-art phone-art" aria-hidden="true">
-          <div class="phone"><img src="/images/shot-question.jpg" alt="" width="416" height="900" loading="lazy" /></div>
+        <div class="era-art controls-art" aria-hidden="true">
+          <ol>
+            <li><b>1</b>Agent runs under its own identity</li>
+            <li><b>2</b>Autonomy declared per action</li>
+            <li><b>3</b>Every tool call replayable</li>
+            <li><b>4</b>Retrieved content is untrusted</li>
+            <li class="more">and six more</li>
+          </ol>
         </div>
         <div class="era-txt">
           <div class="yr"><span class="fill-silver">2026</span></div>
           <h3>AI agents</h3>
-          <p>Ten published controls for running AI agents in regulated companies, with a free check anyone can run.</p>
+          <p>Published ten controls for running AI agents in regulated companies, before most regulators had written rules for agents.</p>
         </div>
       </article>
     </div>
@@ -183,11 +191,16 @@
     <div class="bento">
       <a class="tile w7" href="/agents/">
         <h3>AI in production, signed off by risk.</h3>
-        <p>Each agent gets its own identity, limits on what it can do, a human approval step for anything that matters, and a record of every action.</p>
-        <div class="tile-art laptop rise-in" aria-hidden="true">
-          <div class="screen"><img src="/images/shot-readiness.jpg" alt="" width="1440" height="900" loading="lazy" /></div>
-          <div class="base"></div>
-        </div>
+        <p>Each agent gets its own identity, limits on what it can do, a human approval step for anything that matters, and a record of every action like this one.</p>
+        <pre class="record" aria-label="Example audit record for one agent action"><span class="rk">run</span>        <span class="rv">7f3a&hellip;c21</span>
+<span class="rk">agent</span>      <span class="rv">claims-triage</span>  <span class="rn">own identity</span>
+<span class="rk">tool</span>       <span class="rv">refund.issue</span>
+<span class="rk">amount</span>     <span class="rv">$240.00</span>
+<span class="rk">autonomy</span>   <span class="rv">propose only</span>
+<span class="rk">approver</span>   <span class="rv">j.chen</span>  <span class="rn">human, named</span>
+<span class="rk">decision</span>   <span class="rv">approved 14:02:11</span>
+<span class="rk">replay</span>     <span class="rv">available</span></pre>
+        <p class="small">Example record.</p>
       </a>
       <a class="tile w5 patent-tile" href="https://patents.google.com/patent/US11334348B2/en" rel="noopener">
         <h3>A US patent in machine learning.</h3>
@@ -197,19 +210,13 @@
           <img class="patent-sheet" src="/images/patent-us11334348.jpg" alt="Front page of US patent 11,334,348 B2, inventor Uchit Vyas" width="1100" height="1424" loading="lazy" />
         </picture>
       </a>
-      <a class="tile" href="/case-studies/digital-lending.html">
+      <a class="tile w5" href="/case-studies/digital-lending.html">
         <div class="k"><span class="fill-silver">&lt;5<small> min</small></span></div>
         <h3 style="margin-top:18px">Core platforms, rebuilt on a deadline.</h3>
         <div class="track" aria-hidden="true"><span></span></div>
         <span class="go">The lending platform</span>
       </a>
-      <a class="tile" href="/case-studies/data-archival.html">
-        <div class="k"><span class="fill-silver">1,000<small>+</small></span></div>
-        <h3 style="margin-top:18px">Applications, one data platform.</h3>
-        <div class="dots" aria-hidden="true"></div>
-        <span class="go">The archival platform</span>
-      </a>
-      <figure class="tile quote-tile">
+      <figure class="tile w7 quote-tile">
         <blockquote>&ldquo;If you&rsquo;ve got hard stuff to do, Uchit will get it done. And he&rsquo;ll have a laugh with you along the way.&rdquo;</blockquote>
         <figcaption><b>Phil Jacklin</b>CEO, Thankyou Payroll. Client, 2025.</figcaption>
       </figure>
@@ -256,21 +263,16 @@
 <section class="x-sec" style="padding-top:0" aria-labelledby="talks-h">
   <div class="wrap">
     <div class="x-head">
-      <h2 class="h2" id="talks-h">On stage.</h2>
-      <p class="lede">More than 30 talks in Asia, Europe and the US.</p>
+      <h2 class="h2" id="talks-h">Selected talks.</h2>
+      <p class="lede">More than 30 talks in Asia, Europe and the US. I speak on getting AI into production in regulated companies.</p>
     </div>
-    <div class="talk-feature">
-      <a class="video-card" href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" rel="noopener">
-        <img src="/images/talk-hashiconf.jpg" alt="" width="1280" height="720" loading="lazy" />
-        <span class="play" aria-hidden="true"></span>
-        <span class="tag">Watch: Scaling under pressure, HashiConf 2015</span>
-      </a>
-      <ul class="talks">
-        <li><span class="when">Nov 2016</span><span class="what"><b>Let&rsquo;s democratise deployments</b><span>TopConf, Tallinn</span></span><a class="rec" href="http://bit.ly/2l4m0cw" rel="noopener">Watch</a></li>
-        <li><span class="when">Oct 2017</span><span class="what"><b>The journey to DevSecOps</b><span>Cloud Expo Asia, Singapore</span></span><a class="rec" href="https://www.slideshare.net/slideshow/devsecops-81637091/81637091" rel="noopener">Slides</a></li>
-        <li><span class="when">Apr 2021</span><span class="what"><b>API design collaboration</b><span>APIDays, Singapore</span></span><a class="rec" href="https://cutt.ly/NbTmwrN" rel="noopener">Watch</a></li>
-      </ul>
-    </div>
+    <ul class="talks talks-plain">
+      <li><span class="what"><b>Scaling under pressure</b><span>HashiConf, Portland</span></span><a class="rec" href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" rel="noopener">Watch</a></li>
+      <li><span class="what"><b>Let&rsquo;s democratise deployments</b><span>TopConf, Tallinn</span></span><a class="rec" href="http://bit.ly/2l4m0cw" rel="noopener">Watch</a></li>
+      <li><span class="what"><b>The journey to DevSecOps</b><span>Cloud Expo Asia, Singapore</span></span><a class="rec" href="https://www.slideshare.net/slideshow/devsecops-81637091/81637091" rel="noopener">Slides</a></li>
+      <li><span class="what"><b>API design collaboration</b><span>APIDays, Singapore</span></span><a class="rec" href="https://cutt.ly/NbTmwrN" rel="noopener">Watch</a></li>
+    </ul>
+    <p class="small" style="margin-top:24px"><a href="/about/#talks">All recorded talks</a></p>
   </div>
 </section>
 

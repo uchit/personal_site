@@ -51,6 +51,9 @@
       .replace(/^.*\/([^/]+?)(?:\.html)?\/?$/, "$1");
   }
 
+  // Typographic apostrophes for text shown to the reader.
+  function sq(t) { return String(t == null ? "" : t).replace(/(\w)'(\w)/g, "$1\u2019$2"); }
+
   function routesFor(levelName) {
     const table = window.DIAG_ROUTES;
     if (!table) return null;
@@ -123,7 +126,7 @@
       const i = this.state.i, q = this.cfg.questions[i], n = this.cfg.questions.length;
       $("#qnum").textContent = "Question " + (i + 1) + " of " + n;
       $("#qcap").textContent = q.cap || "";
-      $("#qtext").textContent = q.t;
+      $("#qtext").textContent = sq(q.t);
       $("#qbar").style.width = (i / n * 100) + "%";
       $("#ptxt").textContent = "";
       $("#qback").disabled = i === 0;
@@ -146,7 +149,7 @@
         const b = document.createElement("button");
         b.className = "q-opt"; b.type = "button";
         const lvl = document.createElement("span"); lvl.className = "lvl"; lvl.textContent = "L" + (k + 1);
-        const body = document.createElement("span"); body.className = "body"; body.textContent = text;
+        const body = document.createElement("span"); body.className = "body"; body.textContent = sq(text);
         b.append(lvl, body);
         b.addEventListener("click", () => {
           this.state.answers[i] = k + 1;
@@ -193,13 +196,13 @@
       })($("#rscore"), score);
       $("#rmax").textContent = "/ " + max;
       $("#rlevel").textContent = lvl.name;
-      $("#rbody").innerHTML = lvl.body;
-      $("#rbench").innerHTML = lvl.benchmark || "";
+      $("#rbody").innerHTML = sq(lvl.body);
+      $("#rbench").innerHTML = sq(lvl.benchmark || "");
 
       // Mini recs (above fold)
       const mini = $("#rmini"); mini.replaceChildren();
       lvl.recs.slice(0, 3).forEach(r => {
-        const li = document.createElement("li"); li.textContent = r.what;
+        const li = document.createElement("li"); li.textContent = sq(r.what);
         mini.appendChild(li);
       });
 
@@ -226,7 +229,7 @@
       const rd = $("#rdetail"); rd.replaceChildren();
       lvl.recs.forEach(r => {
         const li = document.createElement("li");
-        const what = document.createElement("div"); what.className = "what"; what.textContent = r.what;
+        const what = document.createElement("div"); what.className = "what"; what.textContent = sq(r.what);
         li.appendChild(what);
         if (r.why) {
           const why = document.createElement("div"); why.className = "why";
@@ -322,7 +325,7 @@
       if (!sec) { lens.innerHTML = ""; return; }
       lens.innerHTML =
         '<div class="lab">' + sec.label + '</div>' +
-        '<p>' + sec.lens + '</p>';
+        '<p>' + sq(sec.lens) + '</p>';
     }
   };
 

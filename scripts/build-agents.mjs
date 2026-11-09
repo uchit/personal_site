@@ -24,6 +24,12 @@ const external = new Map(data.rows.filter(r => !r.id.startsWith("agent-")).map(r
 
 const esc = s => String(s ?? "")
   .replace(/&(?![a-zA-Z#0-9]+;)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+/* Typographic apostrophes in data text: "human's" -> "human’s". */
+const sq = t => String(t ?? "").replace(/(\w)'(\w)/g, "$1\u2019$2");
+for (const r of rows) {
+  r.ctrl = sq(r.ctrl); r.notes = sq(r.notes); r.evidence = sq(r.evidence);
+  (r.verify ?? []).forEach(v => { v.expect = sq(v.expect); });
+}
 const short = r => r.ctrl.split(/[—:,(]/)[0].trim();
 
 /* Dependency waves. */

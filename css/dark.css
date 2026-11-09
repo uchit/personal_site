@@ -87,10 +87,13 @@
 .x-hero .link-strong { color: #f5f5f7; }
 @media (max-width: 760px) {
   .x-hero { display: block; min-height: 0; }
-  .x-hero picture { position: relative; display: block; height: 62svh; }
-  .x-hero img { object-position: 82% 20%; }
-  .x-hero::after { background: linear-gradient(0deg, #000 0%, rgba(0,0,0,0) 30%); height: 62svh; }
-  .x-hero .wrap { margin-top: -96px; padding-bottom: 64px; }
+  .x-hero picture { position: relative; display: block; height: 46svh; }
+  .x-hero img { object-position: 82% 18%; }
+  .x-hero::after { background: linear-gradient(0deg, #000 0%, #000 6%, rgba(0,0,0,0) 42%); height: 46svh; }
+  .x-hero .wrap { margin-top: -8px; padding-bottom: 56px; }
+  .x-hero .x-name { font-size: 2.375rem; }
+  .x-hero .lede { font-size: 1.0625rem; }
+  .x-hero .actions { margin-top: 24px; }
 }
 
 /* ---------- Section heads ---------- */
@@ -323,3 +326,56 @@ figure.tile { margin: 0; }
 .feature .mini-rec { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .875rem; line-height: 1.7; background: #000; border: 1px solid #2c2c2e; border-radius: 14px; padding: 14px 18px; color: #d2d2d7; }
 .feature .mini-rec .k { color: var(--ink-3); }
 .feature .mini-rec .v { color: var(--link); }
+
+
+/* ---------- Review fixes ---------- */
+/* Era visuals: venues and the controls, instead of reused screenshots */
+.era-art.venues { background: linear-gradient(180deg, #1d1d1f 0%, #161617 100%); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 32px; gap: 2px; }
+.era-art.venues span { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; color: #f5f5f7; }
+.era-art.venues span:nth-child(2) { color: #d2d2d7; } .era-art.venues span:nth-child(3) { color: #a1a1a6; }
+.era-art.venues span:nth-child(4) { color: #6e6e73; } .era-art.venues span:nth-child(5) { color: #48484a; }
+.era-art.controls-art { background: linear-gradient(180deg, #1d1d1f 0%, #161617 100%); place-items: center stretch; padding: 0 28px; }
+.controls-art ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.controls-art li { display: grid; grid-template-columns: 28px 1fr; align-items: center; background: #000; border: 1px solid #2c2c2e; border-radius: 12px; padding: 11px 14px; font-size: .9375rem; font-weight: 500; color: #f5f5f7; }
+.controls-art li b { color: var(--link); font-weight: 600; }
+.controls-art li.more { display: block; background: none; border: 0; padding: 4px 0 0 2px; color: var(--ink-3); font-weight: 400; }
+
+/* Audit record in the bento */
+.record { margin: 28px 0 0; padding: 22px 24px; background: #000; border: 1px solid #2c2c2e; border-radius: 16px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: clamp(.8125rem, 1.1vw, .9375rem); line-height: 1.75; color: #f5f5f7; overflow-x: auto; }
+.record .rk { color: var(--ink-3); }
+.record .rn { color: var(--link); }
+.tile .small { margin-top: 10px; font-size: .8125rem; color: var(--ink-3); }
+
+/* Why-you're-here: links share a baseline */
+.for3 > div { display: flex; flex-direction: column; }
+.for3 a { margin-top: auto; padding-top: 18px; }
+
+/* Talks: full-width list without dates */
+.talks-plain li { grid-template-columns: minmax(0, 1fr) auto; }
+
+/* Product: phone only on small screens */
+@media (max-width: 760px) {
+  .product-stage .laptop { display: none; }
+  .product-stage .phone { position: relative; right: auto; bottom: auto; margin: 0 auto; width: 220px; }
+}
+
+/* Superscript plus on big numbers */
+.mega sup, .fig sup, .k sup { font-size: .42em; vertical-align: .95em; margin-left: .04em; letter-spacing: 0; }
+
+/* About portrait: tighter crop, true black, stays with the text */
+.theme-dark .about-grid .portrait.wide { aspect-ratio: 4 / 5; position: sticky; top: 80px; background: #000; border-radius: 28px; }
+.theme-dark .about-grid .portrait.wide img { object-position: 50% 22%; filter: brightness(.92) contrast(1.12); transform: scale(1.35); transform-origin: 50% 30%; }
+
+/* Body copy: grey, emphasis white, everywhere */
+.theme-dark .prose, .theme-dark .prose p, .theme-dark .prose li { color: var(--ink-2); }
+.theme-dark .prose strong, .theme-dark .prose b { color: var(--ink); font-weight: 600; }
+.theme-dark .about-grid .prose .lede { color: var(--ink); }
+
+/* Lists in case studies: hairline-divided items, no browser bullets */
+.theme-dark .cs-block .prose ul { list-style: none; padding: 0; margin: 0; }
+.theme-dark .cs-block .prose li { padding: 14px 0; border-top: 1px solid var(--rule); margin: 0; }
+.theme-dark .cs-block .prose li:first-child { border-top: 0; padding-top: 0; }
+.silo-count { position: absolute; left: 0; right: 0; bottom: clamp(28px, 6vh, 64px); margin: 0; text-align: center; font-size: clamp(1.25rem, 2.2vw, 1.75rem); color: var(--ink-2); font-weight: 400; }
+.silo-count b { color: #f5f5f7; font-weight: 600; font-variant-numeric: tabular-nums; }
+.silos .silo-pin { position: relative; }
+.silos.is-static .silo-count b::after { content: ""; }
