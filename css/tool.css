@@ -89,3 +89,8 @@
 .ref-card .read { display: inline-block; margin-top: 10px; font-weight: 600; color: var(--green); font-size: .9375rem; }
 
 .result .actions button.btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; font-size: 1.0625rem; }
+
+/* Reserve the space the script fills in, so the page doesn't jump on load. */
+.sector-sel { min-height: 84px; }
+@media (max-width: 760px) { .sector-sel { min-height: 196px; } }
+.q-card { min-height: 560px; }

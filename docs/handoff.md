@@ -35,11 +35,13 @@ the About page.
 
 ### 5. About page (`/about/`)
 - [ ] **Two or three sentences in your own words:** what you enjoy about the work, or something about you outside work. This is the single most important line for not sounding generated. Please write it yourself.
-- [ ] **Naming Accenture.** The career list names Accenture as your current employer (it's already in the public LinkedIn PDF). Remove it if you'd rather not.
+- [ ] **Naming Accenture.** Both the About career list and the homepage "Where I've worked" strip name Accenture as your current employer (it's already in the public LinkedIn PDF). Remove it from both if you'd rather not.
 - [ ] **The five-city line** (Ahmedabad, Bangalore, Pune, Singapore, Melbourne) leaves out Thailand and Indonesia. Say if you want them in.
 
 ## Please check
 
+- [ ] **Social preview and icons.** `images/og-banner.jpg` (the card LinkedIn and Slack show) has been regenerated from the new homepage, and `images/favicon.svg` is a new plain black "UV". The older `favicon.ico` and `favicon-192/512.png` still carry the old copper design; replace them with exports of the new SVG. Re-do the preview image once you have the new photo.
+- [ ] **"Australian" vs "ANZ".** The archival case study says "tier-1 Australian bank". The old site said "Tier-1 ANZ bank", meaning Australia and New Zealand, but it could be read as the bank called ANZ. Confirm which wording is safe.
 - [ ] **Homepage claim:** "Building agents for banks now" (in the "Early, three times" section). True as written?
 - [ ] **Homepage hero:** "Now I build AI agents that pass a bank's audit, and I still write the code." This is the positioning line. Change any word that isn't how you'd say it.
 - [ ] **Talks:** the Config Management Camp 2016 slides link points to a deck called "scaling-under-pressure". It was like that on the old site. Correct if wrong.
@@ -53,7 +55,8 @@ About 80 pages: six diagnostics, three calculators, seven decision trees,
 playbooks, maturity tiers, reference architectures, teardowns, sector pages,
 the dataset views, the glossary, the benchmark, "State of 2026", Ask, search,
 and all eight essays. Every old URL redirects to the nearest live page, so no
-link breaks. Everything is still in git history on `main`, so any essay you
+link breaks. The one exception is the RSS feed (`/writing/feed.xml`): feed
+readers can't follow a page redirect, so anyone subscribed will see it stop. Everything is still in git history on `main`, so any essay you
 wrote yourself can come back as a single page.
 
 ## How to preview

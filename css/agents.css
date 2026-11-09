@@ -18,7 +18,7 @@
 .ctl:first-child { border-top: 0; padding-top: 0; }
 .ctl-num {
   font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; letter-spacing: -0.05em; line-height: .9;
-  color: var(--rule);
+  color: #8e949c;
 }
 .ctl h2 { font-size: clamp(1.5rem, 2.8vw, 2.125rem); letter-spacing: -0.03em; line-height: 1.12; font-weight: 800; max-width: 26em; }
 .ctl-where { margin: 10px 0 0; color: var(--ink-3); font-size: .9375rem; }
