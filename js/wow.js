@@ -7,6 +7,12 @@
 (function () {
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* Pinned, scroll-driven stages only run on wide screens. On phones a
+     section that holds the screen for several swipes reads as stuck, and
+     its progress dots look like a carousel that will not swipe. There the
+     content simply stacks, in its finished state. */
+  var phone = window.matchMedia("(max-width: 760px)").matches;
+  var pinned = !reduce && !phone;
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
   var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
 
@@ -37,7 +43,7 @@
 
   /* ---- Stage: slides that take over the screen one at a time ---------- */
   document.querySelectorAll('[data-wow="stage"]').forEach(function (stage) {
-    if (reduce) return;
+    if (!pinned) return;
     var slides = [].slice.call(stage.querySelectorAll(".slide"));
     var dots = [].slice.call(stage.querySelectorAll(".stage-dots span"));
     stage.classList.add("is-live");
@@ -104,7 +110,7 @@
         count.textContent = n.toLocaleString("en-AU") + (n === 1 ? " archive" : " separate archives");
       }
     }
-    if (reduce) { stage.classList.add("is-static"); size(); draw(1); return; }
+    if (!pinned) { stage.classList.add("is-static"); size(); draw(1); return; }
     stage.classList.add("is-live");
     window.addEventListener("resize", function () { W = 0; });
     onFrame.push(function () { draw(progressOf(stage)); });
@@ -143,6 +149,15 @@
     var cap1 = stage.querySelector(".redact-cap1");
     var cap2 = stage.querySelector(".redact-cap2");
     if (reduce) { stage.classList.add("is-static"); return; }
+    if (phone) {
+      /* No pinning on phones: play the dissolve once, on its own, when the
+         chat is in view, so the before and after both get seen. */
+      stage.classList.add("is-play");
+      onceVisible(chat, function () {
+        setTimeout(function () { stage.classList.add("played"); }, 1400);
+      }, .6);
+      return;
+    }
     stage.classList.add("is-live");
     onFrame.push(function () {
       var p = progressOf(stage);
