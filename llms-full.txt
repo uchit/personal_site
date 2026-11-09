@@ -934,11 +934,11 @@ From application to money paid out.
 
 6months
 
-To production, on the agreed date
+To a live pilot, 50k users
 
 0
 
-Critical incidents at go-live
+Critical incidents at the pilot launch
 
 ## The problem
 
@@ -950,31 +950,35 @@ Squads around the platform, all building in parallel.
 
 ## The result
 
-Live on the agreed date, loans paid out in minutes.
+Pilot live on the agreed date, then nationwide.
 
-StartMonth 6Live
+M1M2M3M4M5M6M7M8
 
-One after another: past the deadline
+Pilot live, 50k users
 
-Discovery
-
-Design
-
-Build
-
-Test
-
-What we did: in parallel
+Nationwide
 
 Discovery
 
 Design
 
-Build
+Build and test
 
-Test
+Environments
 
-Illustration of the approach; stage lengths are not to scale. Live on the agreed date.
+UAT
+
+M3 to M6
+
+Build and test in one agile loop, full team of 200+
+
+By M6
+
+50+ AWS environments
+
+M7 to M8
+
+Five-minute payout proven end to end in UAT
 
 ## Five minutes, start to finish.
 
