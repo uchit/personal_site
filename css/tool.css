@@ -1,0 +1,91 @@
+/* Agent readiness check. Loaded after main.css. Class names are the ones
+   js/diagnostic.js renders, so rename here only together with that file. */
+
+.tool-head { padding-bottom: clamp(40px, 5vw, 64px); }
+
+/* Sector picker */
+.sector-sel { margin-top: 36px; }
+.sector-sel .lab { display: block; font-size: .9375rem; font-weight: 700; margin-bottom: 12px; }
+.sector-sel .opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.sector-sel button {
+  font: inherit; font-size: .9375rem; font-weight: 500;
+  padding: 10px 18px; border-radius: 999px; cursor: pointer;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+}
+.sector-sel button:hover { border-color: var(--ink-3); }
+.sector-sel button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* Quiz */
+.quiz-wrap { max-width: 860px; }
+.q-progress { height: 4px; background: var(--rule); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+.q-progress .bar { height: 100%; width: 0; background: var(--green); transition: width .3s ease; }
+.q-progress .ptxt { display: none; }
+.q-card { background: var(--paper); border-radius: var(--radius-lg); padding: clamp(28px, 5vw, 56px); }
+.q-num { margin: 0; font-size: .9375rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.q-cap { margin: 4px 0 0; font-size: .9375rem; font-weight: 700; color: var(--green); }
+.q-text { margin-top: 14px; font-size: clamp(1.625rem, 3.4vw, 2.375rem); letter-spacing: -0.03em; line-height: 1.12; font-weight: 800; }
+.q-opts { display: grid; gap: 10px; margin-top: 32px; }
+.q-opt {
+  display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 12px; align-items: baseline;
+  text-align: left; font: inherit; font-size: 1.0625rem; line-height: 1.45; color: var(--ink);
+  background: var(--mist); border: 2px solid transparent; border-radius: var(--radius);
+  padding: 16px 20px; cursor: pointer; transition: border-color .12s, background .12s;
+}
+.q-opt:hover { border-color: var(--green); background: var(--paper); }
+.q-opt .lvl { font-size: .875rem; font-weight: 700; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.q-refs { margin-top: 24px; font-size: .875rem; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.q-refs .rlab { font-weight: 600; }
+.q-nav { margin-top: 16px; }
+.q-nav button { font: inherit; font-weight: 600; color: var(--green); background: none; border: 0; padding: 8px 0; cursor: pointer; }
+.q-nav button:disabled { color: var(--ink-3); cursor: default; opacity: .5; }
+
+.quiz.done .q-progress, .quiz.done .q-card, .quiz.done .q-nav { display: none; }
+
+/* Result */
+.result { display: none; }
+.result.show { display: block; }
+.result h3 { font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 20px; }
+.result-hero {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(32px, 5vw, 64px);
+  background: var(--night); color: var(--night-ink); border-radius: var(--radius-lg);
+  padding: clamp(32px, 5vw, 56px);
+}
+.result-hero .small { color: var(--night-2); margin: 0; }
+.result-score { font-size: clamp(4.5rem, 10vw, 7.5rem); font-weight: 800; letter-spacing: -0.05em; line-height: .9; margin-top: 8px; }
+.result-score .of { font-size: .32em; letter-spacing: -0.02em; color: var(--night-2); margin-left: .2em; }
+.result-level { margin-top: 14px; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.result-bar { height: 6px; background: #2a2c30; border-radius: 6px; margin-top: 20px; overflow: hidden; }
+.result-bar .fill { height: 100%; width: 0; background: var(--green-on-night); transition: width .8s ease; }
+.result-bench { margin-top: 20px; color: var(--night-2); font-size: 1rem; }
+.result-body { color: var(--night-ink); font-size: 1.0625rem; }
+.result-body p { margin: 0 0 1em; }
+.result-recs-mini { margin-top: 24px; }
+.result-recs-mini h3 { font-size: 1.125rem; margin-bottom: 10px; color: var(--night-ink); }
+.result-recs-mini ol { margin: 0; padding-left: 1.3em; color: var(--night-ink); }
+.result-recs-mini li { padding: 4px 0; }
+.result a { color: var(--green); }
+.result-hero a { color: var(--green-on-night); }
+@media (max-width: 760px) { .result-hero { grid-template-columns: 1fr; } }
+
+.sector-lens:not(:empty) { margin-top: 24px; background: var(--paper); border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 40px); }
+.sector-lens .lab { font-weight: 700; margin-bottom: 8px; }
+.sector-lens p { margin: 0; color: var(--ink-2); }
+
+.recs-detail, .refs-section { margin-top: clamp(48px, 6vw, 72px); }
+.recs-detail ol { margin: 0; padding: 0; list-style: none; counter-reset: r; }
+.recs-detail li { counter-increment: r; background: var(--paper); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 12px; }
+.recs-detail .what { font-weight: 700; font-size: 1.125rem; }
+.recs-detail .what::before { content: counter(r) ". "; color: var(--ink-3); }
+.recs-detail .why { margin-top: 8px; color: var(--ink-2); }
+.recs-detail .meta { margin-top: 14px; display: grid; gap: 6px; font-size: .9375rem; color: var(--ink-2); }
+.recs-detail .meta b { color: var(--ink); margin-right: 6px; }
+
+.refs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.ref-card { display: block; background: var(--paper); border-radius: var(--radius); padding: 20px 22px; color: var(--ink); }
+.ref-card:hover { text-decoration: none; box-shadow: inset 0 0 0 2px var(--green); }
+.ref-card .domain { font-size: .875rem; color: var(--ink-3); }
+.ref-card .name { font-weight: 700; margin-top: 4px; }
+.ref-card .desc { font-size: .9375rem; color: var(--ink-2); margin-top: 6px; }
+.ref-card .read { display: inline-block; margin-top: 10px; font-weight: 600; color: var(--green); font-size: .9375rem; }
+
+.result .actions button.btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; font-size: 1.0625rem; }

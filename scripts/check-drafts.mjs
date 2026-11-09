@@ -14,14 +14,14 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const files = globSync("**/*.html", { cwd: ROOT }).filter(f => !f.startsWith("node_modules"));
+const files = globSync("**/*.html", { cwd: ROOT }).filter(f => !f.startsWith("node_modules") && !f.startsWith("src/")); // src/ holds page sources; check the built output
 
 let problems = 0, drafts = 0;
 for (const f of files) {
   const s = readFileSync(join(ROOT, f), "utf8");
   const noindex = /<meta name="robots" content="[^"]*noindex/i.test(s);
   const todos = (s.match(/class="todo"/g) || []).length;
-  const phs   = (s.match(/class="ph"/g) || []).length;
+  const phs   = (s.match(/class="ph(?:-block)?"/g) || []).length;
   const has   = todos + phs;
 
   if (has && !noindex) {

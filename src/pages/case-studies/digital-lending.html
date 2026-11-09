@@ -1,0 +1,104 @@
+<!--page {"out": "case-studies/digital-lending.html", "title": "Loans paid out in under five minutes", "nav": "work", "ogType": "article",
+ "description": "Case study: a digital lending platform for a leading Asian bank. Approval and payout in under five minutes, live in six months, 200+ engineers, no critical incidents at launch."} -->
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="crumbs"><a href="/case-studies/">Work</a></p>
+    <h1 class="h1">Loans paid out in under five minutes.</h1>
+    <p class="lede">A leading Asian bank wanted a new lending platform that could approve a loan and pay it out within five minutes, for millions of customers, launched in six months.</p>
+    <dl class="facts">
+      <div><dt>Client</dt><dd>Leading Asian bank</dd></div>
+      <div><dt>Years</dt><dd>2021 to 2022</dd></div>
+      <div><dt>My role</dt><dd>Delivery lead and technical architect</dd></div>
+      <div><dt>Team</dt><dd>200+ people in 50+ squads</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section night tight" aria-label="Results">
+  <div class="wrap">
+    <div class="results">
+      <div class="result"><div class="fig">&lt;5<small>min</small></div><p><strong>From application to money paid out.</strong></p></div>
+      <div class="result"><div class="fig">6<small>months</small></div><p><strong>To production</strong>, on the date agreed at the start.</p></div>
+      <div class="result"><div class="fig">0</div><p><strong>Critical incidents</strong> at go-live, across 50+ regulated AWS environments.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cs-block">
+      <h2>The problem</h2>
+      <div class="prose">
+        <p>The bank&rsquo;s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.</p>
+        <p>Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.</p>
+      </div>
+    </div>
+
+    <div class="clock" data-wow="clock" data-end=".86" aria-label="The steps from application to payout, all inside five minutes">
+      <h2 class="h2">Five minutes, start to finish.</h2>
+      <div class="clock-track"><div class="clock-fill"></div><span class="clock-limit">5:00</span></div>
+      <ol class="clock-steps">
+        <li class="clock-step" data-at=".04">Customer applies in the app</li>
+        <li class="clock-step" data-at=".22">Identity and credit checks</li>
+        <li class="clock-step" data-at=".45">Risk engine decides</li>
+        <li class="clock-step" data-at=".66">Loan approved</li>
+        <li class="clock-step" data-at=".86">Money in the account</li>
+      </ol>
+      <p class="clock-result">Paid out inside the limit.</p>
+    </div>
+
+    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
+      <h2>What made it hard</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Team size.</strong> We had to hire and organise more than 200 people across several skill areas, fast.</li>
+          <li><strong>Environments.</strong> More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.</li>
+          <li><strong>Language.</strong> Many of the bank&rsquo;s stakeholders worked in their own language. Misunderstandings were a real delivery risk.</li>
+          <li><strong>New patterns.</strong> Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>How we ran it</h2>
+      <div class="prose">
+        <p>Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.</p>
+        <p>Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task&rsquo;s timeline by the skills of the person doing it.</p>
+        <p>The bank&rsquo;s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders&rsquo; own language.</p>
+        <p>Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.</p>
+      </div>
+    </div>
+
+    <figure class="figure-wide">
+      <div class="ph-block">Platform diagram goes here: channels, Pega, Go services, FIS risk engine, AWS.<br />A rough sketch is fine.</div>
+      <figcaption>How an application moves from the customer&rsquo;s phone to a payout.</figcaption>
+    </figure>
+
+    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
+      <h2>What went wrong</h2>
+      <div class="prose">
+        <p class="ph">One honest paragraph: what nearly slipped, and what you did about it.</p>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>Stack</h2>
+      <dl class="stack">
+        <div><dt>Workflow and decisions</dt><dd>Pega</dd></div>
+        <div><dt>Services</dt><dd>Go microservices</dd></div>
+        <div><dt>Risk</dt><dd>FIS risk engine</dd></div>
+        <div><dt>Channels</dt><dd>Mobile and web</dd></div>
+        <div><dt>Cloud</dt><dd>AWS, 50+ environments</dd></div>
+        <div><dt>Delivery</dt><dd>Containers and CI/CD</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section mist tight">
+  <div class="wrap next-case">
+    <span class="small">Next case study</span>
+    <a href="/case-studies/ai-companion-safety.html"><span class="h2">A safety app that can&rsquo;t read messages</span></a>
+  </div>
+</section>

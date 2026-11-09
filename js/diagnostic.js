@@ -115,17 +115,17 @@
         });
         opts.appendChild(b);
       });
-      const lab = document.createElement("span"); lab.className = "lab"; lab.textContent = "Sector lens";
+      const lab = document.createElement("span"); lab.className = "lab"; lab.textContent = "Your sector";
       wrap.replaceChildren(lab, opts);
     },
 
     renderQ() {
       const i = this.state.i, q = this.cfg.questions[i], n = this.cfg.questions.length;
-      $("#qnum").textContent = "Q." + String(i + 1).padStart(2, "0");
+      $("#qnum").textContent = "Question " + (i + 1) + " of " + n;
       $("#qcap").textContent = q.cap || "";
       $("#qtext").textContent = q.t;
       $("#qbar").style.width = (i / n * 100) + "%";
-      $("#ptxt").textContent = "QUESTION " + (i + 1) + " / " + n;
+      $("#ptxt").textContent = "";
       $("#qback").disabled = i === 0;
 
       // Question refs
@@ -179,9 +179,20 @@
         });
       }
 
-      $("#rscore").textContent = String(score);
+      // Count the score up once, in answer to the reader finishing the check.
+      (function (el, to) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = String(to); return; }
+        var t0 = null;
+        function step(ts) {
+          if (t0 === null) t0 = ts;
+          var t = Math.min(1, (ts - t0) / 900);
+          el.textContent = String(Math.round(to * (1 - Math.pow(1 - t, 3))));
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      })($("#rscore"), score);
       $("#rmax").textContent = "/ " + max;
-      $("#rlevel").innerHTML = "Level &mdash; <em>" + lvl.name + "</em>";
+      $("#rlevel").textContent = lvl.name;
       $("#rbody").innerHTML = lvl.body;
       $("#rbench").innerHTML = lvl.benchmark || "";
 
@@ -261,7 +272,7 @@
           const desc = document.createElement("div");
           desc.className = "desc"; desc.textContent = r.body;
           const go = document.createElement("span");
-          go.className = "go"; go.textContent = "Open →";
+          go.className = "go"; go.textContent = "Open";
           card.append(kind, name, desc, go);
           routes.appendChild(card);
         });
@@ -278,7 +289,7 @@
             '<div class="domain">' + r.domain + '</div>' +
             '<div class="name">' + r.name + '</div>' +
             '<div class="desc">' + r.desc + '</div>' +
-            '<span class="read">Open &rarr;</span>';
+            '<span class="read">Open</span>';
           refs.appendChild(card);
         });
       }
@@ -286,7 +297,7 @@
       $("#quiz").classList.add("done");
       $("#result").classList.add("show");
       $("#qbar").style.width = "100%";
-      $("#ptxt").textContent = "COMPLETE · " + score + " / " + max;
+      $("#ptxt").textContent = "";
       requestAnimationFrame(() => { $("#rfill").style.width = (pct * 100) + "%"; });
 
       const hash = "a=" + this.state.answers.map(v => String(v || 1)).join("") + "&s=" + this.state.sector;
@@ -297,7 +308,7 @@
         e.preventDefault();
         const url = location.href;
         if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => {
-          share.textContent = "Link copied ✓";
+          share.textContent = "Link copied";
           setTimeout(() => share.textContent = "Copy shareable link", 1800);
         });
         else prompt("Copy this URL:", url);
@@ -310,7 +321,7 @@
       const sec = this.cfg.sectors[this.state.sector];
       if (!sec) { lens.innerHTML = ""; return; }
       lens.innerHTML =
-        '<div class="lab">Sector lens · ' + sec.label + '</div>' +
+        '<div class="lab">' + sec.label + '</div>' +
         '<p>' + sec.lens + '</p>';
     }
   };

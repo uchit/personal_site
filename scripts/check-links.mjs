@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const files = globSync("**/*.html", { cwd: ROOT })
-  .filter(f => !f.startsWith("node_modules") && !f.startsWith("oss-projects"));
+  .filter(f => !f.startsWith("node_modules") && !f.startsWith("oss-projects") && !f.startsWith("src/"));
 
 function resolves(target) {
   const p = target.replace(/^\//, "").split(/[#?]/)[0];

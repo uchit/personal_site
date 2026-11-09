@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     questions: [
       { cap:"Identity", t:"What identity does the agent act under?",
-        refs:[{name:"NIST AI RMF GOVERN",url:RMF},{name:"Control 01",url:CONTROLS}],
+        refs:[{name:"NIST AI RMF GOVERN",url:RMF},{name:"Control 1",url:CONTROLS}],
         o:["A human's credentials — usually whoever deployed it.",
            "A shared service account used by several agents or jobs.",
            "Its own service account, but with a long-lived static key.",
@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
            "Every retrieval and tool-result path red-teamed on a schedule, with structural separation enforced and regression tests for known payloads."] },
 
       { cap:"Tool authorisation", t:"Where is the boundary on what the agent may do?",
-        refs:[{name:"OWASP LLM06 Excessive Agency",url:OWASP},{name:"Control 05",url:CONTROLS}],
+        refs:[{name:"OWASP LLM06 Excessive Agency",url:OWASP},{name:"Control 5",url:CONTROLS}],
         o:["The system prompt tells it what not to do.",
            "A tool list exists, the same for every context and role.",
            "Tools scoped per role, defined in configuration.",
@@ -70,7 +70,7 @@ window.addEventListener("DOMContentLoaded", function () {
            "All of that, plus the approval rate is monitored — sustained near 100% is treated as a finding, not a success."] },
 
       { cap:"Blast radius", t:"What stops a loop, and has it been tested mid-run?",
-        refs:[{name:"APRA CPS 230",url:CPS230},{name:"Control 07",url:CONTROLS}],
+        refs:[{name:"APRA CPS 230",url:CPS230},{name:"Control 6",url:CONTROLS}],
         o:["Nothing. A loop runs until someone notices the bill.",
            "A step limit in code; no spend or rate ceiling.",
            "Step, spend and rate ceilings configured per agent.",
@@ -86,7 +86,7 @@ window.addEventListener("DOMContentLoaded", function () {
            "Classified, gated, and the reversal mechanism is named and exercised for each — versioned store, compensating transaction or delay."] },
 
       { cap:"Provenance", t:"When one agent consumes another's output, can you trace the chain?",
-        refs:[{name:"EU AI Act Art. 12",url:AIACT},{name:"Control 09",url:CONTROLS}],
+        refs:[{name:"EU AI Act Art. 12",url:AIACT},{name:"Control 9",url:CONTROLS}],
         o:["Single agent only, or chains are not traced.",
            "Each agent logs its own run; the join across them is manual.",
            "Outputs carry the upstream run ID that produced them.",
@@ -116,7 +116,7 @@ window.addEventListener("DOMContentLoaded", function () {
             why:"A loop without a ceiling is a billing incident with a countdown. A wrong ceiling is recoverable; no ceiling is not.",
             tools:"Kubernetes ResourceQuota · provider spend alerts · framework-level max-iteration settings",
             constraint:"Ceilings set too low look like flakiness to users — instrument before you tighten.",
-            refs:[{name:"Control 07",url:CONTROLS}] },
+            refs:[{name:"Control 6",url:CONTROLS}] },
           { what:"Record the full trajectory of every run, not the final output.",
             why:"Logging the output is enough to debug a demo and nothing else. Everything downstream — provenance, cost per outcome, incident review — is a join over trajectories you did not keep.",
             tools:"OpenTelemetry GenAI semantic conventions · Langfuse · LangSmith · Phoenix",
@@ -158,7 +158,7 @@ window.addEventListener("DOMContentLoaded", function () {
             why:"Reversibility is a property of the system, not the agent: the same delete is reversible against a versioned store and not against a live one. Most irreversible actions can be made reversible with a delay window.",
             tools:"Versioned stores · outbox with delay · compensating transactions · staged writes",
             constraint:"A delay window is a product decision as much as a control — it changes the user experience.",
-            refs:[{name:"Control 08",url:CONTROLS}] },
+            refs:[{name:"Control 8",url:CONTROLS}] },
           { what:"Test the kill switch mid-run, not between runs.",
             why:"Stopping an agent between steps is easy. Stopping one mid-tool-call is the case that matters and is almost never exercised. Record the time from decision to stop.",
             tools:"Game day · a documented stop procedure with a named owner",
@@ -174,7 +174,7 @@ window.addEventListener("DOMContentLoaded", function () {
             why:"As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations start applying to model outputs.",
             tools:"Run IDs propagated through outputs · a lineage store over trajectories",
             constraint:"Chains fan out quickly; storage and query cost grow faster than run count.",
-            refs:[{name:"Control 09",url:CONTROLS}] },
+            refs:[{name:"Control 9",url:CONTROLS}] },
           { what:"Measure cost per resolved task, and track the cost of failed runs alongside it.",
             why:"Agent cost is nonlinear in a way single-call GenAI is not — retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit; the runs that fail and get retried are the ones that hurt.",
             tools:"Trajectory-derived cost attribution · per-feature tagging",
@@ -184,7 +184,7 @@ window.addEventListener("DOMContentLoaded", function () {
             why:"A review that happens once is a snapshot. A gate that runs on every deploy is a property.",
             tools:"agentcheck in CI · OPA policy over the agent manifest",
             constraint:"Gates need an exception path with an expiry or they get disabled.",
-            refs:[{name:"Control 05",url:CONTROLS}] }
+            refs:[{name:"Control 5",url:CONTROLS}] }
         ] },
 
       { minPct:0.8001, maxPct:1.0, name:"Engineered",

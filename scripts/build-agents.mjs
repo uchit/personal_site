@@ -1,28 +1,15 @@
 #!/usr/bin/env node
-/* build-agents.mjs — generates /agents/ from the agent controls in the dataset.
+/* build-agents.mjs — generates the /agents/ page body from dataset/dataset.json.
  *
- *   node scripts/build-agents.mjs
+ *   node scripts/build-agents.mjs && node scripts/build-site.mjs
  *
- * The ten agentic controls are the sharpest thing on this site and they were
- * rows 57–66 of a compliance table. Someone looking for "how do I run agents in
- * a regulated environment" had no reason to open a page called Dataset, and the
- * corpus that AI systems ingest mentioned them three times in 253KB.
+ * Writes src/pages/agents/index.html; build-site.mjs then wraps it in the
+ * shared shell. The control text lives in dataset.json (and is published there
+ * as JSON), so edit it there, never in the generated page.
  *
- * This gives them a home. It is GENERATED from dataset.json rather than written
- * beside it, for the usual reason: two copies of the same claim disagree the
- * moment one is edited, and the disagreement always surfaces in front of the
- * reader who cared enough to check both.
- *
- * The order presented is the derived dependency order — identity before what it
- * may do, before how far it may go — not a ranking.
- *
- * Note the step-nav block emitted below. build-step-nav.mjs stamps every page
- * with its position in The Method, but this file rewrites the page from
- * scratch, so running this generator alone silently stripped it — the same
- * trap that bit /situations/. Emitting it here makes the two order-independent
- * instead of relying on one always running after the other.
+ * Controls are listed in dependency order: a control comes after anything it
+ * needs first. The numbers are that order, not a ranking.
  */
-
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,287 +17,134 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(join(ROOT, "dataset/dataset.json"), "utf8"));
 const REG = data.regulations;
-
 const rows = data.rows.filter(r => r.id.startsWith("agent-"));
-if (rows.length < 5) {
-  console.error("\n  ERROR: expected the agent-* controls in dataset.json\n");
-  process.exit(1);
-}
+if (rows.length !== 10) { console.error(`expected 10 agent-* controls, found ${rows.length}`); process.exit(1); }
 const byId = new Map(rows.map(r => [r.id, r]));
+const external = new Map(data.rows.filter(r => !r.id.startsWith("agent-")).map(r => [r.id, r]));
 
 const esc = s => String(s ?? "")
   .replace(/&(?![a-zA-Z#0-9]+;)/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const short = r => r.ctrl.split(/[—:,(]/)[0].trim();
 
-/* Dependency waves restricted to the agent controls. r043 (cost attribution)
-   is a prerequisite from outside this set; it is named, not silently dropped. */
+/* Dependency waves. */
 const waves = [];
-{
-  const remaining = new Set(rows.map(r => r.id));
-  let guard = 0;
-  while (remaining.size && guard++ < 50) {
-    const ready = [...remaining].filter(id =>
-      (byId.get(id).depends_on ?? []).every(p => !remaining.has(p)));
-    if (!ready.length) { console.error("\n  ERROR: cycle among agent controls\n"); process.exit(1); }
-    waves.push(ready);
-    ready.forEach(id => remaining.delete(id));
-  }
+const remaining = new Set(rows.map(r => r.id));
+while (remaining.size) {
+  const ready = [...remaining].filter(id => (byId.get(id).depends_on ?? []).every(p => !remaining.has(p)));
+  if (!ready.length) { console.error("cycle among agent controls"); process.exit(1); }
+  waves.push(ready);
+  ready.forEach(id => remaining.delete(id));
 }
-const order = waves.flat();
-
-const NUM = new Map(order.map((id, i) => [id, String(i + 1).padStart(2, "0")]));
+/* Within the later waves, sit each control next to what it needs, so the
+   numbering, the graph and the list below all read in the same order. */
+const right = [];
+for (const id of waves[0]) for (const w of waves.slice(1).flat())
+  if ((byId.get(w).depends_on ?? [])[0] === id && !right.includes(w)) right.push(w);
+for (const w of waves.slice(1).flat()) if (!right.includes(w)) right.push(w);
+const order = [...waves[0], ...right];
+const NUM = new Map(order.map((id, i) => [id, i + 1]));
 
 function control(id) {
   const r = byId.get(id);
-  const regs = r.reg.map(k => esc(REG[k]?.label ?? k)).join(" &middot; ");
-
-  const prereq = (r.depends_on ?? [])
-    .filter(p => byId.has(p))
-    .map(p => `<a href="#${esc(p)}">${esc(byId.get(p).ctrl.split(/[—,(]/)[0].trim())}</a>`)
-    .join(", ");
-  const outside = (r.depends_on ?? []).filter(p => !byId.has(p));
-
+  const needs = (r.depends_on ?? []).map(p => byId.has(p)
+    ? `<a href="#${esc(p)}">${NUM.get(p)}. ${esc(short(byId.get(p)))}</a>`
+    : esc(external.get(p)?.ctrl ?? p));
   const verify = (r.verify ?? []).map(v => `
-        <div class="ag-vfy">
-          <div class="ag-vhead"><span class="ag-plat">${esc(v.platform)}</span>${
-            v.checked ? `<span class="ag-ok">syntax checked</span>` : `<span class="ag-un">not checked here</span>`
-          }</div>
-          <pre class="ag-cmd"><code>${esc(v.run)}</code></pre>
-          <p class="ag-exp"><b>Expect:</b> ${esc(v.expect)}</p>
-        </div>`).join("");
-
+          <div class="ctl-verify">
+            <p class="ctl-label">Check it yourself (read-only, ${esc(v.platform)})</p>
+            <pre><code>${esc(v.run)}</code></pre>
+            <p class="small">You should see: ${esc(v.expect)}</p>
+          </div>`).join("");
   return `
-      <article class="ag" id="${esc(r.id)}">
-        <header class="ag-head">
-          <span class="ag-num">${NUM.get(r.id)}</span>
-          <h2>${esc(r.ctrl)}</h2>
-          <span class="ag-surface">${esc(r.surface)}</span>
-        </header>
-
-        <div class="ag-body">
-          <div class="ag-why">
-            <span class="ix">Why this one</span>
+    <article class="ctl" id="${esc(r.id)}">
+      <div class="ctl-num">${NUM.get(r.id)}</div>
+      <div class="ctl-body">
+        <h2>${esc(r.ctrl)}</h2>
+        <p class="ctl-where">${esc(r.surface.replace(/ · /g, ", "))}</p>
+        <div class="ctl-cols">
+          <div>
+            <p class="ctl-label">Why it matters</p>
             <p>${esc(r.notes)}</p>
           </div>
-
-          <div class="ag-ev">
-            <span class="ix">What an assessor asks for</span>
+          <div>
+            <p class="ctl-label">What an auditor will ask for</p>
             <p>${esc(r.evidence)}</p>
           </div>
-${verify ? `
-          <div class="ag-verify">
-            <span class="ix">Verify it &mdash; read-only</span>${verify}
-          </div>` : ""}
-          <div class="ag-meta">
-            ${prereq || outside.length
-              ? `<span><b>Needs first:</b> ${[prereq, ...outside.map(p => `<a href="/dataset/#reg=cps230">${esc(p)}</a> (outside this set)`)].filter(Boolean).join(", ")}</span>`
-              : `<span><b>Needs first:</b> nothing &mdash; this can start today</span>`}
-            ${r.anti_pattern ? `<span><b>Fails as:</b> <a href="/anti-patterns/#${esc(r.anti_pattern)}">${esc(r.anti_pattern.replace(/-/g, " "))}</a></span>` : ""}
-            <span><b>Maps to:</b> ${regs}</span>
-          </div>
-        </div>
-      </article>`;
+        </div>${verify}
+        <dl class="ctl-meta">
+          <div><dt>Build first</dt><dd>${needs.length ? needs.join(", ") : "Nothing. You can start today."}</dd></div>
+          <div><dt>Maps to</dt><dd>${r.reg.map(k => esc(REG[k]?.label ?? k)).join(", ")}</dd></div>
+        </dl>
+      </div>
+    </article>`;
 }
 
-const waveList = waves.map((w, i) => `
-          <li>
-            <b>Wave ${i + 1}</b>
-            <span>${w.map(id => `<a href="#${esc(id)}">${esc(byId.get(id).ctrl.split(/[—,(]/)[0].trim())}</a>`).join(" &middot; ")}</span>
-          </li>`).join("");
-
-const jsonld = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "@id": "https://hellouchit.com/agents/#article",
-  headline: "Ten controls for running agents in a regulated environment",
-  description:
-    "The controls that decide whether an agent deployment survives contact with an auditor: own identity, tool authorisation outside the model, declared autonomy levels, replayable trajectories, bounded blast radius, action reversibility, indirect prompt-injection defence, cross-agent provenance and cost per resolved task.",
-  author: { "@id": "https://hellouchit.com/#person" },
-  publisher: { "@id": "https://hellouchit.com/#person" },
-  isBasedOn: "https://hellouchit.com/dataset/dataset.json",
-  license: "https://creativecommons.org/licenses/by/4.0/",
-  dateModified: data.version,
-  about: rows.map(r => ({ "@type": "Thing", name: r.ctrl })),
+/* Dependency graph: first wave on the left, the rest on the right, each
+   right-hand node placed next to what it needs. js/wow.js draws the lines. */
+const gnode = id => {
+  const r = byId.get(id);
+  const deps = (r.depends_on ?? []).filter(p => byId.has(p));
+  return `<a class="gnode" href="#${id}" data-node="${id}"${deps.length ? ` data-needs="${deps.join(" ")}"` : ""}><span class="n">${NUM.get(id)}</span><span>${esc(short(r))}</span>${
+    deps.length ? `<span class="needs">Needs ${deps.map(d => NUM.get(d)).join(" and ")} first</span>` : ""}</a>`;
 };
-
-const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Running agents in regulated environments &mdash; ten controls &mdash; Uchit Vyas</title>
-<meta name="description" content="Ten controls that decide whether an agent deployment survives an audit: own workload identity, tool authorisation outside the model, declared autonomy per action class, replayable trajectories, bounded blast radius and a tested kill switch, action reversibility, indirect prompt-injection defence, cross-agent provenance, and cost per resolved task. With the evidence each one produces. CC BY 4.0." />
-<link rel="canonical" href="https://hellouchit.com/agents/" />
-<meta name="theme-color" content="#0c0d10" />
-<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Running agents in regulated environments — ten controls" />
-<meta property="og:description" content="The tool registry is the security boundary; the system prompt is a suggestion. Ten controls, the evidence each produces, and the order to build them in." />
-<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/css/site.css" />
-<link rel="stylesheet" href="/css/enhance.css" />
-<link rel="stylesheet" href="/css/agents.css" />
-<link rel="stylesheet" href="/css/print.css" media="print" />
-<script src="/js/site.js" defer></script>
-<script src="/js/enhance.js" defer></script>
-<script type="application/ld+json">${JSON.stringify(jsonld, null, 2)}</script>
-
-  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script src="/js/analytics.js" defer></script>
-</head>
-<body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
-  <header class="nav" role="banner"><div class="wrap nav-inner">
-    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Forward Deployed Engineering &middot; Agents</span></span></a>
-    <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
-    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">&equiv;</button>
-  </div></header>
-
-  <main id="main" tabindex="-1">
-    <section class="ag-hero"><div class="wrap">
-      <nav class="crumb"><a href="/">Home</a><span>/</span><a href="/tools/">The Method</a><span>/</span><span class="cur">Agents</span></nav>
-      <span class="eyebrow">Agentic systems &middot; CC BY 4.0</span>
-      <h1>The tool registry is the security boundary. The system prompt is a <em>suggestion</em>.</h1>
-      <p class="dek">
-        Ten controls that decide whether an agent deployment survives contact
-        with an auditor &mdash; and, mostly, whether it survives contact with
-        production. Each one carries the evidence it has to produce, what it
-        needs built first, and how it fails when someone declares it instead of
-        enforcing it.
-      </p>
-      <div class="ag-facts">
-        <span>Controls <b>${rows.length}</b></span>
-        <span>Waves <b>${waves.length}</b></span>
-        <span>Machine-readable <b><a href="/dataset/dataset.json">JSON</a></b></span>
-        <span>Licence <b>CC BY 4.0</b></span>
+const graphHtml = `
+    <div class="graph" data-wow="graph">
+      <svg aria-hidden="true"></svg>
+      <div class="graph-col">
+        <h3>Start with these</h3>
+        ${waves[0].map(gnode).join("\n        ")}
       </div>
-    </div></section>
-
-    <section class="ag-order"><div class="wrap">
-      <h2>Build them in this <em>order</em>.</h2>
-      <p>
-        Identity before what it may do, before how far it may go. This is
-        derived from prerequisites &mdash; an edge means doing one without the
-        other is incoherent, not that one matters more. <b>Nothing inside a wave
-        is ordered</b>; it can all start at once.
-      </p>
-      <ol class="ag-waves">${waveList}
-      </ol>
-    </div></section>
-
-    <section class="ag-ahead"><div class="wrap">
-      <h2>Where this set is <em>ahead</em> of the standard.</h2>
-      <p>
-        Every framework a procurement team will name at you &mdash; the EU AI
-        Act, the NIST AI RMF, ISO/IEC 42001 &mdash; governs one system at a
-        time. A 2026 analysis of accountability for autonomous agents puts the
-        structural problem exactly: all three
-        <b>&ldquo;presume that the governed object is a bounded system.&rdquo;</b>
-      </p>
-      <p>
-        That is not a complaint about regulators; it is a scoping fact with
-        consequences. Controls that live <em>between</em> agents rather than
-        inside one &mdash; cross-agent provenance, cost per resolved task &mdash;
-        have no real home in any of them. The EU AI Act&rsquo;s serious-incident
-        reporting guidelines, binding from August 2026, are drafted around
-        &ldquo;single-agent and single-occurrence failures.&rdquo;
-      </p>
-      <p>
-        <b>So four of the ten below are ahead of every standard they map to.</b>
-        If you are waiting for a framework to require them, you will be waiting
-        past the incident that needed them.
-      </p>
-      <div class="ag-cites">
-        <a href="https://arxiv.org/html/2605.01091v1" target="_blank" rel="noopener">Butt, Iqbal &amp; Iqbal &mdash; Governing What the EU AI Act Excludes</a>
-        <span>arXiv:2605.01091 &middot; 1 May 2026</span>
-        <a href="https://www.techpolicy.press/eu-regulations-are-not-ready-for-multiagent-ai-incidents/" target="_blank" rel="noopener">Fern&aacute;ndez Ashman, Anwar &amp; Bie&#324;kiewicz &mdash; EU Regulations Are Not Ready for Multi-Agent AI Incidents</a>
-        <span>Tech Policy Press &middot; 13 Jan 2026</span>
+      <div class="graph-col">
+        <h3>Then these, once what they need is in place</h3>
+        ${right.map(gnode).join("\n        ")}
       </div>
-    </div></section>
+    </div>`;
 
-    <section class="ag-list"><div class="wrap">${order.map(control).join("\n")}
-    </div></section>
+const waveHtml = waves.map((w, i) => `
+      <div class="wave">
+        <h3>${i === 0 ? "Start with these" : "Then these"}</h3>
+        <ol start="${NUM.get(w[0])}">
+          ${w.map(id => `<li><a href="#${id}">${esc(short(byId.get(id)))}</a></li>`).join("\n          ")}
+        </ol>
+      </div>`).join("");
 
-    <section class="ag-foot"><div class="wrap">
-      <h2>Where this comes <em>from</em>.</h2>
-      <p>
-        These are ten rows of a larger control dataset &mdash; ${data.rows.length} controls
-        across ${Object.keys(REG).length} regulations, with the tooling that implements each and
-        the read-only command that produces its evidence. This page is generated
-        from that dataset, so the two cannot disagree.
-      </p>
-      <p>
-        <b>None of it is a compliance assessment.</b> It maps controls to
-        evidence so a team starts from something concrete rather than a blank
-        page. Take it, fork it, argue with it &mdash; it is CC BY 4.0.
-      </p>
-      <div class="ag-links">
-        <a class="ag-cta" href="/dataset/">Browse the full dataset &rarr;</a>
-        <a class="ag-cta ghost" href="/tools/agent-readiness.html">Score your own agent programme &rarr;</a>
-      </div>
-    </div></section>
-  </main>
+const page = `<!--page {"out": "agents/index.html", "title": "Ten controls for AI agents", "nav": "agents", "css": ["/css/agents.css"],
+ "description": "Ten controls for running AI agents in a regulated company, in the order to build them. Each lists the evidence an auditor will ask for and how it maps to the EU AI Act, NIST AI RMF, ISO/IEC 42001 and APRA."} -->
+<!-- GENERATED by scripts/build-agents.mjs from dataset/dataset.json. Do not edit by hand. -->
 
-  <section class="also-strip" aria-label="More on this site">
-    <div class="wrap">
-      <div class="also-grp">
-        <span class="lab">Reference</span>
-        <nav class="also-links">
-          <a href="/agents/">Agents</a>
-          <a href="/dataset/">Dataset</a>
-          <a href="/anti-patterns/">Anti-patterns</a>
-          <a href="/benchmark/">Benchmark</a>
-          <a href="/for/">Sector views</a>
-          <a href="/glossary/">Glossary</a>
-          <a href="/reading/">Reading list</a>
-        </nav>
-      </div>
-      <details class="also-grp also-more">
-        <summary class="lab">More on this site</summary>
-        <nav class="also-links">
-          <a href="/how-i-work/">How I work</a>
-          <a href="/situations/">Situations</a>
-          <a href="/talks/">Talks</a>
-
-          <a href="/4-discipline-stack/">4-Discipline Stack</a>
-          <a href="/state-of-2026/">State of 2026</a>
-          <a href="/oss/">Open source</a>
-          <a href="/press/">Press kit</a>
-          <a href="/ai/">AI entity</a>
-        </nav>
-      </details>
+<section class="page-head">
+  <div class="wrap">
+    <h1 class="h1">Ten controls for AI agents.</h1>
+    <p class="lede">What I check before an AI agent goes near production in a bank or any other regulated company. They are listed in the order to build them, and each one says what evidence an auditor will ask to see.</p>
+    <div class="actions">
+      <a class="btn" href="/tools/agent-readiness.html">Score your agents in two minutes</a>
+      <a class="link-strong" href="/dataset/dataset.json">Download as JSON</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
-  <nav class="step-nav" aria-label="Position in The Method">
-    <div class="wrap">
-      <a class="lab" href="/tools/">The Method</a>
-      <div class="row">
-        <a href="/tools/#s2">&larr; 02 Locate it</a>
-        <b>03 &middot; Check it</b>
-        <a href="/tools/#s4">04 Decide it &rarr;</a>
-      </div>
+<section class="section mist tight" aria-labelledby="order-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="order-h">The order.</h2>
+      <p class="lede">Identity first, then what the agent may do, then how far it may go. Everything on the left can start today. Hover a control to see what it depends on.</p>
     </div>
-  </nav>
-  <!-- STEP-NAV:END -->
+${graphHtml}
+  </div>
+</section>
 
-  <footer class="foot"><div class="wrap foot-inner">
-    <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
-    <span><a href="/">&larr; Home</a> &middot; <a href="/glossary/">Glossary</a> &middot; <a href="/dataset/">Dataset</a> &middot; <a href="/tools/">The Method</a></span>
-  </div></footer>
-</body>
-</html>
+<section class="section" aria-label="The controls">
+  <div class="wrap">${order.map(control).join("\n")}
+  </div>
+</section>
+
+<section class="section mist tight">
+  <div class="wrap">
+    <p class="small" style="max-width:44em">Free to reuse under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. These are my own views, not my employer&rsquo;s, and they are not legal advice. Spotted something wrong? Email <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>.</p>
+  </div>
+</section>
 `;
 
-mkdirSync(join(ROOT, "agents"), { recursive: true });
-writeFileSync(join(ROOT, "agents/index.html"), html, "utf8");
-
-console.log(`\n  agents/index.html — ${rows.length} controls in ${waves.length} waves`);
-console.log(`    ${waves.map((w, i) => `wave ${i + 1}: ${w.length}`).join("  ")}`);
-console.log(`    ${rows.filter(r => r.verify).length} with a verify command, ${rows.filter(r => r.anti_pattern).length} with a named failure mode\n`);
+mkdirSync(join(ROOT, "src/pages/agents"), { recursive: true });
+writeFileSync(join(ROOT, "src/pages/agents/index.html"), page);
+console.log(`  wrote src/pages/agents/index.html (${order.length} controls, ${waves.length} waves)`);

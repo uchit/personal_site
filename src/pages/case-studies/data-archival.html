@@ -1,0 +1,101 @@
+<!--page {"out": "case-studies/data-archival.html", "title": "One archival platform for 1,000+ applications", "nav": "work", "ogType": "article",
+ "description": "Case study: a single AWS archival platform for a tier-1 Australian bank. 1,000+ applications, a multi-petabyte estate, and more than $50M a year saved."} -->
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="crumbs"><a href="/case-studies/">Work</a></p>
+    <h1 class="h1">One archival platform for 1,000+ applications.</h1>
+    <p class="lede">A tier-1 Australian bank kept old systems running only because their data had to be kept for years. We built one place to keep it, and the bank started switching the old systems off.</p>
+    <dl class="facts">
+      <div><dt>Client</dt><dd>Tier-1 Australian bank</dd></div>
+      <div><dt>Year</dt><dd>2024</dd></div>
+      <div><dt>My role</dt><dd>Solution architect</dd></div>
+      <div><dt>Platform</dt><dd>AWS, built in-house</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="silos" data-wow="silos" aria-label="1,000 separate archives became one platform">
+  <div class="silo-pin">
+    <div class="wrap silo-text">
+      <p class="silo-before">1,000+ applications.<br />1,000 ways of keeping old data.</p>
+      <p class="silo-after">One platform.<br />One set of rules.</p>
+    </div>
+    <canvas aria-hidden="true"></canvas>
+  </div>
+</section>
+
+<section class="section night tight" aria-label="Results">
+  <div class="wrap">
+    <div class="results">
+      <div class="result"><div class="fig">$50M<small>+</small></div><p><strong>Saved each year</strong> in infrastructure and running costs.</p></div>
+      <div class="result"><div class="fig">1,000<small>+</small></div><p><strong>Applications</strong> assessed and moved onto one platform.</p></div>
+      <div class="result"><div class="fig"><span class="ph">N</span><small>PB</small></div><p><strong>Of data</strong> under one set of retention rules. <span class="ph">Exact size to confirm.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cs-block">
+      <h2>The problem</h2>
+      <div class="prose">
+        <p>The bank had no shared way to archive data. Each application team had built its own, with its own tools, its own process and its own bill.</p>
+        <p>Regulation says some records must be kept for years. Because there was nowhere central to keep them, old systems stayed switched on long after anyone used them, just to hold their data.</p>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>What made it hard</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Scale.</strong> More than 1,000 applications and several petabytes, spread across on-premises systems and several cloud regions.</li>
+          <li><strong>Mixed data.</strong> Database tables, files, documents and logs all needed the same retention, privacy and audit controls.</li>
+          <li><strong>Adoption.</strong> Application teams had to choose to move. If getting data back out was slow or awkward, they wouldn&rsquo;t.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>What we built</h2>
+      <div class="prose">
+        <p>We spent three months assessing all 1,000+ applications before designing anything. We compared off-the-shelf products against a custom build on data patterns, compliance needs and cost. A custom AWS platform won.</p>
+        <p>We rolled it out by type of data rather than by application: structured data first, then documents and files. Retention, expiry and deletion run automatically. Teams get their data back through self-service, with access controlled by their existing Active Directory groups.</p>
+        <p>The bank&rsquo;s own team runs it. We handed over full design documents, runbooks and review processes.</p>
+      </div>
+    </div>
+
+    <figure class="figure-wide">
+      <div class="ph-block">Architecture diagram goes here.<br />A photo of a whiteboard sketch is fine; it will be redrawn to match the site.</div>
+      <figcaption>How data moves from source systems into the archive and back out to the teams who need it.</figcaption>
+    </figure>
+
+    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
+      <h2>What went wrong</h2>
+      <div class="prose">
+        <p class="ph">One honest paragraph: something that didn&rsquo;t work the first time, and what you changed.</p>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <h2>Stack</h2>
+      <dl class="stack">
+        <div><dt>Processing</dt><dd>AWS Lambda</dd></div>
+        <div><dt>Orchestration</dt><dd>AWS Step Functions</dd></div>
+        <div><dt>Data movement</dt><dd>AWS DataSync</dd></div>
+        <div><dt>Storage</dt><dd>Amazon S3</dd></div>
+        <div><dt>Metadata and search</dt><dd>MongoDB Atlas</dd></div>
+        <div><dt>Data lineage</dt><dd>Alation</dd></div>
+        <div><dt>Infrastructure</dt><dd>Terraform</dd></div>
+        <div><dt>Classification</dt><dd>Automated metadata analysis</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section mist tight">
+  <div class="wrap next-case">
+    <span class="small">Next case study</span>
+    <a href="/case-studies/digital-lending.html"><span class="h2">Loans paid out in under five minutes</span></a>
+  </div>
+</section>

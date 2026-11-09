@@ -1,159 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>EA Operating Model Diagnostic — Uchit Vyas</title>
-<meta name="description" content="Eight-capability EA operating-model diagnostic — mapped to TOGAF 10, BIAN, ArchiMate 3.2 and capability-based planning. Sector-aware." />
-<link rel="canonical" href="https://hellouchit.com/tools/ea-operating-model.html" />
-<meta name="theme-color" content="#0c0d10" />
-<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
-<meta property="og:title" content="EA Operating Model Diagnostic" />
-<meta property="og:description" content="8 capabilities · mapped to TOGAF 10, BIAN, ArchiMate." />
-<meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/css/site.css" />
-<link rel="stylesheet" href="/css/enhance.css" />
-<link rel="stylesheet" href="/css/diagnostic.css" />
-<link rel="stylesheet" href="/css/print.css" media="print" />
-<script src="/js/site.js" defer></script>
-<script src="/js/enhance.js" defer></script>
-<script src="/js/routes.js" defer></script>
-<script src="/js/diag-storage.js" defer></script>
-<script src="/js/diagnostic.js" defer></script>
-<script src="/js/benchmark.js" defer></script>
-<script src="/js/benchmark-rank.js" defer></script>
-<script src="/js/print.js" defer></script>
-
-  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script src="/js/analytics.js" defer></script>
+<meta charset="utf-8" />
+<title>Moved | Uchit Vyas</title>
+<!-- noindex: intentional. Retired page; see scripts/build-redirects.mjs. -->
+<meta name="robots" content="noindex" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="canonical" href="https://hellouchit.com/" />
+<meta http-equiv="refresh" content="0; url=/" />
+<link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
-  <header class="nav" role="banner">
-    <div class="wrap nav-inner">
-      <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Forward Deployed Engineering · Agents</span></span></a>
-      <nav class="links"><a href="/#about">About</a><a href="/#work">Work</a><a href="/agents/">Agents</a><a class="u-ink" href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/ask/">Ask</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
-      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
-    </div>
-  </header>
-
-  <main id="main" tabindex="-1">
-    <section class="tool-hero"><div class="wrap">
-      <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">/</span><a href="/tools/">The Method</a><span class="sep">/</span><span class="here">EA Operating Model</span></nav>
-      <span class="eyebrow">Diagnostic &middot; Enterprise Architecture</span>
-      <h1>EA Operating Model<br /><em>Diagnostic</em>.</h1>
-      <p class="hero-role" style="margin-top:20px;max-width:64ch">
-        Is your enterprise architecture function a gate, a consultancy or a platform?
-        Eight capabilities scored against TOGAF 10, BIAN (for banking), ArchiMate 3.2
-        and capability-based planning &mdash; with 2026 context for composable enterprise
-        and AI-augmented EA practice.
-      </p>
-      <div class="tool-meta">
-        <span><b>8</b> capabilities</span><span><b>5</b> levels</span><span><b>~2</b> min</span><span>Browser-only. No data collected.</span>
-      </div>
-      <div class="fw-strip">
-        <span class="fw-lab">Mapped to</span>
-        <a class="fw-chip" href="https://www.opengroup.org/togaf" target="_blank" rel="noopener">TOGAF 10</a>
-        <a class="fw-chip" href="https://bian.org/" target="_blank" rel="noopener">BIAN (banking)</a>
-        <a class="fw-chip" href="https://www.opengroup.org/archimate-forum/archimate-overview" target="_blank" rel="noopener">ArchiMate 3.2</a>
-        <a class="fw-chip" href="https://adr.github.io/" target="_blank" rel="noopener">ADR specification</a>
-        <a class="fw-chip" href="https://www.gartner.com/en/information-technology/glossary/composable-business" target="_blank" rel="noopener">Composable Enterprise</a>
-        <a class="fw-chip" href="https://www.bizbok.org/" target="_blank" rel="noopener">BIZBOK</a>
-      </div>
-      <div class="sector-sel" id="sectorsel"></div>
-    </div></section>
-
-    <section class="quiz" id="quiz"><div class="wrap" style="max-width:820px">
-      <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
-      <article class="q-card" id="qcard"><span class="q-num" id="qnum"></span><span class="q-cap" id="qcap"></span><h2 class="q-text" id="qtext"></h2><div class="q-refs" id="qrefs"></div><div class="q-opts" id="qopts"></div></article>
-      <div class="q-nav"><button id="qback" disabled>&larr; Back</button><span>Answer for how EA actually shows up.</span><span></span></div>
-      <div class="result" id="result">
-        <div class="result-hero">
-          <div class="result-hero-left">
-            <span class="result-eyebrow">Your EA operating model</span>
-            <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
-            <div class="result-level" id="rlevel">&mdash;</div>
-            <div class="result-bar"><div class="fill" id="rfill"></div></div>
-            <div class="result-bench" id="rbench"></div>
-            <div class="result-rank" id="rrank" hidden></div>
-          </div>
-          <div class="result-hero-right">
-            <div class="result-body" id="rbody"></div>
-            <div class="result-recs-mini"><h3>Next three moves</h3><ol id="rmini"></ol></div>
-          </div>
-        </div>
-        <div class="sector-lens" id="rsectorlens"></div>
-        <div class="cap-breakdown"><h3>Capability breakdown</h3><div id="cbreakdown"></div></div>
-        <div class="recs-detail"><h3>Recommendations &mdash; with tools, constraints and citations</h3><ol id="rdetail"></ol></div>
-        <div class="routes-section" id="routes-section" hidden>
-          <h3>Where to go next</h3>
-          <p class="dek">Scoped to the level you scored &mdash; the playbook, paved path or tier deep-dive that moves this forward.</p>
-          <div class="routes-grid" id="rroutes"></div>
-        </div>
-        <div class="refs-section"><h3>References &amp; frameworks cited</h3><div class="refs-grid" id="refslib"></div></div>
-        <div class="result-actions">
-          <button class="btn btn-primary" data-action="restart">Take it again</button>
-          <a class="btn btn-ghost" id="rshare" href="#">Copy shareable link</a>
-          <a class="btn btn-ghost" href="/tools/">&larr; All diagnostics</a>
-          <a class="btn btn-ghost" href="/#contact">Talk to me &rarr;</a>
-        </div>
-      </div>
-    </div></section>
-  </main>
-
-  
-  <!-- ============ ALSO ON THIS SITE — discoverability strip ============ -->
-<!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
-  <nav class="step-nav" aria-label="Position in The Method">
-    <div class="wrap">
-      <a class="lab" href="/tools/">The Method</a>
-      <div class="row">
-        <a href="/tools/#s1">&larr; 01 Name it</a>
-        <b>02 &middot; Locate it</b>
-        <a href="/tools/#s3">03 Check it &rarr;</a>
-      </div>
-    </div>
-  </nav>
-  <!-- STEP-NAV:END -->
-
-  <section class="also-strip" aria-label="More on this site">
-    <div class="wrap">
-      <div class="also-grp">
-        <span class="lab">Reference</span>
-        <nav class="also-links">
-          <a href="/agents/">Agents</a>
-          <a href="/dataset/">Dataset</a>
-          <a href="/anti-patterns/">Anti-patterns</a>
-          <a href="/benchmark/">Benchmark</a>
-          <a href="/for/">Sector views</a>
-          <a href="/glossary/">Glossary</a>
-          <a href="/reading/">Reading list</a>
-        </nav>
-      </div>
-      <details class="also-grp also-more">
-        <summary class="lab">More on this site</summary>
-        <nav class="also-links">
-          <a href="/how-i-work/">How I work</a>
-          <a href="/situations/">Situations</a>
-          <a href="/talks/">Talks</a>
-
-          <a href="/4-discipline-stack/">4-Discipline Stack</a>
-          <a href="/state-of-2026/">State of 2026</a>
-          <a href="/oss/">Open source</a>
-          <a href="/press/">Press kit</a>
-          <a href="/ai/">AI entity</a>
-        </nav>
-      </details>
-    </div>
-  </section>
-
-  <footer class="foot"><div class="wrap foot-inner"><span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span><span><a href="/">&larr; Home</a> &middot; <a href="/tools/">All tools</a></span></div></footer>
-
-<script src="/js/pages/tools-ea-operating-model.js" defer></script>
+<main class="section moved"><div class="wrap">
+<h1 class="h2">This page has moved.</h1>
+<p class="lede"><a href="/">Continue to the new page</a>.</p>
+</div></main>
 </body>
 </html>

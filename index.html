@@ -1,788 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Uchit Vyas — Forward Deployed Engineer · Agentic Systems</title>
-<meta name="author" content="Uchit Vyas" />
-<meta name="description" content="Uchit Vyas — a forward deployed engineer shipping agentic systems inside regulated environments. Ten open controls for running agents where an auditor will ask, an open regulation × control × tooling dataset, read-only verification commands, and open-source tooling. Fifteen years getting regulated platforms into production against deadlines that don't move. Melbourne, AU." />
-<meta name="theme-color" content="#0c0d10" />
-<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Uchit Vyas</title>
+<meta name="description" content="Uchit Vyas is a forward deployed engineer in Melbourne. Fifteen years building payment, lending and data platforms for banks in Asia and Australia, and now AI agents for regulated companies." />
+<meta name="theme-color" content="#ffffff" />
 <link rel="canonical" href="https://hellouchit.com/" />
-
-<!-- Open Graph -->
 <meta property="og:type" content="profile" />
-<meta property="og:title" content="Uchit Vyas — Hard deadline. Live, and audited." />
-<meta property="og:description" content="The tool registry is the security boundary; the system prompt is a suggestion. Ten controls for running agents where an auditor will ask — with the evidence each one produces." />
-<meta property="og:site_name" content="Uchit Vyas" />
+<meta property="og:title" content="Uchit Vyas" />
+<meta property="og:description" content="Uchit Vyas is a forward deployed engineer in Melbourne. Fifteen years building payment, lending and data platforms for banks in Asia and Australia, and now AI agents for regulated companies." />
 <meta property="og:url" content="https://hellouchit.com/" />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Uchit Vyas — Forward Deployed Engineer, Cloud and GenAI" />
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Uchit Vyas — Hard deadline. Live, and audited." />
-<meta name="twitter:description" content="The tool registry is the security boundary; the system prompt is a suggestion. Ten controls for running agents where an auditor will ask — with the evidence each one produces." />
-<meta name="twitter:image" content="https://hellouchit.com/images/og-banner.jpg" />
-
-<!-- Icons -->
-<link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml" />
-<link rel="alternate icon" href="images/favicon.ico" type="image/x-icon" sizes="32x32" />
-<link rel="apple-touch-icon" href="images/favicon-192.png" />
-
-<!-- Preload hero portrait (transparent cutout) -->
-<link rel="preload" as="image" href="images/Uchit-cutout.webp" fetchpriority="high" type="image/webp" />
-
-<!-- Fonts -->
+<link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml" />
+<link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/images/favicon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;display=swap" />
+<link rel="stylesheet" href="/css/main.css?v=7eacc895" />
 
-<!-- Site stylesheet -->
-<link rel="stylesheet" href="css/site.css" />
-<link rel="stylesheet" href="css/enhance.css" />
+<script src="/js/main.js?v=97760709" defer></script>
+<script src="/js/wow.js?v=861369dc" defer></script>
 
-<!-- JS — small, deferred -->
-<script src="js/site.js" defer></script>
-<script src="js/enhance.js" defer></script>
-
-  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script src="js/analytics.js" defer></script>
-</head>
-
-<body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-
-  <div class="bg-fx" aria-hidden="true"></div>
-  <div class="grid-fx" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="nav" role="banner">
-    <div class="wrap nav-inner">
-      <a href="#home" class="brand" aria-label="Uchit Vyas — home">
-        <span class="monogram" aria-hidden="true">UV</span>
-        <span class="blab">
-          <b>Uchit Vyas</b>
-          <span>Forward Deployed Engineering · Agents</span>
-        </span>
-      </a>
-      <nav class="links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="/agents/">Agents</a><a href="/tools/">The Method</a>
-        <a href="/writing/">Writing</a><a href="/ask/">Ask</a>
-        <a href="#contact" class="nav-cta">Get in touch</a>
-      </nav>
-      <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
-    </div>
-  </header>
-
-  <main id="main" tabindex="-1">
-
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="home" aria-label="Introduction">
-      <div class="wrap">
-        <div class="hero-top">
-          <div class="hero-text">
-            <h1 class="reveal" data-d="2">
-              Agents in production.<br /><em>Live, and audited</em>.
-            </h1>
-
-            <p class="hero-role reveal" data-d="3">
-              Forward deployed engineer. I work inside the delivery team and
-              carry the build myself &mdash; payments, lending, and now
-              agentic systems &mdash;
-              <b>into production when the date isn&rsquo;t moving</b>.
-              Fifteen years doing it as an enterprise architect first. The
-              tool registry is the security boundary; the system prompt is a
-              suggestion.
-            </p>
-
-            <div class="cta-row reveal" data-d="4">
-              <a href="#work" class="btn btn-primary">
-                Read the case studies
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-              <a href="/agents/" class="btn btn-ghost">
-                Ten controls for agents
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <figure class="portrait reveal" data-d="2" id="portrait">
-            <div class="portrait-frame">
-              <picture>
-                <source srcset="images/Uchit-cutout.webp" type="image/webp" />
-                <img src="images/Uchit-cutout.png" id="portrait-img"
-                     alt="Portrait of Uchit Vyas, Enterprise Architect"
-                     width="1000" height="930"
-                     loading="eager" decoding="async" fetchpriority="high" />
-              </picture>
-              <div class="portrait-fallback" aria-hidden="true">UV</div>
-            </div>
-            <span class="corner tl" aria-hidden="true"></span>
-            <span class="corner tr" aria-hidden="true"></span>
-            <span class="corner bl" aria-hidden="true"></span>
-            <span class="corner br" aria-hidden="true"></span>
-          </figure>
-        </div>
-
-        <!-- Stats wall -->
-        <div class="stats reveal" data-d="6" aria-label="At a glance">
-          <div class="stat">
-            <div class="num" data-count="15">0<span class="u">+</span></div>
-            <div class="lbl">Years across<br />enterprise tech</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="5">0<em>books</em></div>
-            <div class="lbl">Published with<br />Apress &amp; Packt</div>
-          </div>
-          <div class="stat">
-            <div class="num"><span data-count="1">0</span><em>US patent</em></div>
-            <div class="lbl">USPTO<br />US11334348B2</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="30">0<span class="u">+</span></div>
-            <div class="lbl">Keynotes &amp; talks<br />delivered</div>
-          </div>
-          <div class="stat">
-            <div class="num"><span data-count="3">0</span><em>continents</em></div>
-            <div class="lbl">ASEAN · Europe<br />North America</div>
-          </div>
-          <div class="stat">
-            <div class="num">Top<span class="u" data-count="50">0</span></div>
-            <div class="lbl">Most influential<br />DevSecOps · global</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="about section-pad" id="about" aria-labelledby="about-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">02 — About</span>
-            <h2 id="about-h">A practitioner who has <em>shipped</em> the things he writes about.</h2>
-          </div>
-          <span class="section-index">/ about</span>
-        </header>
-
-        <div class="about-grid reveal">
-          <p class="about-quote">
-            &ldquo;The interesting problems all look the same from the inside &mdash;
-            <span>an immovable date, a regulator who will ask for evidence, and an architecture that doesn&rsquo;t exist yet. Closing that gap, from inside the delivery team, is the work I know best.</span>&rdquo;
-          </p>
-
-          <div class="about-body">
-            <p>
-              <b>Forward deployed engineer &mdash; agentic systems, cloud &amp; DevSecOps.</b>
-              Based in Melbourne. 15+ years across enterprise architecture and
-              platform engineering, including Associate Director, CIO Advisory
-              (Cloud &amp; DevSecOps) at <b>KPMG Singapore</b>; earlier stops at
-              Oracle, REAN, Infosys, Attune and TCS.
-            </p>
-            <p>
-              Four disciplines that compound: <b>enterprise architecture</b>
-              (SAFe, BIAN, multi-cloud reference models), <b>platform engineering &amp;
-              DevSecOps</b> (paved paths, policy-as-code, security in CI/CD), <b>data
-              modernisation</b> (trusted, lineage-aware, analytics-ready), and
-              <b>applied GenAI</b> (architecture, evals, governance for regulated
-              environments) &mdash; written up as <a href="/4-discipline-stack/"><em>The 4&#8209;Discipline Stack</em></a>.
-            </p>
-            <p>
-              Five books with Apress &amp; Packt. US patent
-              <a href="https://patents.google.com/patent/US11334348B2/en" target="_blank" rel="noopener"><em>Specs Monster &mdash; an intelligent design collaboration tool</em></a>.
-              Thirty&#8209;plus talks across ASEAN, Europe and the US. Named on the
-              <b>Top 50 DevSecOps Influencers</b> list; internal Bunsen Burner
-              and Delivery Heroes awards.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EXPERTISE ============ -->
-    <section class="expertise section-pad" id="expertise" aria-labelledby="exp-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">03 — Expertise</span>
-            <h2 id="exp-h">Six disciplines, one operating <em>principle</em>: depth before breadth.</h2>
-          </div>
-          <span class="section-index">/ expertise</span>
-        </header>
-
-        <div class="expertise-grid reveal">
-          <article class="exp-cell">
-            <span class="exp-ix">E1</span>
-            <h3>Enterprise Architecture</h3>
-            <p>Target-state design that survives the next reorg. Bridges board strategy and engineering reality without losing either.</p>
-            <div class="exp-tags">TOGAF · capability maps · domain decomposition</div>
-          </article>
-
-          <article class="exp-cell">
-            <span class="exp-ix">E2</span>
-            <h3>Cloud &amp; Modernisation</h3>
-            <p>Multi-cloud migration, landing zones and cost discipline at FSI and government scale &mdash; no lift-and-shift theatre.</p>
-            <div class="exp-tags">AWS · Azure · GCP · FinOps</div>
-          </article>
-
-          <article class="exp-cell">
-            <span class="exp-ix">E3</span>
-            <h3>DevSecOps</h3>
-            <p>Security shifted left without slowing teams down. Top-50 globally on the practice; the methods are public, the outcomes measurable.</p>
-            <div class="exp-tags">SLSA · SBOM · policy as code</div>
-          </article>
-
-          <article class="exp-cell">
-            <span class="exp-ix">E4</span>
-            <h3>Site Reliability &amp; SRE</h3>
-            <p>Error budgets, blast-radius design and on-call hygiene &mdash; the unglamorous work that keeps regulated platforms standing.</p>
-            <div class="exp-tags">SLO/SLI · chaos · postmortems</div>
-          </article>
-
-          <article class="exp-cell">
-            <span class="exp-ix">E5</span>
-            <h3>Generative AI</h3>
-            <p>LLM systems with guardrails, evals and audit trails. AI you can put in front of a customer &mdash; and a regulator.</p>
-            <div class="exp-tags">RAG · evals · safety · governance</div>
-          </article>
-
-          <article class="exp-cell">
-            <span class="exp-ix">E6</span>
-            <h3>Platform Engineering</h3>
-            <p>Internal developer platforms that engineers actually adopt. Golden paths over golden cages.</p>
-            <div class="exp-tags">IDP · Backstage · paved roads</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WORK / CASE STUDIES ============ -->
-    <section class="work section-pad" id="work" aria-labelledby="work-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">04 — Selected work</span>
-            <h2 id="work-h">Seven engagements that <em>shipped</em> &mdash; and stayed shipped.</h2>
-          </div>
-          <span class="section-index">/ work</span>
-        </header>
-
-        <div class="work-list reveal">
-          <a class="work-row" href="/case-studies/calibrated-assessment-agentic.html" aria-label="Case study: building a calibrated assessment over agentic engineering">
-            <span class="work-ix">01</span>
-            <span class="work-sector">Applied AI · Assessment &middot; 2026</span>
-            <div class="work-body">
-              <h3>You can&rsquo;t write an exam question about something you half understand.</h3>
-              <p>10,561 defensible questions across five weighted domains. Agentic architecture plus tool design is 45% of the discipline; prompt engineering is a fifth. If your capability plan is mostly prompt courses, it is calibrated to 2023.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/ai-companion-safety.html" aria-label="Case study: privacy-preserving AI-usage monitoring">
-            <span class="work-ix">02</span>
-            <span class="work-sector">Consumer · Child safety · AI &middot; 2026</span>
-            <div class="work-body">
-              <h3>Telling a parent what&rsquo;s happening &mdash; without reading a word.</h3>
-              <p>Teenage AI-companion usage reported to parents with zero access to message content &mdash; privacy enforced by platform sandbox and extension manifest, not by policy. Designed and built solo, end to end.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/payment-platform.html" aria-label="Case study: Multi-region banking payment platform">
-            <span class="work-ix">03</span>
-            <span class="work-sector">Banking · Payments &middot; 2021</span>
-            <div class="work-body">
-              <h3>Delivering a multi&#8209;region banking payment platform in three months.</h3>
-              <p>A case study in leadership, alignment and execution under pressure &mdash; cross-region payment rails stood up against a hard regulatory deadline.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/ea-governance.html" aria-label="Case study: Enterprise architecture governance at Asia's largest bank">
-            <span class="work-ix">04</span>
-            <span class="work-sector">Banking · EA Governance &middot; 2020</span>
-            <div class="work-body">
-              <h3>Establishing enterprise architecture governance at Asia&rsquo;s largest bank.</h3>
-              <p>Capability model, target-state reference architecture and a design-authority engineers didn&rsquo;t route around &mdash; built inside one of the region&rsquo;s most regulated banks.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/digital-lending.html" aria-label="Case study: High-speed digital lending platform">
-            <span class="work-ix">05</span>
-            <span class="work-sector">Banking · Digital Lending &middot; 2021&ndash;2022</span>
-            <div class="work-body">
-              <h3>Building a high&#8209;speed digital&#8209;lending platform at scale.</h3>
-              <p>Leading Asian bank. 200+ engineers across 50+ squads; delivery &amp; platform leadership for an event-driven lending core engineered for throughput and audit.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/retail-modernisation.html" aria-label="Case study: Retail platform modernisation">
-            <span class="work-ix">06</span>
-            <span class="work-sector">Retail · Modernisation &middot; 2022&ndash;2023</span>
-            <div class="work-body">
-              <h3>Retail platform modernisation &amp; innovation roadmap.</h3>
-              <p>Global retail giant. Platform, architecture and delivery leadership for a multi-year decomposition of a legacy estate into product-aligned services.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-
-          <a class="work-row" href="/case-studies/data-archival.html" aria-label="Case study: Enterprise-grade data archival platform">
-            <span class="work-ix">07</span>
-            <span class="work-sector">Enterprise · Data &middot; 2024</span>
-            <div class="work-body">
-              <h3>Enterprise&#8209;grade data archival platform transformation.</h3>
-              <p>Consolidating legacy retention obligations into a single audited archival fabric &mdash; regulator-aligned, retrieval-grade, run-cost out.</p>
-            </div>
-            <span class="work-cta">Read case study &rarr;</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TESTIMONIALS ============ -->
-    <section class="voices section-pad" id="voices" aria-labelledby="voices-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">05 — In their words</span>
-            <h2 id="voices-h">What people who&rsquo;ve worked with me <em>actually</em> say.</h2>
-          </div>
-          <span class="section-index">/ voices</span>
-        </header>
-
-        <div class="tmnls-grid" style="grid-template-columns:repeat(2,1fr)">
-          <figure class="tmnl reveal" data-d="1" style="grid-column:1/-1">
-            <blockquote>
-              What do you do when you have a project that doesn&rsquo;t have any requirements, has a business owner that has too much to do and not enough time to focus, wants to use technology that has never been used at the company before, has an unrealistic deadline, not enough money, but a vision that is so grand and unifying that you feel compelled to deliver as best you can? <b style="color:var(--accent);font-style:normal;font-weight:500">Call Uchit!</b>
-              &hellip; Your technical skills, although exemplary, are not what set you apart. What I learnt from you so profoundly, was your ability to accept a change in scope, sometimes 20 times a day, with such good grace and calm.
-              &hellip; If you&rsquo;ve got hard stuff to do, Uchit will get it done. And he&rsquo;ll have a laugh with you along the way.
-            </blockquote>
-            <figcaption class="who">
-              <b>Phil Jacklin</b>
-              <span>CEO, Thankyou Payroll &mdash; client &middot; Aug 2025</span>
-            </figcaption>
-          </figure>
-
-          <figure class="tmnl reveal" data-d="2">
-            <blockquote>
-              When I think of Uchit, I think of a <b style="color:var(--accent);font-style:normal;font-weight:500">techno-business man</b>. Few technical people understand the meaning of words like &lsquo;delivering value&rsquo; and &lsquo;business growth&rsquo;. Uchit is one of those rare people who can balance technology with a business goal.
-            </blockquote>
-            <figcaption class="who">
-              <b>Sanju Burkule</b>
-              <span>Managed Uchit directly &middot; Feb 2021</span>
-            </figcaption>
-          </figure>
-
-          <figure class="tmnl reveal" data-d="3">
-            <blockquote>
-              Uchit brought a lot of Cloud, and specifically <b style="color:var(--accent);font-style:normal;font-weight:500">DevOps, DevSecOps and Agile</b> knowledge with him to the table &hellip; I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.
-            </blockquote>
-            <figcaption class="who">
-              <b>Subhasish Ghosh</b>
-              <span>Sr. Technical Program Manager, Azure OpenAI Service, Microsoft &middot; Feb 2021</span>
-            </figcaption>
-          </figure>
-        </div>
-
-        <p class="writing-all" style="margin-top:32px">
-          Quoted from public LinkedIn recommendations &mdash;
-          <a href="https://www.linkedin.com/in/uchitvyas/details/recommendations/" target="_blank" rel="noopener">all 15, in full</a>.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ BOOKS ============ -->
-    <section class="books section-pad" id="books" aria-labelledby="books-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">06 — Published</span>
-            <h2 id="books-h">Five books and one US <em>patent</em> &mdash; written for practitioners.</h2>
-          </div>
-          <span class="section-index">/ books</span>
-        </header>
-
-        <div class="books-shelf reveal">
-          <a class="book" href="https://link.springer.com/book/10.1007/978-1-4842-2454-0" target="_blank" rel="noopener" aria-label="Applied OpenStack Design Patterns — Apress">
-            <div class="book-cover"><img src="images/Book/AppliedOpenStack.jpg" alt="Applied OpenStack Design Patterns cover" width="150" height="213" loading="lazy" decoding="async" /></div>
-            <div class="book-meta"><b>Applied OpenStack Design Patterns</b>Apress &middot; 2016 &middot; Cloud Architecture</div>
-          </a>
-          <a class="book" href="https://www.packtpub.com/networking-and-servers/mastering-aws-development" target="_blank" rel="noopener" aria-label="Mastering AWS Development — Packt">
-            <div class="book-cover"><img src="images/Book/Mastering_AWS.jpg" alt="Mastering AWS Development cover" width="150" height="185" loading="lazy" decoding="async" /></div>
-            <div class="book-meta"><b>Mastering AWS Development</b>Packt &middot; 2015 &middot; Cloud Engineering</div>
-          </a>
-          <a class="book" href="https://www.packtpub.com/virtualization-and-cloud/aws-development-essentials" target="_blank" rel="noopener" aria-label="AWS Development Essentials — Packt">
-            <div class="book-cover"><img src="images/Book/AWSDevelopmentEssential.jpg" alt="AWS Development Essentials cover" width="150" height="185" loading="lazy" decoding="async" /></div>
-            <div class="book-meta"><b>AWS Development Essentials</b>Packt &middot; 2014 &middot; Cloud Foundations</div>
-          </a>
-          <a class="book" href="https://www.packtpub.com/dynamodb-applied-design-patterns/book" target="_blank" rel="noopener" aria-label="DynamoDB Applied Design Patterns — Packt">
-            <div class="book-cover"><img src="images/Book/DynamoDB.jpg" alt="DynamoDB Applied Design Patterns cover" width="150" height="185" loading="lazy" decoding="async" /></div>
-            <div class="book-meta"><b>DynamoDB Applied Design Patterns</b>Packt &middot; 2014 &middot; Data Engineering</div>
-          </a>
-          <a class="book" href="https://www.packtpub.com/muleesb-to-build-enterprise-solutions-cookbook/book" target="_blank" rel="noopener" aria-label="Mule ESB Cookbook — Packt">
-            <div class="book-cover"><img src="images/Book/MuleESB.jpg" alt="Mule ESB Cookbook cover" width="150" height="185" loading="lazy" decoding="async" /></div>
-            <div class="book-meta"><b>Mule ESB Cookbook</b>Packt &middot; 2013 &middot; Enterprise Integration</div>
-          </a>
-        </div>
-
-        <p class="writing-all" style="margin-top:clamp(32px,4vw,48px)">
-          US Patent <a href="https://patents.google.com/patent/US11334348B2/en" target="_blank" rel="noopener">US11334348B2</a> &mdash; full inventor list, abstract and claims on Google Patents.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ SPEAKING ============ -->
-    <section class="speaking section-pad" id="speaking" aria-labelledby="speak-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">07 — On stage</span>
-            <h2 id="speak-h">Thirty&#8209;plus talks across <em>three continents</em>. A few that travelled.</h2>
-          </div>
-          <span class="section-index">/ speaking</span>
-        </header>
-
-        <p class="hero-role" style="margin-top:-16px;margin-bottom:36px">
-          Named among the <b>50 Most Influential DevSecOps Professionals</b> globally.
-          30+ sessions delivered across ASEAN, Europe and the US &mdash; consistently rated for
-          technical depth and practical takeaways engineers can act on the next day.
-        </p>
-
-        <div class="talk-list reveal">
-          <div class="talk-row">
-            <span class="talk-year">HashiConf</span>
-            <div class="talk-title">
-              Scaling under pressure &mdash; Terraform &middot; Packer &middot; Chef
-              <small>Sep 2015 &middot; Portland, USA</small>
-            </div>
-            <span class="talk-place">USA</span>
-          </div>
-          <div class="talk-row">
-            <span class="talk-year">APIDays</span>
-            <div class="talk-title">
-              API design collaboration
-              <small>Apr 2021 &middot; Singapore</small>
-            </div>
-            <span class="talk-place">Singapore</span>
-          </div>
-          <div class="talk-row">
-            <span class="talk-year">Cloud Expo</span>
-            <div class="talk-title">
-              The journey to DevSecOps
-              <small>Oct 2017 &middot; Singapore</small>
-            </div>
-            <span class="talk-place">Singapore</span>
-          </div>
-          <div class="talk-row">
-            <span class="talk-year">TopConf</span>
-            <div class="talk-title">
-              Let&rsquo;s democratise deployments
-              <small>Nov 2016 &middot; Tallinn, Estonia</small>
-            </div>
-            <span class="talk-place">Estonia</span>
-          </div>
-        </div>
-
-        <p class="talk-more">
-          All 8 talks, with recordings &rarr; <a href="/talks/">see the talks page</a>.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ TOOLS ============ -->
-    <section class="writing section-pad" id="tools" aria-labelledby="tools-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">08 — Diagnostics</span>
-            <h2 id="tools-h">Six practitioner <em>diagnostics</em>. Ten minutes each.</h2>
-          </div>
-          <span class="section-index">/ tools</span>
-        </header>
-
-        <div class="writing-grid reveal">
-          <a class="essay" href="/tools/devsecops-maturity.html">
-            <span class="essay-meta">DevSecOps &middot; 10 capabilities</span>
-            <h3>DevSecOps Maturity.</h3>
-            <p>Pipeline, secrets, supply chain, scanning, ownership, baselines, identity, patching, observability, product integration.</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-          <a class="essay" href="/tools/genai-readiness.html">
-            <span class="essay-meta">GenAI &middot; 12 capabilities</span>
-            <h3>GenAI Readiness.</h3>
-            <p>Data, model selection, RAG, prompts, evals, guardrails, observability, cost, governance, audit, operating model.</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-          <a class="essay" href="/tools/sre-programme.html">
-            <span class="essay-meta">SRE &middot; 10 capabilities</span>
-            <h3>SRE Programme.</h3>
-            <p>SLOs, error budgets, blast radius, on-call, postmortems, runbooks, chaos, capacity, toil, golden signals.</p>
-            <span class="essay-cta">Run the diagnostic &rarr;</span>
-          </a>
-        </div>
-
-        <p class="writing-all" style="margin-top:32px">
-          Three more &mdash; Cloud Cost, Platform Engineering, EA Operating Model &rarr;
-          <a href="/tools/">see all six</a>.
-          Or browse the <a href="/glossary/">practitioner glossary</a>.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ WRITING ============ -->
-    <section class="writing section-pad" id="writing" aria-labelledby="writing-h">
-      <div class="wrap">
-        <header class="section-head">
-          <div>
-            <span class="eyebrow">09 — Writing</span>
-            <h2 id="writing-h">Long&#8209;form notes on what actually <em>works</em>.</h2>
-          </div>
-          <span class="section-index">/ writing</span>
-        </header>
-
-        <div class="writing-grid reveal">
-          <a class="essay" href="/writing/encoded-enterprise-architect.html">
-            <span class="essay-meta"><b>Architecture</b> · 7 min read</span>
-            <h3>The encoded enterprise architect.</h3>
-            <p>Why TOGAF is your operating manual, not your job. Principles that aren&rsquo;t encoded in platform defaults or policy-as-code don&rsquo;t exist &mdash; the 2026 EA function is small, federated and mostly invisible.</p>
-            <span class="essay-cta">Read essay &rarr;</span>
-          </a>
-
-          <a class="essay" href="/writing/genai-9-controls.html">
-            <span class="essay-meta"><b>GenAI</b> · 6 min read</span>
-            <h3>GenAI in regulated environments: the nine controls.</h3>
-            <p>The nine controls between a demo and something a customer &mdash; and a regulator &mdash; can use. Mapped to NIST AI RMF, EU AI Act, ISO/IEC 42001 and OWASP LLM Top 10.</p>
-            <span class="essay-cta">Read essay &rarr;</span>
-          </a>
-
-          <a class="essay" href="/writing/platform-engineering-ai-moat.html">
-            <span class="essay-meta"><b>Platform Engineering</b> · 6 min read</span>
-            <h3>Platform engineering is the AI delivery moat.</h3>
-            <p>The orgs that will ship GenAI safely in 2026 are the ones whose paved paths already encode identity, observability and policy. Everyone else retrofits AI controls into legacy estates &mdash; slowly and visibly.</p>
-            <span class="essay-cta">Read essay &rarr;</span>
-          </a>
-        </div>
-
-        <p class="writing-all">
-          More essays + RSS &rarr; <a href="/writing/">all writing</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ ALSO ON THIS SITE — discoverability strip ============ -->
-    <section class="also-strip" aria-label="More on this site">
-    <div class="wrap">
-      <div class="also-grp">
-        <span class="lab">Reference</span>
-        <nav class="also-links">
-          <a href="/agents/">Agents</a>
-          <a href="/dataset/">Dataset</a>
-          <a href="/anti-patterns/">Anti-patterns</a>
-          <a href="/benchmark/">Benchmark</a>
-          <a href="/for/">Sector views</a>
-          <a href="/glossary/">Glossary</a>
-          <a href="/reading/">Reading list</a>
-        </nav>
-      </div>
-      <details class="also-grp also-more">
-        <summary class="lab">More on this site</summary>
-        <nav class="also-links">
-          <a href="/how-i-work/">How I work</a>
-          <a href="/situations/">Situations</a>
-          <a href="/talks/">Talks</a>
-
-          <a href="/4-discipline-stack/">4-Discipline Stack</a>
-          <a href="/state-of-2026/">State of 2026</a>
-          <a href="/oss/">Open source</a>
-          <a href="/press/">Press kit</a>
-          <a href="/ai/">AI entity</a>
-        </nav>
-      </details>
-    </div>
-  </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="contact section-pad" id="contact" aria-labelledby="contact-h">
-      <div class="wrap">
-        <div class="ct-head reveal">
-          <span class="eyebrow">10 &mdash; Get in touch</span>
-          <h2 id="contact-h">Say <em>hello</em>.</h2>
-          <p class="ct-dek">
-            Questions on the writing, the dataset or the diagnostics &mdash;
-            or just to compare notes on regulated-industry engineering.
-            For a quick answer grounded in what&rsquo;s on this site, try
-            <a class="u-link-ink-accent" href="/ask/">Ask</a>; for anything
-            else, email is the best way to reach me.
-          </p>
-          <p class="ct-note">
-            I&rsquo;m in a full-time role and not available for consulting or
-            freelance work &mdash; this site is where I publish, not a shopfront.
-            Always happy to talk shop.
-          </p>
-        </div>
-
-        <div class="ct-ico-row reveal" role="group" aria-label="Other ways to reach me">
-          <a class="ct-ico" href="mailto:contact@hellouchit.com" aria-label="Email contact@hellouchit.com">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="5" width="18" height="14" rx="2"/>
-              <path d="M3.5 6.5l8.5 7 8.5-7"/>
-            </svg>
-          </a>
-          <a class="ct-ico" href="https://www.linkedin.com/in/uchitvyas/" rel="noopener" target="_blank" aria-label="LinkedIn profile">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9.5h4V21H3V9.5zM10 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4V9.5z"/>
-            </svg>
-          </a>
-          <a class="ct-ico" href="/Profile_linkedin.pdf" target="_blank" rel="noopener" aria-label="Download career profile PDF">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/>
-              <path d="M14 3v5h5"/>
-              <path d="M12 13v5"/>
-              <path d="M9 16l3 2 3-2"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="foot" role="contentinfo">
-    <div class="wrap foot-inner">
-      <span><span class="foot-ix">&copy;</span> Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span>
-      <span><a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a></span>
-    </div>
-  </footer>
-
-  <!-- ============ Structured data ============ -->
-  <!-- Identity-graphed: WebSite + Person + ProfilePage share @id refs so
-       AI assistants and search engines treat them as one entity. -->
-  <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://hellouchit.com/#website",
-      "url": "https://hellouchit.com/",
-      "name": "Uchit Vyas",
-      "description": "Forward deployed engineer shipping agentic systems in regulated environments. Ten open agent controls, practitioner essays, diagnostics, decision trees, playbooks, architecture teardowns, and a regulation × control × tooling dataset.",
-      "publisher": { "@id": "https://hellouchit.com/#person" }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://hellouchit.com/#person",
-      "name": "Uchit Vyas",
-      "givenName": "Uchit",
-      "familyName": "Vyas",
-      "jobTitle": "Forward Deployed Engineer",
-      "description": "Forward deployed engineer with 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI, agentic systems and platform engineering. Author of 5 books with Apress & Packt. US patent holder. Named on the Top 50 DevSecOps Influencers list.",
-      "url": "https://hellouchit.com/",
-      "mainEntityOfPage": "https://hellouchit.com/ai/",
-      "image": "https://hellouchit.com/images/Uchit1-hero.jpg",
-      "email": "mailto:contact@hellouchit.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Melbourne",
-        "addressRegion": "VIC",
-        "addressCountry": "AU"
-      },
-      "identifier": "https://www.wikidata.org/entity/Q139971067",
-      "sameAs": [
-        "https://www.wikidata.org/entity/Q139971067",
-        "https://www.linkedin.com/in/uchitvyas/",
-        "https://github.com/uchit",
-        "https://uchitvyas.substack.com",
-        "https://patents.google.com/patent/US11334348B2/en"
-      ],
-      "knowsAbout": [
-        "Enterprise Architecture",
-        "Cloud Architecture",
-        "DevSecOps",
-        "Site Reliability Engineering",
-        "Generative AI",
-        "Platform Engineering",
-        "FinOps",
-        "AWS", "Microsoft Azure", "Google Cloud Platform",
-        "NIST AI Risk Management Framework",
-        "ISO/IEC 42001",
-        "EU AI Act",
-        "APRA CPS 234", "APRA CPS 230",
-        "SLSA", "NIST SSDF",
-        "BCBS 239",
-        "Forward Deployed Engineering",
-        "Model Context Protocol",
-        "AI agent architecture",
-        "LLM evaluation",
-        "Policy as Code",
-        "Workload Identity"
-      ],
-      "alumniOf": [
-        { "@type": "Organization", "name": "KPMG Singapore" },
-        { "@type": "Organization", "name": "Oracle" },
-        { "@type": "Organization", "name": "REAN Cloud" },
-        { "@type": "Organization", "name": "Infosys" },
-        { "@type": "Organization", "name": "Tata Consultancy Services" }
-      ],
-      "award": [
-        "Top 50 DevSecOps Influencers (global)",
-        "Bunsen Burner award",
-        "Delivery Heroes award"
-      ],
-      "owns": {
-        "@type": "Patent",
-        "name": "Specs Monster — an intelligent design collaboration tool",
-        "patentNumber": "US11334348B2",
-        "url": "https://patents.google.com/patent/US11334348B2/en"
-      },
-      "author": [
-        {
-          "@type": "Book", "name": "Applied OpenStack Design Patterns",
-          "publisher": { "@type": "Organization", "name": "Apress" },
-          "datePublished": "2016", "isbn": "9781484224533", "inLanguage": "en",
-          "url": "https://link.springer.com/book/10.1007/978-1-4842-2454-0"
-        },
-        {
-          "@type": "Book", "name": "Mastering AWS Development",
-          "publisher": { "@type": "Organization", "name": "Packt Publishing" },
-          "datePublished": "2015", "isbn": "9781782173632", "inLanguage": "en"
-        },
-        {
-          "@type": "Book", "name": "AWS Development Essentials",
-          "publisher": { "@type": "Organization", "name": "Packt Publishing" },
-          "datePublished": "2014", "isbn": "9781782173618", "inLanguage": "en"
-        },
-        {
-          "@type": "Book", "name": "DynamoDB Applied Design Patterns",
-          "publisher": { "@type": "Organization", "name": "Packt Publishing" },
-          "datePublished": "2014", "isbn": "9781783551897", "inLanguage": "en"
-        },
-        {
-          "@type": "Book", "name": "Mule ESB Cookbook",
-          "publisher": { "@type": "Organization", "name": "Packt Publishing" },
-          "datePublished": "2013", "isbn": "9781782164401", "inLanguage": "en"
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "@id": "https://hellouchit.com/#profilepage",
-      "dateModified": "2026-05-30",
-      "url": "https://hellouchit.com/",
-      "mainEntity": { "@id": "https://hellouchit.com/#person" }
-    }
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+<script src="/js/analytics.js?v=597a9efb" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://hellouchit.com/#person",
+  "name": "Uchit Vyas",
+  "jobTitle": "Forward Deployed Engineer",
+  "url": "https://hellouchit.com/",
+  "image": "https://hellouchit.com/images/Uchit1-hero.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Melbourne",
+    "addressRegion": "VIC",
+    "addressCountry": "AU"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/uchitvyas/",
+    "https://www.wikidata.org/entity/Q139971067",
+    "https://patents.google.com/patent/US11334348B2/en"
   ]
-  </script>
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/">Uchit Vyas</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="/case-studies/">Work</a>
+        <a href="/agents/">AI agents</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">Uchit<br />Vyas</h1>
+        <p class="lede">
+          Fifteen years shipping the systems banks can&rsquo;t get wrong.
+          <strong>Now I build AI agents that pass a bank&rsquo;s audit, and I
+          still write the code.</strong>
+        </p>
+        <div class="actions">
+          <a class="btn" href="/case-studies/">See the work</a>
+          <a class="link-strong" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <picture>
+          <source srcset="/images/Uchit-cutout.webp" type="image/webp" />
+          <img src="/images/Uchit-cutout.png" alt="Uchit Vyas" width="1000" height="930" fetchpriority="high" />
+        </picture>
+      </figure>
+    </div>
 
+    <div class="worked">
+      <p>Where I&rsquo;ve worked</p>
+      <ul>
+        <li>Accenture</li>
+        <li>KPMG Singapore</li>
+        <li>Oracle</li>
+        <li>REAN Cloud</li>
+        <li>Infosys</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section night stage" data-wow="stage" aria-labelledby="results-h">
+  <div class="stage-pin">
+    <div class="wrap">
+      <h2 class="h2 stage-title" id="results-h">Work that went live.</h2>
+      <div class="stage-slides">
+        <article class="slide is-on">
+          <div class="mega">$50M<small>+</small></div>
+          <p><strong>Saved every year</strong> after one archival platform replaced the separate setups of 1,000+ applications at a tier-1 Australian bank.</p>
+          <a href="/case-studies/data-archival.html">Read the case study</a>
+        </article>
+        <article class="slide">
+          <div class="mega">&lt;5<small>min</small></div>
+          <p><strong>From loan application to money paid out</strong> on a lending platform for a leading Asian bank. Live in six months with 200+ engineers.</p>
+          <a href="/case-studies/digital-lending.html">Read the case study</a>
+        </article>
+        <article class="slide">
+          <div class="mega">0</div>
+          <p><strong>Messages read</strong> by a parental safety app I designed and built alone. The phone&rsquo;s sandbox makes reading them impossible.</p>
+          <a href="/case-studies/ai-companion-safety.html">Read the case study</a>
+        </article>
+      </div>
+      <div class="stage-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="early-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="early-h">Early, three times.</h2>
+      <p class="lede">Each wave of technology reached banks a few years after I started working on it. The dates are on the books, the talks and this site.</p>
+    </div>
+    <div class="waves3">
+      <div class="wave3">
+        <div class="yr">2013</div>
+        <h3>Cloud</h3>
+        <p>Wrote five books on AWS, DynamoDB, OpenStack and integration between 2013 and 2016, while most banks were still deciding whether cloud was allowed.</p>
+      </div>
+      <div class="wave3">
+        <div class="yr">2015</div>
+        <h3>DevSecOps</h3>
+        <p>Spoke at HashiConf in 2015 and on DevSecOps at Cloud Expo Asia in 2017. Then spent years building security into bank delivery pipelines across Asia.</p>
+      </div>
+      <div class="wave3">
+        <div class="yr">2026</div>
+        <h3>AI agents</h3>
+        <p>Published ten controls for running AI agents in regulated companies, with a free check anyone can run. Building agents for banks now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section mist" aria-label="What a client said">
+  <div class="wrap">
+    <figure class="quote">
+      <blockquote>
+        <p class="pull">&ldquo;If you&rsquo;ve got hard stuff to do, Uchit will get it done. And he&rsquo;ll have a laugh with you along the way.&rdquo;</p>
+        <p class="more">&ldquo;A project with no requirements, a business owner with no time, technology never used at the company before, an unrealistic deadline and not enough money. Call Uchit. What I learnt from him was his ability to accept a change in scope, sometimes 20 times a day, with good grace and calm.&rdquo;</p>
+      </blockquote>
+      <figcaption><b>Phil Jacklin</b>CEO, Thankyou Payroll. Client, August 2025.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="caps-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="caps-h">What I do.</h2>
+    </div>
+    <div class="caps">
+      <div class="cap">
+        <h3 class="h3">AI agents for regulated companies</h3>
+        <p>Agents that a bank&rsquo;s risk team can sign off. Each agent gets its own identity, limits on what it can do, a human approval step for anything that matters, and a full record of every action.</p>
+        <a href="/agents/">The ten controls I use</a>
+      </div>
+      <div class="cap">
+        <h3 class="h3">Payment and lending platforms</h3>
+        <p>Core banking work with fixed launch dates. Multi-region payments in three months. A lending platform with 200+ engineers across 50+ AWS environments, live in six months with no critical incidents.</p>
+        <a href="/case-studies/digital-lending.html">The lending platform</a>
+      </div>
+      <div class="cap">
+        <h3 class="h3">Cloud, data and DevSecOps</h3>
+        <p>The platforms underneath: archival at petabyte scale, delivery pipelines with security checks built in, and architecture standards that teams actually adopt.</p>
+        <a href="/case-studies/data-archival.html">The archival platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section mist" aria-labelledby="tools-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="tools-h">Two things you can use today.</h2>
+      <p class="lede">Free, no sign-up, and nothing you enter leaves your browser.</p>
+    </div>
+    <div class="tools">
+      <a class="tool" href="/agents/">
+        <h3>Ten controls for AI agents</h3>
+        <p>What to build, in what order, before an AI agent goes near production in a regulated company. Each control lists the evidence an auditor will ask for.</p>
+        <div class="shot" aria-hidden="true">
+          <ol>
+            <li>Agent runs under its own identity, never a person&rsquo;s</li>
+            <li>Autonomy level declared for each kind of action</li>
+            <li>Every tool call recorded and replayable</li>
+          </ol>
+        </div>
+        <span class="go">Read the controls</span>
+      </a>
+      <div class="tool">
+        <h3>Agent readiness check</h3>
+        <p>Ten questions, about two minutes. You get a score, the three things to fix first, and how your answers map to the EU AI Act, NIST and APRA. Try the first one:</p>
+        <div class="mini" data-wow="mini-check">
+          <p class="q">What identity does your AI agent act under?</p>
+          <button type="button" aria-pressed="false" data-say="&lt;b&gt;Level 1 of 5.&lt;/b&gt; The most common finding in a first agent review. Nobody can tell the agent&amp;rsquo;s actions from the engineer&amp;rsquo;s.">A person&rsquo;s login, usually whoever deployed it</button>
+          <button type="button" aria-pressed="false" data-say="&lt;b&gt;Level 2 of 5.&lt;/b&gt; Better. But if one agent misbehaves, you can&amp;rsquo;t switch it off without switching off every agent that shares the account.">A shared service account</button>
+          <button type="button" aria-pressed="false" data-say="&lt;b&gt;Level 4 of 5.&lt;/b&gt; This is control 1 done properly. Level 5 adds a tested switch-off that takes effect within one polling interval.">Its own workload identity, with no stored keys</button>
+          <p class="mini-out" aria-live="polite">Pick an answer to see where it lands.</p>
+        </div>
+        <a class="go" href="/tools/agent-readiness.html">Take the full check</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="books-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="books-h">Five books. One patent.</h2>
+      <p class="lede">Written between 2013 and 2016, when cloud was new to most of the companies I worked with.</p>
+    </div>
+    <div class="shelf">
+      <a class="book" href="https://link.springer.com/book/10.1007/978-1-4842-2454-0" rel="noopener">
+        <img src="/images/Book/AppliedOpenStack.jpg" alt="Cover of Applied OpenStack Design Patterns" width="150" height="213" loading="lazy" />
+        <b>Applied OpenStack Design Patterns</b><span>Apress, 2016</span>
+      </a>
+      <a class="book" href="https://www.packtpub.com/networking-and-servers/mastering-aws-development" rel="noopener">
+        <img src="/images/Book/Mastering_AWS.jpg" alt="Cover of Mastering AWS Development" width="150" height="185" loading="lazy" />
+        <b>Mastering AWS Development</b><span>Packt, 2015</span>
+      </a>
+      <a class="book" href="https://www.packtpub.com/virtualization-and-cloud/aws-development-essentials" rel="noopener">
+        <img src="/images/Book/AWSDevelopmentEssential.jpg" alt="Cover of AWS Development Essentials" width="150" height="185" loading="lazy" />
+        <b>AWS Development Essentials</b><span>Packt, 2014</span>
+      </a>
+      <a class="book" href="https://www.packtpub.com/dynamodb-applied-design-patterns/book" rel="noopener">
+        <img src="/images/Book/DynamoDB.jpg" alt="Cover of DynamoDB Applied Design Patterns" width="150" height="185" loading="lazy" />
+        <b>DynamoDB Applied Design Patterns</b><span>Packt, 2014</span>
+      </a>
+      <a class="book" href="https://www.packtpub.com/muleesb-to-build-enterprise-solutions-cookbook/book" rel="noopener">
+        <img src="/images/Book/MuleESB.jpg" alt="Cover of Mule ESB Cookbook" width="150" height="185" loading="lazy" />
+        <b>Mule ESB Cookbook</b><span>Packt, 2013</span>
+      </a>
+    </div>
+    <div class="patent">
+      <div class="num">US 11,334,348 B2</div>
+      <p>Specs Monster, an intelligent design collaboration tool. Granted by the US Patent and Trademark Office. <a href="https://patents.google.com/patent/US11334348B2/en" rel="noopener">Read the patent</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section tight mist" aria-labelledby="talks-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h2" id="talks-h">On stage.</h2>
+      <p class="lede">More than 30 talks in Asia, Europe and the US. A few with recordings:</p>
+    </div>
+    <ul class="talks">
+      <li><span class="when">Sep 2015</span><span class="what"><b>Scaling under pressure</b><span>HashiConf, Portland</span></span><a class="rec" href="https://youtu.be/uIGhsPFo0G0?list=PL81sUbsFNc5YsoZ5K4shVcqYK1yJbcVW6" rel="noopener">Watch</a></li>
+      <li><span class="when">Nov 2016</span><span class="what"><b>Let&rsquo;s democratise deployments</b><span>TopConf, Tallinn</span></span><a class="rec" href="http://bit.ly/2l4m0cw" rel="noopener">Watch</a></li>
+      <li><span class="when">Oct 2017</span><span class="what"><b>The journey to DevSecOps</b><span>Cloud Expo Asia, Singapore</span></span><a class="rec" href="https://www.slideshare.net/slideshow/devsecops-81637091/81637091" rel="noopener">Slides</a></li>
+      <li><span class="when">Apr 2021</span><span class="what"><b>API design collaboration</b><span>APIDays, Singapore</span></span><a class="rec" href="https://cutt.ly/NbTmwrN" rel="noopener">Watch</a></li>
+    </ul>
+    <p class="small" style="margin-top:28px"><a href="/about/#talks">All talks</a></p>
+  </div>
+</section>
+
+<section class="section night contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <h2 class="h1" id="contact-h">Let&rsquo;s talk.</h2>
+    <p class="lede" style="margin-top:28px">About AI agents in banks, platform work, or speaking at your event. Email is the fastest way to reach me.</p>
+    <a class="email-big" href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/uchitvyas/" rel="noopener">LinkedIn</a>
+      <a href="/Profile_linkedin.pdf">Career profile (PDF)</a>
+    </div>
+    <p class="small note">I work full-time and don&rsquo;t take consulting work. I&rsquo;m always happy to compare notes.</p>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Uchit Vyas, Melbourne. Personal site; views are my own.</span>
+    <nav aria-label="Footer">
+      <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>
+      <a href="https://www.linkedin.com/in/uchitvyas/" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>
