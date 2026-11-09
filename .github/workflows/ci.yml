@@ -14,8 +14,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Built pages match their sources
+        run: |
+          node scripts/build-agents.mjs
+          node scripts/build-site.mjs
+          git diff --exit-code || (echo "Run node scripts/build-agents.mjs && node scripts/build-site.mjs and commit the output" && exit 1)
       - run: node scripts/check-drafts.mjs
-      - run: node scripts/check-routes.mjs
       - run: node scripts/check-structure.mjs
       - run: node scripts/check-links.mjs
 
@@ -35,14 +39,12 @@ jobs:
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v11
         with:
-          # Representative pages, not all 88: the homepage (heaviest hero/JS),
-          # a diagnostic (interactive JS-driven), and the dataset page (largest
-          # DOM on the site). Widen this list if a category regresses somewhere
-          # else and needs a permanent watch.
+          # The homepage (largest page and scripts), the readiness check
+          # (interactive) and the agents page (longest DOM).
           urls: |
             http://localhost:8080/
-            http://localhost:8080/tools/genai-readiness.html
-            http://localhost:8080/dataset/
+            http://localhost:8080/tools/agent-readiness.html
+            http://localhost:8080/agents/
           numberOfRuns: 3
           uploadArtifacts: true
           temporaryPublicStorage: true

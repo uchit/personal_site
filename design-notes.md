@@ -1,68 +1,49 @@
-# Design Foundation — hellouchit.com (redesign)
+# Design notes
 
-> Working as head of design (Apple lens). Every choice is a refusal of something else.
-> Reviewed against the six principles below before any section ships.
+The November 2026 rebuild replaced a dark, copper-accented site that 30 out of
+30 readers judged to be AI-generated. These rules exist so it doesn't drift
+back there.
 
-## Refusals (locked)
+## The look
 
-1. **No template look.** No Bootstrap grid, no Owl carousel, no jQuery, no icon-font glyphs, no `default.css` + `style.css` + `custom-style.css` + `theme-override.css` stack.
-2. **Different signature than Aditi.** Aditi = gold on near-black, Fraunces + Plex. Uchit = graphite + warm copper, Cormorant + Inter + JetBrains Mono.
-3. **No ornament without information.** Every line, dot, eyebrow, italic earns its place by labelling, separating, or signalling state.
+- Black page, Apple dark-mode greys for tiles (`#161617`), white type.
+- One accent: Apple blue (`#0071e3` buttons, `#2997ff` links and highlights).
+  No other colour except what is in the photographs and book covers.
+- Big numbers use one silver fill.
+- System font (SF Pro on Apple devices), semibold for display type.
+- Nav: full-width bar, transparent over the hero, frosted glass once
+  scrolled, hides on scroll down.
+- Every section answers "why should the reader care" before it shows
+  anything, and shows a real thing: the portrait, book covers, the patent's
+  front page, the talk recording, the tools inside device frames.
 
-## Design tokens
+## Never
 
-```
---bg:           #0c0d10   /* near-black, faint blue cast */
---surface:      #13151a   /* cards only */
---ink:          #ecedf0   /* ~92% contrast */
---muted:        #9097a3   /* body */
---faint:        #5a6170   /* mono meta */
---line:         rgba(255,255,255,.07)
---accent:       #d99757   /* warm copper — one word per section, eyebrow rule */
---accent-soft:  rgba(217,151,87,.10)
---signal:       #43d39e   /* available dot only */
---maxw:         1180px
---ease:         cubic-bezier(.22,.61,.36,1)
-```
+- Glow, grain, grid overlays, gradients as decoration, corner brackets.
+- One word in a headline set in italic or a different colour.
+- All-caps labels, tracked-out "eyebrows", numbered section markers
+  (01, 02...), monospace for labels, "A · B · C" meta strings.
+- Arrows appended to link text.
+- Count-up stats on page load, or fade-in on every section.
+- Em-dashes in copy, "not X, it's Y" sentences, slogans.
+- Extra accent colours, glows or gradient washes.
 
-## Typography
+## The set pieces
 
-- **Display** — Cormorant Garamond 500 / italic 500 — H1/H2 only. Tight `-0.02em`. Max 18ch on H1.
-- **UI/body** — Inter 400/500/600, `font-feature-settings: "ss01","cv11"`. 16/1.7.
-- **Mono** — JetBrains Mono 400/500 — eyebrows, meta strips, indices. Never decorative.
+Each page has one or two moments that show something true about the work,
+all in `js/wow.js`, and each falls back to a plain static layout without JS
+or with reduced motion:
 
-Three families. Nothing else.
+| Page | Set piece |
+|---|---|
+| Home | Results take over the screen one at a time; a live question from the readiness check |
+| Work | Oversized result tiles |
+| Archival case | 1,000 scattered squares become one platform |
+| Lending case | An application runs along the five-minute line |
+| Safety app case | A chat blurs away, leaving the one record that leaves the phone |
+| AI agents | Dependency graph of the ten controls |
+| About | Five cities, drawn as a line |
+| Readiness check | The result card and score reveal |
 
-## Voice
-
-Apple HIG, adapted. One idea per sentence. Verbs over adjectives. No "leveraging," "transformative," "passionate about." The writing proves authority — never claims it.
-
-## Six principles (review gate)
-
-1. **One idea per section.** Two answers → two sections.
-2. **Hairlines, not boxes.** 1px line + breathing room, not fills.
-3. **Italic = emphasis. Copper = signal.** Sparingly enough that one occurrence draws the eye.
-4. **The grid breathes.** Section padding `clamp(80px, 11vw, 144px)`.
-5. **Motion serves orientation.** Scroll-blur on nav, pulse on available dot, hover-lift on CTAs. Nothing autoplays.
-6. **Honest performance.** One CSS file, one small JS file, `display: swap` fonts. LCP target < 1.2s.
-
-## Section order (locked)
-
-01 — Hero
-02 — About (one paragraph, restraint)
-03 — Expertise (6-cell quiet grid)
-04 — Case studies (5 editorial cards → detail stubs)
-05 — Writing (3 cornerstone teasers → /writing/)
-06 — Books (quiet row of 5)
-07 — Speaking (select 6-row list)
-08 — Contact (one calm card)
-
-## Phasing
-
-- **Phase 0** — this file. ✅
-- **Phase 1** — shell + hero + nav + atmosphere.
-- **Phase 2** — about + expertise.
-- **Phase 3** — case studies + books + talks.
-- **Phase 4** — writing teaser + contact + JSON-LD + headers cleanup. ✅
-
-All phases shipped; `index.legacy.html` has been removed.
+Before adding anything, ask: does this show a fact about the work? If it's
+only there to look impressive, leave it out.

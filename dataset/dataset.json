@@ -2919,12 +2919,12 @@
         "healthcare",
         "critical-infrastructure"
       ],
-      "notes": "The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control — it is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.",
+      "notes": "The most common finding in a first agent review is an agent acting as the engineer who deployed it, which makes attribution impossible and revocation a personnel action. This is not a new control. It is workload identity applied to a new kind of workload, and organisations that already solved it for services have most of the work done.",
       "verify": [
         {
           "platform": "AWS",
           "run": "aws sts get-caller-identity --query Arn --output text",
-          "expect": "An assumed-role ARN for the agent itself — not a human's, and not one shared with other agents.",
+          "expect": "An assumed-role ARN for the agent itself: not a human’s, and not one shared with other agents.",
           "yields": "Runtime caller identity",
           "checked": true
         }
@@ -2939,7 +2939,7 @@
         "owasp_llm",
         "sp80053"
       ],
-      "ctrl": "Tool authorisation enforced outside the model — the tool registry is the security boundary",
+      "ctrl": "Tool authorisation enforced outside the model, by the tool registry",
       "cat": "Agentic systems",
       "surface": "Agent runtime · Policy engine",
       "tools": [
@@ -2972,7 +2972,7 @@
         "healthcare",
         "critical-infrastructure"
       ],
-      "notes": "An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary — they are a request, and retrieved content will eventually contain instructions that contradict them.",
+      "notes": "An agent can only do what its tools permit, so the tool list is the control and the system prompt is a suggestion. Instructions telling a model what it must not do are not a security boundary. They are a request, and retrieved content will eventually contain instructions that contradict them.",
       "depends_on": [
         "agent-identity"
       ],
@@ -3007,7 +3007,7 @@
           "various"
         ]
       ],
-      "evidence": "A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review — a config diff with an approver, not a deploy.",
+      "evidence": "A register of action classes with the autonomy level assigned to each and who approved it. Per-run records showing the level in force at execution time. Evidence that a level change requires review: a config diff with an approver, not a deploy.",
       "anti_pattern": "ai-coe-trap",
       "sectors": [
         "banks",
@@ -3015,7 +3015,7 @@
         "healthcare",
         "critical-infrastructure"
       ],
-      "notes": "Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now — the question an investigation actually asks."
+      "notes": "Autonomy is not a property of the agent; it is a property of each action it can take. Recording the level in force at the time is what lets you answer what it was allowed to do then, rather than what it is allowed to do now. That is the question an investigation actually asks."
     },
     {
       "id": "agent-human-oversight",
@@ -3068,7 +3068,7 @@
         "cps230",
         "hipaa"
       ],
-      "ctrl": "Full replayable trajectory — every tool call, argument, result and the exact context the model saw",
+      "ctrl": "Full replayable trajectory: every tool call, argument, result and the exact context the model saw",
       "cat": "Agentic systems",
       "surface": "Agent runtime · Observability",
       "tools": [
@@ -3126,7 +3126,7 @@
         "nis2",
         "soci"
       ],
-      "ctrl": "Bounded blast radius — step, spend and rate ceilings, plus a tested kill switch",
+      "ctrl": "Bounded blast radius: step, spend and rate ceilings, plus a tested kill switch",
       "cat": "Agentic systems",
       "surface": "Agent runtime · Platform",
       "tools": [
@@ -3156,7 +3156,7 @@
       "sectors": [
         "all"
       ],
-      "notes": "A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run — stopping an agent between steps is easy, stopping one that is halfway through a multi-call action is the case that matters.",
+      "notes": "A loop without a ceiling is a billing incident with a countdown. The kill switch matters more than the ceiling and is almost never tested mid-run. Stopping an agent between steps is easy. Stopping one that is halfway through a multi-call action is the case that matters.",
       "verify": [
         {
           "platform": "Kubernetes",
@@ -3263,7 +3263,7 @@
         "ai_rmf",
         "bcbs239"
       ],
-      "ctrl": "Provenance across agents — every output traceable to the upstream runs that produced its inputs",
+      "ctrl": "Provenance across agents: every output traceable to the upstream runs that produced its inputs",
       "cat": "Agentic systems",
       "surface": "Agent orchestration",
       "tools": [
@@ -3290,7 +3290,7 @@
         "government",
         "healthcare"
       ],
-      "notes": "As soon as one agent consumes another's output, a single-run trace stops being sufficient — the question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.",
+      "notes": "As soon as one agent consumes another's output, a single-run trace stops being sufficient. The question becomes which chain of reasoning produced this, and BCBS 239-style lineage expectations apply to agent outputs exactly as they do to reported figures.",
       "depends_on": [
         "agent-trajectory-trace"
       ],
@@ -3332,7 +3332,7 @@
       "sectors": [
         "all"
       ],
-      "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit — the runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.",
+      "notes": "Agent cost is nonlinear in a way single-call GenAI is not: retries, fan-out and growing context mean a task can cost ten times the estimate. Cost per token is the wrong unit. The runs that fail and get retried are the ones that make the difference between a viable feature and an unviable one.",
       "depends_on": [
         "agent-trajectory-trace",
         "r043"

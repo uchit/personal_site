@@ -1,0 +1,50 @@
+<!--page {"out": "tools/agent-readiness.html", "title": "Agent readiness check", "nav": "agents",
+ "css": ["/css/tool.css"], "js": ["/js/diag-storage.js", "/js/diagnostic.js", "/js/pages/tools-agent-readiness.js"],
+ "description": "Ten questions, about two minutes. Score how ready your AI agents are for a regulated environment, and see the three things to fix first. Runs in your browser; nothing is collected."} -->
+
+<section class="page-head tool-head">
+  <div class="wrap">
+    <p class="crumbs"><a href="/agents/">Ten controls for AI agents</a></p>
+    <h1 class="h1">Agent readiness check.</h1>
+    <p class="lede">Ten questions, one for each control. Answer for what is actually enforced today, not what the design document says. It takes about two minutes and nothing leaves your browser.</p>
+    <div class="sector-sel" id="sectorsel"></div>
+  </div>
+</section>
+
+<section class="section mist tight quiz" id="quiz">
+  <div class="wrap quiz-wrap">
+    <div class="q-progress"><div class="bar" id="qbar"></div><div class="ptxt" id="ptxt"></div></div>
+    <article class="q-card" id="qcard">
+      <p class="q-num" id="qnum"></p>
+      <p class="q-cap" id="qcap"></p>
+      <h2 class="q-text" id="qtext"></h2>
+      <div class="q-opts" id="qopts"></div>
+      <div class="q-refs" id="qrefs"></div>
+    </article>
+    <div class="q-nav"><button type="button" id="qback" disabled>Back</button></div>
+
+    <div class="result" id="result">
+      <div class="result-hero">
+        <div>
+          <p class="small">Your score</p>
+          <div class="result-score"><span id="rscore">0</span><span class="of" id="rmax"></span></div>
+          <div class="result-level" id="rlevel"></div>
+          <div class="result-bar"><div class="fill" id="rfill"></div></div>
+          <div class="result-bench" id="rbench"></div>
+        </div>
+        <div>
+          <div class="result-body" id="rbody"></div>
+          <div class="result-recs-mini"><h3>Fix these first</h3><ol id="rmini"></ol></div>
+        </div>
+      </div>
+      <div class="sector-lens" id="rsectorlens"></div>
+      <div class="recs-detail"><h3>What to do next</h3><ol id="rdetail"></ol></div>
+      <div class="refs-section"><h3>Frameworks referenced</h3><div class="refs-grid" id="refslib"></div></div>
+      <div class="actions">
+        <button class="btn" type="button" data-action="restart">Start again</button>
+        <a class="link-strong" id="rshare" href="#">Copy shareable link</a>
+        <a class="link-strong" href="/agents/">Read the ten controls</a>
+      </div>
+    </div>
+  </div>
+</section>

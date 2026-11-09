@@ -90,68 +90,38 @@ constraints that made it awkward are worth knowing up front:
 
 ## Build scripts
 
-Run from the repo root; all are idempotent.
+Run from the repo root. No npm dependencies; Node 22+.
 
 ```sh
-node scripts/build-llms-full.mjs      # regenerate the full-text corpus
-node scripts/build-json-exports.mjs   # diagnostics/decisions/anti-patterns/glossary JSON
-node scripts/build-situations.mjs     # regenerate /situations/ (also link-checks routes)
-node scripts/check-routes.mjs         # diagnostic result → playbook routes
-node scripts/check-drafts.mjs         # no page publishes with placeholder text
-node scripts/check-links.mjs          # every internal href/src resolves
+node scripts/build-agents.mjs      # /agents/ body from dataset/dataset.json -> src/pages/agents/
+node scripts/build-site.mjs        # wraps every src/pages/**/*.html in the shared shell, writes sitemap.xml
+node scripts/build-redirects.mjs   # redirect pages for retired URLs (only when RETIRED changes)
+node scripts/check-drafts.mjs      # no page publishes with placeholder text
+node scripts/check-structure.mjs   # no duplicated page skeletons
+node scripts/check-links.mjs       # every internal href/src resolves
 ```
 
-### Generators overwrite — put sitewide edits in the generator
+**Edit pages in `src/pages/`, never the built HTML.** `build-site.mjs`
+overwrites the output. The header, footer and `<head>` exist once, in
+`build-site.mjs`, so the nav can't drift between pages.
 
-`build-situations.mjs` **rewrites its pages from scratch**. Any sitewide edit
-applied afterwards — a link added to every `also-strip`, a step marker stamped
-by `build-step-nav.mjs` — is silently reverted the next time it runs. This has
-now happened three times, twice unnoticed until a live check.
+Local CSS and JS are linked with a content hash (`main.css?v=1a2b3c4d`), so
+a changed file is a new URL and the Cloudflare cache problem above doesn't
+apply to them any more. HTML pages still need a purge after a deploy.
 
-The rule: if a sitewide change must survive, it goes **into the generator**, not
-just into the output. `build-situations.mjs` therefore emits the step marker and
-the full `also-strip` itself, and the two generators are safe to run in either
-order. To confirm that after touching either:
+Any element with `class="ph"` or `class="ph-block"` is a placeholder for
+content the author still has to supply. `build-site.mjs` marks such a page
+`noindex` automatically and leaves it out of the sitemap; `check-drafts.mjs`
+fails CI if a page with placeholders isn't `noindex`. What each placeholder
+needs is listed in `docs/handoff.md`.
 
-```sh
-node scripts/build-step-nav.mjs   >/dev/null && node scripts/build-situations.mjs >/dev/null
-grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
-node scripts/build-situations.mjs >/dev/null && node scripts/build-step-nav.mjs  >/dev/null
-grep -l 'STEP-NAV' situations/*/index.html | wc -l   # expect 4
-```
+## November 2026 rebuild
 
-## No search — Ask instead
-
-The site briefly had a Pagefind full-text search UI at `/search/`. Removed:
-it solved the same "find something on the site" problem `/ask/` does, just
-with keyword matching instead of an actual answer, and running both was
-redundant surface area — a second index to keep in sync, a second npm
-dependency, a second thing to explain in the nav. `/search/` is now a one-line `<meta http-equiv="refresh">` stub pointing to
-`/ask/` for anyone with an old bookmark — GitHub Pages can't do a real
-server-side redirect, so this is the static-hosting equivalent.
-This repo has no npm dependencies again as a result — everything is plain
-HTML/CSS/JS, same as it was before Pagefind.
-
-## No Letters, no Frontier log — a broken cadence promise is worse than none
-
-Both were removed after an audit found their forward-looking claims weren't
-being kept: Letters promised "Monthly" and sent one issue (Jun 2026) in over
-three months; the Frontier log's most recent entry was 2.5 months stale.
-A visible, unfulfilled cadence promise reads as abandoned, not "not yet
-updated" — worse than never having made the promise. Both routes are now
-one-line redirect stubs to `/writing/`, same pattern as `/search/` above.
-`scripts/build-frontier.mjs` (the dead generator) is deleted, along with its
-call site in `build-all.mjs`, its corpus entry in `build-llms-full.mjs`, and
-its routing rule in `build-step-nav.mjs`.
-
-`/teardowns/` kept a lighter version of the same problem — its index
-promised "one per quarter" and none had shipped since the May 2026 launch
-batch. The four essays underneath it were genuinely substantive, so only
-the index and the cadence-promise line (which also appeared inside each
-essay's own footer) are gone; the essays stay live at their original URLs,
-now surfaced from a new "Architecture teardowns" section on `/writing/`
-instead of their own index.
-
-If either feature is picked back up, do it by actually sending on cadence
-first and only then re-adding the on-page promise — not the other way
-around.
+The site was cut from about 90 pages to 8: home, work, three case studies,
+about, the ten agent controls and the agent readiness check. Everything else
+(diagnostics, decision trees, playbooks, maturity tiers, reference
+architectures, teardowns, sector pages, dataset views, writing, Ask, search)
+is retired. Each retired URL is a small redirect page made by
+`scripts/build-redirects.mjs`, because GitHub Pages can't send a real 301.
+The full content of every retired page is in git history on `main` before the
+rebuild. The design rules are in `design-notes.md`.

@@ -18,3 +18,10 @@ Thumbs.db
 # with the rest of that directory in the worker consolidation; this stops it
 # from happening again in worker/site/ or any future worker/ directory.
 **/.wrangler/
+
+# Research notes and reports from planning sessions; not part of the site
+research_notes/
+reports/
+
+# Local design-review screenshots
+.review/

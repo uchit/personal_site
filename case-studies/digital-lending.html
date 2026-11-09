@@ -1,281 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>High-speed digital lending platform at scale — Case Study — Uchit Vyas</title>
-<meta name="description" content="Case study: loan approval in under 5 minutes, launched in 6 months, 200+ engineers, 50+ regulated AWS environments, millions of users — Pega + Go + FIS Risk Engine on AWS." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Loans paid out in under five minutes | Uchit Vyas</title>
+<meta name="description" content="Case study: a digital lending platform for a leading Asian bank. Approval and payout in under five minutes, live in six months, 200+ engineers, no critical incidents at launch." />
+<meta name="theme-color" content="#000000" />
 <link rel="canonical" href="https://hellouchit.com/case-studies/digital-lending.html" />
-<meta name="theme-color" content="#0c0d10" />
-<link rel="icon" href="/images/favicon.svg?v=2" type="image/svg+xml" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="High-speed digital lending platform — 200+ engineers, 50+ AWS environments" />
-<meta property="og:description" content="5-minute loan approval. Millions of users. Zero critical production incidents at launch." />
+<meta property="og:title" content="Loans paid out in under five minutes" />
+<meta property="og:description" content="Case study: a digital lending platform for a leading Asian bank. Approval and payout in under five minutes, live in six months, 200+ engineers, no critical incidents at launch." />
+<meta property="og:url" content="https://hellouchit.com/case-studies/digital-lending.html" />
 <meta property="og:image" content="https://hellouchit.com/images/og-banner.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/css/site.css" />
-<link rel="stylesheet" href="/css/enhance.css" />
-<link rel="stylesheet" href="/css/essay.css" />
-<link rel="stylesheet" href="/css/case.css" />
-<script src="/js/site.js" defer></script>
-<script src="/js/enhance.js" defer></script>
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/images/favicon.svg?v=3" type="image/svg+xml" />
+<link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/images/favicon-192.png" />
+<link rel="stylesheet" href="/css/main.css?v=66c00a96" />
+<link rel="stylesheet" href="/css/dark.css?v=de3d0289" />
 
-  <!-- Google Analytics 4 — G-XKE8WPKMMX -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
-  <script src="/js/analytics.js" defer></script>
+<script src="/js/main.js?v=0a07f5ed" defer></script>
+<script src="/js/wow.js?v=ba7ec6e8" defer></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKE8WPKMMX"></script>
+<script src="/js/analytics.js?v=597a9efb" defer></script>
+
 </head>
-<body>
-  <a href="#main" class="skip-link">Skip to main content</a>
-  <div class="bg-fx" aria-hidden="true"></div><div class="grid-fx" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
-  <header class="nav" role="banner"><div class="wrap nav-inner">
-    <a href="/" class="brand"><span class="monogram">UV</span><span class="blab"><b>Uchit Vyas</b><span>Forward Deployed Engineering · Agents</span></span></a>
-    <nav class="links"><a href="/#about">About</a><a class="u-ink" href="/#work">Work</a><a href="/agents/">Agents</a><a href="/tools/">The Method</a><a href="/writing/">Writing</a><a href="/ask/">Ask</a><a href="/#contact" class="nav-cta">Get in touch</a></nav>
-    <button class="menu-btn mono" aria-label="Open menu" aria-expanded="false">≡</button>
-  </div></header>
+<body class="theme-dark">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/">Uchit Vyas</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="/case-studies/" aria-current="page">Work</a>
+        <a href="/agents/">AI agents</a>
+        <a href="/about/">About</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <p class="crumbs"><a href="/case-studies/">Work</a></p>
+    <h1 class="h1">Loans paid out in under five minutes.</h1>
+    <p class="lede">A leading Asian bank wanted a new lending platform that could approve a loan and pay it out within five minutes, for millions of customers, launched in six months.</p>
+    <dl class="facts">
+      <div><dt>Client</dt><dd>Leading Asian bank</dd></div>
+      <div><dt>Years</dt><dd>2021 to 2022</dd></div>
+      <div><dt>My role</dt><dd>Delivery lead and technical architect</dd></div>
+      <div><dt>Team</dt><dd>200+ people in 50+ squads</dd></div>
+    </dl>
+  </div>
+</section>
 
-  <main id="main" tabindex="-1">
-    <section class="cs-hero"><div class="wrap">
-      <nav class="crumb u-eyebrow"><a class="u-muted" href="/">Home</a><span class="u-op-50">/</span><a class="u-muted" href="/case-studies/">Case Studies</a><span class="u-op-50">/</span><span class="u-accent">Digital Lending</span></nav>
-      <div class="meta"><span><b>Case study</b></span><span>Banking &middot; Digital Lending</span><span>6-month launch</span><span>200+ FTE</span></div>
-      <h1>High-speed digital lending platform &mdash; <em>200+ engineers, 50+ AWS environments</em>.</h1>
-      <p class="dek">
-        Leading Asian bank. Loan approval and disbursement in <b>under 5
-        minutes</b>. Launched in 6 months. Ready to onboard millions of
-        users at go-live. <b>Zero critical production incidents</b>.
-      </p>
-      <div class="cs-context">
-        <div class="item"><b>Sector</b>Banking · JAPAC</div>
-        <div class="item"><b>Period</b>2021&ndash;2022</div>
-        <div class="item"><b>Scale</b>Millions of users at launch</div>
-        <div class="item"><b>Team</b>200+ across PODs &amp; squads</div>
-        <div class="item"><b>My role</b>Delivery Lead &amp; Technical Architect</div>
-        <div class="item"><b>Timeline</b>6 months to production</div>
-        <div class="item"><b>Environments</b>50+ regulated AWS</div>
+<section class="section night tight" aria-label="Results">
+  <div class="wrap">
+    <div class="results">
+      <div class="result"><div class="fig">&lt;5<small>min</small></div><p><strong>From application to money paid out.</strong></p></div>
+      <div class="result"><div class="fig">6<small>months</small></div><p><strong>To production</strong>, on the date agreed at the start.</p></div>
+      <div class="result"><div class="fig">0</div><p><strong>Critical incidents</strong> at go-live, across 50+ regulated AWS environments.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cs-block">
+      <h2>The problem</h2>
+      <div class="prose">
+        <p>The bank&rsquo;s existing lending process took far longer than five minutes. It wanted a new platform built on Pega for workflow, Go microservices and the FIS risk engine, running on AWS under strict banking rules.</p>
+        <p>Six months is not enough time to run discovery, design, build and test one after another. Everything had to happen in parallel.</p>
       </div>
-    </div></section>
+    </div>
 
-    <article class="e-body wrap">
+    <div class="clock" data-wow="clock" data-end=".86" aria-label="The steps from application to payout, all inside five minutes">
+      <h2 class="h2">Five minutes, start to finish.</h2>
+      <div class="clock-track"><div class="clock-fill"></div><span class="clock-limit">5:00</span></div>
+      <ol class="clock-steps">
+        <li class="clock-step" data-at=".04">Customer applies on mobile or web</li>
+        <li class="clock-step" data-at=".22">Pega runs the workflow</li>
+        <li class="clock-step" data-at=".45">FIS risk engine scores the credit</li>
+        <li class="clock-step" data-at=".66">Loan approved</li>
+        <li class="clock-step" data-at=".86">Money paid out</li>
+      </ol>
+      <p class="clock-result">Paid out inside the limit.</p>
+    </div>
 
-      <h2>The challenge.</h2>
-      <p>
-        Stand up a next-generation digital lending platform capable of loan approval and disbursement <b>within 5 minutes</b>, launch within 6 months, and onboard millions of users from day one &mdash; against strict banking regulation, non-standard patterns for Pega-plus-cloud DevOps, and the need to scale a 200+ person delivery team faster than the talent market typically allows.
-      </p>
-
-      <h2>The constraints.</h2>
-      <ul>
-        <li><b>Regulatory:</b> Strict banking regulations governing AWS environments. Non-standard Pega + cloud DevOps patterns required engineering invention against an audit floor.</li>
-        <li><b>Scale:</b> 50+ regulated AWS environments to manage in parallel. Complex integration across Pega, risk engine, microservices and channels.</li>
-        <li><b>Talent:</b> Stand up 200+ FTE across multiple skill domains rapidly. Skill availability within the timeline posed major delivery risk.</li>
-        <li><b>Communication:</b> Primary stakeholders communicated in their native language; language and cultural barriers were a delivery risk, not an inconvenience.</li>
-        <li><b>Timeline:</b> 6 months. No slack for serial discovery-design-build-test.</li>
-      </ul>
-
-      <h2>The architectural approach.</h2>
-
-      <h3>POD-based leadership, squad-based delivery.</h3>
-      <p>
-        Three POD types ran in parallel:
-      </p>
-      <ul>
-        <li><b>Delivery Lead PODs</b> &mdash; owning execution, timelines, dependencies.</li>
-        <li><b>Architecture PODs</b> &mdash; owning Pega, risk engine, microservices, integration patterns.</li>
-        <li><b>PMO PODs</b> &mdash; owning planning, reporting, risk and governance.</li>
-      </ul>
-      <p>
-        Squads aligned to platform components, functional modules and business capabilities &mdash; not to org-chart silos.
-      </p>
-
-      <h3>Local engagement model.</h3>
-      <p>
-        Local client-facing PMOs paired with internal delivery PMOs across regions. The structure absorbed language and cultural diversity instead of fighting it.
-      </p>
-
-      <h3>Skill-based, not role-based, resource planning.</h3>
-      <p>
-        Skill requirements identified bottom-up; talent head-hunted across JAPAC based on capability fit, not role titles. Task-level timelines defined by individual capability &mdash; the most predictable delivery shape at this scale.
-      </p>
-
-      <h3>Engineering foundation.</h3>
-      <p>
-        Automation-first testing approach. Containerisation as standard practice. Mandatory code and pipeline reviews. The 50+ regulated AWS environments were managed to support parallel development, testing and release without the usual collision tax.
-      </p>
-
-      <div class="cs-stack">
-        <span class="lbl">Technology stack</span>
+    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
+      <h2>What made it hard</h2>
+      <div class="prose">
         <ul>
-          <li><b>Workflow &amp; decisioning</b> Pega</li>
-          <li><b>Backend</b> Go-lang microservices</li>
-          <li><b>Risk processing</b> FIS Risk Engine</li>
-          <li><b>Frontend</b> Microservice-based (mobile + web)</li>
-          <li><b>Cloud platform</b> AWS (50+ environments)</li>
-          <li><b>DevOps</b> Containerisation + CI/CD</li>
+          <li><strong>Team size.</strong> We had to hire and organise more than 200 people across several skill areas, fast.</li>
+          <li><strong>Environments.</strong> More than 50 regulated AWS environments had to support parallel development, testing and release without teams blocking each other.</li>
+          <li><strong>Language.</strong> Many of the bank&rsquo;s stakeholders worked in their own language. Misunderstandings were a real delivery risk.</li>
+          <li><strong>New patterns.</strong> Running Pega with cloud DevOps in a regulated bank had no standard playbook. We had to design one that would pass audit.</li>
         </ul>
       </div>
+    </div>
 
-      <h2>Outcomes.</h2>
-      <div class="cs-outcomes">
-        <div class="cs-outcome">
-          <div class="num">&lt;5<em>minutes</em></div>
-          <div class="lbl">Loan approval +<br />disbursement</div>
-        </div>
-        <div class="cs-outcome">
-          <div class="num">6<em>months</em></div>
-          <div class="lbl">Production launch<br />on commitment</div>
-        </div>
-        <div class="cs-outcome">
-          <div class="num">200<span class="u">+</span></div>
-          <div class="lbl">FTE across PODs<br />&amp; squads</div>
-        </div>
-        <div class="cs-outcome">
-          <div class="num">50<span class="u">+</span></div>
-          <div class="lbl">Regulated AWS<br />environments</div>
-        </div>
-        <div class="cs-outcome">
-          <div class="num">0<em>critical incidents</em></div>
-          <div class="lbl">At production<br />go-live</div>
-        </div>
-      </div>
-
-      <p>
-        Predictable delivery velocity despite the team scale, with parallel delivery across multiple squads and no blocking dependencies. Stable operations across the 50+ regulated AWS environments. Strong stakeholder trust established through local PMO engagement and clear communication across language barriers.
-      </p>
-
-      <div class="cs-lesson">
-        <div class="lbl">Closing insight</div>
-        <blockquote>
-          Large-scale digital transformation succeeds not by adding more people, but by adding the right <em>structure</em>, clarity, and automation.
-        </blockquote>
-      </div>
-
-      <h2>Five lessons from the programme.</h2>
-      <ol>
-        <li><b>Speed and regulation are compatible</b>, given the right architecture, automation and governance.</li>
-        <li><b>Structure enables scale.</b> POD- and squad-based models prevent chaos when delivery teams exceed 150&ndash;200 people.</li>
-        <li><b>DevOps is the foundation, not the optimisation.</b> Automation, containerisation and CI/CD were essential for managing 50+ environments without slowing delivery.</li>
-        <li><b>Local engagement multiplies trust.</b> Language and cultural alignment via local PMO structures significantly improved decision-making.</li>
-        <li><b>Skill-based beats role-based at scale.</b> Task timelines aligned to individual capability delivered far more predictable outcomes.</li>
-      </ol>
-
-      <div class="e-related">
-        <h3>Related</h3>
-        <div class="row u-flex-wrap-10">
-          <a href="/tools/platform-engineering.html">Platform Engineering Readiness &rarr;</a>
-          <a href="/tools/sre-programme.html">SRE Programme Diagnostic &rarr;</a>
-          <a href="/tools/devsecops-maturity.html">DevSecOps Maturity Diagnostic &rarr;</a>
-          <a href="/reference-architectures/devsecops-paved-path.html">DevSecOps SLSA L3+ Paved Path RA &rarr;</a>
-        </div>
-      </div>
-
-      <div class="cs-origin">
-        Originally published on Medium &middot; <a href="https://medium.com/@uchit86/case-study-building-a-high-speed-digital-lending-platform-at-scale-878a045e794a" target="_blank" rel="noopener">read the original</a>
-      </div>
-    </article>
-
-    
-  <!-- ============ ALSO ON THIS SITE — discoverability strip ============ -->
-<!-- STEP-NAV:START — generated by scripts/build-step-nav.mjs -->
-  <nav class="step-nav" aria-label="Position in The Method">
-    <div class="wrap">
-      <a class="lab" href="/tools/">The Method</a>
-      <div class="row">
-        <a href="/tools/#s6">&larr; 06 Prove it</a>
-        <b>07 &middot; Go deeper</b>
-        <a href="/situations/">back to 01 Name it &rarr;</a>
+    <div class="cs-block">
+      <h2>How we ran it</h2>
+      <div class="prose">
+        <p>Three kinds of leadership group worked side by side: delivery leads who owned timelines and dependencies, architects who owned Pega, the risk engine, the microservices and integration, and a PMO group that owned planning, reporting and risk.</p>
+        <p>Squads were organised around parts of the platform and business capabilities, not around the org chart. We hired for specific skills across Asia rather than for job titles, and set each task&rsquo;s timeline by the skills of the person doing it.</p>
+        <p>The bank&rsquo;s local PMO teams were paired with ours in each region, so decisions happened in the stakeholders&rsquo; own language.</p>
+        <p>Engineering basics were fixed from the start: automated testing, containers everywhere, and mandatory code and pipeline reviews.</p>
       </div>
     </div>
-  </nav>
-  <!-- STEP-NAV:END -->
 
-  <section class="also-strip" aria-label="More on this site">
-    <div class="wrap">
-      <div class="also-grp">
-        <span class="lab">Reference</span>
-        <nav class="also-links">
-          <a href="/agents/">Agents</a>
-          <a href="/dataset/">Dataset</a>
-          <a href="/anti-patterns/">Anti-patterns</a>
-          <a href="/benchmark/">Benchmark</a>
-          <a href="/for/">Sector views</a>
-          <a href="/glossary/">Glossary</a>
-          <a href="/reading/">Reading list</a>
-        </nav>
+    <figure class="figure-wide">
+      <div class="flow" role="img" aria-label="Architecture: mobile and web channels use front-end microservices, which call Pega for workflow and decisions, Go microservices for backend services, and the FIS risk engine for credit and risk, all on AWS across 50 or more regulated environments.">
+        <div class="flow-col">
+          <p class="flow-h">Channels</p>
+          <div class="node">Mobile app</div>
+          <div class="node">Web</div>
+          <div class="node muted">Millions of customers</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Front end</p>
+          <div class="node">Front-end microservices</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Decide</p>
+          <div class="node accent">Pega workflow and decisions</div>
+          <div class="node">FIS risk engine</div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-col">
+          <p class="flow-h">Serve</p>
+          <div class="node">Go microservices</div>
+          <div class="node muted">Disbursement</div>
+        </div>
+        <p class="flow-base">AWS, 50+ regulated environments, containers and CI/CD throughout</p>
       </div>
-      <details class="also-grp also-more">
-        <summary class="lab">More on this site</summary>
-        <nav class="also-links">
-          <a href="/how-i-work/">How I work</a>
-          <a href="/situations/">Situations</a>
-          <a href="/talks/">Talks</a>
-          <a href="/4-discipline-stack/">4-Discipline Stack</a>
-          <a href="/state-of-2026/">State of 2026</a>
-          <a href="/oss/">Open source</a>
-          <a href="/press/">Press kit</a>
-          <a href="/ai/">AI entity</a>
-        </nav>
-      </details>
+      <figcaption>How an application moves from the customer&rsquo;s phone to a payout.</figcaption>
+    </figure>
+
+    <div class="cs-block" style="margin-top:clamp(48px,6vw,80px)">
+      <h2>What I learned</h2>
+      <div class="prose">
+        <ul>
+          <li><strong>Regulation doesn&rsquo;t have to mean slow.</strong> With the right architecture, automation and governance, a regulated bank moved at startup speed.</li>
+          <li><strong>Past about 150 people, structure is what keeps it working.</strong> Leadership groups and squads stopped the programme turning into chaos.</li>
+          <li><strong>DevOps has to come first.</strong> Without automation, containers and CI/CD, 50+ environments would have slowed everyone down.</li>
+          <li><strong>Plan by skill, not by job title.</strong> Setting each task&rsquo;s timeline by the person doing it made delivery far more predictable.</li>
+          <li><strong>Talk in the client&rsquo;s language.</strong> Local PMO teams made decisions faster and built trust.</li>
+        </ul>
+      </div>
     </div>
-  </section>
 
-  <footer class="e-foot"><div class="wrap">
-      <div class="row u-flex-wrap-14-22">
-        <span>&copy; Uchit Vyas &middot; Melbourne, AU &middot; <span class="foot-disc u-op-60">personal site, views my own, not my employer&rsquo;s</span></span><span>&middot;</span>
-        <a href="/case-studies/">&larr; All case studies</a><span>&middot;</span>
-        <a href="/#contact">Talk about your stack &rarr;</a>
-      </div>
-    </div></footer>
-  </main>
+    <div class="cs-block">
+      <h2>Stack</h2>
+      <dl class="stack">
+        <div><dt>Workflow and decisions</dt><dd>Pega</dd></div>
+        <div><dt>Services</dt><dd>Go microservices</dd></div>
+        <div><dt>Risk</dt><dd>FIS risk engine</dd></div>
+        <div><dt>Channels</dt><dd>Mobile and web</dd></div>
+        <div><dt>Cloud</dt><dd>AWS, 50+ environments</dd></div>
+        <div><dt>Delivery</dt><dd>Containers and CI/CD</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
 
-  <!-- Per-page Article schema — author refs canonical Person on home page -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": "High-speed digital lending platform at scale \u2014 Case Study",
-    "description": "Case study: loan approval in under 5 minutes, launched in 6 months, 200+ engineers, 50+ regulated AWS environments, millions of users \u2014 Pega + Go + FIS Risk Engine on AWS.",
-    "url": "https://hellouchit.com/case-studies/digital-lending.html",
-    "datePublished": "2026-05-15",
-    "dateModified": "2026-05-29",
-    "inLanguage": "en",
-    "isPartOf": {
-      "@id": "https://hellouchit.com/#website"
-    },
-    "author": {
-      "@id": "https://hellouchit.com/#person"
-    },
-    "publisher": {
-      "@id": "https://hellouchit.com/#person"
-    },
-    "mainEntityOfPage": "https://hellouchit.com/case-studies/digital-lending.html",
-    "image": "https://hellouchit.com/images/og-banner.jpg"
-  }
-  </script>
-  <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://hellouchit.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Case Studies",
-        "item": "https://hellouchit.com/case-studies/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Digital Lending",
-        "item": "https://hellouchit.com/case-studies/digital-lending.html"
-      }
-    ]
-  }
-  </script>
+<section class="section mist tight">
+  <div class="wrap next-case">
+    <span class="small">Next case study</span>
+    <a href="/case-studies/ai-companion-safety.html"><span class="h2">A safety app that can&rsquo;t read messages</span></a>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Uchit Vyas, Melbourne. Personal site; views are my own.</span>
+    <nav aria-label="Footer">
+      <a href="mailto:contact@hellouchit.com">contact@hellouchit.com</a>
+      <a href="https://www.linkedin.com/in/uchitvyas/" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

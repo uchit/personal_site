@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">Uchit Vyas — UV monogram</title>
-  <rect width="64" height="64" rx="14" fill="#0c0d10"/>
-  <rect x="1.75" y="1.75" width="60.5" height="60.5" rx="12.5" fill="none" stroke="#d99757" stroke-width="1.8"/>
-  <text x="32" y="44" font-family="Cormorant Garamond, Georgia, Times, serif"
-        font-weight="600" font-size="32" fill="#d99757"
-        text-anchor="middle" letter-spacing="-1.5">UV</text>
+  <title id="title">Uchit Vyas</title>
+  <rect width="64" height="64" rx="14" fill="#000"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Schibsted Grotesk, -apple-system, Helvetica, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-1.5" fill="#fff">UV</text>
 </svg>

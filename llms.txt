@@ -1,147 +1,20 @@
 # Uchit Vyas
 
-> Enterprise architect based in Melbourne, Australia. 15+ years across enterprise architecture, cloud, DevSecOps, SRE, GenAI and platform engineering, working from inside delivery teams to get regulated platforms into production against fixed external deadlines. In a full-time role and not available for consulting or freelance work; this site is a body of published work, not a services offering. 5 books with Apress & Packt. US patent (Specs Monster, US11334348B2). Named on the Top 50 DevSecOps Influencers list. Site at https://hellouchit.com.
+> Lead forward deployed engineer in Melbourne, Australia, focused on AI-led enterprise transformation. Fifteen years taking payment, lending, data and core platforms from plan to production, mostly inside regulated banks in Asia and Australia, and now AI agents and AI services for large enterprises. Author of five books with Apress and Packt (2013 to 2016). US patent US11334348B2. Employed full-time; not available for consulting.
 
-This file follows the [llms.txt convention](https://llmstxt.org/) — a structured manifest of the site's most important content, optimised for ingestion by AI systems (ChatGPT, Claude, Perplexity, Gemini, etc.).
+## Pages
 
-## About
-
-- [Home + About](https://hellouchit.com/): Biography, current role, books, patent, speaking, case studies, contact channels
-- [Press & speaker kit](https://hellouchit.com/press/): Bio, talk topics, headshots, past talks for conference organisers
-- [Career profile (PDF)](https://hellouchit.com/Profile_linkedin.pdf): One-page career history
-
-## The framework
-
-- [The 4-Discipline Stack](https://hellouchit.com/4-discipline-stack/): The named framework Uchit anchors his work around — Enterprise Architecture × Platform Engineering & DevSecOps × Data Modernisation × Applied GenAI
-
-## Six practitioner diagnostics (free, capability-scored)
-
-- [DevSecOps Maturity](https://hellouchit.com/tools/devsecops-maturity.html): 10 capabilities scored
-- [GenAI Readiness](https://hellouchit.com/tools/genai-readiness.html): 12 capabilities for regulated GenAI
-- [Cloud Cost](https://hellouchit.com/tools/cloud-cost.html): 8 capabilities for FinOps maturity
-- [Platform Engineering Readiness](https://hellouchit.com/tools/platform-engineering.html): 10 capabilities
-- [EA Operating Model](https://hellouchit.com/tools/ea-operating-model.html): 8 capabilities
-- [SRE Programme](https://hellouchit.com/tools/sre-programme.html): 10 capabilities
-- [Compound diagnostic](https://hellouchit.com/tools/compound/): Synthesises results across all six
-
-## Seven decision trees (interactive, recurring architecture choices)
-
-- [Build or buy an AI gateway](https://hellouchit.com/decisions/ai-gateway.html)
-- [RAG vs fine-tune vs prompt vs hybrid](https://hellouchit.com/decisions/llm-integration-pattern.html)
-- [OPA vs Kyverno vs Cedar (policy engine)](https://hellouchit.com/decisions/policy-engine.html)
-- [Shared / cell-based / single-tenant](https://hellouchit.com/decisions/tenancy-model.html)
-- [K8s vs PaaS vs FaaS (compute platform)](https://hellouchit.com/decisions/compute-platform.html)
-- [Sync vs async vs event-driven](https://hellouchit.com/decisions/service-communication.html)
-- [Monolith vs modular monolith vs microservices](https://hellouchit.com/decisions/service-decomposition.html)
-
-## Four 90-day playbooks (week-by-week with named gates)
-
-- [EU AI Act high-risk readiness in 12 weeks](https://hellouchit.com/playbooks/eu-ai-act-12-weeks.html)
-- [CISA Secure Software Attestation in 90 days](https://hellouchit.com/playbooks/cisa-attestation-90-days.html)
-- [Cloud Cost Aware → Controlled in a quarter](https://hellouchit.com/playbooks/cloud-cost-aware-to-controlled.html)
-- [Vault Theatre → Workload Identity migration](https://hellouchit.com/playbooks/vault-theatre-to-workload-identity.html)
-
-## Reference architectures
-
-- [Agentic systems in regulated environments](https://hellouchit.com/reference-architectures/agentic-systems-regulated.html): Two clocks, a single policy chokepoint, graded autonomy, per-run evidence and replay — distilled from agentic systems built in production
-
-## Four architecture teardowns (public signals only)
-
-- [Claude.ai — streaming-first AI product](https://hellouchit.com/teardowns/claude-ai.html)
-- [Linear — local-first sync engine](https://hellouchit.com/teardowns/linear.html)
-- [Notion — block-store architecture](https://hellouchit.com/teardowns/notion.html)
-- [Vercel — edge platform](https://hellouchit.com/teardowns/vercel.html)
-
-## Six cornerstone essays
-
-- [The encoded enterprise architect](https://hellouchit.com/writing/encoded-enterprise-architect.html)
-- [Nine controls that make GenAI defensible](https://hellouchit.com/writing/genai-9-controls.html)
-- [DevSecOps is supply-chain](https://hellouchit.com/writing/devsecops-is-supply-chain.html)
-- [Platform engineering is the AI moat](https://hellouchit.com/writing/platform-engineering-ai-moat.html)
-- [The 4-Discipline Stack](https://hellouchit.com/writing/4-discipline-stack-essay.html)
-- [AU AI Safety Standard decoded](https://hellouchit.com/writing/au-ai-safety-decoded.html)
-- [Forward deployed engineering, applied to regulated industries](https://hellouchit.com/writing/forward-deployed-engineering-regulated.html)
-
-## Reference
-
-- [The practitioner benchmark](https://hellouchit.com/benchmark/): Opt-in aggregate distribution of self-scored capability maturity in regulated industries. Stored as counts, not per-submission records. Withheld below n=25. CC BY 4.0; raw aggregate at https://hellouchit.com/v1/stats
-- [Regulation × control × tooling dataset](https://hellouchit.com/dataset/): 66 controls × 28 regulations × 290 tools. CC BY 4.0. JSON + CSV downloads.
-- [Agentic systems in regulated environments](https://hellouchit.com/agents/): ten controls for running agents where an auditor will ask — identity, tool authorisation, autonomy levels, trajectories, blast radius, reversibility, injection defence, provenance, cost per outcome.
-- [Practitioner glossary](https://hellouchit.com/glossary/): Named concepts and trade-offs, cross-linked
-- [Anti-patterns catalogue](https://hellouchit.com/anti-patterns/): 15 named failure modes
-- [Reading list](https://hellouchit.com/reading/): When-to-reach-for-this practitioner reading list
-- [Maturity tiers](https://hellouchit.com/maturity/): Per-discipline tier deep-dives
-- [Reference architectures](https://hellouchit.com/reference-architectures/): 5 opinionated paved-paths, including agentic systems in regulated environments
-
-## How I work
-
-- [How I work](https://hellouchit.com/how-i-work/): Working practice — what he needs to be useful, how the first two weeks go, explicit refusals, and the artefacts left behind
-
-## Situations (problem-shaped entry points)
-
-- [All situations](https://hellouchit.com/situations/): Named for the problem rather than the industry
-- [Hard deadline, no architecture](https://hellouchit.com/situations/deadline-no-architecture/): Deciding only what is expensive to reverse, and deferring the rest
-- [AI pilot stuck at risk review](https://hellouchit.com/situations/ai-pilot-stuck/): The controls that turn "trust us" into evidence a regulator can check
-- [Platform nobody uses](https://hellouchit.com/situations/platform-nobody-uses/): Paved path versus golden cage, and why mandates buy compliance not adoption
-- [Cloud bill out of control](https://hellouchit.com/situations/cloud-bill-out-of-control/): Attribution first, ownership second, optimisation last
-
-## Sector views
-
-- [For Banks & Financial Services](https://hellouchit.com/for/banks/): APRA CPS 230/234, EU DORA, EU AI Act
-- [For Government & Public Sector](https://hellouchit.com/for/government/): ASD Essential Eight, IRAP, AU AI Safety Standard
-- [For Healthcare & Life Sciences](https://hellouchit.com/for/healthcare/): HIPAA, FDA SaMD, EU AI Act
-- [For Critical Infrastructure](https://hellouchit.com/for/critical-infrastructure/): SOCI, NIS2, CIRCIA, IEC 62443
-
-## Case studies (Uchit's own work)
-
-- [What building a 10,561-question exam taught me about agentic engineering](https://hellouchit.com/case-studies/calibrated-assessment-agentic.html): A calibrated assessment across five weighted domains — agentic architecture plus tool design is 45% of the discipline, prompt engineering a fifth. The weighting is an argument about where the field now sits.
-- [Privacy-preserving AI-usage monitoring for families](https://hellouchit.com/case-studies/ai-companion-safety.html): Teenage AI-companion usage reported to parents with zero access to message content — privacy enforced by platform sandbox and extension manifest rather than policy. Built solo, end to end.
-- [Multi-region payment platform (3 months)](https://hellouchit.com/case-studies/payment-platform.html)
-- [EA governance at Asia's largest bank](https://hellouchit.com/case-studies/ea-governance.html)
-- [High-speed digital lending platform](https://hellouchit.com/case-studies/digital-lending.html)
-- [Retail platform modernisation](https://hellouchit.com/case-studies/retail-modernisation.html)
-- [Enterprise data archival ($50M+ savings)](https://hellouchit.com/case-studies/data-archival.html)
-
-## Living report
-
-- [State of Enterprise Tech in Regulated Industries 2026](https://hellouchit.com/state-of-2026/): Board-ready briefing, ten findings. Living document — revised in place with a public revision history; next scheduled review Jan 2027.
-
-## Open source
-
-- [Open source index](https://hellouchit.com/oss/): All projects, with what each enforces and how to run it
-- [mcp-regulated-ai-compliance](https://github.com/uchit/mcp-regulated-ai-compliance): Model Context Protocol server exposing this site's compliance dataset — 6 tools, 53 resources, 5 prompts — callable from Claude, Cursor, Zed, Continue and other MCP clients. Apache 2.0, published on npm as `@hellouchit/mcp-regulated-ai-compliance` with sigstore provenance.
-- [opa-nist-ai-rmf](https://github.com/uchit/opa-nist-ai-rmf): OPA policy bundle implementing NIST AI RMF + GenAI Profile, enforced at deploy time
+- [Home](https://hellouchit.com/): Summary, selected results, books, talks, contact
+- [Work](https://hellouchit.com/case-studies/): Case studies with results
+- [One archival platform for 1,000+ applications](https://hellouchit.com/case-studies/data-archival.html): Tier-1 bank in Australia and New Zealand, 2024, $50M+ a year saved
+- [Loans paid out in under five minutes](https://hellouchit.com/case-studies/digital-lending.html): Leading Asian bank, 2021 to 2022, 200+ engineers
+- [A safety app that can't read messages](https://hellouchit.com/case-studies/ai-companion-safety.html): Solo-built product, 2026
+- [About](https://hellouchit.com/about/): Career, books, patent, talks, recommendations
+- [Ten controls for AI agents](https://hellouchit.com/agents/): What to build, in what order, before an AI agent runs in a regulated company
+- [Agent readiness check](https://hellouchit.com/tools/agent-readiness.html): Ten-question self-assessment
+- [Controls as JSON](https://hellouchit.com/dataset/dataset.json): Machine-readable, CC BY 4.0
 
 ## Contact
 
 - Email: contact@hellouchit.com
 - LinkedIn: https://www.linkedin.com/in/uchitvyas/
-- Substack: https://uchitvyas.substack.com
-
-## Identity & sameAs
-
-- **Wikidata entity: Q139971067** ([wikidata.org/entity/Q139971067](https://www.wikidata.org/entity/Q139971067)) — canonical entity ID
-- Canonical URL: https://hellouchit.com/
-- LinkedIn: https://www.linkedin.com/in/uchitvyas/
-- GitHub: https://github.com/uchit
-- Substack (Letters): https://uchitvyas.substack.com
-- US patent: https://patents.google.com/patent/US11334348B2/en
-
-## Machine-readable exports (CC BY 4.0)
-
-The interactive tooling is published as JSON as well as HTML, so it can be
-cited, forked and embedded without scraping. Attribution: Uchit Vyas —
-hellouchit.com.
-
-- [Diagnostics JSON](https://hellouchit.com/tools/diagnostics.json): 6 diagnostics — every capability, scored level, recommendation and framework citation
-- [Decision trees JSON](https://hellouchit.com/decisions/decisions.json): 7 trees, ADR-shaped — verdicts, trade-offs, watch-outs, when-not-to-pick
-- [Anti-patterns JSON](https://hellouchit.com/anti-patterns/anti-patterns.json): 15 named failure modes — where each appears, why it fails, what to do instead
-- [Glossary JSON](https://hellouchit.com/glossary/glossary.json): 59 practitioner terms with domain tags
-- [Dataset JSON](https://hellouchit.com/dataset/dataset.json): 66 controls × 28 regulations × 290 tools
-- [Dataset CSV](https://hellouchit.com/dataset/dataset.csv)
-
-## Optional
-
-- [Sitemap (XML)](https://hellouchit.com/sitemap.xml)
-- [RSS feed](https://hellouchit.com/writing/feed.xml)
-- [Full content concatenated for ingestion](https://hellouchit.com/llms-full.txt)

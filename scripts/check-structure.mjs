@@ -51,7 +51,7 @@ const MARKERS = [
   "STEP-NAV",
 ];
 
-const files = globSync("**/*.html", { cwd: ROOT }).filter(f => !f.startsWith("node_modules"));
+const files = globSync("**/*.html", { cwd: ROOT }).filter(f => !f.startsWith("node_modules") && !f.startsWith("src/"));
 
 let errors = 0;
 let checked = 0;
