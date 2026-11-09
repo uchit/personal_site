@@ -66,10 +66,7 @@
   document.querySelectorAll('[data-wow="silos"]').forEach(function (stage) {
     var canvas = stage.querySelector("canvas");
     var ctx = canvas.getContext("2d");
-    var before = stage.querySelector(".silo-before");
-    var after = stage.querySelector(".silo-after");
     var count = stage.querySelector(".silo-count b");
-    var countLabel = stage.querySelector(".silo-count span");
     var N = 1000, COLS = 50, ROWS = 20;
     var seed = 7;
     var rand = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
@@ -97,17 +94,14 @@
         var tx = bx + (k % COLS) * cell, ty = by + Math.floor(k / COLS) * cell;
         var x = sx + (tx - sx) * t, y = sy + (ty - sy) * t;
         var sz = s0 + (cell - s0) * t;
-        ctx.fillStyle = t > .98 ? "#2997ff" : pt.c;
+        ctx.fillStyle = p > .9 ? "#2997ff" : pt.c;
         ctx.globalAlpha = .55 + .45 * t;
-        ctx.fillRect(x, y, Math.max(1, sz - (t > .98 ? 0 : 1)), Math.max(1, sz - (t > .98 ? 0 : 1)));
+        ctx.fillRect(x, y, Math.max(1, sz - (p > .9 ? 0 : 1)), Math.max(1, sz - (p > .9 ? 0 : 1)));
       }
       ctx.globalAlpha = 1;
-      before.style.opacity = String(1 - clamp((p - .25) / .2, 0, 1));
-      after.style.opacity = String(clamp((p - .58) / .15, 0, 1));
       if (count) {
         var n = Math.max(1, Math.round(1000 - 999 * ease(clamp((p - .12) / .7, 0, 1))));
-        count.textContent = n.toLocaleString("en-AU");
-        countLabel.textContent = n === 1 ? " archive" : " separate archives";
+        count.textContent = n.toLocaleString("en-AU") + (n === 1 ? " archive" : " separate archives");
       }
     }
     if (reduce) { stage.classList.add("is-static"); size(); draw(1); return; }
