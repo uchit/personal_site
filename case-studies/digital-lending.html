@@ -32,7 +32,7 @@
 <link rel="alternate icon" href="/images/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/images/favicon-192.png" />
 <link rel="stylesheet" href="/css/main.css?v=66c00a96" />
-<link rel="stylesheet" href="/css/dark.css?v=7f713dcc" />
+<link rel="stylesheet" href="/css/dark.css?v=c9457ca3" />
 
 <script src="/js/main.js?v=0a07f5ed" defer></script>
 <script src="/js/wow.js?v=d187f209" defer></script>
@@ -223,8 +223,8 @@
   <div class="wrap">
     <div class="results">
       <div class="result"><div class="fig">&lt;5<small>min</small></div><p><strong>From application to money paid out.</strong></p></div>
-      <div class="result"><div class="fig">6<small>months</small></div><p><strong>To production</strong>, on the agreed date</p></div>
-      <div class="result"><div class="fig">0</div><p><strong>Critical incidents</strong> at go-live</p></div>
+      <div class="result"><div class="fig">6<small>months</small></div><p><strong>To a live pilot</strong>, 50k users</p></div>
+      <div class="result"><div class="fig">0</div><p><strong>Critical incidents</strong> at the pilot launch</p></div>
     </div>
   </div>
 </section>
@@ -234,28 +234,27 @@
     <div class="tri">
       <div><h2>The problem</h2><p>Six months is too short to plan, build and test one after another.</p></div>
       <div><h2>The move</h2><p>Squads around the platform, all building in parallel.</p></div>
-      <div><h2>The result</h2><p>Live on the agreed date, loans paid out in minutes.</p></div>
+      <div><h2>The result</h2><p>Pilot live on the agreed date, then nationwide.</p></div>
     </div>
 
-    <figure class="plan" aria-label="Illustration: four stages run one after another finish past the deadline; the same stages overlapped finish on the agreed six-month date.">
-      <div class="plan-scale" aria-hidden="true"><span></span><div><b>Start</b><b>Month 6</b><em>Live</em></div></div>
+    <figure class="plan" aria-label="Timeline, months 1 to 8: discovery in months 1 and 2, design in months 2 and 3, build and test in an agile loop from month 3 to month 6 with the full team of 200 plus and AWS environments growing to more than 50. Pilot live for 50,000 users at the end of month 6. UAT of the full five-minute flow in months 7 and 8, then the nationwide rollout.">
+      <div class="plan-scale" aria-hidden="true"><span></span><div class="plan-months"><b>M1</b><b>M2</b><b>M3</b><b>M4</b><b>M5</b><b>M6</b><b>M7</b><b>M8</b></div></div>
       <div class="plan-body">
-      <div class="plan-group late">
-        <p class="plan-h">One after another: past the deadline</p>
+        <div class="plan-mark" style="--at:6"><em>Pilot live, 50k users</em></div>
+        <div class="plan-mark lower" style="--at:8"><em>Nationwide</em></div>
+        <div class="plan-group">
           <div class="plan-bar"><span>Discovery</span><i style="--s:0;--e:2"></i></div>
-          <div class="plan-bar"><span>Design</span><i style="--s:2;--e:4"></i></div>
-          <div class="plan-bar"><span>Build</span><i style="--s:4;--e:8"></i></div>
-          <div class="plan-bar"><span>Test</span><i style="--s:8;--e:10"></i></div>
+          <div class="plan-bar"><span>Design</span><i style="--s:1;--e:3"></i></div>
+          <div class="plan-bar key"><span>Build and test</span><i style="--s:2;--e:6"></i></div>
+          <div class="plan-bar grow"><span>Environments</span><i style="--s:2;--e:6"></i></div>
+          <div class="plan-bar"><span>UAT</span><i style="--s:6;--e:8"></i></div>
+        </div>
       </div>
-      <div class="plan-group">
-        <p class="plan-h">What we did: in parallel</p>
-          <div class="plan-bar"><span>Discovery</span><i style="--s:0;--e:2"></i></div>
-          <div class="plan-bar"><span>Design</span><i style="--s:0.5;--e:3"></i></div>
-          <div class="plan-bar"><span>Build</span><i style="--s:1;--e:6"></i></div>
-          <div class="plan-bar"><span>Test</span><i style="--s:1.5;--e:6"></i></div>
-      </div>
-      </div>
-      <figcaption>Illustration of the approach; stage lengths are not to scale. Live on the agreed date.</figcaption>
+      <dl class="plan-notes">
+        <div><dt>M3 to M6</dt><dd>Build and test in one agile loop, full team of 200+</dd></div>
+        <div><dt>By M6</dt><dd>50+ AWS environments</dd></div>
+        <div><dt>M7 to M8</dt><dd>Five-minute payout proven end to end in UAT</dd></div>
+      </dl>
     </figure>
 
     <div class="clock" data-wow="clock" data-end=".86" aria-label="The steps from application to payout, all inside five minutes">

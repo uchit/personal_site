@@ -5,7 +5,7 @@
 ## Case studies
 
 - [One archival platform for 1,000+ applications](https://hellouchit.com/case-studies/data-archival.html): Tier-1 bank in Australia and New Zealand, 2024. 15 TB of structured and unstructured data on one AWS platform; more than $50M a year saved by retiring legacy systems.
-- [Loans paid out in under five minutes](https://hellouchit.com/case-studies/digital-lending.html): Leading Asian bank, 2021 to 2022. Pega, Go microservices and the FIS risk engine on AWS; live in six months with 200+ people and no critical incidents at launch.
+- [Loans paid out in under five minutes](https://hellouchit.com/case-studies/digital-lending.html): Leading Asian bank, 2021 to 2022. Pega, Go microservices and the FIS risk engine on AWS; a 50,000-user pilot live in six months with 200+ people and no critical incidents at the pilot launch, then a nationwide rollout.
 - [A safety app that can't read messages](https://hellouchit.com/case-studies/ai-companion-safety.html): Own product, 2026. Reports teenage AI-companion screen time to parents without any access to message content; built solo.
 - [All work](https://hellouchit.com/case-studies/): includes multi-region payments in three months, architecture governance at a tier-1 Asian bank, a retail platform roadmap, and a 10,561-question assessment on agentic AI.
 
