@@ -186,13 +186,25 @@ Uchit Vyas: lead forward deployed engineer in Melbourne. Career from 2011, five 
 
 ## About.
 
-I’m a lead forward deployed engineer in Melbourne, focused on AI-led enterprise transformation. I work inside the delivery team and build the thing myself, usually against a date that can’t move.
+Lead forward deployed engineer in Melbourne. I build AI into large enterprises, inside the delivery team, against dates that can’t move.
 
-I started in 2011 writing Java and running Linux servers in Ahmedabad. Cloud was new, so I wrote about it: five books for Apress and Packt between 2013 and 2016, mostly about AWS. Then came DevOps and SRE work for banks in Singapore and Thailand, enterprise architecture at KPMG Singapore, and platform and modernisation work across Australia and New Zealand.
+Shipping since
 
-Now I spend most of my time on AI in large enterprises: getting agents and AI services into production, and fixing the data and core platforms they depend on. That means giving an agent its own identity, limiting what it can do, keeping a record a regulator will accept, and still shipping on time.
+2011
 
-I still build things myself, from prototypes with new AI tools to a product I run on my own. It keeps my advice honest. Outside work I lift weights and write about training after 35. I speak Gujarati, Hindi and English, and a little Spanish.
+Books
+
+5
+
+Talks
+
+30+
+
+US patent
+
+1
+
+Gujarati, Hindi, English and a little Spanish. Outside work, weights.
 
 ## Five cities, fifteen years.
 
@@ -206,7 +218,7 @@ I still build things myself, from prototypes with new AI tools to a product I ru
 
 - Melbourne2022Bank platforms, modernisation and AI agents across Australia and New Zealand.
 
-## From Linux servers to lead engineer on AI.
+Every role, 2011 to now
 
 - 2022 to nowGlobal consultancy, Australia and New ZealandCore modernisation, platform engineering and AI lead
 
@@ -234,11 +246,9 @@ Mule ESB CookbookPackt, 2013
 
 US 11,334,348 B2
 
-Using machine learning to identify and correct differences between API specifications across systems. Granted 2022. Read the patent
+Machine learning that finds and fixes API specification drift. Granted 2022. Read the patent
 
 ## More than 30 talks. Eight were recorded.
-
-In Asia, Europe and the US. These have recordings or slides.
 
 - Apr 2021API design collaborationAPIDays, SingaporeWatch
 
@@ -260,19 +270,19 @@ Organising an event? Email contact@hellouchit.com.
 
 ## In clients’ and managers’ own words.
 
-From public LinkedIn recommendations. Read all 15.
+All 15 on LinkedIn
 
-“What do you do when you have a project that doesn’t have any requirements, has a business owner that has too much to do and not enough time to focus, wants to use technology that has never been used at the company before, has an unrealistic deadline, not enough money, but a vision that is so grand and unifying that you feel compelled to deliver as best you can? Call Uchit! … If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
+“If you’ve got hard stuff to do, Uchit will get it done. And he’ll have a laugh with you along the way.”
 
-Phil JacklinCEO, Thankyou Payroll. Client, August 2025.
+Phil JacklinCEO, Thankyou Payroll. Client, 2025.
 
-“When I think of Uchit, I think of a techno-business man. Few technical people understand the meaning of words like ‘delivering value’ and ‘business growth’. Uchit is one of those rare people who can balance technology with a business goal.”
+“Uchit is one of those rare people who can balance technology with a business goal.”
 
-Sanju BurkuleManaged Uchit directly. February 2021.
+Sanju BurkuleManaged Uchit directly, 2021.
 
-“Uchit brought a lot of Cloud, and specifically DevOps, DevSecOps and Agile knowledge with him to the table … I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.”
+“I highly recommend him for Cloud, Multi-Cloud, DevOps, DevSecOps and Quality Engineering roles without any reservations.”
 
-Subhasish GhoshSenior technical program manager, Azure OpenAI Service, Microsoft. February 2021.
+Subhasish GhoshSenior technical program manager, Microsoft, 2021.
 
 ---
 
