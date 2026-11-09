@@ -38,9 +38,7 @@ and indexable; nothing is waiting on a placeholder.
 - [ ] **Safety app screenshots.** The screenshot slot was removed so the page
   is complete. If you have screenshots, or the product has a public name or
   App Store link, they can go back in.
-- [ ] **Naming Accenture.** The homepage "Where I've worked" strip and the
-  About career list both name Accenture as your current employer. Remove it
-  from both if you'd rather not.
+- [x] **Employer name.** Removed from the site; the career list says "Global consultancy". The linked career profile PDF (`Profile_linkedin.pdf`) still names Accenture; replace or unlink it if that matters.
 - [ ] **Favicon PNG/ICO.** `favicon.svg` is new; `favicon.ico` and
   `favicon-192/512.png` still carry the old copper design.
 - [ ] **Talks:** the Config Management Camp 2016 slides link points to a deck

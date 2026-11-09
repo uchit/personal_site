@@ -363,7 +363,9 @@ figure.tile { margin: 0; }
 .mega sup, .fig sup, .k sup { font-size: .42em; vertical-align: .95em; margin-left: .04em; letter-spacing: 0; }
 
 /* About portrait: tighter crop, true black, stays with the text */
-.theme-dark .about-grid .portrait.wide { aspect-ratio: 4 / 5; position: sticky; top: 80px; background: #000; border-radius: 28px; }
+.theme-dark .about-grid .portrait.wide { aspect-ratio: 4 / 5; background: #000; border-radius: 28px; }
+@media (min-width: 861px) { .theme-dark .about-grid .portrait.wide { position: sticky; top: 80px; } }
+@media (max-width: 860px) { .theme-dark .about-grid .portrait.wide { max-width: 420px; } }
 .theme-dark .about-grid .portrait.wide img { object-position: 50% 22%; filter: brightness(.92) contrast(1.12); transform: scale(1.35); transform-origin: 50% 30%; }
 
 /* Body copy: grey, emphasis white, everywhere */
