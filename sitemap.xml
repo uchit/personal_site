@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hellouchit.com/</loc></url>
-  <url><loc>https://hellouchit.com/about/</loc></url>
-  <url><loc>https://hellouchit.com/agents/</loc></url>
-  <url><loc>https://hellouchit.com/case-studies/</loc></url>
-  <url><loc>https://hellouchit.com/case-studies/ai-companion-safety.html</loc></url>
-  <url><loc>https://hellouchit.com/case-studies/data-archival.html</loc></url>
-  <url><loc>https://hellouchit.com/case-studies/digital-lending.html</loc></url>
-  <url><loc>https://hellouchit.com/tools/agent-readiness.html</loc></url>
+  <url><loc>https://hellouchit.com/</loc><lastmod>2026-11-09</lastmod><priority>1.0</priority></url>
+  <url><loc>https://hellouchit.com/about/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/agents/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/case-studies/</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/case-studies/ai-companion-safety.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/case-studies/data-archival.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/case-studies/digital-lending.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hellouchit.com/tools/agent-readiness.html</loc><lastmod>2026-11-09</lastmod><priority>0.8</priority></url>
 </urlset>

@@ -1,20 +1,27 @@
 # Uchit Vyas
 
-> Lead forward deployed engineer in Melbourne, Australia, focused on AI-led enterprise transformation. Fifteen years taking payment, lending, data and core platforms from plan to production, mostly inside regulated banks in Asia and Australia, and now AI agents and AI services for large enterprises. Author of five books with Apress and Packt (2013 to 2016). US patent US11334348B2. Employed full-time; not available for consulting.
+> Lead forward deployed engineer in Melbourne, Australia, focused on AI-led enterprise transformation: taking AI from pilot to production inside regulated companies, along with the data and core platforms it depends on. Fifteen years of delivery across banks in Asia, Australia and New Zealand. Author of five books with Apress and Packt (2013 to 2016). Inventor on US patent US11334348B2 (machine learning to identify and correct differences in API specifications). More than 30 conference talks. Employed full-time; not available for consulting.
 
-## Pages
+## Case studies
 
-- [Home](https://hellouchit.com/): Summary, selected results, books, talks, contact
-- [Work](https://hellouchit.com/case-studies/): Case studies with results
-- [One archival platform for 1,000+ applications](https://hellouchit.com/case-studies/data-archival.html): Tier-1 bank in Australia and New Zealand, 2024, $50M+ a year saved
-- [Loans paid out in under five minutes](https://hellouchit.com/case-studies/digital-lending.html): Leading Asian bank, 2021 to 2022, 200+ engineers
-- [A safety app that can't read messages](https://hellouchit.com/case-studies/ai-companion-safety.html): Solo-built product, 2026
-- [About](https://hellouchit.com/about/): Career, books, patent, talks, recommendations
-- [Ten controls for AI agents](https://hellouchit.com/agents/): What to build, in what order, before an AI agent runs in a regulated company
-- [Agent readiness check](https://hellouchit.com/tools/agent-readiness.html): Ten-question self-assessment
-- [Controls as JSON](https://hellouchit.com/dataset/dataset.json): Machine-readable, CC BY 4.0
+- [One archival platform for 1,000+ applications](https://hellouchit.com/case-studies/data-archival.html): Tier-1 bank in Australia and New Zealand, 2024. 15 TB of structured and unstructured data on one AWS platform; more than $50M a year saved by retiring legacy systems.
+- [Loans paid out in under five minutes](https://hellouchit.com/case-studies/digital-lending.html): Leading Asian bank, 2021 to 2022. Pega, Go microservices and the FIS risk engine on AWS; live in six months with 200+ people and no critical incidents at launch.
+- [A safety app that can't read messages](https://hellouchit.com/case-studies/ai-companion-safety.html): Own product, 2026. Reports teenage AI-companion screen time to parents without any access to message content; built solo.
+- [All work](https://hellouchit.com/case-studies/): includes multi-region payments in three months, architecture governance at a tier-1 Asian bank, a retail platform roadmap, and a 10,561-question assessment on agentic AI.
+
+## AI agents in regulated companies
+
+- [Ten controls for AI agents](https://hellouchit.com/agents/): what to build, in order, before an AI agent goes live, with the evidence an auditor will ask for and read-only checks. Mapped to the EU AI Act, NIST AI RMF, ISO/IEC 42001 and APRA CPS 230/234.
+- [Agent readiness check](https://hellouchit.com/tools/agent-readiness.html): ten-question self-assessment that runs in the browser.
+- [Controls as JSON](https://hellouchit.com/dataset/dataset.json) and [CSV](https://hellouchit.com/dataset/dataset.csv): machine-readable, CC BY 4.0.
+
+## About
+
+- [About](https://hellouchit.com/about/): career, books, patent, recorded talks and recommendations.
+- [Full text of the site](https://hellouchit.com/llms-full.txt)
 
 ## Contact
 
 - Email: contact@hellouchit.com
 - LinkedIn: https://www.linkedin.com/in/uchitvyas/
+- Medium: https://medium.com/@uchit86
